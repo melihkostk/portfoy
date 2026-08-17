@@ -47,7 +47,7 @@ export function Corporate() {
             <div className="w-full max-w-350 py-30">
                 <CorporateCard />
             </div>
-            <div className="w-full bg-[#F7F6FB]">
+            <div className="w-full bg-[#F7F6FB] flex justify-center">
                 <div className="w-full max-w-350 py-30">
                     <CorporateCard />
                 </div>
