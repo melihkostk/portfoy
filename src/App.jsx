@@ -4,6 +4,7 @@ import { Home } from './pages/Home';
 import { News } from './pages/News';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Pricing } from "./pages/Pricing";
+import { Corporate } from "./pages/Corporate"
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="/discover" element={<Discover />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/articles" element={<News />} />
+        <Route path="/corporate" element={<Corporate />} />
       </Routes>
     </BrowserRouter>
 
