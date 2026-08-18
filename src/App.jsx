@@ -8,6 +8,7 @@ import { Corporate } from "./pages/Corporate"
 import { Contacts } from "./pages/Contacts";
 import { Login } from "./pages/Login";
 import { SignIn } from "./pages/SignIn";
+import { Application } from "./pages/Application";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SignIn />} />
+        <Route path="/application" element={<Application />} />
       </Routes>
     </BrowserRouter>
 

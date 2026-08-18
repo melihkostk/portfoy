@@ -87,7 +87,7 @@ export function Header() {
                         <div className="bg-[#048B99] cursor-pointer flex items-center h-12.5 rounded-[5px] text-white font-semibold">
                             <div className="flex items-center px-5 h-full rounded-l-[5px] border-r border-r-[#ffffff38] gap-1 hover:bg-[#026872] transition-colors duration-300 ease-in-out">
                                 <img className="w-5 h-5" src={plus} alt="" />
-                                <p>Firma Başvurusu</p>
+                                <Link to={"/application"}>Firma Başvurusu</Link>
                             </div>
                             <div onClick={() => setApplicationShown(prev => !prev)} className="flex h-full rounded-r-[5px] px-1.5 items-center justify-center hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
                                 <img className="w-4.5 h-4.5" src={whiteDownArrow} alt="" />
