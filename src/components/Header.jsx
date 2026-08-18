@@ -27,7 +27,7 @@ export function Header() {
                             <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium" to="/corporate">Kurumsal</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium" href="">İletişim</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium" to="/contacts">İletişim</Link>
                         </li>
                         <li>
                             <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium" href="">Blog</Link>
