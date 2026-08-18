@@ -3,11 +3,15 @@ import turkey from "../assets/turkey.svg"
 import english from "../assets/en.svg"
 import russia from "../assets/ru.svg"
 import downArrow from "../assets/down-arrow.png"
+import whiteDownArrow from "../assets/white-down-arrow.png"
 import { Link } from "react-router-dom"
+import person from "../assets/person.png"
+import arrowRight from "../assets/arrow-right.png"
 import React from "react"
 
 export function Header() {
-    const [languageShown , setLanguageShown] = React.useState(false);
+    const [languageShown, setLanguageShown] = React.useState(false);
+    const [registerShown, setRegisterShown] = React.useState(false);
 
     return (
         <div className="py-7.5 w-full max-w-350">
@@ -47,7 +51,7 @@ export function Header() {
                             <p>Türkçe</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
                         </div>
-                        {languageShown && <ul className="bg-white shadow-[0_0_30px_rgba(0,0,0,0.1)] rounded-[10px] p-5 w-40 min-w-full absolute">
+                        {languageShown && <ul className="bg-white z-50 shadow-[0_0_30px_rgba(0,0,0,0.1)] rounded-[10px] p-5 w-40 min-w-full absolute">
                             <li className="flex items-center gap-2.5 pb-2 border-b border-b-[#E5E5EA] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out cursor-pointer">
                                 <img className="w-5 h-5 object-fill rounded-[5px]" src={turkey} alt="" />
                                 <p className="font-semibold text-sm">Türkçe</p>
@@ -62,8 +66,20 @@ export function Header() {
                             </li>
                         </ul>}
                     </div>
-                    <div>
-                        <button className="bg-[#27C5D2] cursor-pointer px-5 h-12.5 rounded-[5px] text-white font-semibold hover:bg-[#048B99] transition-colors duration-300 ease-in-out">Giriş Yap</button>
+                    <div className="relative">
+                        <div className="bg-[#27C5D2] cursor-pointer h-12.5 rounded-[5px] text-white font-semibold flex items-center">
+                            <div className="flex rounded-l-[5px] border-r px-5 border-r-[#ffffff38] items-center h-full hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                                <img className="w-7 h-7" src={person} alt="" />
+                                <p>Giriş Yap</p>
+                            </div>
+                            <div onClick={() => setRegisterShown(prev => !prev)} className="h-full rounded-r-[5px] flex px-1.5 items-center justify-center hover:bg-[#048B99] hover:shadow-[0_0_30px_#048B99] transition-[background-color,box-shadow] duration-300 ease-in-out">
+                                <img className="w-4.5 h-4.5" src={whiteDownArrow} alt="" />
+                            </div>
+                        </div>
+                        {registerShown && <div className="absolute w-full bg-[#27C5D2] text-sm font-semibold cursor-pointer max-w-full text-white py-2 px-2.5 mt-0.5 rounded-[5px] flex items-center gap-1 hover:pl-4 transition-all duration-300 ease-in-out">
+                            <img className="w-2.5 h-2.5" src={arrowRight} alt="" />
+                            <a className="w-full" href="">Kayıt Ol</a>
+                        </div>}
                     </div>
                     <div>
                         <button className="bg-[#048B99] cursor-pointer px-5 h-12.5 rounded-[5px] text-white font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out">Firma başvurusu</button>
