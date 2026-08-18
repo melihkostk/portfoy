@@ -11,7 +11,9 @@ export function Application() {
                 <div className="flex">
                     <div className="flex-1 pr-12.5">
                         <div className="mt-7.5 mb-25 w-55">
-                            <img className="max-w-full" src={logo} alt="" />
+                            <Link to={"/"}>
+                                <img className="max-w-full" src={logo} alt="" />
+                            </Link>
                         </div>
                         <div>
                             <div className="relative max-w-110 mb-7.5 shadow-[0_0_30px_rgba(0,0,0,0.1)] hover:opacity-50 hover:shadow-[0_0_30px_rgba(0,0,0,0.4)] transition-[opacity,box-shadow] duration-300 ease-in-out">
@@ -102,27 +104,27 @@ export function Application() {
                                 <div className="mb-12.5">
                                     <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">Firma Bilgileri</h3>
                                     <div className="flex flex-wrap gap-3.75">
-                                        <div className="flex flex-col w-[28%] mx-2.5">   
+                                        <div className="flex flex-col w-[28%] mx-2.5">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Firma Ünvanı</label>
                                             <input className="border border-[#EDEDED] rounded-lg h-10 w-full" type="text" placeholder="Firma Ünvanı" />
                                         </div>
-                                        <div className="flex flex-col w-[28%] mx-2.5">   
+                                        <div className="flex flex-col w-[28%] mx-2.5">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Firma Ünvanı</label>
                                             <input className="border border-[#EDEDED] rounded-lg h-10 w-full" type="text" placeholder="Firma Ünvanı" />
                                         </div>
-                                        <div className="flex flex-col w-[28%] mx-2.5">   
+                                        <div className="flex flex-col w-[28%] mx-2.5">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Firma Ünvanı</label>
                                             <input className="border border-[#EDEDED] rounded-lg h-10 w-full" type="text" placeholder="Firma Ünvanı" />
                                         </div>
-                                        <div className="flex flex-col w-[28%] mx-2.5">   
+                                        <div className="flex flex-col w-[28%] mx-2.5">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Firma Ünvanı</label>
                                             <input className="border border-[#EDEDED] rounded-lg h-10 w-full" type="text" placeholder="Firma Ünvanı" />
                                         </div>
-                                        <div className="flex flex-col w-[28%] mx-2.5">   
+                                        <div className="flex flex-col w-[28%] mx-2.5">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Firma Ünvanı</label>
                                             <input className="border border-[#EDEDED] rounded-lg h-10 w-full" type="text" placeholder="Firma Ünvanı" />
                                         </div>
-                                        <div className="flex flex-col w-[28%] mx-2.5">   
+                                        <div className="flex flex-col w-[28%] mx-2.5">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Firma Ünvanı</label>
                                             <input className="border border-[#EDEDED] rounded-lg h-10 w-full" type="text" placeholder="Firma Ünvanı" />
                                         </div>

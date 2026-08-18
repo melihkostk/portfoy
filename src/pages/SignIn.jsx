@@ -12,7 +12,9 @@ export function SignIn() {
             <div className="w-132.5 pb-12.5">
                 <div className="flex items-center justify-between mb-7.5 pt-12.5">
                     <div className="w-55">
-                        <img className="max-w-full align-middle" src={logo} alt="" />
+                        <Link to={"/"}>
+                            <img className="max-w-full align-middle" src={logo} alt="" />
+                        </Link>
                     </div>
                     <div className="rounded-[5px] relative hover:bg-[#B7B9BF] hover:text-white text-[#202529] transition-colors duration-300 ease-in-out">
                         <div className="cursor-pointer flex items-center justify-start gap-2.5 h-12.5 px-5">

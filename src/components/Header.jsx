@@ -19,7 +19,9 @@ export function Header() {
         <div className="py-7.5 w-full max-w-350">
             <div className="flex items-center justify-between">
                 <div className="w-55 min-w-55">
-                    <img className="max-w-full" src={logo} alt="" />
+                    <Link to={"/"}>
+                        <img className="max-w-full" src={logo} alt="" />
+                    </Link>
                 </div>
                 <div>
                     <ul className="flex gap-5">
