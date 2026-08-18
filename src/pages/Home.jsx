@@ -82,22 +82,22 @@ export function Home() {
             <p className='text-[#525252] text-center max-w-[45%] font-medium'>Firmanızı tipini seçin, sizin için hazırlanmış özel paketler fırsatından faydalanın. Ücretsiz kullanım dönemini yakalamak için acele edin.</p>
             <ul className='flex mt-10 border border-[#eee] p-2.5 rounded-lg'>
               <li>
-                <button className='px-4 py-2 text-[#3e3e3e] font-medium bg-[#f4f4f4]'>
+                <button className='px-4 py-2 text-[#3e3e3e] font-medium bg-[#f4f4f4] hover:text-black cursor-pointer'>
                   Emlak Firması
                 </button>
               </li>
               <li>
-                <button className='px-4 py-2 text-[#3e3e3e] font-medium'>
+                <button className='px-4 py-2 text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
                   İnşaat Firması
                 </button>
               </li>
               <li>
-                <button className='px-4 py-2 text-[#3e3e3e] font-medium'>
+                <button className='px-4 py-2 text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
                   Emlak & İnşaat Firması
                 </button>
               </li>
               <li>
-                <button className='px-4 py-2 text-[#3e3e3e] font-medium'>
+                <button className='px-4 py-2 text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
                     Pazarlama Firması
                 </button>
               </li>
