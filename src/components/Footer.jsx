@@ -3,6 +3,7 @@ import linkedIn from "../assets/linkedIn.png"
 import x from "../assets/x.png"
 import facebook from "../assets/facebook.png"
 import instagram from "../assets/instagram.png"
+import { Link } from "react-router-dom"
 
 export function Footer() {
     return (
@@ -41,19 +42,19 @@ export function Footer() {
                     <p className="text-[24px] text-[#27c5d2] mb-4">Kurumsal</p>
                     <ul className="text-[#b9b0b1] text-lg">
                         <li className="mb-3.75">
-                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/corporate#about">Kurumsal</a>
+                            <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">Kurumsal</Link>
                         </li>
                         <li className="mb-3.75">
-                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/corporate#mission">Misyon</a>
+                            <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">Misyon</Link>
                         </li>
                         <li className="mb-3.75">
-                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/corporate#mission">Vizyon</a>
+                            <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">Vizyon</Link>
                         </li>
                         <li className="mb-3.75">
-                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/corporate#vision">Keşfet</a>
+                            <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">Keşfet</Link>
                         </li>
                         <li>
-                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/contacts">İletişim</a>
+                            <Link to={"/contacts"} className="hover:text-black transition-colors duration-300 ease-in-out">İletişim</Link>
                         </li>
                     </ul>
                 </div>
@@ -61,13 +62,13 @@ export function Footer() {
                     <p className="text-[24px] text-[#27c5d2] mb-4">Keşfet</p>
                     <ul className="text-[#b9b0b1] text-lg ">
                         <li className="mb-3.75">
-                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/discover">Port-Foy Nedir?</a>
+                            <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">Port-Foy Nedir?</Link>
                         </li>
                         <li className="mb-3.75">
-                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/discover#features">Özellikler ve Avantajlar</a>
+                            <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">Özellikler ve Avantajlar</Link>
                         </li>
                         <li className="mb-3.75">
-                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/pricing">Fiyatlandırma</a>
+                            <Link to={"/pricing"} className="hover:text-black transition-colors duration-300 ease-in-out">Fiyatlandırma</Link>
                         </li>
                         <li>
                             <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/faqs">Sıkça Sorulan Sorular</a>

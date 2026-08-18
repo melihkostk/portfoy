@@ -95,7 +95,7 @@ export function Header() {
                         </div>
                         {applicationShown && <div className="absolute w-full bg-[#048B99] text-sm font-semibold cursor-pointer max-w-full text-white py-2 px-2.5 mt-0.5 rounded-[5px] flex items-center gap-1 hover:pl-4 transition-all duration-300 ease-in-out">
                             <img className="w-2.5 h-2.5" src={arrowRight} alt="" />
-                            <a href="">Başvuru Sorgulama</a>
+                            <Link to={"/check"}>Başvuru Sorgulama</Link>
                         </div>}
                     </div>
                 </div>
