@@ -44,7 +44,7 @@ export function Login() {
                         <div className="my-2.5">
                             <label className="text-[#868686] mb-1.25 font-medium" for="username">E-Posta</label>
                             <div>
-                                <input className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="username" type="email" placeholder="E-Posta" />
+                                <input className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="username" type="email" placeholder="E-Posta" required />
                             </div>
                         </div>
                         <div className="my-2.5">
@@ -53,11 +53,11 @@ export function Login() {
                                 <a className="text-[#b1b1b1] text-sm font-medium hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">Şifremi Unuttum</a>
                             </div>
                             <div>
-                                <input className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type="password" placeholder="Şifre" />
+                                <input className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type="password" placeholder="Şifre" required />
                             </div>
                         </div>
                         <div className="flex items-center">
-                            <input type="checkbox" />
+                            <input type="checkbox" required />
                             <label className="text-[#868686] ml-1.25 font-medium">Beni Hatırla</label>
                         </div>
                         <button className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">Giriş Yap</button>

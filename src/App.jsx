@@ -7,6 +7,7 @@ import { Pricing } from "./pages/Pricing";
 import { Corporate } from "./pages/Corporate"
 import { Contacts } from "./pages/Contacts";
 import { Login } from "./pages/Login";
+import { SignIn } from "./pages/SignIn";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<SignIn />} />
       </Routes>
     </BrowserRouter>
 

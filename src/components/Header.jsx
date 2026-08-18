@@ -80,7 +80,7 @@ export function Header() {
                         </div>
                         {registerShown && <div className="absolute w-full bg-[#27C5D2] text-sm font-semibold cursor-pointer max-w-full text-white py-2 px-2.5 mt-0.5 rounded-[5px] flex items-center gap-1 hover:pl-4 transition-all duration-300 ease-in-out">
                             <img className="w-2.5 h-2.5" src={arrowRight} alt="" />
-                            <a className="w-full" href="">Kayıt Ol</a>
+                            <Link to={"/register"} className="w-full" href="">Kayıt Ol</Link>
                         </div>}
                     </div>
                     <div className="relative">
