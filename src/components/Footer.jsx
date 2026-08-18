@@ -41,19 +41,19 @@ export function Footer() {
                     <p className="text-[24px] text-[#27c5d2] mb-4">Kurumsal</p>
                     <ul className="text-[#b9b0b1] text-lg">
                         <li className="mb-3.75">
-                            <a href="https://demo.pigasoft.com/portfoy/public/tr/corporate#about">Kurumsal</a>
+                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/corporate#about">Kurumsal</a>
                         </li>
                         <li className="mb-3.75">
-                            <a href="https://demo.pigasoft.com/portfoy/public/tr/corporate#mission">Misyon</a>
+                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/corporate#mission">Misyon</a>
                         </li>
                         <li className="mb-3.75">
-                            <a href="https://demo.pigasoft.com/portfoy/public/tr/corporate#mission">Vizyon</a>
+                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/corporate#mission">Vizyon</a>
                         </li>
                         <li className="mb-3.75">
-                            <a href="https://demo.pigasoft.com/portfoy/public/tr/corporate#vision">Keşfet</a>
+                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/corporate#vision">Keşfet</a>
                         </li>
                         <li>
-                            <a href="https://demo.pigasoft.com/portfoy/public/tr/contacts">İletişim</a>
+                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/contacts">İletişim</a>
                         </li>
                     </ul>
                 </div>
@@ -61,16 +61,16 @@ export function Footer() {
                     <p className="text-[24px] text-[#27c5d2] mb-4">Keşfet</p>
                     <ul className="text-[#b9b0b1] text-lg ">
                         <li className="mb-3.75">
-                            <a href="https://demo.pigasoft.com/portfoy/public/tr/discover">Port-Foy Nedir?</a>
+                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/discover">Port-Foy Nedir?</a>
                         </li>
                         <li className="mb-3.75">
-                            <a href="https://demo.pigasoft.com/portfoy/public/tr/discover#features">Özellikler ve Avantajlar</a>
+                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/discover#features">Özellikler ve Avantajlar</a>
                         </li>
                         <li className="mb-3.75">
-                            <a href="https://demo.pigasoft.com/portfoy/public/tr/pricing">Fiyatlandırma</a>
+                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/pricing">Fiyatlandırma</a>
                         </li>
                         <li>
-                            <a href="https://demo.pigasoft.com/portfoy/public/tr/faqs">Sıkça Sorulan Sorular</a>
+                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/faqs">Sıkça Sorulan Sorular</a>
                         </li>
                     </ul>
                 </div>
@@ -78,7 +78,7 @@ export function Footer() {
                     <p className="text-[24px] text-[#27c5d2] mb-4">Sözleşmeler</p>
                     <ul className="text-[#b9b0b1] text-lg font-normal">
                         <li>
-                            <a href="https://demo.pigasoft.com/portfoy/public/tr/pages/3">Rıza Metni</a>
+                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/pages/3">Rıza Metni</a>
                         </li>
                     </ul>
                 </div>

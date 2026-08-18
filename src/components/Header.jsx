@@ -40,10 +40,10 @@ export function Header() {
                         <p>Türkçe</p>
                     </div>
                     <div>
-                        <button className="bg-[#27C5D2] px-5 h-12.5 rounded-[5px] text-white font-semibold hover:bg-[#048B99] transition-colors duration-300 ease-in-out">Giriş Yap</button>
+                        <button className="bg-[#27C5D2] cursor-pointer px-5 h-12.5 rounded-[5px] text-white font-semibold hover:bg-[#048B99] transition-colors duration-300 ease-in-out">Giriş Yap</button>
                     </div>
                     <div>
-                        <button className="bg-[#048B99] px-5 h-12.5 rounded-[5px] text-white font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out">Firma başvurusu</button>
+                        <button className="bg-[#048B99] cursor-pointer px-5 h-12.5 rounded-[5px] text-white font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out">Firma başvurusu</button>
                     </div>
                 </div>
             </div>
