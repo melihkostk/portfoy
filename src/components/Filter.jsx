@@ -166,7 +166,7 @@ export function Filter() {
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee]">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">bina yaşı</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <div className="flex justify-between cursor-pointer flex-1">
                             <input className="text-sm flex-1" type="number" placeholder="min" />
                             <input className="text-sm flex-1" type="number" placeholder="max" />
                         </div>
