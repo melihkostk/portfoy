@@ -5,7 +5,7 @@ import { LanguageSelect } from "../components/LanguageSelect"
 
 export function SignIn() {
     return (
-        <div className="flex flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-20% to-white to-20%">
+        <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-20% to-white to-20%">
             <div className="w-132.5 pb-12.5">
                 <div className="flex items-center justify-between mb-7.5 pt-12.5">
                     <div className="w-55">

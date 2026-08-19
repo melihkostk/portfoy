@@ -5,7 +5,7 @@ import { LanguageSelect } from "../components/LanguageSelect"
 
 export function Login() {
     return (
-        <div className="flex flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-35% to-white to-35%">
+        <div className="flex flex-col justify-center items-center min-h-screen bg-linear-to-b font-sf from-[#f7f6fb] from-35% to-white to-35%">
             <div className="w-132.5">
                 <div className="flex items-center justify-between mb-7.5 py-5">
                     <div className="w-55">

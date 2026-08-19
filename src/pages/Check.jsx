@@ -6,7 +6,7 @@ import t from "../assets/t.png"
 
 export function Check() {
     return (
-        <div className="w-full flex flex-col items-center justify-center">
+        <div className="w-full flex flex-col items-center justify-center font-sf">
             <div className="w-full max-w-350">
                 <div className="flex items-center">
                     <div className="pr-12.5 flex-1">

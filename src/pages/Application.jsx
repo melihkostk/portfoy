@@ -15,7 +15,7 @@ import { LanguageSelect } from "../components/LanguageSelect"
 
 export function Application() {
     return (
-        <div className="w-full flex flex-col items-center justify-center">
+        <div className="w-full flex flex-col items-center justify-center font-sf">
             <div className="w-full max-w-350">
                 <div className="flex">
                     <div className="flex-1 pr-12.5">

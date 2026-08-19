@@ -4,7 +4,7 @@ import { Footer } from "../components/Footer";
 
 export function Consent() {
     return (
-        <div className="w-full flex flex-col items-center justify-center">
+        <div className="w-full flex flex-col items-center justify-center font-sf">
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-350">
