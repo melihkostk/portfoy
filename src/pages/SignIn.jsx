@@ -2,8 +2,15 @@ import logo from "../assets/logo.svg"
 import { Link } from "react-router-dom"
 import { AppLinks } from "../components/AppLinks"
 import { LanguageSelect } from "../components/LanguageSelect"
+import React from "react"
 
 export function SignIn() {
+    const [name, setName] = React.useState("");
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [code, setCode] = React.useState("");
+    const [phone, setPhone] = React.useState("");
+
     return (
         <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-20% to-white to-20%">
             <div className="w-132.5 pb-12.5">
@@ -23,23 +30,23 @@ export function SignIn() {
                     <form action="">
                         <div className="flex flex-col my-2.5">
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="name">Adınız ve Soyadınız</label>
-                            <input className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="name" id="name" type="text" placeholder="Adınız ve Soyadınız" required />
+                            <input value={name} onChange={(e) => setName(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="name" id="name" type="text" placeholder="Adınız ve Soyadınız" required />
                         </div>
                         <div className="flex flex-col my-2.5">
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="email">E-Posta</label>
-                            <input className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="email" type="email" placeholder="Adınız ve Soyadınız" required />
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="email" type="email" placeholder="Adınız ve Soyadınız" required />
                         </div>
                         <div className="flex flex-col my-2.5">
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="phone">Telefon</label>
-                            <input className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="phone" id="phone" type="email" placeholder="Adınız ve Soyadınız" required phone-mask />
+                            <input value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="phone" id="phone" type="email" placeholder="Adınız ve Soyadınız" required phone-mask />
                         </div>
                         <div className="flex flex-col my-2.5">
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="password">Şifre</label>
-                            <input className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type="email" placeholder="Adınız ve Soyadınız" required phone-mask />
+                            <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type="email" placeholder="Adınız ve Soyadınız" required phone-mask />
                         </div>
                         <div className="flex flex-col my-2.5">
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="code">Davetiye Kodu</label>
-                            <input className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="code" id="code" type="email" placeholder="Adınız ve Soyadınız" required phone-mask />
+                            <input value={code} onChange={(e) => setCode(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="code" id="code" type="email" placeholder="Adınız ve Soyadınız" required phone-mask />
                         </div>
                         <button className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">kayıt ol</button>
                         <p className="text-center my-10 text-sm text-[#868686] font-medium">

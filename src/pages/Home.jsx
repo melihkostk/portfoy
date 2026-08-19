@@ -6,6 +6,7 @@ import { PricingCard } from '../components/PricingCard'
 import { AppLinks } from '../components/AppLinks'
 import { Footer } from '../components/Footer'
 import { Link } from "react-router-dom"
+import { Filter } from "../components/Filter"
 
 export function Home() {
 
@@ -14,29 +15,7 @@ export function Home() {
       <Header />
       <div className='w-full max-w-350 py-20'>
         <h1 className='text-[35px] text-black font-medium mb-2'>İlanları Filtrele</h1>
-        <ul className='flex'>
-          <li>
-            <button className='px-7.5 py-2.5 text-sm opacity-70 text-black font-semibold cursor-pointer'>Tümü</button>
-          </li>
-          <li>
-            <button className='px-7.5 py-2.5 text-sm opacity-70 font-semibold cursor-pointer'>Apartman</button>
-          </li>
-          <li>
-            <button className='px-7.5 py-2.5 text-sm opacity-70 font-semibold cursor-pointer'>Proje Apartmanlar</button>
-          </li>
-          <li>
-            <button className='px-7.5 py-2.5 text-sm opacity-70 font-semibold cursor-pointer'>Villa</button>
-          </li>
-          <li>
-            <button className='px-7.5 py-2.5 text-sm opacity-70 font-semibold cursor-pointer'>Proje Villa</button>
-          </li>
-          <li>
-            <button className='px-7.5 py-2.5 text-sm opacity-70 font-semibold cursor-pointer'>Arsa</button>
-          </li>
-          <li>
-            <button className='px-7.5 py-2.5 text-sm opacity-70 font-semibold cursor-pointer'>Tarla</button>
-          </li>
-        </ul>
+        <Filter />
       </div>
       <div className='w-full max-w-350 flex flex-col items-center mb-30'>
         <div className='w-full flex flex-col items-center mb-10'>
