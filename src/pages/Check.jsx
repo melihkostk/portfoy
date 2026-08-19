@@ -38,8 +38,8 @@ export function Check() {
                             <Link className="py-2 px-5 text-sm text-white font-semibold bg-[#27C5D2] rounded-lg hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer" to={"/"} href="">
                                 Port-foy'a Dön
                             </Link>
-                            <Link className="py-2 px-5 text-sm text-white font-semibold bg-[#27C5D2] rounded-lg hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer" to={"/"} href="">
-                                Başvuru Sorgulama
+                            <Link className="py-2 px-5 text-sm text-white font-semibold bg-[#27C5D2] rounded-lg hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer" to={"/application"} href="">
+                                Firma başvurusu
                             </Link>
                         </div>
                     </div>
@@ -57,7 +57,7 @@ export function Check() {
                                 <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="application">Başvuru Kodu veya E-Posta Adresiniz</label>
                                 <div className="flex items-center relative">
                                     <img className="absolute w-4.5 h-4.5 left-3" src={t} alt="" />
-                                    <input type="text" name="application" id="application" className="border border-[#EDEDED] rounded-lg w-full h-10 pl-10 font-medium" placeholder="Başvuru Kodu veya E-Posta Adresiniz" required />
+                                    <input type="text" name="application" id="application" className="border border-[#EDEDED] rounded-lg w-full h-10 pl-10 font-medium" placeholder="Başvuru Kodu veya E-Posta Adresiniz" required/>
                                 </div>
                             </div>
                             <div>
