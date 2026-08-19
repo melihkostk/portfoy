@@ -4,11 +4,15 @@ import x from "../assets/x.png"
 import facebook from "../assets/facebook.png"
 import instagram from "../assets/instagram.png"
 import { Link } from "react-router-dom"
+import React from "react"
 
 export function Footer() {
+
+    const [loged] = React.useState(true)
+
     return (
         <div className="w-full">
-            <div className='w-full mx-auto max-w-350 flex items-start gap-7.5'>
+            {!loged && <div className='w-full mx-auto max-w-350 flex items-start gap-7.5'>
                 <div className="w-[40%] pr-7.5">
                     <img className="w-[40%] mb-5" src={logo} alt="" />
                     <p className="text-sm text-[#b9c0c1] font-medium mb-4">
@@ -83,10 +87,14 @@ export function Footer() {
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div>}
             <div className="w-full bg-[#27C5D2] flex justify-center py-3.75 mt-20">
                 <div className="w-full max-w-350 flex justify-between px-3">
-                    <p className="text-white text-base font-semibold">
+                    {loged && <p className="text-white font-medium">
+                        Müşteri Destek Hattı
+                        <a className="font-bold" href="https://demo.pigasoft.com/portfoy/public/tr/tel: 0 850 851 44 94"> 0 850 851 44 94</a>
+                    </p>}
+                    <p className="text-white text-base font-medium">
                         Copyright @ Port-Foy 2024. Her hakkı saklıdır.
                     </p>
                     <p className="text-white text-base font-normal">
