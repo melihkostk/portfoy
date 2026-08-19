@@ -7,7 +7,7 @@ export function DiscoverCard() {
                 <img className="w-full rounded-2xl" src={discover} alt="" />
             </div>
             <div className="flex-1">
-                <h3 className="text-[26px] text-[#212529] mb-5 font-medium">Sahibi olduğunuz ya da satış yetkisi aldığınız ürünleri gün de kaç kişi inceliyor?</h3>
+                <h3 className="text-[26px] text-[#212529] mb-5 font-semibold">Sahibi olduğunuz ya da satış yetkisi aldığınız ürünleri gün de kaç kişi inceliyor?</h3>
                 <div>
                     <p className="text-[#838383] text-base font-medium mb-4">
                         Herkesin merak ettiği bir konu: Drive linki paylaştığınızda acaba kaç

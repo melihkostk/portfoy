@@ -45,7 +45,7 @@ export function Discover() {
             </div>
             <div className="w-full max-w-350">
                 <div className="text-center flex flex-col items-center my-15">
-                    <h1 className="mb-2.5 text-[32px] text-[#212529] font-medium">
+                    <h1 className="mb-2.5 text-[32px] text-[#212529] font-semibold">
                         Port-Foy'ü Keşfet
                     </h1>
                     <p className="text-base text-[#525252] font-medium max-w-[45%]">

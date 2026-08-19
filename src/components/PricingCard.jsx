@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import checkIcon from "../assets/check.png"
 
 export function PricingCard() {
     return (
@@ -19,17 +20,35 @@ export function PricingCard() {
             <div className="mb-5">
                 <p className="text-xs text-[#999999] mb-2.5 font-medium uppercase">Müşteri ve Personel</p>
                 <ul>
-                    <li className="text-base text-[#212529] my-0.5 font-medium">10 adet personel oluşturma</li>
-                    <li className="text-base text-[#212529] my-0.5 font-medium">3000 adet teklif oluşturma</li>
-                    <li className="text-base text-[#212529] my-0.5 font-medium">1000 adet müşteri oluşturma</li>
+                    <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
+                        <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
+                        <p>10 adet personel oluşturma</p>
+                    </li>
+                    <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
+                        <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
+                        <p>3000 adet teklif oluşturma</p>
+                    </li>
+                    <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
+                        <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
+                        <p>1000 adet müşteri oluşturma</p>
+                    </li>
                 </ul>
             </div>
             <div className="mb-5">
                 <p className="text-xs text-[#999999] mb-2.5 font-medium uppercase">İlan</p>
                 <ul>
-                    <li className="text-base text-[#212529] my-0.5 font-medium">520 adet ilan oluşturma</li>
-                    <li className="text-base text-[#212529] my-0.5 font-medium">Her ilan için 20 adet fotoğraf</li>
-                    <li className="text-base text-[#212529] my-0.5 font-medium">Her ilan için 20 video</li>
+                    <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
+                        <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
+                        <p>520 adet ilan oluşturma</p>
+                    </li>
+                    <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
+                        <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
+                        <p>Her ilan için 20 adet fotoğraf</p>
+                    </li>
+                    <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
+                        <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
+                        <p>Her ilan için 20 video</p>
+                    </li>
                 </ul>
             </div>
             <div className="w-full bg-[#f1f1f1] text-center py-2 px-5 rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
