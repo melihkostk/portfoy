@@ -3,6 +3,7 @@ import video from "../assets/video-cover.png"
 import play from "../assets/play.png"
 import { Link } from "react-router-dom"
 import { AppLinks } from "../components/AppLinks"
+import { LanguageSelect } from "../components/LanguageSelect"
 
 export function Application() {
     return (
@@ -10,6 +11,9 @@ export function Application() {
             <div className="w-full max-w-350">
                 <div className="flex">
                     <div className="flex-1 pr-12.5">
+                        <div>
+                            <LanguageSelect />
+                        </div>
                         <div className="mt-7.5 mb-25 w-55">
                             <Link to={"/"}>
                                 <img className="max-w-full" src={logo} alt="" />

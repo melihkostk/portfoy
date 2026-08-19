@@ -1,10 +1,7 @@
 import logo from "../assets/logo.svg"
-import turkey from "../assets/turkey.svg"
-import english from "../assets/en.svg"
-import russia from "../assets/ru.svg"
-import downArrow from "../assets/down-arrow.png"
 import { AppLinks } from "../components/AppLinks"
 import { Link } from "react-router-dom"
+import { LanguageSelect } from "../components/LanguageSelect"
 
 export function Login() {
     return (
@@ -16,27 +13,7 @@ export function Login() {
                             <img className="max-w-full align-middle" src={logo} alt="" />
                         </Link>
                     </div>
-                    <div className="rounded-[5px] relative hover:bg-[#B7B9BF] hover:text-white text-[#202529] transition-colors duration-300 ease-in-out">
-                        <div className="cursor-pointer flex items-center justify-start gap-2.5 h-12.5 px-5">
-                            <img className="w-5 h-5 object-fill rounded-[5px]" src={turkey} alt="" />
-                            <p className="font-semibold">Türkçe</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
-                        <ul className="bg-white z-50 shadow-[0_0_30px_rgba(0,0,0,0.1)] hidden rounded-[10px] p-5 w-40 min-w-full absolute">
-                            <li className="text-[#212529] flex items-center gap-2.5 pb-2 border-b border-b-[#E5E5EA] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out cursor-pointer">
-                                <img className="w-5 h-5 object-fill rounded-[5px]" src={turkey} alt="" />
-                                <p className="font-semibold text-sm">Türkçe</p>
-                            </li>
-                            <li className=" text-[#212529] flex items-center gap-2.5 py-2 border-b border-b-[#E5E5EA] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out cursor-pointer">
-                                <img className="w-5 h-5 object-fill rounded-[5px]" src={english} alt="" />
-                                <p className="font-semibold text-sm">English</p>
-                            </li>
-                            <li className=" text-[#212529] flex items-center gap-2.5 pt-2 hover:text-[#27C5D2] transition-colors duration-300 ease-in-out cursor-pointer">
-                                <img className="w-5 h-5 object-fill rounded-[5px]" src={russia} alt="" />
-                                <p className="font-semibold text-sm">Русский</p>
-                            </li>
-                        </ul>
-                    </div>
+                    <LanguageSelect />
                 </div>
                 <div className="w-full bg-white shadow-[0_0_30px_rgb(247_247_247)] p-7.5 rounded-lg">
                     <div className="mt-6.25 mb-7.5">
@@ -66,7 +43,7 @@ export function Login() {
                         <button className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">Giriş Yap</button>
                         <p className="text-center my-10 text-sm text-[#868686] font-medium">
                             Hesabınız yok mu? Davetiye kodunuzla
-                            <a className="block text-[#525252] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">şimdi hesap oluşturun.</a>
+                            <Link to={"/register"} className="block text-[#525252] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">şimdi hesap oluşturun.</Link>
                         </p>
                     </form>
                     <p className="text-center text-[#868686] text-xs font-medium">Tüm hakları saklıdır. © Port-Foy - 2024</p>
