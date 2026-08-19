@@ -79,7 +79,7 @@ export function Footer() {
                     <p className="text-[24px] text-[#27c5d2] mb-4">Sözleşmeler</p>
                     <ul className="text-[#b9b0b1] text-lg font-normal">
                         <li>
-                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/pages/3">Rıza Metni</a>
+                            <Link to={"/consent"} className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/pages/3">Rıza Metni</Link>
                         </li>
                     </ul>
                 </div>
