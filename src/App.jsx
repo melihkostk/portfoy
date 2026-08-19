@@ -10,6 +10,7 @@ import { Login } from "./pages/Login";
 import { SignIn } from "./pages/SignIn";
 import { Check } from "./pages/Check";
 import { Application } from "./pages/Application";
+import { Faqs } from "./pages/Faqs";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/register" element={<SignIn />} />
         <Route path="/application" element={<Application />} />
         <Route path="/check" element={<Check />} />
+        <Route path="/faqs" element={<Faqs />} />
       </Routes>
     </BrowserRouter>
 

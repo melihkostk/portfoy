@@ -71,7 +71,7 @@ export function Footer() {
                             <Link to={"/pricing"} className="hover:text-black transition-colors duration-300 ease-in-out">Fiyatlandırma</Link>
                         </li>
                         <li>
-                            <a className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/faqs">Sıkça Sorulan Sorular</a>
+                            <Link to={"/faqs"} className="hover:text-black transition-colors duration-300 ease-in-out">Sıkça Sorulan Sorular</Link>
                         </li>
                     </ul>
                 </div>

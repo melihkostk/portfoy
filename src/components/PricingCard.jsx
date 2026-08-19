@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export function PricingCard() {
     return (
         <div className="bg-[#f9f9f9] p-7.5 m-3.75 w-[30%]">
@@ -31,7 +33,7 @@ export function PricingCard() {
                 </ul>
             </div>
             <div className="w-full bg-[#f1f1f1] text-center py-2 px-5 rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
-                <a className="uppercase text-[#4b4b4b] font-medium text-sm w-full" href="https://demo.pigasoft.com/portfoy/public/tr/registration/application">Firma başvurusu</a>
+                <Link to={"/application"} className="uppercase text-[#4b4b4b] font-medium text-sm w-full">Firma başvurusu</Link>
             </div>
         </div>
     )
