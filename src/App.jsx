@@ -12,6 +12,7 @@ import { Check } from "./pages/Check";
 import { Application } from "./pages/Application";
 import { Faqs } from "./pages/Faqs";
 import { Consent } from "./pages/Consent";
+import { Companies } from "./pages/Companies";
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/check" element={<Check />} />
         <Route path="/faqs" element={<Faqs />} />
         <Route path="/consent" element={<Consent />} />
+        <Route path="/companies" element={<Companies />} />
       </Routes>
     </BrowserRouter>
 

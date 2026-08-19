@@ -13,7 +13,7 @@ import { LanguageSelect } from "./LanguageSelect"
 export function Header() {
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
-    const [loged] = React.useState(false)
+    const [loged] = React.useState(true)
 
     return (
         <div className="py-7.5 w-full max-w-350">
@@ -54,7 +54,7 @@ export function Header() {
                             <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">İlanlar</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">Firmalar</Link>
+                            <Link to={"/companies"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">Firmalar</Link>
                         </li>
                         <li>
                             <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">Yeni İlan Oluştur</Link>
