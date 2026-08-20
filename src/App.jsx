@@ -14,6 +14,7 @@ import { Faqs } from "./pages/Faqs";
 import { Consent } from "./pages/Consent";
 import { Companies } from "./pages/Companies";
 import { Properties } from "./pages/Properties";
+import { Create } from "./pages/Create";
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="/consent" element={<Consent />} />
         <Route path="/companies" element={<Companies />} />
         <Route path="/properties" element={<Properties />} />
+        <Route path="/properties/create" element={<Create />} />
       </Routes>
     </BrowserRouter>
 

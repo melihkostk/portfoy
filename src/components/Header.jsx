@@ -57,10 +57,10 @@ export function Header() {
                             <Link to={"/companies"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">Firmalar</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">Yeni İlan Oluştur</Link>
+                            <Link to={"/properties/create"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">Yeni İlan Oluştur</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">İletişim</Link>
+                            <Link to={"/contacts"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">İletişim</Link>
                         </li>
                     </ul>
                 </div>}
