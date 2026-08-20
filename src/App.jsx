@@ -15,6 +15,7 @@ import { Consent } from "./pages/Consent";
 import { Companies } from "./pages/Companies";
 import { Properties } from "./pages/Properties";
 import { Create } from "./pages/Create";
+import { Profile } from "./pages/Profile"
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/companies" element={<Companies />} />
         <Route path="/properties" element={<Properties />} />
         <Route path="/properties/create" element={<Create />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
 

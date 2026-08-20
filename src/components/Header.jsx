@@ -146,7 +146,7 @@ export function Header() {
                             <div className="h-12.5 border-r border-r-[#ffffff38]">
                                 <Link className="flex items-center h-full px-5 rounded-l-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                                     <img className="object-cover w-7 h-7" src={person} alt="" />
-                                    <span className="text-white">Hesabım</span>
+                                    <Link to={"/profile"} className="text-white">Hesabım</Link>
                                 </Link>
                             </div>
                             <div onClick={() => setAccountShown(prev => !prev)} className="flex items-center justify-center bg-[#27C5D2] rounded-r-[5px] w-7.5 cursor-pointer hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
