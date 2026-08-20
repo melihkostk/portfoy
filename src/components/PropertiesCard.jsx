@@ -1,0 +1,39 @@
+import defaultProperty from "../assets/default-property.jpg"
+
+export function PropertiesCard() {
+    return (
+        <div className="flex items-start bg-[#FAFAFA] p-3.75 m-3.75 rounded-[10px] w-[31%]">
+            <div className="w-[50%] h-full aspect-square">
+                <img className="rounded-[10px] w-full h-full object-cover" src={defaultProperty} alt="" />
+            </div>
+            <div className="pl-5 w-[50%]">
+                <a className="min-h-12.5 line-clamp-2 overflow-hidden text-black font-semibold" href="">Müthiş ILAN</a>
+                <ul className="text-[11px] text-[#B7BFB9] font-medium flex flex-wrap gap-2.5 my-2.5">
+                    <li className="w-full">
+                        <span>Burdur / Ağlasun</span>
+                    </li>
+                    <li>
+                        <span>Hazır</span>
+                    </li>
+                    <li>
+                        <span>Apartman</span>
+                    </li>
+                    <li className="w-full">
+                        <span>Burak Pigasoft</span>
+                    </li>
+                </ul>
+                <p>
+                    <span className="text-[11px] text-[#B7BFB9] font-medium block py-1.25">
+                        Satış Fiyatı
+                    </span>
+                    <span className="text-lg text-[#FFCA64] font-semibold">
+                        ₺44.400.000
+                    </span>
+                </p>
+                <button className="bg-[#e6e6e6] py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold rounded-sm">
+                    İlanı teklif listesine ekle
+                </button>
+            </div>
+        </div>
+    )
+}

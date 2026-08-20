@@ -51,7 +51,7 @@ export function Header() {
                 {loged && <div>
                     <ul className="flex gap-5">
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">İlanlar</Link>
+                            <Link to={"/properties"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">İlanlar</Link>
                         </li>
                         <li>
                             <Link to={"/companies"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">Firmalar</Link>
