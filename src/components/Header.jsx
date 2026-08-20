@@ -9,11 +9,13 @@ import notification from "../assets/notification.png"
 import folder from "../assets/folder.png"
 import shop from "../assets/shop.png"
 import { LanguageSelect } from "./LanguageSelect"
+import { Notification } from "./Notification"
 
 export function Header() {
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
     const [loged] = React.useState(true)
+    const[notShown, setNotShown] = React.useState(false)
 
     return (
         <div className="py-7.5 w-full max-w-350">
@@ -99,10 +101,37 @@ export function Header() {
                             <Link to={"/check"}>Başvuru Sorgulama</Link>
                         </div>}
                     </div>}
-                    {loged && <div>
-                        <button className="w-12.5 h-12.5 bg-[#f8f8f8] rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out">
+                    {loged && <div className="relative">
+                        <button onClick={() => setNotShown(prev => !prev)} className="w-12.5 h-12.5 bg-[#f8f8f8] rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out">
                             <img className="w-6 h-6" src={notification} alt="" />
                         </button>
+                        {notShown && <div className="absolute w-75 rounded-lg bg-white right-0 shadow-[0_0_30px_rgba(0,0,0,0.1)] py-3.75">
+                            <div className="bg-[#27C5D2] p-7.5 rounded-t-lg">
+                                <p className="text-white text-sm mb-5">
+                                    Okunmamış 129 Bildirim
+                                </p>
+                                <button className="bg-white text-xs rounded-lg py-2.5 px-5 font-medium cursor-pointer whitespace-nowrap hover:bg-[#ffca64]">
+                                    Tümünü Okundu Olarak İşaretle
+                                </button>
+                            </div>
+                            <div className="max-h-[50vh] overflow-auto bg-white mb-5 p-3.75">
+                                <Notification />
+                                <Notification />
+                                <Notification />
+                                <Notification />
+                                <Notification />
+                                <Notification />
+                                <Notification />
+                                <Notification />
+                                <Notification />
+                                <Notification />
+                                <Notification />
+                                <Notification />
+                            </div>
+                            <div className="text-center w-full px-3.75">
+                                <button className="bg-[#eee] w-full text-[#727272] text-sm font-medium py-2.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white hover:shadow-[0_0_30px_#27C5D2] transition[colors,shadow] duration-300 ease-in-out">Tüm Bildirimleri Gör</button>
+                            </div>
+                        </div>}
                     </div>}
                     {loged && <button className="w-12.5 h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                         <img className="w-5 h-5" src={folder} alt="" />
@@ -114,7 +143,7 @@ export function Header() {
                     {loged && <div className="flex">
                         <div className="h-12.5 border-r border-r-[#ffffff38]">
                             <Link className="flex items-center h-full px-5 rounded-l-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
-                            <img className="object-cover w-7 h-7" src={person} alt="" />
+                                <img className="object-cover w-7 h-7" src={person} alt="" />
                                 <span className="text-white">Hesabım</span>
                             </Link>
                         </div>
