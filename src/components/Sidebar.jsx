@@ -1,8 +1,10 @@
 import pp from "../assets/pp.svg"
 import arrow from "../assets/black-arrow-right.png"
 import { Link } from "react-router-dom"
+import React from "react"
 
 export function Sidebar() {
+    const [subMenu, setSubMenu] = React.useState(false)
     return (
         <div>
             <div className="mb-7.5 flex flex-col items-center justify-center p-7.5 border border-[#eee] rounded-lg w-full">
@@ -43,11 +45,36 @@ export function Sidebar() {
                             Müşteriye Gönderilen Teklifler
                         </Link>
                     </li>
-                    <li className="py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
-                        <a className="flex items-center" href="">
-                            <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
-                            Fiyat Tekliflerim
-                        </a>
+                    <li className="my-0.5 rounded-lg cursor-pointer">
+                        <div className="w-full">
+                            <div
+                                onClick={() => setSubMenu(prev => !prev)}
+                                className="flex items-center py-2 px-2.5 w-full rounded-lg hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out"
+                            >
+                                <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
+                                Fiyat Tekliflerim
+                            </div>
+
+                            {subMenu && (
+                                <div className="pl-5 w-full">
+                                    <ul>
+                                        <li className="rounded-lg hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out">
+                                            <Link to={"/offers"} className="flex items-center py-2 px-2.5 text-sm text-[#5f5f5f] hover:text-white transition-colors duration-300 ease-in-out">
+                                                <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
+                                                Aldığım teklifler
+                                            </Link>
+                                        </li>
+
+                                        <li className="rounded-lg hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out">
+                                            <Link to={"/offers"} className="flex items-center py-2 px-2.5 text-sm text-[#5f5f5f] hover:text-white transition-colors duration-300 ease-in-out">
+                                                <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
+                                                Gönderdiğim teklifler
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
                     </li>
                     <li className="py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                         <Link to={"/wishlist"} className="flex items-center" href="">
