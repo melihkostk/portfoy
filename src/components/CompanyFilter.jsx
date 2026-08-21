@@ -110,7 +110,7 @@ export function CompanyFilter() {
                 <input className="bg-white py-2 px-3 border w-full border-[#D9D9D9] rounded-lg" type="text" placeholder="Firmalarda arayın"/>
             </div>
             <div className="grow">
-                <button className="w-full bg-[#27C5D2] text-white text-sm py-2 px-5 whitespace-nowrap rounded-lg">Seçenekleri Uygula</button>
+                <button className="w-full bg-[#27C5D2] text-white text-sm py-2 px-5 cursor-pointer whitespace-nowrap rounded-lg hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
             </div>
         </div>
     )

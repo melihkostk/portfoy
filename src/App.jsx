@@ -20,6 +20,7 @@ import { Account } from "./pages/Account";
 import { Proposals } from "./pages/Proposals"
 import { Notifications } from "./pages/Notifications";
 import { QuickFilters } from "./pages/QuickFilters";
+import { Wishlist } from "./pages/Wishlist"
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
         <Route path="/proposals" element={<Proposals />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/quick-filters" element={<QuickFilters />} /> 
+        <Route path="/wishlist" element={<Wishlist />} /> 
       </Routes>
     </BrowserRouter>
 

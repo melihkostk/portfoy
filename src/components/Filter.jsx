@@ -7,7 +7,7 @@ export function Filter() {
 
     return (
         <div className="flex flex-col">
-            <ul className='flex'>
+            <ul className='flex mt-10'>
                 <li>
                     <button onClick={() => setType("All")} className='px-7.5 py-2.5 text-sm opacity-70 text-black cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100'>Tümü</button>
                 </li>
