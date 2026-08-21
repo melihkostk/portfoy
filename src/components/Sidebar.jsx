@@ -33,14 +33,14 @@ export function Sidebar() {
                         </Link>
                     </li>
                     <li className="py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
-                        <a className="flex items-center" href="">
+                        <Link to={"/auth/properties"} className="flex items-center">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                             İlanlarım
-                        </a>
+                        </Link>
 
                     </li>
                     <li className="py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
-                        <Link to={"/proposals"} className="flex items-center" href="">
+                        <Link to={"/proposals"} className="flex items-center">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                             Müşteriye Gönderilen Teklifler
                         </Link>

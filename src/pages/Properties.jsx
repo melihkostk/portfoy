@@ -47,15 +47,15 @@ export function Properties() {
                     </div>
                 </div>
                 <div className="flex flex-wrap -mx-3.75">
-                    <PropertiesCard />
-                    <PropertiesCard />
-                    <PropertiesCard />
-                    <PropertiesCard />
-                    <PropertiesCard />
-                    <PropertiesCard />
-                    <PropertiesCard />
-                    <PropertiesCard />
-                    <PropertiesCard />
+                    <PropertiesCard page="properties" />
+                    <PropertiesCard page="properties" />
+                    <PropertiesCard page="properties" />
+                    <PropertiesCard page="properties" />
+                    <PropertiesCard page="properties" />
+                    <PropertiesCard page="properties" />
+                    <PropertiesCard page="properties" />
+                    <PropertiesCard page="properties" />
+                    <PropertiesCard page="properties" />
                 </div>
             </div>
             <div className="w-full max-w-350">
