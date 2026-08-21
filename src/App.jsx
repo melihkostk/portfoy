@@ -17,6 +17,7 @@ import { Properties } from "./pages/Properties";
 import { Create } from "./pages/Create";
 import { Profile } from "./pages/Profile"
 import { Account } from "./pages/Account";
+import {Proposals} from "./pages/Proposals"
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
         <Route path="/properties/create" element={<Create />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/proposals" element={<Proposals />} />
       </Routes>
     </BrowserRouter>
 
