@@ -16,6 +16,7 @@ import { Companies } from "./pages/Companies";
 import { Properties } from "./pages/Properties";
 import { Create } from "./pages/Create";
 import { Profile } from "./pages/Profile"
+import { Account } from "./pages/Account";
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
         <Route path="/properties" element={<Properties />} />
         <Route path="/properties/create" element={<Create />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
     </BrowserRouter>
 

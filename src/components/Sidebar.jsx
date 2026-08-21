@@ -1,5 +1,6 @@
 import pp from "../assets/pp.svg"
 import arrow from "../assets/black-arrow-right.png"
+import { Link } from "react-router-dom"
 
 export function Sidebar() {
     return (
@@ -24,10 +25,10 @@ export function Sidebar() {
             <div className="p-7.5 bg-white rounded-lg shadow-[0_0_30px_rgb(228_228_228)]">
                 <ul>
                     <li className="py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
-                        <a className="flex items-center" href="">
+                        <Link to={"/account"} className="flex items-center">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                             Hesap Bilgilerim
-                        </a>
+                        </Link>
                     </li>
                     <li className="py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                         <a className="flex items-center" href="">

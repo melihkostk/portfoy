@@ -28,7 +28,7 @@ export function Home() {
           <PortfoyCard />
         </div>
         <div>
-          <Link to={"/application"} className='bg-[#f1f1f1] text-[#4b4b4b] px-5 py-2 rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer'>FIRMA BASVURUSU</Link>
+          <Link to={"/application"} className='bg-[#f1f1f1] text-[#4b4b4b] px-5 py-2 text-sm rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer'>FIRMA BASVURUSU</Link>
         </div>
       </div>
       <div className='w-full bg-[#f7f6fb] flex flex-col items-center py-30'>
