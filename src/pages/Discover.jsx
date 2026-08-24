@@ -53,15 +53,56 @@ export function Discover() {
                     </p>
                 </div>
                 <div>
-                    <DiscoverCard />
-                    <DiscoverCard />
-                    <DiscoverCard />
-                    <DiscoverCard />
-                    <DiscoverCard />
-                    <DiscoverCard />
-                    <DiscoverCard />
-                    <DiscoverCard />
-                    <DiscoverCard />
+                    <DiscoverCard
+                        title="Sahibi olduğunuz ya da satış yetkisi aldığınız ürünleri gün de kaç kişi inceliyor?"
+                        p1="Herkesin merak ettiği bir konu: Drive linki paylaştığınızda acaba kaç kişi bu linki inceledi ya da kaç firma ürünlerinizi müşterilerine sundu? Ürünlerinizi gören müşterilerin bu konudaki düşünceleri nelerdir? Ürünlerinizin beğenilen ve beğenilmeyen özellikleri nelerdir?"
+                        p2="Port-foy.com, emlak ürünleri paylaşımı için tasarlanmış yenilikçi bir platformdur. Port-foy.com, emlak sektöründe faaliyet gösteren profesyonellerin işlerini kolaylaştırmak ve geniş kitlelere ulaşmalarını sağlamak amacıyla geliştirilmiştir. Port-foy.com'a yüklediğiniz emlak ürünleri, sistemimize üye olan tüm kullanıcılar tarafından görüntülenebilir."
+                        p3="Platformumuz, emlak acentelerinin kendi portföylerini aktif tutarak daha fazla emlak acentesine ulaşmalarını sağlar. Böylece, firma çalışanlarınız sadece belirli bir bölgeyle sınırlı kalmadan geniş bir coğrafi alanda etkili olabilir."
+                        p4="Firmalar, sizin ürünlerinizi müşterilere sunduğunda bundan haberdar olabilirsiniz. Müşterilerin ürünlerinize yaptığı yorumları takip edebilir, bu şekilde ürünlerinizin eksiklerini tamamlayabilir ve pazarlama planlarınızı gözden geçirebilirsiniz."
+                    />
+                    <DiscoverCard
+                        title="Bulunduğunuz bölgedeki tüm emlakçıların ve inşaat firmalarının güncel ürün bilgilerine anlık olarak ulaşabiliyor musunuz?"
+                        p1="Emlak satış personeli müşteri ile temasa geçtiğinde bir geri sayım başlar. En kısa sürede en doğru ürünü gönderebilmek için bölgenize hakim olmanız gerekiyor. Peki, bölgenize ne kadar hakimsiniz?"
+                        p2="Bir yandan satış kaygısı, bir yandan satılacak ürün bulma telaşıyla firmalar sürekli bir çaba içerisindedir. Firmaların portföylerini sürekli güncelledikleri de bir gerçektir. Bir müşteriye en kısa zamanda, istediği kriterlere yakın bir ürünü sunmak için birçok sayfayı veya drive linkini araştırmak zorunda kalmayacağınız bir platform öneriyoruz size."
+                        p3="En önemlisi de; güncel bilgiye ulaşmak için sürekli telefon araması yapmak ya da drive linkleri arasında kaybolmak zorunda değilsiniz. Port-foy.com'da sürekli güncel bilgiler yer alır."
+                        p4="Güncelleme yapılmayan ürünler otomatik olarak listede pasif duruma gelir ve size görünmez. Böylece müşterinize yanlış bir ürün göndermemiş olursunuz."
+                    />
+                    <DiscoverCard
+                        title="Müşteriniz, firmanızın bulunduğu şehir dışında, başka bir bölgede gayrimenkul almak için sizden yardım isterse ne yaparsınız?"
+                        p1="Birçok firmanın sadık müşterileri bazen farklı şehirlerde gayrimenkul almak için yardım isteyebilir. Peki, başka bir şehirde gayrimenkul önerisinde bulunmak için nasıl bir yol izlerdiniz? Müşterinizin fikrini mi değiştirmeye çalışırdınız yoksa istediği bölgede uygun bir ürün arayıp yeni bir satış sözleşmesi mi yapmak isterdiniz?"
+                        p2="En önemli soru: Bu bölgedeki emlak veya inşaat firmalarını tanıyor musunuz?"
+                        p3="Şimdi size çok kolay bir yöntem öneriyoruz."
+                        p4="Port-foy.com'a giriş yapın. Müşterinizin dilediği bölge ve diğer kriterleri girin. Dilerseniz satıcı veya üretici firma bilgilerini inceleyin. Müşterinize en hızlı şekilde istediği bölgede gayrimenkul seçeneklerini sunun."
+                        p5="Müşteriyi başka bir ürün ya da bölgeye yönlendirmeye çalışmak yerine, istediği bölgede istediği gayrimenkulü satmanın keyfini yaşayın."
+                    />
+                    <DiscoverCard
+                        title="Müşterilerinize sunacağınız gayrimenkul bilgilerini nereden iletiyorsunuz?"
+                        p1="Müşterilerinize hangi vasıta ile ürünlerinizi sunabilirsiniz? Hem müşterinizin kafası karışmayacak, hem de ürünler hakkındaki yorumlar satış elemanınız tarafından anlaşılabilir."
+                        p2="Bu her zaman mümkün olmayabilir, değil mi?"
+                        p3="Drive link kaosundan sonra bir diğer kaos, sunum araçlarında ortaya çıkıyor. WhatsApp, Telegram, Viber, e-mail vb. Müşteriler bazen doğru resim ancak yanlış ürün bilgisi alabiliyor. Ayrıca, e-mailleriniz spam olarak müşterinin gözünden kaçabiliyor."
+                        p4="Gayrimenkul sektörü, hem yükte hem de pahada ağır bir sektördür. Bu nedenle, üretim aşamasından sözleşme yapılmasına kadar son derece hassas bir şekilde çalışılması gerekmektedir."
+                        p5="Port-foy.com üyeleri bu sorunu son derece modern ve hızlı bir şekilde çözüyor."
+                        p6="Müşterinizin istediği kriterlere uygun ürünleri Port-foy.com üzerinden seçin."
+                        p7="Teklif oluşturun."
+                        p8="Müşterinize hem e-mail hem de WhatsApp üzerinden oluşturduğunuz linki gönderin."
+                        p9="Müşteriniz linki tıkladığında, bir landing page üzerinde tüm gönderileri görebilir, inceleyebilir ve satıcıya ışık tutacak değerlendirmeler yapabilir."
+                        p10="Daha sonra, dilediğiniz zaman bu teklifleri tekrar inceleyebilirsiniz."
+                        p11="Müşterinizin Port-foy.com üzerinden yapacağı yorumlara dayanarak yeni teklifler oluşturabilirsiniz."
+                    />
+                    <DiscoverCard
+                        title="Projemi ya da hazır gayrimenkullerimi acaba başka şehirdeki emlak firmalarına nasıl ulaştırabilirim?"
+                        p1="Bilinen satış platformları dışında sektör temsilcilerinin kullandığı başka bir platform aramayın. Artık tüm ülkede varsınız."
+                        p2="Sistemde kayıtlı gayrimenkullerinizle ilgili bir emlak firmasının ihtiyacı olan tüm bilgileri başka şehirlerdeki emlak firmaları sizin haberiniz olmadan inceleyebilir ve müşterilerine sunabilir."
+                        p3="Port-foy.com’daki hesabınıza doğru bilgileri girdiğiniz takdirde, herhangi bir şehirde, herhangi bir satıcının arama kriterine girmeniz an meselesi."
+                        p4="Ya da siz ihtiyaç duyduğunuzda, dilediğiniz şehirdeki ürünleri filtreleyebilir ve inceleyebilirsiniz. İhtiyaç duyarsanız, bu bilgileri çok hızlı ve pratik bir şekilde müşterinize sunabilirsiniz."
+                    />
+                    <DiscoverCard
+                        title="Port-foy.com sayesinde hem ekibinizin performansını kontrol edin hem de akıllı hatırlatmalar ile işinizi daha kolay takip edin."
+                        p1="Port-foy.com'daki hesabınızda bulunan ürünlerinizin tam ve eksiksiz olması, ürünlerinizi ne kadar satmak istediğinize bağlıdır."
+                        p2="İlanlarınızı Port-foy.com'a girdikten sonra, sistem belli periyotlarda sizden güncelleme yapmanızı isteyecek. Bu güncellemeleri yaparsanız, ilanınız listelemelerde görünmeye devam edecek. Ancak güncellemeleri yapmaz ve sistemin tüm uyarılarını görmezden gelirseniz, ilanlarınızın diğer firmalar tarafından görüntülenmesi engellenecektir."
+                        p3="Kabul edersiniz ki, kimse bilgileri, fiyatı ve diğer detayları doğru olmayan bir ürünü müşterisine sunmak istemez."
+                        p4="Ayrıca, elemanlarınızın performansını da bu yolla ölçme imkanına sahip olacaksınız."
+                    />
                 </div>
             </div>
             <div className="w-full bg-[#F7F6FB] flex items-center justify-center py-30">
@@ -75,16 +116,36 @@ export function Discover() {
                         </p>
                     </div>
                     <div>
-                        <DiscoverAccordion />
-                        <DiscoverAccordion />
-                        <DiscoverAccordion />
-                        <DiscoverAccordion />
-                        <DiscoverAccordion />
-                        <DiscoverAccordion />
-                        <DiscoverAccordion />
-                        <DiscoverAccordion />
-                        <DiscoverAccordion />
-                        <DiscoverAccordion />
+                        <DiscoverAccordion
+                            question="Port-foy.com’a üye olabilmem için firma sahibi olmam gerekli mi?"
+                        />
+                        <DiscoverAccordion
+                            question="Port-foy.com’a kimler üye olabilir?"
+                        />
+                        <DiscoverAccordion
+                            question="Port-foy.com’dan hangi paketi almalıyım?"
+                        />
+                        <DiscoverAccordion
+                            question="Port-foy.com’dan  üyelik aldıktan sonra kurlumu nasıl yapabilirim?"
+                        />
+                        <DiscoverAccordion
+                            question="Port-Foy’ü sadece bilgisayarda mı kullanabilirim?"
+                        />
+                        <DiscoverAccordion
+                            question="Port-foy.com’a yüklediğim ürünler kimler tarafından görüntülenebilir?"
+                        />
+                        <DiscoverAccordion
+                            question="Platformdaki tüm bilgiler herkes tarafından görülecek mi?"
+                        />
+                        <DiscoverAccordion
+                            question="Port-Foy’de mişterime sunum yapmak için müşterimi programa girmem gerekiyor mu?"
+                        />
+                        <DiscoverAccordion
+                            question="Sadece kendi bölgemdeki gayrimenkullere mi erişimim var?"
+                        />
+                        <DiscoverAccordion
+                            question="Port-foy.com’a eklediğimiz ürünleri potansiyel müşteriler görebilecek mi?"
+                        />
                     </div>
                 </div>
             </div>
@@ -117,17 +178,56 @@ export function Discover() {
                         </ul>
                     </div>
                     <div className='flex w-full justify-center flex-wrap'>
-                        <PricingCard />
-                        <PricingCard />
-                        <PricingCard />
-                        <PricingCard />
+                        <PricingCard
+                            name="XL Emlak Paketi"
+                            price="₺15,00 + KDV"
+                            trail="30"
+                            staff="Sınırsız"
+                            offer="510"
+                            customer="500"
+                            ad="520"
+                            photo="20"
+                            video="20"
+                        />
+                        <PricingCard
+                            name="Standart Emlak Paket"
+                            price="₺450,00 + KDV"
+                            trail="30" staff="3"
+                            offer="10"
+                            customer="10"
+                            ad="10"
+                            photo="12"
+                            video="1"
+                        />
+                        <PricingCard
+                            name="Medium Emlak Paket"
+                            price="₺650,00 + KDV"
+                            trail="45"
+                            staff="6"
+                            offer="1500"
+                            customer="500"
+                            ad="50"
+                            photo="12"
+                            video="2"
+                        />
+                        <PricingCard
+                            name="Premium Emlak Paket"
+                            price="₺950,00 + KDV"
+                            trail="60"
+                            staff="10"
+                            offer="3000"
+                            customer="1000"
+                            ad="100"
+                            photo="15"
+                            video="5"
+                        />
                     </div>
                     <div className="flex flex-col justify-center items-center text-center">
                         <p className="text-lg text-[#212529] font-semibold mb-1">Sizin için yeterli değil mi?</p>
                         <p className="text-sm text-[#767676] mb-4 font-medium">Her zaman sorularınızı yanıtlamaya hazırız</p>
                         <div>
                             <p className="text-[#212529] mb-4 font-medium">MÜŞTERI DESTEK HATTI</p>
-                            <a className="text-[25px] text-black font-bold" href="">0 850 851 44 94</a>
+                            <a className="text-[25px] text-black font-bold hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">0 850 851 44 94</a>
                         </div>
                     </div>
                 </div>

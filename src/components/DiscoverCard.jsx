@@ -1,38 +1,25 @@
 import discover from "../assets/discover.jpg"
 
-export function DiscoverCard() {
+export function DiscoverCard({title , p1 , p2 ,p3 , p4 , p5 , p6 , p7 , p8 , p9 , p10 , p11}) {
     return (
         <div className="flex gap-20 items-center mb-35">
             <div className="flex-1">
                 <img className="w-full rounded-2xl" src={discover} alt="" />
             </div>
             <div className="flex-1">
-                <h3 className="text-[26px] text-[#212529] mb-5 font-semibold">Sahibi olduğunuz ya da satış yetkisi aldığınız ürünleri gün de kaç kişi inceliyor?</h3>
+                <h3 className="text-[26px] text-[#212529] mb-5 font-semibold">{title}</h3>
                 <div>
-                    <p className="text-[#838383] text-base font-medium mb-4">
-                        Herkesin merak ettiği bir konu: Drive linki paylaştığınızda acaba kaç
-                        kişi bu linki inceledi ya da kaç firma ürünlerinizi müşterilerine sundu?
-                        Ürünlerinizi gören müşterilerin bu konudaki düşünceleri nelerdir?
-                        Ürünlerinizin beğenilen ve beğenilmeyen özellikleri nelerdir?
-                    </p>
-                    <p className="text-[#838383] text-base font-medium mb-4">
-                        Port-foy.com, emlak ürünleri paylaşımı için tasarlanmış yenilikçi bir platformdur. 
-                        Port-foy.com, emlak sektöründe faaliyet gösteren profesyonellerin işlerini kolaylaştırmak 
-                        ve geniş kitlelere ulaşmalarını sağlamak amacıyla geliştirilmiştir. 
-                        Port-foy.com'a yüklediğiniz emlak ürünleri, sistemimize üye olan tüm kullanıcılar 
-                        tarafından görüntülenebilir.
-                    </p>
-                    <p className="text-[#838383] text-base font-medium mb-4">
-                        Port-foy.com, emlak ürünleri paylaşımı için tasarlanmış yenilikçi bir platformdur. 
-                        Port-foy.com, emlak sektöründe faaliyet gösteren profesyonellerin işlerini kolaylaştırmak 
-                        ve geniş kitlelere ulaşmalarını sağlamak amacıyla geliştirilmiştir. 
-                        Port-foy.com'a yüklediğiniz emlak ürünleri, sistemimize üye olan tüm kullanıcılar tarafından görüntülenebilir.
-                    </p>
-                    <p className="text-[#838383] text-base font-medium">
-                        Firmalar, sizin ürünlerinizi müşterilere sunduğunda bundan haberdar olabilirsiniz. 
-                        Müşterilerin ürünlerinize yaptığı yorumları takip edebilir, bu şekilde ürünlerinizin 
-                        eksiklerini tamamlayabilir ve pazarlama planlarınızı gözden geçirebilirsiniz.
-                    </p>
+                    <p className="text-[#838383] text-base font-medium mb-4">{p1}</p>
+                    <p className="text-[#838383] text-base font-medium mb-4">{p2}</p>
+                    <p className="text-[#838383] text-base font-medium mb-4">{p3}</p>
+                    <p className="text-[#838383] text-base font-medium mb-4">{p4}</p>
+                    <p className="text-[#838383] text-base font-medium mb-4">{p5}</p>
+                    <p className="text-[#838383] text-base font-medium mb-4">{p6}</p>
+                    <p className="text-[#838383] text-base font-medium mb-4">{p7}</p>
+                    <p className="text-[#838383] text-base font-medium mb-4">{p8}</p>
+                    <p className="text-[#838383] text-base font-medium mb-4">{p9}</p>
+                    <p className="text-[#838383] text-base font-medium mb-4">{p10}</p>
+                    <p className="text-[#838383] text-base font-medium">{p11}</p>
                 </div>
             </div>
         </div>
