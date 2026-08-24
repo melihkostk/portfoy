@@ -140,7 +140,7 @@ export function Header() {
                     {loged && <button className="w-12.5 h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                         <img className="w-5 h-5" src={folder} alt="" />
                     </button>}
-                    {loged && <Link className="h-12.5 px-5 text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                    {loged && <Link to={"/company"} className="h-12.5 px-5 text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                         <img className="object-cover w-5 h-5" src={shop} alt="" />
                         <span>Portföyüm</span>
                     </Link>}

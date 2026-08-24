@@ -24,6 +24,7 @@ import { Wishlist } from "./pages/Wishlist"
 import { Offers } from "./pages/Offers";
 import { UserProperties } from "./pages/UserProperties";
 import { Support } from "./pages/Support";
+import { Company } from "./pages/Company";
 
 function App() {
 
@@ -54,7 +55,8 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} /> 
         <Route path="/offers" element={<Offers />} /> 
         <Route path="/auth/properties" element={<UserProperties />} />
-        <Route path="support" element={<Support />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/company" element={<Company />} />
       </Routes>
     </BrowserRouter>
 
