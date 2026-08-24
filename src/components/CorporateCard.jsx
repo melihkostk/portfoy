@@ -23,7 +23,7 @@ export function CorporateCard({
     );
 
     return (
-        <div className="flex items-start justify-between gap-12.5">
+        <div className="flex items-start justify-between gap-12.5" id={title}>
             {location === "left" ? (
                 <>
                     {image}
