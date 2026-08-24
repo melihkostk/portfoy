@@ -50,6 +50,7 @@ export function Corporate() {
             <div className="w-full max-w-350 py-30">
                 <CorporateCard
                     title="Hakkımızda"
+                    location="left"
                     img={about}
                     p1="Port-foy.com, emlak sektöründe faaliyet gösteren profesyonellerin işlerini kolaylaştırmak ve geniş kitlelere ulaşmalarını sağlamak amacıyla Order Teknoloji tarafından projelendirilmiştir. Yenilikçi ve kullanıcı dostu yapısıyla, gayrimenkul ürünlerinin etkili bir şekilde paylaşılmasını ve yönetilmesini sağlar."
                     p2="Platformumuz, kullanıcıların güncel emlak bilgilerine hızlı ve kolay bir şekilde erişim sağlamalarına yardımcı olur. Port-foy.com üzerinden yüklediğiniz gayrimenkul ürünleri, sistemimize üye olan tüm kullanıcılar tarafından görüntülenebilir ve değerlendirmeye alınabilir. Bu sayede, sahip olduğunuz veya satış yetkisi aldığınız ürünlerin kimler tarafından incelendiğini ve hangi özelliklerinin beğenildiğini veya eleştirildiğini öğrenebilirsiniz."
@@ -64,6 +65,7 @@ export function Corporate() {
                 <div className="w-full max-w-350 py-30">
                     <CorporateCard
                         title="Misyon"
+                        location="right"
                         img={mission}
                         p1="Port-foy.com olarak misyonumuz, emlak sektöründe faaliyet gösteren profesyonellerin işlerini kolaylaştırmak ve geniş kitlelere ulaşmalarını sağlamaktır. Yenilikçi teknolojilerimiz ve kullanıcı dostu platformumuzla, emlak acenteleri ve inşaat firmalarının gayrimenkul ürünlerini etkili bir şekilde yönetmelerini ve pazarlamalarını destekliyoruz."
                         p2="Müşterilerimizin ihtiyaçlarını anlamak ve onlara en uygun çözümleri sunmak öncelikli hedefimizdir. Port-Foy.com üzerinden sağladığımız güncel ve doğru bilgilerle, kullanıcılarımızın zamanını ve kaynaklarını verimli bir şekilde yönetmelerini sağlıyoruz. Her adımda kaliteyi ve müşteri memnuniyetini ön planda tutarak, sektörde öncü bir rol oynamayı hedefliyoruz."
@@ -74,6 +76,7 @@ export function Corporate() {
             <div className="w-full max-w-350 py-30">
                 <CorporateCard
                     title="Vizyon"
+                    location="left"
                     img={vision}
                     p1="Port-foy.com olarak vizyonumuz, emlak sektöründe dijital dönüşümün öncüsü olmak ve kullanıcılarımıza en yenilikçi çözümleri sunarak sektördeki lider konumumuzu sürdürmektir. Teknolojiyi en etkili şekilde kullanarak, emlak acenteleri ve inşaat firmalarının iş süreçlerini optimize etmelerini ve daha geniş kitlelere ulaşmalarını sağlamak amacıyla çalışıyoruz."
                     p2="Gelecekteki gayrimenkul piyasasını şekillendiren bir platform olma hedefimiz doğrultusunda, kullanıcılarımıza güvenilir, hızlı ve kullanıcı dostu bir deneyim sunmayı taahhüt ediyoruz. Sürekli olarak yeni teknolojileri takip ediyor, platformumuzu daha da geliştirerek müşterilerimizin beklentilerini ve ihtiyaçlarını karşılayacak çözümler üretiyoruz."
