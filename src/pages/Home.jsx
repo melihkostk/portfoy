@@ -46,15 +46,42 @@ export function Home() {
             </div>
           </div>
           <div className='flex flex-wrap -mx-7.5'>
-            <PortfoyText />
-            <PortfoyText />
-            <PortfoyText />
-            <PortfoyText />
-            <PortfoyText />
-            <PortfoyText />
-            <PortfoyText />
-            <PortfoyText />
-            <PortfoyText />
+            <PortfoyText
+              title="Sahibi olduğunuz ya da satış yetkisi aldığınız ürünleri gün de kaç kişi inceliyor?"
+              description="Herkesin merak ettiği bir konu: Drive linki paylaştığınızda acaba kaç kişi bu linki inceledi ya da kaç firma ürünlerinizi müşterilerine sundu? Ürünlerinizi gören müşterilerin bu konudaki düşünceleri nelerdir? Ürünlerinizin beğenilen ve beğenilmeyen özellikleri nelerdir?Port-foy.com, emlak ürünleri paylaşımı için tasarlanmış yenilikçi bir platformdur. Port-foy.com, emlak sektöründe faaliyet gösteren profesyonellerin işlerini kolaylaştırmak ve geniş kitlelere ulaşmalarını sağlamak amacıyla geliştirilmiştir. Port-foy.com'a yüklediğiniz emlak ürünleri, sistemimize üye olan tüm kullanıcılar tarafından görüntülenebilir.Platformumuz, emlak acentelerinin kendi portföylerini aktif tutarak daha fazla emlak acentesine ulaşmalarını sağlar. Böylece, firma çalışanlarınız sadece belirli bir bölgeyle sınırlı kalmadan geniş bir coğrafi alanda etkili olabilir.Firmalar, sizin ürünlerinizi müşterilere sunduğunda bundan haberdar olabilirsiniz. Müşterilerin ürünlerinize yaptığı yorumları takip edebilir, bu şekilde ürünlerinizin eksiklerini tamamlayabilir ve pazarlama planlarınızı gözden geçirebilirsiniz. "
+            />
+            <PortfoyText
+              title="Bulunduğunuz bölgedeki tüm emlakçıların ve inşaat firmalarının güncel ürün bilgilerine anlık olarak ulaşabiliyor musunuz?"
+              description="Emlak satış personeli müşteri ile temasa geçtiğinde bir geri sayım başlar. En kısa sürede en doğru ürünü gönderebilmek için bölgenize hakim olmanız gerekiyor. Peki, bölgenize ne kadar hakimsiniz?Bir yandan satış kaygısı, bir yandan satılacak ürün bulma telaşıyla firmalar sürekli bir çaba içerisindedir. Firmaların portföylerini sürekli güncelledikleri de bir gerçektir. Bir müşteriye en kısa zamanda, istediği kriterlere yakın bir ürünü sunmak için birçok sayfayı veya drive linkini araştırmak zorunda kalmayacağınız bir platform öneriyoruz size.En önemlisi de; güncel bilgiye ulaşmak için sürekli telefon araması yapmak ya da drive linkleri arasında kaybolmak zorunda değilsiniz. Port-foy.com'da sürekli güncel bilgiler yer alır.Güncelleme yapılmayan ürünler otomatik olarak listede pasif duruma gelir ve size görünmez. Böylece müşterinize yanlış bir ürün göndermemiş olursunuz. "
+            />
+            <PortfoyText
+              title="Müşteriniz, firmanızın bulunduğu şehir dışında, başka bir bölgede gayrimenkul almak için sizden yardım isterse ne yaparsınız?"
+              description="Birçok firmanın sadık müşterileri bazen farklı şehirlerde gayrimenkul almak için yardım isteyebilir. Peki, başka bir şehirde gayrimenkul önerisinde bulunmak için nasıl bir yol izlerdiniz? Müşterinizin fikrini mi değiştirmeye çalışırdınız yoksa istediği bölgede uygun bir ürün arayıp yeni bir satış sözleşmesi mi yapmak isterdiniz?En önemli soru: Bu bölgedeki emlak veya inşaat firmalarını tanıyor musunuz?Şimdi size çok kolay bir yöntem öneriyoruz.Port-foy.com'a giriş yapın. Müşterinizin dilediği bölge ve diğer kriterleri girin. Dilerseniz satıcı veya üretici firma bilgilerini inceleyin. Müşterinize en hızlı şekilde istediği bölgede gayrimenkul seçeneklerini sunun.Müşteriyi başka bir ürün ya da bölgeye yönlendirmeye çalışmak yerine, istediği bölgede istediği gayrimenkulü satmanın keyfini yaşayın. "
+            />
+            <PortfoyText
+              title="Müşterilerinize sunacağınız gayrimenkul bilgilerini nereden iletiyorsunuz?"
+              description="Müşterilerinize hangi vasıta ile ürünlerinizi sunabilirsiniz? Hem müşterinizin kafası karışmayacak, hem de ürünler hakkındaki yorumlar satış elemanınız tarafından anlaşılabilir.Bu her zaman mümkün olmayabilir, değil mi?Drive link kaosundan sonra bir diğer kaos, sunum araçlarında ortaya çıkıyor. WhatsApp, Telegram, Viber, e-mail vb. Müşteriler bazen doğru resim ancak yanlış ürün bilgisi alabiliyor. Ayrıca, e-mailleriniz spam olarak müşterinin gözünden kaçabiliyor.Gayrimenkul sektörü, hem yükte hem de pahada ağır bir sektördür. Bu nedenle, üretim aşamasından sözleşme yapılmasına kadar son derece hassas bir şekilde çalışılması gerekmektedir.Port-foy.com üyeleri bu sorunu son derece modern ve hızlı bir şekilde çözüyor.Müşterinizin istediği kriterlere uygun ürünleri Port-foy.com üzerinden seçin.Teklif oluşturun.Müşterinize hem e-mail hem de WhatsApp üzerinden oluşturduğunuz linki gönderin.Müşteriniz linki tıkladığında, bir landing page üzerinde tüm gönderileri görebilir, inceleyebilir ve satıcıya ışık tutacak değerlendirmeler yapabilir.Daha sonra, dilediğiniz zaman bu teklifleri tekrar inceleyebilirsiniz.Müşterinizin Port-foy.com üzerinden yapacağı yorumlara dayanarak yeni teklifler oluşturabilirsiniz."
+            />
+            <PortfoyText
+              title="Ofiste kaç adet portföy elemanı ile kaç firmanın bilgilerini güncel tutabiliyorsunuz?"
+              description="Böyle bir istatistik elbette yapılamaz. Elbette portföy departmanı çalışanları sadece bir işi takip etmiyorlar. Ancak bir gerçek var: Birileri satmaya çalışacak, birileri de bu satış ekibine ürün bulmaya çalışacak.En önemlisi, satış elemanı müşteri ile temas ettiğinde, portföy departmanının hızlı bir şekilde drive linklerden istenilen nitelikte ürünleri satış elemanına hazırlaması gerekmekte.Peki, ne kadar sürede? 15 dakika mı? 30 dakika mı? Bir saat mi?Şimdi size birkaç adımda bunu kolaylaştıracak bir yöntem öneriyoruz:Müşterinin istediği kriterleri Port-foy.com'a girin.Listelediğiniz ürünlerden seçtiklerinizi teklif oluşturun.Müşterinize gönderin.Bu işlem 1,5-2 dakikadan fazla zamanınızı almayacaktır. Bu anlattıklarımda ne eksik?Satış elemanı ile portföy elemanı arasında geçen detaylı görüşme.Satış elemanının portföy departmanına istediklerini doğru şekilde aktaramaması.Müşterinin kriterleri dar ise satış elemanının “Haydi biraz çabuk olun” şeklindeki uyarıları.En iyi ihtimalle 15 dakika sonra portföy elemanından gelen ürünlerin satış elemanı tarafından incelenmesi ve gerekiyorsa ihtiyacı olan dile çevrilmesi.Müşteri gönderilen seçimi beğenmezse, arama, seçme, tercüme etme ve gönderme gibi tüm sıkıcı adımlar en baştan tekrarlanacak, ancak uygun seçenekleri bulmak daha zor olacaktır. "
+            />
+            <PortfoyText
+              title="Projemi ya da hazır gayrimenkullerimi acaba başka şehirdeki emlak firmalarına nasıl ulaştırabilirim?"
+              description="Bilinen satış platformları dışında sektör temsilcilerinin kullandığı başka bir platform aramayın. Artık tüm ülkede varsınız.Sistemde kayıtlı gayrimenkullerinizle ilgili bir emlak firmasının ihtiyacı olan tüm bilgileri başka şehirlerdeki emlak firmaları sizin haberiniz olmadan inceleyebilir ve müşterilerine sunabilir.Port-foy.com’daki hesabınıza doğru bilgileri girdiğiniz takdirde, herhangi bir şehirde, herhangi bir satıcının arama kriterine girmeniz an meselesi.Ya da siz ihtiyaç duyduğunuzda, dilediğiniz şehirdeki ürünleri filtreleyebilir ve inceleyebilirsiniz. İhtiyaç duyarsanız, bu bilgileri çok hızlı ve pratik bir şekilde müşterinize sunabilirsiniz."
+            />
+            <PortfoyText
+              title="Port-foy.com sayesinde hem ekibinizin performansını kontrol edin hem de akıllı hatırlatmalar ile işinizi daha kolay takip edin."
+              description="Port-foy.com'daki hesabınızda bulunan ürünlerinizin tam ve eksiksiz olması, ürünlerinizi ne kadar satmak istediğinize bağlıdır.İlanlarınızı Port-foy.com'a girdikten sonra, sistem belli periyotlarda sizden güncelleme yapmanızı isteyecek. Bu güncellemeleri yaparsanız, ilanınız listelemelerde görünmeye devam edecek. Ancak güncellemeleri yapmaz ve sistemin tüm uyarılarını görmezden gelirseniz, ilanlarınızın diğer firmalar tarafından görüntülenmesi engellenecektir.Kabul edersiniz ki, kimse bilgileri, fiyatı ve diğer detayları doğru olmayan bir ürünü müşterisine sunmak istemez.Ayrıca, elemanlarınızın performansını da bu yolla ölçme imkanına sahip olacaksınız."
+            />
+            <PortfoyText
+              title="Çok emek verdiğim müşterime online sunum yaptım. Ancak müşterim, başka bir emlak firmasından da benzeri ürünleri isterse ne yaparım?"
+              description="Gayrimenkul üreticileri ve emlak firmaları oldukça yüksek maliyetlerle reklam çalışması yaparlar. Nitekim, temas kurdukları müşterilerine satış gerçekleştirmek isterler. Peki müşteri, emlakçı emlakçı gezerse ne yapacağız?Bu çok karşılaşılan bir durum. Aslında bir problem değil; bu, sistemdeki bir eksikliğin istenmeyen tecrübesidir.Yüksek bedeller ödeyerek sosyal medya reklamı yaptınız, müşteri ile temas kurdunuz, kendisine bir takım seçenekler gönderdiniz. Ancak müşteriniz başka emlak firmaları ile de iletişime geçerse ne olur?İkinci emlak firması, çok düşük bir komisyonla aynı ürünü o müşteriye teklif ederse ne yaparım?Port-foy.com kullanıcıları, müşteri online sunumunda müşterilerini koruyor.Müşterilerin en temel bilgilerini sisteme giriyorlar.Müşterisi için hızlı bir şekilde seçenekleri hazırlıyorlar.Sunum linkini gönderiyorlar.Ve burası çok önemli; artık o müşteri ve kendisine gönderilen o gayrimenkuller birbirine belli bir süre mühürlenmiş oluyor.Müşteri başka bir emlakçı ile görüşse bile; ikinci emlakçı, ilk emlak firmasının gönderdiği ürünleri listelemede göremeyecektir.Dolayısıyla, Port-foy.com sizin için müşteri kaydını otomatik olarak oluşturmuş olacaktır."
+            />
+            <PortfoyText
+              title="Yakın gelecekte vereceğimiz servisler;"
+              description="Port-foy.com, yakın bir tarihte sizi daha da mutlu edecek kolaylıklarla şaşırtacak. Sizi sadece bir paylaşım platformu üyesi yapmıyoruz.Peki neler olacak?Port-foy.com platformuna eklediğiniz ürünleri müşteri ile buluşturacağız. Bu buluşmada sizlerden herhangi bir satış komisyonu talep edilmeyecek.Eğer müşteri herhangi bir bölgede alım yapmak ister ve firmaların mevcut satış planlamaları müşteri için yeterli olmazsa, müşteri kendi teklifini hazırlayıp bölgedeki tüm emlakçılara tek tuşla gönderebilecek. Müşteri tarafından belirtilen bölgedeki emlak ve inşaat firmaları bu teklife dilerlerse cevap verebilecek.Üyelerimiz, dilerlerse paketlerine Sanal Sunum Robotu ekleyebilecekler. Sanal Sunum Robotu ile videolu sanal robot sunucular eşliğinde ürünlerinizi tanıtabileceksiniz.Satış elemanınız sunum yaptıktan sonra, müşterinin ürünleri değerlendirmelerine göre yapay zekâ sistemimiz, müşteriye tekrar yeni ürünler sunmaya hazır olacak."
+            />
           </div>
         </div>
       </div>
@@ -81,7 +108,7 @@ export function Home() {
               </li>
               <li>
                 <button className='px-4 py-2 text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
-                    Pazarlama Firması
+                  Pazarlama Firması
                 </button>
               </li>
             </ul>
