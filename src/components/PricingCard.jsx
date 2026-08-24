@@ -1,20 +1,20 @@
 import { Link } from "react-router-dom"
 import checkIcon from "../assets/check.png"
 
-export function PricingCard() {
+export function PricingCard({name , price , trail , staff , offer , customer, ad , photo , video}) {
     return (
         <div className="bg-[#f9f9f9] p-7.5 m-3.75 w-[30%]">
             <div>
-                <h2 className="text-[#212529] text-[26px] font-semibold">XL Emlak Paketi</h2>
-                <p className="text-sm text-[#797979] min-h-10.5 font-medium mb-4">XL Emlak Paketi</p>
+                <h2 className="text-[#212529] text-[26px] font-semibold">{name}</h2>
+                <p className="text-sm text-[#797979] min-h-10.5 font-medium mb-4">{name}</p>
             </div>
             <div className="mt-5 mb-7.5">
                 <p className="text-[26px] font-medium">
                     Ücretsiz
-                    <span className="text-[#898989] text-base ml-1.25"> / 30 Gün</span>
+                    <span className="text-[#898989] text-base ml-1.25"> / {trail} Gün</span>
                 </p>
                 <p className="text-sm text-[#6C757D] font-medium">
-                    Sonraki yenileme ₺15,00 + KDV / Aylık
+                    Sonraki yenileme {price} / Aylık
                 </p>
             </div>
             <div className="mb-5">
@@ -22,15 +22,15 @@ export function PricingCard() {
                 <ul>
                     <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
                         <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
-                        <p>10 adet personel oluşturma</p>
+                        <p>{staff} adet personel oluşturma</p>
                     </li>
                     <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
                         <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
-                        <p>3000 adet teklif oluşturma</p>
+                        <p>{offer} adet teklif oluşturma</p>
                     </li>
                     <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
                         <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
-                        <p>1000 adet müşteri oluşturma</p>
+                        <p>{customer} adet müşteri oluşturma</p>
                     </li>
                 </ul>
             </div>
@@ -39,15 +39,15 @@ export function PricingCard() {
                 <ul>
                     <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
                         <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
-                        <p>520 adet ilan oluşturma</p>
+                        <p>{ad} adet ilan oluşturma</p>
                     </li>
                     <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
                         <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
-                        <p>Her ilan için 20 adet fotoğraf</p>
+                        <p>Her ilan için {photo} adet fotoğraf</p>
                     </li>
                     <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
                         <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
-                        <p>Her ilan için 20 video</p>
+                        <p>Her ilan için {video} video</p>
                     </li>
                 </ul>
             </div>

@@ -114,10 +114,49 @@ export function Home() {
             </ul>
           </div>
           <div className='flex w-full justify-center flex-wrap'>
-            <PricingCard />
-            <PricingCard />
-            <PricingCard />
-            <PricingCard />
+            <PricingCard
+              name="XL Emlak Paketi"
+              price="₺15,00 + KDV"
+              trail="30"
+              staff="Sınırsız"
+              offer="510"
+              customer="500"
+              ad="520"
+              photo="20"
+              video="20"
+            />
+            <PricingCard
+              name="Standart Emlak Paket"
+              price="₺450,00 + KDV"
+              trail="30" staff="3"
+              offer="10"
+              customer="10"
+              ad="10"
+              photo="12"
+              video="1"
+            />
+            <PricingCard
+              name="Medium Emlak Paket"
+              price="₺650,00 + KDV"
+              trail="45"
+              staff="6"
+              offer="1500"
+              customer="500"
+              ad="50"
+              photo="12"
+              video="2"
+            />
+            <PricingCard
+              name="Premium Emlak Paket"
+              price="₺950,00 + KDV"
+              trail="60"
+              staff="10"
+              offer="3000"
+              customer="1000"
+              ad="100"
+              photo="15"
+              video="5"
+            />
           </div>
         </div>
       </div>
