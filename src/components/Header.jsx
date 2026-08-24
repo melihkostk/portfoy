@@ -14,7 +14,7 @@ import { Notification } from "./Notification"
 export function Header() {
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
-    const [loged] = React.useState(false)
+    const [loged] = React.useState(true)
     const [notShown, setNotShown] = React.useState(false)
     const [accountShown, setAccountShown] = React.useState(false)
 
@@ -106,6 +106,9 @@ export function Header() {
                         <button onClick={() => setNotShown(prev => !prev)} className="w-12.5 h-12.5 bg-[#f8f8f8] rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out">
                             <img className="w-6 h-6" src={notification} alt="" />
                         </button>
+                        <div className="absolute -top-1 -right-1 text-[10px] text-[#858585] bg-[#FFCA64] rounded-full w-5 h-5 flex items-center justify-center font-extrabold">
+                            123
+                        </div>
                         {notShown && <div className="absolute z-50 w-75 rounded-lg bg-white right-0 shadow-[0_0_30px_rgba(0,0,0,0.1)] py-3.75">
                             <div className="bg-[#27C5D2] p-7.5 rounded-t-lg">
                                 <p className="text-white text-sm mb-5">
@@ -144,10 +147,10 @@ export function Header() {
                     {loged && <div className="relative">
                         <div className="flex">
                             <div className="h-12.5 border-r border-r-[#ffffff38]">
-                                <Link className="flex items-center h-full px-5 rounded-l-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                                <div className="flex items-center h-full px-5 rounded-l-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                                     <img className="object-cover w-7 h-7" src={person} alt="" />
                                     <Link to={"/profile"} className="text-white">Hesabım</Link>
-                                </Link>
+                                </div>
                             </div>
                             <div onClick={() => setAccountShown(prev => !prev)} className="flex items-center justify-center bg-[#27C5D2] rounded-r-[5px] w-7.5 cursor-pointer hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
                                 <img className=" w-4 h-4" src={whiteDownArrow} alt="" />

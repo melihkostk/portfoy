@@ -6,7 +6,7 @@ export function Questions({question , answer}) {
     const [accordionOpen , setAccordionOpen] = React.useState(false);
 
     return (
-        <div className="p-2.5 border border-[#e2e2e2] rounded-lg mb-5 cursor-pointer">
+        <div className="p-2.5 border w-full border-[#e2e2e2] rounded-lg mb-5 cursor-pointer">
             <div className="select-none" onClick={() => setAccordionOpen(prev => !prev)}>
             <div className="flex justify-between items-center py-4 px-5 rounded-lg bg-white">
                 <div>
