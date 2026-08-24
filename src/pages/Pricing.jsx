@@ -103,6 +103,7 @@ export function Pricing() {
                     <div>
                         <DiscoverCard
                             title="Sahibi olduğunuz ya da satış yetkisi aldığınız ürünleri gün de kaç kişi inceliyor?"
+                            location="left"
                             p1="Herkesin merak ettiği bir konu: Drive linki paylaştığınızda acaba kaç kişi bu linki inceledi ya da kaç firma ürünlerinizi müşterilerine sundu? Ürünlerinizi gören müşterilerin bu konudaki düşünceleri nelerdir? Ürünlerinizin beğenilen ve beğenilmeyen özellikleri nelerdir?"
                             p2="Port-foy.com, emlak ürünleri paylaşımı için tasarlanmış yenilikçi bir platformdur. Port-foy.com, emlak sektöründe faaliyet gösteren profesyonellerin işlerini kolaylaştırmak ve geniş kitlelere ulaşmalarını sağlamak amacıyla geliştirilmiştir. Port-foy.com'a yüklediğiniz emlak ürünleri, sistemimize üye olan tüm kullanıcılar tarafından görüntülenebilir."
                             p3="Platformumuz, emlak acentelerinin kendi portföylerini aktif tutarak daha fazla emlak acentesine ulaşmalarını sağlar. Böylece, firma çalışanlarınız sadece belirli bir bölgeyle sınırlı kalmadan geniş bir coğrafi alanda etkili olabilir."
@@ -110,6 +111,7 @@ export function Pricing() {
                         />
                         <DiscoverCard
                             title="Bulunduğunuz bölgedeki tüm emlakçıların ve inşaat firmalarının güncel ürün bilgilerine anlık olarak ulaşabiliyor musunuz?"
+                            location="right"
                             p1="Emlak satış personeli müşteri ile temasa geçtiğinde bir geri sayım başlar. En kısa sürede en doğru ürünü gönderebilmek için bölgenize hakim olmanız gerekiyor. Peki, bölgenize ne kadar hakimsiniz?"
                             p2="Bir yandan satış kaygısı, bir yandan satılacak ürün bulma telaşıyla firmalar sürekli bir çaba içerisindedir. Firmaların portföylerini sürekli güncelledikleri de bir gerçektir. Bir müşteriye en kısa zamanda, istediği kriterlere yakın bir ürünü sunmak için birçok sayfayı veya drive linkini araştırmak zorunda kalmayacağınız bir platform öneriyoruz size."
                             p3="En önemlisi de; güncel bilgiye ulaşmak için sürekli telefon araması yapmak ya da drive linkleri arasında kaybolmak zorunda değilsiniz. Port-foy.com'da sürekli güncel bilgiler yer alır."
@@ -117,6 +119,7 @@ export function Pricing() {
                         />
                         <DiscoverCard
                             title="Müşteriniz, firmanızın bulunduğu şehir dışında, başka bir bölgede gayrimenkul almak için sizden yardım isterse ne yaparsınız?"
+                            location="left"
                             p1="Birçok firmanın sadık müşterileri bazen farklı şehirlerde gayrimenkul almak için yardım isteyebilir. Peki, başka bir şehirde gayrimenkul önerisinde bulunmak için nasıl bir yol izlerdiniz? Müşterinizin fikrini mi değiştirmeye çalışırdınız yoksa istediği bölgede uygun bir ürün arayıp yeni bir satış sözleşmesi mi yapmak isterdiniz?"
                             p2="En önemli soru: Bu bölgedeki emlak veya inşaat firmalarını tanıyor musunuz?"
                             p3="Şimdi size çok kolay bir yöntem öneriyoruz."
@@ -125,6 +128,7 @@ export function Pricing() {
                         />
                         <DiscoverCard
                             title="Müşterilerinize sunacağınız gayrimenkul bilgilerini nereden iletiyorsunuz?"
+                            location="right"
                             p1="Müşterilerinize hangi vasıta ile ürünlerinizi sunabilirsiniz? Hem müşterinizin kafası karışmayacak, hem de ürünler hakkındaki yorumlar satış elemanınız tarafından anlaşılabilir."
                             p2="Bu her zaman mümkün olmayabilir, değil mi?"
                             p3="Drive link kaosundan sonra bir diğer kaos, sunum araçlarında ortaya çıkıyor. WhatsApp, Telegram, Viber, e-mail vb. Müşteriler bazen doğru resim ancak yanlış ürün bilgisi alabiliyor. Ayrıca, e-mailleriniz spam olarak müşterinin gözünden kaçabiliyor."
@@ -139,6 +143,7 @@ export function Pricing() {
                         />
                         <DiscoverCard
                             title="Projemi ya da hazır gayrimenkullerimi acaba başka şehirdeki emlak firmalarına nasıl ulaştırabilirim?"
+                            location="left"
                             p1="Bilinen satış platformları dışında sektör temsilcilerinin kullandığı başka bir platform aramayın. Artık tüm ülkede varsınız."
                             p2="Sistemde kayıtlı gayrimenkullerinizle ilgili bir emlak firmasının ihtiyacı olan tüm bilgileri başka şehirlerdeki emlak firmaları sizin haberiniz olmadan inceleyebilir ve müşterilerine sunabilir."
                             p3="Port-foy.com’daki hesabınıza doğru bilgileri girdiğiniz takdirde, herhangi bir şehirde, herhangi bir satıcının arama kriterine girmeniz an meselesi."
@@ -146,6 +151,7 @@ export function Pricing() {
                         />
                         <DiscoverCard
                             title="Port-foy.com sayesinde hem ekibinizin performansını kontrol edin hem de akıllı hatırlatmalar ile işinizi daha kolay takip edin."
+                            location="right"
                             p1="Port-foy.com'daki hesabınızda bulunan ürünlerinizin tam ve eksiksiz olması, ürünlerinizi ne kadar satmak istediğinize bağlıdır."
                             p2="İlanlarınızı Port-foy.com'a girdikten sonra, sistem belli periyotlarda sizden güncelleme yapmanızı isteyecek. Bu güncellemeleri yaparsanız, ilanınız listelemelerde görünmeye devam edecek. Ancak güncellemeleri yapmaz ve sistemin tüm uyarılarını görmezden gelirseniz, ilanlarınızın diğer firmalar tarafından görüntülenmesi engellenecektir."
                             p3="Kabul edersiniz ki, kimse bilgileri, fiyatı ve diğer detayları doğru olmayan bir ürünü müşterisine sunmak istemez."
@@ -165,12 +171,12 @@ export function Pricing() {
                         </p>
                     </div>
                     <div>
-                        <Questions question="Port-foy.com’a üye olabilmem için firma sahibi olmam gerekli mi?"  answer="Platforma üye olmak için vergi levhası sahibi olmanız gerekmektedir. Eğer freelancer çalışan iseniz üye firmanın bünyesinde çalışabilirsiniz. Vergi levhasız başvurular kabul edilmeyecektir." />
+                        <Questions question="Port-foy.com’a üye olabilmem için firma sahibi olmam gerekli mi?" answer="Platforma üye olmak için vergi levhası sahibi olmanız gerekmektedir. Eğer freelancer çalışan iseniz üye firmanın bünyesinde çalışabilirsiniz. Vergi levhasız başvurular kabul edilmeyecektir." />
                         <Questions question="Port-foy.com’a kimler üye olabilir?" answer="Üyelik için öncelikle vergi levhası gerekmekte. Sadece Emlak firmaları, İnşaat firmaları ve pazarlama firmaları platforma üye olabilir. Araba kiralama firmaları, Seyahat acentaları ve benzeri firmalar üye olamazlar." />
                         <Questions question="Port-foy.com’dan hangi paketi almalıyım?" answer="Fiyatlandırma sayfasında sizler için detaylı fiyat bilgisi paylaşıyoruz. Firmanızın tipine göre paketlerden faydalanabilirsiniz. Ayrıca Deneme sürümü kullanabileceğinizi unutmayın." />
                         <Questions question="Port-foy.com’dan  üyelik aldıktan sonra kurlumu nasıl yapabilirim?" answer="Üyelik sonrası aşamalar oldukça kolay. Ekibinizi oluşturun – Ürünlerini yükleyin ve kullanıma başlayın. Dilerseniz sayfamızda eğitim videoları içerisinde ilgili konunun videosunu izleyerek yardım alabilirsiniz." />
                         <Questions question="Port-Foy’ü sadece bilgisayarda mı kullanabilirim?" answer="Port-Foy platformunu bilgisayarlarda ve akıllı telefonların her türünde tam anlamıyla kullanabilirsiniz." />
-                        <Questions question="Port-foy.com’a yüklediğim ürünler kimler tarafından görüntülenebilir?"  answer="Port-foy.com platformuna yüklediğiniz ürünler, tüm üye firmalar tarafından görüntülenebilir. Ancak, aylık portföy güncellemelerinizi yapmadığınız takdirde, ürünleriniz pasif duruma gelir ve görüntülenemez. Bu durumda yalnızca kendi firma çalışanlarınız ürünlerinizi görebilir." />
+                        <Questions question="Port-foy.com’a yüklediğim ürünler kimler tarafından görüntülenebilir?" answer="Port-foy.com platformuna yüklediğiniz ürünler, tüm üye firmalar tarafından görüntülenebilir. Ancak, aylık portföy güncellemelerinizi yapmadığınız takdirde, ürünleriniz pasif duruma gelir ve görüntülenemez. Bu durumda yalnızca kendi firma çalışanlarınız ürünlerinizi görebilir." />
                         <Questions question="Platformdaki tüm bilgiler herkes tarafından görülecek mi?" answer="Dilerseniz başka firmaların sizin bilgileriniz erişimini düzenleyebilirsiniz. Ayrıca personelinizin erişim yetkilerini düzenleyebilir ve planlayabilirsiniz." />
                         <Questions question="Port-Foy’de mişterime sunum yapmak için müşterimi programa girmem gerekiyor mu?" answer="Sunum hazırlama ve göndermek için müşterinizin adını – mailini – telefon numarasının bir kısmını girmeniz gerekmekte. Bu bilgileri sadece siz görebilirsiniz. Ayrıca bu bilgileri doğru olarak girerseniz gönderdiğiniz ürünler o müşteri için giriş yapılmış olur." />
                         <Questions question="Sadece kendi bölgemdeki gayrimenkullere mi erişimim var?" answer="Port-foy.com’um kuruluş amaçlarından birisi de bu. Türkiye’nin neresinde olursanız olun Port-foy.com üyelerinin girmiş olduğu tüm ürünleri görebilirsiniz. Satıcıları ile iletişim kurabilirsiniz. Platform üzerinden teklif verebilirsiniz." />
