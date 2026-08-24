@@ -7,6 +7,9 @@ import { AppLinks } from '../components/AppLinks'
 import { Footer } from '../components/Footer'
 import { Link } from "react-router-dom"
 import { Filter } from "../components/Filter"
+import about from "../assets/about.png"
+import step1 from "../assets/step1.png"
+import step3 from "../assets/step3.png"
 
 export function Home() {
 
@@ -23,9 +26,9 @@ export function Home() {
           <p className='max-w-[40%] text-center text-[#212529]'>Port-foy.com sizin için çok kolaylaştırıldı. Sizi bekleyen birkaç adımdan sonra işleriniz artık daha da kolaylaşacak.</p>
         </div>
         <div className='flex items-start gap-7.5 justify-between max-w-285 mb-12.5'>
-          <PortfoyCard />
-          <PortfoyCard />
-          <PortfoyCard />
+          <PortfoyCard img={step1} title="Başvurunuzu Yapın" description="Firmanıza ait mali bilgileri, firma yetkilisi olarak siz kişisel bilgilerinizi girdikten sonra kısa bir onay süreci sizi bekliyor olacak. Onay maili ile birlikte size giriş kodunuz gönderilecek. Dilerseniz tanııtm videomuzda bu adımları izleyerek ilerleyebilirsiniz." />
+          <PortfoyCard img={about} title="Profilinizi Oluşturun" description="Tebrikler Firma başvurunuz onayladı. Port-foy ailesine hoş geldiniz. Şimdi firmanızın profilini oluşturalım. Ekibinizi ve yetkilerini hazırlamayı unutmayın. Ve elbette tüm yetkili olduğunuz gayrimenkullerinizi doğru bilgilerle Port-foy.com’a yüklemeye başlayabilirsiniz." />
+          <PortfoyCard img={step3} title="Portföyünüzü Yönetin" description="Tüm bu kısa adımları tamamladınız. Artık ürünleriniz diğer tüm Port-foy kullanıcıları tarafından görüntülenebilmekte. Size gelen bilgileri ve uyarıları lütfen takip edin. Size gelen teklifleri en kısa zamanda cevap vermeye gayret edin. Ayrıca müşterilerin sizin ürünlerinize verdiği puanlamaları inceleyin. Bu bilgiler size pazarlamanızdaki olası eksikleri ortaya çıkaracaktır." />
         </div>
         <div>
           <Link to={"/application"} className='bg-[#f1f1f1] text-[#4b4b4b] px-5 py-2 text-sm rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer'>FIRMA BASVURUSU</Link>

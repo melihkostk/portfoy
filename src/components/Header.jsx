@@ -14,7 +14,7 @@ import { Notification } from "./Notification"
 export function Header() {
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
-    const [loged] = React.useState(true)
+    const [loged] = React.useState(false)
     const [notShown, setNotShown] = React.useState(false)
     const [accountShown, setAccountShown] = React.useState(false)
 
@@ -172,9 +172,9 @@ export function Header() {
                                     </li>
                                     <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
-                                        <span className="text-white text-sm">
+                                        <Link to={"/support"} className="text-white text-sm">
                                             Yardım & Destek
-                                        </span>
+                                        </Link>
                                     </li>
                                     <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />

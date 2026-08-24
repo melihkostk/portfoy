@@ -8,7 +8,7 @@ import React from "react"
 
 export function Footer() {
 
-    const [loged] = React.useState(true)
+    const [loged] = React.useState(false)
 
     return (
         <div className="w-full">

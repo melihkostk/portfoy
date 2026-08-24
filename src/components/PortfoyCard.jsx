@@ -1,14 +1,12 @@
-import step1 from "../assets/step1.png"
-
-export function PortfoyCard(){
+export function PortfoyCard(props){
     return(
-        <div>
+        <div className="flex-1">
             <div className="mb-20">
-                <img src={step1} alt="" />
+                <img className="h-50 w-full object-cover rounded-lg" src={props.img} alt="" />
             </div>
             <div>
-                <h3 className="text-xl text-[#202125] font-medium mb-2 text-center">Başvurunuzu Yapın</h3>
-                <p className="text-sm text-[#202125] font-medium text-center opacity-70">Firmanıza ait mali bilgileri, firma yetkilisi olarak siz kişisel bilgilerinizi girdikten sonra kısa bir onay süreci sizi bekliyor olacak. Onay maili ile birlikte size giriş kodunuz gönderilecek. Dilerseniz tanııtm videomuzda bu adımları izleyerek ilerleyebilirsiniz.</p>
+                <h3 className="text-xl text-[#202125] font-medium mb-2 text-center">{props.title}</h3>
+                <p className="text-sm text-[#202125] font-medium text-center opacity-70">{props.description}</p>
             </div>
         </div>
     )
