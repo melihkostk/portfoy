@@ -8,15 +8,15 @@ export function Faqs() {
         <div className="w-full flex flex-col items-center font-sf">
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-350">
+                <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Sıkça Sorulan Sorular</span></p>
                 </div>
             </div>
-            <div className="w-full flex items-center justify-center py-30">
-                <div className="w-full max-w-350">
+            <div className="w-full flex items-center justify-center py-30 max-[992px]:py-7.5">
+                <div className="w-full max-w-[90%]">
                     <div className="text-center flex flex-col items-center mb-15">
                         <h1 className="text-[34px] text-[#212529] font-medium mb-2.5">Sıkça Sorulan Sorular</h1>
-                        <p className="text-[#525252] max-w-[40%]">
+                        <p className="text-[#525252] max-w-[40%] max-[992px]:max-w-full">
                             Port-foy.com kullanımı kolay bir platformdur.
                             Size istihdam ekonomisi ve hız kazandıracak şekilde planlanmıştır.
                             Sorularınız için bizlere her türlü platformdan ulaşabileceğinizi bilmenizi isteriz.
@@ -36,8 +36,8 @@ export function Faqs() {
                     </div>
                 </div>
             </div>
-            <div className='w-full mt-30 mb-30'>
-                <div className='w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb]'>
+            <div className='w-full mt-30 mb-30 max-[992px]:my-7.5'>
+                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />
                 </div>
             </div>
