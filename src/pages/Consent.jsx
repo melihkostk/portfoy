@@ -7,11 +7,11 @@ export function Consent() {
         <div className="w-full flex flex-col items-center justify-center font-sf">
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-350">
+                <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Rıza Metni</span></p>
                 </div>
             </div>
-            <div className="w-full max-w-350">
+            <div className="w-full max-w-[90%]">
                 <h1 className="text-[40px] font-medium mb-2 text-[#212529]">Rıza Metni</h1>
                 <div>
                     <p className="text-base text-[#212529] mb-4 font-bold">Kullanıcı Rıza Metni</p>
@@ -101,8 +101,8 @@ export function Consent() {
                     <p className="mb-4"><span className="font-bold text-[#212529]">Rıza Beyanı:</span> Yukarıda belirtilen hususları okuyup anladığımı ve 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında kişisel/firma verilerimin belirtilen amaçlar doğrultusunda işlenmesine rıza gösterdiğimi kabul ve beyan ederim.</p>
                 </div>
             </div>
-            <div className='w-full mt-40 mb-30'>
-                <div className='w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb]'>
+            <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
+                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />
                 </div>
             </div>
