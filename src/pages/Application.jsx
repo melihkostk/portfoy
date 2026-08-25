@@ -56,7 +56,7 @@ export function Application() {
                                     Port-foy.com’un size sunduğu daha birçok kolaylığı keşfedin ve tadını çıkarın
                                 </li>
                             </ul>
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 flex-wrap">
                                 <Link className="py-2 px-5 text-sm text-white font-semibold bg-[#27C5D2] rounded-lg hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer" to={"/"} href="">
                                     Port-foy'a Dön
                                 </Link>

@@ -7,8 +7,8 @@ import t from "../assets/t.png"
 export function Check() {
     return (
         <div className="w-full flex flex-col items-center justify-center font-sf">
-            <div className="w-full max-w-350">
-                <div className="flex items-center">
+            <div className="w-full max-w-[90%]">
+                <div className="flex items-center max-[992px]:flex-col">
                     <div className="pr-12.5 flex-1">
                         <div>
                             <LanguageSelect />
@@ -34,7 +34,7 @@ export function Check() {
                                 <li>Port-foy.com’un size sunduğu daha birçok kolaylığı keşfedin ve tadını çıkarın</li>
                             </ul>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 flex-wrap">
                             <Link className="py-2 px-5 text-sm text-white font-semibold bg-[#27C5D2] rounded-lg hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer" to={"/"} href="">
                                 Port-foy'a Dön
                             </Link>
@@ -43,7 +43,7 @@ export function Check() {
                             </Link>
                         </div>
                     </div>
-                    <div className="flex-1 p-12.5">
+                    <div className="flex-1 p-12.5 max-[992px]:w-full max-[992px]:p-0 mt-12.5">
                         <div className="mb-15">
                             <h2 className="text-[#686868] text-lg font-medium uppercase">
                                 Başvuru Sorgulama
@@ -61,13 +61,13 @@ export function Check() {
                                 </div>
                             </div>
                             <div>
-                                <button type="submit" className="bg-[#27C5D2] text-white font-medium w-1/2 py-3 rounded-lg hover:bg-[#026872] hover:shadow-[0_0_30px_#27C5D2] transition-[background-color,box-shadow] duration-300 ease-in-out cursor-pointer">Başvuru Sorgulama</button>
+                                <button type="submit" className="bg-[#27C5D2] max-[992px]:w-full text-white font-medium w-1/2 py-3 rounded-lg hover:bg-[#026872] hover:shadow-[0_0_30px_#27C5D2] transition-[background-color,box-shadow] duration-300 ease-in-out cursor-pointer">Başvuru Sorgulama</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb] mt-40 mb-15">
+            <div className="w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb] mt-40 mb-15">
                 <AppLinks />
             </div>
         </div>
