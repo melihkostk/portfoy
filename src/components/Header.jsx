@@ -14,40 +14,40 @@ import { Notification } from "./Notification"
 export function Header() {
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
-    const [loged] = React.useState(true)
+    const [loged] = React.useState(false)
     const [notShown, setNotShown] = React.useState(false)
     const [accountShown, setAccountShown] = React.useState(false)
 
     return (
-        <div className="py-7.5 w-full max-w-350">
+        <div className="py-7.5 w-full max-w-[90%]">
             <div className="flex items-center justify-between">
                 <div className="w-55 min-w-55">
                     <Link to={"/"}>
                         <img className="max-w-full" src={logo} alt="" />
                     </Link>
                 </div>
-                {!loged && <div>
-                    <ul className="flex gap-5">
+                {!loged && <div className="max-[1100px]:hidden">
+                    <ul className="flex gap-5 pl-5">
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium" to="/">Anasayfa</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/">Anasayfa</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium" to="/discover">Port-foy Nedir?</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/discover">Port-foy Nedir?</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium" to="/pricing">Fiyatlandırma</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/pricing">Fiyatlandırma</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium" to="/articles">Haberler</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/articles">Haberler</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium" to="/corporate">Kurumsal</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/corporate">Kurumsal</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium" to="/contacts">İletişim</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/contacts">İletişim</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium" href="">Blog</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" href="">Blog</Link>
                         </li>
                     </ul>
                 </div>}
@@ -75,10 +75,12 @@ export function Header() {
                     {!loged && <div className="relative">
                         <div className="bg-[#27C5D2] cursor-pointer h-12.5 rounded-[5px] text-white font-semibold flex items-center">
                             <div className="flex rounded-l-[5px] border-r px-5 border-r-[#ffffff38] items-center h-full hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
-                                <img className="w-7 h-7" src={person} alt="" />
-                                <Link to={"/login"}>Giriş Yap</Link>
+                                <Link to={"/login"} className="flex items-center">
+                                    <img className="w-7 h-7" src={person} alt="" />
+                                    <p className="whitespace-nowrap max-[1400px]:hidden">Giriş Yap</p>
+                                </Link>
                             </div>
-                            <div onClick={() => setRegisterShown(prev => !prev)} className="h-full rounded-r-[5px] flex px-1.5 items-center justify-center hover:bg-[#048B99] hover:shadow-[0_0_30px_#048B99] transition-[background-color,box-shadow] duration-300 ease-in-out">
+                            <div onClick={() => setRegisterShown(prev => !prev)} className="h-full max-[992px]:hidden rounded-r-[5px] flex px-1.5 items-center justify-center hover:bg-[#048B99] hover:shadow-[0_0_30px_#048B99] transition-[background-color,box-shadow] duration-300 ease-in-out">
                                 <img className="w-4.5 h-4.5" src={whiteDownArrow} alt="" />
                             </div>
                         </div>
@@ -88,10 +90,12 @@ export function Header() {
                         </div>}
                     </div>}
                     {!loged && <div className="relative">
-                        <div className="bg-[#048B99] cursor-pointer flex items-center h-12.5 rounded-[5px] text-white font-semibold">
+                        <div className="bg-[#048B99] cursor-pointer flex items-center h-12.5 max-[992px]:hidden rounded-[5px] text-white font-semibold">
                             <div className="flex items-center px-5 h-full rounded-l-[5px] border-r border-r-[#ffffff38] gap-1 hover:bg-[#026872] transition-colors duration-300 ease-in-out">
-                                <img className="w-5 h-5" src={plus} alt="" />
-                                <Link to={"/application"}>Firma Başvurusu</Link>
+                                <Link to={"/application"} className="flex items-center">
+                                    <img className="w-5 h-5" src={plus} alt="" />
+                                    <p className="whitespace-nowrap max-[1400px]:hidden">Firma Başvurusu</p>
+                                </Link>
                             </div>
                             <div onClick={() => setApplicationShown(prev => !prev)} className="flex h-full rounded-r-[5px] px-1.5 items-center justify-center hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
                                 <img className="w-4.5 h-4.5" src={whiteDownArrow} alt="" />

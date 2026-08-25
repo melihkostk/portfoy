@@ -8,7 +8,7 @@ export function News() {
         <div className='flex flex-col items-center font-sf'>
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-350">
+                <div className="w-full max-w-[]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Haberler</span></p>
                 </div>
             </div>

@@ -12,8 +12,8 @@ export function Footer() {
 
     return (
         <div className="w-full">
-            {!loged && <div className='w-full mx-auto max-w-350 flex items-start gap-7.5'>
-                <div className="w-[40%] pr-7.5">
+            {!loged && <div className='w-full mx-auto max-w-[95%] flex items-start gap-7.5 max-[992px]:flex-col max-[992px]:w-[90%]'>
+                <div className="w-[40%] max-[992px]:w-full pr-7.5">
                     <img className="w-[40%] mb-5" src={logo} alt="" />
                     <p className="text-sm text-[#b9c0c1] font-medium mb-4">
                         Port-foy.com olarak, gayrimenkul sektöründe faaliyet gösteren profesyonellerin
@@ -42,42 +42,44 @@ export function Footer() {
                         </a>
                     </div>
                 </div>
-                <div className="w-[20%]">
-                    <p className="text-[24px] text-[#27c5d2] mb-4">Kurumsal</p>
-                    <ul className="text-[#b9b0b1] text-lg">
-                        <li className="mb-3.75">
-                            <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">Kurumsal</Link>
-                        </li>
-                        <li className="mb-3.75">
-                            <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">Misyon</Link>
-                        </li>
-                        <li className="mb-3.75">
-                            <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">Vizyon</Link>
-                        </li>
-                        <li className="mb-3.75">
-                            <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">Keşfet</Link>
-                        </li>
-                        <li>
-                            <Link to={"/contacts"} className="hover:text-black transition-colors duration-300 ease-in-out">İletişim</Link>
-                        </li>
-                    </ul>
-                </div>
-                <div className="w-[20%]">
-                    <p className="text-[24px] text-[#27c5d2] mb-4">Keşfet</p>
-                    <ul className="text-[#b9b0b1] text-lg ">
-                        <li className="mb-3.75">
-                            <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">Port-Foy Nedir?</Link>
-                        </li>
-                        <li className="mb-3.75">
-                            <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">Özellikler ve Avantajlar</Link>
-                        </li>
-                        <li className="mb-3.75">
-                            <Link to={"/pricing"} className="hover:text-black transition-colors duration-300 ease-in-out">Fiyatlandırma</Link>
-                        </li>
-                        <li>
-                            <Link to={"/faqs"} className="hover:text-black transition-colors duration-300 ease-in-out">Sıkça Sorulan Sorular</Link>
-                        </li>
-                    </ul>
+                <div className="max-[992px]:flex max-[992px]:w-full">
+                    <div className="w-[20%] max-[992px]:flex-1">
+                        <p className="text-[24px] text-[#27c5d2] mb-4">Kurumsal</p>
+                        <ul className="text-[#b9b0b1] text-lg">
+                            <li className="mb-3.75">
+                                <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">Kurumsal</Link>
+                            </li>
+                            <li className="mb-3.75">
+                                <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">Misyon</Link>
+                            </li>
+                            <li className="mb-3.75">
+                                <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">Vizyon</Link>
+                            </li>
+                            <li className="mb-3.75">
+                                <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">Keşfet</Link>
+                            </li>
+                            <li>
+                                <Link to={"/contacts"} className="hover:text-black transition-colors duration-300 ease-in-out">İletişim</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="w-[20%] max-[992px]:flex-1">
+                        <p className="text-[24px] text-[#27c5d2] mb-4">Keşfet</p>
+                        <ul className="text-[#b9b0b1] text-lg ">
+                            <li className="mb-3.75">
+                                <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">Port-Foy Nedir?</Link>
+                            </li>
+                            <li className="mb-3.75">
+                                <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">Özellikler ve Avantajlar</Link>
+                            </li>
+                            <li className="mb-3.75">
+                                <Link to={"/pricing"} className="hover:text-black transition-colors duration-300 ease-in-out">Fiyatlandırma</Link>
+                            </li>
+                            <li>
+                                <Link to={"/faqs"} className="hover:text-black transition-colors duration-300 ease-in-out">Sıkça Sorulan Sorular</Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div className="w-[20%]">
                     <p className="text-[24px] text-[#27c5d2] mb-4">Sözleşmeler</p>
@@ -89,7 +91,7 @@ export function Footer() {
                 </div>
             </div>}
             <div className="w-full bg-[#27C5D2] flex justify-center py-3.75 mt-20">
-                <div className="w-full max-w-350 flex justify-between px-3">
+                <div className="w-full max-w-[90%] flex justify-between px-3 max-[992px]:flex-col items-center">
                     {loged && <p className="text-white font-medium">
                         Müşteri Destek Hattı
                         <a className="font-bold" href="https://demo.pigasoft.com/portfoy/public/tr/tel: 0 850 851 44 94"> 0 850 851 44 94</a>
@@ -98,7 +100,7 @@ export function Footer() {
                         Copyright @ Port-Foy 2024. Her hakkı saklıdır.
                     </p>
                     <p className="text-white text-base font-normal">
-                        <a className="text-white font-bold cursor-pointer" href="">Pigasoft</a> 
+                        <a className="text-white font-bold cursor-pointer" href="">Pigasoft</a>
                         {" "}ve{" "}
                         <a className="text-white font-bold cursor-pointer" href="">Order Teknoloji</a>
                         {" "}tarafından geliştirilmiştir.

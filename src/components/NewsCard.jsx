@@ -2,7 +2,7 @@ import newsImage from "../assets/news1.jpeg"
 
 export function NewsCard() {
     return (
-        <div className="bg-white p-7.5 m-5 w-[24%] rounded-[10px] shadow-[0_0_30px_rgb(246_246_246)] ">
+        <div className="bg-white p-7.5 m-5 w-[24%] rounded-[10px] shadow-[0_0_30px_rgb(246_246_246)] max-[992px]:w-full ">
             <div>
                 <img className="align-middle aspect-square object-cover max-w-full rounded-[10px]" src={newsImage} alt="" />
             </div>
