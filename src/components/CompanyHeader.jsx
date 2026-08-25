@@ -49,7 +49,7 @@ export function CompanyHeader() {
                             <Link to={"/company/team"}>Ekip</Link>
                         </li>
                         <li className="bg-[#ffffffb3] font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer hover:bg-white transition-colors duration-300 ease-in-out">
-                            Konum & İletişim
+                            <Link to={"/company/contacts"}>Konum & İletişim</Link>
                         </li>
                         <li className="bg-[#ffffffb3] font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer hover:bg-white transition-colors duration-300 ease-in-out">
                             Müşteriler

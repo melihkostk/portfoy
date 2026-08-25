@@ -26,6 +26,7 @@ import { UserProperties } from "./pages/UserProperties";
 import { Support } from "./pages/Support";
 import { Company } from "./pages/Company";
 import { Team } from "./pages/Team"
+import { Location } from "./pages/Location";
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
         <Route path="/support" element={<Support />} />
         <Route path="/company" element={<Company />} />
         <Route path="/company/team" element={<Team />} />
+        <Route path="/company/contacts" element={<Location />} />
       </Routes>
     </BrowserRouter>
 
