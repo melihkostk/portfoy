@@ -12,17 +12,17 @@ export function Corporate() {
         <div className='flex flex-col items-center font-sf'>
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-350">
+                <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Kurumsal</span></p>
                 </div>
             </div>
-            <div className="w-full max-w-350">
+            <div className="w-full max-w-[90%] max-[992px]:max-w-full">
                 <div>
                     <img src={corporate} alt="" />
                 </div>
             </div>
-            <div className="w-full max-w-350">
-                <div className="flex flex-col items-center w-full max-w-[70%] bg-white -mt-20 mb-30 mx-auto rounded-lg p-12.5 shadow-[0_0_50px_rgba(0,0,0,0.1)]">
+            <div className="w-full max-w-[90%] max-[992px]:max-w-full">
+                <div className="flex flex-col items-center w-full max-w-[70%] max-[992px]:max-w-full max-[992px]:p-0 max-[992px]:mt-5  max-[992px]:mb-5 max-[992px]:shadow-none bg-white -mt-20 mb-30 mx-auto rounded-lg p-12.5 shadow-[0_0_50px_rgba(0,0,0,0.1)]">
                     <h1 className="mb-7.5 text-[25px] text-[#212529] font-medium text-center">Port-foy.com - Sizler İçin Çözüm Üretiyoruz</h1>
                     <p className="text-center mb-7.5 text-sm text-[#212529] opacity-70 max-w-[70%] font-medium">
                         Port-foy.com olarak, gayrimenkul sektöründe faaliyet gösteren profesyonellere
@@ -47,7 +47,7 @@ export function Corporate() {
                     </div>
                 </div>
             </div>
-            <div className="w-full max-w-350 py-30">
+            <div className="w-full max-w-[90%] py-30 max-[992px]:py-7.5">
                 <CorporateCard
                     title="Hakkımızda"
                     location="left"
@@ -62,7 +62,7 @@ export function Corporate() {
                 />
             </div>
             <div className="w-full bg-[#F7F6FB] flex justify-center">
-                <div className="w-full max-w-350 py-30">
+                <div className="w-full max-w-[90%] py-30 max-[992px]:py-7.5">
                     <CorporateCard
                         title="Misyon"
                         location="right"
@@ -73,7 +73,7 @@ export function Corporate() {
                     />
                 </div>
             </div>
-            <div className="w-full max-w-350 py-30">
+            <div className="w-full max-w-[90%] py-30 max-[992px]:py-7.5">
                 <CorporateCard
                     title="Vizyon"
                     location="left"
@@ -83,8 +83,8 @@ export function Corporate() {
                     p3="Port-foy.com olarak, emlak sektöründe sürdürülebilir büyümeyi destekleyen ve kullanıcı memnuniyetini ön planda tutan bir yaklaşım benimsiyoruz. Her adımda yenilikçi düşünceyi ve mükemmeliyetçi tutumu teşvik ederek, sektöre değer katmayı ve fark yaratmayı amaçlıyoruz."
                 />
             </div>
-            <div className='w-full mt-30 mb-30'>
-                <div className='w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb]'>
+            <div className='w-full mt-30 mb-30 max-[992px]:mt-7.5'>
+                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />
                 </div>
             </div>
