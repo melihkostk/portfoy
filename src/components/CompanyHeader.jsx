@@ -1,5 +1,6 @@
 import bgImage from "../assets/company-bg.png"
 import pg from "../assets/pg.jpg"
+import { Link } from "react-router-dom"
 
 export function CompanyHeader() {
     return (
@@ -42,10 +43,10 @@ export function CompanyHeader() {
                 <div className="flex justify-between">
                     <ul className="flex items-center gap-2.5">
                         <li className="bg-white font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer">
-                            Portföy
+                            <Link to={"/company"}>Portföy</Link>
                         </li>
                         <li className="bg-[#ffffffb3] font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer hover:bg-white transition-colors duration-300 ease-in-out">
-                            Ekip
+                            <Link to={"/company/team"}>Ekip</Link>
                         </li>
                         <li className="bg-[#ffffffb3] font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer hover:bg-white transition-colors duration-300 ease-in-out">
                             Konum & İletişim

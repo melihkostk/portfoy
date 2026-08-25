@@ -25,6 +25,7 @@ import { Offers } from "./pages/Offers";
 import { UserProperties } from "./pages/UserProperties";
 import { Support } from "./pages/Support";
 import { Company } from "./pages/Company";
+import { Team } from "./pages/Team"
 
 function App() {
 
@@ -51,12 +52,13 @@ function App() {
         <Route path="/account" element={<Account />} />
         <Route path="/proposals" element={<Proposals />} />
         <Route path="/notifications" element={<Notifications />} />
-        <Route path="/quick-filters" element={<QuickFilters />} /> 
-        <Route path="/wishlist" element={<Wishlist />} /> 
-        <Route path="/offers" element={<Offers />} /> 
+        <Route path="/quick-filters" element={<QuickFilters />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/offers" element={<Offers />} />
         <Route path="/auth/properties" element={<UserProperties />} />
         <Route path="/support" element={<Support />} />
         <Route path="/company" element={<Company />} />
+        <Route path="/company/team" element={<Team />} />
       </Routes>
     </BrowserRouter>
 
