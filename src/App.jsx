@@ -27,6 +27,7 @@ import { Support } from "./pages/Support";
 import { Company } from "./pages/Company";
 import { Team } from "./pages/Team"
 import { Location } from "./pages/Location";
+import { Customers } from "./pages/Customers";
 
 function App() {
 
@@ -61,6 +62,7 @@ function App() {
         <Route path="/company" element={<Company />} />
         <Route path="/company/team" element={<Team />} />
         <Route path="/company/contacts" element={<Location />} />
+        <Route path="/company/customers" element={<Customers />} />
       </Routes>
     </BrowserRouter>
 
