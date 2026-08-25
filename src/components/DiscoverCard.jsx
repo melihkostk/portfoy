@@ -3,7 +3,7 @@ import discover from "../assets/discover.jpg"
 export function DiscoverCard({ title, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11 , location }) {
 
     const image = (
-        <div className="flex-1">
+        <div className="flex-1 max-[992px]:hidden">
             <img className="w-full rounded-2xl" src={discover} alt="" />
         </div>
     )

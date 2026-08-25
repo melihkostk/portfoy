@@ -113,7 +113,7 @@ export function Home() {
                 </li>
               </ul>
             </div>
-            <div className='flex w-full justify-center flex-wrap'>
+            <div className='flex w-full justify-center flex-wrap overflow-auto max-[992px]:flex-nowrap'>
               <PricingCard
                 name="XL Emlak Paketi"
                 price="₺15,00 + KDV"
