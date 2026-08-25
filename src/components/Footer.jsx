@@ -12,7 +12,7 @@ export function Footer() {
 
     return (
         <div className="w-full">
-            {!loged && <div className='w-full mx-auto max-w-[95%] flex items-start gap-7.5 max-[992px]:flex-col max-[992px]:w-[90%]'>
+            {!loged && <div className='w-full mx-auto max-w-[90%] flex items-start gap-7.5 max-[992px]:flex-col max-[992px]:w-[90%]'>
                 <div className="w-[40%] max-[992px]:w-full pr-7.5">
                     <img className="w-[40%] mb-5" src={logo} alt="" />
                     <p className="text-sm text-[#b9c0c1] font-medium mb-4">
