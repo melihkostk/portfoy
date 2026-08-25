@@ -13,7 +13,7 @@ export function SignIn() {
 
     return (
         <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-20% to-white to-20%">
-            <div className="w-132.5 pb-12.5">
+            <div className="pb-12.5 w-[40%] max-[992px]:w-full max-[992px]:max-w-[95%]">
                 <div className="flex items-center justify-between mb-7.5 pt-12.5">
                     <div className="w-55">
                         <Link to={"/"}>
