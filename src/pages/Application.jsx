@@ -16,8 +16,8 @@ import { LanguageSelect } from "../components/LanguageSelect"
 export function Application() {
     return (
         <div className="w-full flex flex-col items-center justify-center font-sf">
-            <div className="w-full max-w-350">
-                <div className="flex">
+            <div className="w-full max-w-[90%]">
+                <div className="flex items-start max-[992px]:flex-col">
                     <div className="flex-1 pr-12.5">
                         <div>
                             <LanguageSelect />
@@ -66,7 +66,7 @@ export function Application() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex-1 p-12.5">
+                    <div className="flex-1 p-12.5 max-[992px]:w-full max-[992px]:p-0 max-[992px]:mt-12.5">
                         <div className="mb-15">
                             <h2 className="text-[#686868] mb-2 text-[18px] font-medium">FIRMA BAŞVURUSU FORMU</h2>
                             <p className="text-sm text-[#a6a6a6] font-medium">Lütfen tüm alanları doğru bir şekilde doldurun.</p>
@@ -82,8 +82,8 @@ export function Application() {
                                             <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Adınız ve Soyadınız" required />
                                         </div>
                                     </div>
-                                    <div className="flex">
-                                        <div className="flex flex-col mx-2.5 flex-1">
+                                    <div className="flex max-[992px]:flex-col max-[992px]:gap-3.75">
+                                        <div className="flex flex-col mx-2.5 flex-1 ">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Telefon Numaranız</label>
                                             <div className="relative flex items-center ">
                                                 <img className="w-6 h-6 absolute bottom-2 left-2" src={phone} alt="" />
@@ -103,19 +103,19 @@ export function Application() {
                                     <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">Konum Bilgileri</h3>
                                     <div className="flex flex-col gap-3.75">
                                         <div className="flex justify-between border border-[#EDEDED] rounded-lg">
-                                            <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center">
+                                            <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
                                                 <p>Ülke Seçin</p>
                                                 <img className="w-4 h-4" src={downArrow} alt="" />
                                             </div>
-                                            <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center">
+                                            <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
                                                 <p>İl Seçin</p>
                                                 <img className="w-4 h-4" src={downArrow} alt="" />
                                             </div>
-                                            <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center">
+                                            <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
                                                 <p>İlçe Seçin</p>
                                                 <img className="w-4 h-4" src={downArrow} alt="" />
                                             </div>
-                                            <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center">
+                                            <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
                                                 <p>Mahalle</p>
                                                 <img className="w-4 h-4" src={downArrow} alt="" />
                                             </div>
@@ -131,43 +131,43 @@ export function Application() {
                                 </div>
                                 <div className="mb-12.5">
                                     <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">Firma Bilgileri</h3>
-                                    <div className="flex flex-wrap gap-3.75 items-start">
-                                        <div className="flex flex-col w-[28%] mx-2.5">
+                                    <div className="flex flex-wrap gap-3.75 items-start max-[992px]:flex-col">
+                                        <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Firma Ünvanı</label>
                                             <div className="relative flex items-center ">
                                                 <img className="w-7 h-7 absolute bottom-2 left-2" src={person} alt="" />
                                                 <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Firma Ünvanı" required />
                                             </div>
                                         </div>
-                                        <div className="flex flex-col w-[28%] mx-2.5">
+                                        <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Faaliyet Alanı</label>
                                             <div className="relative flex items-center ">
                                                 <img className="w-4 h-4 absolute top-3.5 left-2" src={menu} alt="" />
                                                 <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Faaliyet Alanı" required />
                                             </div>
                                         </div>
-                                        <div className="flex flex-col w-[28%] mx-2.5">
+                                        <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Vergi Levhası (PDF)</label>
                                             <div className="relative flex items-center">
                                                 <img className="w-5 h-5 absolute top-2.5 left-2" src={pdf} alt="" />
                                                 <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Dosya Seçin" required />
                                             </div>
                                         </div>
-                                        <div className="flex flex-col w-[28%] mx-2.5">
+                                        <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Vergi Numarası</label>
                                             <div className="relative flex items-center">
                                                 <img className="w-5 h-5 absolute top-2.5 left-2" src={file} alt="" />
                                                 <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Vergi Numarası" required />
                                             </div>
                                         </div>
-                                        <div className="flex flex-col w-[28%] mx-2.5">
+                                        <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Ticaret Odası Faaliyet Belgesi (PDF)</label>
                                             <div className="relative flex items-center">
                                                 <img className="w-5 h-5 absolute top-2.5 left-2" src={pdf} alt="" />
                                                 <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Dosya Seçin" required />
                                             </div>
                                         </div>
-                                        <div className="flex flex-col w-[28%] mx-2.5">
+                                        <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Mersis Numarası</label>
                                             <div className="relative flex items-center">
                                                 <img className="w-5 h-5 absolute top-2.5 left-2" src={file} alt="" />
@@ -185,14 +185,14 @@ export function Application() {
                                     </div>
                                 </div>
                                 <div>
-                                    <button className="bg-[#27C5D2] text-white font-medium w-1/2 py-3 rounded-lg hover:bg-[#026872] hover:shadow-[0_0_30px_#27C5D2] transition-[background-color,box-shadow] duration-300 ease-in-out cursor-pointer">Gönder</button>
+                                    <button className="bg-[#27C5D2] text-white font-medium w-1/2 py-3 rounded-lg max-[992px]:w-full hover:bg-[#026872] hover:shadow-[0_0_30px_#27C5D2] transition-[background-color,box-shadow] duration-300 ease-in-out cursor-pointer">Gönder</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
+            <div className="w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
                 <AppLinks />
             </div>
         </div>
