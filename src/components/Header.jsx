@@ -10,6 +10,8 @@ import folder from "../assets/folder.png"
 import shop from "../assets/shop.png"
 import { LanguageSelect } from "./LanguageSelect"
 import { Notification } from "./Notification"
+import whiteMenu from "../assets/white-menu.png"
+import { MainSidebar } from "./MainSidebar"
 
 export function Header() {
     const [registerShown, setRegisterShown] = React.useState(false);
@@ -17,13 +19,15 @@ export function Header() {
     const [loged] = React.useState(false)
     const [notShown, setNotShown] = React.useState(false)
     const [accountShown, setAccountShown] = React.useState(false)
+    const [sidebarShown , setSidebarShown] = React.useState(true)
 
     return (
         <div className="py-7.5 w-full max-w-[90%]">
+            {sidebarShown && <MainSidebar setSidebarShown={setSidebarShown} />}
             <div className="flex items-center justify-between">
-                <div className="w-55 min-w-55">
+                <div className="w-55 max-[992px]:w-30">
                     <Link to={"/"}>
-                        <img className="max-w-full" src={logo} alt="" />
+                        <img className="w-full max-w-full" src={logo} alt="" />
                     </Link>
                 </div>
                 {!loged && <div className="max-[1100px]:hidden">
@@ -74,7 +78,7 @@ export function Header() {
                     <LanguageSelect />
                     {!loged && <div className="relative">
                         <div className="bg-[#27C5D2] cursor-pointer h-12.5 rounded-[5px] text-white font-semibold flex items-center">
-                            <div className="flex rounded-l-[5px] border-r px-5 border-r-[#ffffff38] items-center h-full hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                            <div className="flex rounded-l-[5px] border-r px-5 max-[992px]:px-2.5 border-r-[#ffffff38] items-center h-full hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                                 <Link to={"/login"} className="flex items-center">
                                     <img className="w-7 h-7" src={person} alt="" />
                                     <p className="whitespace-nowrap max-[1400px]:hidden">Giriş Yap</p>
@@ -89,6 +93,11 @@ export function Header() {
                             <Link to={"/register"} className="w-full" href="">Kayıt Ol</Link>
                         </div>}
                     </div>}
+                    {!loged && 
+                        <div onClick={() => setSidebarShown(true)} className="bg-[#27C5D2] cursor-pointer h-12.5 rounded-[5px] hidden text-white font-semibold max-[992px]:w-12.5 max-[992px]:px-2.5 max-[992px]:flex items-center justify-center">
+                            <img className="w-4 h-4" src={whiteMenu} alt="" />
+                        </div>
+                    }
                     {!loged && <div className="relative">
                         <div className="bg-[#048B99] cursor-pointer flex items-center h-12.5 max-[992px]:hidden rounded-[5px] text-white font-semibold">
                             <div className="flex items-center px-5 h-full rounded-l-[5px] border-r border-r-[#ffffff38] gap-1 hover:bg-[#026872] transition-colors duration-300 ease-in-out">
