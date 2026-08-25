@@ -11,13 +11,13 @@ export function Contacts() {
         <div className='flex flex-col items-center font-sf'>
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-350">
+                <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İletişim</span></p>
                 </div>
             </div>
-            <div className="w-full max-w-350">
-                <div className="flex items-start mb-12">
-                    <div className="flex-1 pr-37.5">
+            <div className="w-full max-w-[90%]">
+                <div className="flex items-start mb-12 max-[992px]:flex-col">
+                    <div className="flex-1 pr-37.5 max-[992px]:mb-7.5">
                         <h1 className="text-[40px] text-[#212529] font-bold mb-12.5">İletişim Bilgileri</h1>
                         <div className="mb-10">
                             <p className="text-sm text-[#212529] opacity-70 uppercase font-medium">Telefon</p>
@@ -68,7 +68,7 @@ export function Contacts() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex-1 border border-[#eee] rounded-lg p-7.5">
+                    <div className="flex-1 border border-[#eee] rounded-lg p-7.5 max-[992px]:w-full">
                         <h2 className="text-[32px] text-[#212529] font-semibold mb-10">İletişim Formu</h2>
                         <form action="">
                             <input className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="name" placeholder="Adınız ve Soyadınız" required />
@@ -82,7 +82,7 @@ export function Contacts() {
                 </div>
             </div>
             <div className='w-full mt-30 mb-30'>
-                <div className='w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb]'>
+                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />
                 </div>
             </div>
