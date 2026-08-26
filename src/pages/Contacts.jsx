@@ -17,7 +17,7 @@ export function Contacts() {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start mb-12 max-[992px]:flex-col">
-                    <div className="flex-1 pr-37.5 max-[992px]:mb-7.5">
+                    <div className="flex-1 max-[992px]:pr-0 pr-37.5 max-[992px]:mb-7.5">
                         <h1 className="text-[40px] text-[#212529] font-bold mb-12.5">İletişim Bilgileri</h1>
                         <div className="mb-10">
                             <p className="text-sm text-[#212529] opacity-70 uppercase font-medium">Telefon</p>
