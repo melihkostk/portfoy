@@ -6,7 +6,7 @@ import grayMail from "../assets/gray-mail.png"
 
 export function TeamCard() {
     return (
-        <div className="flex flex-col relative items-center justify-center m-3.75 border border-[#dedede] rounded-lg pt-8.75 p-3.75 w-[22%]">
+        <div className="flex flex-col relative items-center justify-center m-3.75 border border-[#dedede] max-[992px]:my-3.75 max-[992px]:mx-0 max-[992px]:w-full rounded-lg pt-8.75 p-3.75 w-[22%]">
             <div className="absolute w-4 h-4 top-6 right-4">
                 <img src={verticalMenu} alt="" />
             </div>
