@@ -29,6 +29,7 @@ import { Team } from "./pages/Team"
 import { Location } from "./pages/Location";
 import { Customers } from "./pages/Customers";
 import { Subscription } from "./pages/Subscription"
+import { Settings } from "./pages/Settings";
 
 function App() {
 
@@ -65,6 +66,7 @@ function App() {
         <Route path="/company/contacts" element={<Location />} />
         <Route path="/company/customers" element={<Customers />} />
         <Route path="/company/subscription" element={<Subscription />} />
+        <Route path="/company/settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>
 
