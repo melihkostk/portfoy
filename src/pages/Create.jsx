@@ -8,12 +8,12 @@ export function Create() {
         <div className='flex flex-col items-center font-sf'>
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-350">
+                <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İlanlar</span> {">"} <span className="text-[#9a9898]"> Yeni İlan Oluştur</span></p>
                 </div>
             </div>
-            <div className="w-full max-w-350 flex items-center justify-center">
-                <div className="w-[50%]">
+            <div className="w-full max-w-[90%] flex items-center justify-center">
+                <div className="w-[50%] max-[992px]:w-full">
                     <div className="mb-12.5">
                         <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-medium">Temel Bilgiler</p>
                         <input className="p-3.75 rounded-lg border border-[#ededed] w-full" type="text" placeholder="İlan Başlığı" />
@@ -35,8 +35,8 @@ export function Create() {
                     <div className="mb-12.5">
                         <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-medium">Konum Bilgileri</p>
                         <div>
-                            <div className="flex justify-between items-center">
-                                <div className="flex flex-col m-2.5 flex-1">
+                            <div className="flex justify-start flex-wrap items-start max-[992px]:flex-col">
+                                <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">Ülke Seçin</label>
                                     <select className="p-2.5 border border-[#e8e8e8] rounded-lg">
                                         <option value="">Ülke Seçin</option>
@@ -44,7 +44,7 @@ export function Create() {
                                         <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
                                     </select>
                                 </div>
-                                <div className="flex flex-col m-2.5 flex-1">
+                                <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">İl Seçin</label>
                                     <select className="p-2.5 border border-[#e8e8e8] rounded-lg">
                                         <option value="">Ankara</option>
@@ -52,20 +52,20 @@ export function Create() {
                                         <option value="">İstanbul</option>
                                     </select>
                                 </div>
-                                <div className="flex flex-col m-2.5 flex-1">
+                                <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">İlçe Seçin</label>
                                     <select className="p-2.5 border border-[#e8e8e8] rounded-lg">
                                         <option value="">İlçe Seçin</option>
                                     </select>
                                 </div>
-                                <div className="flex flex-col m-2.5 flex-1">
+                                <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">Mahalle</label>
                                     <select className="p-2.5 border border-[#e8e8e8] rounded-lg">
                                         <option value="">Mahalle Seçin</option>
                                     </select>
                                 </div>
                             </div>
-                            <div className="px-2.5">
+                            <div className="px-2.5 max-[992px]:w-full max-[992px]:px-0">
                                 <label className="text-sm text-[#212529] opacity-50" htmlFor="">Adres</label>
                                 <input className="p-2.5 rounded-lg border border-[#e8e8e8] block w-full" type="text" placeholder="Adres" />
                             </div>
@@ -75,11 +75,11 @@ export function Create() {
                         <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-medium">Fiyat Bilgileri</p>
                         <div>
                             <div className="flex flex-col items-center">
-                                <p className="mb-1.25 text-sm text-[#212529] opacity-50">Lütfen ilanınızda kullanmak istediğiniz fiyatlandırma tipini seçin.</p>
+                                <p className="mb-1.25 text-sm text-[#212529] text-center opacity-50">Lütfen ilanınızda kullanmak istediğiniz fiyatlandırma tipini seçin.</p>
                                 <label className="text-center bg-[#e2e2e2] text-sm font-semibold py-2.5 px-7.5 rounded-lg mb-7.5">Pass Fiyatı</label>
                             </div>
                             <div className="flex flex-col items-center">
-                                <p className="mb-1.25 text-sm text-[#212529] opacity-50">
+                                <p className="mb-1.25 text-sm text-[#212529] opacity-50 text-center">
                                     Lütfen ilanınızda kullanmak istediğiniz para birimini seçin.
                                 </p>
                                 <div className="flex items-center mb-7.5">
@@ -126,7 +126,7 @@ export function Create() {
                 </div>
             </div>
             <div className='w-full mt-30 mb-30'>
-                <div className='w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb]'>
+                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />
                 </div>
             </div>
