@@ -58,7 +58,7 @@ export function Filter() {
                     </div>
                 </div>)}
             {type === "Apartment" && (
-                <div className="flex gap-2.5 p-3.75">
+                <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee]">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                         <div className="flex justify-between cursor-pointer">
@@ -100,7 +100,7 @@ export function Filter() {
                 </div>
             )}
             {type === "Project" && (
-                <div className="flex gap-2.5 p-3.75">
+                <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee]">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                         <div className="flex justify-between cursor-pointer">
@@ -135,7 +135,7 @@ export function Filter() {
                 </div>
             )}
             {type === "Villa" && (
-                <div className="flex gap-2.5 p-3.75">
+                <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee]">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                         <div className="flex justify-between cursor-pointer">
@@ -177,7 +177,7 @@ export function Filter() {
                 </div>
             )}
             {type === "Project Villa" && (
-                <div className="flex gap-2.5 p-3.75">
+                <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee]">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                         <div className="flex justify-between cursor-pointer">
@@ -198,7 +198,7 @@ export function Filter() {
                 </div>
             )}
             {type === "Land" && (
-                <div className="flex gap-2.5 p-3.75">
+                <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee]">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                         <div className="flex justify-between cursor-pointer">
@@ -233,7 +233,7 @@ export function Filter() {
                 </div>
             )}
             {type === "Field" && (
-                <div className="flex gap-2.5 p-3.75">
+                <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee]">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                         <div className="flex justify-between cursor-pointer">

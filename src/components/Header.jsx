@@ -16,14 +16,14 @@ import { MainSidebar } from "./MainSidebar"
 export function Header() {
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
-    const [loged] = React.useState(false)
+    const [loged] = React.useState(true)
     const [notShown, setNotShown] = React.useState(false)
     const [accountShown, setAccountShown] = React.useState(false)
     const [sidebarShown , setSidebarShown] = React.useState(false)
 
     return (
         <div className="py-7.5 w-full max-w-[90%]">
-            {sidebarShown && <MainSidebar setSidebarShown={setSidebarShown} />}
+            {sidebarShown && <MainSidebar setSidebarShown={setSidebarShown} loged={loged} />}
             <div className="flex items-center justify-between">
                 <div className="w-55 max-[992px]:w-30">
                     <Link to={"/"}>
@@ -55,7 +55,7 @@ export function Header() {
                         </li>
                     </ul>
                 </div>}
-                {loged && <div>
+                {loged && <div className="max-[1100px]:hidden">
                     <ul className="flex gap-5">
                         <li>
                             <Link to={"/properties"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">İlanlar</Link>
@@ -71,7 +71,7 @@ export function Header() {
                         </li>
                     </ul>
                 </div>}
-                {loged && <div className="px-7.5">
+                {loged && <div className="px-7.5 max-[1100px]:hidden">
                     <input className="bg-[#c4c4c426] h-12.5 px-2 rounded-[5px] text-sm" type="text" placeholder="İlanlarda Ara" />
                 </div>}
                 <div className="flex items-center justify-between gap-2.5">
@@ -150,22 +150,22 @@ export function Header() {
                             </div>
                         </div>}
                     </div>}
-                    {loged && <button className="w-12.5 h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                    {loged && <button className="w-12.5 max-[1100px]:hidden h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                         <img className="w-5 h-5" src={folder} alt="" />
                     </button>}
-                    {loged && <Link to={"/company"} className="h-12.5 px-5 text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                    {loged && <Link to={"/company"} className="h-12.5 px-5 max-[1100px]:hidden text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                         <img className="object-cover w-5 h-5" src={shop} alt="" />
-                        <span>Portföyüm</span>
+                        <span className="max-[1400px]:hidden">Portföyüm</span>
                     </Link>}
                     {loged && <div className="relative">
                         <div className="flex">
                             <div className="h-12.5 border-r border-r-[#ffffff38]">
-                                <div className="flex items-center h-full px-5 rounded-l-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                                <div className="flex items-center h-full px-5 max-[1100px]:px-2.5 rounded-l-[5px] max-[1100px]:rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                                     <img className="object-cover w-7 h-7" src={person} alt="" />
-                                    <Link to={"/profile"} className="text-white">Hesabım</Link>
+                                    <Link to={"/profile"} className="text-white max-[1400px]:hidden">Hesabım</Link>
                                 </div>
                             </div>
-                            <div onClick={() => setAccountShown(prev => !prev)} className="flex items-center justify-center bg-[#27C5D2] rounded-r-[5px] w-7.5 cursor-pointer hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
+                            <div onClick={() => setAccountShown(prev => !prev)} className="flex max-[1100px]:hidden items-center justify-center bg-[#27C5D2] rounded-r-[5px] w-7.5 cursor-pointer hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
                                 <img className=" w-4 h-4" src={whiteDownArrow} alt="" />
                             </div>
                         </div>
@@ -206,6 +206,11 @@ export function Header() {
                             </div>
                         </div>}
                     </div>}
+                    {loged && 
+                        <div onClick={() => setSidebarShown(true)} className="bg-[#27C5D2] cursor-pointer h-12.5 rounded-[5px] hidden text-white font-semibold max-[992px]:w-12.5 max-[992px]:px-2.5 max-[992px]:flex items-center justify-center">
+                            <img className="w-4 h-4" src={whiteMenu} alt="" />
+                        </div>
+                    }
                 </div>
             </div>
         </div>

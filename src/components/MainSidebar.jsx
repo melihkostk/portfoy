@@ -1,11 +1,12 @@
 import logo from "../assets/logo.svg"
 import close from "../assets/close.png"
 import { Link } from "react-router-dom"
+import whiteFolder from "../assets/folder.png"
 
 
-export function MainSidebar({ setSidebarShown }) {
+export function MainSidebar({ setSidebarShown  , loged}) {
     return (
-        <div className="p-3.75 bg-white w-full flex items-center justify-center min-h-screen fixed top-0 bottom-0 left-0 right-0 z-50">
+        <div className="p-3.75 bg-white w-full flex pt-30 items-center justify-center min-h-screen fixed overflow-y-auto top-0 bottom-0 left-0 right-0 z-50">
             <div className="w-full max-w-[95%]">
                 <div className="flex justify-between items-center">
                     <div className="w-45">
@@ -53,6 +54,15 @@ export function MainSidebar({ setSidebarShown }) {
                         </li>
                     </ul>
                 </div>
+                {loged && <div>
+                    <input className="bg-[#f8f8f8] p-2.5 rounded-lg w-full mb-3.75" type="text" placeholder="İlanlarda Ara" />
+                    <button className="bg-[#27C5D2] px-2.5 rounded-lg w-full flex items-center justify-center mb-2.5 h-7.5">
+                        <img className="w-4 h-4" src={whiteFolder} alt="" />
+                    </button>
+                    <button className="bg-[#27C5D2] px-2.5 rounded-lg w-full flex items-center justify-center mb-2.5 h-7.5 text-white text-xs font-semibold">
+                        Portföyüm
+                    </button>
+                </div>}
             </div>
         </div>
     )
