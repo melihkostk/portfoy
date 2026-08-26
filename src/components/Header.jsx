@@ -19,7 +19,7 @@ export function Header() {
     const [loged] = React.useState(false)
     const [notShown, setNotShown] = React.useState(false)
     const [accountShown, setAccountShown] = React.useState(false)
-    const [sidebarShown , setSidebarShown] = React.useState(true)
+    const [sidebarShown , setSidebarShown] = React.useState(false)
 
     return (
         <div className="py-7.5 w-full max-w-[90%]">

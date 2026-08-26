@@ -23,7 +23,7 @@ export function Home() {
         <div className='w-full max-w-[90%] flex flex-col items-center mb-30'>
           <div className='w-full flex flex-col items-center mb-10'>
             <h2 className='text-[32px] text-[#212529] mb-2 font-medium text-center'>Üç Adımda Port-foy’unuzu Yönetin</h2>
-            <p className='max-w-[40%] text-center text-[#212529]'>Port-foy.com sizin için çok kolaylaştırıldı. Sizi bekleyen birkaç adımdan sonra işleriniz artık daha da kolaylaşacak.</p>
+            <p className='max-w-[40%] text-center text-[#212529] max-[992px]:max-w-full'>Port-foy.com sizin için çok kolaylaştırıldı. Sizi bekleyen birkaç adımdan sonra işleriniz artık daha da kolaylaşacak.</p>
           </div>
           <div className='flex items-start gap-7.5 justify-between max-w-[80%] max-[992px]:flex-col mb-12.5'>
             <PortfoyCard img={step1} title="Başvurunuzu Yapın" description="Firmanıza ait mali bilgileri, firma yetkilisi olarak siz kişisel bilgilerinizi girdikten sonra kısa bir onay süreci sizi bekliyor olacak. Onay maili ile birlikte size giriş kodunuz gönderilecek. Dilerseniz tanııtm videomuzda bu adımları izleyerek ilerleyebilirsiniz." />
@@ -89,7 +89,7 @@ export function Home() {
           <div className='w-full max-w-[90%]'>
             <div className='flex flex-col items-center'>
               <h2 className='text-[2rem] text-center mb-2 font-semibold'>Fiyatlandırma</h2>
-              <p className='text-[#525252] text-center max-w-[45%] font-medium'>Firmanızı tipini seçin, sizin için hazırlanmış özel paketler fırsatından faydalanın. Ücretsiz kullanım dönemini yakalamak için acele edin.</p>
+              <p className='text-[#525252] text-center max-w-[45%] font-medium max-[992px]:max-w-full'>Firmanızı tipini seçin, sizin için hazırlanmış özel paketler fırsatından faydalanın. Ücretsiz kullanım dönemini yakalamak için acele edin.</p>
               <ul className='flex mt-10 border border-[#eee] p-2.5 rounded-lg'>
                 <li>
                   <button className='px-4 py-2 text-[#3e3e3e] font-medium bg-[#f4f4f4] hover:text-black cursor-pointer'>
@@ -162,11 +162,11 @@ export function Home() {
         </div>
         <div className='w-full bg-[#f7f7fb] py-18.75'>
           <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center'>
-            <div className='flex justify-between w-full'>
+            <div className='flex justify-between items-center w-full'>
               <h2 className='text-[#45443F] text-[32px] font-semibold'>Haberler ve Duyurular</h2>
               <Link to={"/articles"} className='text-[#B7B9BF] text-xl font-medium hover:text-[#45443f] transition-colors duration-300 ease-in-out' href="https://demo.pigasoft.com/portfoy/public/tr/articles">Tümünü Gör</Link>
             </div>
-            <div className='flex items-start -mx-5 max-[992px]:flex-col'>
+            <div className='flex items-start -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
               <NewsCard />
               <NewsCard />
               <NewsCard />
