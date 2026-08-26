@@ -61,7 +61,7 @@ export function CompanyHeader() {
                     <div className="flex items-center gap-2.5 -mt-12 max-[1005px]:hidden">
                         <Link to={"/company/subscription"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">Aboneliği Yönet</Link>
                         <Link className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">Firma özeti</Link>
-                        <a className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out" href="">Firma profilini düzenle</a>
+                        <Link to={"/company/edit"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">Firma profilini düzenle</Link>
                         <Link to={"/company/settings"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">Firma tercihleri</Link>
                     </div>
                 </div>
