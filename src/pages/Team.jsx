@@ -41,12 +41,12 @@ export function Team() {
                 <table className="w-full">
                     <thead>
                         <tr>
-                            <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg">Davetiye Kodu</th>
-                            <th className="text-start bg-[#ececec] py-4 px-2.5">İsim ve Soyisim</th>
-                            <th className="text-start bg-[#ececec] py-4 px-2.5">Rol</th>
-                            <th className="text-start bg-[#ececec] py-4 px-2.5">Oluşturma Tarihi</th>
-                            <th className="text-start bg-[#ececec] py-4 px-2.5">Sona Erme Süresi</th>
-                            <th className="text-end bg-[#ececec] py-4 px-2.5 rounded-r-lg">İşlemler</th>
+                            <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg whitespace-nowrap">Davetiye Kodu</th>
+                            <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">İsim ve Soyisim</th>
+                            <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Rol</th>
+                            <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Oluşturma Tarihi</th>
+                            <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Sona Erme Süresi</th>
+                            <th className="text-end bg-[#ececec] py-4 px-2.5 rounded-r-lg whitespace-nowrap">İşlemler</th>
                         </tr>
                     </thead>
                     <tbody>

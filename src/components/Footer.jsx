@@ -81,7 +81,7 @@ export function Footer() {
                         </ul>
                     </div>
                 </div>
-                <div className="w-[20%]">
+                <div className="w-[20%] max-[992px]:w-full">
                     <p className="text-[24px] text-[#27c5d2] mb-4">Sözleşmeler</p>
                     <ul className="text-[#b9b0b1] text-lg font-normal">
                         <li>
