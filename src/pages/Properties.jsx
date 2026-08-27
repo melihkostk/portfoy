@@ -6,10 +6,10 @@ import { PropertiesCard } from "../components/PropertiesCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 
-export function Properties() {
+export function Properties({loged}) {
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header />
+            <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İlanlar</span></p>
@@ -119,7 +119,7 @@ export function Properties() {
                 </div>
             </div>
             <div className='w-full'>
-                <Footer />
+                <Footer loged={loged} />
             </div>
         </div>
     )

@@ -14,10 +14,9 @@ import whiteMenu from "../assets/white-menu.png"
 import { MainSidebar } from "./MainSidebar"
 import { CreateOfferModel } from "./CreateOfferModal"
 
-export function Header() {
+export function Header({loged}) {
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
-    const [loged] = React.useState(false)
     const [notShown, setNotShown] = React.useState(false)
     const [accountShown, setAccountShown] = React.useState(false)
     const [sidebarShown , setSidebarShown] = React.useState(false)

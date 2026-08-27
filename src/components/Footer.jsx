@@ -4,11 +4,8 @@ import x from "../assets/x.png"
 import facebook from "../assets/facebook.png"
 import instagram from "../assets/instagram.png"
 import { Link } from "react-router-dom"
-import React from "react"
 
-export function Footer() {
-
-    const [loged] = React.useState(false)
+export function Footer({loged}) {
 
     return (
         <div className="w-full">

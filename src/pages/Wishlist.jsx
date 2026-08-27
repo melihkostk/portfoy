@@ -5,10 +5,10 @@ import { AppLinks } from "../components/AppLinks"
 import { CompanyFilter } from "../components/CompanyFilter"
 import { PropertiesCard } from "../components/PropertiesCard"
 
-export function Wishlist() {
+export function Wishlist({loged}) {
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header />
+            <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım</span></p>
@@ -62,7 +62,7 @@ export function Wishlist() {
                 </div>
             </div>
             <div className='w-full'>
-                <Footer />
+                <Footer loged={loged} />
             </div>
         </div>
     )

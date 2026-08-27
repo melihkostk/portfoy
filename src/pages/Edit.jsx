@@ -3,10 +3,10 @@ import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
 
-export function Edit() {
+export function Edit({loged}) {
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header />
+            <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
@@ -97,7 +97,7 @@ export function Edit() {
                 </div>
             </div>
             <div className='w-full'>
-                <Footer />
+                <Footer loged={loged} />
             </div>
         </div>
     )

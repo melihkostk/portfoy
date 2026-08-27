@@ -5,7 +5,7 @@ import { LanguageSelect } from "../components/LanguageSelect"
 import { useState } from "react"
 
 
-export function Login({ setLoged}) {
+export function Login({ setLoged }) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")

@@ -6,10 +6,10 @@ import grayFacebook from "../assets/gray-facebook.png"
 import grayInsta from "../assets/gray-insta.png"
 import grayX from "../assets/gray-x.png"
 
-export function Contacts() {
+export function Contacts({loged}) {
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header />
+            <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İletişim</span></p>
@@ -87,7 +87,7 @@ export function Contacts() {
                 </div>
             </div>
             <div className='w-full'>
-                <Footer />
+                <Footer loged={loged} />
             </div>
         </div>
     )

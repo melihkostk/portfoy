@@ -40,38 +40,38 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/discover" element={<Discover />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/articles" element={<News />} />
-        <Route path="/corporate" element={<Corporate />} />
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/contacts" element={<Contacts />} />
+        <Route path="/" element={<Home loged={loged} />} />
+        <Route path="/discover" element={<Discover loged={loged} />} />
+        <Route path="/pricing" element={<Pricing loged={loged} />} />
+        <Route path="/articles" element={<News loged={loged} />} />
+        <Route path="/corporate" element={<Corporate loged={loged} />} />
+        <Route path="/contacts" element={<Contacts loged={loged} />} />
+        <Route path="/contacts" element={<Contacts loged={loged} />} />
         <Route path="/login" element={<Login loged={loged} setLoged={setLoged} />} />
         <Route path="/register" element={<SignIn />} />
-        <Route path="/application" element={<Application />} />
-        <Route path="/check" element={<Check />} />
-        <Route path="/faqs" element={<Faqs />} />
-        <Route path="/consent" element={<Consent />} />
-        <Route path="/companies" element={<Companies />} />
-        <Route path="/properties" element={<Properties />} />
-        <Route path="/properties/create" element={<Create />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/proposals" element={<Proposals />} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/quick-filters" element={<QuickFilters />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/offers" element={<Offers />} />
-        <Route path="/auth/properties" element={<UserProperties />} />
-        <Route path="/support" element={<Support />} />
-        <Route path="/company" element={<Company />} />
-        <Route path="/company/team" element={<Team />} />
-        <Route path="/company/contacts" element={<Location />} />
-        <Route path="/company/customers" element={<Customers />} />
-        <Route path="/company/subscription" element={<Subscription />} />
-        <Route path="/company/settings" element={<Settings />} />
-        <Route path="/company/edit" element={<Edit />} />
+        <Route path="/application" element={<Application loged={loged} />} />
+        <Route path="/check" element={<Check loged={loged} />} />
+        <Route path="/faqs" element={<Faqs loged={loged} />} />
+        <Route path="/consent" element={<Consent loged={loged} />} />
+        <Route path="/companies" element={<Companies loged={loged} />} />
+        <Route path="/properties" element={<Properties loged={loged} />} />
+        <Route path="/properties/create" element={<Create loged={loged} />} />
+        <Route path="/profile" element={<Profile loged={loged} />} />
+        <Route path="/account" element={<Account loged={loged} />} />
+        <Route path="/proposals" element={<Proposals loged={loged} />} />
+        <Route path="/notifications" element={<Notifications loged={loged} />} />
+        <Route path="/quick-filters" element={<QuickFilters loged={loged} />} />
+        <Route path="/wishlist" element={<Wishlist loged={loged} />} />
+        <Route path="/offers" element={<Offers loged={loged} />} />
+        <Route path="/auth/properties" element={<UserProperties loged={loged} />} />
+        <Route path="/support" element={<Support loged={loged} />} />
+        <Route path="/company" element={<Company loged={loged} />} />
+        <Route path="/company/team" element={<Team loged={loged} />} />
+        <Route path="/company/contacts" element={<Location loged={loged} />} />
+        <Route path="/company/customers" element={<Customers loged={loged} />} />
+        <Route path="/company/subscription" element={<Subscription loged={loged} />} />
+        <Route path="/company/settings" element={<Settings loged={loged} />} />
+        <Route path="/company/edit" element={<Edit loged={loged} />} />
       </Routes>
     </BrowserRouter>
 
