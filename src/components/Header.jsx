@@ -17,11 +17,11 @@ import { CreateOfferModel } from "./CreateOfferModal"
 export function Header() {
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
-    const [loged] = React.useState(true)
+    const [loged] = React.useState(false)
     const [notShown, setNotShown] = React.useState(false)
     const [accountShown, setAccountShown] = React.useState(false)
     const [sidebarShown , setSidebarShown] = React.useState(false)
-    const [offerModelShown , setOfferModalShown] = React.useState(true)
+    const [offerModelShown , setOfferModalShown] = React.useState(false)
 
     return (
         <div className="py-7.5 w-full max-w-[90%]">
@@ -174,7 +174,7 @@ export function Header() {
                                 <img className=" w-4 h-4" src={whiteDownArrow} alt="" />
                             </div>
                         </div>
-                        {accountShown && <div className="bg-[#27C5D2] absolute w-full top-full mt-0.5 rounded-[5px] px-2.5">
+                        {accountShown && <div className="bg-[#27C5D2] absolute w-full top-full mt-0.5 rounded-[5px] px-2.5 z-50">
                             <div className="mt-2.5 pb-1.25 border-b border-b-[#FFFFFF80]">
                                 <p className="text-white text-sm font-semibold">Pigasoft</p>
                                 <p className="text-white text-xs font-medium">Sistem Admin</p>

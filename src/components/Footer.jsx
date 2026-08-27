@@ -12,7 +12,7 @@ export function Footer() {
 
     return (
         <div className="w-full">
-            {!loged && <div className='w-full mx-auto max-w-[90%] flex items-start gap-7.5 max-[992px]:flex-col max-[992px]:w-[90%]'>
+            {!loged && <div className='w-full mx-auto max-w-[90%] flex justify-between items-start gap-7.5 max-[992px]:flex-col max-[992px]:w-[90%]'>
                 <div className="w-[40%] max-[992px]:w-full pr-7.5">
                     <img className="w-[40%] mb-5" src={logo} alt="" />
                     <p className="text-sm text-[#b9c0c1] font-medium mb-4">
@@ -42,8 +42,8 @@ export function Footer() {
                         </a>
                     </div>
                 </div>
-                <div className="max-[992px]:flex max-[992px]:w-full">
-                    <div className="w-[20%] max-[992px]:flex-1">
+                <div className="flex max-[992px]:w-full">
+                    <div className="flex-1">
                         <p className="text-[24px] text-[#27c5d2] mb-4">Kurumsal</p>
                         <ul className="text-[#b9b0b1] text-lg">
                             <li className="mb-3.75">
@@ -63,7 +63,7 @@ export function Footer() {
                             </li>
                         </ul>
                     </div>
-                    <div className="w-[20%] max-[992px]:flex-1">
+                    <div className="flex-1">
                         <p className="text-[24px] text-[#27c5d2] mb-4">Keşfet</p>
                         <ul className="text-[#b9b0b1] text-lg ">
                             <li className="mb-3.75">

@@ -31,8 +31,11 @@ import { Customers } from "./pages/Customers";
 import { Subscription } from "./pages/Subscription"
 import { Settings } from "./pages/Settings";
 import { Edit } from "./pages/Edit";
+import { useState } from "react";
 
 function App() {
+
+  const [loged , setLoged] = useState(false)
 
   return (
     <BrowserRouter>
@@ -44,7 +47,7 @@ function App() {
         <Route path="/corporate" element={<Corporate />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/contacts" element={<Contacts />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login loged={loged} setLoged={setLoged} />} />
         <Route path="/register" element={<SignIn />} />
         <Route path="/application" element={<Application />} />
         <Route path="/check" element={<Check />} />
