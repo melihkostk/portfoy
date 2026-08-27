@@ -12,6 +12,7 @@ import { LanguageSelect } from "./LanguageSelect"
 import { Notification } from "./Notification"
 import whiteMenu from "../assets/white-menu.png"
 import { MainSidebar } from "./MainSidebar"
+import { CreateOfferModel } from "./CreateOfferModal"
 
 export function Header() {
     const [registerShown, setRegisterShown] = React.useState(false);
@@ -20,10 +21,12 @@ export function Header() {
     const [notShown, setNotShown] = React.useState(false)
     const [accountShown, setAccountShown] = React.useState(false)
     const [sidebarShown , setSidebarShown] = React.useState(false)
+    const [offerModelShown , setOfferModalShown] = React.useState(true)
 
     return (
         <div className="py-7.5 w-full max-w-[90%]">
             {sidebarShown && <MainSidebar setSidebarShown={setSidebarShown} loged={loged} />}
+            {offerModelShown && <CreateOfferModel setOfferModalShown={setOfferModalShown} />}
             <div className="flex items-center justify-between">
                 <div className="w-55 max-[992px]:w-30">
                     <Link to={"/"}>
@@ -152,7 +155,7 @@ export function Header() {
                             </div>
                         </div>}
                     </div>}
-                    {loged && <button className="w-12.5 max-[1100px]:hidden h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                    {loged && <button onClick={() => setOfferModalShown(prev => !prev)} className="w-12.5 max-[1100px]:hidden h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                         <img className="w-5 h-5" src={folder} alt="" />
                     </button>}
                     {loged && <Link to={"/company"} className="h-12.5 px-5 max-[1100px]:hidden text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
