@@ -146,7 +146,9 @@ export function Header() {
                                 <Notification />
                             </div>
                             <div className="text-center w-full px-3.75">
-                                <button className="bg-[#eee] w-full text-[#727272] text-sm font-medium py-2.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white hover:shadow-[0_0_30px_#27C5D2] transition[colors,shadow] duration-300 ease-in-out">Tüm Bildirimleri Gör</button>
+                                <button className="bg-[#eee] w-full text-[#727272] text-sm font-medium py-2.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white hover:shadow-[0_0_30px_#27C5D2] transition[colors,shadow] duration-300 ease-in-out">
+                                    <Link to={"/notifications"}>Tüm Bildirimleri Gör</Link>
+                                </button>
                             </div>
                         </div>}
                     </div>}
@@ -178,13 +180,13 @@ export function Header() {
                                 <ul>
                                     <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
-                                        <span className="text-white text-sm">Favorilerim</span>
+                                        <Link to={"/wishlist"} className="text-white text-sm">Favorilerim</Link>
                                     </li>
                                     <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
-                                        <span className="text-white text-sm truncate">
+                                        <Link to={"/offers"} className="text-white text-sm truncate">
                                             Müşteriye gönderilen teklifler
-                                        </span>
+                                        </Link>
                                     </li>
                                     <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
@@ -194,7 +196,7 @@ export function Header() {
                                     </li>
                                     <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
-                                        <span className="text-white text-sm">Yönetim Paneli</span>
+                                        <Link className="text-white text-sm">Yönetim Paneli</Link>
                                     </li>
                                     <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
