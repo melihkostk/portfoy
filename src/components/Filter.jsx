@@ -171,38 +171,123 @@ export function Filter() {
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">-</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="relative">
+                            <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">-</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                <li>
+                                    <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
+                                        <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                        </div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                        </div>
+                                        <div>
+                                            <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
+                                                <option selected value="">TRY</option>
+                                                <option value="">USD</option>
+                                                <option value="">EUR</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>}
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Tümü</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="relative">
+                            <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">Tümü</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            {locationFilter && <ul className="absolute w-full bg-white">
+                                <li className="py-1 px-4">
+                                    <div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>}
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Oda Sayısı</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="flex justify-between cursor-pointer w-full">
+                            <select className="font-semibold text-[13px] w-full cursor-pointer">
+                                <option disabled selected value="">Oda Sayısı</option>
+                                <option value="">1+0</option>
+                                <option value="">1+0 Bahçeli Daire</option>
+                                <option value="">1+1</option>
+                                <option value="">1+1 Dublex</option>
+                                <option value="">1+1 Bahçeli Dublex</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Cephe</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Cephe</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="flex justify-between cursor-pointer w-full">
+                            <select className="font-semibold text-[13px] w-full cursor-pointer">
+                                <option disabled selected value="">Cephe</option>
+                                <option value="">Güney</option>
+                                <option value="">Kuzey</option>
+                                <option value="">Doğu</option>
+                                <option value="">Batı</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Isıtma sistemi</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Isıtma Sistemi</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="flex justify-between cursor-pointer w-full">
+                            <select className="font-semibold text-[13px] w-full cursor-pointer">
+                                <option disabled selected value="">Isıtma Sistemi</option>
+                                <option value="">Klima</option>
+                                <option value="">Merkezi Sistem</option>
+                                <option value="">Gaz</option>
+                                <option value="">Yerden Isıtma</option>
+                                <option value="">Soba</option>
+                            </select>
+                        </div>
                     </div>
                     <div>
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
@@ -213,31 +298,105 @@ export function Filter() {
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">-</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="relative">
+                            <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">-</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                <li>
+                                    <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
+                                        <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                        </div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                        </div>
+                                        <div>
+                                            <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
+                                                <option selected value="">TRY</option>
+                                                <option value="">USD</option>
+                                                <option value="">EUR</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>}
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Tümü</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="relative">
+                            <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">Tümü</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            {locationFilter && <ul className="absolute w-full bg-white">
+                                <li className="py-1 px-4">
+                                    <div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>}
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Oda Sayısı</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="flex justify-between cursor-pointer w-full">
+                            <select className="font-semibold text-[13px] w-full cursor-pointer">
+                                <option disabled selected value="">Oda Sayısı</option>
+                                <option value="">1+0</option>
+                                <option value="">1+0 Bahçeli Daire</option>
+                                <option value="">1+1</option>
+                                <option value="">1+1 Dublex</option>
+                                <option value="">1+1 Bahçeli Dublex</option>
+                            </select>
+                        </div>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 pr-2.5 max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">inşaat bitiş tarihi</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Oda Sayısı</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="flex justify-between cursor-pointer w-full">
+                            <input type="date" name="" id="" />
+                            <input type="date" />
+                        </div>
                     </div>
                     <div>
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
@@ -248,24 +407,98 @@ export function Filter() {
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">-</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="relative">
+                            <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">-</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                <li>
+                                    <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
+                                        <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                        </div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                        </div>
+                                        <div>
+                                            <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
+                                                <option selected value="">TRY</option>
+                                                <option value="">USD</option>
+                                                <option value="">EUR</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>}
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
-                        <div className="flex justify-between cursor-pointer">
-                            <p className="font-semibold text-[13px]">Tümü</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
+                        <div className="relative">
+                            <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">Tümü</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            {locationFilter && <ul className="absolute w-full bg-white">
+                                <li className="py-1 px-4">
+                                    <div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>}
                         </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Oda Sayısı</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="flex justify-between cursor-pointer w-full">
+                            <select className="font-semibold text-[13px] w-full cursor-pointer">
+                                <option disabled selected value="">Oda Sayısı</option>
+                                <option value="">1+0</option>
+                                <option value="">1+0 Bahçeli Daire</option>
+                                <option value="">1+1</option>
+                                <option value="">1+1 Dublex</option>
+                                <option value="">1+1 Bahçeli Dublex</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
@@ -290,17 +523,85 @@ export function Filter() {
                 <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">-</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="relative">
+                            <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">-</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                <li>
+                                    <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
+                                        <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                        </div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                        </div>
+                                        <div>
+                                            <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
+                                                <option selected value="">TRY</option>
+                                                <option value="">USD</option>
+                                                <option value="">EUR</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>}
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Tümü</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="relative">
+                            <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">Tümü</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            {locationFilter && <ul className="absolute w-full bg-white">
+                                <li className="py-1 px-4">
+                                    <div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>}
+                        </div>
                     </div>
                     <div>
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
@@ -311,24 +612,95 @@ export function Filter() {
                 <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">-</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="relative">
+                            <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">-</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                <li>
+                                    <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
+                                        <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                        </div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                        </div>
+                                        <div>
+                                            <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
+                                                <option selected value="">TRY</option>
+                                                <option value="">USD</option>
+                                                <option value="">EUR</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>}
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Tümü</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="relative">
+                            <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">Tümü</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            {locationFilter && <ul className="absolute w-full bg-white">
+                                <li className="py-1 px-4">
+                                    <div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>}
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Arsa Tapu Türü</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Arsa Tapu Türü</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="flex justify-between cursor-pointer w-full">
+                            <select className="text-[13px] font-semibold w-full" name="" id="">
+                                <option selected disabled value="">Arsa Tapu Türü</option>
+                                <option value="">Arazi Tapusu</option>
+                                <option value="">Paylaşılan Tapu</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
@@ -346,24 +718,85 @@ export function Filter() {
                 <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">-</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="relative">
+                            <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">-</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                <li>
+                                    <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
+                                        <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                        </div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                        </div>
+                                        <div>
+                                            <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
+                                                <option selected value="">TRY</option>
+                                                <option value="">USD</option>
+                                                <option value="">EUR</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>}
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Tümü</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
-                    </div>
-                    <div className="flex-1 pr-2.5">
-                        <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Arsa Tapu Türü</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="font-semibold text-[13px]">Arsa Tapu Türü</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="relative">
+                            <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">Tümü</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            {locationFilter && <ul className="absolute w-full bg-white">
+                                <li className="py-1 px-4">
+                                    <div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>}
+                        </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
@@ -371,6 +804,14 @@ export function Filter() {
                             <input className="text-sm flex-1" type="number" placeholder="min" />
                             <input className="text-sm flex-1" type="number" placeholder="max" />
                         </button>
+                    </div>
+                    <div className="flex-1 pr-2.5">
+                        <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Tarla Tapu Türü</label>
+                        <select className="text-[13px] font-semibold w-full" name="" id="">
+                            <option selected disabled value="">Tarla Tapu Türü</option>
+                            <option value="">Müstakil Tapu</option>
+                            <option value="">Paylaşımlı Tapu</option>
+                        </select>
                     </div>
                     <div className="max-[992px]:w-full">
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
