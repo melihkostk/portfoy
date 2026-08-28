@@ -90,30 +90,30 @@ export function Home({ loged }) {
           <div className='flex flex-col items-center'>
             <h2 className='text-[2rem] text-center mb-2 font-semibold'>Fiyatlandırma</h2>
             <p className='text-[#525252] text-center max-w-[45%] font-medium max-[992px]:max-w-full'>Firmanızı tipini seçin, sizin için hazırlanmış özel paketler fırsatından faydalanın. Ücretsiz kullanım dönemini yakalamak için acele edin.</p>
-            <ul className='flex mt-10 border border-[#eee] p-2.5 rounded-lg'>
+            <ul className='flex mt-10 border border-[#eee] p-2.5 rounded-lg max-w-full overflow-auto'>
               <li>
-                <button className='px-4 py-2 text-[#3e3e3e] font-medium bg-[#f4f4f4] hover:text-black cursor-pointer'>
+                <button className='px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium bg-[#f4f4f4] hover:text-black cursor-pointer'>
                   Emlak Firması
                 </button>
               </li>
               <li>
-                <button className='px-4 py-2 text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
+                <button className='px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
                   İnşaat Firması
                 </button>
               </li>
               <li>
-                <button className='px-4 py-2 text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
+                <button className='px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
                   Emlak & İnşaat Firması
                 </button>
               </li>
               <li>
-                <button className='px-4 py-2 text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
+                <button className='px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
                   Pazarlama Firması
                 </button>
               </li>
             </ul>
           </div>
-          <div className='flex w-full justify-center flex-wrap overflow-auto max-[992px]:flex-nowrap'>
+          <div className='flex w-full justify-center flex-wrap overflow-auto max-[992px]:flex-nowrap max-[992px]:justify-start max-[992px]:items-start max-[992px]:gap-10 max-[992px]:mt-3.75'>
             <PricingCard
               name="XL Emlak Paketi"
               price="₺15,00 + KDV"

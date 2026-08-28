@@ -32,6 +32,7 @@ import { Subscription } from "./pages/Subscription"
 import { Settings } from "./pages/Settings";
 import { Edit } from "./pages/Edit";
 import { useState } from "react";
+import { HomeLogin } from "./pages/HomeLogin";
 
 function App() {
 
@@ -40,7 +41,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home loged={loged} />} />
+        <Route path="/" element={loged ? <HomeLogin loged={loged} /> :<Home loged={loged} />} />
         <Route path="/discover" element={<Discover loged={loged} />} />
         <Route path="/pricing" element={<Pricing loged={loged} />} />
         <Route path="/articles" element={<News loged={loged} />} />

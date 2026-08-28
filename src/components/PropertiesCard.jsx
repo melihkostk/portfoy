@@ -2,7 +2,7 @@ import defaultProperty from "../assets/default-property.jpg"
 
 export function PropertiesCard(props) {
     return (
-        <div className={`flex items-start bg-[#FAFAFA] max-[992px]:w-full max-[992px]:m-0  max-[992px]:flex-col p-3.75 m-3.75 rounded-[10px] ${props.page === "wishlist" ? "w-[46%]" : "w-[30%]"} ${props.page === "myProperties" ? "w-full" : ""}`}>
+        <div className={`flex items-start bg-[#FAFAFA] shrink-0 max-[992px]:w-full max-[992px]:m-0  max-[992px]:flex-col p-3.75 m-3.75 rounded-[10px] ${props.page === "wishlist" ? "w-[46%]" : "w-[30%]"} ${props.page === "myProperties" ? "w-full" : ""}`}>
             <div className={`w-[50%] max-[992px]:w-full max-[992px]:mb-3.75 h-full ${props.page === "myProperties" ? "aspect-video" : "aspect-square" }`}>
                 <img className="rounded-[10px] w-full h-full object-cover aspect-square max-[992px]:aspect-video" src={defaultProperty} alt="" />
             </div>

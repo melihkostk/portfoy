@@ -3,7 +3,7 @@ import checkIcon from "../assets/check.png"
 
 export function PricingCard({name , price , trail , staff , offer , customer, ad , photo , video}) {
     return (
-        <div className="bg-[#f9f9f9] p-7.5 m-3.75 w-[30%] shrink-0 max-[992px]:w-1/2">
+        <div className="bg-[#f9f9f9] p-7.5 m-3.75 w-[30%] shrink-0 max-[992px]:w-1/2 max-[992px]:m-0">
             <div>
                 <h2 className="text-[#212529] text-[26px] font-semibold">{name}</h2>
                 <p className="text-sm text-[#797979] min-h-10.5 font-medium mb-4">{name}</p>
