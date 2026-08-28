@@ -38,23 +38,23 @@ import { useEffect } from "react";
 function App() {
 
   const [loged, setLoged] = useState(false)
+  const [token , setToken] = useState("")
 
   useEffect(() => {
     try {
-      const user = localStorage.getItem("user");
+      const user = JSON.parse(localStorage.getItem("user"));
 
       if (!user) {
         setLoged(false);
         return;
       }
 
-      const data = JSON.parse(user);
-      console.log(data.token);
+      setToken(user.data.token);
       setLoged(true);
     } catch {
       setLoged(false);
     }
-  }, []);
+  }, [token]);
 
   return (
     <BrowserRouter>

@@ -2,8 +2,33 @@ import { Header } from "../components/Header";
 import { NewsCard } from "../components/NewsCard";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
+import { useEffect } from "react";
+import { useState } from "react";
 
-export function News({loged}) {
+export function News({ loged }) {
+
+    const [news, setNews] = useState([])
+
+    useEffect(() => {
+        fetch("https://demo.pigasoft.com/portfoy/public/api/front/articles", {
+            method: "POST",
+            body: JSON.stringify({
+                locale: "tr"
+            }),
+
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+
+            .then(response => response.json())
+
+            .then(data => setNews(data.data))
+
+    }, [])
+
+
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -14,11 +39,9 @@ export function News({loged}) {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex flex-wrap -mx-5">
-                    <NewsCard />
-                    <NewsCard />
-                    <NewsCard />
-                    <NewsCard />
-                    <NewsCard />
+                    {news.map(item => (
+                        <NewsCard key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} />
+                    ))}
                 </div>
             </div>
             <div className='w-full mt-30 mb-30'>

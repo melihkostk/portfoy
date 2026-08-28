@@ -5,7 +5,7 @@ import { LanguageSelect } from "../components/LanguageSelect"
 import { useState } from "react"
 
 
-export function Login({ setLoged }) {
+export function Login() {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -36,7 +36,6 @@ export function Login({ setLoged }) {
             .then((data) => {
                 if (data.status !== "error") {
                     localStorage.setItem("user", JSON.stringify(data))
-                    setLoged(true)
                     navigate("/")
                 } else {
                     setError(data.message);
