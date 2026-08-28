@@ -1,4 +1,8 @@
 import defaultProperty from "../assets/default-property.jpg"
+import building from "../assets/building.png"
+import location from "../assets/gray-location.png"
+import menu from "../assets/gray-menu.png"
+import shop from "../assets/gray-shop.png"
 
 export function PropertiesCard(props) {
     return (
@@ -9,16 +13,20 @@ export function PropertiesCard(props) {
             <div className="pl-5 w-[50%]">
                 <a className="min-h-12.5 line-clamp-2 overflow-hidden text-black font-semibold" href="">Müthiş ILAN</a>
                 <ul className="text-[11px] text-[#B7BFB9] font-medium flex flex-wrap gap-2.5 my-2.5">
-                    <li className="w-full">
+                    <li className="w-full flex items-center gap-1">
+                        <img className="w-5 h-5" src={location} alt="" />
                         <span>Burdur / Ağlasun</span>
                     </li>
-                    <li>
+                    <li className="flex items-center gap-1">
+                        <img className="w-5 h-5" src={building} alt="" />
                         <span>Hazır</span>
                     </li>
-                    <li>
+                    <li className="flex items-center gap-1">
+                        <img className="w-5 h-5" src={menu} alt="" />
                         <span>Apartman</span>
                     </li>
-                    <li className="w-full">
+                    <li className="w-full flex items-center gap-1">
+                        <img className="w-5 h-5" src={shop} alt="" />
                         <span>Burak Pigasoft</span>
                     </li>
                 </ul>
