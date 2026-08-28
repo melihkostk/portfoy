@@ -4,6 +4,9 @@ import React from "react"
 export function Filter() {
 
     const [type, setType] = React.useState("All")
+    const [priceFilter, setPriceFilter] = React.useState(false)
+    const [cateFilter, setCateFilter] = React.useState(false)
+    const [locationFilter, setLocationFilter] = React.useState(false)
 
     return (
         <div className="flex flex-col">
@@ -35,27 +38,57 @@ export function Filter() {
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Kategoriler</label>
                         <div className="relative">
-                            <button className="flex justify-between cursor-pointer w-full">
+                            <button onClick={() => setCateFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
                                 <p className="font-semibold text-[13px]">Tümü</p>
                                 <img className="w-4 h-4" src={downArrow} alt="" />
                             </button>
-                            <ul className="absolute w-full">
-                                <li>
-                                    <div>
-
+                            {cateFilter && <ul className="absolute w-full max-h-75 overflow-y-auto bg-white">
+                                <li className="w-full py-1">
+                                    <div className="m-2.5 max-w-full">
+                                        <input className="text-sm w-full py-1.25 px-2.5 placeholder:text-[#838383] bg-[#f8f8f8]" type="text" placeholder="Kategorilerde arayın" />
                                     </div>
                                 </li>
-                            </ul>
+                                <li className="w-full py-1">
+                                    <input type="checkbox" />
+                                    <label className="text-[#747474] text-sm">Apartman</label>
+                                </li>
+                                <li className="w-full py-1">
+                                    <input type="checkbox" />
+                                    <label className="text-[#747474] text-sm">Projeler</label>
+                                </li>
+                                <div className="pl-7.5">
+                                    <li className="pt-2 pb-1">
+                                        <input type="checkbox" />
+                                        <label className="text-[#747474] text-sm">Proje Apartman</label>
+                                    </li>
+                                    <li className="pt-2 pb-1">
+                                        <input type="checkbox" />
+                                        <label className="text-[#747474] text-sm">Proje Villa</label>
+                                    </li>
+                                </div>
+                                <li className="w-full py-1">
+                                    <input type="checkbox" />
+                                    <label className="text-[#747474] text-sm">Villa</label>
+                                </li>
+                                <li className="w-full py-1">
+                                    <input type="checkbox" />
+                                    <label className="text-[#747474] text-sm">Arsa</label>
+                                </li>
+                                <li className="w-full py-1">
+                                    <input type="checkbox" />
+                                    <label className="text-[#747474] text-sm">Tarla</label>
+                                </li>
+                            </ul>}
                         </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Satış fiyatı</label>
                         <div className="relative">
-                            <button className="flex justify-between cursor-pointer w-full">
+                            <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
                                 <p className="text-[13px] font-semibold">-</p>
                                 <img className="w-4 h-4" src={downArrow} alt="" />
                             </button>
-                            <ul className="absolute w-full p-2.5 bg-white">
+                            {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
                                 <li>
                                     <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
                                         <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
@@ -76,17 +109,17 @@ export function Filter() {
                                         </div>
                                     </div>
                                 </li>
-                            </ul>
+                            </ul>}
                         </div>
                     </div>
                     <div className="flex-1 pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Konum</label>
                         <div className="relative">
-                            <button className="flex justify-between cursor-pointer w-full">
+                            <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
                                 <p className="text-[13px] font-semibold">Tümü</p>
                                 <img className="w-4 h-4" src={downArrow} alt="" />
                             </button>
-                            <ul className="absolute w-full bg-white">
+                            {locationFilter && <ul className="absolute w-full bg-white">
                                 <li className="py-1 px-4">
                                     <div>
                                         <div className="flex flex-col">
@@ -127,7 +160,7 @@ export function Filter() {
                                         </div>
                                     </div>
                                 </li>
-                            </ul>
+                            </ul>}
                         </div>
                     </div>
                     <div>
