@@ -34,24 +34,51 @@ export function Filter() {
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Kategoriler</label>
-                        <div className="flex justify-between cursor-pointer">
-                            <p className="font-semibold text-[13px]">Tümü</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
+                        <div>
+                            <button className="flex justify-between cursor-pointer w-full">
+                                <p className="font-semibold text-[13px]">Tümü</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            <ul></ul>
                         </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Satış fiyatı</label>
-                        <div className="flex justify-between cursor-pointer">
-                            <p className="text-[13px] font-semibold">-</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
+                        <div className="relative">
+                            <button className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">-</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            <ul className="absolute w-full p-2.5">
+                                <li>
+                                    <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
+                                        <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                        </div>
+                                        <div>
+                                            <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                        </div>
+                                        <div>
+                                            <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
+                                                <option selected value="">TRY</option>
+                                                <option value="">USD</option>
+                                                <option value="">EUR</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div className="flex-1 pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Konum</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="text-[13px] font-semibold">Tümü</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div>
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full w-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
@@ -61,38 +88,38 @@ export function Filter() {
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">-</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Tümü</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Oda Sayısı</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Cephe</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Cephe</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Isıtma sistemi</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Isıtma Sistemi</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div>
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
@@ -103,31 +130,31 @@ export function Filter() {
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">-</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Tümü</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Oda Sayısı</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">inşaat bitiş tarihi</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Oda Sayısı</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div>
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
@@ -138,10 +165,10 @@ export function Filter() {
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">-</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
@@ -152,24 +179,24 @@ export function Filter() {
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Oda Sayısı</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <input className="text-sm flex-1" type="number" placeholder="min" />
                             <input className="text-sm flex-1" type="number" placeholder="max" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">bina yaşı</label>
-                        <div className="flex justify-between cursor-pointer flex-1">
+                        <button className="flex justify-between cursor-pointer flex-1">
                             <input className="text-sm flex-1" type="number" placeholder="min" />
                             <input className="text-sm flex-1" type="number" placeholder="max" />
-                        </div>
+                        </button>
                     </div>
                     <div>
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
@@ -180,17 +207,17 @@ export function Filter() {
                 <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">-</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Tümü</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div>
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
@@ -201,31 +228,31 @@ export function Filter() {
                 <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">-</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Tümü</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Arsa Tapu Türü</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Arsa Tapu Türü</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <input className="text-sm flex-1" type="number" placeholder="min" />
                             <input className="text-sm flex-1" type="number" placeholder="max" />
-                        </div>
+                        </button>
                     </div>
                     <div>
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
@@ -236,31 +263,31 @@ export function Filter() {
                 <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">-</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Tümü</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Arsa Tapu Türü</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <p className="font-semibold text-[13px]">Arsa Tapu Türü</p>
                             <img className="w-4 h-4" src={downArrow} alt="" />
-                        </div>
+                        </button>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
-                        <div className="flex justify-between cursor-pointer">
+                        <button className="flex justify-between cursor-pointer w-full">
                             <input className="text-sm flex-1" type="number" placeholder="min" />
                             <input className="text-sm flex-1" type="number" placeholder="max" />
-                        </div>
+                        </button>
                     </div>
                     <div className="max-[992px]:w-full">
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>

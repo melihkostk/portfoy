@@ -88,15 +88,15 @@ export function Footer({loged}) {
                 </div>
             </div>}
             <div className="w-full bg-[#27C5D2] flex justify-center py-3.75 mt-20">
-                <div className="w-full max-w-[90%] flex justify-between px-3 max-[992px]:flex-col items-center">
-                    {loged && <p className="text-white font-medium">
+                <div className="w-full max-w-[90%] flex justify-between px-3 max-[992px]:flex-col max-[992px]:gap-3.75 items-center">
+                    {loged && <p className="text-white font-medium text-center">
                         Müşteri Destek Hattı
                         <a className="font-bold" href="https://demo.pigasoft.com/portfoy/public/tr/tel: 0 850 851 44 94"> 0 850 851 44 94</a>
                     </p>}
-                    <p className="text-white text-base font-medium">
+                    <p className="text-white text-base font-medium text-center">
                         Copyright @ Port-Foy 2024. Her hakkı saklıdır.
                     </p>
-                    <p className="text-white text-base font-normal">
+                    <p className="text-white text-base font-normal text-center">
                         <a className="text-white font-bold cursor-pointer" href="">Pigasoft</a>
                         {" "}ve{" "}
                         <a className="text-white font-bold cursor-pointer" href="">Order Teknoloji</a>
