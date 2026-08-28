@@ -33,15 +33,33 @@ import { Settings } from "./pages/Settings";
 import { Edit } from "./pages/Edit";
 import { useState } from "react";
 import { HomeLogin } from "./pages/HomeLogin";
+import { useEffect } from "react";
 
 function App() {
 
-  const [loged , setLoged] = useState(false)
+  const [loged, setLoged] = useState(false)
+
+  useEffect(() => {
+    try {
+      const user = localStorage.getItem("user");
+
+      if (!user) {
+        setLoged(false);
+        return;
+      }
+
+      const data = JSON.parse(user);
+      console.log(data.token);
+      setLoged(true);
+    } catch {
+      setLoged(false);
+    }
+  }, []);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={loged ? <HomeLogin loged={loged} /> :<Home loged={loged} />} />
+        <Route path="/" element={loged ? <HomeLogin loged={loged} setLoged={setLoged} /> : <Home loged={loged} setLoged={setLoged} />} />
         <Route path="/discover" element={<Discover loged={loged} />} />
         <Route path="/pricing" element={<Pricing loged={loged} />} />
         <Route path="/articles" element={<News loged={loged} />} />
