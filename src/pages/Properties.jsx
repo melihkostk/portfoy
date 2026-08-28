@@ -66,7 +66,7 @@ export function Properties({loged}) {
                         </p>
                     </div>
                     <nav className="overflow-auto w-full max-w-full">
-                        <ul className="flex items-center gap-1.25 mb-4 overflow-auto max-w-full">
+                        <ul className="flex items-center gap-1.25 mb-4 scrollbar-thumb-[#27C5D2] overflow-auto max-w-full">
                             <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
                                 <span>1</span>
                             </li>

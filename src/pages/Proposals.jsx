@@ -20,7 +20,7 @@ export function Proposals({loged}) {
                     </div>
                     <div className="w-[72%]  max-[992px]:w-full pl-7.5  max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] mb-2">Müşteriye gönderilen teklifler</h2>
-                        <div className="overflow-auto">
+                        <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
                             <table className="w-full">
                                 <thead>
                                     <tr>

@@ -19,7 +19,7 @@ export function Pricing({loged}) {
                     <div className='flex flex-col items-center my-15'>
                         <h2 className='text-[2rem] text-center mb-2 font-semibold'>Fiyatlandırma</h2>
                         <p className='text-[#525252] text-center max-w-[45%] font-medium max-[992px]:w-full max-[992px]:max-w-full'>Firmanızı tipini seçin, sizin için hazırlanmış özel paketler fırsatından faydalanın. Ücretsiz kullanım dönemini yakalamak için acele edin.</p>
-                        <ul className='flex mt-10 border border-[#eee] p-2.5 rounded-lg overflow-auto max-[992px]:max-w-full'>
+                        <ul className='flex mt-10 border border-[#eee] p-2.5 rounded-lg scrollbar-thin scrollbar-thumb-[#27C5D2] overflow-auto max-[992px]:max-w-full'>
                             <li>
                                 <button className='px-4 py-2 text-[#3e3e3e] font-medium whitespace-nowrap bg-[#f4f4f4]'>
                                     Emlak Firması
@@ -42,7 +42,7 @@ export function Pricing({loged}) {
                             </li>
                         </ul>
                     </div>
-                    <div className='flex w-full justify-center flex-wrap overflow-auto max-[992px]:flex-nowrap'>
+                    <div className='flex w-full justify-center scrollbar-thin scrollbar-thumb-[#27C5D2] flex-wrap overflow-auto max-[992px]:flex-nowrap max-[992px]:justify-start max-[992px]:items-start max-[992px]:gap-10 max-[992px]:mt-3.75'>
                         <PricingCard
                             name="XL Emlak Paketi"
                             price="₺15,00 + KDV"

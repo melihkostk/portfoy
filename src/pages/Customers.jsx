@@ -26,7 +26,7 @@ export function Customers({loged}) {
                         <a className="text-[#4b4b4b] bg-[#f1f1f1] whitespace-nowrap text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer" href="">Müşteri Oluştur</a>
                     </div>
                 </div>
-                <div className="overflow-auto">
+                <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
                     <table className="w-full">
                         <thead>
                             <tr>

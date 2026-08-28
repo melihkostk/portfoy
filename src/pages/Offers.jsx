@@ -23,7 +23,7 @@ export function Offers({loged}) {
                         <div className="p-4 mb-4 bg-[#fff3cd] rounded-lg">
                             <p className="text-[#664d03]">Bu sayfada sadece sizin oluşturduğunuz ilanların tekliflerini görüntüleyebilirsiniz.</p>
                         </div>
-                        <div className="overflow-auto">
+                        <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
                             <table className="w-full">
                                 <thead>
                                     <tr>
