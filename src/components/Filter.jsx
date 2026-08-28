@@ -34,12 +34,18 @@ export function Filter() {
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Kategoriler</label>
-                        <div>
+                        <div className="relative">
                             <button className="flex justify-between cursor-pointer w-full">
                                 <p className="font-semibold text-[13px]">Tümü</p>
                                 <img className="w-4 h-4" src={downArrow} alt="" />
                             </button>
-                            <ul></ul>
+                            <ul className="absolute w-full">
+                                <li>
+                                    <div>
+
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
@@ -49,7 +55,7 @@ export function Filter() {
                                 <p className="text-[13px] font-semibold">-</p>
                                 <img className="w-4 h-4" src={downArrow} alt="" />
                             </button>
-                            <ul className="absolute w-full p-2.5">
+                            <ul className="absolute w-full p-2.5 bg-white">
                                 <li>
                                     <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
                                         <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
@@ -75,10 +81,54 @@ export function Filter() {
                     </div>
                     <div className="flex-1 pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Konum</label>
-                        <button className="flex justify-between cursor-pointer w-full">
-                            <p className="text-[13px] font-semibold">Tümü</p>
-                            <img className="w-4 h-4" src={downArrow} alt="" />
-                        </button>
+                        <div className="relative">
+                            <button className="flex justify-between cursor-pointer w-full">
+                                <p className="text-[13px] font-semibold">Tümü</p>
+                                <img className="w-4 h-4" src={downArrow} alt="" />
+                            </button>
+                            <ul className="absolute w-full bg-white">
+                                <li className="py-1 px-4">
+                                    <div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option selected value="">Ülke Seçin</option>
+                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                                <option value="">Türkiye</option>
+                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div>
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full w-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>

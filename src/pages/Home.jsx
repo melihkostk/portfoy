@@ -20,7 +20,7 @@ export function Home({ loged }) {
         <h1 className='text-[35px] text-black font-medium mb-2'>İlanları Filtrele</h1>
         <Filter />
       </div>
-      <div className='w-full max-w-[90%] flex flex-col items-center mb-30'>
+      <div className='w-full max-w-[90%] flex flex-col items-center my-30'>
         <div className='w-full flex flex-col items-center mb-10'>
           <h2 className='text-[32px] text-[#212529] mb-2 font-medium text-center'>Üç Adımda Port-foy’unuzu Yönetin</h2>
           <p className='max-w-[40%] text-center text-[#212529] max-[992px]:max-w-full'>Port-foy.com sizin için çok kolaylaştırıldı. Sizi bekleyen birkaç adımdan sonra işleriniz artık daha da kolaylaşacak.</p>
