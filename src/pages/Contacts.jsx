@@ -5,6 +5,7 @@ import grayLinkedIn from "../assets/gray-linkedIn.png"
 import grayFacebook from "../assets/gray-facebook.png"
 import grayInsta from "../assets/gray-insta.png"
 import grayX from "../assets/gray-x.png"
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export function Contacts({ loged }) {
@@ -60,13 +61,13 @@ export function Contacts({ loged }) {
                         </div>
                         <ul className="flex gap-2.5 flex-wrap">
                             <li>
-                                <a className="bg-[#00000005] py-2.5 px-3.75 rounded-lg text-black font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out" href="">Fiyatlandırma</a>
+                                <Link to={"/pricing"} className="bg-[#00000005] py-2.5 px-3.75 rounded-lg text-black font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">Fiyatlandırma</Link>
                             </li>
                             <li>
-                                <a className="bg-[#00000005] py-2.5 px-3.75 rounded-lg text-black font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out" href="">Sıkça Sorulan Sorular</a>
+                                <Link to={"/faqs"} className="bg-[#00000005] py-2.5 px-3.75 rounded-lg text-black font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">Sıkça Sorulan Sorular</Link>
                             </li>
                             <li>
-                                <a className="bg-[#00000005] py-2.5 px-3.75 rounded-lg text-black font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out" href="">Port-foy'ü keşfet</a>
+                                <Link to={"/discover"} className="bg-[#00000005] py-2.5 px-3.75 rounded-lg text-black font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">Port-foy'ü keşfet</Link>
                             </li>
                         </ul>
                         <div className="mt-10">

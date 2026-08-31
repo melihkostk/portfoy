@@ -1,36 +1,41 @@
 import bgImage from "../assets/company-bg.png"
-import pg from "../assets/pg.jpg"
 import { Link } from "react-router-dom"
+import { getCompanyInfo } from "../services/myCompanyApi"
+import { useEffect, useState } from "react"
 
 export function CompanyHeader() {
+
+    const [companyInfo , setCompanyInfo] = useState([])
+
+    useEffect(() => {
+        getCompanyInfo().then(setCompanyInfo);
+    },[])
+
     return (
         <div style={{ backgroundImage: `url(${bgImage})` }} className="w-full bg-cover bg-center pt-7.5 flex justify-center">
             <div className="w-full max-w-[90%]">
                 <div className="flex justify-between items-start mb-20">
                     <div className="flex items-center gap-3.75">
                         <div className="w-20 h-20">
-                            <img className="w-full h-full object-contain rounded-full" src={pg} alt="" />
+                            <img className="w-full h-full object-contain rounded-full" src={companyInfo.logo} alt="" />
                         </div>
                         <div className="max-w-full">
-                            <p className="text-white text-xl">Burak Pigasoft</p>
+                            <p className="text-white text-xl mb-2">{companyInfo.name}</p>
                             <ul className="flex text-white gap-5 text-sm max-[1005px]:hidden">
                                 <li>
-                                    11 Eylül 2024
+                                    {companyInfo.created_at}
                                 </li>
                                 <li>
-                                    Pazarlama Firması
+                                    {companyInfo.type}
                                 </li>
                                 <li>
-                                    CA-20240911165635721
+                                    {companyInfo.code}
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div>
                         <ul className="flex items-center text-white text-sm gap-5 max-[1005px]:hidden">
-                            <li className="opacity-80 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
-                                Website
-                            </li>
                             <li className="opacity-80 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
                                 90 (553) 300 68 25
                             </li>

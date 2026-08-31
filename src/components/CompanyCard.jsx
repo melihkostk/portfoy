@@ -15,7 +15,7 @@ export function CompanyCard({name , type , location , logo}) {
             <div className="text-center bg-[#e8e8e8] py-1.5 px-2 rounded-sm">
                 <p className="text-xs font-medium">{location}</p>
             </div>
-            <a className="text-center mt-7.5 text-[#626262] text-sm font-medium bg-[#e8e8e8] w-full py-2.5 rounded-lg uppercase" href="">Profili Görüntüle</a>
+            <a className="text-center mt-7.5 text-[#626262] text-sm font-medium bg-[#e8e8e8] hover:text-white hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out w-full py-2.5 rounded-lg uppercase" href="">Profili Görüntüle</a>
         </div>
     )
 }
