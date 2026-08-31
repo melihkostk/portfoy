@@ -50,7 +50,7 @@ function App() {
       }
 
       setToken(user.data.token);
-      setLoged(false);
+      setLoged(true);
     } catch {
       setLoged(false);
     }
@@ -79,7 +79,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={loged ? <HomeLogin loged={loged} setLoged={setLoged} /> : <Home loged={loged} setLoged={setLoged} news={news} />} />
+        <Route path="/" element={loged ? <HomeLogin news={news} loged={loged} setLoged={setLoged} /> : <Home loged={loged} setLoged={setLoged} news={news} />} />
         <Route path="/discover" element={<Discover loged={loged} />} />
         <Route path="/pricing" element={<Pricing loged={loged} />} />
         <Route path="/articles" element={<News loged={loged} news={news} />} />

@@ -6,7 +6,7 @@ import { NewsCard } from "../components/NewsCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 
-export function HomeLogin({ loged }) {
+export function HomeLogin({ loged , news }) {
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -64,11 +64,10 @@ export function HomeLogin({ loged }) {
                         <h2 className='text-[#45443F] text-[32px] font-semibold'>Haberler ve Duyurular</h2>
                         <Link to={"/articles"} className='text-[#B7B9BF] text-xl font-medium hover:text-[#45443f] transition-colors duration-300 ease-in-out' href="https://demo.pigasoft.com/portfoy/public/tr/articles">Tümünü Gör</Link>
                     </div>
-                    <div className='flex items-start -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
-                        <NewsCard />
-                        <NewsCard />
-                        <NewsCard />
-                        <NewsCard />
+                    <div className='flex items-start overflow-hidden -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
+                        {news.map(item => (
+                            <NewsCard title={item.title} cover={item.cover} created={item.created_at} />
+                        ))}
                     </div>
                 </div>
             </div>
