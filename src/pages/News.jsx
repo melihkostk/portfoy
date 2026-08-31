@@ -2,32 +2,8 @@ import { Header } from "../components/Header";
 import { NewsCard } from "../components/NewsCard";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
-import { useEffect } from "react";
-import { useState } from "react";
 
-export function News({ loged }) {
-
-    const [news, setNews] = useState([])
-
-    useEffect(() => {
-        fetch("https://demo.pigasoft.com/portfoy/public/api/front/articles", {
-            method: "POST",
-            body: JSON.stringify({
-                locale: "tr"
-            }),
-
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-
-            .then(response => response.json())
-
-            .then(data => setNews(data.data))
-
-    }, [])
-
-
+export function News({ loged , news }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>

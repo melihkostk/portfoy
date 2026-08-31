@@ -56,13 +56,33 @@ function App() {
     }
   }, []);
 
+  const [news, setNews] = useState([])
+
+    useEffect(() => {
+        fetch("https://demo.pigasoft.com/portfoy/public/api/front/articles", {
+            method: "POST",
+            body: JSON.stringify({
+                locale: "tr"
+            }),
+
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+
+            .then(response => response.json())
+
+            .then(data => setNews(data.data))
+
+    }, [])
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={loged ? <HomeLogin loged={loged} setLoged={setLoged} /> : <Home loged={loged} setLoged={setLoged} />} />
+        <Route path="/" element={loged ? <HomeLogin loged={loged} setLoged={setLoged} /> : <Home loged={loged} setLoged={setLoged} news={news} />} />
         <Route path="/discover" element={<Discover loged={loged} />} />
         <Route path="/pricing" element={<Pricing loged={loged} />} />
-        <Route path="/articles" element={<News loged={loged} />} />
+        <Route path="/articles" element={<News loged={loged} news={news} />} />
         <Route path="/corporate" element={<Corporate loged={loged} />} />
         <Route path="/contacts" element={<Contacts loged={loged} />} />
         <Route path="/contacts" element={<Contacts loged={loged} />} />

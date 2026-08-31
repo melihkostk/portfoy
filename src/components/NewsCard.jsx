@@ -1,6 +1,6 @@
 export function NewsCard({title , cover , created}) {
     return (
-        <div className="bg-white p-7.5 m-5 w-[22%] rounded-[10px] shadow-[0_0_30px_rgb(246_246_246)] max-[992px]:w-full max-[992px]:m-0">
+        <div className="bg-white p-7.5 m-5 w-[22%] shrink-0 rounded-[10px] shadow-[0_0_30px_rgb(246_246_246)] max-[992px]:w-full max-[992px]:m-0">
             <div>
                 <img className="align-middle aspect-square object-cover max-w-full w-full rounded-[10px]" src={cover} alt={title} />
             </div>

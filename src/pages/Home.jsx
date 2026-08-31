@@ -12,7 +12,7 @@ import step1 from "../assets/step1.png"
 import step3 from "../assets/step3.png"
 import { useState } from "react"
 
-export function Home({ loged }) {
+export function Home({ loged , news }) {
 
   const [pricingCate, setPricingCate] = useState("Emlak Firması")
 
@@ -294,11 +294,10 @@ export function Home({ loged }) {
             <h2 className='text-[#45443F] text-[32px] font-semibold'>Haberler ve Duyurular</h2>
             <Link to={"/articles"} className='text-[#B7B9BF] text-xl font-medium hover:text-[#45443f] transition-colors duration-300 ease-in-out' href="https://demo.pigasoft.com/portfoy/public/tr/articles">Tümünü Gör</Link>
           </div>
-          <div className='flex items-start -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
-            <NewsCard />
-            <NewsCard />
-            <NewsCard />
-            <NewsCard />
+          <div className='flex items-start overflow-hidden -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
+            {news.map(item => (
+              <NewsCard key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} />
+            ))}
           </div>
         </div>
       </div>
