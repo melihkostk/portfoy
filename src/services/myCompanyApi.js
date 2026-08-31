@@ -10,3 +10,8 @@ export const getTeam = async () => {
     return response.data.data
 }
 
+export const getAllInvitations = async () => {
+    const response = await api.get("/auth/company/team/invitations")
+    return response.data.data
+}
+

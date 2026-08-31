@@ -5,7 +5,7 @@ import { UserInvite } from "../components/UserInvite"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getTeam } from "../services/myCompanyApi"
+import { getTeam, getAllInvitations } from "../services/myCompanyApi"
 
 export function Team({ loged }) {
 
@@ -14,6 +14,12 @@ export function Team({ loged }) {
     useEffect(() => {
         getTeam().then(setTeam)
     }, []);
+
+    const [invitations, setInvitations] = useState([]);
+
+    useEffect(() => {
+        getAllInvitations().then(setInvitations)
+    }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -51,13 +57,17 @@ export function Team({ loged }) {
                         </tr>
                     </thead>
                     <tbody>
-                        <UserInvite />
-                        <UserInvite />
-                        <UserInvite />
-                        <UserInvite />
-                        <UserInvite />
-                        <UserInvite />
-                        <UserInvite />
+                        {invitations?.invitations?.map(item => (
+                            <UserInvite
+                                key={item.id}
+                                id={item.id}
+                                code={item.code}
+                                name={item.name}
+                                role={item.role.title}
+                                created_at={item.created_at}
+                                expiry_at={item.expiry_at}
+                            />
+                        ))}
                     </tbody>
                 </table>
             </div>
