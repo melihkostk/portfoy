@@ -13,14 +13,20 @@ import { Notification } from "./Notification"
 import whiteMenu from "../assets/white-menu.png"
 import { MainSidebar } from "./MainSidebar"
 import { CreateOfferModel } from "./CreateOfferModal"
+import { getAllNotifications } from "../services/notificationsApi"
 
-export function Header({loged}) {
+export function Header({ loged }) {
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
     const [notShown, setNotShown] = React.useState(false)
     const [accountShown, setAccountShown] = React.useState(false)
-    const [sidebarShown , setSidebarShown] = React.useState(false)
-    const [offerModelShown , setOfferModalShown] = React.useState(false)
+    const [sidebarShown, setSidebarShown] = React.useState(false)
+    const [offerModelShown, setOfferModalShown] = React.useState(false)
+    const [notifications, setNotifications] = React.useState([])
+
+    React.useEffect(() => {
+        getAllNotifications().then(setNotifications)
+    }, [])
 
     return (
         <div className="py-7.5 w-full max-w-[90%]">
@@ -95,7 +101,7 @@ export function Header({loged}) {
                             <Link to={"/register"} className="w-full" href="">Kayıt Ol</Link>
                         </div>}
                     </div>}
-                    {!loged && 
+                    {!loged &&
                         <div onClick={() => setSidebarShown(true)} className="bg-[#27C5D2] cursor-pointer h-12.5 rounded-[5px] hidden text-white font-semibold max-[992px]:w-12.5 max-[992px]:px-2.5 max-[992px]:flex items-center justify-center">
                             <img className="w-4 h-4" src={whiteMenu} alt="" />
                         </div>
@@ -134,18 +140,9 @@ export function Header({loged}) {
                                 </button>
                             </div>
                             <div className="max-h-[50vh] overflow-auto bg-white mb-5 p-3.75">
-                                <Notification />
-                                <Notification />
-                                <Notification />
-                                <Notification />
-                                <Notification />
-                                <Notification />
-                                <Notification />
-                                <Notification />
-                                <Notification />
-                                <Notification />
-                                <Notification />
-                                <Notification />
+                                {notifications.map(item => (
+                                    <Notification key={item.id} id={item.id} content={item.content} time={item.time_diff} />
+                                ))}
                             </div>
                             <div className="text-center w-full px-3.75">
                                 <button className="bg-[#eee] w-full text-[#727272] text-sm font-medium py-2.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white hover:shadow-[0_0_30px_#27C5D2] transition[colors,shadow] duration-300 ease-in-out">
@@ -210,7 +207,7 @@ export function Header({loged}) {
                             </div>
                         </div>}
                     </div>}
-                    {loged && 
+                    {loged &&
                         <div onClick={() => setSidebarShown(true)} className="bg-[#27C5D2] cursor-pointer h-12.5 rounded-[5px] hidden text-white font-semibold max-[992px]:w-12.5 max-[992px]:px-2.5 max-[992px]:flex items-center justify-center">
                             <img className="w-4 h-4" src={whiteMenu} alt="" />
                         </div>

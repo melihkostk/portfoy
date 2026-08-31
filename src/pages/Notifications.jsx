@@ -3,8 +3,17 @@ import { Sidebar } from "../components/Sidebar"
 import { Notification } from "../components/Notification"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { getAllNotifications } from "../services/notificationsApi"
+import { useEffect , useState } from "react"
 
 export function Notifications({loged}) {
+
+    const [notifications , setNotifications] = useState([])
+
+    useEffect(() => {
+        getAllNotifications().then(setNotifications)
+    },[])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -21,24 +30,9 @@ export function Notifications({loged}) {
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] mb-2">Bildirimler</h2>
                         <div>
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
-                            <Notification />
+                            {notifications.map(item => (
+                                <Notification key={item.id} id={item.id} content={item.content} time={item.time_diff} />
+                            ))}
                         </div>
                     </div>
                 </div>

@@ -72,7 +72,7 @@ export function Properties({ loged }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
-                <div className="flex items-center justify-between w-full max-[992px]:flex-col items-center">
+                <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center">
                     <div>
                         <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
                             157 kayıttan 1 - 12 arasındaki kayıtlar gösteriliyor
