@@ -1,4 +1,3 @@
-import defaultProperty from "../assets/default-property.jpg"
 import building from "../assets/building.png"
 import location from "../assets/gray-location.png"
 import menu from "../assets/gray-menu.png"
@@ -8,14 +7,18 @@ export function PropertiesCard(props) {
     return (
         <div className={`flex items-start bg-[#FAFAFA] shrink-0 max-[992px]:w-full max-[992px]:m-0  max-[992px]:flex-col p-3.75 m-3.75 rounded-[10px] ${props.page === "wishlist" ? "w-[46%]" : "w-[30%]"} ${props.page === "myProperties" ? "w-full" : ""}`}>
             <div className={`w-[50%] max-[992px]:w-full max-[992px]:mb-3.75 h-full ${props.page === "myProperties" ? "aspect-video" : "aspect-square" }`}>
-                <img className="rounded-[10px] w-full h-full object-cover aspect-square max-[992px]:aspect-video" src={defaultProperty} alt="" />
+                <img className="rounded-[10px] w-full h-full object-cover aspect-square max-[992px]:aspect-video" src={props.cover} alt="" />
             </div>
             <div className="pl-5 w-[50%]">
-                <a className="min-h-12.5 line-clamp-2 overflow-hidden text-black font-semibold" href="">Müthiş ILAN</a>
+                <a className="min-h-12.5 line-clamp-2 overflow-hidden text-black font-semibold" href="">{props.title}</a>
                 <ul className="text-[11px] text-[#B7BFB9] font-medium flex flex-wrap gap-2.5 my-2.5">
                     <li className="w-full flex items-center gap-1">
                         <img className="w-5 h-5" src={location} alt="" />
-                        <span>Burdur / Ağlasun</span>
+                        <div>
+                            <span>{props.city} </span>
+                            <span>/</span>
+                            <span> {props.district}</span>
+                        </div>
                     </li>
                     <li className="flex items-center gap-1">
                         <img className="w-5 h-5" src={building} alt="" />
@@ -23,11 +26,11 @@ export function PropertiesCard(props) {
                     </li>
                     <li className="flex items-center gap-1">
                         <img className="w-5 h-5" src={menu} alt="" />
-                        <span>Apartman</span>
+                        <span>{props.type}</span>
                     </li>
                     <li className="w-full flex items-center gap-1">
                         <img className="w-5 h-5" src={shop} alt="" />
-                        <span>Burak Pigasoft</span>
+                        <span>{props.company}</span>
                     </li>
                 </ul>
                 <p>
@@ -35,7 +38,7 @@ export function PropertiesCard(props) {
                         Satış Fiyatı
                     </span>
                     <span className="text-lg text-[#FFCA64] font-semibold">
-                        ₺44.400.000
+                        {props.price}
                     </span>
                 </p>
                 {props.page ==="company" && <button className="bg-[#e6e6e6] max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">

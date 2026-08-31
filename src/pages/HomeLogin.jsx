@@ -5,8 +5,23 @@ import { PropertiesCard } from "../components/PropertiesCard"
 import { NewsCard } from "../components/NewsCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { getRecentlyProperties } from "../services/propertiesApi"
+import { getDiscountedProperties } from "../services/propertiesApi"
+import { useState , useEffect } from "react"
 
-export function HomeLogin({ loged , news }) {
+export function HomeLogin({ loged, news }) {
+
+    const [recentlyProperties, setRecentlyProperties] = useState([])
+    const [discountedProperties, setDiscountedProperties] = useState([])
+
+    useEffect(() => {
+        getRecentlyProperties().then(setRecentlyProperties)
+    }, [])
+
+    useEffect(() => {
+        getDiscountedProperties().then(setDiscountedProperties)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -22,11 +37,18 @@ export function HomeLogin({ loged , news }) {
                     </div>
                     <div>
                         <div className="flex overflow-auto scrollbar-none">
-                            <PropertiesCard />
-                            <PropertiesCard />
-                            <PropertiesCard />
-                            <PropertiesCard />
-                            <PropertiesCard />
+                           {discountedProperties.map(item => (
+                                <PropertiesCard 
+                                key={item.id} 
+                                title={item.title} 
+                                cover={item.cover} 
+                                price={item.price.formatted}
+                                company={item.company.title}
+                                type={item.type.title}
+                                city={item.city.title}
+                                district={item.district.title} 
+                                />
+                            ))}
                         </div>
                         <div className="flex justify-center py-7.5 w-full gap-2.5">
                             <button className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
@@ -39,16 +61,23 @@ export function HomeLogin({ loged , news }) {
             <div className='w-full max-w-[90%] flex flex-col items-center mb-30'>
                 <div className="w-full py-18.75">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-[32px] text-[#45443f] mb-2">Fırsat İlanları</h2>
+                        <h2 className="text-[32px] text-[#45443f] mb-2">Yeni İlanlar</h2>
                         <Link className="text-[#B7B9BF] text-xl hover:text-[#45443F] transition-colors duration-300 ease-in-out" to={"/properties"}>Tümünü Gör</Link>
                     </div>
                     <div>
                         <div className="flex overflow-auto py-6.25 scrollbar-none">
-                            <PropertiesCard />
-                            <PropertiesCard />
-                            <PropertiesCard />
-                            <PropertiesCard />
-                            <PropertiesCard />
+                            {recentlyProperties.map(item => (
+                                <PropertiesCard 
+                                key={item.id} 
+                                title={item.title} 
+                                cover={item.cover} 
+                                price={item.price.formatted}
+                                company={item.company.title}
+                                type={item.type.title}
+                                city={item.city.title}
+                                district={item.district.title} 
+                                />
+                            ))}
                         </div>
                         <div className="flex justify-center py-7.5 w-full gap-2.5">
                             <button autofocus className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
@@ -66,7 +95,7 @@ export function HomeLogin({ loged , news }) {
                     </div>
                     <div className='flex items-start overflow-hidden -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
                         {news.map(item => (
-                            <NewsCard title={item.title} cover={item.cover} created={item.created_at} />
+                            <NewsCard key={item.id} title={item.title} cover={item.cover} created={item.created_at} />
                         ))}
                     </div>
                 </div>

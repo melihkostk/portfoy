@@ -34,6 +34,7 @@ import { Edit } from "./pages/Edit";
 import { useState } from "react";
 import { HomeLogin } from "./pages/HomeLogin";
 import { useEffect } from "react";
+import { getArticles } from "./services/articlesApi.js";
 
 function App() {
 
@@ -59,21 +60,7 @@ function App() {
   const [news, setNews] = useState([])
 
     useEffect(() => {
-        fetch("https://demo.pigasoft.com/portfoy/public/api/front/articles", {
-            method: "POST",
-            body: JSON.stringify({
-                locale: "tr"
-            }),
-
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-
-            .then(response => response.json())
-
-            .then(data => setNews(data.data))
-
+        getArticles().then(setNews)
     }, [])
 
   return (
