@@ -5,3 +5,8 @@ export const getCompanyInfo = async () => {
     return response.data.data
 }
 
+export const getTeam = async () => {
+    const response = await api.get("/auth/company/team")
+    return response.data.data
+}
+

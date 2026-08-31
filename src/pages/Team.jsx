@@ -4,8 +4,17 @@ import { TeamCard } from "../components/TeamCard"
 import { UserInvite } from "../components/UserInvite"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { useEffect, useState } from "react"
+import { getTeam } from "../services/myCompanyApi"
 
-export function Team({loged}) {
+export function Team({ loged }) {
+
+    const [team, setTeam] = useState([]);
+
+    useEffect(() => {
+        getTeam().then(setTeam)
+    }, []);
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -17,24 +26,16 @@ export function Team({loged}) {
             <CompanyHeader />
             <div className="w-full max-w-[90%] mt-12.5">
                 <h2 className="text-[#212529] text-[32px] mb-5">Ekip</h2>
-                <div className="flex flex-wrap justify-between items-start max-[992px]:flex-col">
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
+                <div className="flex flex-wrap justify-between items-stretch max-[992px]:flex-col">
+                    {team.personals?.map(item => (
+                        <TeamCard
+                            key={item.id}
+                            name={item.name}
+                            role={item.roles[0].title}
+                            email={item.contacts.email}
+                            phone={item.contacts.phone.number}
+                            code={item.contacts.phone.code} />
+                    ))}
                 </div>
             </div>
             <div className="w-full max-w-[90%] mt-6 overflow-auto">
