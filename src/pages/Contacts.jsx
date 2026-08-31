@@ -5,8 +5,27 @@ import grayLinkedIn from "../assets/gray-linkedIn.png"
 import grayFacebook from "../assets/gray-facebook.png"
 import grayInsta from "../assets/gray-insta.png"
 import grayX from "../assets/gray-x.png"
+import { useEffect, useState } from "react";
 
-export function Contacts({loged}) {
+export function Contacts({ loged }) {
+
+    const [name, setName] = useState("");
+    const [email , setEmail] = useState("")
+    const [code, setCode] = useState("")
+    const [phone , setPhone] = useState("")
+
+    useEffect(() => {
+        const userStr = localStorage.getItem("user");
+
+        if (userStr) {
+            const user = JSON.parse(userStr);
+            setName(user?.data?.name || "");
+            setEmail(user?.data?.email || "");
+            setCode(user?.data?.phone.code || "");
+            setPhone(user?.data?.phone.number || "")
+        }
+    }, []);
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -71,9 +90,9 @@ export function Contacts({loged}) {
                     <div className="flex-1 border border-[#eee] rounded-lg p-7.5 max-[992px]:w-full">
                         <h2 className="text-[32px] text-[#212529] font-semibold mb-10">İletişim Formu</h2>
                         <form action="">
-                            <input className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="name" placeholder="Adınız ve Soyadınız" required />
-                            <input className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="email" placeholder="E-Posta" required />
-                            <input className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="phone" placeholder="Telefon" required />
+                            <input onChange={(e) => setName(e.target.value)} value={name} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="name" placeholder="Adınız ve Soyadınız" required />
+                            <input onChange={(e) => setEmail(e.target.value)} value={email} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="email" placeholder="E-Posta" required />
+                            <input onChange={(e) => setPhone(e.target.value)} value={code + " " +  phone} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="phone" placeholder="Telefon" required />
                             <input className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="subject" placeholder="Konu" required />
                             <textarea className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" name="message" placeholder="Mesajınız" required></textarea>
                             <button className="text-white text-sm rounded-lg cursor-pointer bg-[#27C5D2] py-2 px-5 font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out">Gönder</button>

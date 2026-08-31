@@ -1,6 +1,6 @@
 export function CompanyFilter() {
     return (
-        <div className="flex justify-between max-[992px]:mt-7.5 max-[992px]:flex-col max-[992px]:items-start items-end bg-[#f8f8f8] p-7.5 rounded-lg gap-5">
+        <div className="flex justify-between mt-7.5 max-[992px]:flex-col max-[992px]:items-start items-end bg-[#f8f8f8] p-7.5 rounded-lg gap-5">
             <div className="flex flex-col grow max-[992px]:w-full">
                 <label htmlFor="">Firma Tipi</label>
                 <select className="bg-white py-2 px-3 border w-full border-[#D9D9D9] rounded-lg" name="" id="">
