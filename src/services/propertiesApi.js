@@ -9,3 +9,8 @@ export const getDiscountedProperties = async () => {
   const response = await api.post("/properties/discounted");
   return response.data.data;
 };
+
+export const getAllProperties = async () => {
+    const response = await api.get("/properties");
+    return response.data.data
+}

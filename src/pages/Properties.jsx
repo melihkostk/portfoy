@@ -5,8 +5,17 @@ import flex from "../assets/flex.png"
 import { PropertiesCard } from "../components/PropertiesCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { getAllProperties } from "../services/propertiesApi"
+import { useEffect, useState } from "react"
 
-export function Properties({loged}) {
+export function Properties({ loged }) {
+
+    const [properties, setProperties] = useState([])
+
+    useEffect(() => {
+        getAllProperties().then(setProperties)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -46,27 +55,31 @@ export function Properties({loged}) {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-wrap max-[992px]:flex-col items-center justify-center -mx-3.75 max-[992px]:m-0">
-                    <PropertiesCard page="properties" />
-                    <PropertiesCard page="properties" />
-                    <PropertiesCard page="properties" />
-                    <PropertiesCard page="properties" />
-                    <PropertiesCard page="properties" />
-                    <PropertiesCard page="properties" />
-                    <PropertiesCard page="properties" />
-                    <PropertiesCard page="properties" />
-                    <PropertiesCard page="properties" />
+                <div className="flex flex-wrap max-[992px]:flex-col items-center justify-start -mx-3.75 max-[992px]:m-0">
+                    {properties.map(item => (
+                        <PropertiesCard
+                            key={item.id}
+                            title={item.title}
+                            cover={item.cover}
+                            price={item.price.formatted}
+                            company={item.company.title}
+                            type={item.type.title}
+                            city={item.city.title}
+                            district={item.district.title}
+                            page="properties"
+                        />
+                    ))}
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
-                <div className="flex items-center justify-between flex-wrap">
+                <div className="flex items-center justify-between w-full max-[992px]:flex-col items-center">
                     <div>
                         <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
                             157 kayıttan 1 - 12 arasındaki kayıtlar gösteriliyor
                         </p>
                     </div>
-                    <nav className="overflow-auto w-full max-w-full">
-                        <ul className="flex items-center gap-1.25 mb-4 scrollbar-thumb-[#27C5D2] overflow-auto max-w-full">
+                    <nav className="overflow-auto max-w-full">
+                        <ul className="flex items-center gap-1.25 mb-4 w-full scrollbar-thumb-[#27C5D2] overflow-auto max-w-full">
                             <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
                                 <span>1</span>
                             </li>
