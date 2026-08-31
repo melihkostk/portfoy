@@ -10,8 +10,11 @@ import { Filter } from "../components/Filter"
 import about from "../assets/about.png"
 import step1 from "../assets/step1.png"
 import step3 from "../assets/step3.png"
+import { useState } from "react"
 
 export function Home({ loged }) {
+
+  const [pricingCate, setPricingCate] = useState("Emlak Firması")
 
   return (
     <div className='flex flex-col items-center font-sf'>
@@ -92,71 +95,196 @@ export function Home({ loged }) {
             <p className='text-[#525252] text-center max-w-[45%] font-medium max-[992px]:max-w-full'>Firmanızı tipini seçin, sizin için hazırlanmış özel paketler fırsatından faydalanın. Ücretsiz kullanım dönemini yakalamak için acele edin.</p>
             <ul className='flex mt-10 border border-[#eee] p-2.5 rounded-lg max-w-full overflow-auto scrollbar-thin scrollbar-thumb-[#27C5D2]'>
               <li>
-                <button className='px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium bg-[#f4f4f4] hover:text-black cursor-pointer'>
+                <button onClick={() => setPricingCate("Emlak Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "Emlak Firması" ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
                   Emlak Firması
                 </button>
               </li>
               <li>
-                <button className='px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
+                <button onClick={() => setPricingCate("İnşaat Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "İnşaat Firması" ? "bg-[#f4f4f4] text-black" : ""}  hover:text-black cursor-pointer`}>
                   İnşaat Firması
                 </button>
               </li>
               <li>
-                <button className='px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
+                <button onClick={() => setPricingCate("Emlak & İnşaat Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "Emlak & İnşaat Firması" ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
                   Emlak & İnşaat Firması
                 </button>
               </li>
               <li>
-                <button className='px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium hover:text-black cursor-pointer'>
+                <button onClick={() => setPricingCate("Pazarlama Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "Pazarlama Firması" ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
                   Pazarlama Firması
                 </button>
               </li>
             </ul>
           </div>
           <div className='flex w-full justify-center flex-wrap overflow-auto scrollbar-thin scrollbar-thumb-[#27C5D2] max-[992px]:flex-nowrap max-[992px]:justify-start max-[992px]:items-start max-[992px]:gap-10 max-[992px]:mt-3.75'>
-            <PricingCard
-              name="XL Emlak Paketi"
-              price="₺15,00 + KDV"
-              trail="30"
-              staff="Sınırsız"
-              offer="510"
-              customer="500"
-              ad="520"
-              photo="20"
-              video="20"
-            />
-            <PricingCard
-              name="Standart Emlak Paket"
-              price="₺450,00 + KDV"
-              trail="30" staff="3"
-              offer="10"
-              customer="10"
-              ad="10"
-              photo="12"
-              video="1"
-            />
-            <PricingCard
-              name="Medium Emlak Paket"
-              price="₺650,00 + KDV"
-              trail="45"
-              staff="6"
-              offer="1500"
-              customer="500"
-              ad="50"
-              photo="12"
-              video="2"
-            />
-            <PricingCard
-              name="Premium Emlak Paket"
-              price="₺950,00 + KDV"
-              trail="60"
-              staff="10"
-              offer="3000"
-              customer="1000"
-              ad="100"
-              photo="15"
-              video="5"
-            />
+            {pricingCate === "Emlak Firması" && (
+              <>
+                <PricingCard
+                  name="XL Emlak Paketi"
+                  price="₺15,00 + KDV"
+                  trail="30"
+                  staff="Sınırsız"
+                  offer="510"
+                  customer="500"
+                  ad="520"
+                  photo="20"
+                  video="20"
+                />
+
+                <PricingCard
+                  name="Standart Emlak Paket"
+                  price="₺450,00 + KDV"
+                  trail="30"
+                  staff="3"
+                  offer="10"
+                  customer="10"
+                  ad="10"
+                  photo="12"
+                  video="1"
+                />
+
+                <PricingCard
+                  name="Medium Emlak Paket"
+                  price="₺650,00 + KDV"
+                  trail="45"
+                  staff="6"
+                  offer="1500"
+                  customer="500"
+                  ad="50"
+                  photo="12"
+                  video="2"
+                />
+
+                <PricingCard
+                  name="Premium Emlak Paket"
+                  price="₺950,00 + KDV"
+                  trail="60"
+                  staff="10"
+                  offer="3000"
+                  customer="1000"
+                  ad="100"
+                  photo="15"
+                  video="5"
+                />
+              </>
+            )}
+            {pricingCate === "İnşaat Firması" && (
+              <>
+                <PricingCard
+                  name="XL İnşaat Paketi"
+                  price="₺500,00 + KDV"
+                  trail="15 "
+                  staff="Sınırsız"
+                  offer="0"
+                  customer="Sınırsız"
+                  ad="Sınırsız "
+                  photo="0"
+                  video="0"
+                />
+
+                <PricingCard
+                  name="XXL"
+                  price="₺8,00 + KDV"
+                  trail="30"
+                  staff="2000"
+                  offer="50"
+                  customer="50"
+                  ad="1500"
+                  photo="85"
+                  video="18"
+                />
+
+                <PricingCard
+                  name="Standart İnşaat Paket"
+                  price="₺1.300,00 + KDV"
+                  trail="30"
+                  staff="3"
+                  offer="10"
+                  customer="10"
+                  ad="10"
+                  photo="10"
+                  video="3"
+                />
+
+                <PricingCard
+                  name="Medium İnşaat Paket"
+                  price="₺1.650,00 + KDV"
+                  trail="45 "
+                  staff="6 "
+                  offer="1500"
+                  customer="500"
+                  ad="50 "
+                  photo="25"
+                  video="3"
+                />
+
+                <PricingCard
+                  name="Premium İnşaat Paket"
+                  price=" ₺1.900,00 + KDV"
+                  trail="60  "
+                  staff="10 "
+                  offer="3000"
+                  customer="1000"
+                  ad="100  "
+                  photo="30 "
+                  video="5"
+                />
+              </>
+            )}
+            {pricingCate === "Emlak & İnşaat Firması" && (
+              <>
+                <PricingCard
+                  name="Medium İnşaat & Emlak Paket"
+                  price="₺1.650,00 + KDV"
+                  trail="45"
+                  staff="6 "
+                  offer="10"
+                  customer="10"
+                  ad="10"
+                  photo="10"
+                  video="3"
+                />
+
+                <PricingCard
+                  name="Premium İnşaat & Emlak Paket"
+                  price=" ₺1.900,00 + KDV"
+                  trail="60  "
+                  staff="10 "
+                  offer="3000"
+                  customer="1000"
+                  ad="100  "
+                  photo="30 "
+                  video="5"
+                />
+              </>
+            )}
+            {pricingCate === "Pazarlama Firması" && (
+              <>
+                <PricingCard
+                  name="Medium Pazarlama Firması Paket"
+                  price="₺1.650,00 + KDV"
+                  trail="45"
+                  staff="6 "
+                  offer="15"
+                  customer="10"
+                  ad="10"
+                  photo="10"
+                  video="3"
+                />
+
+                <PricingCard
+                  name="Premium Pazarlama Firması Paket"
+                  price=" ₺1.900,00 + KDV"
+                  trail="60  "
+                  staff="10 "
+                  offer="3000"
+                  customer="1000"
+                  ad="100  "
+                  photo="30 "
+                  video="5"
+                />
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -50,11 +50,11 @@ function App() {
       }
 
       setToken(user.data.token);
-      setLoged(true);
+      setLoged(false);
     } catch {
       setLoged(false);
     }
-  }, [token]);
+  }, []);
 
   return (
     <BrowserRouter>
