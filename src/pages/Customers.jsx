@@ -4,8 +4,17 @@ import graySearch from "../assets/gray-search.png"
 import { CustomerCard } from "../components/CustomerCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { getAllCustomers } from "../services/myCompanyApi"
+import { useEffect, useState } from "react"
 
-export function Customers({loged}) {
+export function Customers({ loged }) {
+
+    const [customers, setCustomers] = useState([]);
+
+    useEffect(() => {
+        getAllCustomers().then(setCustomers)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -40,12 +49,19 @@ export function Customers({loged}) {
                             </tr>
                         </thead>
                         <tbody>
-                            <CustomerCard />
-                            <CustomerCard />
-                            <CustomerCard />
-                            <CustomerCard />
-                            <CustomerCard />
-                            <CustomerCard />
+                            {customers?.customers?.map(item => (
+                                <CustomerCard
+                                    key={item.id}
+                                    name={item.name}
+                                    email={item.email}
+                                    phoneCode={item.phone.code}
+                                    phoneNumber={item.phone.number}
+                                    locale={item.locale.title}
+                                    created_at={item.created_at}
+                                    note={item.notes}
+                                    proposals={item.proposals}
+                                />
+                            ))}
                         </tbody>
                     </table>
                 </div>

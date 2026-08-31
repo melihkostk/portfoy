@@ -15,3 +15,8 @@ export const getAllInvitations = async () => {
     return response.data.data
 }
 
+export const getAllCustomers = async () => {
+    const response = await api.get("/auth/company/customers")
+    return response.data.data
+}
+
