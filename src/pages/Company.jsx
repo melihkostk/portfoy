@@ -27,12 +27,13 @@ export function Company({ loged }) {
             <CompanyHeader />
             <div className="max-w-[90%] w-full pt-12.5">
                 <div className="flex max-[992px]:flex-col">
-                    <div className="w-[26%] max-[992px]:w-full">
+                    <div className="w-[23%] max-[992px]:w-full">
                         <FilterSidebar />
                     </div>
-                    <div className="w-[74%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-wrap">
+                    <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-wrap">
                         {companyProperties.map(item => (
                             <PropertiesCard
+                                page="company"
                                 key={item.id}
                                 title={item.title}
                                 cover={item.cover}

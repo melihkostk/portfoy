@@ -60,7 +60,7 @@ export function CompanyHeader() {
                             <Link to={"/company/customers"}>Müşteriler</Link>
                         </li>
                         <li className="bg-[#ffffffb3] whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer hover:bg-white transition-colors duration-300 ease-in-out">
-                            Teklifler
+                            <Link to={"/company/proposals"}>Teklifler</Link>
                         </li>
                     </ul>
                     <div className="flex items-center gap-2.5 -mt-12 max-[1005px]:hidden">

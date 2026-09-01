@@ -30,3 +30,8 @@ export const getCompanyProperties = async () => {
     return response.data.data.properties;
 }
 
+export const getCompanyProposals = async () => {
+    const response = await api.post("/auth/company/proposals");
+    return response.data.data.proposals;
+}
+

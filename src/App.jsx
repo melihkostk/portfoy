@@ -35,6 +35,7 @@ import { useState } from "react";
 import { HomeLogin } from "./pages/HomeLogin";
 import { useEffect } from "react";
 import { getArticles } from "./services/articlesApi.js";
+import { CompanyProposals } from "./pages/CompanyProposals.jsx";
 
 function App() {
 
@@ -98,6 +99,7 @@ function App() {
         <Route path="/company/subscription" element={<Subscription loged={loged} />} />
         <Route path="/company/settings" element={<Settings loged={loged} />} />
         <Route path="/company/edit" element={<Edit loged={loged} />} />
+        <Route path="/company/proposals" element={<CompanyProposals loged={loged} />}></Route>
       </Routes>
     </BrowserRouter>
 
