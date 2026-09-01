@@ -3,8 +3,18 @@ import { CompanyHeader } from "../components/CompanyHeader"
 import { LocationCard } from "../components/LocationCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { useEffect } from "react"
+import { useState } from "react"
+import { getLocation } from "../services/myCompanyApi"
 
-export function Location({loged}) {
+export function Location({ loged }) {
+
+    const [location, setLocation] = useState([])
+
+    useEffect(() => {
+        getLocation().then(setLocation)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -21,10 +31,15 @@ export function Location({loged}) {
                 </div>
             </div>
             <div className="w-full max-w-[90%] mt-12.5">
-                <LocationCard />
-                <LocationCard />
-                <LocationCard />
-                <LocationCard />
+                {location.map(item => (
+                    <LocationCard
+                        key={item.id}
+                        address={item.address}
+                        country={item.country.title}
+                        city={item.city.title}
+                        district={item.district.title}
+                    />
+                ))}
             </div>
             <div className='w-full mt-40 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>

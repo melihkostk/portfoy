@@ -20,3 +20,8 @@ export const getAllCustomers = async () => {
     return response.data.data
 }
 
+export const getLocation = async () => {
+    const response = await api.get("/auth/company/locations")
+    return response.data.data.locations
+}
+
