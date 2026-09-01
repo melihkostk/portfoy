@@ -3,8 +3,17 @@ import { CompanyHeader } from "../components/CompanyHeader"
 import { SubscriptionCard } from "../components/SubscriptionCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { useEffect, useState } from "react"
+import { getSubscriptions } from "../services/myCompanyApi"
 
-export function Subscription({loged}) {
+export function Subscription({ loged }) {
+
+    const [subscriptions, setSubscriptions] = useState([]);
+
+    useEffect(() => {
+        getSubscriptions().then(setSubscriptions)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -21,7 +30,16 @@ export function Subscription({loged}) {
                     </button>
                 </div>
                 <div>
-                    <SubscriptionCard />
+                    {subscriptions.map(item => (
+                        <SubscriptionCard
+                            key={item.package}
+                            packageName={item.package}
+                            finish_at={item.finish_at.text}
+                            readable={item.finish_at.readable}
+                            is_trial={item.is_trial}
+                            is_active={item.is_active}
+                        />
+                    ))}
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
