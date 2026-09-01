@@ -1,6 +1,6 @@
 import downArrow from "../assets/down-arrow.png"
 import React, { useEffect } from "react"
-import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
+import { getAllCities, getAllCountries, getAllDistricts, getAllStreets , getAllCurrencies } from "../services/filterApi"
 
 export function Filter() {
 
@@ -20,6 +20,9 @@ export function Filter() {
 
     const [street, setStreet] = React.useState([]);
     const [streetId, setStreetId] = React.useState("");
+
+    const [currencies , setCurrencies] = React.useState([]);
+    const [currencieId , setCurrenciId] = React.useState("")
 
     useEffect(() => {
         getAllCountries().then(setCountries)
@@ -49,6 +52,10 @@ export function Filter() {
         }
         getAllStreets(districtId).then(setStreet)
     }, [districtId])
+
+    useEffect(()=>{
+        getAllCurrencies().then(setCurrencies);
+    }, [])
 
 
 
@@ -145,10 +152,10 @@ export function Filter() {
                                             <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
                                         </div>
                                         <div>
-                                            <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
-                                                <option value="">TRY</option>
-                                                <option value="">USD</option>
-                                                <option value="">EUR</option>
+                                            <select value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
+                                                {currencies.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.code}</option>
+                                                ))}
                                             </select>
                                         </div>
                                     </div>
@@ -242,9 +249,9 @@ export function Filter() {
                                         </div>
                                         <div>
                                             <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
-                                                <option selected value="">TRY</option>
-                                                <option value="">USD</option>
-                                                <option value="">EUR</option>
+                                                {currencies.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.code}</option>
+                                                ))}
                                             </select>
                                         </div>
                                     </div>
@@ -265,10 +272,12 @@ export function Filter() {
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
                                             <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                                <option value="" disabled>
+                                                    Ülke Seçin
+                                                </option>
+                                                {countries.data.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div className="flex flex-col">

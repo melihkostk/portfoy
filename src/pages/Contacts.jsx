@@ -7,6 +7,7 @@ import grayInsta from "../assets/gray-insta.png"
 import grayX from "../assets/gray-x.png"
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getContactInfo } from "../services/contactsApi";
 
 export function Contacts({ loged }) {
 
@@ -14,6 +15,8 @@ export function Contacts({ loged }) {
     const [email , setEmail] = useState("")
     const [code, setCode] = useState("")
     const [phone , setPhone] = useState("")
+
+    const [contactInfo , setContactInfo] = useState([])
 
     useEffect(() => {
         const userStr = localStorage.getItem("user");
@@ -26,6 +29,10 @@ export function Contacts({ loged }) {
             setPhone(user?.data?.phone.number || "")
         }
     }, []);
+
+    useEffect(() => {
+        getContactInfo().then(setContactInfo)
+    }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -42,13 +49,13 @@ export function Contacts({ loged }) {
                         <div className="mb-10">
                             <p className="text-sm text-[#212529] opacity-70 uppercase font-medium">Telefon</p>
                             <a className="text-xl text-black font-bold hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/tel: 0 850 851 44 94">
-                                0 850 851 44 94
+                                {contactInfo.phone}
                             </a>
                         </div>
                         <div className="mb-10">
                             <p className="text-sm text-[#212529] opacity-70 uppercase font-medium">E-Posta</p>
                             <a className="text-xl text-black font-bold hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="mailto:support@port-foy.com">
-                                support@port-foy.com
+                                {contactInfo.email}
                             </a>
                         </div>
                         <div className="mb-10">
@@ -56,7 +63,7 @@ export function Contacts({ loged }) {
                                 Adres
                             </p>
                             <p className="text-black text-base font-medium">
-                                Nef 9 Palaza Sultan Selim Mahallesi Hümeyra Sokak B Blok No: 7/73 Kağıthane Istanbul
+                                {contactInfo.address}
                             </p>
                         </div>
                         <ul className="flex gap-2.5 flex-wrap">
@@ -73,16 +80,16 @@ export function Contacts({ loged }) {
                         <div className="mt-10">
                             <p className="text-sm uppercase mb-2.5 text-[#212529] opacity-60 font-medium">Bizi takip edin</p>
                             <div className="flex">
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href="https://www.linkedin.com/company/port-foy-com">
+                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo.socials.linkedin}>
                                     <img className="w-7 h-7" src={grayLinkedIn} alt="" />
                                 </a>
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href="https://x.com/PortFoycom">
+                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo.socials.x}>
                                     <img className="w-7 h-7" src={grayX} alt="" />
                                 </a>
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href="https://www.facebook.com/people/Port-Foycom/61566855802447/">
+                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo.socials.facebook}>
                                     <img className="w-7 h-7" src={grayFacebook} alt="" />
                                 </a>
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href="https://www.instagram.com/portfoycom/">
+                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo.socials.instagram}>
                                     <img className="w-7 h-7" src={grayInsta} alt="" />
                                 </a>
                             </div>
