@@ -36,11 +36,12 @@ import { HomeLogin } from "./pages/HomeLogin";
 import { useEffect } from "react";
 import { getArticles } from "./services/articlesApi.js";
 import { CompanyProposals } from "./pages/CompanyProposals.jsx";
+import { Summary } from "./pages/Summary.jsx";
 
 function App() {
 
   const [loged, setLoged] = useState(false)
-  const [token , setToken] = useState("")
+  const [token, setToken] = useState("")
 
   useEffect(() => {
     try {
@@ -60,9 +61,9 @@ function App() {
 
   const [news, setNews] = useState([])
 
-    useEffect(() => {
-        getArticles().then(setNews)
-    }, [])
+  useEffect(() => {
+    getArticles().then(setNews)
+  }, [])
 
   return (
     <BrowserRouter>
@@ -100,6 +101,7 @@ function App() {
         <Route path="/company/settings" element={<Settings loged={loged} />} />
         <Route path="/company/edit" element={<Edit loged={loged} />} />
         <Route path="/company/proposals" element={<CompanyProposals loged={loged} />}></Route>
+        <Route path="/company/summary" element={<Summary loged={loged} />}></Route>
       </Routes>
     </BrowserRouter>
 
