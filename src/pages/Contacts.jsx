@@ -7,7 +7,7 @@ import grayInsta from "../assets/gray-insta.png"
 import grayX from "../assets/gray-x.png"
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getContactInfo } from "../services/contactsApi";
+import { getContactInfo , sendContactForm } from "../services/contactsApi";
 
 export function Contacts({ loged }) {
 
@@ -15,8 +15,14 @@ export function Contacts({ loged }) {
     const [email , setEmail] = useState("")
     const [code, setCode] = useState("")
     const [phone , setPhone] = useState("")
+    const [subject , setSubject] = useState("")
+    const [message , setMessage] = useState("")
 
-    const [contactInfo , setContactInfo] = useState([])
+    const [contactInfo , setContactInfo] = useState(null)
+
+     useEffect(() => {
+        getContactInfo().then(setContactInfo)
+    }, [])
 
     useEffect(() => {
         const userStr = localStorage.getItem("user");
@@ -30,9 +36,7 @@ export function Contacts({ loged }) {
         }
     }, []);
 
-    useEffect(() => {
-        getContactInfo().then(setContactInfo)
-    }, [])
+   
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -49,13 +53,13 @@ export function Contacts({ loged }) {
                         <div className="mb-10">
                             <p className="text-sm text-[#212529] opacity-70 uppercase font-medium">Telefon</p>
                             <a className="text-xl text-black font-bold hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/tel: 0 850 851 44 94">
-                                {contactInfo.phone}
+                                {contactInfo?.phone}
                             </a>
                         </div>
                         <div className="mb-10">
                             <p className="text-sm text-[#212529] opacity-70 uppercase font-medium">E-Posta</p>
                             <a className="text-xl text-black font-bold hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="mailto:support@port-foy.com">
-                                {contactInfo.email}
+                                {contactInfo?.email}
                             </a>
                         </div>
                         <div className="mb-10">
@@ -63,7 +67,7 @@ export function Contacts({ loged }) {
                                 Adres
                             </p>
                             <p className="text-black text-base font-medium">
-                                {contactInfo.address}
+                                {contactInfo?.address}
                             </p>
                         </div>
                         <ul className="flex gap-2.5 flex-wrap">
@@ -80,16 +84,16 @@ export function Contacts({ loged }) {
                         <div className="mt-10">
                             <p className="text-sm uppercase mb-2.5 text-[#212529] opacity-60 font-medium">Bizi takip edin</p>
                             <div className="flex">
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo.socials.linkedin}>
+                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo?.socials?.linkedin}>
                                     <img className="w-7 h-7" src={grayLinkedIn} alt="" />
                                 </a>
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo.socials.x}>
+                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo?.socials?.x}>
                                     <img className="w-7 h-7" src={grayX} alt="" />
                                 </a>
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo.socials.facebook}>
+                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo?.socials?.facebook}>
                                     <img className="w-7 h-7" src={grayFacebook} alt="" />
                                 </a>
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo.socials.instagram}>
+                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo?.socials?.instagram}>
                                     <img className="w-7 h-7" src={grayInsta} alt="" />
                                 </a>
                             </div>
@@ -97,13 +101,13 @@ export function Contacts({ loged }) {
                     </div>
                     <div className="flex-1 border border-[#eee] rounded-lg p-7.5 max-[992px]:w-full">
                         <h2 className="text-[32px] text-[#212529] font-semibold mb-10">İletişim Formu</h2>
-                        <form action="">
+                        <form action={sendContactForm(name , email , phone ,  )}>
                             <input onChange={(e) => setName(e.target.value)} value={name} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="name" placeholder="Adınız ve Soyadınız" required />
                             <input onChange={(e) => setEmail(e.target.value)} value={email} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="email" placeholder="E-Posta" required />
                             <input onChange={(e) => setPhone(e.target.value)} value={code + " " +  phone} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="phone" placeholder="Telefon" required />
-                            <input className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="subject" placeholder="Konu" required />
-                            <textarea className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" name="message" placeholder="Mesajınız" required></textarea>
-                            <button className="text-white text-sm rounded-lg cursor-pointer bg-[#27C5D2] py-2 px-5 font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out">Gönder</button>
+                            <input value={subject} onChange={(e) => setSubject(e.target.value)} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="subject" placeholder="Konu" required />
+                            <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" name="message" placeholder="Mesajınız" required></textarea>
+                            <button type="submit" className="text-white text-sm rounded-lg cursor-pointer bg-[#27C5D2] py-2 px-5 font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out">Gönder</button>
                         </form>
                     </div>
                 </div>
