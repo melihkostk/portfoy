@@ -4,7 +4,7 @@ export function FilterSidebar(){
     return(
         <div className="w-full">
             <div className="mb-5 w-full">
-                <div className="bg-[#f8f8f8] text-[#7d7d7d] min-w-full text-center py-2.5 rounded-lg hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out" href="">
+                <div className="bg-[#f8f8f8] text-[#7d7d7d] min-w-full text-center py-2.5 rounded-lg hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     <Link>Yeni İlan Oluştur</Link>
                 </div>
             </div>

@@ -23,7 +23,7 @@ export function Customers({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
                 </div>
             </div>
-            <CompanyHeader />
+            <CompanyHeader page="customers" />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center mb-5 flex-wrap">
                     <h2 className="text-[#212529] text-[32px]">Müşteriler</h2>

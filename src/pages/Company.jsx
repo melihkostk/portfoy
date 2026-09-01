@@ -24,7 +24,7 @@ export function Company({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
                 </div>
             </div>
-            <CompanyHeader />
+            <CompanyHeader page="company" />
             <div className="max-w-[90%] w-full pt-12.5">
                 <div className="flex max-[992px]:flex-col">
                     <div className="w-[23%] max-[992px]:w-full">

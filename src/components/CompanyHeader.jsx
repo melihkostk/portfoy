@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { getCompanyInfo } from "../services/myCompanyApi"
 import { useEffect, useState } from "react"
 
-export function CompanyHeader() {
+export function CompanyHeader({page}) {
 
     const [companyInfo , setCompanyInfo] = useState([])
 
@@ -47,19 +47,19 @@ export function CompanyHeader() {
                 </div>
                 <div className="flex justify-between">
                     <ul className="flex gap-2.5 items-end max-w-full overflow-auto">
-                        <li className="bg-white whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer">
+                        <li className={`${page === "company" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company"}>Portföy</Link>
                         </li>
-                        <li className="bg-[#ffffffb3] whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer hover:bg-white transition-colors duration-300 ease-in-out">
+                        <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company/team"}>Ekip</Link>
                         </li>
-                        <li className="bg-[#ffffffb3] whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer hover:bg-white transition-colors duration-300 ease-in-out">
+                        <li className={`${page === "location" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company/contacts"}>Konum & İletişim</Link>
                         </li>
-                        <li className="bg-[#ffffffb3] whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer hover:bg-white transition-colors duration-300 ease-in-out">
+                        <li className={`${page === "customers" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company/customers"}>Müşteriler</Link>
                         </li>
-                        <li className="bg-[#ffffffb3] whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer hover:bg-white transition-colors duration-300 ease-in-out">
+                        <li className={`${page === "proposals" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company/proposals"}>Teklifler</Link>
                         </li>
                     </ul>

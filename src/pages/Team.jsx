@@ -29,7 +29,7 @@ export function Team({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
                 </div>
             </div>
-            <CompanyHeader />
+            <CompanyHeader page="team" />
             <div className="w-full max-w-[90%] mt-12.5">
                 <h2 className="text-[#212529] text-[32px] mb-5">Ekip</h2>
                 <div className="flex flex-wrap justify-between items-stretch max-[992px]:flex-col">
