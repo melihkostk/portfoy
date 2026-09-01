@@ -80,7 +80,7 @@ export function HomeLogin({ loged, news }) {
                             ))}
                         </div>
                         <div className="flex justify-center py-7.5 w-full gap-2.5">
-                            <button autofocus className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
+                            <button className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
                             <button className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
                             <button className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
                         </div>
