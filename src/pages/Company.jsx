@@ -4,8 +4,18 @@ import { FilterSidebar } from "../components/FilterSidebar"
 import { PropertiesCard } from "../components/PropertiesCard"
 import { Footer } from "../components/Footer"
 import { AppLinks } from "../components/AppLinks"
+import { getCompanyProperties } from "../services/myCompanyApi"
+import { useEffect, useState } from "react"
 
-export function Company({loged}) {
+export function Company({ loged }) {
+
+    const [companyProperties, setCompanyProperties] = useState([]);
+
+    useEffect(() => {
+        getCompanyProperties().then(setCompanyProperties)
+    }, [])
+
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -21,18 +31,18 @@ export function Company({loged}) {
                         <FilterSidebar />
                     </div>
                     <div className="w-[74%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-wrap">
-                        <PropertiesCard page="company" />
-                        <PropertiesCard page="company" />
-                        <PropertiesCard page="company" />
-                        <PropertiesCard page="company" />
-                        <PropertiesCard page="company" />
-                        <PropertiesCard page="company" />
-                        <PropertiesCard page="company" />
-                        <PropertiesCard page="company" />
-                        <PropertiesCard page="company" />
-                        <PropertiesCard page="company" />
-                        <PropertiesCard page="company" />
-                        <PropertiesCard page="company" />
+                        {companyProperties.map(item => (
+                            <PropertiesCard
+                                key={item.id}
+                                title={item.title}
+                                cover={item.cover}
+                                price={item.price.formatted}
+                                company={item.company.title}
+                                type={item.type.title}
+                                city={item.city.title}
+                                district={item.district.title}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>

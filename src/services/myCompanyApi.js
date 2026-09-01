@@ -25,3 +25,8 @@ export const getLocation = async () => {
     return response.data.data.locations
 }
 
+export const getCompanyProperties = async () => {
+    const response = await api.post("/auth/company/properties");
+    return response.data.data.properties;
+}
+
