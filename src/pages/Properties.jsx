@@ -66,6 +66,7 @@ export function Properties({ loged }) {
                             type={item.type.title}
                             city={item.city.title}
                             district={item.district.title}
+                            id={item.id}
                             page="properties"
                         />
                     ))}

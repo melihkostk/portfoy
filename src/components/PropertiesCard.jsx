@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import building from "../assets/building.png"
 import location from "../assets/gray-location.png"
 import menu from "../assets/gray-menu.png"
@@ -10,7 +11,7 @@ export function PropertiesCard(props) {
                 <img className="rounded-[10px] w-full h-full object-cover aspect-square max-[992px]:aspect-video" src={props.cover} alt="" />
             </div>
             <div className="pl-5 w-[50%]">
-                <a className="min-h-12.5 line-clamp-2 overflow-hidden text-black font-semibold" href="">{props.title}</a>
+                <Link to={`/properties/${props.id}`} className="min-h-12.5 line-clamp-2 overflow-hidden text-black font-semibold hover:text-[#FFCA64] transition-colors duration-300 ease-in-out">{props.title}</Link>
                 <ul className="text-[11px] text-[#B7BFB9] font-medium flex flex-wrap gap-2.5 my-2.5">
                     <li className="w-full flex items-center gap-1">
                         <img className="w-5 h-5" src={location} alt="" />

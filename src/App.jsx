@@ -40,6 +40,7 @@ import { Summary } from "./pages/Summary.jsx";
 import { CompaniesDetail } from "./pages/CompaniesDetail.jsx";
 import { CompaniesDetailTeam } from "./pages/CompaniesDetailTeam.jsx";
 import { CompaniesDetailLocation } from "./pages/CompaniesDetailLocation.jsx";
+import { PropertiesDetail } from "./pages/PropertiesDetail.jsx";
 
 function App() {
 
@@ -108,6 +109,7 @@ function App() {
         <Route path="/companies/:id" element={<CompaniesDetail loged={loged} />}></Route>
         <Route path="/companies/:id/team" element={<CompaniesDetailTeam loged={loged} />}></Route>
         <Route path="/companies/:id/contacts" element={<CompaniesDetailLocation loged={loged} />}></Route>
+        <Route path="/properties/:id" element={<PropertiesDetail loged={loged} />}></Route>
       </Routes>
     </BrowserRouter>
 

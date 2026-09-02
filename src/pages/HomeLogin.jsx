@@ -7,7 +7,7 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { getRecentlyProperties } from "../services/propertiesApi"
 import { getDiscountedProperties } from "../services/propertiesApi"
-import { useState , useEffect } from "react"
+import { useState, useEffect } from "react"
 
 export function HomeLogin({ loged, news }) {
 
@@ -37,16 +37,17 @@ export function HomeLogin({ loged, news }) {
                     </div>
                     <div>
                         <div className="flex overflow-auto scrollbar-none">
-                           {discountedProperties.map(item => (
-                                <PropertiesCard 
-                                key={item.id} 
-                                title={item.title} 
-                                cover={item.cover} 
-                                price={item.price.formatted}
-                                company={item.company.title}
-                                type={item.type.title}
-                                city={item.city.title}
-                                district={item.district.title} 
+                            {discountedProperties.map(item => (
+                                <PropertiesCard
+                                    id={item.id}
+                                    key={item.id}
+                                    title={item.title}
+                                    cover={item.cover}
+                                    price={item.price.formatted}
+                                    company={item.company.title}
+                                    type={item.type.title}
+                                    city={item.city.title}
+                                    district={item.district.title}
                                 />
                             ))}
                         </div>
@@ -68,15 +69,16 @@ export function HomeLogin({ loged, news }) {
                     <div>
                         <div className="flex overflow-auto py-6.25 scrollbar-none">
                             {recentlyProperties.map(item => (
-                                <PropertiesCard 
-                                key={item.id} 
-                                title={item.title} 
-                                cover={item.cover} 
-                                price={item.price.formatted}
-                                company={item.company.title}
-                                type={item.type.title}
-                                city={item.city.title}
-                                district={item.district.title} 
+                                <PropertiesCard
+                                    id={item.id}
+                                    key={item.id}
+                                    title={item.title}
+                                    cover={item.cover}
+                                    price={item.price.formatted}
+                                    company={item.company.title}
+                                    type={item.type.title}
+                                    city={item.city.title}
+                                    district={item.district.title}
                                 />
                             ))}
                         </div>

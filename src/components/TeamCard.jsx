@@ -7,9 +7,9 @@ import grayMail from "../assets/gray-mail.png"
 export function TeamCard({name , role , email , phone , code , page}) {
     return (
         <div className="flex flex-col relative items-center justify-center m-3.75 border border-[#dedede] max-[992px]:my-3.75 max-[992px]:mx-0 max-[992px]:w-full rounded-lg pt-8.75 p-3.75 w-[22%]">
-            <div className="absolute w-4 h-4 top-6 right-4">
+            {page !== "companiesDetail" && <div className="absolute w-4 h-4 top-6 right-4">
                 <img src={verticalMenu} alt="" />
-            </div>
+            </div>}
             <div className="text-center">
                 <img className="w-20 h-20 rounded-full mb-5" src={by} alt="" />
             </div>
