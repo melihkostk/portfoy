@@ -4,13 +4,13 @@ import folder from "../assets/folder.png"
 import defaultImg from "../assets/default-property.jpg"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
-import { FeatureCard } from "../components/FeatureCard"
 import { useEffect, useState } from "react"
 import { getDetails } from "../services/propertyDetails"
 import { useParams } from "react-router-dom"
 import location from "../assets/gray-location.png"
 import building from "../assets/building.png"
 import calendar from "../assets/calendar.png"
+import { FeatureCard } from "../components/featureCard"
 
 export function PropertiesDetail({ loged }) {
 

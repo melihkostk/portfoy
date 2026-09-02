@@ -296,7 +296,7 @@ export function Home({ loged , news }) {
           </div>
           <div className='flex items-start overflow-hidden -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
             {news.map(item => (
-              <NewsCard key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} />
+              <NewsCard key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
             ))}
           </div>
         </div>

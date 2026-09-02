@@ -16,7 +16,7 @@ export function News({ loged , news }) {
             <div className="w-full max-w-[90%]">
                 <div className="flex flex-wrap -mx-5">
                     {news.map(item => (
-                        <NewsCard key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} />
+                        <NewsCard key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
                     ))}
                 </div>
             </div>
