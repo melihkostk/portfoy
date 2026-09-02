@@ -37,7 +37,6 @@ export const getCompanyProposals = async () => {
 
 export const getSubscriptions = async () => {
     const response = await api.get("/auth/company/subscriptions");
-    console.log(response.data.data)
     return response.data.data
 }
 

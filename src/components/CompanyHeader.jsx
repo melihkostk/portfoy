@@ -3,13 +3,13 @@ import { Link } from "react-router-dom"
 import { getCompanyInfo } from "../services/myCompanyApi"
 import { useEffect, useState } from "react"
 
-export function CompanyHeader({page}) {
+export function CompanyHeader({ page, id }) {
 
-    const [companyInfo , setCompanyInfo] = useState([])
+    const [companyInfo, setCompanyInfo] = useState([])
 
     useEffect(() => {
         getCompanyInfo().then(setCompanyInfo);
-    },[])
+    }, [])
 
     return (
         <div style={{ backgroundImage: `url(${bgImage})` }} className="w-full bg-cover bg-center pt-7.5 flex justify-center">
@@ -47,28 +47,42 @@ export function CompanyHeader({page}) {
                 </div>
                 <div className="flex justify-between">
                     <ul className="flex gap-2.5 items-end max-w-full overflow-auto">
-                        <li className={`${page === "company" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                        {page !== "companyDetail" && <li className={`${page === "company" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company"}>Portföy</Link>
-                        </li>
-                        <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                        </li>}
+                        {page === "companyDetail" &&
+                            <li className={`${page === "company" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                                <Link to={`/companies/${id}`}>Portföy</Link>
+                            </li>}
+                        {page !== "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company/team"}>Ekip</Link>
-                        </li>
-                        <li className={`${page === "location" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                        </li>}
+                        {page === "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                            <Link to={`/companies/${id}/team`}>Ekip</Link>
+                        </li>}
+                        {page !== "companyDetail" && <li className={`${page === "location" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company/contacts"}>Konum & İletişim</Link>
-                        </li>
-                        <li className={`${page === "customers" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
-                            <Link to={"/company/customers"}>Müşteriler</Link>
-                        </li>
-                        <li className={`${page === "proposals" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
-                            <Link to={"/company/proposals"}>Teklifler</Link>
-                        </li>
+                        </li>}
+                        {page === "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                            <Link to={`/companies/${id}/contacts`}>Konum & İletişim</Link>
+                        </li>}
+                        {page !== "companyDetail" && (
+                            <>
+                                <li className={`${page === "customers" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                                    <Link to={"/company/customers"}>Müşteriler</Link>
+                                </li>
+                                <li className={`${page === "proposals" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                                    <Link to={"/company/proposals"}>Teklifler</Link>
+                                </li>
+                            </>
+                        )}
                     </ul>
-                    <div className="flex items-center gap-2.5 -mt-12 max-[1005px]:hidden">
+                    {page !== "companyDetail" && <div className="flex items-center gap-2.5 -mt-12 max-[1005px]:hidden">
                         <Link to={"/company/subscription"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">Aboneliği Yönet</Link>
                         <Link to={"/company/summary"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">Firma özeti</Link>
                         <Link to={"/company/edit"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">Firma profilini düzenle</Link>
                         <Link to={"/company/settings"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">Firma tercihleri</Link>
-                    </div>
+                    </div>}
                 </div>
             </div>
         </div>

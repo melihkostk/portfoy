@@ -1,9 +1,22 @@
+import { useState } from "react"
 import { AppLinks } from "../components/AppLinks"
 import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
 
 export function Edit({loged}) {
+
+    const [name , setName] = useState("");
+    const [type , setType] = useState("");
+    const [centralNumber , setCentralNumber] = useState("");
+    const [taxNumber , setTaxNumber] = useState("");
+    const [email , setEmail] = useState("");
+    const [website , setWebsite] = useState("");
+    const [phone , setPhone] = useState("");
+    const [address ,setAddress] = useState("");
+    const [taxOffice , setTaxOffice] = useState("");
+    const [tradeName , setTradeName] = useState("");
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -20,11 +33,11 @@ export function Edit({loged}) {
                         <div className="flex flex-wrap justify-between max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0 ">
                                 <label className="text-[#212529]" htmlFor="">Firma Adı</label>
-                                <input className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" value="Burak Pigasoft" placeholder="Firma Adı" />
+                                <input value={name} onChange={(e) => setName(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Firma Adı" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Firma Tipi</label>
-                                <input className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" value="Pazarlama Firması" placeholder="Firma Tipi" />
+                                <input value={type} onChange={(e) => setType(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Firma Tipi" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Vergi Levhası (PDF)</label>
@@ -33,7 +46,7 @@ export function Edit({loged}) {
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Vergi Numarası</label>
-                                <input className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" value="0000000" placeholder="Vergi Numarası" />
+                                <input value={taxNumber} onChange={(e) => setTaxNumber(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="number" placeholder="Vergi Numarası" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Ticaret Odası Faaliyet Belgesi (PDF)</label>
@@ -42,7 +55,7 @@ export function Edit({loged}) {
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Mersis Numarası</label>
-                                <input className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" value="1111115" placeholder="Mersis Numarası" />
+                                <input value={centralNumber} onChange={(e) => setCentralNumber(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="number" placeholder="Mersis Numarası" />
                             </div>
                         </div>
                     </div>
@@ -51,7 +64,7 @@ export function Edit({loged}) {
                         <div className="flex flex-wrap justify-between max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">E-Posta</label>
-                                <input className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" value="loos.katya@yandex.ru" placeholder="E-Posta" />
+                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="E-Posta" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Telefon</label>
@@ -62,12 +75,12 @@ export function Edit({loged}) {
                                         <option value="">(971)</option>
                                         <option value="">(01)</option>
                                     </select>
-                                    <input className="px-3 py-1.5 w-full border border-[#D9D9D9] rounded-lg" type="text" value="(553) 300 68 25" placeholder="Mersis Numarası" />
+                                    <input value={phone} onChange={(e) => setPhone(e.target.value)} className="px-3 py-1.5 w-full border border-[#D9D9D9] rounded-lg" type="text" placeholder="Mersis Numarası" />
                                 </div>
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Website</label>
-                                <input className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" value="http://www.burak.com" placeholder="Website" />
+                                <input value={website} onChange={(e) => setWebsite(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="email" placeholder="Website" />
                             </div>
                         </div>
                     </div>
@@ -76,15 +89,15 @@ export function Edit({loged}) {
                         <div className="flex max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Ticari Ünvan</label>
-                                <input className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" value="“Delete”" placeholder="Ticari Ünvan" />
+                                <input value={tradeName} onChange={(e) => setTradeName(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text"  placeholder="Ticari Ünvan" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Vergi Dairesi</label>
-                                <input className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" value="44" placeholder="Vergi Dairesi" />
+                                <input value={taxOffice} onChange={(e) => setTaxOffice(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Vergi Dairesi" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Firma Adresi</label>
-                                <input className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" value="2" placeholder="Firma Adresi" />
+                                <input value={address} onChange={(e) => setAddress(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Firma Adresi" />
                             </div>
                         </div>
                     </div>
