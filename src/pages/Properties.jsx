@@ -39,10 +39,10 @@ export function Properties({ loged }) {
                     </h1>
                     <div className="flex items-center gap-5">
                         <div className="flex items-center gap-1.25">
-                            <button onClick={() => setFlexDirection("")} className="w-9.5 h-9.5 rounded-lg bg-[#F8F8F8] cursor-pointer flex items-center justify-center">
+                            <button onClick={() => setFlexDirection("")} className={`${flexDirection === "flex-col" ? "opacity-80 bg-white border border-[#eee]" : ""} w-9.5 h-9.5 rounded-lg bg-[#F8F8F8] cursor-pointer flex items-center justify-center`}>
                                 <img className="w-7 h-7" src={grid} alt="" />
                             </button>
-                            <button onClick={() => setFlexDirection("flex-col")} className="w-9.5 h-9.5 cursor-pointer rounded-lg border border-[#D9D9D9] flex items-center justify-center">
+                            <button onClick={() => setFlexDirection("flex-col")} className={` ${flexDirection === "flex-col" ? "" : "opacity-80 bg-white border border-[#eee]"} w-9.5 h-9.5 bg-[#F8F8F8] cursor-pointer rounded-lg flex items-center justify-center`}>
                                 <img className="w-4 h-4" src={flex} alt="" />
                             </button>
                         </div>
