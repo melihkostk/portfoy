@@ -99,7 +99,7 @@ export function PropertiesDetail({ loged }) {
                             )}
                         </div>
                         <div className="flex gap-2.5 flex-wrap">
-                            <button className="bg-[#27C5D2] w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                            <button className={` ${details.in_wishlist ? "bg-[#27c5d2]" : "bg-[#f1f1f1]"} w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out`}>
                                 <img className="w-5 h-5" src={heart} alt="" />
                             </button>
                             <button className="uppercase text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 text-sm rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">

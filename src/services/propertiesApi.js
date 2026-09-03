@@ -11,6 +11,6 @@ export const getDiscountedProperties = async () => {
 };
 
 export const getAllProperties = async () => {
-    const response = await api.get("/properties");
-    return response.data.data
+  const response = await api.get("/properties");
+  return response.data.data
 }

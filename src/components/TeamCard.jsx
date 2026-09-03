@@ -3,12 +3,27 @@ import verticalMenu from "../assets/menu-vertical.png"
 import grayPhone from "../assets/gray-phone.png"
 import wp from "../assets/wp.png"
 import grayMail from "../assets/gray-mail.png"
+import { useState } from "react"
 
-export function TeamCard({name , role , email , phone , code , page}) {
+export function TeamCard({ name, role, email, phone, code, page }) {
+
+    const [optionsShown , setOptionsShown] = useState(false);
+
     return (
-        <div className="flex flex-col relative items-center justify-center m-3.75 border border-[#dedede] max-[992px]:my-3.75 max-[992px]:mx-0 max-[992px]:w-full rounded-lg pt-8.75 p-3.75 w-[22%]">
-            {page !== "companiesDetail" && <div className="absolute w-4 h-4 top-6 right-4">
+        <div className="flex flex-col relative items-center justify-start m-3.75 border border-[#dedede] max-[992px]:my-3.75 max-[992px]:mx-0 max-[992px]:w-full rounded-lg pt-8.75 p-3.75 w-[22%]">
+            {page !== "companiesDetail" && <div onClick={() => setOptionsShown(prev => !prev)} className="absolute w-4 h-4 top-6 right-4 cursor-pointer">
                 <img src={verticalMenu} alt="" />
+            </div>}
+            {optionsShown && <div className="absolute bg-white rounded-lg border top-12 -right-20 border-[#f8f8f8] py-2 shadow-[0_0_30px_rgba(0,0,0,0.1)] z-50">
+                <div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
+                    <p className="text-sm">Bu kişinin hesabını pasife al</p>
+                </div>
+                {<div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
+                    <p className="text-sm">Düzenle</p>
+                </div>}
+                <div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
+                    <p className="text-sm">Yetkileri düzenleyin</p>
+                </div>
             </div>}
             <div className="text-center">
                 <img className="w-20 h-20 rounded-full mb-5" src={by} alt="" />
