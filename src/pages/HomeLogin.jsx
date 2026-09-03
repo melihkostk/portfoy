@@ -7,12 +7,15 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { getRecentlyProperties } from "../services/propertiesApi"
 import { getDiscountedProperties } from "../services/propertiesApi"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 export function HomeLogin({ loged, news }) {
 
     const [recentlyProperties, setRecentlyProperties] = useState([])
     const [discountedProperties, setDiscountedProperties] = useState([])
+
+    const discountedScrollRef = useRef(null)
+    const recentlyScrollRef = useRef(null)
 
     useEffect(() => {
         getRecentlyProperties().then(setRecentlyProperties)
@@ -21,6 +24,13 @@ export function HomeLogin({ loged, news }) {
     useEffect(() => {
         getDiscountedProperties().then(setDiscountedProperties)
     }, [])
+
+    function scrollToDot(ref, index, dotCount) {
+        const el = ref.current
+        if (!el) return
+        const maxScroll = el.scrollWidth - el.clientWidth
+        el.scrollTo({ left: (maxScroll / (dotCount - 1)) * index, behavior: "smooth" })
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -36,7 +46,7 @@ export function HomeLogin({ loged, news }) {
                         <Link className="text-[#B7B9BF] text-xl hover:text-[#45443F] transition-colors duration-300 ease-in-out" to={"/properties"}>Tümünü Gör</Link>
                     </div>
                     <div>
-                        <div className="flex overflow-auto scrollbar-none">
+                        <div ref={discountedScrollRef} className="flex overflow-auto scrollbar-none">
                             {discountedProperties.map(item => (
                                 <PropertiesCard
                                     id={item.id}
@@ -52,10 +62,13 @@ export function HomeLogin({ loged, news }) {
                             ))}
                         </div>
                         <div className="flex justify-center py-7.5 w-full gap-2.5">
-                            <button className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
-                            <button className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
-                            <button className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
-                            <button className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
+                            {[0, 1, 2, 3].map(index => (
+                                <button
+                                    key={index}
+                                    onClick={() => scrollToDot(discountedScrollRef, index, 4)}
+                                    className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"
+                                ></button>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -67,7 +80,7 @@ export function HomeLogin({ loged, news }) {
                         <Link className="text-[#B7B9BF] text-xl hover:text-[#45443F] transition-colors duration-300 ease-in-out" to={"/properties"}>Tümünü Gör</Link>
                     </div>
                     <div>
-                        <div className="flex overflow-auto py-6.25 scrollbar-none">
+                        <div ref={recentlyScrollRef} className="flex overflow-auto py-6.25 scrollbar-none">
                             {recentlyProperties.map(item => (
                                 <PropertiesCard
                                     id={item.id}
@@ -83,10 +96,13 @@ export function HomeLogin({ loged, news }) {
                             ))}
                         </div>
                         <div className="flex justify-center py-7.5 w-full gap-2.5">
-                            <button className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
-                            <button className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
-                            <button className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
-                            <button className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"></button>
+                            {[0, 1, 2, 3].map(index => (
+                                <button
+                                    key={index}
+                                    onClick={() => scrollToDot(recentlyScrollRef, index, 4)}
+                                    className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"
+                                ></button>
+                            ))}
                         </div>
                     </div>
                 </div>
