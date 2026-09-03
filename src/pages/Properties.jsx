@@ -16,6 +16,8 @@ export function Properties({ loged }) {
         getAllProperties().then(setProperties)
     }, [])
 
+    const [flexDirection , setFlexDirection] =  useState("");
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -37,10 +39,10 @@ export function Properties({ loged }) {
                     </h1>
                     <div className="flex items-center gap-5">
                         <div className="flex items-center gap-1.25">
-                            <button className="w-9.5 h-9.5 rounded-lg bg-[#F8F8F8] flex items-center justify-center">
+                            <button onClick={() => setFlexDirection("")} className="w-9.5 h-9.5 rounded-lg bg-[#F8F8F8] cursor-pointer flex items-center justify-center">
                                 <img className="w-7 h-7" src={grid} alt="" />
                             </button>
-                            <button className="w-9.5 h-9.5 rounded-lg border border-[#D9D9D9] flex items-center justify-center">
+                            <button onClick={() => setFlexDirection("flex-col")} className="w-9.5 h-9.5 cursor-pointer rounded-lg border border-[#D9D9D9] flex items-center justify-center">
                                 <img className="w-4 h-4" src={flex} alt="" />
                             </button>
                         </div>
@@ -55,7 +57,7 @@ export function Properties({ loged }) {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-wrap max-[992px]:flex-col items-center justify-start -mx-3.75 max-[992px]:m-0">
+                <div className={`flex ${flexDirection === "flex-col" ? "flex-col" : ""} flex-wrap max-[992px]:flex-col items-center justify-start -mx-3.75 max-[992px]:m-0`}>
                     {properties.map(item => (
                         <PropertiesCard
                             key={item.id}
@@ -68,6 +70,7 @@ export function Properties({ loged }) {
                             district={item.district.title}
                             id={item.id}
                             page="properties"
+                            flexDirection={flexDirection}
                         />
                     ))}
                 </div>
