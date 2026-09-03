@@ -4,7 +4,8 @@ import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getAllCompanies } from "../services/companiesApi"
+import { filterCompany, getAllCompanies, getCompanyTypes } from "../services/companiesApi"
+import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
 
 export function Companies({ loged }) {
 
@@ -13,6 +14,58 @@ export function Companies({ loged }) {
     useEffect(() => {
         getAllCompanies().then(setCompanies)
     }, [])
+
+    const [type, setType] = useState([]);
+    const [selectedType , setSelectedType] = useState("");
+
+    useEffect(() => {
+        getCompanyTypes().then(setType)
+    }, [])
+
+    const [countries, setCountries] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState("")
+
+    useEffect(() => {
+        getAllCountries().then(setCountries)
+    }, [])
+
+    const [cities, setCities] = useState([]);
+    const [selectedCity, setSelectedCity] = useState("");
+
+    useEffect(() => {
+        if (!selectedCountry) {
+            setCities([]);
+            return;
+        }
+        getAllCities(selectedCountry).then(setCities)
+    }, [selectedCountry])
+
+    const [district , setDistrict] = useState([]);
+    const [selectedDistrict , setSelectedDistrict] = useState("")
+
+    useEffect(() => {
+        if(!selectedCity){
+            setDistrict([]);
+            return
+        }
+        getAllDistricts(selectedCity).then(setDistrict)
+
+    }, [selectedCity])
+
+    const [streets , setStreets] = useState([]);
+    const [selectedStreet , setSelectedStreet] = useState("")
+
+    useEffect(() => {
+        if(!selectedDistrict){
+            setStreets([])
+            return
+        }
+        getAllStreets(selectedDistrict).then(setStreets)
+    }, [selectedDistrict])
+
+    const handleFilterCompany = (type, country, city, district) => {
+        filterCompany(type, country, city, district).then(setCompanies)
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -30,7 +83,24 @@ export function Companies({ loged }) {
                             Üye firmaların yetkililerin iletişim bilgilerini ve yetkili oldukları proje ve gayrimenkulleri buradan görebilirsiniz.
                         </p>
                     </div>
-                    <CompanyFilter />
+                    <CompanyFilter
+                        type={type}
+                        selectedType={selectedType}
+                        setSelectedType={setSelectedType}
+                        countries={countries}
+                        selectedCountry={selectedCountry}
+                        selectedCity={selectedCity}
+                        selectedDistrict={selectedDistrict}
+                        setSelectedCountry={setSelectedCountry}
+                        cities={cities}
+                        setSelectedCity={setSelectedCity}
+                        district={district}
+                        setSelectedDistrict={setSelectedDistrict}
+                        streets={streets}
+                        setSelectedStreet={setSelectedStreet}
+                        filterCompany={handleFilterCompany}
+
+                    />
                 </div>
             </div>
             <div className="w-full max-w-[90%]">

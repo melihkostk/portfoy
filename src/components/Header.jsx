@@ -191,7 +191,7 @@ export function Header({ loged }) {
                                     </li>
                                     <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
-                                        <Link to={"/offers"} className="text-white text-sm truncate">
+                                        <Link to={"/offers/send"} className="text-white text-sm truncate">
                                             Müşteriye gönderilen teklifler
                                         </Link>
                                     </li>
