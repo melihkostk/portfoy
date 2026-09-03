@@ -10,7 +10,7 @@ export function PropertiesCard(props) {
             <div className={`w-[50%] ${props.flexDirection ==="flex-col" ? "aspect-video" : ""} max-[992px]:w-full max-[992px]:mb-3.75 h-full ${props.page === "myProperties" ? "aspect-video" : "aspect-square" }`}>
                 <img className={`rounded-[10px] w-full ${props.flexDirection ==="flex-col" ? "aspect-video" : ""} h-full object-cover aspect-auto max-[992px]:aspect-video`} src={props.cover} alt="" />
             </div>
-            <div className="pl-5 w-[50%]">
+            <div className={`pl-5 w-[50%]`}>
                 <Link to={`/properties/${props.id}`} className="min-h-12.5 line-clamp-2 overflow-hidden text-black font-semibold hover:text-[#FFCA64] transition-colors duration-300 ease-in-out">{props.title}</Link>
                 <ul className="text-[11px] text-[#B7BFB9] font-medium flex flex-wrap gap-2.5 my-2.5">
                     <li className="w-full flex items-center gap-1">

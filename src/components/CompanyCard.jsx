@@ -14,8 +14,12 @@ export function CompanyCard({name , type , location , logo , id}) {
                     {type}
                 </p>
             </div>
-            <div className="text-center bg-[#e8e8e8] py-1.5 px-2 rounded-sm">
-                <p className="text-xs font-medium">{location}</p>
+            <div>
+                <ul className="text-xs font-medium flex items-center justify-center flex-wrap gap-2.5">
+                    {location.map(item => (
+                        <li className="py-1.5 px-2 text-center rounded-sm bg-[#e8e8e8]">{item}</li>
+                    ))}
+                </ul>
             </div>
             <Link to={`/companies/${id}`} className="text-center mt-7.5 text-[#626262] text-sm font-medium bg-[#e8e8e8] hover:text-white hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out w-full py-2.5 rounded-lg uppercase" href="">Profili Görüntüle</Link>
         </div>
