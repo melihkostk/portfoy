@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import person from "../assets/person.png"
 import arrowRight from "../assets/arrow-right.png"
 import plus from "../assets/plus.png"
-import React from "react"
+import React, { useState } from "react"
 import notification from "../assets/notification.png"
 import folder from "../assets/folder.png"
 import shop from "../assets/shop.png"
@@ -23,9 +23,17 @@ export function Header({ loged }) {
     const [sidebarShown, setSidebarShown] = React.useState(false)
     const [offerModelShown, setOfferModalShown] = React.useState(false)
     const [notifications, setNotifications] = React.useState([])
+    const [number, setNumber] = useState(0);
 
     React.useEffect(() => {
         getAllNotifications().then(setNotifications)
+    }, [])
+
+    React.useEffect(() => {
+        const userData = localStorage.getItem("user");
+        if (!userData) return;
+        const user = JSON.parse(userData);
+        setNumber(user?.data?.unread_notifications_count ?? 0);
     }, [])
 
     return (
@@ -128,7 +136,7 @@ export function Header({ loged }) {
                             <img className="w-6 h-6" src={notification} alt="" />
                         </button>
                         <div className="absolute -top-1 -right-1 text-[10px] text-[#858585] bg-[#FFCA64] rounded-full w-5 h-5 flex items-center justify-center font-extrabold">
-                            123
+                            {number}
                         </div>
                         {notShown && <div className="absolute z-50 w-75 rounded-lg bg-white right-0 shadow-[0_0_30px_rgba(0,0,0,0.1)] pb-3.75">
                             <div className="bg-[#27C5D2] p-7.5 rounded-t-lg">
