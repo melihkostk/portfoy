@@ -5,7 +5,7 @@ import flex from "../assets/flex.png"
 import { PropertiesCard } from "../components/PropertiesCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
-import { getAllProperties } from "../services/propertiesApi"
+import { getAllProperties, getSortingOptions } from "../services/propertiesApi"
 import { useEffect, useState } from "react"
 
 export function Properties({ loged }) {
@@ -16,7 +16,14 @@ export function Properties({ loged }) {
         getAllProperties().then(setProperties)
     }, [])
 
-    const [flexDirection , setFlexDirection] =  useState("");
+    const [flexDirection, setFlexDirection] = useState("");
+
+    const [sortingOptions, setSortingOptions] = useState([]);
+    const [selectedSorting , setSelectingOption] = useState("");
+
+    useEffect(() => {
+        getSortingOptions().then(setSortingOptions)
+    }, []);
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -47,12 +54,10 @@ export function Properties({ loged }) {
                             </button>
                         </div>
                         <div>
-                            <select className="border border-[#D9D9D9] h-9.5 w-full rounded-lg py-1.5 px-3 text-[#212529]" name="" id="">
-                                <option value="">Varsayılan Sıralama</option>
-                                <option value="">Oluşturma Tarihine Göre (Eskiden Yeniye)</option>
-                                <option value="">Oluşturma Tarihine Göre (Yeniden Eskiye)</option>
-                                <option value="">Fiyata Göre (Ucuzdan Pahalıya)</option>
-                                <option value="">Fiyata Göre (Pahalıdan Ucuza)</option>
+                            <select value={selectedSorting} onChange={(e) => setSelectingOption(e.target.value)} className="border border-[#D9D9D9] h-9.5 w-full rounded-lg py-1.5 px-3 text-[#212529]" name="" id="">
+                                {sortingOptions.map(item => (
+                                    <option value={item.key} key={item.key}>{item.title}</option>
+                                ))}
                             </select>
                         </div>
                     </div>

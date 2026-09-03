@@ -14,3 +14,8 @@ export const getAllProperties = async () => {
   const response = await api.get("/properties");
   return response.data.data
 }
+
+export const getSortingOptions = async () => {
+  const response = await api.get("/properties/sort-options");
+  return response.data.data;
+}
