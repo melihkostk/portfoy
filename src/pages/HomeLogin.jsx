@@ -28,7 +28,7 @@ export function HomeLogin({ loged, news }) {
     function scrollToDot(ref, index, dotCount) {
         const el = ref.current
         if (!el) return
-        const maxScroll = el.scrollWidth - el.clientWidth
+        const maxScroll = el.scrollWidth - el.clientWidth + 800
         el.scrollTo({ left: (maxScroll / (dotCount - 1)) * index, behavior: "smooth" })
     }
 
