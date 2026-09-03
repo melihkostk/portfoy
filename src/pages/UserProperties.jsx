@@ -3,8 +3,17 @@ import { PropertiesCard } from "../components/PropertiesCard"
 import { Sidebar } from "../components/Sidebar"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { getUserProperties } from "../services/profileApi"
+import { useEffect, useState } from "react"
 
-export function UserProperties({loged}) {
+export function UserProperties({ loged }) {
+
+    const [userProperties, setUserProperties] = useState([]);
+
+    useEffect(() => {
+        getUserProperties().then(setUserProperties)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -21,39 +30,21 @@ export function UserProperties({loged}) {
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] font-medium mb-2">İlanlarım</h2>
                         <div>
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
-                            <PropertiesCard page="myProperties" />
+                            {userProperties.map(item => (
+                                <PropertiesCard
+                                    key={item.id}
+                                    page="myProperties"
+                                    id={item.id}
+                                    title={item.title}
+                                    cover={item.cover}
+                                    price={item.price.formatted}
+                                    company={item.company.title}
+                                    type={item.type.title}
+                                    city={item.city.title}
+                                    district={item.district.title}
+
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>

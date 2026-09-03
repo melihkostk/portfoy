@@ -3,8 +3,27 @@ import { Sidebar } from "../components/Sidebar"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { OfferCard } from "../components/OfferCard"
+import { getReceivedOffers, getSendedOffers } from "../services/profileApi"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 
-export function Offers({loged}) {
+export function Offers({ loged }) {
+
+    const { type } = useParams();
+
+    const [receivedOffers, setReceivedOffers] = useState([]);
+
+    useEffect(() => {
+        getReceivedOffers().then(setReceivedOffers)
+    }, [])
+
+    const [sendedOffers , setSendedOffers] = useState([]);
+
+    useEffect(() => {
+        getSendedOffers().then(setSendedOffers)
+    }, [])
+
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -19,10 +38,10 @@ export function Offers({loged}) {
                         <Sidebar />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
-                        <h2 className="text-[32px] text-[#212529] font-medium mb-2">Aldığım teklifler</h2>
-                        <div className="p-4 mb-4 bg-[#fff3cd] rounded-lg">
+                        <h2 className="text-[32px] text-[#212529] font-medium mb-2">{type === "received" ? "Aldığım teklifler" : "Gönderdiğim teklifler" }</h2>
+                        {type === "received" && <div className="p-4 mb-4 bg-[#fff3cd] rounded-lg">
                             <p className="text-[#664d03]">Bu sayfada sadece sizin oluşturduğunuz ilanların tekliflerini görüntüleyebilirsiniz.</p>
-                        </div>
+                        </div>}
                         <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
                             <table className="w-full">
                                 <thead>
@@ -37,22 +56,30 @@ export function Offers({loged}) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
-                                    <OfferCard />
+                                    {type === "received" &&
+                                        receivedOffers.map(item => (
+                                            <OfferCard
+                                                key={item.id}
+                                                title={item.property.title}
+                                                price={item.property.primary.formatted}
+                                                offered_price={item.offered_price.formatted}
+                                                status={item.status.title}
+                                                created_at={item.created_at}
+                                            />
+                                        ))
+                                    }
+                                    {type === "send" &&
+                                        sendedOffers.map(item => (
+                                            <OfferCard
+                                                key={item.id}
+                                                title={item.property.title}
+                                                price={item.property.primary.formatted}
+                                                offered_price={item.offered_price.formatted}
+                                                status={item.status.title}
+                                                created_at={item.created_at}
+                                            />
+                                        ))
+                                    }
                                 </tbody>
                             </table>
                         </div>

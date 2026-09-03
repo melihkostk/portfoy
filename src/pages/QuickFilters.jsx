@@ -3,8 +3,17 @@ import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { FilterCard } from "../components/FilterCard"
+import { getQuickFilters } from "../services/quickFiltersApi"
+import { useEffect, useState } from "react"
 
-export function QuickFilters({loged}) {
+export function QuickFilters({ loged }) {
+
+    const [quickFilters, setQuickFilters] = useState([]);
+
+    useEffect(() => {
+        getQuickFilters().then(setQuickFilters)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -31,18 +40,14 @@ export function QuickFilters({loged}) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <FilterCard />
-                                    <FilterCard />
-                                    <FilterCard />
-                                    <FilterCard />
-                                    <FilterCard />
-                                    <FilterCard />
-                                    <FilterCard />
-                                    <FilterCard />
-                                    <FilterCard />
-                                    <FilterCard />
-                                    <FilterCard />
-                                    <FilterCard />
+                                    {quickFilters.map(item => (
+                                        <FilterCard
+                                            key={item.id}
+                                            title={item.title}
+                                            created_at={item.created_at}
+                                            notify={item.notify}
+                                        />
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

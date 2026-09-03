@@ -110,12 +110,12 @@ export function PropertiesDetail({ loged }) {
                             </button>
                         </div>
                         <div className="mt-10">
-                            <a className="text-[#767676] text-sm font-semibold cursor-pointer hover:text-black transition-colors duration-300 ease-in-out" href="">İlanın detaylı özelliklerini inceleyin</a>
+                            <a className="text-[#767676] text-sm font-semibold cursor-pointer hover:text-black transition-colors duration-300 ease-in-out" href="#moreDetail">İlanın detaylı özelliklerini inceleyin</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="w-full max-w-[90%] mt-12.5">
+            <div id="moreDetail" className="w-full max-w-[90%] mt-12.5">
                 <div className="flex">
                     <div className="w-[30%]">
                         <div className="mb-7.5">

@@ -95,7 +95,7 @@ function App() {
         <Route path="/notifications" element={<Notifications loged={loged} />} />
         <Route path="/quick-filters" element={<QuickFilters loged={loged} />} />
         <Route path="/wishlist" element={<Wishlist loged={loged} />} />
-        <Route path="/offers" element={<Offers loged={loged} />} />
+        <Route path="/offers/:type" element={<Offers loged={loged} />} />
         <Route path="/auth/properties" element={<UserProperties loged={loged} />} />
         <Route path="/support" element={<Support loged={loged} />} />
         <Route path="/company" element={<Company loged={loged} />} />

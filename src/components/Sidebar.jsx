@@ -59,14 +59,14 @@ export function Sidebar() {
                                 <div className="pl-5 w-full">
                                     <ul>
                                         <li className="rounded-lg hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out">
-                                            <Link to={"/offers"} className="flex items-center py-2 px-2.5 text-sm text-[#5f5f5f] hover:text-white transition-colors duration-300 ease-in-out">
+                                            <Link to="/offers/received" className="flex items-center py-2 px-2.5 text-sm text-[#5f5f5f] hover:text-white transition-colors duration-300 ease-in-out">
                                                 <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                                                 Aldığım teklifler
                                             </Link>
                                         </li>
 
                                         <li className="rounded-lg hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out">
-                                            <Link to={"/offers"} className="flex items-center py-2 px-2.5 text-sm text-[#5f5f5f] hover:text-white transition-colors duration-300 ease-in-out">
+                                            <Link to="/offers/send" className="flex items-center py-2 px-2.5 text-sm text-[#5f5f5f] hover:text-white transition-colors duration-300 ease-in-out">
                                                 <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                                                 Gönderdiğim teklifler
                                             </Link>

@@ -6,6 +6,7 @@ import { Footer } from "../components/Footer"
 import { Link } from "react-router-dom"
 
 export function Account({loged}) {
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -80,7 +81,7 @@ export function Account({loged}) {
                                     </div>
                                     <div className="pl-3 w-1/2">
                                         <label htmlFor="">E-Posta</label>
-                                        <input className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="mail" value={"admin@pigasoft.com"} />
+                                        <input disabled className="block border border-[#D9D9D9] bg-[#e9ecef] w-full rounded-lg py-1.5 px-3" type="mail" value={"admin@pigasoft.com"} />
                                     </div>
                                 </div>
                                 <div>

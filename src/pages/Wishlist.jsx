@@ -4,8 +4,17 @@ import { Footer } from "../components/Footer"
 import { AppLinks } from "../components/AppLinks"
 import { CompanyFilter } from "../components/CompanyFilter"
 import { PropertiesCard } from "../components/PropertiesCard"
+import { getWishlist } from "../services/profileApi"
+import { useState } from "react"
 
-export function Wishlist({loged}) {
+export function Wishlist({ loged }) {
+
+    const [wishlist, setWishlist] = useState([]);
+
+    useState(() => {
+        getWishlist().then(setWishlist)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -44,14 +53,22 @@ export function Wishlist({loged}) {
                             <CompanyFilter />
                         </div>
                         <div className="flex flex-wrap justify-between -mx-3.75">
-                            <PropertiesCard page="wishlist" />
-                            <PropertiesCard page="wishlist" />
-                            <PropertiesCard page="wishlist" />
-                            <PropertiesCard page="wishlist" />
-                            <PropertiesCard page="wishlist" />
-                            <PropertiesCard page="wishlist" />
-                            <PropertiesCard page="wishlist" />
-                            <PropertiesCard page="wishlist" />
+                            {wishlist.length > 0 &&
+                                wishlist.map(item => (
+                                    <PropertiesCard
+                                        key={item.id}
+                                        page="wishlist"
+                                        id={item.id}
+                                        title={item.title}
+                                        cover={item.cover}
+                                        price={item.price.formatted}
+                                        company={item.company.title}
+                                        type={item.type.title}
+                                        city={item.city.title}
+                                        district={item.district.title}
+                                    />
+                                ))
+                            }
                         </div>
                     </div>
                 </div>

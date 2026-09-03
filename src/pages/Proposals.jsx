@@ -3,8 +3,17 @@ import { Sidebar } from "../components/Sidebar"
 import { ProposalCard } from "../components/ProposalCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { getProposals } from "../services/profileApi"
+import { useEffect, useState } from "react"
 
-export function Proposals({loged}) {
+export function Proposals({ loged }) {
+
+    const [usersProposal, setUsersProposals] = useState([]);
+
+    useEffect(() => {
+        getProposals().then(setUsersProposals)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -33,18 +42,18 @@ export function Proposals({loged}) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <ProposalCard />
-                                    <ProposalCard />
-                                    <ProposalCard />
-                                    <ProposalCard />
-                                    <ProposalCard />
-                                    <ProposalCard />
-                                    <ProposalCard />
-                                    <ProposalCard />
-                                    <ProposalCard />
-                                    <ProposalCard />
-                                    <ProposalCard />
-                                    <ProposalCard />
+                                    {usersProposal.map(item => (
+                                        <ProposalCard
+                                            key={item.id}
+                                            id={item.id}
+                                            code={item.code}
+                                            name={item.customer.name}
+                                            score={item.score}
+                                            status={item.status.title}
+                                            created_at={item.created_at}
+                                           
+                                        />
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
