@@ -5,7 +5,7 @@ import { LanguageSelect } from "../components/LanguageSelect"
 import { useState } from "react"
 import { loginRequest } from "../services/authApi"
 
-export function Login() {
+export function Login({ setLoged }) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -23,6 +23,7 @@ export function Login() {
             .then((data) => {
                 if (data.status !== "error") {
                     localStorage.setItem("user", JSON.stringify(data))
+                    setLoged(true)
                     navigate("/")
                 } else {
                     setError(data.message);

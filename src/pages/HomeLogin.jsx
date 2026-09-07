@@ -9,7 +9,7 @@ import { getRecentlyProperties } from "../services/propertiesApi"
 import { getDiscountedProperties } from "../services/propertiesApi"
 import { useState, useEffect, useRef } from "react"
 
-export function HomeLogin({ loged, news }) {
+export function HomeLogin({ loged, news , logOut}) {
 
     const [recentlyProperties, setRecentlyProperties] = useState([])
     const [discountedProperties, setDiscountedProperties] = useState([])
@@ -34,7 +34,7 @@ export function HomeLogin({ loged, news }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header loged={loged} />
+            <Header loged={loged} logOut={logOut} />
             <div className='w-full max-w-[90%] py-20'>
                 <h1 className='text-[35px] text-black font-medium mb-2'>İlanları Filtrele</h1>
                 <Filter />

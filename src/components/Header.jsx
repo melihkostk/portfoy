@@ -1,6 +1,6 @@
 import logo from "../assets/logo.svg"
 import whiteDownArrow from "../assets/white-down-arrow.png"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import person from "../assets/person.png"
 import arrowRight from "../assets/arrow-right.png"
 import plus from "../assets/plus.png"
@@ -14,8 +14,10 @@ import whiteMenu from "../assets/white-menu.png"
 import { MainSidebar } from "./MainSidebar"
 import { CreateOfferModel } from "./CreateOfferModal"
 import { getAllNotifications } from "../services/notificationsApi"
+import { logOut } from "../services/authApi"
 
 export function Header({ loged }) {
+
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
     const [notShown, setNotShown] = React.useState(false)
@@ -24,6 +26,7 @@ export function Header({ loged }) {
     const [offerModelShown, setOfferModalShown] = React.useState(false)
     const [notifications, setNotifications] = React.useState([])
     const [number, setNumber] = useState(0);
+    const navigate = useNavigate();
 
     React.useEffect(() => {
         getAllNotifications().then(setNotifications)
@@ -35,6 +38,19 @@ export function Header({ loged }) {
         const user = JSON.parse(userData);
         setNumber(user?.data?.unread_notifications_count ?? 0);
     }, [])
+
+    function handleLogOut() {
+        logOut().then((data => {
+            if (data.status === "success") {
+                localStorage.removeItem("user")
+                navigate('/login');
+            }
+            else {
+                return;
+            }
+        }
+        ))
+    }
 
     return (
         <div className="py-7.5 w-full max-w-[90%]">
@@ -205,7 +221,7 @@ export function Header({ loged }) {
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
                                         <Link className="text-white text-sm">Yönetim Paneli</Link>
                                     </li>
-                                    <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
+                                    <li onClick={handleLogOut} className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
                                         <span className="text-white text-sm">
                                             Çıkış Yap
