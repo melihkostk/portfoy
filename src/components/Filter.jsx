@@ -93,10 +93,10 @@ export function Filter() {
                                 <p className="font-semibold text-[13px]">Tümü</p>
                                 <img className="w-4 h-4" src={downArrow} alt="" />
                             </button>
-                            {cateFilter && <ul className="absolute w-full max-h-75 overflow-y-auto bg-white">
+                            {cateFilter && <ul className="absolute w-full max-h-75 overflow-y-auto bg-white border border-[#eee] rounded-lg p-2">
                                 <li className="w-full py-1">
                                     <div className="m-2.5 max-w-full">
-                                        <input className="text-sm w-full py-1.25 px-2.5 placeholder:text-[#838383] bg-[#f8f8f8]" type="text" placeholder="Kategorilerde arayın" />
+                                        <input className="text-sm rounded-lg w-full py-1.25 px-2.5 placeholder:text-[#838383] bg-[#f8f8f8]" type="text" placeholder="Kategorilerde arayın" />
                                     </div>
                                 </li>
                                 <li className="w-full py-1">

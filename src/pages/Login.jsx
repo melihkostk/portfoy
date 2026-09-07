@@ -3,7 +3,7 @@ import { AppLinks } from "../components/AppLinks"
 import { Link, useNavigate  } from "react-router-dom"
 import { LanguageSelect } from "../components/LanguageSelect"
 import { useState } from "react"
-
+import { loginRequest } from "../services/authApi"
 
 export function Login() {
 
@@ -14,25 +14,12 @@ export function Login() {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate ();
 
-    const user = {
-        email: email,
-        password: password,
-        locale: locale
-    }
-
     function login(e) {
         e.preventDefault();
         setError("");
         setLoading(true);
 
-        fetch("https://demo.pigasoft.com/portfoy/public/api/auth/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(user),
-        })
-            .then((res) => res.json())
+        loginRequest(email, password, locale)
             .then((data) => {
                 if (data.status !== "error") {
                     localStorage.setItem("user", JSON.stringify(data))

@@ -61,12 +61,12 @@ export function HomeLogin({ loged, news }) {
                                 />
                             ))}
                         </div>
-                        <div className="flex justify-center py-7.5 w-full gap-2.5">
+                        <div className="flex justify-center py-7.5 w-full gap-2.5 max-[992px]:hidden">
                             {[0, 1, 2, 3].map(index => (
                                 <button
                                     key={index}
                                     onClick={() => scrollToDot(discountedScrollRef, index, 4)}
-                                    className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"
+                                    className="bg-[#c2c2c2] w-3 h-3 rounded-full cursor-pointer focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"
                                 ></button>
                             ))}
                         </div>
@@ -95,12 +95,12 @@ export function HomeLogin({ loged, news }) {
                                 />
                             ))}
                         </div>
-                        <div className="flex justify-center py-7.5 w-full gap-2.5">
+                        <div className="flex justify-center py-7.5 w-full gap-2.5 max-[992px]:hidden">
                             {[0, 1, 2, 3].map(index => (
                                 <button
                                     key={index}
                                     onClick={() => scrollToDot(recentlyScrollRef, index, 4)}
-                                    className="bg-[#c2c2c2] w-3 h-3 rounded-full focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"
+                                    className="bg-[#c2c2c2] w-3 h-3 rounded-full cursor-pointer focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"
                                 ></button>
                             ))}
                         </div>
