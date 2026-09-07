@@ -44,3 +44,13 @@ export const removeInvite = async (id) => {
     const response = await api.post(`/auth/company/team/invitations/${id}/delete`);
     return response.data;
 }
+
+export const getAllRoles = async () => {
+    const response = await api.post("/front/roles");
+    return response.data.data
+}
+
+export const getAllLanguages = async () => {
+    const response = await api.get("/front/languages");
+    return response.data.data;
+}
