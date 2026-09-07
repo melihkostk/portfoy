@@ -77,3 +77,8 @@ export const addLocation = async (country_id , city_id , district_id , street_id
     });
     return response.data;
 }
+
+export const deleteAddress = async (id) => {
+    const response = await api.post(`/auth/company/locations/${id}/delete`);
+    return response.data;
+}

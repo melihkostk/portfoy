@@ -5,7 +5,7 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect } from "react"
 import { useState } from "react"
-import { addLocation, getLocation } from "../services/myCompanyApi"
+import { addLocation, deleteAddress, getLocation } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
@@ -75,6 +75,15 @@ export function Location({ loged }) {
         }))
     }
 
+    function handleDeleteLocation(id){
+        deleteAddress(id).then(data => {
+            if(data.status === "error"){
+                return
+            }
+            getLocation().then(setLocation)
+        })
+    }
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {locationMenu && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -103,11 +112,13 @@ export function Location({ loged }) {
             <div className="w-full max-w-[90%] mt-12.5">
                 {location.map(item => (
                     <LocationCard
+                        id={item.id}
                         key={item.id}
                         address={item.address}
                         country={item.country.title}
                         city={item.city.title}
                         district={item.district.title}
+                        handleDeleteLocation={handleDeleteLocation}
                     />
                 ))}
             </div>
