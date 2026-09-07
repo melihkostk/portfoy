@@ -66,3 +66,13 @@ export const getAllLanguages = async () => {
     const response = await api.get("/front/languages");
     return response.data.data;
 }
+
+export const addLocation = async (country_id , city_id , district_id , address) => {
+    const response = await api.post("/auth/company/locations/create" , {
+        country_id:country_id,
+        city_id:city_id,
+        district_id:district_id,
+        address:address
+    });
+    return response.data;
+}

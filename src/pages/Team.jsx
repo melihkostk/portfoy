@@ -9,6 +9,7 @@ import { getTeam, getAllInvitations, removeInvite, getAllRoles, getAllLanguages,
 import { ClipLoader } from "react-spinners"
 import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
+import { SuccessPopUp } from "../components/SuccessPopup"
 
 export function Team({ loged }) {
 
@@ -43,12 +44,12 @@ export function Team({ loged }) {
         getAllLanguages().then(setLanguages);
     }, [])
 
-    const [name , setName] = useState("")
-    const [email , setEmail] = useState("")
-    const [number , setNumber] = useState("")
-    const [lang , setLang] = useState("")
-    const [role , setRole] = useState("")
-    const [code , setCode] = useState("")
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [number, setNumber] = useState("")
+    const [lang, setLang] = useState("")
+    const [role, setRole] = useState("")
+    const [code, setCode] = useState("")
 
     function handleDelete(id) {
         removeInvite(id).then((data) => {
@@ -59,12 +60,13 @@ export function Team({ loged }) {
             }
             getAllInvitations().then(setInvitations)
             setSuccessPopUp(true)
+            setError("Davetiye kodu başarıyla silindi")
         })
     }
 
     function handleAdd(e) {
         e.preventDefault()
-        addInvite(name , email , role , lang , number , code ).then((data) => {
+        addInvite(name, email, role, lang, number, code).then((data) => {
             if (data.status === "error") {
                 setAddShown(false)
                 setErrorPopUp(true)
@@ -73,6 +75,7 @@ export function Team({ loged }) {
             getAllInvitations().then(setInvitations)
             setSuccessPopUp(true)
             setAddShown(false)
+            setError("Davetiye kodu başarıyla oluşturuldu")
         })
     }
 
@@ -147,14 +150,12 @@ export function Team({ loged }) {
                             <p className="text-[#6c757d]">Davet ettiğiniz kişiye e-posta ile bildirim gönderilecek.</p>
                         </div>
                         <div className="flex justify-end mt-4">
-                            <button className="text-sm text-white bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold" type="submit">Kaydet</button>
+                            <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Kaydet</button>
                         </div>
                     </form>
                 </div>
             </div>}
-            {successPopUp && <div className="fixed right-0 top-4 z-50 bg-gradient-to-r from-[#22c55e] to-white text-white py-2 px-5 rounded-l-xl">
-                Kayıt Başarıyla Oluşturuldu
-            </div>}
+            {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp}  />}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">s
                 <div className="w-full max-w-[90%]">
