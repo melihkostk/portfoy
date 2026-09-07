@@ -5,7 +5,7 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect } from "react"
 import { useState } from "react"
-import { getLocation } from "../services/myCompanyApi"
+import { addLocation, getLocation } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
@@ -31,6 +31,8 @@ export function Location({ loged }) {
 
     const [street, setStreet] = useState([]);
     const [streetId, setStreetId] = useState("");
+
+    const [address , setAddress] = useState("")
 
 
     useEffect(() => {
@@ -61,6 +63,17 @@ export function Location({ loged }) {
         }
         getAllStreets(districtId).then(setStreet)
     }, [districtId])
+
+    function handleAddLocation(e){
+        e.preventDefault()
+        addLocation(countryId , cityId , districtId , streetId , address).then((data => {
+            if(data.status === "error"){
+                return
+            }
+            getLocation().then(setLocation)
+            setLocationMenu(false)
+        }))
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -104,7 +117,7 @@ export function Location({ loged }) {
                     <img onClick={() => setLocationMenu(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
                 <div className="w-full p-4">
-                    <form className="w-full" action="">
+                    <form onSubmit={handleAddLocation} className="w-full">
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="country">Ülke Seçin</label>
                             <select onChange={(e) => setCountryId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="country" id="country">
@@ -131,15 +144,15 @@ export function Location({ loged }) {
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="street">Mahalle</label>
-                            <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="street" id="street">
+                            <select onChange={(e) => setStreetId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="street" id="street">
                                 {street?.map(item => (
-                                    <option key={item.title}>{item.title}</option>
+                                    <option value={item.id} key={item.title}>{item.title}</option>
                                 ))}
                             </select>
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="adres">Adres</label>
-                            <input className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" placeholder="Adres" name="adres" id="adres" required />
+                            <input value={address} onChange={(e) => setAddress(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" placeholder="Adres" name="adres" id="adres" required />
                         </div>
                         <div className="flex justify-end mt-4">
                             <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Kaydet</button>

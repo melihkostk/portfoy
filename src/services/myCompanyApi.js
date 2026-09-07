@@ -67,12 +67,13 @@ export const getAllLanguages = async () => {
     return response.data.data;
 }
 
-export const addLocation = async (country_id , city_id , district_id , address) => {
+export const addLocation = async (country_id , city_id , district_id , street_id , address) => {
     const response = await api.post("/auth/company/locations/create" , {
         country_id:country_id,
         city_id:city_id,
         district_id:district_id,
-        address:address
+        address:address,
+        street_id:street_id
     });
     return response.data;
 }
