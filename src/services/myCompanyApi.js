@@ -40,3 +40,7 @@ export const getSubscriptions = async () => {
     return response.data.data
 }
 
+export const removeInvite = async (id) => {
+    const response = await api.post(`/auth/company/team/invitations/${id}/delete`);
+    return response.data;
+}

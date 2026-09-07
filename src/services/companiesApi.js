@@ -34,6 +34,5 @@ export const filterCompany = async (type , country , city , district) => {
         city_id:city,
         district_id:district
     });
-    console.log(response.data.data)
     return response.data.data;
 }
