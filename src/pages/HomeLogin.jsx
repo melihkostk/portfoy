@@ -8,8 +8,9 @@ import { Footer } from "../components/Footer"
 import { getRecentlyProperties } from "../services/propertiesApi"
 import { getDiscountedProperties } from "../services/propertiesApi"
 import { useState, useEffect, useRef } from "react"
+import { ClipLoader } from "react-spinners"
 
-export function HomeLogin({ loged, news , logOut}) {
+export function HomeLogin({ loged, news, logOut }) {
 
     const [recentlyProperties, setRecentlyProperties] = useState([])
     const [discountedProperties, setDiscountedProperties] = useState([])
@@ -17,8 +18,10 @@ export function HomeLogin({ loged, news , logOut}) {
     const discountedScrollRef = useRef(null)
     const recentlyScrollRef = useRef(null)
 
+    const [loaded, setLoaded] = useState(false)
+
     useEffect(() => {
-        getRecentlyProperties().then(setRecentlyProperties)
+        getRecentlyProperties().then(setRecentlyProperties).finally(() => setLoaded(true))
     }, [])
 
     useEffect(() => {
@@ -34,6 +37,15 @@ export function HomeLogin({ loged, news , logOut}) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} logOut={logOut} />
             <div className='w-full max-w-[90%] py-20'>
                 <h1 className='text-[35px] text-black font-medium mb-2'>İlanları Filtrele</h1>

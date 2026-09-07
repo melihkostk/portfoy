@@ -5,19 +5,30 @@ import { showArticle } from "../services/articlesApi";
 import { NewsCard } from "../components/NewsCard";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
+import { ClipLoader } from "react-spinners";
 
 export function NewsDetail({ loged, news }) {
 
     const { id } = useParams();
 
     const [article, setArticle] = useState([])
+    const [loaded , setLoaded] = useState(false)
 
     useEffect(() => {
-        showArticle(id).then(setArticle)
+        showArticle(id).then(setArticle).finally(() => setLoaded(true))
     }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">

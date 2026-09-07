@@ -5,17 +5,28 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { getAllNotifications } from "../services/notificationsApi"
 import { useEffect , useState } from "react"
+import { ClipLoader } from "react-spinners"
 
 export function Notifications({loged}) {
 
     const [notifications , setNotifications] = useState([])
+    const [loaded , setLoaded] = useState(false);
 
     useEffect(() => {
-        getAllNotifications().then(setNotifications)
+        getAllNotifications().then(setNotifications).finally(() => setLoaded(true))
     },[])
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">

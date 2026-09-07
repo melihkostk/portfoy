@@ -8,6 +8,7 @@ import grayX from "../assets/gray-x.png"
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getContactInfo , sendContactForm } from "../services/contactsApi";
+import { ClipLoader } from "react-spinners";
 
 export function Contacts({ loged }) {
 
@@ -19,9 +20,10 @@ export function Contacts({ loged }) {
     const [message , setMessage] = useState("")
 
     const [contactInfo , setContactInfo] = useState(null)
+    const [loaded , setLoaded] = useState(false);
 
      useEffect(() => {
-        getContactInfo().then(setContactInfo)
+        getContactInfo().then(setContactInfo).finally(() => setLoaded(true))
     }, [])
 
     useEffect(() => {
@@ -40,6 +42,15 @@ export function Contacts({ loged }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">

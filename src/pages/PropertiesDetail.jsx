@@ -11,19 +11,30 @@ import location from "../assets/gray-location.png"
 import building from "../assets/building.png"
 import calendar from "../assets/calendar.png"
 import { FeatureCard } from "../components/featureCard"
+import { ClipLoader } from "react-spinners"
 
 export function PropertiesDetail({ loged }) {
 
     const { id } = useParams();
 
     const [details, setDetails] = useState([]);
+    const [loaded , setLoaded] = useState(false)
 
     useEffect(() => {
-        getDetails(id).then(setDetails)
+        getDetails(id).then(setDetails).finally(() => setLoaded(true))
     }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">

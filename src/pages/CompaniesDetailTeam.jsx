@@ -6,18 +6,29 @@ import { Footer } from "../components/Footer";
 import { getCompaniesTeam } from "../services/companiesApi";
 import { CompanyHeader } from "../components/CompanyHeader";
 import { TeamCard } from "../components/TeamCard";
+import { ClipLoader } from "react-spinners";
 
 export function CompaniesDetailTeam({ loged }) {
     const { id } = useParams();
 
     const [companyDetailTeam, setCompanyDetailTeam] = useState([]);
+    const [loaded , setLoaded] = useState(false)
 
     useEffect(() => {
-        getCompaniesTeam(id).then(setCompanyDetailTeam)
+        getCompaniesTeam(id).then(setCompanyDetailTeam).finally(() => setLoaded(true))
     }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">

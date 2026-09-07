@@ -7,18 +7,29 @@ import { CompanyProposalCard } from "../components/CompanyProposalCard"
 import { getCompanyProposals } from "../services/myCompanyApi"
 import { useEffect } from "react"
 import { useState } from "react"
+import { ClipLoader } from "react-spinners"
 
 export function CompanyProposals({ loged }) {
 
-    const [proposals , setProposals] = useState([])
+    const [proposals, setProposals] = useState([])
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        getCompanyProposals().then(setProposals)
+        getCompanyProposals().then(setProposals).finally(() => setLoaded(true))
     }, [])
 
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
@@ -52,17 +63,17 @@ export function CompanyProposals({ loged }) {
                         </thead>
                         <tbody>
                             {proposals.map(item => (
-                                <CompanyProposalCard 
-                                id={item.id} 
-                                key={item.id} 
-                                name={item.customer.name} 
-                                code={item.code} 
-                                personal={item.company.personal} 
-                                created_at={item.created_at}
-                                score={item.score}
-                                status={item.status.title}
-                                count={item.property_count}
-                                
+                                <CompanyProposalCard
+                                    id={item.id}
+                                    key={item.id}
+                                    name={item.customer.name}
+                                    code={item.code}
+                                    personal={item.company.personal}
+                                    created_at={item.created_at}
+                                    score={item.score}
+                                    status={item.status.title}
+                                    count={item.property_count}
+
                                 />
                             ))}
                         </tbody>

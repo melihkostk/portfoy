@@ -6,19 +6,30 @@ import { Header } from "../components/Header"
 import { getCompaniesProperties } from "../services/companiesApi"
 import { useEffect, useState } from "react"
 import { PropertiesCard } from "../components/PropertiesCard"
+import { ClipLoader } from "react-spinners"
 
 export function CompaniesDetail({ loged }) {
 
     const { id } = useParams();
 
     const [companyDetailProperties, setCompanyDetailProperties] = useState([]);
+    const [loaded , setLoaded] = useState(false)
 
     useEffect(() => {
-        getCompaniesProperties(id).then(setCompanyDetailProperties)
+        getCompaniesProperties(id).then(setCompanyDetailProperties).finally(() => setLoaded(true))
     }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">

@@ -6,26 +6,37 @@ import { OfferCard } from "../components/OfferCard"
 import { getReceivedOffers, getSendedOffers } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import { ClipLoader } from "react-spinners"
 
 export function Offers({ loged }) {
 
     const { type } = useParams();
 
     const [receivedOffers, setReceivedOffers] = useState([]);
+    const [loaded , setLoaded] = useState(false)
 
     useEffect(() => {
-        getReceivedOffers().then(setReceivedOffers)
+        getReceivedOffers().then(setReceivedOffers).finally(() => setLoaded(true))
     }, [])
 
     const [sendedOffers , setSendedOffers] = useState([]);
 
     useEffect(() => {
-        getSendedOffers().then(setSendedOffers)
+        getSendedOffers().then(setSendedOffers).finally(() => setLoaded(true))
     }, [])
 
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">

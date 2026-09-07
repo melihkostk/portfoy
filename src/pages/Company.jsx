@@ -6,19 +6,30 @@ import { Footer } from "../components/Footer"
 import { AppLinks } from "../components/AppLinks"
 import { getCompanyProperties } from "../services/myCompanyApi"
 import { useEffect, useState } from "react"
+import { ClipLoader } from "react-spinners"
 
 export function Company({ loged }) {
 
     const [companyProperties, setCompanyProperties] = useState([]);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        getCompanyProperties().then(setCompanyProperties)
+        getCompanyProperties().then(setCompanyProperties).finally(() => setLoaded(true))
     }, [])
 
 
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>

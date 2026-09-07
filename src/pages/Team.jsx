@@ -6,13 +6,15 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
 import { getTeam, getAllInvitations } from "../services/myCompanyApi"
+import { ClipLoader } from "react-spinners"
 
 export function Team({ loged }) {
 
     const [team, setTeam] = useState([]);
+    const [loaded , setLoaded] = useState(false)
 
     useEffect(() => {
-        getTeam().then(setTeam)
+        getTeam().then(setTeam).finally(() => setLoaded(true))
     }, []);
 
     const [invitations, setInvitations] = useState([]);
@@ -23,6 +25,15 @@ export function Team({ loged }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
