@@ -5,7 +5,7 @@ import { UserInvite } from "../components/UserInvite"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getTeam, getAllInvitations, removeInvite, getAllRoles, getAllLanguages } from "../services/myCompanyApi"
+import { getTeam, getAllInvitations, removeInvite, getAllRoles, getAllLanguages, addInvite } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
@@ -31,27 +31,49 @@ export function Team({ loged }) {
         getAllInvitations().then(setInvitations)
     }, [])
 
-    const [roles , setRoles] = useState([]);
+    const [roles, setRoles] = useState([]);
 
     useEffect(() => {
         getAllRoles().then(setRoles)
     }, [])
 
-    const [languages , setLanguages] = useState([]);
+    const [languages, setLanguages] = useState([]);
 
     useEffect(() => {
         getAllLanguages().then(setLanguages);
     }, [])
 
+    const [name , setName] = useState("")
+    const [email , setEmail] = useState("")
+    const [number , setNumber] = useState("")
+    const [lang , setLang] = useState("")
+    const [role , setRole] = useState("")
+    const [code , setCode] = useState("")
+
     function handleDelete(id) {
-        removeInvite(id).then((data => {
+        removeInvite(id).then((data) => {
             if (data.status === "error") {
                 setErrorPopUp(true)
-                setError(() => setError(data.message))
+                setError(data.message)
+                return
             }
             getAllInvitations().then(setInvitations)
             setSuccessPopUp(true)
-        }))
+        })
+    }
+
+    function handleAdd(e) {
+        e.preventDefault()
+        addInvite(name , email , role , lang , number , code ).then((data) => {
+            if (data.status === "error") {
+                setAddShown(false)
+                setErrorPopUp(true)
+                setError(data.message)
+            }
+            getAllInvitations().then(setInvitations)
+            setSuccessPopUp(true)
+            setAddShown(false)
+        })
     }
 
     return (
@@ -83,32 +105,41 @@ export function Team({ loged }) {
                     <img onClick={() => setAddShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
                 <div className="w-full p-4">
-                    <form className="w-full" action="">
+                    <form onSubmit={handleAdd} className="w-full">
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="language">Dil</label>
-                            <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="language" id="language">
+                            <select value={lang} onChange={(e) => setLang(e.target.value)} required className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="language" id="language">
                                 {languages.map(item => (
-                                    <option key={item.name}>{item.name}</option>
+                                    <option value={item.code} key={item.name}>{item.name}</option>
                                 ))}
                             </select>
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="name">Personel Adı ve Soyadı</label>
-                            <input className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="name" placeholder="Personel Adı ve Soyadı" />
+                            <input value={name} onChange={(e) => setName(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="name" placeholder="Personel Adı ve Soyadı" required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="name">E-posta</label>
-                            <input className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="email" name="mail" id="mail" placeholder="E-Posta" />
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="email" name="mail" id="mail" placeholder="E-Posta" required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="">Telefon</label>
-                            <input className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="tel" name="mail" id="mail" placeholder="Telefon" />
+                            <label htmlFor="phone">Telefon</label>
+                            <div className="flex gap-3.75">
+                                <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" value={code} onChange={(e) => setCode(e.target.value)} name="" id="">
+                                    <option value="90">(90)</option>
+                                    <option value="357">(357)</option>
+                                    <option value="971">(971)</option>
+                                    <option value="357">(357)</option>
+                                    <option value="01">(01)</option>
+                                </select>
+                                <input value={number} onChange={(e) => setNumber(e.target.value)} className="border py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="phone" placeholder="Telefon" required />
+                            </div>
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="role">Rol</label>
-                            <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9] cursor-pointer" name="role" id="role">
+                            <select value={role} onChange={(e) => setRole(e.target.value)} required className="border py-1.5 px-3 rounded-lg border-[#d9d9d9] cursor-pointer" name="role" id="role">
                                 {roles.map(item => (
-                                    <option key={item.key}>{item.title}</option>
+                                    <option value={item.key} key={item.key}>{item.title}</option>
                                 ))}
                             </select>
                         </div>

@@ -45,6 +45,18 @@ export const removeInvite = async (id) => {
     return response.data;
 }
 
+export const addInvite = async (name, email , role , locale , phone , phone_code) => {
+    const response = await api.post("/auth/company/team/invitations/create", {
+        name:name,
+        email:email,
+        role:role,
+        locale:locale,
+        phone:phone,
+        phone_code:phone_code
+    });
+    return response.data;
+}
+
 export const getAllRoles = async () => {
     const response = await api.post("/front/roles");
     return response.data.data
