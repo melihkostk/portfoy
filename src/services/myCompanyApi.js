@@ -82,3 +82,16 @@ export const deleteAddress = async (id) => {
     const response = await api.post(`/auth/company/locations/${id}/delete`);
     return response.data;
 }
+
+export const addCustomer = async (name , email , phone , phone_code , locale , note) => {
+    const response = await api.post("/auth/company/customers/create" , {
+        name:name,
+        email:email,
+        phone:phone,
+        phone_code:phone_code,
+        locale:locale,
+        note:note
+
+    });
+    return response.data;
+}

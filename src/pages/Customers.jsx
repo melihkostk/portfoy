@@ -4,7 +4,7 @@ import graySearch from "../assets/gray-search.png"
 import { CustomerCard } from "../components/CustomerCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
-import { getAllCustomers, getAllLanguages } from "../services/myCompanyApi"
+import { addCustomer, getAllCustomers, getAllLanguages } from "../services/myCompanyApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
@@ -32,6 +32,17 @@ export function Customers({ loged }) {
         getAllLanguages().then(setLanguages)
     }, [])
 
+    function handleAddCustomer(e){
+        e.preventDefault();
+        addCustomer(name , email , number , code , "tr" , note).then((data => {
+            if(data.status === "error"){
+                return;
+            }
+            getAllCustomers().then(setCustomers).finally(() => setLoaded(true))
+            setCustomerMenu(false)
+        }))
+    }
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {customerMenu && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -56,7 +67,7 @@ export function Customers({ loged }) {
                     <img onClick={() => setCustomerMenu(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
                 <div className="w-full p-4">
-                    <form action="">
+                    <form action="" onSubmit={handleAddCustomer}>
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="language">Dil</label>
                             <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="language" id="language">
@@ -88,7 +99,7 @@ export function Customers({ loged }) {
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="name">Notunuz</label>
-                            <input value={note} onChange={(e) => setNote(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="email" name="mail" id="mail" placeholder="Notunuz" required />
+                            <input value={note} onChange={(e) => setNote(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="mail" id="mail" placeholder="Notunuz" required />
                         </div>
                         <div className="flex justify-end mt-4">
                             <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Kaydet</button>
