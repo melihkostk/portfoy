@@ -33,8 +33,8 @@ export function Contacts({ loged }) {
             const user = JSON.parse(userStr);
             setName(user?.data?.name || "");
             setEmail(user?.data?.email || "");
-            setCode(user?.data?.phone.code || "");
-            setPhone(user?.data?.phone.number || "")
+            setCode(user?.data?.phone?.code || "");
+            setPhone(user?.data?.phone?.number || "")
         }
     }, []);
 

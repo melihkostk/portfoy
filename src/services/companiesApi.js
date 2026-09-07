@@ -29,10 +29,11 @@ export const getCompanyTypes = async () => {
 
 export const filterCompany = async (type , country , city , district) => {
     const response = await api.post("/companies", {
-        type: type,
-        country:country,
-        city:city,
-        district:district
+        type_id: type,
+        country_id:country,
+        city_id:city,
+        district_id:district
     });
+    console.log(response.data.data)
     return response.data.data;
 }

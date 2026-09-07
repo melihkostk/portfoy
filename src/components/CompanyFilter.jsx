@@ -8,7 +8,7 @@ export function CompanyFilter({ type , setSelectedType , countries , selectedCou
                         Tümü
                     </option>
                     {type?.map(item => (
-                        <option key={item.id} value={item.title}>
+                        <option key={item.id} value={item.id}>
                             {item.title}
                         </option>
                     ))}

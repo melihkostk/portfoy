@@ -67,7 +67,7 @@ export function Companies({ loged }) {
     }, [selectedDistrict])
 
     const handleFilterCompany = (type, country, city, district) => {
-        filterCompany(type, country, city, district).then(setCompanies)
+        filterCompany(type, country, city, district).then(setCompanies).finally(() => setLoaded(true))
     }
 
     return (
