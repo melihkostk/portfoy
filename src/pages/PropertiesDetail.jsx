@@ -65,17 +65,19 @@ export function PropertiesDetail({ loged }) {
                             )}
                         </div>
                         <div>
-                            <div>
-                                <label htmlFor="price">Teklif ettiğiniz fiyat (TRY)</label>
-                                <input className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="text" placeholder="" name="price" id="price" />
-                            </div>
-                            <div>
-                                <label htmlFor="note">Notunuz</label>
-                                <textarea className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="text" placeholder="" name="note" id="note" />
-                            </div>
-                            <div>
-                                <button className="bg-[#27c5d2] text-white rounded-sm h-12.5 px-5 font-semibold cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Gönder</button>
-                            </div>
+                            <form>
+                                <div>
+                                    <label htmlFor="price">Teklif ettiğiniz fiyat (TRY)</label>
+                                    <input required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="text" placeholder="" name="price" id="price" />
+                                </div>
+                                <div>
+                                    <label htmlFor="note">Notunuz</label>
+                                    <textarea required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="text" placeholder="" name="note" id="note" />
+                                </div>
+                                <div>
+                                    <button className="bg-[#27c5d2] text-white rounded-sm h-12.5 px-5 font-semibold cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Gönder</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -108,7 +110,7 @@ export function PropertiesDetail({ loged }) {
                                 </div>
                             </div>
                             <div className="w-[calc(100%-160px)] pl-5">
-                                <img className="w-full h-full object-cover" src={details.cover} alt="" />
+                                <img className="w-full h-full object-cover rounded-lg" src={details.cover} alt="" />
                             </div>
                         </div>
                         <div>
@@ -159,12 +161,12 @@ export function PropertiesDetail({ loged }) {
                             </button>
                         </div>
                         <div className="mt-10">
-                            <a className="text-[#767676] text-sm font-semibold cursor-pointer hover:text-black transition-colors duration-300 ease-in-out" href="#moreDetail">İlanın detaylı özelliklerini inceleyin</a>
+                            <a className="text-[#767676] text-sm font-semibold cursor-pointer hover:text-black transition-colors duration-300 ease-in-out" href="#detail">İlanın detaylı özelliklerini inceleyin</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="moreDetail" className="w-full max-w-[90%] mt-12.5">
+            <div id="detail" className="w-full max-w-[90%] mt-12.5">
                 <div className="flex">
                     <div className="w-[30%]">
                         <div className="mb-7.5">
@@ -193,7 +195,7 @@ export function PropertiesDetail({ loged }) {
                         </div>
                         <div className="h-full">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d25184.027549982296!2d32.505486000000005!3d37.906982199999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2str!4v1788348281053!5m2!1str!2str"
+                                src={`https://www.google.com/maps?q=${details?.map?.latitude},${details?.map?.longitude}&z=15&output=embed`}
                                 className="w-full h-full border-0 rounded-lg"
                                 allowFullScreen
                                 loading="lazy"
