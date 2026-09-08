@@ -13,6 +13,7 @@ import calendar from "../assets/calendar.png"
 import { FeatureCard } from "../components/featureCard"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
+import { toggleWishlist } from "../services/propertiesApi"
 
 export function PropertiesDetail({ loged }) {
 
@@ -26,6 +27,16 @@ export function PropertiesDetail({ loged }) {
     }, [])
 
     const [offerShown, setOfferShown] = useState(false)
+
+    function handleToogle(id){
+        toggleWishlist(id).then((data => {
+            if(data.status === "error"){
+                return
+            }
+            getDetails(id).then(setDetails).finally(() => setLoaded(true))
+            console.log(data)
+        }))
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -150,7 +161,7 @@ export function PropertiesDetail({ loged }) {
                             )}
                         </div>
                         <div className="flex gap-2.5 flex-wrap">
-                            <button className={` ${details.in_wishlist ? "bg-[#27c5d2]" : "bg-[#f1f1f1]"} w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out`}>
+                            <button onClick={() => handleToogle(id)} className={` ${details.in_wishlist ? "bg-[#27c5d2]" : "bg-[#f1f1f1]"} w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out`}>
                                 <img className="w-5 h-5" src={heart} alt="" />
                             </button>
                             <button onClick={() => setOfferShown(true)} className="uppercase text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 text-sm rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">

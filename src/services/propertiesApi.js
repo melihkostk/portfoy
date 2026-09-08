@@ -19,3 +19,10 @@ export const getSortingOptions = async () => {
   const response = await api.get("/properties/sort-options");
   return response.data.data;
 }
+
+export const toggleWishlist = async (id) => {
+  const response = await api.post("/auth/wishlist/property/toggle" , {
+    property_id:id
+  });
+  return response.data;
+}
