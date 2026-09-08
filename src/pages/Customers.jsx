@@ -136,6 +136,7 @@ export function Customers({ loged }) {
                             {customers?.customers?.map(item => (
                                 <CustomerCard
                                     key={item.id}
+                                    id={item.id}
                                     name={item.name}
                                     email={item.email}
                                     phoneCode={item.phone.code}

@@ -9,8 +9,8 @@ import grayStar from "../assets/star-gray.png"
 export function PropertiesCard(props) {
     return (
         <div className={`flex items-start ${props.page === "proposalDetail" ? "w-full m-0 p-7.5" : ""} bg-[#FAFAFA] shrink-0 max-[992px]:w-full max-[992px]:m-0 ${props.flexDirection === "flex-col" ? "w-full" : ""}  max-[992px]:flex-col p-3.75 m-3.75 rounded-[10px] ${props.page === "wishlist" ? "w-[46%]" : "w-[30%]"} ${props.page === "myProperties" ? "w-full" : ""}`}>
-            <div className={`w-[50%] ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} max-[992px]:w-full max-[992px]:mb-3.75 h-full ${props.page === "myProperties" ? "aspect-video" : "aspect-square"}`}>
-                <img className={`rounded-[10px] w-full ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} h-full object-cover aspect-auto max-[992px]:aspect-video`} src={props.cover} alt="" />
+            <div className={`w-[50%] ${props.page === "company" ? "aspect-square" : ""} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} max-[992px]:w-full max-[992px]:mb-3.75 h-full ${props.page === "myProperties" ? "aspect-video" : "aspect-square"}`}>
+                <img className={`rounded-[10px] ${props.page === "company" ? "aspect-square" : ""} w-full ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} h-full object-cover max-[992px]:aspect-video`} src={props.cover} alt="" />
             </div>
             <div className={`pl-5 w-[50%]`}>
                 <Link to={`/properties/${props.id}`} className="min-h-12.5 line-clamp-2 overflow-hidden text-black font-semibold hover:text-[#FFCA64] transition-colors duration-300 ease-in-out">{props.title}</Link>
