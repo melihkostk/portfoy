@@ -21,8 +21,8 @@ export function TeamCard({ name, role, email, phone, code, page , id , is_active
                 <div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
                     <p onClick={() => handleToggleStatus(id)} className="text-sm">{is_active ? "Bu kişinin hesabını pasife al" : "Bu kişinin hesabını aktif et"}</p>
                 </div>
-                {<div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
-                    <p onClick={() => {onEditClick(); setOptionsShown(false)}} className="text-sm">Düzenle</p>
+                {<div className={`py-1 px-4 text-[#747474] ${role === "Genel Müdür" ? "" : "cursor-pointer hover:text-black transition-colors duration-300 ease-in-out" }`}>
+                    <button disabled={role === "Genel Müdür"} onClick={() => {onEditClick(); setOptionsShown(false)}} className={`${role === "Genel Müdür" ? "opacity-50" : "" } text-sm`}>Düzenle</button>
                 </div>}
                 <div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
                     <p className="text-sm">Yetkileri düzenleyin</p>
