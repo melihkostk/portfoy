@@ -12,20 +12,24 @@ import building from "../assets/building.png"
 import calendar from "../assets/calendar.png"
 import { FeatureCard } from "../components/featureCard"
 import { ClipLoader } from "react-spinners"
+import close from "../assets/blue-close.png"
 
 export function PropertiesDetail({ loged }) {
 
     const { id } = useParams();
 
     const [details, setDetails] = useState([]);
-    const [loaded , setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         getDetails(id).then(setDetails).finally(() => setLoaded(true))
     }, [])
 
+    const [offerShown, setOfferShown] = useState(false)
+
     return (
         <div className='flex flex-col items-center font-sf'>
+            {offerShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -41,6 +45,41 @@ export function PropertiesDetail({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Firmalar</span></p>
                 </div>
             </div>
+            {offerShown && <div className="fixed top-1/2 max-h-150 overflow-y-auto scrollbar-thin scrollbar-thumb-[#27c5d2] left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[50%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="flex justify-between w-full p-4 border-b border-b-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529] font-semibold">Fiyat Teklifi Oluşturun</h2>
+                    <img onClick={() => setOfferShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
+                </div>
+                <div className="flex w-full">
+                    <div className="w-1/2 pl-3.75 pt-3.75 pb-3.75">
+                        <img className="object-cover" src={details?.cover} alt="cover" />
+                    </div>
+                    <div className="w-1/2 p-12.5">
+                        <h1 className="text-[#212529] text-[25px] mb-2">{details?.title}</h1>
+                        <p className="text-sm text-[#6c757d]">{details?.no}</p>
+                        <div className="my-7.5">
+                            <p className="text-sm text-[#212529] opacity-70">Satış Fiyatı</p>
+                            <p className="text-lg text-[#212529] font-semibold mb-4">{details?.prices?.primary?.formatted}</p>
+                            {details?.badges?.[0]?.title && (
+                                <div className="uppercase text-xs bg-[#FFCA64] w-fit py-1.25 px-2 rounded-lg font-semibold">{details.badges[0].title}</div>
+                            )}
+                        </div>
+                        <div>
+                            <div>
+                                <label htmlFor="price">Teklif ettiğiniz fiyat (TRY)</label>
+                                <input className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="text" placeholder="" name="price" id="price" />
+                            </div>
+                            <div>
+                                <label htmlFor="note">Notunuz</label>
+                                <textarea className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="text" placeholder="" name="note" id="note" />
+                            </div>
+                            <div>
+                                <button className="bg-[#27c5d2] text-white rounded-sm h-12.5 px-5 font-semibold cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Gönder</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>}
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start">
                     <div className="w-1/2 p-3.75 border border-[#eee] rounded-lg">
@@ -73,7 +112,6 @@ export function PropertiesDetail({ loged }) {
                             </div>
                         </div>
                         <div>
-
                         </div>
                     </div>
                     <div className="w-1/2 pl-12.5">
@@ -113,7 +151,7 @@ export function PropertiesDetail({ loged }) {
                             <button className={` ${details.in_wishlist ? "bg-[#27c5d2]" : "bg-[#f1f1f1]"} w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out`}>
                                 <img className="w-5 h-5" src={heart} alt="" />
                             </button>
-                            <button className="uppercase text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 text-sm rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                            <button onClick={() => setOfferShown(true)} className="uppercase text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 text-sm rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                 Fiyat Teklifi Oluştur
                             </button>
                             <button className="bg-[#f1f1f1] w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
