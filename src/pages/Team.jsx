@@ -5,7 +5,7 @@ import { UserInvite } from "../components/UserInvite"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getTeam, getAllInvitations, removeInvite, getAllRoles, getAllLanguages, addInvite, toogleStatus } from "../services/myCompanyApi"
+import { getTeam, getAllInvitations, removeInvite, getAllRoles, getAllLanguages, addInvite, toogleStatus, updateTeamMember } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
@@ -84,9 +84,46 @@ export function Team({ loged }) {
         getTeam().then(setTeam).finally(() => setLoaded(true))
     }
 
+    const [editShown, setEditShown] = useState(false)
+
+    const [editId, setEditId] = useState(null)
+    const [editName, setEditName] = useState("")
+    const [editEmail, setEditEmail] = useState("")
+    const [editNumber, setEditNumber] = useState("")
+    const [editLang, setEditLang] = useState("")
+    const [editRole, setEditRole] = useState("")
+    const [editCode, setEditCode] = useState("")
+
+    function handleEditClick(item) {
+        setEditId(item.id)
+        setEditName(item.name)
+        setEditEmail(item.contacts.email)
+        setEditNumber(item.contacts.phone.number)
+        setEditCode(item.contacts.phone.code)
+        setEditRole(item.roles[0].key)
+        setEditLang(item.locale?.code ?? "")
+        setEditShown(true)
+    }
+
+    function handleEdit(e) {
+        e.preventDefault()
+        updateTeamMember(editId, editName, editEmail, editRole, editLang, editNumber, editCode).then((data) => {
+            if (data.status === "error") {
+                setEditShown(false)
+                setErrorPopUp(true)
+                setError(data.message)
+                return
+            }
+            getTeam().then(setTeam).finally(() => setLoaded(true))
+            setSuccessPopUp(true)
+            setEditShown(false)
+            setError("Personel bilgileri başarıyla güncellendi")
+        })
+    }
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(errorPopUp || addShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(errorPopUp || addShown || editShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -160,6 +197,56 @@ export function Team({ loged }) {
                     </form>
                 </div>
             </div>}
+            {editShown && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529] font-semibold">Personeli Düzenle</h2>
+                    <img onClick={() => setEditShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
+                </div>
+                <div className="w-full p-4">
+                    <form onSubmit={handleEdit} className="w-full">
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="editLanguage">Dil</label>
+                            <select value={editLang} onChange={(e) => setEditLang(e.target.value)} required className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="language" id="editLanguage">
+                                {languages.map(item => (
+                                    <option value={item.code} key={item.name}>{item.name}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="editName">Personel Adı ve Soyadı</label>
+                            <input value={editName} onChange={(e) => setEditName(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="editName" placeholder="Personel Adı ve Soyadı" required />
+                        </div>
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="editMail">E-posta</label>
+                            <input value={editEmail} onChange={(e) => setEditEmail(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="email" name="mail" id="editMail" placeholder="E-Posta" required />
+                        </div>
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="editPhone">Telefon</label>
+                            <div className="flex gap-3.75">
+                                <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" value={editCode} onChange={(e) => setEditCode(e.target.value)} name="" id="">
+                                    <option value="90">(90)</option>
+                                    <option value="357">(357)</option>
+                                    <option value="971">(971)</option>
+                                    <option value="357">(357)</option>
+                                    <option value="01">(01)</option>
+                                </select>
+                                <input value={editNumber} onChange={(e) => setEditNumber(e.target.value)} className="border py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="editPhone" placeholder="Telefon" required />
+                            </div>
+                        </div>
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="editRole">Rol</label>
+                            <select value={editRole} onChange={(e) => setEditRole(e.target.value)} required className="border py-1.5 px-3 rounded-lg border-[#d9d9d9] cursor-pointer" name="role" id="editRole">
+                                {roles.map(item => (
+                                    <option value={item.key} key={item.key}>{item.title}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="flex justify-end mt-4">
+                            <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+            </div>}
             {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">s
@@ -187,7 +274,7 @@ export function Team({ loged }) {
                             code={item.contacts.phone.code}
                             is_active={item.is_active}
                             handleToggleStatus={handleToggleStatus}
-
+                            onEditClick={() => handleEditClick(item)}
                         />
                     ))}
                 </div>

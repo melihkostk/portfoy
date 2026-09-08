@@ -5,7 +5,7 @@ import wp from "../assets/wp.png"
 import grayMail from "../assets/gray-mail.png"
 import { useState } from "react"
 
-export function TeamCard({ name, role, email, phone, code, page , id , is_active , handleToggleStatus}) {
+export function TeamCard({ name, role, email, phone, code, page , id , is_active , handleToggleStatus , onEditClick}) {
 
     const [optionsShown , setOptionsShown] = useState(false);
 
@@ -22,7 +22,7 @@ export function TeamCard({ name, role, email, phone, code, page , id , is_active
                     <p onClick={() => handleToggleStatus(id)} className="text-sm">{is_active ? "Bu kişinin hesabını pasife al" : "Bu kişinin hesabını aktif et"}</p>
                 </div>
                 {<div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
-                    <p className="text-sm">Düzenle</p>
+                    <p onClick={() => {onEditClick(); setOptionsShown(false)}} className="text-sm">Düzenle</p>
                 </div>}
                 <div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
                     <p className="text-sm">Yetkileri düzenleyin</p>
