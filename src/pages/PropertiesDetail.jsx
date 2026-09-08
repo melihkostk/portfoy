@@ -28,13 +28,17 @@ export function PropertiesDetail({ loged }) {
 
     const [offerShown, setOfferShown] = useState(false)
 
+    const [toogleMessage , setToogleMessage] = useState("");
+    const [toogleMessageShown , setToogleMessageShown] = useState(false)
+
     function handleToogle(id){
         toggleWishlist(id).then((data => {
             if(data.status === "error"){
                 return
             }
             getDetails(id).then(setDetails).finally(() => setLoaded(true))
-            console.log(data)
+            setToogleMessage(data.message)
+            setToogleMessageShown(true)
         }))
     }
 
@@ -56,6 +60,9 @@ export function PropertiesDetail({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Firmalar</span></p>
                 </div>
             </div>
+            {toogleMessageShown && <div className="fixed right-4 rounded-lg font-semibold top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{toogleMessage}</p>
+            </div>}
             {offerShown && <div className="fixed top-1/2 max-h-150 overflow-y-auto scrollbar-thin scrollbar-thumb-[#27c5d2] left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[50%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between w-full p-4 border-b border-b-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">Fiyat Teklifi Oluşturun</h2>
