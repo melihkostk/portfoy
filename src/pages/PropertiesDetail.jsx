@@ -42,6 +42,8 @@ export function PropertiesDetail({ loged }) {
         }))
     }
 
+    const [detailType , setDetailType] = useState("map");
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {offerShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -60,7 +62,7 @@ export function PropertiesDetail({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Firmalar</span></p>
                 </div>
             </div>
-            {toogleMessageShown && <div className="fixed right-4 rounded-lg font-semibold top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+            {toogleMessageShown && <div className="fixed right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
                 <p>{toogleMessage}</p>
             </div>}
             {offerShown && <div className="fixed top-1/2 max-h-150 overflow-y-auto scrollbar-thin scrollbar-thumb-[#27c5d2] left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[50%] bg-white border border-[#eee] rounded-lg z-50">
@@ -208,10 +210,10 @@ export function PropertiesDetail({ loged }) {
                     </div>
                     <div className="w-[70%] pl-12.5 sticky top-0 h-[calc(100vh-100px)]">
                         <div className="mb-5">
-                            <button className="bg-[#27C5D2] mr-1.25 text-white py-3.75 px-7.5 cursor-pointer font-semibold rounded-lg hover:bg-[#026872] transition-colors duration-300 ease-in-out">Harita Konumu</button>
-                            <button className="bg-[#eee] text-black py-3.75 px-7.5 cursor-pointer font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Videolar ({details?.videos?.length > 0 ? details.videos.length : "0"})</button>
+                            <button onClick={() => setDetailType("map")} className={`${detailType === "map" ? "bg-[#27C5D2] text-white hover:bg-[#026872]" : "bg-[#eee] text-black hover:bg-[#c3c3c3]"} mr-1.25 py-3.75 px-7.5 cursor-pointer font-semibold rounded-lg transition-colors duration-300 ease-in-out`}>Harita Konumu</button>
+                            <button onClick={() => setDetailType("video")} className={`${detailType === "video" ? "bg-[#27C5D2] text-white hover:bg-[#026872]" : "bg-[#eee] text-black hover:bg-[#c3c3c3]"} py-3.75 px-7.5 cursor-pointer font-semibold rounded-lg transition-colors duration-300 ease-in-out`}>Videolar ({details?.videos?.length > 0 ? details.videos.length : "0"})</button>
                         </div>
-                        <div className="h-full">
+                        {detailType === "map" && <div className="h-full">
                             <iframe
                                 src={`https://www.google.com/maps?q=${details?.map?.latitude},${details?.map?.longitude}&z=15&output=embed`}
                                 className="w-full h-full border-0 rounded-lg"
@@ -220,7 +222,12 @@ export function PropertiesDetail({ loged }) {
                                 referrerPolicy="strict-origin-when-cross-origin"
                                 title="Google Maps"
                             />
-                        </div>
+                        </div>}
+                        {detailType === "video" && <div className="h-full">
+                            {details?.videos?.map(item => (
+                                <a href={item}>{item}</a>
+                            ))}
+                        </div>}
                     </div>
                 </div>
             </div>
