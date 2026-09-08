@@ -5,7 +5,7 @@ import { UserInvite } from "../components/UserInvite"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getTeam, getAllInvitations, removeInvite, getAllRoles, getAllLanguages, addInvite } from "../services/myCompanyApi"
+import { getTeam, getAllInvitations, removeInvite, getAllRoles, getAllLanguages, addInvite, toogleStatus } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
@@ -77,6 +77,11 @@ export function Team({ loged }) {
             setAddShown(false)
             setError("Davetiye kodu başarıyla oluşturuldu")
         })
+    }
+
+    function handleToggleStatus(id) {
+        toogleStatus(id)
+        getTeam().then(setTeam).finally(() => setLoaded(true))
     }
 
     return (
@@ -155,7 +160,7 @@ export function Team({ loged }) {
                     </form>
                 </div>
             </div>}
-            {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp}  />}
+            {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">s
                 <div className="w-full max-w-[90%]">
@@ -174,11 +179,16 @@ export function Team({ loged }) {
                     {team.personals?.map(item => (
                         <TeamCard
                             key={item.id}
+                            id={item.id}
                             name={item.name}
                             role={item.roles[0].title}
                             email={item.contacts.email}
                             phone={item.contacts.phone.number}
-                            code={item.contacts.phone.code} />
+                            code={item.contacts.phone.code}
+                            is_active={item.is_active}
+                            handleToggleStatus={handleToggleStatus}
+
+                        />
                     ))}
                 </div>
             </div>

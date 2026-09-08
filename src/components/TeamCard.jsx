@@ -5,7 +5,7 @@ import wp from "../assets/wp.png"
 import grayMail from "../assets/gray-mail.png"
 import { useState } from "react"
 
-export function TeamCard({ name, role, email, phone, code, page }) {
+export function TeamCard({ name, role, email, phone, code, page , id , is_active , handleToggleStatus}) {
 
     const [optionsShown , setOptionsShown] = useState(false);
 
@@ -14,9 +14,12 @@ export function TeamCard({ name, role, email, phone, code, page }) {
             {page !== "companiesDetail" && <div onClick={() => setOptionsShown(prev => !prev)} className="absolute w-4 h-4 top-6 right-4 cursor-pointer">
                 <img src={verticalMenu} alt="" />
             </div>}
+            {!is_active && <div className="absolute bg-[#ffca64] top-6 left-5 text-[#212529] uppercase text-xs rounded-lg py-1.25 px-2 font-semibold">
+                Pasif
+            </div>}
             {optionsShown && <div className="absolute bg-white rounded-lg border top-12 -right-20 border-[#f8f8f8] py-2 shadow-[0_0_30px_rgba(0,0,0,0.1)] z-50">
                 <div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
-                    <p className="text-sm">Bu kişinin hesabını pasife al</p>
+                    <p onClick={() => handleToggleStatus(id)} className="text-sm">{is_active ? "Bu kişinin hesabını pasife al" : "Bu kişinin hesabını aktif et"}</p>
                 </div>
                 {<div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
                     <p className="text-sm">Düzenle</p>

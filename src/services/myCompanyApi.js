@@ -10,6 +10,11 @@ export const getTeam = async () => {
     return response.data.data
 }
 
+export const toogleStatus = async (id) => {
+    const response = await api.post(`/auth/company/team/${id}/status/toggle`)
+    return response.data;
+}
+
 export const getAllInvitations = async () => {
     const response = await api.get("/auth/company/team/invitations")
     return response.data.data
