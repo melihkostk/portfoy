@@ -2,14 +2,17 @@ import { AppLinks } from "../components/AppLinks"
 import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
-import graySearch from "../assets/gray-search.png"
 import { CompanyProposalCard } from "../components/CompanyProposalCard"
-import { getCompanyProposals } from "../services/myCompanyApi"
+import { getCompanyProposals, getCustomerProposals } from "../services/myCompanyApi"
 import { useEffect } from "react"
 import { useState } from "react"
 import { ClipLoader } from "react-spinners"
+import { useSearchParams } from "react-router-dom"
 
 export function CompanyProposals({ loged }) {
+
+    const [searchParams] = useSearchParams();
+    const customer_id = searchParams.get("customer");
 
     const [proposals, setProposals] = useState([])
     const [loaded, setLoaded] = useState(false);
@@ -18,6 +21,11 @@ export function CompanyProposals({ loged }) {
         getCompanyProposals().then(setProposals).finally(() => setLoaded(true))
     }, [])
 
+    const [customerProposals, setCustomerPropoals] = useState([]);
+
+    useEffect(() => {
+        getCustomerProposals(customer_id).then(setCustomerPropoals)
+    }, [customer_id])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -40,13 +48,6 @@ export function CompanyProposals({ loged }) {
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center mb-5 flex-wrap">
                     <h2 className="text-[#212529] text-[32px]">Teklifler</h2>
-                    <div className="flex items-center gap-2.5">
-                        <div className="flex items-center relative max-[992px]:w-full">
-                            <img className="w-4 h-4 absolute left-1" src={graySearch} alt="" />
-                            <input className="text-sm pl-7 rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder="Müşteri adı ile arayın" />
-                        </div>
-                        <a className="text-[#4b4b4b] bg-[#f1f1f1] whitespace-nowrap text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer" href="">Müşteri Oluştur</a>
-                    </div>
                 </div>
                 <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
                     <table className="w-full">
@@ -62,7 +63,7 @@ export function CompanyProposals({ loged }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {proposals.map(item => (
+                            {!customer_id && proposals.map(item => (
                                 <CompanyProposalCard
                                     id={item.id}
                                     key={item.id}
@@ -76,6 +77,21 @@ export function CompanyProposals({ loged }) {
 
                                 />
                             ))}
+                            {customer_id &&
+                                customerProposals?.proposals?.map(item => (
+                                    <CompanyProposalCard
+                                        id={item.id}
+                                        key={item.id}
+                                        name={item.customer.name}
+                                        code={item.code}
+                                        personal={item.company.personal}
+                                        created_at={item.created_at}
+                                        score={item.score}
+                                        status={item.status.title}
+                                        count={item.property_count}
+                                    />
+                                ))
+                            }
                         </tbody>
                     </table>
                 </div>

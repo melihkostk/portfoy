@@ -40,6 +40,13 @@ export const getCompanyProposals = async () => {
     return response.data.data.proposals;
 }
 
+export const getCustomerProposals = async (customer_id) => {
+    const response = await api.post("/auth/company/proposals" , {
+        customer_id:customer_id
+    });
+    return response.data.data;
+}
+
 export const getSubscriptions = async () => {
     const response = await api.get("/auth/company/subscriptions");
     return response.data.data
