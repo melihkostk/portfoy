@@ -116,7 +116,7 @@ export function Companies({ loged }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
-                <div className="flex justify-between flex-wrap my-5 -mx-3.75 max-[992px]:m-0">
+                <div className="flex justify-start flex-wrap my-5 -mx-3.75 max-[992px]:m-0">
                     {companies.map(item => (
                         <CompanyCard
                             key={item.id}

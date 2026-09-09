@@ -38,7 +38,8 @@ export function CompaniesDetailLocation({loged}) {
             </div>
             <CompanyHeader page="companyDetail" id={id} />
             <div className="max-w-[90%] w-full pt-12.5">
-                <div className="flex flex-col">
+                <h2 className="mb-2 text-[#212529] text-[32px]">Konum ve İletişim</h2>
+                <div className="flex flex-col mt-7.5">
                     {location?.locations?.map(item => (
                     <LocationCard
                         key={item.id}
@@ -46,6 +47,7 @@ export function CompaniesDetailLocation({loged}) {
                         country={item.country.title}
                         city={item.city.title}
                         district={item.district.title}
+                        page="companyLocation"
                     />
                 ))}
                 </div>

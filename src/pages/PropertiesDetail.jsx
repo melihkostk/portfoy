@@ -282,10 +282,10 @@ export function PropertiesDetail({ loged }) {
                                 title="Google Maps"
                             />
                         </div>}
-                        {detailType === "video" && <div className="h-full">
+                        {detailType === "video" && <div className="h-full w-full">
                             {details?.videos?.map(item => (
-                                <a key={item.id} href={item.path}>
-                                    <img src={item.cover} alt="cover" />
+                                <a className="w-1/2 h-1/2" key={item.id} href={item.path}>
+                                    <img className="w-1/2 h-1/2" src={item.cover} alt="cover" />
                                 </a>
                             ))}
                         </div>}

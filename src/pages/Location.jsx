@@ -32,7 +32,7 @@ export function Location({ loged }) {
     const [street, setStreet] = useState([]);
     const [streetId, setStreetId] = useState("");
 
-    const [address , setAddress] = useState("")
+    const [address, setAddress] = useState("")
 
 
     useEffect(() => {
@@ -64,10 +64,10 @@ export function Location({ loged }) {
         getAllStreets(districtId).then(setStreet)
     }, [districtId])
 
-    function handleAddLocation(e){
+    function handleAddLocation(e) {
         e.preventDefault()
-        addLocation(countryId , cityId , districtId , streetId , address).then((data => {
-            if(data.status === "error"){
+        addLocation(countryId, cityId, districtId, streetId, address).then((data => {
+            if (data.status === "error") {
                 return
             }
             getLocation().then(setLocation)
@@ -75,18 +75,20 @@ export function Location({ loged }) {
         }))
     }
 
-    function handleDeleteLocation(id){
+    function handleDeleteLocation(id) {
         deleteAddress(id).then(data => {
-            if(data.status === "error"){
+            if (data.status === "error") {
                 return
             }
             getLocation().then(setLocation)
         })
     }
 
+    const [updateMapShown, setUpdateMapShown] = useState(false)
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            {locationMenu && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(locationMenu || updateMapShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -96,6 +98,28 @@ export function Location({ loged }) {
                     />
                 </div>
             )}
+            {updateMapShown && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[90%] w-1/2 bg-white border border-[#eee] rounded-lg z-50">
+                <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529]">Harita Konumunu Düzenle</h2>
+                    <img onClick={() => setUpdateMapShown(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
+                </div>
+                <div className="w-full h-full p-4">
+                    <input className="w-full py-1.5 px-3 border mb-2 border-[#D9D9D9] rounded-lg" type="text" id="location" name="location" />
+                    <div className="w-full h-[80%]">
+                        <iframe
+                            src={`https://www.google.com/maps?q&z=15&output=embed`}
+                            className="w-full h-full border-0 rounded-lg"
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            title="Google Maps"
+                        />
+                    </div>
+                    <div className="justify-self-end mt-4">
+                        <button className="bg-[#27c5d2] text-white text-sm py-2 px-5 rounded-lg">Kaydet</button>
+                    </div>
+                </div>
+            </div>}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
@@ -119,6 +143,7 @@ export function Location({ loged }) {
                         city={item.city.title}
                         district={item.district.title}
                         handleDeleteLocation={handleDeleteLocation}
+                        setUpdateMapShown={setUpdateMapShown}
                     />
                 ))}
             </div>
