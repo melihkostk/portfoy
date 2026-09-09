@@ -16,6 +16,7 @@ import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 import { createPriceOffer, toggleWishlist } from "../services/propertiesApi"
 import grayHeart from "../assets/gray-heart.png"
+import { CreateOfferModel } from "../components/CreateOfferModal"
 
 export function PropertiesDetail({ loged }) {
 
@@ -70,9 +71,18 @@ export function PropertiesDetail({ loged }) {
     const [price, setPrice] = useState("");
     const [note, setNote] = useState("")
 
+    const [offerModelShown, setOfferModalShown] = useState(false)
+
+    const [selectedCustomer, setSelectedCustomer] = useState("");
+    const [selectedCurrencie, setSelectedCurrencie] = useState("");
+
+    const [customerNote , setCustomerNote] = useState("")
+
+    const [step , setStep] = useState(1)
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(offerShown || errorMessageShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(offerShown || errorMessageShown || offerModelShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -82,7 +92,19 @@ export function PropertiesDetail({ loged }) {
                     />
                 </div>
             )}
-            <Header loged={loged} />
+            <Header loged={loged} details={details} />
+            {offerModelShown && <CreateOfferModel
+                setOfferModalShown={setOfferModalShown}
+                selectedCustomer={selectedCustomer}
+                setSelectedCurrencie={setSelectedCurrencie}
+                selectedCurrencie={selectedCurrencie}
+                setSelectedCustomer={setSelectedCustomer}
+                details={details}
+                customerNote={customerNote}
+                setCustomerNote={setCustomerNote}
+                step={step}
+                setStep={setStep}
+            />}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Firmalar</span></p>
@@ -98,7 +120,7 @@ export function PropertiesDetail({ loged }) {
                 <div className="border-4 border-[#f8bb86] w-fit rounded-full p-5 mt-10">
                     <img src={mark} alt="" />
                 </div>
-                <div className="text-xl text-[#545454] pt-4">
+                <div className="text-xl text-[#545454] pt-4 text-center">
                     {errorMessage}
                 </div>
             </div>}
@@ -213,7 +235,7 @@ export function PropertiesDetail({ loged }) {
                             <button onClick={() => setOfferShown(true)} className="uppercase text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 text-sm rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                 Fiyat Teklifi Oluştur
                             </button>
-                            <button className="bg-[#f1f1f1] w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                            <button onClick={() => setOfferModalShown(true)} className="bg-[#f1f1f1] w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                 <img className="w-5 h-5" src={folder} alt="" />
                             </button>
                         </div>

@@ -33,6 +33,5 @@ export const createPriceOffer = async (property_id , price , note) => {
     price:price,
     note:note
   })
-  console.log(response.data)
   return response.data;
 }

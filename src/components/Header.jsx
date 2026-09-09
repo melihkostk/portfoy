@@ -16,7 +16,7 @@ import { CreateOfferModel } from "./CreateOfferModal"
 import { getAllNotifications } from "../services/notificationsApi"
 import { logOut } from "../services/authApi"
 
-export function Header({ loged }) {
+export function Header({ loged, details }) {
 
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
@@ -26,6 +26,10 @@ export function Header({ loged }) {
     const [offerModelShown, setOfferModalShown] = React.useState(false)
     const [notifications, setNotifications] = React.useState([])
     const [number, setNumber] = useState(0);
+    const [step, setStep] = React.useState(1)
+    const [selectedCustomer, setSelectedCustomer] = React.useState("")
+    const [selectedCurrencie, setSelectedCurrencie] = React.useState("")
+    const [customerNote, setCustomerNote] = React.useState("")
     const navigate = useNavigate();
 
     React.useEffect(() => {
@@ -55,7 +59,18 @@ export function Header({ loged }) {
     return (
         <div className="py-7.5 w-full max-w-[90%]">
             {sidebarShown && <MainSidebar setSidebarShown={setSidebarShown} loged={loged} />}
-            {offerModelShown && <CreateOfferModel setOfferModalShown={setOfferModalShown} />}
+            {offerModelShown && <CreateOfferModel
+                setOfferModalShown={setOfferModalShown}
+                selectedCustomer={selectedCustomer}
+                setSelectedCustomer={setSelectedCustomer}
+                selectedCurrencie={selectedCurrencie}
+                setSelectedCurrencie={setSelectedCurrencie}
+                customerNote={customerNote}
+                setCustomerNote={setCustomerNote}
+                details={details}
+                step={step}
+                setStep={setStep}
+            />}
             <div className="flex items-center justify-between">
                 <div className="w-55 max-[992px]:w-30">
                     <Link to={"/"}>
@@ -175,8 +190,9 @@ export function Header({ loged }) {
                             </div>
                         </div>}
                     </div>}
-                    {loged && <button onClick={() => setOfferModalShown(prev => !prev)} className="w-12.5 max-[1100px]:hidden h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                    {loged && <button onClick={() => setOfferModalShown(prev => !prev)} className={`w-12.5 max-[1100px]:hidden ${selectedCustomer ? "w-30 gap-2" : ""} h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out`}>
                         <img className="w-5 h-5" src={folder} alt="" />
+                        {selectedCustomer && <p className="text-white font-semibold whitespace-nowrap overflow-hidden text-ellipsis">{selectedCustomer}</p>}
                     </button>}
                     {loged && <Link to={"/company"} className="h-12.5 px-5 max-[1100px]:hidden text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                         <img className="object-cover w-5 h-5" src={shop} alt="" />
