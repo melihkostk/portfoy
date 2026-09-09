@@ -50,6 +50,11 @@ export const getSubsFeatures = async () => {
     return response.data.data;
 }
 
+export const getSubsUsage = async () => {
+    const response = await api.get("/auth/company/subscriptions/active/usage");
+    return response.data.data;
+}
+
 export const removeInvite = async (id) => {
     const response = await api.post(`/auth/company/team/invitations/${id}/delete`);
     return response.data;

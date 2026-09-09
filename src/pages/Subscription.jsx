@@ -4,8 +4,9 @@ import { SubscriptionCard } from "../components/SubscriptionCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getSubscriptions } from "../services/myCompanyApi"
+import { getSubscriptions, getSubsUsage } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
+import close from "../assets/blue-close.png"
 
 export function Subscription({ loged }) {
 
@@ -16,8 +17,17 @@ export function Subscription({ loged }) {
         getSubscriptions().then(setSubscriptions).finally(() => setLoaded(true))
     }, [])
 
+    const [tableShown, setTableShown] = useState(false);
+
+    const [subsUsage, setSubsUsage] = useState([]);
+
+    useEffect(() => {
+        getSubsUsage().then(setSubsUsage)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
+            {tableShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -27,6 +37,32 @@ export function Subscription({ loged }) {
                     />
                 </div>
             )}
+            {tableShown && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[55%] w-[32.5%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529]">Kullanım Özeti Tablosu</h2>
+                    <img onClick={() => setTableShown(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
+                </div>
+                <div className="w-full p-4">
+                    <table className="w-full border border-[#eee]">
+                        <thead>
+                            <tr>
+                                <th className="border border-[#eee] p-2.5 text-left">Özellik</th>
+                                <th className="border border-[#eee] p-2.5 text-left">Kullanılan</th>
+                                <th className="border border-[#eee] p-2.5 text-left">Limit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {subsUsage.map((item) => (
+                                <tr key={item?.key}>
+                                    <td className="border border-[#eee] p-2.5">{item?.title}</td>
+                                    <td className={`border border-[#eee] font-semibold p-2.5 ${item?.can_usage ? "text-[#212529]" : "text-[#ff4f4f]" }`}>{item?.used}</td>
+                                    <td className="border border-[#eee] font-semibold p-2.5">{item?.limit}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
@@ -36,7 +72,7 @@ export function Subscription({ loged }) {
             <CompanyHeader />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
-                    <button className="bg-[#eee] py-2.5 rounded-lg px-7.5 mb-7.5 font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                    <button onClick={() => setTableShown(true)} className="bg-[#eee] py-2.5 rounded-lg px-7.5 mb-7.5 cursor-pointer font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                         Kullanım Özeti Tablosu
                     </button>
                 </div>
