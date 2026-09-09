@@ -26,3 +26,13 @@ export const toggleWishlist = async (id) => {
   });
   return response.data;
 }
+
+export const createPriceOffer = async (property_id , price , note) => {
+  const response = await api.post("/offers/create" , {
+    property_id:property_id,
+    price:price,
+    note:note
+  })
+  console.log(response.data)
+  return response.data;
+}

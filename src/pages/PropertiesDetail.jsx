@@ -1,6 +1,6 @@
 import { Header } from "../components/Header"
 import heart from "../assets/heart.png"
-import folder from "../assets/folder.png"
+import folder from "../assets/gray-folder.png"
 import defaultImg from "../assets/default-property.jpg"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
@@ -9,11 +9,13 @@ import { getDetails } from "../services/propertyDetails"
 import { useParams } from "react-router-dom"
 import location from "../assets/gray-location.png"
 import building from "../assets/building.png"
+import mark from "../assets/mark.png"
 import calendar from "../assets/calendar.png"
 import { FeatureCard } from "../components/featureCard"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
-import { toggleWishlist } from "../services/propertiesApi"
+import { createPriceOffer, toggleWishlist } from "../services/propertiesApi"
+import grayHeart from "../assets/gray-heart.png"
 
 export function PropertiesDetail({ loged }) {
 
@@ -28,12 +30,15 @@ export function PropertiesDetail({ loged }) {
 
     const [offerShown, setOfferShown] = useState(false)
 
-    const [toogleMessage , setToogleMessage] = useState("");
-    const [toogleMessageShown , setToogleMessageShown] = useState(false)
+    const [toogleMessage, setToogleMessage] = useState("");
+    const [toogleMessageShown, setToogleMessageShown] = useState(false)
 
-    function handleToogle(id){
+    const [errorMessage, setErrorMessage] = useState("")
+    const [errorMessageShown, setErrorMessageShown] = useState(false)
+
+    function handleToogle(id) {
         toggleWishlist(id).then((data => {
-            if(data.status === "error"){
+            if (data.status === "error") {
                 return
             }
             getDetails(id).then(setDetails).finally(() => setLoaded(true))
@@ -42,11 +47,32 @@ export function PropertiesDetail({ loged }) {
         }))
     }
 
-    const [detailType , setDetailType] = useState("map");
+    const [detailType, setDetailType] = useState("map");
+
+    function handlePriceOffer(e) {
+        e.preventDefault()
+        createPriceOffer(id, price, note).then(data => {
+            if (data.status === "error") {
+                setOfferShown(false)
+                setErrorMessageShown(true)
+                setErrorMessage(data.message)
+            }
+            else {
+                setOfferShown(false)
+                setPrice("")
+                setNote("")
+                setToogleMessage(data.message)
+                setToogleMessageShown(true)
+            }
+        })
+    }
+
+    const [price, setPrice] = useState("");
+    const [note, setNote] = useState("")
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            {offerShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(offerShown || errorMessageShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -64,6 +90,17 @@ export function PropertiesDetail({ loged }) {
             </div>
             {toogleMessageShown && <div className="fixed right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
                 <p>{toogleMessage}</p>
+            </div>}
+            {errorMessageShown && <div className="fixed top-1/2 left-1/2 flex flex-col items-center justify-start p-3 -translate-x-1/2 -translate-y-1/2 h-1/2 w-1/2 bg-white border border-[#eee] rounded-lg z-50">
+                <div onClick={() => setErrorMessageShown(false)} className="self-end cursor-pointer">
+                    <img src={close} alt="" />
+                </div>
+                <div className="border-4 border-[#f8bb86] w-fit rounded-full p-5 mt-10">
+                    <img src={mark} alt="" />
+                </div>
+                <div className="text-xl text-[#545454] pt-4">
+                    {errorMessage}
+                </div>
             </div>}
             {offerShown && <div className="fixed top-1/2 max-h-150 overflow-y-auto scrollbar-thin scrollbar-thumb-[#27c5d2] left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[50%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between w-full p-4 border-b border-b-[#dee2e6]">
@@ -85,14 +122,14 @@ export function PropertiesDetail({ loged }) {
                             )}
                         </div>
                         <div>
-                            <form>
+                            <form onSubmit={handlePriceOffer}>
                                 <div>
                                     <label htmlFor="price">Teklif ettiğiniz fiyat (TRY)</label>
-                                    <input required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="text" placeholder="" name="price" id="price" />
+                                    <input value={price} onChange={(e) => setPrice(e.target.value)} required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="number" placeholder="" name="price" id="price" min={1} />
                                 </div>
                                 <div>
                                     <label htmlFor="note">Notunuz</label>
-                                    <textarea required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="text" placeholder="" name="note" id="note" />
+                                    <textarea value={note} onChange={(e) => setNote(e.target.value)} required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="text" placeholder="" name="note" id="note" />
                                 </div>
                                 <div>
                                     <button className="bg-[#27c5d2] text-white rounded-sm h-12.5 px-5 font-semibold cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Gönder</button>
@@ -171,7 +208,7 @@ export function PropertiesDetail({ loged }) {
                         </div>
                         <div className="flex gap-2.5 flex-wrap">
                             <button onClick={() => handleToogle(id)} className={` ${details.in_wishlist ? "bg-[#27c5d2]" : "bg-[#f1f1f1]"} w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out`}>
-                                <img className="w-5 h-5" src={heart} alt="" />
+                                <img className="w-5 h-5" src={details.in_wishlist ? heart : grayHeart} alt="" />
                             </button>
                             <button onClick={() => setOfferShown(true)} className="uppercase text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 text-sm rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                 Fiyat Teklifi Oluştur
