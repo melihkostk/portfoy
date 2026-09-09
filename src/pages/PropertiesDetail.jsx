@@ -284,7 +284,9 @@ export function PropertiesDetail({ loged }) {
                         </div>}
                         {detailType === "video" && <div className="h-full">
                             {details?.videos?.map(item => (
-                                <a href={item}>{item}</a>
+                                <a key={item.id} href={item.path}>
+                                    <img src={item.cover} alt="cover" />
+                                </a>
                             ))}
                         </div>}
                     </div>
