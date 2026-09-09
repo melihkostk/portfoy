@@ -36,7 +36,7 @@ export function Subscription({ loged }) {
             <CompanyHeader />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
-                    <button className="bg-[#eee] py-2.5 rounded-lg px-7.5 mb-7.5 font-semibold hover:bg-[]">
+                    <button className="bg-[#eee] py-2.5 rounded-lg px-7.5 mb-7.5 font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                         Kullanım Özeti Tablosu
                     </button>
                 </div>

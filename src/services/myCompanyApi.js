@@ -45,6 +45,11 @@ export const getSubscriptions = async () => {
     return response.data.data
 }
 
+export const getSubsFeatures = async () => {
+    const response = await api.get("/auth/company/subscriptions/active");
+    return response.data.data;
+}
+
 export const removeInvite = async (id) => {
     const response = await api.post(`/auth/company/team/invitations/${id}/delete`);
     return response.data;
@@ -132,7 +137,6 @@ export const updateInvite = async (id , name , email , role , locale , phone , p
         locale:locale,
         phone:phone,
         phone_code:phone_code
-
     });
     return response.data;
 }
