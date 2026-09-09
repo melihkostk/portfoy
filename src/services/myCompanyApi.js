@@ -123,3 +123,16 @@ export const updateLocation = async (id, country_id, city_id, district_id, addre
     });
     return response.data;
 }
+
+export const updateInvite = async (id , name , email , role , locale , phone , phone_code) => {
+    const response = await api.post(`/auth/company/team/invitations/${id}/update` , {
+        name:name,
+        email:email,
+        role:role,
+        locale:locale,
+        phone:phone,
+        phone_code:phone_code
+
+    });
+    return response.data;
+}

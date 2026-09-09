@@ -263,14 +263,14 @@ export function Location({ loged }) {
                     <form onSubmit={handleEditLocation} className="w-full">
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="editCountry">Ülke Seçin</label>
-                            <select value={editCountryId} onChange={(e) => setEditCountryId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="country" id="editCountry">
+                            <select required value={editCountryId} onChange={(e) => setEditCountryId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="country" id="editCountry">
                                 {countries.data.map(item => (
                                     <option value={item.id} key={item.title}>{item.title}</option>
                                 ))}
                             </select>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="editCity">İl Seçin</label>
+                            <label required htmlFor="editCity">İl Seçin</label>
                             <select value={editCityId} onChange={(e) => setEditCityId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="city" id="editCity">
                                 {editCities?.map(item => (
                                     <option value={item.id} key={item.title}>{item.title}</option>
@@ -279,7 +279,7 @@ export function Location({ loged }) {
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="editDistrict">İlçe Seçin</label>
-                            <select value={editDistrictId} onChange={(e) => setEditDistrictId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="district" id="editDistrict">
+                            <select required value={editDistrictId} onChange={(e) => setEditDistrictId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="district" id="editDistrict">
                                 {editDistrict?.map(item => (
                                     <option value={item.id} key={item.title}>{item.title}</option>
                                 ))}
@@ -287,7 +287,7 @@ export function Location({ loged }) {
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="editStreet">Mahalle</label>
-                            <select value={editStreetId} onChange={(e) => setEditStreetId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="street" id="editStreet">
+                            <select required value={editStreetId} onChange={(e) => setEditStreetId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="street" id="editStreet">
                                 {editStreet?.map(item => (
                                     <option value={item.id} key={item.title}>{item.title}</option>
                                 ))}
@@ -295,7 +295,7 @@ export function Location({ loged }) {
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="editAdres">Adres</label>
-                            <input value={editAddress} onChange={(e) => setEditAddress(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" placeholder="Adres" name="adres" id="editAdres" required />
+                            <input required value={editAddress} onChange={(e) => setEditAddress(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" placeholder="Adres" name="adres" id="editAdres" required />
                         </div>
                         <div className="flex justify-end mt-4">
                             <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Kaydet</button>

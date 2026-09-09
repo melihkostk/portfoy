@@ -5,7 +5,7 @@ import { UserInvite } from "../components/UserInvite"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getTeam, getAllInvitations, removeInvite, getAllRoles, getAllLanguages, addInvite, toogleStatus, updateTeamMember } from "../services/myCompanyApi"
+import { getTeam, getAllInvitations, removeInvite, getAllRoles, addInvite, toogleStatus, updateTeamMember, updateInvite } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
@@ -38,16 +38,9 @@ export function Team({ loged }) {
         getAllRoles().then(setRoles)
     }, [])
 
-    const [languages, setLanguages] = useState([]);
-
-    useEffect(() => {
-        getAllLanguages().then(setLanguages);
-    }, [])
-
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [number, setNumber] = useState("")
-    const [lang, setLang] = useState("")
     const [role, setRole] = useState("")
     const [code, setCode] = useState("")
 
@@ -66,7 +59,7 @@ export function Team({ loged }) {
 
     function handleAdd(e) {
         e.preventDefault()
-        addInvite(name, email, role, lang, number, code).then((data) => {
+        addInvite(name, email, role, "tr", number, code).then((data) => {
             if (data.status === "error") {
                 setAddShown(false)
                 setErrorPopUp(true)
@@ -84,13 +77,47 @@ export function Team({ loged }) {
         getTeam().then(setTeam).finally(() => setLoaded(true))
     }
 
+    const [inviteEditShown, setInviteEditShown] = useState(false)
+
+    const [inviteEditId, setInviteEditId] = useState(null)
+    const [inviteEditName, setInviteEditName] = useState("")
+    const [inviteEditEmail, setInviteEditEmail] = useState("")
+    const [inviteEditNumber, setInviteEditNumber] = useState("")
+    const [inviteEditRole, setInviteEditRole] = useState("")
+    const [inviteEditCode, setInviteEditCode] = useState("")
+
+    function handleInviteEditClick(item) {
+        setInviteEditId(item.id)
+        setInviteEditName(item.name)
+        setInviteEditEmail(item.email)
+        setInviteEditNumber(item.phone?.number)
+        setInviteEditCode(item.phone?.code)
+        setInviteEditRole(item.role?.key)
+        setInviteEditShown(true)
+    }
+
+    function handleUpdateInvite(e) {
+        e.preventDefault()
+        updateInvite(inviteEditId, inviteEditName, inviteEditEmail, inviteEditRole, "tr", inviteEditNumber, inviteEditCode).then((data) => {
+            if (data.status === "error") {
+                setInviteEditShown(false)
+                setErrorPopUp(true)
+                setError(data.message)
+                return
+            }
+            getAllInvitations().then(setInvitations)
+            setSuccessPopUp(true)
+            setInviteEditShown(false)
+            setError("Davetiye kodu başarıyla güncellendi")
+        })
+    }
+
     const [editShown, setEditShown] = useState(false)
 
     const [editId, setEditId] = useState(null)
     const [editName, setEditName] = useState("")
     const [editEmail, setEditEmail] = useState("")
     const [editNumber, setEditNumber] = useState("")
-    const [editLang, setEditLang] = useState("")
     const [editRole, setEditRole] = useState("")
     const [editCode, setEditCode] = useState("")
 
@@ -101,13 +128,12 @@ export function Team({ loged }) {
         setEditNumber(item.contacts.phone.number)
         setEditCode(item.contacts.phone.code)
         setEditRole(item.roles[0].key)
-        setEditLang(item.locale?.code ?? "")
         setEditShown(true)
     }
 
     function handleEdit(e) {
         e.preventDefault()
-        updateTeamMember(editId, editName, editEmail, editRole, editLang, editNumber, editCode).then((data) => {
+        updateTeamMember(editId, editName, editEmail, editRole, "tr", editNumber, editCode).then((data) => {
             if (data.status === "error") {
                 setEditShown(false)
                 setErrorPopUp(true)
@@ -123,7 +149,7 @@ export function Team({ loged }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(errorPopUp || addShown || editShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(errorPopUp || addShown || editShown || inviteEditShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -151,14 +177,6 @@ export function Team({ loged }) {
                 </div>
                 <div className="w-full p-4">
                     <form onSubmit={handleAdd} className="w-full">
-                        <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="language">Dil</label>
-                            <select value={lang} onChange={(e) => setLang(e.target.value)} required className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="language" id="language">
-                                {languages.map(item => (
-                                    <option value={item.code} key={item.name}>{item.name}</option>
-                                ))}
-                            </select>
-                        </div>
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="name">Personel Adı ve Soyadı</label>
                             <input value={name} onChange={(e) => setName(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="name" placeholder="Personel Adı ve Soyadı" required />
@@ -205,14 +223,6 @@ export function Team({ loged }) {
                 <div className="w-full p-4">
                     <form onSubmit={handleEdit} className="w-full">
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="editLanguage">Dil</label>
-                            <select value={editLang} onChange={(e) => setEditLang(e.target.value)} required className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="language" id="editLanguage">
-                                {languages.map(item => (
-                                    <option value={item.code} key={item.name}>{item.name}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="flex flex-col w-full mb-2">
                             <label htmlFor="editName">Personel Adı ve Soyadı</label>
                             <input value={editName} onChange={(e) => setEditName(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="editName" placeholder="Personel Adı ve Soyadı" required />
                         </div>
@@ -236,6 +246,48 @@ export function Team({ loged }) {
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="editRole">Rol</label>
                             <select value={editRole} onChange={(e) => setEditRole(e.target.value)} required className="border py-1.5 px-3 rounded-lg border-[#d9d9d9] cursor-pointer" name="role" id="editRole">
+                                {roles.map(item => (
+                                    <option value={item.key} key={item.key}>{item.title}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="flex justify-end mt-4">
+                            <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+            </div>}
+            {inviteEditShown && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529] font-semibold">Davetiyeyi Düzenle</h2>
+                    <img onClick={() => setInviteEditShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
+                </div>
+                <div className="w-full p-4">
+                    <form onSubmit={handleUpdateInvite} className="w-full">
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="inviteEditName">Personel Adı ve Soyadı</label>
+                            <input value={inviteEditName} onChange={(e) => setInviteEditName(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="inviteEditName" placeholder="Personel Adı ve Soyadı" required />
+                        </div>
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="inviteEditMail">E-posta</label>
+                            <input value={inviteEditEmail} disabled className="border py-1.5 px-3 rounded-lg border-[#d9d9d9] bg-[#f1f1f1] cursor-not-allowed text-[#6c757d]" type="email" name="mail" id="inviteEditMail" placeholder="E-Posta" />
+                        </div>
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="inviteEditPhone">Telefon</label>
+                            <div className="flex gap-3.75">
+                                <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" value={inviteEditCode} onChange={(e) => setInviteEditCode(e.target.value)} name="" id="">
+                                    <option value="90">(90)</option>
+                                    <option value="357">(357)</option>
+                                    <option value="971">(971)</option>
+                                    <option value="357">(357)</option>
+                                    <option value="01">(01)</option>
+                                </select>
+                                <input value={inviteEditNumber} onChange={(e) => setInviteEditNumber(e.target.value)} className="border py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="inviteEditPhone" placeholder="Telefon" required />
+                            </div>
+                        </div>
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="inviteEditRole">Rol</label>
+                            <select value={inviteEditRole} onChange={(e) => setInviteEditRole(e.target.value)} required className="border py-1.5 px-3 rounded-lg border-[#d9d9d9] cursor-pointer" name="role" id="inviteEditRole">
                                 {roles.map(item => (
                                     <option value={item.key} key={item.key}>{item.title}</option>
                                 ))}
@@ -303,6 +355,7 @@ export function Team({ loged }) {
                                 expiry_at={item.expiry_at}
                                 handleDelete={handleDelete}
                                 setErrorPopUp={setErrorPopUp}
+                                onEditClick={() => handleInviteEditClick(item)}
                             />
                         ))}
                     </tbody>
