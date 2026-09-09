@@ -50,26 +50,26 @@ export const removeInvite = async (id) => {
     return response.data;
 }
 
-export const addInvite = async (name, email , role , locale , phone , phone_code) => {
+export const addInvite = async (name, email, role, locale, phone, phone_code) => {
     const response = await api.post("/auth/company/team/invitations/create", {
-        name:name,
-        email:email,
-        role:role,
-        locale:locale,
-        phone:phone,
-        phone_code:phone_code
+        name: name,
+        email: email,
+        role: role,
+        locale: locale,
+        phone: phone,
+        phone_code: phone_code
     });
     return response.data;
 }
 
 export const updateTeamMember = async (id, name, email, role, locale, phone, phone_code) => {
     const response = await api.post(`/auth/company/team/${id}/profile/update`, {
-        name:name,
-        email:email,
-        role:role,
-        locale:locale,
-        phone:phone,
-        phone_code:phone_code
+        name: name,
+        email: email,
+        role: role,
+        locale: locale,
+        phone: phone,
+        phone_code: phone_code
     });
     return response.data;
 }
@@ -84,13 +84,13 @@ export const getAllLanguages = async () => {
     return response.data.data;
 }
 
-export const addLocation = async (country_id , city_id , district_id , street_id , address) => {
-    const response = await api.post("/auth/company/locations/create" , {
-        country_id:country_id,
-        city_id:city_id,
-        district_id:district_id,
-        address:address,
-        street_id:street_id
+export const addLocation = async (country_id, city_id, district_id, street_id, address) => {
+    const response = await api.post("/auth/company/locations/create", {
+        country_id: country_id,
+        city_id: city_id,
+        district_id: district_id,
+        address: address,
+        street_id: street_id
     });
     return response.data;
 }
@@ -100,15 +100,26 @@ export const deleteAddress = async (id) => {
     return response.data;
 }
 
-export const addCustomer = async (name , email , phone , phone_code , locale , note) => {
-    const response = await api.post("/auth/company/customers/create" , {
-        name:name,
-        email:email,
-        phone:phone,
-        phone_code:phone_code,
-        locale:locale,
-        note:note
+export const addCustomer = async (name, email, phone, phone_code, locale, note) => {
+    const response = await api.post("/auth/company/customers/create", {
+        name: name,
+        email: email,
+        phone: phone,
+        phone_code: phone_code,
+        locale: locale,
+        note: note
 
+    });
+    return response.data;
+}
+
+export const updateLocation = async (id, country_id, city_id, district_id, address , street_id) => {
+    const response = await api.post(`/auth/company/locations/${id}/update`, {
+        country_id: country_id,
+        city_id: city_id,
+        district_id: district_id,
+        address: address,
+        street_id:street_id
     });
     return response.data;
 }

@@ -5,7 +5,7 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect } from "react"
 import { useState } from "react"
-import { addLocation, deleteAddress, getLocation } from "../services/myCompanyApi"
+import { addLocation, deleteAddress, getLocation, updateLocation } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
@@ -86,9 +86,66 @@ export function Location({ loged }) {
 
     const [updateMapShown, setUpdateMapShown] = useState(false)
 
+    const [editShown, setEditShown] = useState(false)
+    const [editId, setEditId] = useState(null)
+    const [editCountryId, setEditCountryId] = useState("")
+    const [editCityId, setEditCityId] = useState("")
+    const [editDistrictId, setEditDistrictId] = useState("")
+    const [editStreetId, setEditStreetId] = useState("")
+    const [editAddress, setEditAddress] = useState("")
+
+    const [editCities, setEditCities] = useState([])
+    const [editDistrict, setEditDistrict] = useState([])
+    const [editStreet, setEditStreet] = useState([])
+
+    useEffect(() => {
+        if (!editCountryId) {
+            setEditCities([]);
+            return;
+        }
+        getAllCities(editCountryId).then(setEditCities);
+    }, [editCountryId]);
+
+    useEffect(() => {
+        if (!editCityId) {
+            setEditDistrict([]);
+            return;
+        }
+        getAllDistricts(editCityId).then(setEditDistrict);
+    }, [editCityId])
+
+    useEffect(() => {
+        if (!editDistrictId) {
+            setEditStreet([]);
+            return;
+        }
+        getAllStreets(editDistrictId).then(setEditStreet);
+    }, [editDistrictId])
+
+    function handleEditClick(item) {
+        setEditId(item.id)
+        setEditCountryId(item.country.id)
+        setEditCityId(item.city.id)
+        setEditDistrictId(item.district.id)
+        setEditStreetId(item.street.id)
+        setEditAddress(item.address)
+        setEditShown(true)
+    }
+
+    function handleEditLocation(e) {
+        e.preventDefault()
+        updateLocation(editId, editCountryId, editCityId, editDistrictId, editAddress, editStreetId).then((data) => {
+            if (data.status === "error") {
+                return
+            }
+            getLocation().then(setLocation)
+            setEditShown(false)
+        })
+    }
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(locationMenu || updateMapShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(locationMenu || updateMapShown || editShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -144,6 +201,7 @@ export function Location({ loged }) {
                         district={item.district.title}
                         handleDeleteLocation={handleDeleteLocation}
                         setUpdateMapShown={setUpdateMapShown}
+                        onEditClick={() => handleEditClick(item)}
                     />
                 ))}
             </div>
@@ -189,6 +247,55 @@ export function Location({ loged }) {
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="adres">Adres</label>
                             <input value={address} onChange={(e) => setAddress(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" placeholder="Adres" name="adres" id="adres" required />
+                        </div>
+                        <div className="flex justify-end mt-4">
+                            <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+            </div>}
+            {editShown && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529] font-semibold">Adresi Düzenle</h2>
+                    <img onClick={() => setEditShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
+                </div>
+                <div className="w-full p-4">
+                    <form onSubmit={handleEditLocation} className="w-full">
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="editCountry">Ülke Seçin</label>
+                            <select value={editCountryId} onChange={(e) => setEditCountryId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="country" id="editCountry">
+                                {countries.data.map(item => (
+                                    <option value={item.id} key={item.title}>{item.title}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="editCity">İl Seçin</label>
+                            <select value={editCityId} onChange={(e) => setEditCityId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="city" id="editCity">
+                                {editCities?.map(item => (
+                                    <option value={item.id} key={item.title}>{item.title}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="editDistrict">İlçe Seçin</label>
+                            <select value={editDistrictId} onChange={(e) => setEditDistrictId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="district" id="editDistrict">
+                                {editDistrict?.map(item => (
+                                    <option value={item.id} key={item.title}>{item.title}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="editStreet">Mahalle</label>
+                            <select value={editStreetId} onChange={(e) => setEditStreetId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="street" id="editStreet">
+                                {editStreet?.map(item => (
+                                    <option value={item.id} key={item.title}>{item.title}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="flex flex-col w-full mb-2">
+                            <label htmlFor="editAdres">Adres</label>
+                            <input value={editAddress} onChange={(e) => setEditAddress(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" placeholder="Adres" name="adres" id="editAdres" required />
                         </div>
                         <div className="flex justify-end mt-4">
                             <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Kaydet</button>
