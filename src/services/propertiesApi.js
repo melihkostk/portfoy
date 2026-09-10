@@ -10,8 +10,11 @@ export const getDiscountedProperties = async () => {
   return response.data.data;
 };
 
-export const getAllProperties = async () => {
-  const response = await api.get("/properties");
+export const getAllProperties = async (sort) => {
+  const response = await api.get("/properties", {
+    params: { r: sort },
+  });
+
   return response.data;
 }
 
@@ -26,17 +29,17 @@ export const getAllPropertiesType = async () => {
 }
 
 export const toggleWishlist = async (id) => {
-  const response = await api.post("/auth/wishlist/property/toggle" , {
-    property_id:id
+  const response = await api.post("/auth/wishlist/property/toggle", {
+    property_id: id
   });
   return response.data;
 }
 
-export const createPriceOffer = async (property_id , price , note) => {
-  const response = await api.post("/offers/create" , {
-    property_id:property_id,
-    price:price,
-    note:note
+export const createPriceOffer = async (property_id, price, note) => {
+  const response = await api.post("/offers/create", {
+    property_id: property_id,
+    price: price,
+    note: note
   })
   return response.data;
 }

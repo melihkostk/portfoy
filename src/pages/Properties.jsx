@@ -14,14 +14,16 @@ export function Properties({ loged }) {
     const [properties, setProperties] = useState([])
     const [loaded , setLoaded] = useState(false)
 
+    const [selectedSorting , setSelectingOption] = useState("");
+
     useEffect(() => {
-        getAllProperties().then(setProperties).finally(() => setLoaded(true))
-    }, [])
+        setLoaded(false)
+        getAllProperties(selectedSorting).then(setProperties).finally(() => setLoaded(true))
+    }, [selectedSorting])
 
     const [flexDirection, setFlexDirection] = useState("");
 
     const [sortingOptions, setSortingOptions] = useState([]);
-    const [selectedSorting , setSelectingOption] = useState("");
 
     useEffect(() => {
         getSortingOptions().then(setSortingOptions)
