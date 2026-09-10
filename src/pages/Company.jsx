@@ -60,9 +60,9 @@ export function Company({ loged }) {
         getAllDistricts(selectedCity).then(setDistricts)
     }, [selectedCity])
 
-    function handleFilter(selectedCountry, selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status) {
+    function handleFilter(selectedCountry, selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status, selectedType) {
         setLoaded(false)
-        getCompanyProperties(selectedCountry, selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status).then(setCompanyProperties).finally(() => setLoaded(true))
+        getCompanyProperties(selectedCountry, selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status, selectedType).then(setCompanyProperties).finally(() => setLoaded(true))
     }
 
     const [minSell, setMinSell] = useState("");
@@ -74,6 +74,8 @@ export function Company({ loged }) {
     useEffect(() => {
         getDraftProperties().then(setDraft)
     }, [])
+
+    const [selectedType, setSelectedType] = useState([]);
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -120,6 +122,8 @@ export function Company({ loged }) {
                             setSelectedCurrencie={setSelectedCurrencie}
                             status={status}
                             setStatus={setStatus}
+                            selectedType={selectedType}
+                            setSelectedType={setSelectedType}
                         />
                     </div>
                     <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-wrap">

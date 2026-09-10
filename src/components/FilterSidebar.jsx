@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom"
 
-export function FilterSidebar({ type , team , currencie , selectedTeam , setSelectedTeam , handleFilter ,selectedCurrencie , setSelectedCurrencie , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict , minSell ,  setMinSell , maxSell , setMaxSell , status , setStatus}) {
+export function FilterSidebar({ type , team , currencie , selectedTeam , setSelectedTeam , handleFilter ,selectedCurrencie , setSelectedCurrencie , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict , minSell ,  setMinSell , maxSell , setMaxSell , status , setStatus , selectedType , setSelectedType}) {
+
+    function toggleType(id) {
+        setSelectedType(prev =>
+            prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
+        )
+    }
+
     return (
         <div className="w-full">
             <div className="mb-5 w-full">
@@ -18,8 +25,8 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                         {type.map(item => (
                             <div key={item.id} className="flex justify-between items-center mb-1.25">
                                 <div className="flex items-center gap-2">
-                                    <input type="checkbox" />
-                                    <label className="text-[13px] text-[#212529] font-medium">{item.title}</label>
+                                    <input id={`type-${item.id}`} name="type" type="checkbox" checked={selectedType.includes(item.id)} onChange={() => toggleType(item.id)} />
+                                    <label className="text-[13px] text-[#212529] font-medium" htmlFor={`type-${item.id}`}>{item.title}</label>
                                 </div>
                             </div>
                         ))}
@@ -101,7 +108,7 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                         </div>
                     </div>
                 </div>
-                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie , status)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie , status , selectedType)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
 
             </form>
 

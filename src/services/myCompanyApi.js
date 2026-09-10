@@ -35,7 +35,7 @@ export const getDraftProperties = async () => {
     return response.data.data;
 }
 
-export const getCompanyProperties = async (country_id, city_id, district_id, created_by, min_sell_price , max_sell_price , currency_id , property_status) => {
+export const getCompanyProperties = async (country_id, city_id, district_id, created_by, min_sell_price , max_sell_price , currency_id , property_status, types) => {
     const response = await api.post("/auth/company/properties", {
         country_id: country_id,
         city_id: city_id,
@@ -44,9 +44,9 @@ export const getCompanyProperties = async (country_id, city_id, district_id, cre
         min_sell_price: min_sell_price,
         max_sell_price: max_sell_price,
         currency_id:currency_id,
-        property_status:property_status
+        property_status:property_status,
+        types: types
     });
-    console.log(response.data.data.properties)
     return response.data.data.properties;
 }
 
