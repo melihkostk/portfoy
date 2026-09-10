@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-export function FilterSidebar({ type , team , currencie , handleFilter , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict}) {
+export function FilterSidebar({ type , team , currencie , selectedTeam , setSelectedTeam , handleFilter , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict}) {
     return (
         <div className="w-full">
             <div className="mb-5 w-full">
@@ -27,7 +27,7 @@ export function FilterSidebar({ type , team , currencie , handleFilter , countri
                 </div>
                 <div className="mb-5">
                     <p className="text-sm text-[#878787] mb-2" htmlFor="">Personel Seçimi</p>
-                    <select className="block w-full border border-[#d9d9d9] rounded-lg py-1.5 pl-3 pr-9">
+                    <select value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)} className="block w-full border border-[#d9d9d9] rounded-lg py-1.5 pl-3 pr-9">
                         <option value={""}>Tümü</option>
                         {team?.personals?.map(item => (
                             <option value={item.id} key={item.id}>{item.name}</option>
@@ -101,7 +101,7 @@ export function FilterSidebar({ type , team , currencie , handleFilter , countri
                         </div>
                     </div>
                 </div>
-                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict , selectedTeam)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
 
             </form>
 

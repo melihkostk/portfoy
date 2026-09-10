@@ -26,6 +26,7 @@ export function Company({ loged }) {
     }, [])
 
     const [team, setTeam] = useState([]);
+    const [selectedTeam , setSelectedTeam] = useState("")
 
     useEffect(() => {
         getTeam().then(setTeam)
@@ -57,9 +58,10 @@ export function Company({ loged }) {
     useEffect(() => {
         getAllDistricts(selectedCity).then(setDistricts)
     }, [selectedCity])
-    
-    function handleFilter(selectedCountry , selectedCity , selectedDistrict) {
-        getCompanyProperties(selectedCountry , selectedCity , selectedDistrict).then(setCompanyProperties).then(setLoaded).finally(() => setLoaded(true))
+
+    function handleFilter(selectedCountry, selectedCity, selectedDistrict , selectedTeam) {
+        setLoaded(false)
+        getCompanyProperties(selectedCountry, selectedCity, selectedDistrict , selectedTeam).then(setCompanyProperties).finally(() => setLoaded(true))
     }
 
     return (
@@ -86,6 +88,8 @@ export function Company({ loged }) {
                         <FilterSidebar
                             type={type}
                             team={team}
+                            selectedTeam={selectedTeam}
+                            setSelectedTeam={setSelectedTeam}
                             currencie={currencie}
                             countries={countries}
                             selectedCountry={selectedCountry}
@@ -101,19 +105,24 @@ export function Company({ loged }) {
                         />
                     </div>
                     <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-wrap">
-                        {companyProperties.map(item => (
-                            <PropertiesCard
-                                page="company"
-                                key={item.id}
-                                title={item.title}
-                                cover={item.cover}
-                                price={item.price.formatted}
-                                company={item.company.title}
-                                type={item.type.title}
-                                city={item.city.title}
-                                district={item.district.title}
-                            />
-                        ))}
+                        {companyProperties.length > 0 ? (
+                            companyProperties.map((item) => (
+                                <PropertiesCard
+                                    page="company"
+                                    key={item.id}
+                                    title={item.title}
+                                    cover={item.cover}
+                                    price={item.price.formatted}
+                                    company={item.company.title}
+                                    type={item.type.title}
+                                    city={item.city.title}
+                                    district={item.district.title}
+                                    created_by={item.creator}
+                                />
+                            ))
+                        ) : (
+                            <div className="text-[#636464] bg-[#fafafa] h-fit p-3.75 m-3.75 rounded-lg">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
+                        )}
                     </div>
                 </div>
             </div>
