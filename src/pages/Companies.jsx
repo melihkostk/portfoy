@@ -66,9 +66,12 @@ export function Companies({ loged }) {
         getAllStreets(selectedDistrict).then(setStreets)
     }, [selectedDistrict])
 
-    const handleFilterCompany = (type, country, city, district) => {
-        filterCompany(type, country, city, district).then(setCompanies).finally(() => setLoaded(true))
+    const handleFilterCompany = (type, country, city, district ,q) => {
+        setLoaded(false)
+        filterCompany(type, country, city, district , q).then(setCompanies).finally(() => setLoaded(true))
     }
+
+    const [q, setQ] = useState("")
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -111,13 +114,14 @@ export function Companies({ loged }) {
                         streets={streets}
                         setSelectedStreet={setSelectedStreet}
                         filterCompany={handleFilterCompany}
-
+                        q={q}
+                        setQ={setQ}
                     />
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex justify-start flex-wrap my-5 -mx-3.75 max-[992px]:m-0">
-                    {companies.map(item => (
+                    {companies.length > 0 ? companies.map(item => (
                         <CompanyCard
                             key={item.id}
                             id={item.id}
@@ -126,7 +130,11 @@ export function Companies({ loged }) {
                             location={item.locations}
                             logo={item.logo}
                         />
-                    ))}
+                    ))
+                    :(
+                        <div className="text-[#636464] w-full bg-[#fafafa] h-fit p-3.75 m-3.75 rounded-lg">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
+                    )
+                }
                 </div>
             </div>
             <div className='w-full mt-30 mb-30'>

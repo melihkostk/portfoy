@@ -27,12 +27,13 @@ export const getCompanyTypes = async () => {
     return response.data.data;
 }
 
-export const filterCompany = async (type , country , city , district) => {
+export const filterCompany = async (type , country , city , district , q) => {
     const response = await api.post("/companies", {
         type_id: type,
         country_id:country,
         city_id:city,
-        district_id:district
+        district_id:district,
+        q:q
     });
     return response.data.data;
 }
