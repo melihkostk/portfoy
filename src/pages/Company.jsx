@@ -33,6 +33,7 @@ export function Company({ loged }) {
     }, [])
 
     const [currencie, setCurrencie] = useState([]);
+    const [selectedCurrencie , setSelectedCurrencie] = useState("")
 
     useEffect(() => {
         getAllCurrencies().then(setCurrencie)
@@ -59,10 +60,13 @@ export function Company({ loged }) {
         getAllDistricts(selectedCity).then(setDistricts)
     }, [selectedCity])
 
-    function handleFilter(selectedCountry, selectedCity, selectedDistrict , selectedTeam) {
+    function handleFilter(selectedCountry, selectedCity, selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie) {
         setLoaded(false)
-        getCompanyProperties(selectedCountry, selectedCity, selectedDistrict , selectedTeam).then(setCompanyProperties).finally(() => setLoaded(true))
+        getCompanyProperties(selectedCountry, selectedCity, selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie).then(setCompanyProperties).finally(() => setLoaded(true))
     }
+
+    const [minSell , setMinSell] = useState("");
+    const [maxSell , setMaxSell] = useState("");
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -101,6 +105,12 @@ export function Company({ loged }) {
                             selectedDistrict={selectedDistrict}
                             setSelectedDistrict={setSelectedDistrict}
                             handleFilter={handleFilter}
+                            minSell={minSell}
+                            setMinSell={setMinSell}
+                            maxSell={maxSell}
+                            setMaxSell={setMaxSell}
+                            selectedCurrencie={selectedCurrencie}
+                            setSelectedCurrencie={setSelectedCurrencie}
 
                         />
                     </div>

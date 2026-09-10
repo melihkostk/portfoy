@@ -30,13 +30,17 @@ export const getLocation = async () => {
     return response.data.data.locations
 }
 
-export const getCompanyProperties = async (country_id , city_id , district_id , created_by) => {
-    const response = await api.post("/auth/company/properties" , {
-        country_id:country_id,
-        city_id:city_id,
-        district_id:district_id,
-        created_by:created_by
+export const getCompanyProperties = async (country_id, city_id, district_id, created_by, min_sell_price , max_sell_price , currency_id) => {
+    const response = await api.post("/auth/company/properties", {
+        country_id: country_id,
+        city_id: city_id,
+        district_id: district_id,
+        created_by: created_by,
+        min_sell_price: min_sell_price,
+        max_sell_price: max_sell_price,
+        currency_id:currency_id,
     });
+    console.log(response.data.data.properties)
     return response.data.data.properties;
 }
 
@@ -46,8 +50,8 @@ export const getCompanyProposals = async () => {
 }
 
 export const getCustomerProposals = async (customer_id) => {
-    const response = await api.post("/auth/company/proposals" , {
-        customer_id:customer_id
+    const response = await api.post("/auth/company/proposals", {
+        customer_id: customer_id
     });
     return response.data.data;
 }
@@ -135,25 +139,25 @@ export const addCustomer = async (name, email, phone, phone_code, locale, note) 
     return response.data;
 }
 
-export const updateLocation = async (id, country_id, city_id, district_id, address , street_id) => {
+export const updateLocation = async (id, country_id, city_id, district_id, address, street_id) => {
     const response = await api.post(`/auth/company/locations/${id}/update`, {
         country_id: country_id,
         city_id: city_id,
         district_id: district_id,
         address: address,
-        street_id:street_id
+        street_id: street_id
     });
     return response.data;
 }
 
-export const updateInvite = async (id , name , email , role , locale , phone , phone_code) => {
-    const response = await api.post(`/auth/company/team/invitations/${id}/update` , {
-        name:name,
-        email:email,
-        role:role,
-        locale:locale,
-        phone:phone,
-        phone_code:phone_code
+export const updateInvite = async (id, name, email, role, locale, phone, phone_code) => {
+    const response = await api.post(`/auth/company/team/invitations/${id}/update`, {
+        name: name,
+        email: email,
+        role: role,
+        locale: locale,
+        phone: phone,
+        phone_code: phone_code
     });
     return response.data;
 }

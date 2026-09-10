@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-export function FilterSidebar({ type , team , currencie , selectedTeam , setSelectedTeam , handleFilter , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict}) {
+export function FilterSidebar({ type , team , currencie , selectedTeam , setSelectedTeam , handleFilter ,selectedCurrencie , setSelectedCurrencie , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict , minSell ,  setMinSell , maxSell , setMaxSell}) {
     return (
         <div className="w-full">
             <div className="mb-5 w-full">
@@ -37,11 +37,11 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                 <div className="mb-5">
                     <p className="text-sm text-[#878787] mb-2" htmlFor="">Satış Fiyatı</p>
                     <div className="flex gap-1">
-                        <input type="number" placeholder="En az" min={0} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
-                        <input type="number" placeholder="En fazla" className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
+                        <input value={minSell} onChange={(e) => setMinSell(e.target.value)} type="number" placeholder="En az" min={0} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
+                        <input value={maxSell} onChange={(e) => setMaxSell(e.target.value)} type="number" placeholder="En fazla" className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
                     </div>
                     <div className="mt-2">
-                        <select className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
+                        <select value={selectedCurrencie} onChange={(e) => setSelectedCurrencie(e.target.value)} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
                             {currencie.map(item => (
                                 <option value={item.id} key={item.id}>({item.code}) {item.title}</option>
                             ))}
@@ -101,7 +101,7 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                         </div>
                     </div>
                 </div>
-                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict , selectedTeam)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
 
             </form>
 
