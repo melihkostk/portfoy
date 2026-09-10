@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-export function FilterSidebar({ type , team , currencie , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict}) {
+export function FilterSidebar({ type , team , currencie , handleFilter , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict}) {
     return (
         <div className="w-full">
             <div className="mb-5 w-full">
@@ -16,13 +16,10 @@ export function FilterSidebar({ type , team , currencie , countries , selectedCo
                 <div>
                     <ul className="my-7.5">
                         {type.map(item => (
-                            <div key={item.id} className="flex justify-between items-center">
+                            <div key={item.id} className="flex justify-between items-center mb-1.25">
                                 <div className="flex items-center gap-2">
                                     <input type="checkbox" />
                                     <label className="text-[13px] text-[#212529] font-medium">{item.title}</label>
-                                </div>
-                                <div>
-                                    <span className="text-[#212529] text-sm font-semibold">128</span>
                                 </div>
                             </div>
                         ))}
@@ -104,7 +101,7 @@ export function FilterSidebar({ type , team , currencie , countries , selectedCo
                         </div>
                     </div>
                 </div>
-                <button className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
 
             </form>
 

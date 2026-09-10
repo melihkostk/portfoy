@@ -45,18 +45,22 @@ export function Company({ loged }) {
     }, [])
 
     const [cities, setCities] = useState([]);
-    const [selectedCity , setSelectedCity] = useState("");
+    const [selectedCity, setSelectedCity] = useState("");
 
     useEffect(() => {
         getAllCities(selectedCountry).then(setCities)
     }, [selectedCountry])
 
-    const [districts , setDistricts] = useState([]);
-    const [selectedDistrict , setSelectedDistrict] = useState("")
+    const [districts, setDistricts] = useState([]);
+    const [selectedDistrict, setSelectedDistrict] = useState("")
 
     useEffect(() => {
         getAllDistricts(selectedCity).then(setDistricts)
     }, [selectedCity])
+    
+    function handleFilter(selectedCountry , selectedCity , selectedDistrict) {
+        getCompanyProperties(selectedCountry , selectedCity , selectedDistrict).then(setCompanyProperties).then(setLoaded).finally(() => setLoaded(true))
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -92,6 +96,7 @@ export function Company({ loged }) {
                             districts={districts}
                             selectedDistrict={selectedDistrict}
                             setSelectedDistrict={setSelectedDistrict}
+                            handleFilter={handleFilter}
 
                         />
                     </div>

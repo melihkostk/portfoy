@@ -30,8 +30,12 @@ export const getLocation = async () => {
     return response.data.data.locations
 }
 
-export const getCompanyProperties = async () => {
-    const response = await api.post("/auth/company/properties");
+export const getCompanyProperties = async (country_id , city_id , district_id) => {
+    const response = await api.post("/auth/company/properties" , {
+        country_id:country_id,
+        city_id:city_id,
+        district_id:district_id
+    });
     return response.data.data.properties;
 }
 
