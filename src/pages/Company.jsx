@@ -4,7 +4,7 @@ import { FilterSidebar } from "../components/FilterSidebar"
 import { PropertiesCard } from "../components/PropertiesCard"
 import { Footer } from "../components/Footer"
 import { AppLinks } from "../components/AppLinks"
-import { getCompanyProperties, getTeam } from "../services/myCompanyApi"
+import { getCompanyProperties, getDraftProperties, getTeam } from "../services/myCompanyApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getAllPropertiesType } from "../services/propertiesApi"
@@ -26,14 +26,14 @@ export function Company({ loged }) {
     }, [])
 
     const [team, setTeam] = useState([]);
-    const [selectedTeam , setSelectedTeam] = useState("")
+    const [selectedTeam, setSelectedTeam] = useState("")
 
     useEffect(() => {
         getTeam().then(setTeam)
     }, [])
 
     const [currencie, setCurrencie] = useState([]);
-    const [selectedCurrencie , setSelectedCurrencie] = useState("")
+    const [selectedCurrencie, setSelectedCurrencie] = useState("")
 
     useEffect(() => {
         getAllCurrencies().then(setCurrencie)
@@ -60,13 +60,20 @@ export function Company({ loged }) {
         getAllDistricts(selectedCity).then(setDistricts)
     }, [selectedCity])
 
-    function handleFilter(selectedCountry, selectedCity, selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie) {
+    function handleFilter(selectedCountry, selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status) {
         setLoaded(false)
-        getCompanyProperties(selectedCountry, selectedCity, selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie).then(setCompanyProperties).finally(() => setLoaded(true))
+        getCompanyProperties(selectedCountry, selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status).then(setCompanyProperties).finally(() => setLoaded(true))
     }
 
-    const [minSell , setMinSell] = useState("");
-    const [maxSell , setMaxSell] = useState("");
+    const [minSell, setMinSell] = useState("");
+    const [maxSell, setMaxSell] = useState("");
+    const [status, setStatus] = useState("");
+
+    const [draft, setDraft] = useState([])
+
+    useEffect(() => {
+        getDraftProperties().then(setDraft)
+    }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -111,7 +118,8 @@ export function Company({ loged }) {
                             setMaxSell={setMaxSell}
                             selectedCurrencie={selectedCurrencie}
                             setSelectedCurrencie={setSelectedCurrencie}
-
+                            status={status}
+                            setStatus={setStatus}
                         />
                     </div>
                     <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-wrap">
@@ -133,6 +141,20 @@ export function Company({ loged }) {
                         ) : (
                             <div className="text-[#636464] bg-[#fafafa] h-fit p-3.75 m-3.75 rounded-lg">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
                         )}
+                        {status === "unpublished" && draft.map(item => (
+                            <PropertiesCard
+                                page="company"
+                                key={item.id}
+                                title={item.title}
+                                cover={item.cover}
+                                price={item.price.formatted}
+                                company={item.company.title}
+                                type={item.type.title}
+                                city={item.city.title}
+                                district={item.district.title}
+                                created_by={item.creator}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>

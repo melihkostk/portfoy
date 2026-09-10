@@ -30,7 +30,12 @@ export const getLocation = async () => {
     return response.data.data.locations
 }
 
-export const getCompanyProperties = async (country_id, city_id, district_id, created_by, min_sell_price , max_sell_price , currency_id) => {
+export const getDraftProperties = async () => {
+    const response = await api.post("/properties/drafts");
+    return response.data.data;
+}
+
+export const getCompanyProperties = async (country_id, city_id, district_id, created_by, min_sell_price , max_sell_price , currency_id , property_status) => {
     const response = await api.post("/auth/company/properties", {
         country_id: country_id,
         city_id: city_id,
@@ -39,6 +44,7 @@ export const getCompanyProperties = async (country_id, city_id, district_id, cre
         min_sell_price: min_sell_price,
         max_sell_price: max_sell_price,
         currency_id:currency_id,
+        property_status:property_status
     });
     console.log(response.data.data.properties)
     return response.data.data.properties;

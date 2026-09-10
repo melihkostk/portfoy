@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-export function FilterSidebar({ type , team , currencie , selectedTeam , setSelectedTeam , handleFilter ,selectedCurrencie , setSelectedCurrencie , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict , minSell ,  setMinSell , maxSell , setMaxSell}) {
+export function FilterSidebar({ type , team , currencie , selectedTeam , setSelectedTeam , handleFilter ,selectedCurrencie , setSelectedCurrencie , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict , minSell ,  setMinSell , maxSell , setMaxSell , status , setStatus}) {
     return (
         <div className="w-full">
             <div className="mb-5 w-full">
@@ -84,24 +84,24 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                     <p className="text-sm text-[#878787] mb-2" htmlFor="">İlan Durumu</p>
                     <div>
                         <div className="flex items-center gap-2.5">
-                            <input type="checkbox" />
-                            <label className="text-[13px] text-[#212529] font-medium" htmlFor="">Tümü</label>
+                            <input id="status-all" name="status" type="checkbox" checked={status === ""} onChange={() => setStatus("")} />
+                            <label className={`text-[13px] ${status === "" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-all">Tümü</label>
                         </div>
                         <div className="flex items-center gap-2.5">
-                            <input type="checkbox" />
-                            <label className="text-[13px] text-[#212529] font-medium" htmlFor="">Sadece Yayında Olanlar</label>
+                            <input id="status-published" name="status" type="checkbox" checked={status === "published"} onChange={() => setStatus("published")} />
+                            <label className={`text-[13px] ${status === "published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-published">Sadece Yayında Olanlar</label>
                         </div>
                         <div className="flex items-center gap-2.5">
-                            <input type="checkbox" />
-                            <label className="text-[13px] text-[#212529] font-medium" htmlFor="">Sadece Yayında Olmayanlar</label>
+                            <input id="status-unpublished" name="status" type="checkbox" checked={status === "unpublished"} onChange={() => setStatus("unpublished")} />
+                            <label className={`text-[13px] ${status === "unpublished" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-unpublished">Sadece Yayında Olmayanlar</label>
                         </div>
                         <div className="flex items-center gap-2.5">
-                            <input type="checkbox" />
-                            <label className="text-[13px] text-[#212529] font-medium" htmlFor="">Sadece Satılan İlanlar</label>
+                            <input id="status-sold" name="status" type="checkbox" checked={status === "sold"} onChange={() => setStatus("sold")} />
+                            <label className={`text-[13px] ${status === "sold" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-sold">Sadece Satılan İlanlar</label>
                         </div>
                     </div>
                 </div>
-                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie , status)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
 
             </form>
 
