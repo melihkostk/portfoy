@@ -4,9 +4,11 @@ import { FilterSidebar } from "../components/FilterSidebar"
 import { PropertiesCard } from "../components/PropertiesCard"
 import { Footer } from "../components/Footer"
 import { AppLinks } from "../components/AppLinks"
-import { getCompanyProperties } from "../services/myCompanyApi"
+import { getCompanyProperties, getTeam } from "../services/myCompanyApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
+import { getAllPropertiesType } from "../services/propertiesApi"
+import { getAllCities, getAllCountries, getAllCurrencies, getAllDistricts } from "../services/filterApi"
 
 export function Company({ loged }) {
 
@@ -17,6 +19,44 @@ export function Company({ loged }) {
         getCompanyProperties().then(setCompanyProperties).finally(() => setLoaded(true))
     }, [])
 
+    const [type, setType] = useState([]);
+
+    useEffect(() => {
+        getAllPropertiesType().then(setType)
+    }, [])
+
+    const [team, setTeam] = useState([]);
+
+    useEffect(() => {
+        getTeam().then(setTeam)
+    }, [])
+
+    const [currencie, setCurrencie] = useState([]);
+
+    useEffect(() => {
+        getAllCurrencies().then(setCurrencie)
+    }, [])
+
+    const [countries, setCountries] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState("")
+
+    useEffect(() => {
+        getAllCountries().then(setCountries)
+    }, [])
+
+    const [cities, setCities] = useState([]);
+    const [selectedCity , setSelectedCity] = useState("");
+
+    useEffect(() => {
+        getAllCities(selectedCountry).then(setCities)
+    }, [selectedCountry])
+
+    const [districts , setDistricts] = useState([]);
+    const [selectedDistrict , setSelectedDistrict] = useState("")
+
+    useEffect(() => {
+        getAllDistricts(selectedCity).then(setDistricts)
+    }, [selectedCity])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -39,7 +79,21 @@ export function Company({ loged }) {
             <div className="max-w-[90%] w-full pt-12.5">
                 <div className="flex max-[992px]:flex-col">
                     <div className="w-[23%] max-[992px]:w-full">
-                        <FilterSidebar />
+                        <FilterSidebar
+                            type={type}
+                            team={team}
+                            currencie={currencie}
+                            countries={countries}
+                            selectedCountry={selectedCountry}
+                            setSelectedCountry={setSelectedCountry}
+                            cities={cities}
+                            selectedCity={selectedCity}
+                            setSelectedCity={setSelectedCity}
+                            districts={districts}
+                            selectedDistrict={selectedDistrict}
+                            setSelectedDistrict={setSelectedDistrict}
+
+                        />
                     </div>
                     <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-wrap">
                         {companyProperties.map(item => (

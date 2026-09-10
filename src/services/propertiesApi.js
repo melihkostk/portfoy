@@ -20,6 +20,11 @@ export const getSortingOptions = async () => {
   return response.data.data;
 }
 
+export const getAllPropertiesType = async () => {
+  const response = await api.post("/properties/types");
+  return response.data.data;
+}
+
 export const toggleWishlist = async (id) => {
   const response = await api.post("/auth/wishlist/property/toggle" , {
     property_id:id

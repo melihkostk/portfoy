@@ -102,19 +102,19 @@ export function Header({ loged, details }) {
                         </li>
                     </ul>
                 </div>}
-                {loged && <div className="max-[1100px]:hidden">
-                    <ul className="flex gap-5">
+                {loged && <div className="max-[1100px]:hidden px-6.25">
+                    <ul className="flex gap-5 pl-5">
                         <li>
-                            <Link to={"/properties"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">İlanlar</Link>
+                            <Link to={"/properties"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">İlanlar</Link>
                         </li>
                         <li>
-                            <Link to={"/companies"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">Firmalar</Link>
+                            <Link to={"/companies"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">Firmalar</Link>
                         </li>
                         <li>
-                            <Link to={"/properties/create"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">Yeni İlan Oluştur</Link>
+                            <Link to={"/properties/create"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">Yeni İlan Oluştur</Link>
                         </li>
                         <li>
-                            <Link to={"/contacts"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-medium">İletişim</Link>
+                            <Link to={"/contacts"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">İletişim</Link>
                         </li>
                     </ul>
                 </div>}
