@@ -131,6 +131,7 @@ export function Company({ loged }) {
                             companyProperties.map((item) => (
                                 <PropertiesCard
                                     page="company"
+                                    id={item.id}
                                     key={item.id}
                                     title={item.title}
                                     cover={item.cover}

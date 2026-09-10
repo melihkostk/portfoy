@@ -4,7 +4,7 @@ import check from "../assets/check.png"
 
 export function SubscriptionCard({ packageName, finish_at, readable, is_active, is_trial }) {
 
-    const [optionsShown, setOptionsShown] = useState(true);
+    const [optionsShown, setOptionsShown] = useState(false);
     const [customerOptions, setCustomerOptions] = useState([]);
 
     useEffect(() => {

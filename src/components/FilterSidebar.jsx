@@ -26,7 +26,7 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                             <div key={item.id} className="flex justify-between items-center mb-1.25">
                                 <div className="flex items-center gap-2">
                                     <input id={`type-${item.id}`} name="type" type="checkbox" checked={selectedType.includes(item.id)} onChange={() => toggleType(item.id)} />
-                                    <label className="text-[13px] text-[#212529] font-medium" htmlFor={`type-${item.id}`}>{item.title}</label>
+                                    <label className={`text-[13px] ${selectedType.includes(item.id) ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor={`type-${item.id}`}>{item.title}</label>
                                 </div>
                             </div>
                         ))}

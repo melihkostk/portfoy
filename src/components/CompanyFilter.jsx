@@ -4,7 +4,7 @@ export function CompanyFilter({ type , setSelectedType , countries , selectedCou
             <div className="flex flex-col grow max-[992px]:w-full">
                 <label htmlFor="">Firma Tipi</label>
                 <select onChange={(e) => setSelectedType(e.target.value)} className="bg-white py-2 px-3 border w-full border-[#D9D9D9] rounded-lg" name="" id="">
-                    <option disabled value="">
+                    <option value="">
                         Tümü
                     </option>
                     {type?.map(item => (
@@ -19,8 +19,8 @@ export function CompanyFilter({ type , setSelectedType , countries , selectedCou
                     <div className="flex flex-col flex-1 max-[992px]:w-full">
                         <label htmlFor="">Ülke Seçin</label>
                         <select onChange={(e) => setSelectedCountry(e.target.value)} className="bg-white py-2 w-full px-3 border border-[#D9D9D9] max-[992px]:rounded-lg rounded-l-lg" name="" id="">
-                            <option disabled value="">
-                                Tümü
+                            <option value="">
+                                Ülke Seçin
                             </option>
                             {countries?.data?.map(item => (
                                 <option key={item.id} value={item.id}>{item.title}</option>
@@ -30,8 +30,8 @@ export function CompanyFilter({ type , setSelectedType , countries , selectedCou
                     <div className="flex flex-col flex-1">
                         <label htmlFor="">İl Seçin</label>
                         <select onChange={(e) => setSelectedCity(e.target.value)} className="bg-white py-2 px-3 border w-full max-[992px]:rounded-lg border-[#D9D9D9]" name="" id="">
-                            <option disabled value="">
-                                Tümü
+                            <option value="">
+                                İl Seçin
                             </option>
                             {cities?.map(item => (
                                 <option key={item.id} value={item.id}>{item.title}</option>
@@ -41,8 +41,8 @@ export function CompanyFilter({ type , setSelectedType , countries , selectedCou
                     <div className="flex flex-col flex-1">
                         <label htmlFor="">İlçe Seçin</label>
                         <select onChange={(e) => setSelectedDistrict(e.target.value)} className="bg-white py-2 px-3 border w-full max-[992px]:rounded-lg border-[#D9D9D9]" name="" id="">
-                            <option disabled value="">
-                                Tümü
+                            <option value="">
+                                İlçe Seçin
                             </option>
                             {district?.map(item => (
                                 <option key={item.id} value={item.id}>{item.title}</option>
@@ -54,7 +54,7 @@ export function CompanyFilter({ type , setSelectedType , countries , selectedCou
                         <label htmlFor="">Mahalle</label>
                         <select onChange={(e) => setSelectedStreet(e.target.value)} className="bg-white py-2 px-3 border w-full max-[992px]:rounded-lg border-[#D9D9D9] rounded-r-lg" name="" id="">
                             <option value="">
-                                Tümü
+                                Mahalle
                             </option>
                             {streets?.map(item => (
                                 <option key={item.id} value={item.id}>{item.title}</option>

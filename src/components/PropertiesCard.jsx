@@ -41,7 +41,7 @@ export function PropertiesCard(props) {
                     <span className="text-[11px] text-[#B7BFB9] font-medium block py-1.25">
                         Satış Fiyatı
                     </span>
-                    <span className="text-lg text-[#FFCA64] font-semibold">
+                    <span className="text-lg text-[#FFCA64] font-semibold wrap-break-word">
                         {props.price}
                     </span>
                 </p>
