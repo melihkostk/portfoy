@@ -39,7 +39,7 @@ export function CompaniesDetail({ loged }) {
             <CompanyHeader page="companyDetail" id={id} />
             <div className="max-w-[90%] w-full pt-12.5">
                 <div className="flex flex-wrap">
-                    {companyDetailProperties?.properties?.map(item => (
+                    {companyDetailProperties.length > 0 ? companyDetailProperties?.properties?.map(item => (
                         <PropertiesCard
                             key={item.id}
                             id={item.id}
@@ -51,7 +51,11 @@ export function CompaniesDetail({ loged }) {
                             city={item.city.title}
                             district={item.district.title}
                         />
-                    ))}
+                    ))
+                    :(
+                        <div className="text-[#636464] w-full bg-[#fafafa] h-fit p-3.75 rounded-lg">Henüz bir ilan yok.</div>
+                    )
+                }
                 </div>
             </div>
             <div className='w-full mt-30 mb-30'>

@@ -51,12 +51,12 @@ export function Properties({ loged }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%] pt-20">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center flex-wrap justify-between">
                     <h1 className="text-[25px] text-[#212529] font-medium">
                         İlanlar
                     </h1>
                     <div className="flex items-center gap-5">
-                        <div className="flex items-center gap-1.25">
+                        <div className="flex items-center gap-1.25 max-[992px]:hidden">
                             <button onClick={() => setFlexDirection("")} className={`${flexDirection === "flex-col" ? "opacity-80 bg-white border border-[#eee]" : ""} w-9.5 h-9.5 rounded-lg bg-[#F8F8F8] cursor-pointer flex items-center justify-center`}>
                                 <img className="w-7 h-7" src={grid} alt="" />
                             </button>
@@ -74,7 +74,7 @@ export function Properties({ loged }) {
                     </div>
                 </div>
                 <div className={`flex ${flexDirection === "flex-col" ? "flex-col" : ""} flex-wrap max-[992px]:flex-col items-center justify-start -mx-3.75 max-[992px]:m-0`}>
-                    {properties.map(item => (
+                    {properties?.data?.map(item => (
                         <PropertiesCard
                             key={item.id}
                             title={item.title}
@@ -95,7 +95,7 @@ export function Properties({ loged }) {
                 <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center">
                     <div>
                         <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
-                            157 kayıttan 1 - 12 arasındaki kayıtlar gösteriliyor
+                            {properties?.pagination?.pagination_text}
                         </p>
                     </div>
                     <nav className="overflow-auto max-w-full">
