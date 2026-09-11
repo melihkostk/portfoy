@@ -8,12 +8,12 @@ import { getCompaniesLocation } from "../services/companiesApi";
 import { LocationCard } from "../components/LocationCard";
 import { ClipLoader } from "react-spinners";
 
-export function CompaniesDetailLocation({loged}) {
+export function CompaniesDetailLocation({ loged }) {
 
     const { id } = useParams();
 
-    const [location , setLocation] = useState([]);
-    const [loaded , setLoaded] = useState(false)
+    const [location, setLocation] = useState([]);
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         getCompaniesLocation(id).then(setLocation).finally(() => setLoaded(true))
@@ -39,17 +39,31 @@ export function CompaniesDetailLocation({loged}) {
             <CompanyHeader page="companyDetail" id={id} />
             <div className="max-w-[90%] w-full pt-12.5">
                 <h2 className="mb-2 text-[#212529] text-[32px]">Konum ve İletişim</h2>
-                <div className="flex flex-col mt-7.5">
-                    {location?.locations?.map(item => (
-                    <LocationCard
-                        key={item.id}
-                        address={item.address}
-                        country={item.country.title}
-                        city={item.city.title}
-                        district={item.district.title}
-                        page="companyLocation"
-                    />
-                ))}
+                <div className="flex items-start w-full justify-between">
+                    <div className="w-1/2 sticky top-0">
+                        <div className="flex flex-col mt-7.5">
+                            {location?.locations?.map(item => (
+                                <LocationCard
+                                    key={item.id}
+                                    address={item.address}
+                                    country={item.country.title}
+                                    city={item.city.title}
+                                    district={item.district.title}
+                                    page="companyLocation"
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <div className="w-1/2">
+                        <iframe
+                            src={`https://www.google.com/maps?q=${location?.locations?.map?.latitude},${location?.locations?.map?.longitude}&z=15&output=embed`}
+                            className="w-full h-[calc(100vh-100px)] border-0 rounded-lg"
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            title="Google Maps"
+                        />
+                    </div>
                 </div>
             </div>
             <div className='w-full mt-30 mb-30'>
