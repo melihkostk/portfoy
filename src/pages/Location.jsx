@@ -191,19 +191,34 @@ export function Location({ loged }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%] mt-12.5">
-                {location.map(item => (
-                    <LocationCard
-                        id={item.id}
-                        key={item.id}
-                        address={item.address}
-                        country={item.country.title}
-                        city={item.city.title}
-                        district={item.district.title}
-                        handleDeleteLocation={handleDeleteLocation}
-                        setUpdateMapShown={setUpdateMapShown}
-                        onEditClick={() => handleEditClick(item)}
-                    />
-                ))}
+                <div className="flex max-[992px]:flex-col items-start w-full justify-between">
+                    <div className="w-1/2 max-[992px]:w-full sticky top-3">
+                        {location.map(item => (
+                            <LocationCard
+                                id={item.id}
+                                key={item.id}
+                                address={item.address}
+                                country={item.country.title}
+                                city={item.city.title}
+                                district={item.district.title}
+                                location={location}
+                                handleDeleteLocation={handleDeleteLocation}
+                                setUpdateMapShown={setUpdateMapShown}
+                                onEditClick={() => handleEditClick(item)}
+                            />
+                        ))}
+                    </div>
+                    <div className="w-1/2 max-[992px]:w-full">
+                        <iframe
+                            src={`https://www.google.com/maps?q=${location?.locations?.map?.latitude},${location?.locations?.map?.longitude}&z=15&output=embed`}
+                            className="w-full h-[calc(100vh-100px)] border-0 rounded-lg"
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            title="Google Maps"
+                        />
+                    </div>
+                </div>
             </div>
             {locationMenu && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
