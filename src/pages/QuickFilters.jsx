@@ -7,6 +7,7 @@ import { deleteQuickFilters, editQuickFilters, getQuickFilters } from "../servic
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
+import whiteClose from "../assets/close.png"
 
 export function QuickFilters({ loged }) {
 
@@ -30,7 +31,7 @@ export function QuickFilters({ loged }) {
     const [editFilterShown, setEditFilterShown] = useState(false);
     const [editedTitle, setEditedTitle] = useState("")
     const [editingId, setEditingId] = useState(null)
-    const [notify , setNotify] = useState(0)
+    const [notify, setNotify] = useState(0)
 
     function handleEditClick(item) {
         setEditingId(item.id)
@@ -39,6 +40,9 @@ export function QuickFilters({ loged }) {
         setEditFilterShown(true)
     }
 
+    const [editMessageShown, setEditMessageShown] = useState(false)
+    const [editMessage, setEditMessage] = useState("")
+
     function handleEdit() {
         editQuickFilters(editingId, editedTitle, notify).then((data => {
             if (data.status === "error") {
@@ -46,7 +50,7 @@ export function QuickFilters({ loged }) {
             }
             setEditFilterShown(false)
             setLoaded(false)
-            getQuickFilters().then(setQuickFilters).finally(() => setLoaded(true))
+            getQuickFilters().then(setQuickFilters).finally(() => { setLoaded(true); setEditMessageShown(true); setEditMessage(data.message) })
         }))
     }
 
@@ -68,6 +72,10 @@ export function QuickFilters({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım</span></p>
                 </div>
             </div>
+            {editMessageShown && <div className="fixed right-4 rounded-lg font-semibold z-50 flex items-center gap-2 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{editMessage}</p>
+                <img onClick={() => setEditMessageShown(false)} className="w-4 h-4 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
             {editFilterShown && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-fit w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
                     <h2 className="text-xl text-[#212529]">Hızlı Filtre Düzenle</h2>
