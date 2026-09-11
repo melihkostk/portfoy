@@ -37,7 +37,7 @@ export function Wishlist({ loged }) {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="w-[28%] max-[992px]:w-full sticky top-0">
-                        <Sidebar />
+                        <Sidebar page="wishlist" />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <div className="flex justify-between items-center mb-5 flex-wrap">

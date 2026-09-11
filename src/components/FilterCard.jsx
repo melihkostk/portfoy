@@ -10,11 +10,11 @@ export function FilterCard({title , created_at , notify , handleDelete , id}) {
             </td>
             <td className="py-3 px-2 whitespace-nowrap">{created_at}</td>
             <td className="py-3 px-2 flex items-center justify-end gap-2">
-                <a className="text-xs whitespace-nowrap text-white font-semibold bg-[#27C5D2] py-2 px-5 rounded-sm hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</a>
-                <a className="bg-[#f1f1f1] whitespace-nowrap py-2 px-5 rounded-sm hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                <button className="text-xs whitespace-nowrap cursor-pointer text-white font-semibold bg-[#27C5D2] py-2 px-5 rounded-sm hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                <button className="bg-[#f1f1f1] cursor-pointer whitespace-nowrap py-2 px-5 rounded-sm hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                     <img className="w-4 h-4 min-h-4 min-w-4" src={pencil} alt="" />
-                </a>
-                <button onClick={() => handleDelete(id)} className="bg-[#dc3545] whitespace-nowrap py-2 px-5 rounded-sm hover:bg-[#bb2d3b] transition-colors duration-300 ease-in-out">
+                </button>
+                <button onClick={() => handleDelete(id)} className="bg-[#dc3545] cursor-pointer whitespace-nowrap py-2 px-5 rounded-sm hover:bg-[#bb2d3b] transition-colors duration-300 ease-in-out">
                     <img className="w-4 h-4 min-h-4 min-w-4" src={bin} alt="" />
                 </button>
             </td>

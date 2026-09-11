@@ -18,7 +18,7 @@ export function Account({loged}) {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="w-[28%] max-[992px]:w-full">
-                        <Sidebar />
+                        <Sidebar page="account" />
                     </div>
                     <div className="pl-7.5 w-[72%] max-[992px]:w-full max-[992px]:pl-0">
                         <h2 className="text-[#212529] text-[25px] mb-5 font-semibold">Firma Bilgilerim</h2>

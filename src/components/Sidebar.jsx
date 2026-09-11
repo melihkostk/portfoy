@@ -3,7 +3,7 @@ import arrow from "../assets/black-arrow-right.png"
 import { Link } from "react-router-dom"
 import React from "react"
 
-export function Sidebar() {
+export function Sidebar({page , type}) {
     const [subMenu, setSubMenu] = React.useState(false)
     return (
         <div>
@@ -26,20 +26,20 @@ export function Sidebar() {
             </div>
             <div className="p-7.5 bg-white rounded-lg shadow-[0_0_30px_rgb(228_228_228)]">
                 <ul>
-                    <li className="py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                    <li className={`${page==="account" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/account"} className="flex items-center">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                             Hesap Bilgilerim
                         </Link>
                     </li>
-                    <li className="py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                    <li className={`${page==="properties" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/auth/properties"} className="flex items-center">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                             İlanlarım
                         </Link>
 
                     </li>
-                    <li className="py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                    <li className={`${page==="proposals" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/proposals"} className="flex items-center">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                             Müşteriye Gönderilen Teklifler
@@ -58,15 +58,15 @@ export function Sidebar() {
                             {subMenu && (
                                 <div className="pl-5 w-full">
                                     <ul>
-                                        <li className="rounded-lg hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out">
-                                            <Link to="/offers/received" className="flex items-center py-2 px-2.5 text-sm text-[#5f5f5f] hover:text-white transition-colors duration-300 ease-in-out">
+                                        <li className={`${type === "received" ? "bg-[#27c5d2] text-white" : "bg-white text-[#5f5f5f]"} rounded-lg hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out`}>
+                                            <Link to="/offers/received" className="flex items-center py-2 px-2.5 text-sm hover:text-white transition-colors duration-300 ease-in-out">
                                                 <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                                                 Aldığım teklifler
                                             </Link>
                                         </li>
 
-                                        <li className="rounded-lg hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out">
-                                            <Link to="/offers/send" className="flex items-center py-2 px-2.5 text-sm text-[#5f5f5f] hover:text-white transition-colors duration-300 ease-in-out">
+                                        <li className={`${type === "send" ? "bg-[#27c5d2] text-white" : "bg-white text-[#5f5f5f]"} rounded-lg hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out`}>
+                                            <Link to="/offers/send" className="flex items-center py-2 px-2.5 text-sm hover:text-white transition-colors duration-300 ease-in-out">
                                                 <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                                                 Gönderdiğim teklifler
                                             </Link>
@@ -76,19 +76,19 @@ export function Sidebar() {
                             )}
                         </div>
                     </li>
-                    <li className="py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                    <li className={`${page==="wishlist" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/wishlist"} className="flex items-center" href="">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                             Favorilerim
                         </Link>
                     </li>
-                    <li className="py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                    <li className={`${page==="quickFilters" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/quick-filters"} className="flex items-center" href="">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                             Hızlı Filtreler
                         </Link>
                     </li>
-                    <li className="py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                    <li className={`${page==="notifications" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/notifications"} className="flex items-center" href="">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
                             Bildirimlerim

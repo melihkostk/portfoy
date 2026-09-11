@@ -36,7 +36,7 @@ export function Proposals({ loged }) {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="w-[28%] max-[992px]:w-full">
-                        <Sidebar />
+                        <Sidebar page="proposals" />
                     </div>
                     <div className="w-[72%]  max-[992px]:w-full pl-7.5  max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] mb-2">Müşteriye gönderilen teklifler</h2>
