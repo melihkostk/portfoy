@@ -7,6 +7,7 @@ import { PropertiesCard } from "../components/PropertiesCard"
 import { getWishlist } from "../services/profileApi"
 import { useState } from "react"
 import { ClipLoader } from "react-spinners"
+import { toggleWishlist } from "../services/propertiesApi"
 
 export function Wishlist({ loged }) {
 
@@ -16,6 +17,16 @@ export function Wishlist({ loged }) {
     useState(() => {
         getWishlist().then(setWishlist).finally(() => setLoaded(true))
     }, [])
+
+    function handleToggleWishlist(id){
+        toggleWishlist(id).then(data => {
+            if(data.status === "error"){
+                return
+            }
+            setLoaded(false)
+            getWishlist().then(setWishlist).finally(() => setLoaded(true))
+        })
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -77,6 +88,7 @@ export function Wishlist({ loged }) {
                                         type={item.type.title}
                                         city={item.city.title}
                                         district={item.district.title}
+                                        handleToggleWishlist={handleToggleWishlist}
                                     />
                                 ))
                             }

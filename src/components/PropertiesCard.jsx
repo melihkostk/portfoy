@@ -71,7 +71,7 @@ export function PropertiesCard(props) {
                 {props.page === "properties" && <button className="bg-[#e6e6e6] max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     İlanı teklif listesine ekle
                 </button>}
-                {props.page === "wishlist" && <button className="bg-white border max-w-full whitespace-nowrap overflow-hidden truncate border-[#eee] py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                {props.page === "wishlist" && <button onClick={() => props.handleToggleWishlist(props.id)} className="bg-white border max-w-full whitespace-nowrap overflow-hidden truncate border-[#eee] py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     Favorilerden Kaldır
                 </button>}
             </div>
