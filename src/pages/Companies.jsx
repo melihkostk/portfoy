@@ -121,7 +121,7 @@ export function Companies({ loged }) {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex justify-start flex-wrap my-5 -mx-3.75 max-[992px]:m-0">
-                    {companies.length > 0 ? companies.map(item => (
+                    {companies?.data?.length > 0 ? companies.data.map(item => (
                         <CompanyCard
                             key={item.id}
                             id={item.id}
@@ -137,7 +137,12 @@ export function Companies({ loged }) {
                 }
                 </div>
             </div>
-            <div className='w-full mt-30 mb-30'>
+            <div className="w-full max-w-[90%]">
+                <div className="text-[#6c757d]">
+                    {companies?.pagination?.pagination_text}
+                </div>
+            </div>
+            <div className='w-full mt-40 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />
                 </div>

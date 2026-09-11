@@ -2,7 +2,7 @@ import api from "./api";
 
 export const getAllCompanies = async () => {
     const response = await api.post("/companies");
-    return response.data.data;
+    return response.data;
 }
 
 export const getCompaniesProperties = async (id) => {
@@ -35,5 +35,5 @@ export const filterCompany = async (type , country , city , district , q) => {
         district_id:district,
         q:q
     });
-    return response.data.data;
+    return response.data;
 }

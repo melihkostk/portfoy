@@ -189,7 +189,7 @@ export function PropertiesDetail({ loged }) {
                                 </div>
                             </div>
                             <div className="w-[calc(100%-160px)] pl-5">
-                                <img className="w-full h-full object-cover rounded-lg" src={details.cover} alt="" />
+                                <img className="w-full h-full object-cover rounded-lg" src={defaultImg} alt="" />
                             </div>
                         </div>
                         <div>
@@ -214,7 +214,7 @@ export function PropertiesDetail({ loged }) {
                         </ul>
                         <div className="flex items-center gap-5 bg-[#f2f2f2] p-3.75 w-fit rounded-lg my-7.5">
                             <div className="w-13.75 h-13.75 shadow-[0_0_30px_rgb(234_234_234/10%)]">
-                                <img className="w-full h-full rounded-full bg-white" src={details?.company?.logo} alt="" />
+                                <img className="w-full h-full rounded-full object-cover bg-white" src={defaultImg} alt="" />
                             </div>
                             <div>
                                 <p className="mb-1.25 font-bold">{details?.company?.title}</p>

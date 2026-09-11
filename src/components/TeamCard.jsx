@@ -1,11 +1,10 @@
-import by from "../assets/by.svg"
 import verticalMenu from "../assets/menu-vertical.png"
 import grayPhone from "../assets/gray-phone.png"
 import wp from "../assets/wp.png"
 import grayMail from "../assets/gray-mail.png"
 import { useState } from "react"
 
-export function TeamCard({ name, role, email, phone, code, page , id , is_active , handleToggleStatus , onEditClick}) {
+export function TeamCard({ name, role, email , avatar, phone, code, page , id , is_active , handleToggleStatus , onEditClick}) {
 
     const [optionsShown , setOptionsShown] = useState(false);
 
@@ -29,7 +28,7 @@ export function TeamCard({ name, role, email, phone, code, page , id , is_active
                 </div>
             </div>}
             <div className="text-center">
-                <img className="w-20 h-20 rounded-full mb-5" src={by} alt="" />
+                <img className="w-20 h-20 rounded-full mb-5" src={avatar} alt="" />
             </div>
             <div className="text-center">
                 <h2 className="text-xl text-[#212529] font-medium mb-5">{name}</h2>

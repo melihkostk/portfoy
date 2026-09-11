@@ -42,6 +42,7 @@ export function CompaniesDetailTeam({ loged }) {
                         <TeamCard
                             key={item?.id}
                             name={item?.name}
+                            avatar={item?.avatar}
                             role={item?.roles[0]?.title}
                             email={item?.contacts?.email}
                             phone={item?.contacts?.phone?.number}
