@@ -12,19 +12,22 @@ import { toggleWishlist } from "../services/propertiesApi"
 export function Wishlist({ loged }) {
 
     const [wishlist, setWishlist] = useState([]);
-    const [loaded , setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false)
 
     useState(() => {
         getWishlist().then(setWishlist).finally(() => setLoaded(true))
     }, [])
 
-    function handleToggleWishlist(id){
+    const [toogleMessageShown, setToogleMessageShown] = useState(false)
+    const [toogleMessage, setToogleMessage] = useState("")
+
+    function handleToggleWishlist(id) {
         toggleWishlist(id).then(data => {
-            if(data.status === "error"){
+            if (data.status === "error") {
                 return
             }
             setLoaded(false)
-            getWishlist().then(setWishlist).finally(() => setLoaded(true))
+            getWishlist().then(setWishlist).finally(() => { setLoaded(true); setToogleMessage(data.message); setToogleMessageShown(true) })
         })
     }
 
@@ -45,6 +48,9 @@ export function Wishlist({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım</span></p>
                 </div>
             </div>
+            {toogleMessageShown && <div className="fixed right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{toogleMessage}</p>
+            </div>}
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="w-[28%] max-[992px]:w-full sticky top-0">
@@ -72,7 +78,7 @@ export function Wishlist({ loged }) {
                             </select>
                         </div>
                         <div>
-                            <CompanyFilter />
+                            <CompanyFilter page="wishlist" />
                         </div>
                         <div className="flex flex-wrap justify-between -mx-3.75">
                             {wishlist.length > 0 &&
