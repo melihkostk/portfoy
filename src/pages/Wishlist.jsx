@@ -5,18 +5,28 @@ import { AppLinks } from "../components/AppLinks"
 import { CompanyFilter } from "../components/CompanyFilter"
 import { PropertiesCard } from "../components/PropertiesCard"
 import { getWishlist } from "../services/profileApi"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
-import { toggleWishlist } from "../services/propertiesApi"
+import { getSortingOptions, toggleWishlist } from "../services/propertiesApi"
+import close from "../assets/close.png"
 
 export function Wishlist({ loged }) {
 
     const [wishlist, setWishlist] = useState([]);
     const [loaded, setLoaded] = useState(false)
 
-    useState(() => {
-        getWishlist().then(setWishlist).finally(() => setLoaded(true))
+    const [sort , setSort] = useState([]);
+
+    useEffect(() => {
+        getSortingOptions().then(setSort)
     }, [])
+
+    const [selectedSort , setSelectedSort] = useState("");
+
+    useEffect(() => {
+        setLoaded(false)
+        getWishlist(selectedSort).then(setWishlist).finally(() => setLoaded(true))
+    }, [selectedSort])
 
     const [toogleMessageShown, setToogleMessageShown] = useState(false)
     const [toogleMessage, setToogleMessage] = useState("")
@@ -43,13 +53,14 @@ export function Wishlist({ loged }) {
                 </div>
             )}
             <Header loged={loged} />
-            <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
+            <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım</span></p>
                 </div>
             </div>
-            {toogleMessageShown && <div className="fixed right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+            {toogleMessageShown && <div className="fixed right-4 rounded-lg font-semibold z-50 flex items-center gap-2 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
                 <p>{toogleMessage}</p>
+                <img onClick={() => setToogleMessageShown(false)} className="w-4 h-4 cursor-pointer" src={close} alt="" />
             </div>}
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
@@ -59,22 +70,10 @@ export function Wishlist({ loged }) {
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <div className="flex justify-between items-center mb-5 flex-wrap">
                             <h2 className="text-[32px] text-[#212529] font-medium mb-2">Favorilerim</h2>
-                            <select className="border border-[#D9D9D9] rounded-lg py-1.5 px-3 text-[#212529]" name="" id="">
-                                <option value="" selected>
-                                    Varsayılan Sıralama
-                                </option>
-                                <option value="">
-                                    Oluşturma Tarihine Göre (Eskiden Yeniye)
-                                </option>
-                                <option value="">
-                                    Oluşturma Tarihine Göre (Yeniden Eskiye)
-                                </option>
-                                <option value="">
-                                    Fiyatına Göre (Ucuzdan Pahalıya)
-                                </option>
-                                <option value="">
-                                    Fiyatına Göre (Pahalıdan Ucuza)
-                                </option>
+                            <select value={selectedSort} onChange={(e) => setSelectedSort(e.target.value)} className="border border-[#D9D9D9] rounded-lg py-1.5 px-3 text-[#212529]" name="" id="">
+                                {sort?.map(item => (
+                                    <option value={item.key}>{item.title}</option>
+                                ))}
                             </select>
                         </div>
                         <div>

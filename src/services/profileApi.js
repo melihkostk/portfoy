@@ -1,7 +1,9 @@
 import api from "./api";
 
-export const getWishlist = async () => {
-    const response = await api.post("/auth/wishlist");
+export const getWishlist = async (sort) => {
+    const response = await api.post("/auth/wishlist", {}, {
+        params: { r: sort },
+    });
     return response.data.data;
 }
 
