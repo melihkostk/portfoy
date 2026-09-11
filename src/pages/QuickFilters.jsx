@@ -3,18 +3,28 @@ import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { FilterCard } from "../components/FilterCard"
-import { getQuickFilters } from "../services/quickFiltersApi"
+import { deleteQuickFilters, getQuickFilters } from "../services/quickFiltersApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 
 export function QuickFilters({ loged }) {
 
     const [quickFilters, setQuickFilters] = useState([]);
-    const [loaded , setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         getQuickFilters().then(setQuickFilters).finally(() => setLoaded(true))
     }, [])
+
+    function handleDelete(id) {
+        deleteQuickFilters(id).then(data => {
+            if(data.status === "error"){
+                return
+            }
+            setLoaded(false)
+            getQuickFilters().then(setQuickFilters).finally(() => setLoaded(true))
+        })
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -51,12 +61,14 @@ export function QuickFilters({ loged }) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {quickFilters.map(item => (
+                                    {quickFilters?.map(item => (
                                         <FilterCard
                                             key={item.id}
+                                            id={item.id}
                                             title={item.title}
                                             created_at={item.created_at}
                                             notify={item.notify}
+                                            handleDelete={handleDelete}
                                         />
                                     ))}
                                 </tbody>
