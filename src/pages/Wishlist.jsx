@@ -72,7 +72,7 @@ export function Wishlist({ loged }) {
                             <h2 className="text-[32px] text-[#212529] font-medium mb-2">Favorilerim</h2>
                             <select value={selectedSort} onChange={(e) => setSelectedSort(e.target.value)} className="border border-[#D9D9D9] rounded-lg py-1.5 px-3 text-[#212529]" name="" id="">
                                 {sort?.map(item => (
-                                    <option value={item.key}>{item.title}</option>
+                                    <option className="hover:bg-[#27c5d2]" key={item.key} value={item.key}>{item.title}</option>
                                 ))}
                             </select>
                         </div>

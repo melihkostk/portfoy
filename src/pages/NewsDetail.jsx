@@ -6,6 +6,7 @@ import { NewsCard } from "../components/NewsCard";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import { ClipLoader } from "react-spinners";
+import news1 from "../assets/news1.jpeg"
 
 export function NewsDetail({ loged, news }) {
 
@@ -37,7 +38,7 @@ export function NewsDetail({ loged, news }) {
             </div>
             <div className="w-full max-w-[90%] mb-7.5">
                 <div className="w-full">
-                    <img src={article.cover} alt="cover" />
+                    <img className="rounded-lg" src={news1} alt="cover" />
                 </div>
             </div>
             <div className="w-full max-w-[90%]">

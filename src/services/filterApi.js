@@ -24,3 +24,8 @@ export const getAllCurrencies = async () => {
     const response = await api.get("/front/currencies")
     return response.data.data
 }
+
+export const getAllLanguages = async () => {
+    const response = await api.get("/front/languages")
+    return response.data.data;
+}

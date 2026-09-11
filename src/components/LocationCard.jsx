@@ -4,7 +4,7 @@ import deleteIcon from "../assets/delete.png"
 
 export function LocationCard({address , location , country , city , district , id , handleDeleteLocation , page , setUpdateMapShown , onEditClick}) {
     return (
-        <div className={`pb-5 mb-5 ${location.length === 1 ? "" : "border-b border-b-[#eee]" }  w-full`}>
+        <div className={`pb-5 mb-5 ${location?.length == "1" ? "" : "border-b border-b-[#eee]" } w-full`}>
             <h3 className="text-[20px] text-[#212529] font-medium mb-2">{country} / {city} / {district}</h3>
             <p className="mb-4 max-w-[80%] flex items-center gap-1">
                 <img className="w-5 h-5" src={locationIcon} alt="" />
