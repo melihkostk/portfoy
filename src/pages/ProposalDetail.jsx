@@ -46,13 +46,13 @@ export function ProposalDetail({ loged }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
-                <div className="w-full bg-[#f8f8f8] py-7.5 px-3.75 mb-7.5 rounded-lg flex justify-between items-center">
-                    <div>
-                        <p className="text-[#6d6d6d] text-[25px] font-semibold">{detail?.code}</p>
+                <div className="w-full bg-[#f8f8f8] py-7.5 px-3.75 mb-7.5 rounded-lg flex justify-between items-center max-[992px]:flex-col">
+                    <div className="max-[992px]:w-full max-[992px]:text-center max-[992px]:mb-5">
+                        <p className="text-[#6d6d6d] text-[25px] max-[992px]:text-base font-semibold">{detail?.code}</p>
                         <p className="text-sm text-[#989898]">{detail?.created_text}</p>
                     </div>
-                    <div className="py-3.75 px-7.5 border border-[#eaeaea] rounded-lg flex items-center gap-5">
-                        <div className="w-12.5 h-12.5">
+                    <div className="py-3.75 px-7.5 border max-[992px]:w-full max-[992px]:flex-wrap max-[992px]:justify-between border-[#eaeaea] rounded-lg flex items-center gap-5">
+                        <div className="w-12.5 h-12.5  max-[992px]:hidden">
                             <img className="rounded-full w-full h-full" src="https://ui-avatars.com/api/?name=raho&background=27c5d2&color=fff&size=32&bold=1&uppercase=1&format=svg" alt="" />
                         </div>
                         <div>
@@ -82,8 +82,8 @@ export function ProposalDetail({ loged }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
-                <div className="flex">
-                    <div className="pr-12.5 w-[70%]">
+                <div className="flex max-[992px]:flex-col">
+                    <div className="pr-12.5 w-[70%] max-[992px]:w-full">
                         {detail?.properties?.map(item => (
                             <PropertiesCard
                                 id={item.id}
@@ -100,7 +100,7 @@ export function ProposalDetail({ loged }) {
                             />
                         ))}
                     </div>
-                    <div className="w-[30%]">
+                    <div className="w-[30%] max-[992px]:w-full">
                         <div className="bg-white shadow-[0_0_80px_#f3f3f3] text-center p-7.5 mb-7.5 rounded-lg">
                             <p className="font-semibold">Notunuz (Müşteri için)</p>
                             <p className="text-sm italic text-[#212529]">{detail?.notes}</p>
