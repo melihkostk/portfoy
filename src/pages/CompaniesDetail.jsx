@@ -36,7 +36,16 @@ export function CompaniesDetail({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
                 </div>
             </div>
-            <CompanyHeader page="companyDetail" id={id} />
+             <CompanyHeader
+                page="companyDetail"
+                id={id}
+                name={companyDetailProperties?.name}
+                created_at={companyDetailProperties?.created_at}
+                type={companyDetailProperties?.type}
+                badges={companyDetailProperties?.badges?.[0]?.title}
+                logo={companyDetailProperties?.logo}
+
+            />
             <div className="max-w-[90%] w-full pt-12.5">
                 <div className="flex flex-wrap">
                     {companyDetailProperties?.properties?.length > 0 ? companyDetailProperties?.properties?.map(item => (

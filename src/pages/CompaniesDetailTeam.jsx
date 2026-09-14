@@ -12,7 +12,7 @@ export function CompaniesDetailTeam({ loged }) {
     const { id } = useParams();
 
     const [companyDetailTeam, setCompanyDetailTeam] = useState([]);
-    const [loaded , setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         getCompaniesTeam(id).then(setCompanyDetailTeam).finally(() => setLoaded(true))
@@ -35,7 +35,15 @@ export function CompaniesDetailTeam({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
                 </div>
             </div>
-            <CompanyHeader page="companyDetail" id={id} />
+            <CompanyHeader
+                page="companyDetail"
+                id={id}
+                name={companyDetailTeam?.name}
+                created_at={companyDetailTeam?.created_at}
+                type={companyDetailTeam?.type}
+                badges={companyDetailTeam?.badges?.[0]?.title}
+                logo={companyDetailTeam?.logo}
+            />
             <div className="max-w-[90%] w-full pt-12.5 mb-5">
                 <h2 className="text-[32px] text-[#212529] font-medium">Ekip</h2>
             </div>
@@ -49,8 +57,8 @@ export function CompaniesDetailTeam({ loged }) {
                             role={item?.roles[0]?.title}
                             email={item?.contacts?.email}
                             phone={item?.contacts?.phone?.number}
-                            code={item?.contacts?.phone?.code} 
-                            page="companiesDetail"    
+                            code={item?.contacts?.phone?.code}
+                            page="companiesDetail"
                         />
                     ))}
                 </div>

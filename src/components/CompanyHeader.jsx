@@ -2,8 +2,10 @@ import bgImage from "../assets/company-bg.png"
 import { Link } from "react-router-dom"
 import { getCompanyInfo } from "../services/myCompanyApi"
 import { useEffect, useState } from "react"
+import star from "../assets/white-star.png"
+import menu from "../assets/white-menu.png"
 
-export function CompanyHeader({ page, id }) {
+export function CompanyHeader({ page, id , name , created_at , type , badges , logo }) {
 
     const [companyInfo, setCompanyInfo] = useState([])
 
@@ -17,19 +19,21 @@ export function CompanyHeader({ page, id }) {
                 <div className="flex justify-between items-start mb-20">
                     <div className="flex items-center gap-3.75">
                         <div className="w-20 h-20">
-                            <img className="w-full h-full object-contain rounded-full" src={companyInfo.logo} alt="" />
+                            <img className="w-full h-full object-contain rounded-full" src={logo} alt="" />
                         </div>
                         <div className="max-w-full">
-                            <p className="text-white text-xl mb-2">{companyInfo.name}</p>
+                            <p className="text-white text-xl mb-2">{name}</p>
                             <ul className="flex text-white gap-5 text-sm max-[1005px]:hidden">
-                                <li>
-                                    {companyInfo.created_at}
+                                <li className="flex items-start gap-1">
+                                    <img className="w-4 h-4" src={star} alt="" />
+                                    {created_at}
+                                </li>
+                                <li className="flex items-center gap-1">
+                                    <img className="w-3 h-3" src={menu} alt="" />
+                                    {type}
                                 </li>
                                 <li>
-                                    {companyInfo.type}
-                                </li>
-                                <li>
-                                    {companyInfo.code}
+                                    {page === "companyDetail" ? badges : companyInfo.code }
                                 </li>
                             </ul>
                         </div>

@@ -36,7 +36,16 @@ export function CompaniesDetailLocation({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
                 </div>
             </div>
-            <CompanyHeader page="companyDetail" id={id} />
+            <CompanyHeader
+                page="companyDetail"
+                id={id}
+                name={location?.name}
+                created_at={location?.created_at}
+                type={location?.type}
+                badges={location?.badges?.[0]?.title}
+                logo={location?.logo}
+
+            />
             <div className="max-w-[90%] w-full pt-12.5">
                 <h2 className="mb-2 text-[#212529] text-[32px]">Konum ve İletişim</h2>
                 <div className="flex items-start w-full justify-between max-[992px]:flex-col">
