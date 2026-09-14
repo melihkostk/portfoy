@@ -1,4 +1,6 @@
-export function OfferCard({title , price , offered_price , status , created_at}) {
+import { Link } from "react-router-dom";
+
+export function OfferCard({title , price , offered_price , status , created_at , id}) {
     return (
         <tr>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{title}</td>
@@ -16,7 +18,7 @@ export function OfferCard({title , price , offered_price , status , created_at})
                 {created_at}
             </td>
             <td>
-                <button className="bg-[#27C5D2] text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Görüntüle</button>
+                <Link to={`/offers/${id}/detail`} className="bg-[#27C5D2] text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Görüntüle</Link>
             </td>
         </tr>
     )

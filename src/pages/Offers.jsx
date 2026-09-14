@@ -71,6 +71,7 @@ export function Offers({ loged }) {
                                         receivedOffers.map(item => (
                                             <OfferCard
                                                 key={item.id}
+                                                id={item.id}
                                                 title={item.property.title}
                                                 price={item.property.primary.formatted}
                                                 offered_price={item.offered_price.formatted}
@@ -83,6 +84,7 @@ export function Offers({ loged }) {
                                         sendedOffers.map(item => (
                                             <OfferCard
                                                 key={item.id}
+                                                id={item.id}
                                                 title={item.property.title}
                                                 price={item.property.primary.formatted}
                                                 offered_price={item.offered_price.formatted}

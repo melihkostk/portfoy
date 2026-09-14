@@ -1,17 +1,9 @@
 import bgImage from "../assets/company-bg.png"
 import { Link } from "react-router-dom"
-import { getCompanyInfo } from "../services/myCompanyApi"
-import { useEffect, useState } from "react"
 import star from "../assets/white-star.png"
 import menu from "../assets/white-menu.png"
 
 export function CompanyHeader({ page, id , name , created_at , type , badges , logo , code }) {
-
-    const [companyInfo, setCompanyInfo] = useState([])
-
-    useEffect(() => {
-        getCompanyInfo().then(setCompanyInfo);
-    }, [])
 
     return (
         <div style={{ backgroundImage: `url(${bgImage})` }} className="w-full bg-cover bg-center pt-7.5 flex justify-center">
@@ -55,27 +47,27 @@ export function CompanyHeader({ page, id , name , created_at , type , badges , l
                             <Link to={"/company"}>Portföy</Link>
                         </li>}
                         {page === "companyDetail" &&
-                            <li className={`${page === "company" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                            <li className={`${page === "company" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                                 <Link to={`/companies/${id}`}>Portföy</Link>
                             </li>}
-                        {page !== "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                        {page !== "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company/team"}>Ekip</Link>
                         </li>}
-                        {page === "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                        {page === "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={`/companies/${id}/team`}>Ekip</Link>
                         </li>}
-                        {page !== "companyDetail" && <li className={`${page === "location" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                        {page !== "companyDetail" && <li className={`${page === "location" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company/contacts"}>Konum & İletişim</Link>
                         </li>}
-                        {page === "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                        {page === "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={`/companies/${id}/contacts`}>Konum & İletişim</Link>
                         </li>}
                         {page !== "companyDetail" && (
                             <>
-                                <li className={`${page === "customers" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                                <li className={`${page === "customers" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                                     <Link to={"/company/customers"}>Müşteriler</Link>
                                 </li>
-                                <li className={`${page === "proposals" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                                <li className={`${page === "proposals" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                                     <Link to={"/company/proposals"}>Teklifler</Link>
                                 </li>
                             </>

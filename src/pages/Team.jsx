@@ -5,7 +5,7 @@ import { UserInvite } from "../components/UserInvite"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getTeam, getAllInvitations, removeInvite, getAllRoles, addInvite, toogleStatus, updateTeamMember, updateInvite } from "../services/myCompanyApi"
+import { getTeam, getAllInvitations, removeInvite, getAllRoles, addInvite, toogleStatus, updateTeamMember, updateInvite, getCompanyInfo } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
@@ -146,6 +146,12 @@ export function Team({ loged }) {
             setError("Personel bilgileri başarıyla güncellendi")
         })
     }
+
+    const [ınfo, setInfo] = useState([])
+
+    useEffect(() => {
+        getCompanyInfo().then(setInfo)
+    }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -306,7 +312,14 @@ export function Team({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
                 </div>
             </div>
-            <CompanyHeader page="team" />
+            <CompanyHeader
+                page="team"
+                name={ınfo?.name}
+                code={ınfo?.code}
+                created_at={ınfo?.created_at}
+                type={ınfo?.type}
+                logo={ınfo?.logo}
+            />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex items-center justify-between">
                     <h2 className="text-[#212529] text-[32px] mb-5">Ekip</h2>

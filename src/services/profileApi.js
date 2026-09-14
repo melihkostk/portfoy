@@ -30,3 +30,8 @@ export const getSendedOffers = async () => {
     });
     return response.data.data
 }
+
+export const showOffer = async (id) => {
+    const response = await api.get(`/offers/${id}/show`)
+    return response.data;
+}

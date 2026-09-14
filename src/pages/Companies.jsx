@@ -123,12 +123,12 @@ export function Companies({ loged }) {
                 <div className="flex justify-start flex-wrap my-5 -mx-3.75 max-[992px]:m-0">
                     {companies?.data?.length > 0 ? companies.data.map(item => (
                         <CompanyCard
-                            key={item.id}
-                            id={item.id}
-                            name={item.name}
-                            type={item.type}
-                            location={item.locations}
-                            logo={item.logo}
+                            key={item?.id}
+                            id={item?.id}
+                            name={item?.name}
+                            type={item?.type}
+                            location={item?.locations}
+                            logo={item?.logo}
                         />
                     ))
                     :(
