@@ -42,14 +42,14 @@ export function NewsDetail({ loged, news }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
-                <div className="flex items-start">
-                    <div className="flex flex-col bg-white gap-7.5 w-[30%] border border-[#eee] rounded-lg p-3.75">
+                <div className="flex items-start max-[992px]:flex-col-reverse">
+                    <div className="flex flex-col bg-white gap-7.5 w-[30%] max-[992px]:w-full max-[992px]:mt-7.5 border border-[#eee] rounded-lg p-3.75">
                         <div className="bg-[#eaeaea] text-[#808080] text-center py-2.5 rounded-lg">Diğer Haberler</div>
                         {news.map(item => (
                             <NewsCard page="detail" key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
                         ))}
                     </div>
-                    <div className="w-[70%] pl-12.5">
+                    <div className="w-[70%] pl-12.5 max-[992px]:pl-0">
                         <div>
                             <h1>{article.title}</h1>
                             <p>{article.created_at}</p>
