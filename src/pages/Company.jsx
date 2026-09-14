@@ -4,7 +4,7 @@ import { FilterSidebar } from "../components/FilterSidebar"
 import { PropertiesCard } from "../components/PropertiesCard"
 import { Footer } from "../components/Footer"
 import { AppLinks } from "../components/AppLinks"
-import { getCompanyProperties, getDraftProperties, getTeam } from "../services/myCompanyApi"
+import { getCompanyInfo, getCompanyProperties, getDraftProperties, getTeam } from "../services/myCompanyApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getAllPropertiesType } from "../services/propertiesApi"
@@ -77,6 +77,12 @@ export function Company({ loged }) {
 
     const [selectedType, setSelectedType] = useState([]);
 
+    const [ınfo , setInfo] = useState([])
+
+    useEffect(() => {
+        getCompanyInfo().then(setInfo)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -94,7 +100,14 @@ export function Company({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
                 </div>
             </div>
-            <CompanyHeader page="company" />
+            <CompanyHeader
+                page="company"
+                name={ınfo?.name}
+                code={ınfo?.code}
+                created_at={ınfo?.created_at}
+                type={ınfo?.type}
+                logo={ınfo?.logo}
+            />
             <div className="max-w-[90%] w-full pt-12.5">
                 <div className="flex max-[992px]:flex-col">
                     <div className="w-[23%] max-[992px]:w-full">

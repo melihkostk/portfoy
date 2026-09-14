@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import star from "../assets/white-star.png"
 import menu from "../assets/white-menu.png"
 
-export function CompanyHeader({ page, id , name , created_at , type , badges , logo }) {
+export function CompanyHeader({ page, id , name , created_at , type , badges , logo , code }) {
 
     const [companyInfo, setCompanyInfo] = useState([])
 
@@ -33,7 +33,7 @@ export function CompanyHeader({ page, id , name , created_at , type , badges , l
                                     {type}
                                 </li>
                                 <li>
-                                    {page === "companyDetail" ? badges : companyInfo.code }
+                                    {page === "companyDetail" ? badges : code }
                                 </li>
                             </ul>
                         </div>
