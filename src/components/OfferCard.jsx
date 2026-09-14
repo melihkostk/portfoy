@@ -12,7 +12,7 @@ export function OfferCard({title , price , offered_price , status , created_at ,
                 {offered_price}
             </td>
             <td className="py-3 px-2">
-                <span className="bg-[#27C5D2] text-xs text-white font-semibold py-1.25 px-2 rounded-md">{status}</span>
+                <span className={`${status === "Beklemede" ? "bg-[#27C5D2]" : ""} ${status === "Reddedildi" ? "bg-[#ed0000]" : ""} ${status === "Onaylandı" ? "bg-[#00cc83]" : ""} text-xs text-white font-semibold py-1.25 px-2 rounded-md`}>{status}</span>
             </td>
             <td className="py-3 px-2">
                 {created_at}
