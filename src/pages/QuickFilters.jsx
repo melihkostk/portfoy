@@ -18,13 +18,16 @@ export function QuickFilters({ loged }) {
         getQuickFilters().then(setQuickFilters).finally(() => setLoaded(true))
     }, [])
 
+    const [deleteMessageShown , setDeleteMessageShown] = useState(false);
+    const [deleteMessage , setDeleteMessage] = useState("");
+
     function handleDelete(id) {
         deleteQuickFilters(id).then(data => {
             if (data.status === "error") {
                 return
             }
             setLoaded(false)
-            getQuickFilters().then(setQuickFilters).finally(() => setLoaded(true))
+            getQuickFilters().then(setQuickFilters).finally(() => {setLoaded(true) ; setDeleteMessageShown(true) ; setDeleteMessage(data.message)})
         })
     }
 
@@ -75,6 +78,10 @@ export function QuickFilters({ loged }) {
             {editMessageShown && <div className="fixed right-4 rounded-lg font-semibold z-50 flex items-center gap-2 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
                 <p>{editMessage}</p>
                 <img onClick={() => setEditMessageShown(false)} className="w-4 h-4 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
+            {deleteMessageShown && <div className="fixed right-4 rounded-lg font-semibold z-50 flex items-center gap-2 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{deleteMessage}</p>
+                <img onClick={() => setDeleteMessageShown(false)} className="w-4 h-4 cursor-pointer" src={whiteClose} alt="" />
             </div>}
             {editFilterShown && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-fit w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">

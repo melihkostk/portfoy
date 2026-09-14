@@ -1,6 +1,4 @@
 import turkey from "../assets/turkey.svg"
-import english from "../assets/en.svg"
-import russia from "../assets/ru.svg"
 import downArrow from "../assets/down-arrow.png"
 import { useEffect, useState } from "react"
 import { getAllLanguages } from "../services/filterApi"
