@@ -39,7 +39,7 @@ export function CompaniesDetail({ loged }) {
             <CompanyHeader page="companyDetail" id={id} />
             <div className="max-w-[90%] w-full pt-12.5">
                 <div className="flex flex-wrap">
-                    {companyDetailProperties.length > 0 ? companyDetailProperties?.properties?.map(item => (
+                    {companyDetailProperties?.properties?.length > 0 ? companyDetailProperties?.properties?.map(item => (
                         <PropertiesCard
                             key={item.id}
                             id={item.id}

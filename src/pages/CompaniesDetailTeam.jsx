@@ -36,7 +36,10 @@ export function CompaniesDetailTeam({ loged }) {
                 </div>
             </div>
             <CompanyHeader page="companyDetail" id={id} />
-            <div className="max-w-[90%] w-full pt-12.5">
+            <div className="max-w-[90%] w-full pt-12.5 mb-5">
+                <h2 className="text-[32px] text-[#212529] font-medium">Ekip</h2>
+            </div>
+            <div className="max-w-[90%] w-full">
                 <div className="flex flex-wrap">
                     {companyDetailTeam?.personals?.map(item => (
                         <TeamCard
