@@ -4,7 +4,7 @@ import graySearch from "../assets/gray-search.png"
 import { CustomerCard } from "../components/CustomerCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
-import { addCustomer, filterCustomer, getAllCustomers, getAllLanguages } from "../services/myCompanyApi"
+import { addCustomer, editCustomer, filterCustomer, getAllCustomers, getAllLanguages } from "../services/myCompanyApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
@@ -22,6 +22,7 @@ export function Customers({ loged }) {
     }, [])
 
     const [customerMenu, setCustomerMenu] = useState(false)
+    const [editId, setEditId] = useState(null)
 
     const [name, setName] = useState("")
     const [email, setEmail] = useState("");
@@ -35,8 +36,38 @@ export function Customers({ loged }) {
         getAllLanguages().then(setLanguages)
     }, [])
 
-    function handleAddCustomer(e) {
+    function openAddCustomer() {
+        setEditId(null)
+        setName("")
+        setEmail("")
+        setNumber("")
+        setCode("")
+        setNote("")
+        setCustomerMenu(true)
+    }
+
+    function handleEditClick(item) {
+        setEditId(item.id)
+        setName(item.name)
+        setEmail(item.email)
+        setNumber(item.phone.number)
+        setCode(item.phone.code)
+        setCustomerMenu(true)
+    }
+
+    function handleCustomerSubmit(e) {
         e.preventDefault();
+        if (editId) {
+            editCustomer(editId, name, email, number, code).then((data) => {
+                if (data.status === "error") {
+                    return;
+                }
+                setLoaded(false)
+                getAllCustomers().then(setCustomers).finally(() => setLoaded(true))
+                setCustomerMenu(false)
+            })
+            return;
+        }
         addCustomer(name, email, number, code, "tr", note).then((data => {
             if (data.status === "error") {
                 return;
@@ -76,11 +107,11 @@ export function Customers({ loged }) {
             </div>
             {customerMenu && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529] font-semibold">Müşteri Oluştur</h2>
+                    <h2 className="text-xl text-[#212529] font-semibold">{editId ? "Müşteriyi Düzenle" : "Müşteri Oluştur"}</h2>
                     <img onClick={() => setCustomerMenu(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
                 <div className="w-full p-4">
-                    <form action="" onSubmit={handleAddCustomer}>
+                    <form action="" onSubmit={handleCustomerSubmit}>
                         <div className="flex flex-col w-full mb-2">
                             <label htmlFor="language">Dil</label>
                             <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="language" id="language">
@@ -110,10 +141,10 @@ export function Customers({ loged }) {
                                 <input value={number} onChange={(e) => setNumber(e.target.value)} className="border py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="phone" placeholder="Telefon" required />
                             </div>
                         </div>
-                        <div className="flex flex-col w-full mb-2">
+                        {!editId && <div className="flex flex-col w-full mb-2">
                             <label htmlFor="name">Notunuz</label>
                             <input value={note} onChange={(e) => setNote(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="mail" id="mail" placeholder="Notunuz" required />
-                        </div>
+                        </div>}
                         <div className="flex justify-end mt-4">
                             <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Kaydet</button>
                         </div>
@@ -129,7 +160,7 @@ export function Customers({ loged }) {
                             <img className="w-4 h-4 absolute left-1" src={graySearch} alt="" />
                             <input value={filterName} onChange={(e) => setFilterName(e.target.value)} className="text-sm pl-7 rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder="Müşteri adı ile arayın" />
                         </form>
-                        <div onClick={() => setCustomerMenu(true)} className="text-[#4b4b4b] bg-[#f1f1f1] whitespace-nowrap text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">Müşteri Oluştur</div>
+                        <div onClick={openAddCustomer} className="text-[#4b4b4b] bg-[#f1f1f1] whitespace-nowrap text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">Müşteri Oluştur</div>
                     </div>
                 </div>
                 <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
@@ -159,6 +190,7 @@ export function Customers({ loged }) {
                                         created_at={item.created_at}
                                         note={item.notes}
                                         proposals={item.proposals}
+                                        onEditClick={() => handleEditClick(item)}
                                     />
                                 ))
                             ) : (
@@ -174,6 +206,7 @@ export function Customers({ loged }) {
                                         created_at={item.created_at}
                                         note={item.notes}
                                         proposals={item.proposals}
+                                        onEditClick={() => handleEditClick(item)}
                                     />
                                 ))
                             )}

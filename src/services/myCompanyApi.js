@@ -32,6 +32,17 @@ export const filterCustomer = async (q) => {
     return response.data;
 }
 
+export const editCustomer = async (id , name , email , phone , phone_code) => {
+    const response = await api.post(`/auth/company/customers/${id}/update` , {
+        name:name,
+        email:email,
+        phone:phone,
+        phone_code:phone_code,
+        locale:"tr"
+    })
+    return response.data;
+}
+
 export const getLocation = async () => {
     const response = await api.get("/auth/company/locations")
     return response.data.data.locations

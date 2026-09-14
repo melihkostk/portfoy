@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import pencil from "../assets/pencil.png"
 import darkMenu from "../assets/dark-menu.png"
 
-export function CustomerCard({name , email , phoneCode, phoneNumber, locale , created_at , note , proposals , id}){
+export function CustomerCard({name , email , phoneCode, phoneNumber, locale , created_at , note , proposals , id , onEditClick}){
     return(
         <tr>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{name}</td>
@@ -20,7 +20,7 @@ export function CustomerCard({name , email , phoneCode, phoneNumber, locale , cr
                 {created_at}
            </td>
            <td className="flex items-center gap-1 py-3 px-2">
-                <button className="bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                <button type="button" onClick={onEditClick} className="bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                     <img className="w-5 h-5 min-w-5 min-h-5" src={pencil} alt="" />
                 </button>
                 <Link to={`/company/proposals?customer=${id}`} className="bg-[#f1f1f1] py-2 px-5 flex items-center gap-1 rounded-lg whitespace-nowrap text-sm text-[#4b4b4b] font-semibold cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
