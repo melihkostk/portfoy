@@ -66,11 +66,12 @@ export function Location({ loged }) {
 
     function handleAddLocation(e) {
         e.preventDefault()
+        setLoaded(false)
         addLocation(countryId, cityId, districtId, streetId, address).then((data => {
             if (data.status === "error") {
                 return
             }
-            getLocation().then(setLocation)
+            getLocation().then(setLocation).finally(() => setLoaded(true))
             setLocationMenu(false)
         }))
     }
@@ -80,7 +81,8 @@ export function Location({ loged }) {
             if (data.status === "error") {
                 return
             }
-            getLocation().then(setLocation)
+            setLoaded(false)
+            getLocation().then(setLocation).finally(() => setLoaded(true))
         })
     }
 

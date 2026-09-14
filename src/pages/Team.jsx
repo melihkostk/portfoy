@@ -68,7 +68,7 @@ export function Team({ loged }) {
             getAllInvitations().then(setInvitations)
             setSuccessPopUp(true)
             setAddShown(false)
-            setError("Davetiye kodu başarıyla oluşturuldu")
+            setError(data.message)
         })
     }
 
