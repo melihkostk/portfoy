@@ -25,6 +25,13 @@ export const getAllCustomers = async () => {
     return response.data.data
 }
 
+export const filterCustomer = async (q) => {
+    const response = await api.post("/auth/company/customers" , {
+        q:q
+    })
+    return response.data;
+}
+
 export const getLocation = async () => {
     const response = await api.get("/auth/company/locations")
     return response.data.data.locations

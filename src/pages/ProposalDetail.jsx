@@ -49,7 +49,7 @@ export function ProposalDetail({ loged }) {
                 <div className="w-full bg-[#f8f8f8] py-7.5 px-3.75 mb-7.5 rounded-lg flex justify-between items-center">
                     <div>
                         <p className="text-[#6d6d6d] text-[25px] font-semibold">{detail?.code}</p>
-                        <p className="text-sm text-[#989898]">{detail?.created_at} tarihinde Rahime tarafından oluşturuldu</p>
+                        <p className="text-sm text-[#989898]">{detail?.created_text}</p>
                     </div>
                     <div className="py-3.75 px-7.5 border border-[#eaeaea] rounded-lg flex items-center gap-5">
                         <div className="w-12.5 h-12.5">

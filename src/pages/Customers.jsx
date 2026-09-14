@@ -4,7 +4,7 @@ import graySearch from "../assets/gray-search.png"
 import { CustomerCard } from "../components/CustomerCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
-import { addCustomer, getAllCustomers, getAllLanguages } from "../services/myCompanyApi"
+import { addCustomer, filterCustomer, getAllCustomers, getAllLanguages } from "../services/myCompanyApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
@@ -13,6 +13,9 @@ export function Customers({ loged }) {
 
     const [customers, setCustomers] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    const [filterName, setFilterName] = useState("")
+
+    const [result, setResult] = useState(null)
 
     useEffect(() => {
         getAllCustomers().then(setCustomers).finally(() => setLoaded(true))
@@ -26,21 +29,31 @@ export function Customers({ loged }) {
     const [code, setCode] = useState("");
     const [note, setNote] = useState("")
 
-    const [languages , setLanguages] = useState([]);
+    const [languages, setLanguages] = useState([]);
 
     useEffect(() => {
         getAllLanguages().then(setLanguages)
     }, [])
 
-    function handleAddCustomer(e){
+    function handleAddCustomer(e) {
         e.preventDefault();
-        addCustomer(name , email , number , code , "tr" , note).then((data => {
-            if(data.status === "error"){
+        addCustomer(name, email, number, code, "tr", note).then((data => {
+            if (data.status === "error") {
                 return;
             }
             getAllCustomers().then(setCustomers).finally(() => setLoaded(true))
             setCustomerMenu(false)
         }))
+    }
+
+    function handleFilterCustomer(name) {
+        setLoaded(false)
+        filterCustomer(name).then((data => {
+            if (data.status === "error") {
+                return
+            }
+            setResult(data.data)
+        })).finally(() => setLoaded(true))
     }
 
     return (
@@ -112,10 +125,10 @@ export function Customers({ loged }) {
                 <div className="flex justify-between items-center mb-5 flex-wrap">
                     <h2 className="text-[#212529] text-[32px]">Müşteriler</h2>
                     <div className="flex items-center gap-2.5">
-                        <div className="flex items-center relative max-[992px]:w-full">
+                        <form onSubmit={(e) => { e.preventDefault(); handleFilterCustomer(filterName); }} className="flex items-center relative max-[992px]:w-full">
                             <img className="w-4 h-4 absolute left-1" src={graySearch} alt="" />
-                            <input className="text-sm pl-7 rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder="Müşteri adı ile arayın" />
-                        </div>
+                            <input value={filterName} onChange={(e) => setFilterName(e.target.value)} className="text-sm pl-7 rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder="Müşteri adı ile arayın" />
+                        </form>
                         <div onClick={() => setCustomerMenu(true)} className="text-[#4b4b4b] bg-[#f1f1f1] whitespace-nowrap text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">Müşteri Oluştur</div>
                     </div>
                 </div>
@@ -133,20 +146,37 @@ export function Customers({ loged }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {customers?.customers?.map(item => (
-                                <CustomerCard
-                                    key={item.id}
-                                    id={item.id}
-                                    name={item.name}
-                                    email={item.email}
-                                    phoneCode={item.phone.code}
-                                    phoneNumber={item.phone.number}
-                                    locale={item.locale.title}
-                                    created_at={item.created_at}
-                                    note={item.notes}
-                                    proposals={item.proposals}
-                                />
-                            ))}
+                            {!result ? (
+                                customers?.customers?.map(item => (
+                                    <CustomerCard
+                                        key={item.id}
+                                        id={item.id}
+                                        name={item.name}
+                                        email={item.email}
+                                        phoneCode={item.phone.code}
+                                        phoneNumber={item.phone.number}
+                                        locale={item.locale.title}
+                                        created_at={item.created_at}
+                                        note={item.notes}
+                                        proposals={item.proposals}
+                                    />
+                                ))
+                            ) : (
+                                result?.map(item => (
+                                    <CustomerCard
+                                        key={item.id}
+                                        id={item.id}
+                                        name={item.name}
+                                        email={item.email}
+                                        phoneCode={item.phone.code}
+                                        phoneNumber={item.phone.number}
+                                        locale={item.locale.title}
+                                        created_at={item.created_at}
+                                        note={item.notes}
+                                        proposals={item.proposals}
+                                    />
+                                ))
+                            )}
                         </tbody>
                     </table>
                 </div>
