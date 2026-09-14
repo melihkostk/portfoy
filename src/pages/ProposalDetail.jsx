@@ -13,6 +13,7 @@ import wp from "../assets/white-wp.png"
 import chain from "../assets/chain.png"
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
+import messageIcon from "../assets/message.png"
 
 export function ProposalDetail({ loged }) {
 
@@ -104,7 +105,7 @@ export function ProposalDetail({ loged }) {
                             <p className="font-semibold">Notunuz (Müşteri için)</p>
                             <p className="text-sm italic text-[#212529]">{detail?.notes}</p>
                         </div>
-                        <div className="bg-white shadow-[0_0_80px_#f3f3f3] text-center p-7.5 mb-7.5 rounded-lg flex flex-col gap-1">
+                        {detail?.score  ? <div className="bg-white shadow-[0_0_80px_#f3f3f3] text-center p-7.5 mb-7.5 rounded-lg flex flex-col gap-1">
                             <p className="text-[35px] text-[#212529] font-semibold">{detail?.score} <span className="text-[25px] font-normal text-[#999]">/ 5</span></p>
                             <div className="flex items-center gap-1 justify-center">
                                 {[...Array(5)].map((_, i) => (
@@ -135,7 +136,16 @@ export function ProposalDetail({ loged }) {
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </div> : (
+                            <div className="bg-white shadow-[0_0_80px_#f3f3f3] text-center p-7.5 mb-7.5 rounded-lg">
+                                <div className="py-7.5 flex flex-col items-center justify-center">
+                                    <div className="bg-[#f8f8f8] mb-5 rounded-full w-20 h-20 flex items-center justify-center">
+                                        <img className="w-8 h-8" src={messageIcon} alt="message icon" />
+                                    </div>
+                                    <p className="text-[#979797] text-sm">Henüz değerlendirilmedi</p>
+                                </div>
+                            </div>
+                        )}
                         <div className="bg-white shadow-[0_0_80px_#f3f3f3] flex flex-col items-center p-7.5 rounded-lg">
                             <p className="mb-5 text-sm text-[#979797]">Bu teklifi paylaş:</p>
                             <button className="bg-[#25d366] mb-2.5 text-white flex items-center gap-1 font-semibold rounded-lg py-2 px-5 text-sm cursor-pointer hover:bg-[#19a74e] transition-colors duration-300 ease-in-out">
