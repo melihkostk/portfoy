@@ -103,7 +103,7 @@ export function QuickFilters({ loged }) {
                 </div>
             </div>}
             <div className="w-full max-w-[90%]">
-                <div className="flex items-start max-[992px]:flex-col-reverse">
+                <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
                     <div className="w-[28%] max-[992px]:w-full sticky top-0">
                         <Sidebar page="quickFilters" />
                     </div>

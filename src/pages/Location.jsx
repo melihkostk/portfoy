@@ -194,7 +194,7 @@ export function Location({ loged }) {
             </div>
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex max-[992px]:flex-col items-start w-full justify-between">
-                    <div className="w-1/2 max-[992px]:w-full sticky top-3">
+                    <div className="w-1/2 max-[992px]:w-full sticky top-3 max-[992px]:static">
                         {location.map(item => (
                             <LocationCard
                                 id={item.id}

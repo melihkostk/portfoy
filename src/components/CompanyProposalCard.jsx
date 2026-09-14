@@ -3,18 +3,18 @@ import { Link } from "react-router-dom";
 export function CompanyProposalCard({name , code , personal , created_at , score , status , count , id}){
      return (
         <tr>
-            <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{code} ({count} İlan)</td>
-            <td className="py-3 px-2">{name}</td>
-            <td className="py-3 px-2 text-sm whitespace-nowrap">{personal}</td>
-            <td className="py-3 px-2">{created_at}</td>
-            <td className="text-sm text-[#6c757d]">{score === 0 ? "Henüz Değerlendirme Yok" : score}</td>
+            <td className="py-3 px-2 whitespace-nowrap overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{code} ({count} İlan)</td>
+            <td className="py-3 px-2 whitespace-nowrap">{name}</td>
+            <td className="py-3 px-2 whitespace-nowrap text-sm whitespace-nowrap">{personal}</td>
+            <td className="py-3 px-2 whitespace-nowrap">{created_at}</td>
+            <td className="text-sm whitespace-nowrap text-[#6c757d]">{score === 0 ? "Henüz Değerlendirme Yok" : score}</td>
             <td>
-                <span className={`text-white text-xs text-center py-2 font-semibold px-2 rounded-lg ${status === "Süresi Doldu" ? "bg-[#ed0000]" : "bg-[#00cc83]"}`}>
+                <span className={`text-white text-xs text-center py-2 font-semibold px-2 rounded-lg whitespace-nowrap ${status === "Süresi Doldu" ? "bg-[#ed0000]" : "bg-[#00cc83]"}`}>
                     {status}
                 </span>
             </td>
             <td className="text-end py-3 px-2">
-                <Link to={`/proposals/${id}/details`} className="bg-[#f1f1f1] text-sm text-[#4b4b4b] font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Detaylı İncele</Link>
+                <Link to={`/proposals/${id}/details`} className="bg-[#f1f1f1] whitespace-nowrap text-sm text-[#4b4b4b] font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Detaylı İncele</Link>
             </td>
         </tr>
     )

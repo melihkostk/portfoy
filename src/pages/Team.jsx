@@ -326,6 +326,7 @@ export function Team({ loged }) {
                             code={item.contacts.phone.code}
                             is_active={item.is_active}
                             avatar={item.avatar}
+                            page="companyTeam"
                             handleToggleStatus={handleToggleStatus}
                             onEditClick={() => handleEditClick(item)}
                         />
