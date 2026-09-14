@@ -42,9 +42,7 @@ export function PropertiesDetail({ loged }) {
             if (data.status === "error") {
                 return
             }
-            getDetails(id).then(setDetails).finally(() => setLoaded(true))
-            setToogleMessage(data.message)
-            setToogleMessageShown(true)
+            getDetails(id).then(setDetails).finally(() => {setLoaded(true); setToogleMessage(data.message); setToogleMessageShown(true)})
         }))
     }
 
@@ -105,7 +103,7 @@ export function PropertiesDetail({ loged }) {
                 step={step}
                 setStep={setStep}
             />}
-            <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
+            <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Firmalar</span></p>
                 </div>
@@ -162,10 +160,10 @@ export function PropertiesDetail({ loged }) {
                 </div>
             </div>}
             <div className="w-full max-w-[90%]">
-                <div className="flex items-start">
-                    <div className="w-1/2 p-3.75 border border-[#eee] rounded-lg">
+                <div className="flex items-start max-[992px]:flex-col max-[992px]:gap-5">
+                    <div className="w-1/2 p-3.75 border border-[#eee] rounded-lg max-[992px]:w-full">
                         <div className="flex">
-                            <div className="w-40 h-112.5 overflow-y-auto flex flex-col pr-3.75 gap-3.75">
+                            <div className="w-40 h-112.5 overflow-y-auto flex flex-col pr-3.75 gap-3.75 max-[992px]:hidden">
                                 <div className="text-center">
                                     <p className="text-[#a0a0a0] text-xs uppercase font-semibold">Kapak Fotoğrafı</p>
                                 </div>
@@ -188,14 +186,14 @@ export function PropertiesDetail({ loged }) {
                                     <img className="rounded-lg" src={defaultImg} alt="" />
                                 </div>
                             </div>
-                            <div className="w-[calc(100%-160px)] pl-5">
+                            <div className="w-[calc(100%-160px)] max-[992px]:w-full pl-5 max-[992px]:pl-0">
                                 <img className="w-full h-full object-cover rounded-lg" src={defaultImg} alt="" />
                             </div>
                         </div>
                         <div>
                         </div>
                     </div>
-                    <div className="w-1/2 pl-12.5">
+                    <div className="w-1/2 pl-12.5 max-[992px]:w-full max-[992px]:pl-0">
                         <p className="text-sm text-[#888888] mb-2.5">{details.no}</p>
                         <h1 className="text-[25px] text-[#212529] mb-3.75 font-semibold">{details.title}</h1>
                         <ul className="flex flex-wrap gap-5">
@@ -212,7 +210,7 @@ export function PropertiesDetail({ loged }) {
                                 <p className="text-[#c2c2c2] text-sm">{details.updated_at}</p>
                             </li>
                         </ul>
-                        <div className="flex items-center gap-5 bg-[#f2f2f2] p-3.75 w-fit rounded-lg my-7.5">
+                        <div className="flex items-center gap-5 bg-[#f2f2f2] p-3.75 w-fit rounded-lg my-7.5 max-[992px]:w-full">
                             <div className="w-13.75 h-13.75 shadow-[0_0_30px_rgb(234_234_234/10%)]">
                                 <img className="w-full h-full rounded-full object-cover bg-white" src={defaultImg} alt="" />
                             </div>
@@ -246,8 +244,8 @@ export function PropertiesDetail({ loged }) {
                 </div>
             </div>
             <div id="detail" className="w-full max-w-[90%] mt-12.5">
-                <div className="flex">
-                    <div className="w-[30%]">
+                <div className="flex max-[992px]:flex-col-reverse max-[992px]:gap-20">
+                    <div className="w-[30%] max-[992px]:w-full">
                         <div className="mb-7.5">
                             <h2 className="p-5 mb-4 text-xl text-[#212529] font-semibold">{details?.features?.[0]?.title}</h2>
                             {details?.features?.[0]?.features?.map((item) => (
@@ -267,7 +265,7 @@ export function PropertiesDetail({ loged }) {
                             ))}
                         </div>
                     </div>
-                    <div className="w-[70%] pl-12.5 sticky top-0 h-[calc(100vh-100px)]">
+                    <div className="w-[70%] pl-12.5 sticky top-0 h-[calc(100vh-100px)] max-[992px]:static max-[992px]:w-full max-[992px]:pl-0">
                         <div className="mb-5">
                             <button onClick={() => setDetailType("map")} className={`${detailType === "map" ? "bg-[#27C5D2] text-white hover:bg-[#026872]" : "bg-[#eee] text-black hover:bg-[#c3c3c3]"} mr-1.25 py-3.75 px-7.5 cursor-pointer font-semibold rounded-lg transition-colors duration-300 ease-in-out`}>Harita Konumu</button>
                             <button onClick={() => setDetailType("video")} className={`${detailType === "video" ? "bg-[#27C5D2] text-white hover:bg-[#026872]" : "bg-[#eee] text-black hover:bg-[#c3c3c3]"} py-3.75 px-7.5 cursor-pointer font-semibold rounded-lg transition-colors duration-300 ease-in-out`}>Videolar ({details?.videos?.length > 0 ? details.videos.length : "0"})</button>
@@ -275,7 +273,7 @@ export function PropertiesDetail({ loged }) {
                         {detailType === "map" && <div className="h-full">
                             <iframe
                                 src={`https://www.google.com/maps?q=${details?.map?.latitude},${details?.map?.longitude}&z=15&output=embed`}
-                                className="w-full h-full border-0 rounded-lg"
+                                className="w-full block h-full border-0 rounded-lg"
                                 allowFullScreen
                                 loading="lazy"
                                 referrerPolicy="strict-origin-when-cross-origin"
@@ -292,7 +290,7 @@ export function PropertiesDetail({ loged }) {
                     </div>
                 </div>
             </div>
-            <div className='w-full mt-40 mb-30'>
+            <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />
                 </div>
