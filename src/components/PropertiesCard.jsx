@@ -14,7 +14,7 @@ export function PropertiesCard(props) {
                 <img className={`rounded-[10px] ${props.page === "company" ? "aspect-square h-1/2" : "h-full"} w-full ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""}  object-cover max-[992px]:aspect-video`} src={defaultProperty} alt="" />
             </div>
             <div className={`pl-5 w-[50%]`}>
-                <Link to={`/properties/${props.id}`} className="min-h-12.5 line-clamp-2 overflow-hidden text-black font-semibold hover:text-[#FFCA64] transition-colors duration-300 ease-in-out">{props.title}</Link>
+                <Link to={`/properties/${props.id}`} className={`min-h-12.5 line-clamp-2 overflow-hidden ${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" ? "text-xl" : "text-base" } text-black hover:text-[#FFCA64] transition-colors duration-300 ease-in-out`}>{props.title}</Link>
                 <ul className="text-[11px] text-[#B7BFB9] font-medium flex flex-wrap gap-2.5 my-2.5">
                     <li className="w-full flex items-center gap-1">
                         <img className="w-5 h-5" src={location} alt="" />
@@ -41,7 +41,7 @@ export function PropertiesCard(props) {
                     <span className="text-[11px] text-[#B7BFB9] font-medium block py-1.25">
                         Satış Fiyatı
                     </span>
-                    <span className="text-lg text-[#FFCA64] font-semibold wrap-break-word">
+                    <span className={`${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" ? "text-2xl" : "text-lg" } text-[#FFCA64] font-semibold wrap-break-word`}>
                         {props.price}
                     </span>
                 </p>

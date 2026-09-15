@@ -59,6 +59,7 @@ export function CompaniesDetail({ loged }) {
                             type={item.type.title}
                             city={item.city.title}
                             district={item.district.title}
+                            page="companiesDetail"
                         />
                     ))
                     :(

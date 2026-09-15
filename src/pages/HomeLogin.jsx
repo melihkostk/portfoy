@@ -70,6 +70,7 @@ export function HomeLogin({ loged, news, logOut }) {
                                     type={item.type.title}
                                     city={item.city.title}
                                     district={item.district.title}
+                                    page="homeLogin"
                                 />
                             ))}
                         </div>
@@ -104,6 +105,7 @@ export function HomeLogin({ loged, news, logOut }) {
                                     type={item.type.title}
                                     city={item.city.title}
                                     district={item.district.title}
+                                    page="homeLogin"
                                 />
                             ))}
                         </div>
