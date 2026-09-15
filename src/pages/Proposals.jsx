@@ -6,15 +6,19 @@ import { Footer } from "../components/Footer"
 import { getProposals } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
+import { Pagination } from "../components/Pagination"
 
 export function Proposals({ loged }) {
 
     const [usersProposal, setUsersProposals] = useState([]);
-    const [loaded , setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false)
+
+    const [page , setPage] = useState(1)
 
     useEffect(() => {
-        getProposals().then(setUsersProposals).finally(() => setLoaded(true))
-    }, [])
+        setLoaded(false)
+        getProposals(page).then(setUsersProposals).finally(() => setLoaded(true))
+    }, [page])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -53,7 +57,7 @@ export function Proposals({ loged }) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {usersProposal.map(item => (
+                                    {usersProposal?.data?.map(item => (
                                         <ProposalCard
                                             key={item.id}
                                             id={item.id}
@@ -62,13 +66,24 @@ export function Proposals({ loged }) {
                                             score={item.score}
                                             status={item.status.title}
                                             created_at={item.created_at}
-                                           
+
                                         />
                                     ))}
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="w-full max-w-[90%]">
+                <div className="flex items-center justify-between mt-5 w-full max-[992px]:flex-col max-[992px]:items-center">
+                    <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
+                        {usersProposal?.pagination?.pagination_text}
+                    </p>
+                    <Pagination
+                        pagination={usersProposal?.pagination}
+                        onPageChange={setPage}
+                    />
                 </div>
             </div>
             <div className='w-full mt-30 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>

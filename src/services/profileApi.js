@@ -12,9 +12,11 @@ export const getUserProperties = async (page) => {
     return response.data;
 }
 
-export const getProposals = async () => {
-    const response = await api.get("/auth/proposals");
-    return response.data.data;
+export const getProposals = async (page) => {
+    const response = await api.get("/auth/proposals" , {
+        params:{page:page}
+    });
+    return response.data;
 }
 
 export const getReceivedOffers = async (page) => {
