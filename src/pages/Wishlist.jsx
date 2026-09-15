@@ -9,23 +9,62 @@ import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getSortingOptions, toggleWishlist } from "../services/propertiesApi"
 import close from "../assets/close.png"
+import { getCompanyTypes } from "../services/companiesApi"
+import { getAllCities, getAllCountries, getAllDistricts } from "../services/filterApi"
 
 export function Wishlist({ loged }) {
 
     const [wishlist, setWishlist] = useState([]);
     const [loaded, setLoaded] = useState(false)
 
-    const [sort , setSort] = useState([]);
+    const [sort, setSort] = useState([]);
 
     useEffect(() => {
         getSortingOptions().then(setSort)
     }, [])
 
-    const [selectedSort , setSelectedSort] = useState("");
+    const [selectedSort, setSelectedSort] = useState("");
+
+    const [type, setType] = useState([]);
+    const [selectedType , setSelectedType] = useState("");
+
+    useEffect(() => {
+        getCompanyTypes().then(setType)
+    }, [])
+
+    const [countries, setCountries] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState("")
+
+    useEffect(() => {
+        getAllCountries().then(setCountries)
+    }, [])
+
+    const [cities, setCities] = useState([]);
+    const [selectedCity, setSelectedCity] = useState("");
+
+    useEffect(() => {
+        if (!selectedCountry) {
+            setCities([]);
+            return;
+        }
+        getAllCities(selectedCountry).then(setCities)
+    }, [selectedCountry])
+
+    const [district, setDistrict] = useState([]);
+    const [selectedDistrict, setSelectedDistrict] = useState("")
+
+    useEffect(() => {
+        if (!selectedCity) {
+            setDistrict([]);
+            return
+        }
+        getAllDistricts(selectedCity).then(setDistrict)
+
+    }, [selectedCity])
 
     useEffect(() => {
         setLoaded(false)
-        getWishlist(selectedSort).then(setWishlist).finally(() => setLoaded(true))
+        getWishlist(selectedSort, selectedType, selectedCountry, selectedCity, selectedDistrict).then(setWishlist).finally(() => setLoaded(true))
     }, [selectedSort])
 
     const [toogleMessageShown, setToogleMessageShown] = useState(false)
@@ -37,8 +76,13 @@ export function Wishlist({ loged }) {
                 return
             }
             setLoaded(false)
-            getWishlist().then(setWishlist).finally(() => { setLoaded(true); setToogleMessage(data.message); setToogleMessageShown(true) })
+            getWishlist(selectedSort, selectedType, selectedCountry, selectedCity, selectedDistrict).then(setWishlist).finally(() => { setLoaded(true); setToogleMessage(data.message); setToogleMessageShown(true) })
         })
+    }
+
+    function handleFilterWishlist(type, country, city, district) {
+        setLoaded(false)
+        getWishlist(selectedSort, type, country, city, district).then(setWishlist).finally(() => setLoaded(true))
     }
 
     return (
@@ -77,7 +121,23 @@ export function Wishlist({ loged }) {
                             </select>
                         </div>
                         <div>
-                            <CompanyFilter page="wishlist" />
+                            <CompanyFilter
+                                page="wishlist"
+                                type={type}
+                                countries={countries}
+                                selectedCountry={selectedCountry}
+                                setSelectedCountry={setSelectedCountry}
+                                getAllCities={getAllCities}
+                                cities={cities}
+                                selectedCity={selectedCity}
+                                setSelectedCity={setSelectedCity}
+                                district={district}
+                                selectedDistrict={selectedDistrict}
+                                setSelectedDistrict={setSelectedDistrict}
+                                selectedType={selectedType}
+                                setSelectedType={setSelectedType}
+                                filterCompany={handleFilterWishlist}
+                            />
                         </div>
                         <div className="flex flex-wrap justify-between -mx-3.75">
                             {wishlist.length > 0 &&

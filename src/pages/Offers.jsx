@@ -7,7 +7,6 @@ import { getReceivedOffers, getSendedOffers } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
-import close from "../assets/blue-close.png"
 
 export function Offers({ loged }) {
 

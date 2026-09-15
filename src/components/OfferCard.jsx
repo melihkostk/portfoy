@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export function OfferCard({ title, price, offered_price, status, created_at, id, type, onView }) {
+export function OfferCard({ title, price, offered_price, status, created_at, id, type }) {
     return (
         <tr>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">
@@ -25,7 +25,7 @@ export function OfferCard({ title, price, offered_price, status, created_at, id,
                 {type === "send" && <Link to={`/offers/${id}/detail`} className="bg-[#27C5D2] text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
                     Görüntüle
                 </Link>}
-                {type === "received" && <button onClick={() => onView({id , title , price , offered_price , status , created_at , type})} className="bg-[#27C5D2] text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
+                {type === "received" && <button className="bg-[#27C5D2] text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
                     Görüntüle
                 </button>}
             </td>
