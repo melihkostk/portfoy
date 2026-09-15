@@ -8,18 +8,21 @@ import { Footer } from "../components/Footer"
 import { getAllProperties, getSortingOptions } from "../services/propertiesApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
+import { Pagination } from "../components/Pagination"
 
 export function Properties({ loged }) {
 
     const [properties, setProperties] = useState([])
-    const [loaded , setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false)
 
-    const [selectedSorting , setSelectingOption] = useState("");
+    const [selectedSorting, setSelectingOption] = useState("");
+
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         setLoaded(false)
-        getAllProperties(selectedSorting).then(setProperties).finally(() => setLoaded(true))
-    }, [selectedSorting])
+        getAllProperties(selectedSorting, page).then(setProperties).finally(() => setLoaded(true))
+    }, [selectedSorting, page])
 
     const [flexDirection, setFlexDirection] = useState("");
 
@@ -67,7 +70,7 @@ export function Properties({ loged }) {
                             </button>
                         </div>
                         <div>
-                            <select value={selectedSorting} onChange={(e) => setSelectingOption(e.target.value)} className="border border-[#D9D9D9] h-9.5 w-full rounded-lg py-1.5 px-3 text-[#212529]" name="" id="">
+                            <select value={selectedSorting} onChange={(e) => { setSelectingOption(e.target.value); setPage(1) }} className="border border-[#D9D9D9] h-9.5 w-full rounded-lg py-1.5 px-3 text-[#212529]" name="" id="">
                                 {sortingOptions.map(item => (
                                     <option value={item.key} key={item.key}>{item.title}</option>
                                 ))}
@@ -95,57 +98,13 @@ export function Properties({ loged }) {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center">
-                    <div>
-                        <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
-                            {properties?.pagination?.pagination_text}
-                        </p>
-                    </div>
-                    <nav className="overflow-auto max-w-full">
-                        <ul className="flex items-center gap-1.25 mb-4 w-full scrollbar-thumb-[#27C5D2] overflow-auto max-w-full">
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>1</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>2</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>3</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>4</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>5</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>6</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>7</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>8</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>9</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>10</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>11</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>12</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>13</span>
-                            </li>
-                            <li className="w-10 h-10 bg-[#f8f8f8] shrink-0 text-[#7c7c7c] flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#e9ecef] transition-colors duration-300 ease-in-out">
-                                <span>14</span>
-                            </li>
-                        </ul>
-                    </nav>
+                    <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
+                        {properties?.pagination?.pagination_text}
+                    </p>
+                    <Pagination
+                        pagination={properties?.pagination}
+                        onPageChange={setPage}
+                    />
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5'>

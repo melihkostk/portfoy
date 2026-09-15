@@ -49,7 +49,7 @@ export const getLocation = async () => {
 }
 
 export const getDraftProperties = async () => {
-    const response = await api.post("/properties/drafts");
+    const response = await api.get("/properties/drafts");
     return response.data.data;
 }
 
