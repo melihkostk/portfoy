@@ -7,6 +7,7 @@ import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import { ClipLoader } from "react-spinners";
 import news1 from "../assets/news1.jpeg"
+import grayCalendar from "../assets/gray-calendar.png"
 
 export function NewsDetail({ loged, news }) {
 
@@ -43,16 +44,19 @@ export function NewsDetail({ loged, news }) {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
-                    <div className="flex flex-col bg-white gap-7.5 w-[30%] max-[992px]:w-full max-[992px]:mt-7.5 border border-[#eee] rounded-lg p-3.75">
+                    <div className="flex flex-col bg-white gap-7.5 w-[22%] max-[992px]:w-full max-[992px]:mt-7.5 border border-[#eee] rounded-lg p-3.75">
                         <div className="bg-[#eaeaea] text-[#808080] text-center py-2.5 rounded-lg">Diğer Haberler</div>
                         {news.map(item => (
                             <NewsCard page="detail" key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
                         ))}
                     </div>
-                    <div className="w-[70%] pl-12.5 max-[992px]:pl-0">
+                    <div className="w-[78%] pl-12.5 max-[992px]:pl-0">
                         <div>
-                            <h1>{article.title}</h1>
-                            <p>{article.created_at}</p>
+                            <h1 className="text-[25px] text-[#212529]">{article.title}</h1>
+                            <div className="flex items-center gap-2 mb-4">
+                                <img className="w-4 h-4" src={grayCalendar} alt="" />
+                                <p className="text-[#848484] text-sm font-medium">{article.created_at}</p>
+                            </div>
                         </div>
                         <div
                             className="article-content"
