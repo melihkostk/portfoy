@@ -5,6 +5,8 @@ import { Link, useParams } from "react-router-dom";
 import { showOffer } from "../services/profileApi";
 import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
+import { AppLinks } from "../components/AppLinks";
+import { Footer } from "../components/Footer";
 
 export function OfferDetail({ loged }) {
 
@@ -35,7 +37,7 @@ export function OfferDetail({ loged }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
-                <div className="flex items-start max-[992px]:flex-col-reverse">
+                <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
                     <div className="w-[28%] max-[992px]:w-full">
                         <Sidebar />
                     </div>
@@ -91,6 +93,14 @@ export function OfferDetail({ loged }) {
                         </div>}
                     </div>
                 </div>
+            </div>
+            <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
+                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
+                    <AppLinks />
+                </div>
+            </div>
+            <div className='w-full'>
+                <Footer loged={loged} />
             </div>
         </div>
     )
