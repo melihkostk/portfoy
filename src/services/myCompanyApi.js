@@ -22,7 +22,7 @@ export const getAllInvitations = async () => {
 
 export const getAllCustomers = async () => {
     const response = await api.get("/auth/company/customers")
-    return response.data.data
+    return response.data;
 }
 
 export const filterCustomer = async (q) => {
@@ -45,7 +45,7 @@ export const editCustomer = async (id , name , email , phone , phone_code) => {
 
 export const getLocation = async () => {
     const response = await api.get("/auth/company/locations")
-    return response.data.data.locations
+    return response.data;
 }
 
 export const getDraftProperties = async () => {
@@ -70,7 +70,7 @@ export const getCompanyProperties = async (country_id, city_id, district_id, cre
 
 export const getCompanyProposals = async () => {
     const response = await api.post("/auth/company/proposals");
-    return response.data.data.proposals;
+    return response.data
 }
 
 export const getCustomerProposals = async (customer_id) => {

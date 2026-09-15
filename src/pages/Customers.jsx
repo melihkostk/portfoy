@@ -151,7 +151,14 @@ export function Customers({ loged }) {
                     </form>
                 </div>
             </div>}
-            <CompanyHeader page="customers" />
+            <CompanyHeader
+                page="customers"
+                name={customers?.data?.name}
+                code={customers?.data?.code}
+                created_at={customers?.data?.created_at}
+                type={customers?.data?.type}
+                logo={customers?.data?.logo}
+            />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center mb-5 flex-wrap">
                     <h2 className="text-[#212529] text-[32px]">Müşteriler</h2>
@@ -178,7 +185,7 @@ export function Customers({ loged }) {
                         </thead>
                         <tbody>
                             {!result ? (
-                                customers?.customers?.map(item => (
+                                customers?.data?.customers?.map(item => (
                                     <CustomerCard
                                         key={item.id}
                                         id={item.id}

@@ -44,7 +44,14 @@ export function CompanyProposals({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Teklifler</span></p>
                 </div>
             </div>
-            <CompanyHeader page="proposals" />
+            <CompanyHeader
+                page="proposals"
+                name={proposals?.data?.name}
+                code={proposals?.data?.code}
+                created_at={proposals?.data?.created_at}
+                type={proposals?.data?.type}
+                logo={proposals?.data?.logo}
+            />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center mb-5 flex-wrap">
                     <h2 className="text-[#212529] text-[32px]">Teklifler</h2>
@@ -63,7 +70,7 @@ export function CompanyProposals({ loged }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {!customer_id && proposals.map(item => (
+                            {!customer_id && proposals?.data?.proposals?.map(item => (
                                 <CompanyProposalCard
                                     id={item.id}
                                     key={item.id}

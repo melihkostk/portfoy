@@ -182,10 +182,17 @@ export function Location({ loged }) {
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
-                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Konum & İletişim</span></p>
+                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Konum & İletişim</span></p>
                 </div>
             </div>
-            <CompanyHeader page="location" />
+            <CompanyHeader
+                page="location"
+                name={location?.data?.name}
+                code={location?.data?.code}
+                created_at={location?.data?.created_at}
+                type={location?.data?.type}
+                logo={location?.data?.logo}
+            />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center max-[992px]:flex-col max-[992px]:items-start">
                     <h2 className="text-[#212529] text-[32px]">Konum & İletişim</h2>
@@ -195,7 +202,7 @@ export function Location({ loged }) {
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex max-[992px]:flex-col items-start w-full justify-between">
                     <div className="w-1/2 max-[992px]:w-full sticky top-3 max-[992px]:static">
-                        {location.map(item => (
+                        {location?.data?.locations.map(item => (
                             <LocationCard
                                 id={item.id}
                                 key={item.id}
