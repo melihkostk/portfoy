@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 
-export function OfferCard({title , price , offered_price , status , created_at , id}) {
+export function OfferCard({ title, price, offered_price, status, created_at, id, type, onView }) {
     return (
         <tr>
-            <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{title}</td>
+            <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">
+                {title}
+            </td>
             <td className="py-3 px-2">
                 {price}
             </td>
@@ -12,13 +14,20 @@ export function OfferCard({title , price , offered_price , status , created_at ,
                 {offered_price}
             </td>
             <td className="py-3 px-2">
-                <span className={`${status === "Beklemede" ? "bg-[#27C5D2]" : ""} ${status === "Reddedildi" ? "bg-[#ed0000]" : ""} ${status === "Onaylandı" ? "bg-[#00cc83]" : ""} text-xs text-white font-semibold py-1.25 px-2 rounded-md`}>{status}</span>
+                <span className={`${status === "Beklemede" ? "bg-[#27C5D2]" : ""} ${status === "Reddedildi" ? "bg-[#ed0000]" : ""} ${status === "Onaylandı" ? "bg-[#00cc83]" : ""} text-xs text-white font-semibold py-1.25 px-2 rounded-md`}>
+                    {status}
+                </span>
             </td>
             <td className="py-3 px-2">
                 {created_at}
             </td>
             <td>
-                <Link to={`/offers/${id}/detail`} className="bg-[#27C5D2] text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Görüntüle</Link>
+                {type === "send" && <Link to={`/offers/${id}/detail`} className="bg-[#27C5D2] text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
+                    Görüntüle
+                </Link>}
+                {type === "received" && <button onClick={() => onView({id , title , price , offered_price , status , created_at , type})} className="bg-[#27C5D2] text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
+                    Görüntüle
+                </button>}
             </td>
         </tr>
     )

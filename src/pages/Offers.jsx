@@ -7,24 +7,24 @@ import { getReceivedOffers, getSendedOffers } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
+import close from "../assets/blue-close.png"
 
 export function Offers({ loged }) {
 
     const { type } = useParams();
 
     const [receivedOffers, setReceivedOffers] = useState([]);
-    const [loaded , setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         getReceivedOffers().then(setReceivedOffers).finally(() => setLoaded(true))
     }, [])
 
-    const [sendedOffers , setSendedOffers] = useState([]);
+    const [sendedOffers, setSendedOffers] = useState([]);
 
     useEffect(() => {
         getSendedOffers().then(setSendedOffers).finally(() => setLoaded(true))
     }, [])
-
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -49,7 +49,7 @@ export function Offers({ loged }) {
                         <Sidebar type={type} />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
-                        <h2 className="text-[32px] text-[#212529] font-medium mb-2">{type === "received" ? "Aldığım teklifler" : "Gönderdiğim teklifler" }</h2>
+                        <h2 className="text-[32px] text-[#212529] font-medium mb-2">{type === "received" ? "Aldığım teklifler" : "Gönderdiğim teklifler"}</h2>
                         {type === "received" && <div className="p-4 mb-4 bg-[#fff3cd] rounded-lg">
                             <p className="text-[#664d03]">Bu sayfada sadece sizin oluşturduğunuz ilanların tekliflerini görüntüleyebilirsiniz.</p>
                         </div>}
@@ -77,6 +77,7 @@ export function Offers({ loged }) {
                                                 offered_price={item.offered_price.formatted}
                                                 status={item.status.title}
                                                 created_at={item.created_at}
+                                                type="received"
                                             />
                                         ))
                                     }
@@ -90,6 +91,7 @@ export function Offers({ loged }) {
                                                 offered_price={item.offered_price.formatted}
                                                 status={item.status.title}
                                                 created_at={item.created_at}
+                                                type="send"
                                             />
                                         ))
                                     }
