@@ -18,7 +18,7 @@ export function Pagination({ pagination, onPageChange }) {
   }
 
   return (
-    <nav className="overflow-auto max-w-full">
+    <nav className="overflow-auto max-w-1/2 max-[992px]:max-w-full">
       <ul className="flex items-center gap-1.25 mb-4 w-full scrollbar-thumb-[#27C5D2] overflow-auto max-w-full">
         {current_page > 1 && <li>
           <button

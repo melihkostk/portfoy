@@ -15,7 +15,7 @@ export function Companies({ loged }) {
 
     const [loaded, setLoaded] = useState(false)
 
-    const [page , setPage] = useState(1)
+    const [page, setPage] = useState(1)
 
     const [appliedFilters, setAppliedFilters] = useState({ type: "", country: "", city: "", district: "", q: "" })
 
@@ -145,10 +145,17 @@ export function Companies({ loged }) {
                     }
                 </div>
             </div>
-            <Pagination
-                pagination={companies?.pagination}
-                onPageChange={setPage}
-            />
+            <div className="w-full max-w-[90%]">
+                <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center">
+                    <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
+                        {companies?.pagination?.pagination_text}
+                    </p>
+                    <Pagination
+                        pagination={companies?.pagination}
+                        onPageChange={setPage}
+                    />
+                </div>
+            </div>
             <div className='w-full mt-40 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />

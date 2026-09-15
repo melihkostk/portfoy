@@ -7,9 +7,9 @@ export const getWishlist = async (sort, type, country, city, district) => {
     return response.data.data;
 }
 
-export const getUserProperties = async () => {
-    const response = await api.post("/auth/properties");
-    return response.data.data;
+export const getUserProperties = async (page) => {
+    const response = await api.post("/auth/properties", { page: page });
+    return response.data;
 }
 
 export const getProposals = async () => {

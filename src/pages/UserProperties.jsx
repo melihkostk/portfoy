@@ -6,15 +6,19 @@ import { Footer } from "../components/Footer"
 import { getUserProperties } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
+import { Pagination } from "../components/Pagination"
 
 export function UserProperties({ loged }) {
 
+    const [page , setPage] = useState(1)
+
     const [userProperties, setUserProperties] = useState([]);
-    const [loaded , setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
-        getUserProperties().then(setUserProperties).finally(() => setLoaded(true))
-    }, [])
+        setLoaded(false)
+        getUserProperties(page).then(setUserProperties).finally(() => setLoaded(true))
+    }, [page])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -41,7 +45,7 @@ export function UserProperties({ loged }) {
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] font-medium mb-2">İlanlarım</h2>
                         <div>
-                            {userProperties.map(item => (
+                            {userProperties?.data?.map(item => (
                                 <PropertiesCard
                                     key={item.id}
                                     page="myProperties"
@@ -58,6 +62,17 @@ export function UserProperties({ loged }) {
                             ))}
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="w-full max-w-[90%]">
+                <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center">
+                    <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
+                        {userProperties?.pagination?.pagination_text}
+                    </p>
+                    <Pagination
+                        pagination={userProperties?.pagination}
+                        onPageChange={setPage}
+                    />
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
