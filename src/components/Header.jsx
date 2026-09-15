@@ -179,7 +179,7 @@ export function Header({ loged, details }) {
                                 </button>
                             </div>
                             <div className="max-h-[50vh] overflow-auto bg-white mb-5 p-3.75">
-                                {notifications.map(item => (
+                                {notifications?.data?.notifications?.map(item => (
                                     <Notification key={item.id} id={item.id} content={item.content} time={item.time_diff} />
                                 ))}
                             </div>

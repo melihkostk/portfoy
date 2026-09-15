@@ -95,16 +95,16 @@ export function Contacts({ loged }) {
                         <div className="mt-10">
                             <p className="text-sm uppercase mb-2.5 text-[#212529] opacity-60 font-medium">Bizi takip edin</p>
                             <div className="flex">
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo?.socials?.linkedin}>
+                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5 hover:bg-[#eee] transition-colors duration-300 ease-in-out" href={contactInfo?.socials?.linkedin}>
                                     <img className="w-7 h-7" src={grayLinkedIn} alt="" />
                                 </a>
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo?.socials?.x}>
+                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5 hover:bg-[#eee] transition-colors duration-300 ease-in-out" href={contactInfo?.socials?.x}>
                                     <img className="w-7 h-7" src={grayX} alt="" />
                                 </a>
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo?.socials?.facebook}>
+                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5 hover:bg-[#eee] transition-colors duration-300 ease-in-out" href={contactInfo?.socials?.facebook}>
                                     <img className="w-7 h-7" src={grayFacebook} alt="" />
                                 </a>
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5" href={contactInfo?.socials?.instagram}>
+                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5 hover:bg-[#eee] transition-colors duration-300 ease-in-out" href={contactInfo?.socials?.instagram}>
                                     <img className="w-7 h-7" src={grayInsta} alt="" />
                                 </a>
                             </div>
