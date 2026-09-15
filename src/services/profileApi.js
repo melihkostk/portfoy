@@ -17,18 +17,20 @@ export const getProposals = async () => {
     return response.data.data;
 }
 
-export const getReceivedOffers = async () => {
+export const getReceivedOffers = async (page) => {
     const response = await api.post("/auth/offers", {
         type: "received",
+        page: page
     });
-    return response.data.data
+    return response.data;
 }
 
-export const getSendedOffers = async () => {
+export const getSendedOffers = async (page) => {
     const response = await api.post("/auth/offers", {
         type: "send",
+        page: page
     });
-    return response.data.data
+    return response.data;
 }
 
 export const showOffer = async (id) => {
