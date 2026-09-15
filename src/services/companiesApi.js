@@ -1,7 +1,7 @@
 import api from "./api";
 
-export const getAllCompanies = async () => {
-    const response = await api.post("/companies");
+export const getAllCompanies = async (page) => {
+    const response = await api.post("/companies", { page: page });
     return response.data;
 }
 
@@ -27,13 +27,14 @@ export const getCompanyTypes = async () => {
     return response.data.data;
 }
 
-export const filterCompany = async (type , country , city , district , q) => {
+export const filterCompany = async (type , country , city , district , q , page) => {
     const response = await api.post("/companies", {
         type_id: type,
         country_id:country,
         city_id:city,
         district_id:district,
-        q:q
+        q:q,
+        page:page
     });
     return response.data;
 }

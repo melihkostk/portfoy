@@ -4,9 +4,10 @@ import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { filterCompany, getAllCompanies, getCompanyTypes } from "../services/companiesApi"
+import { filterCompany, getCompanyTypes } from "../services/companiesApi"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
 import { ClipLoader } from "react-spinners"
+import { Pagination } from "../components/Pagination"
 
 export function Companies({ loged }) {
 
@@ -14,12 +15,19 @@ export function Companies({ loged }) {
 
     const [loaded, setLoaded] = useState(false)
 
+    const [page , setPage] = useState(1)
+
+    const [appliedFilters, setAppliedFilters] = useState({ type: "", country: "", city: "", district: "", q: "" })
+
     useEffect(() => {
-        getAllCompanies().then(setCompanies).finally(() => setLoaded(true))
-    }, [])
+        setLoaded(false)
+        filterCompany(appliedFilters.type, appliedFilters.country, appliedFilters.city, appliedFilters.district, appliedFilters.q, page)
+            .then(setCompanies)
+            .finally(() => setLoaded(true))
+    }, [appliedFilters, page])
 
     const [type, setType] = useState([]);
-    const [selectedType , setSelectedType] = useState("");
+    const [selectedType, setSelectedType] = useState("");
 
     useEffect(() => {
         getCompanyTypes().then(setType)
@@ -43,11 +51,11 @@ export function Companies({ loged }) {
         getAllCities(selectedCountry).then(setCities)
     }, [selectedCountry])
 
-    const [district , setDistrict] = useState([]);
-    const [selectedDistrict , setSelectedDistrict] = useState("")
+    const [district, setDistrict] = useState([]);
+    const [selectedDistrict, setSelectedDistrict] = useState("")
 
     useEffect(() => {
-        if(!selectedCity){
+        if (!selectedCity) {
             setDistrict([]);
             return
         }
@@ -55,20 +63,20 @@ export function Companies({ loged }) {
 
     }, [selectedCity])
 
-    const [streets , setStreets] = useState([]);
-    const [selectedStreet , setSelectedStreet] = useState("")
+    const [streets, setStreets] = useState([]);
+    const [selectedStreet, setSelectedStreet] = useState("")
 
     useEffect(() => {
-        if(!selectedDistrict){
+        if (!selectedDistrict) {
             setStreets([])
             return
         }
         getAllStreets(selectedDistrict).then(setStreets)
     }, [selectedDistrict])
 
-    const handleFilterCompany = (type, country, city, district ,q) => {
-        setLoaded(false)
-        filterCompany(type, country, city, district , q).then(setCompanies).finally(() => setLoaded(true))
+    const handleFilterCompany = (type, country, city, district, q) => {
+        setPage(1)
+        setAppliedFilters({ type, country, city, district, q })
     }
 
     const [q, setQ] = useState("")
@@ -131,17 +139,16 @@ export function Companies({ loged }) {
                             logo={item?.logo}
                         />
                     ))
-                    :(
-                        <div className="text-[#636464] w-full bg-[#fafafa] h-fit p-3.75 m-3.75 rounded-lg">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
-                    )
-                }
+                        : (
+                            <div className="text-[#636464] w-full bg-[#fafafa] h-fit p-3.75 m-3.75 rounded-lg">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
+                        )
+                    }
                 </div>
             </div>
-            <div className="w-full max-w-[90%]">
-                <div className="text-[#6c757d]">
-                    {companies?.pagination?.pagination_text}
-                </div>
-            </div>
+            <Pagination
+                pagination={companies?.pagination}
+                onPageChange={setPage}
+            />
             <div className='w-full mt-40 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />
