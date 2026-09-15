@@ -11,8 +11,11 @@ import { getSortingOptions, toggleWishlist } from "../services/propertiesApi"
 import close from "../assets/close.png"
 import { getCompanyTypes } from "../services/companiesApi"
 import { getAllCities, getAllCountries, getAllDistricts } from "../services/filterApi"
+import { Pagination } from "../components/Pagination"
 
 export function Wishlist({ loged }) {
+
+    const [page, setPage] = useState(1)
 
     const [wishlist, setWishlist] = useState([]);
     const [loaded, setLoaded] = useState(false)
@@ -26,7 +29,7 @@ export function Wishlist({ loged }) {
     const [selectedSort, setSelectedSort] = useState("");
 
     const [type, setType] = useState([]);
-    const [selectedType , setSelectedType] = useState("");
+    const [selectedType, setSelectedType] = useState("");
 
     useEffect(() => {
         getCompanyTypes().then(setType)
@@ -64,7 +67,7 @@ export function Wishlist({ loged }) {
 
     useEffect(() => {
         setLoaded(false)
-        getWishlist(selectedSort, selectedType, selectedCountry, selectedCity, selectedDistrict).then(setWishlist).finally(() => setLoaded(true))
+        getWishlist(selectedSort, selectedType, selectedCountry, selectedCity, selectedDistrict, page).then(setWishlist).finally(() => setLoaded(true))
     }, [selectedSort])
 
     const [toogleMessageShown, setToogleMessageShown] = useState(false)
@@ -140,8 +143,8 @@ export function Wishlist({ loged }) {
                             />
                         </div>
                         <div className="flex flex-wrap justify-between -mx-3.75">
-                            {wishlist.length > 0 &&
-                                wishlist.map(item => (
+                            {wishlist?.data?.length > 0 &&
+                                wishlist?.data?.map(item => (
                                     <PropertiesCard
                                         key={item.id}
                                         page="wishlist"
@@ -159,6 +162,17 @@ export function Wishlist({ loged }) {
                             }
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="w-full max-w-[90%]">
+                <div className="flex items-center justify-between mt-5 w-full max-[992px]:flex-col max-[992px]:items-center">
+                    <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
+                        {wishlist?.pagination?.pagination_text}
+                    </p>
+                    <Pagination
+                        pagination={wishlist?.pagination}
+                        onPageChange={setPage}
+                    />
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
