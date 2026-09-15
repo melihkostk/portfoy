@@ -6,6 +6,7 @@ import shop from "../assets/gray-shop.png"
 import blueStar from "../assets/star-blue.png"
 import grayStar from "../assets/star-gray.png"
 import defaultProperty from "../assets/default-property.jpg"
+import personal from "../assets/personal.png"
 
 export function PropertiesCard(props) {
     return (
@@ -33,8 +34,8 @@ export function PropertiesCard(props) {
                         <span>{props.type}</span>
                     </li>
                     <li className="w-full flex items-center gap-1">
-                        <img className="w-5 h-5" src={shop} alt="" />
-                        <span>{props.company}</span>
+                        <img className="w-6 h-6" src={props.page === "company" ? personal : shop} alt="" />
+                        {props.page === "company" ? <span>{props.created_by}</span> : <span>{props.company}</span>}
                     </li>
                 </ul>
                 <p>
