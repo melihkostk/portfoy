@@ -77,7 +77,7 @@ export function Company({ loged }) {
 
     const [selectedType, setSelectedType] = useState([]);
 
-    const [ınfo , setInfo] = useState([])
+    const [ınfo, setInfo] = useState([])
 
     useEffect(() => {
         getCompanyInfo().then(setInfo)
@@ -140,26 +140,23 @@ export function Company({ loged }) {
                         />
                     </div>
                     <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-wrap">
-                        {companyProperties.length > 0 ? (
-                            companyProperties.map((item) => (
-                                <PropertiesCard
-                                    page="company"
-                                    id={item.id}
-                                    key={item.id}
-                                    title={item.title}
-                                    cover={item.cover}
-                                    price={item.price.formatted}
-                                    company={item.company.title}
-                                    type={item.type.title}
-                                    city={item.city.title}
-                                    district={item.district.title}
-                                    created_by={item.creator}
-                                />
-                            ))
-                        ) : (
-                            <div className="text-[#636464] bg-[#fafafa] h-fit p-3.75 m-3.75 rounded-lg">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
-                        )}
-                        {status === "unpublished" && draft.map(item => (
+                        {companyProperties.map((item) => (
+                            <PropertiesCard
+                                page="company"
+                                id={item.id}
+                                key={item.id}
+                                title={item.title}
+                                cover={item.cover}
+                                price={item.price.formatted}
+                                company={item.company.title}
+                                type={item.type.title}
+                                city={item.city.title}
+                                district={item.district.title}
+                                created_by={item.creator}
+                                status={item.status}
+                            />
+                        ))}
+                        {draft.map(item => (
                             <PropertiesCard
                                 page="company"
                                 key={item.id}
@@ -171,6 +168,7 @@ export function Company({ loged }) {
                                 city={item.city.title}
                                 district={item.district.title}
                                 created_by={item.creator}
+                                status={status}
                             />
                         ))}
                     </div>
