@@ -6,7 +6,7 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
 import { getDetails } from "../services/propertyDetails"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import location from "../assets/gray-location.png"
 import building from "../assets/building.png"
 import mark from "../assets/mark.png"
@@ -243,10 +243,10 @@ export function PropertiesDetail({ loged }) {
                             </button>
                         </div>) : (
                             <div className="flex gap-2.5 flex-wrap">
-                                <button className="bg-[#f1f1f1] rounded-lg flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                <Link to={`/properties/${id}/edit`} className="bg-[#f1f1f1] rounded-lg flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                     <img className="w-5 h-5" src={pen} alt="" />
                                     <span>İlanı Düzenle</span>
-                                </button>
+                                </Link>
                                 <button className="bg-[#ffca64] rounded-lg flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">
                                     <img className="w-4 h-4" src={graph} alt="" />
                                     İlanı Öne Çıkar
