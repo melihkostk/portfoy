@@ -11,11 +11,16 @@ import personal from "../assets/personal.png"
 export function PropertiesCard(props) {
     return (
         <div className={`flex items-start ${props.page === "proposalDetail" ? "w-full m-0 p-7.5" : ""} bg-[#FAFAFA] shrink-0 max-[992px]:w-full max-[992px]:m-0 ${props.flexDirection === "flex-col" ? "w-full" : ""}  max-[992px]:flex-col p-3.75 m-3.75 rounded-[10px] ${props.page === "wishlist" ? "w-[46%]" : "w-[30%]"} ${props.page === "myProperties" ? "w-full" : ""}`}>
-            <div className={`w-[50%] ${props.page === "company" ? "aspect-square" : ""} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} max-[992px]:w-full max-[992px]:mb-3.75 h-full ${props.page === "myProperties" ? "aspect-video" : "aspect-square"}`}>
-                <img className={`rounded-[10px] ${props.page === "company" ? "aspect-square h-1/2" : "h-full"} w-full ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""}  object-cover max-[992px]:aspect-video`} src={defaultProperty} alt="" />
+            <div className={`w-[50%] ${props.page === "company" ? "aspect-square" : ""} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} max-[992px]:w-full max-[992px]:mb-3.75 ${props.page === "myProperties" ? "aspect-video" : "aspect-square"}`}>
+                <div className="relative h-full">
+                    <img className={`rounded-[10px] ${props.page === "company" ? "aspect-square h-1/2" : "h-full"} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} h-full  object-cover max-[992px]:aspect-video`} src={defaultProperty} alt="" />
+                    {props.status == "draft" && <div className="bg-[#FFCA64] z-50 uppercase text-black text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
+                        Taslak
+                    </div>}
+                </div>
             </div>
             <div className={`pl-5 w-[50%]`}>
-                <Link to={`/properties/${props.id}`} className={`min-h-12.5 ${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" ? "text-xl" : "text-base" } text-black hover:text-[#FFCA64] transition-colors duration-300 ease-in-out`}>{props.title}</Link>
+                <Link to={`/properties/${props.id}`} className={`min-h-12.5 ${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" ? "text-xl" : "text-base"} text-black hover:text-[#FFCA64] transition-colors duration-300 ease-in-out`}>{props.title}</Link>
                 <ul className="text-[11px] text-[#B7BFB9] font-medium flex flex-wrap gap-2.5 my-2.5">
                     <li className="w-full flex items-center gap-1">
                         <img className="w-5 h-5" src={location} alt="" />
@@ -42,7 +47,7 @@ export function PropertiesCard(props) {
                     <span className="text-[11px] text-[#B7BFB9] font-medium block py-1.25">
                         Satış Fiyatı
                     </span>
-                    <span className={`${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" ? "text-2xl" : "text-lg" } text-[#FFCA64] font-semibold wrap-break-word`}>
+                    <span className={`${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" ? "text-2xl" : "text-lg"} text-[#FFCA64] font-semibold wrap-break-word`}>
                         {props.price}
                     </span>
                 </p>

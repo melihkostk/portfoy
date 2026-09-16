@@ -168,7 +168,7 @@ export function Company({ loged }) {
                                 city={item.city.title}
                                 district={item.district.title}
                                 created_by={item.creator}
-                                status={status}
+                                status={item.status}
                             />
                         ))}
                     </div>
