@@ -172,7 +172,7 @@ export function Header({ loged, details }) {
                         {notShown && <div className="absolute z-50 w-75 rounded-lg bg-white right-0 shadow-[0_0_30px_rgba(0,0,0,0.1)] pb-3.75">
                             <div className="bg-[#27C5D2] p-7.5 rounded-t-lg">
                                 <p className="text-white text-sm mb-5">
-                                    Okunmamış 129 Bildirim
+                                    Okunmamış {number} Bildirim
                                 </p>
                                 <button className="bg-white text-xs rounded-lg py-2.5 px-5 font-medium cursor-pointer whitespace-nowrap hover:bg-[#ffca64] transition-colors duration-300 ease-in-out">
                                     Tümünü Okundu Olarak İşaretle
@@ -180,7 +180,7 @@ export function Header({ loged, details }) {
                             </div>
                             <div className="max-h-[50vh] overflow-auto bg-white mb-5 p-3.75">
                                 {notifications?.data?.notifications?.map(item => (
-                                    <Notification key={item.id} id={item.id} content={item.content} time={item.time_diff} />
+                                    <Notification key={item.id} id={item.id} content={item.content} time={item.time_diff} is_read={item.is_read} />
                                 ))}
                             </div>
                             <div className="text-center w-full px-3.75">

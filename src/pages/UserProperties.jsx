@@ -57,6 +57,7 @@ export function UserProperties({ loged }) {
                                     type={item.type.title}
                                     city={item.city.title}
                                     district={item.district.title}
+                                    status={item.status}
                                 />
                             ))}
                         </div>
