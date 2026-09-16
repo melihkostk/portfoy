@@ -70,7 +70,7 @@ export function CompanyProposals({ loged }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {!customer_id && proposals?.data?.proposals?.map(item => (
+                            {!customer_id && proposals?.data?.proposals?.map((item , index) => (
                                 <CompanyProposalCard
                                     id={item.id}
                                     key={item.id}
@@ -81,11 +81,12 @@ export function CompanyProposals({ loged }) {
                                     score={item.score}
                                     status={item.status.title}
                                     count={item.property_count}
+                                    index={index}
 
                                 />
                             ))}
                             {customer_id &&
-                                customerProposals?.proposals?.map(item => (
+                                customerProposals?.proposals?.map((item , index)=> (
                                     <CompanyProposalCard
                                         id={item.id}
                                         key={item.id}
@@ -96,6 +97,7 @@ export function CompanyProposals({ loged }) {
                                         score={item.score}
                                         status={item.status.title}
                                         count={item.property_count}
+                                        index={index}
                                     />
                                 ))
                             }

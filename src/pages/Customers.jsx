@@ -185,7 +185,7 @@ export function Customers({ loged }) {
                         </thead>
                         <tbody>
                             {!result ? (
-                                customers?.data?.customers?.map(item => (
+                                customers?.data?.customers?.map((item,index) => (
                                     <CustomerCard
                                         key={item.id}
                                         id={item.id}
@@ -198,6 +198,7 @@ export function Customers({ loged }) {
                                         note={item.notes}
                                         proposals={item.proposals}
                                         onEditClick={() => handleEditClick(item)}
+                                        index={index}
                                     />
                                 ))
                             ) : (

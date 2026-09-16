@@ -57,7 +57,7 @@ export function Proposals({ loged }) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {usersProposal?.data?.map(item => (
+                                    {usersProposal?.data?.map((item , index) => (
                                         <ProposalCard
                                             key={item.id}
                                             id={item.id}
@@ -66,6 +66,7 @@ export function Proposals({ loged }) {
                                             score={item.score}
                                             status={item.status.title}
                                             created_at={item.created_at}
+                                            index={index}
 
                                         />
                                     ))}

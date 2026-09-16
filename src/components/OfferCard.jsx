@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-export function OfferCard({ title, price, offered_price, status, created_at, id, type }) {
+export function OfferCard({ title, price, offered_price, status, created_at, id, type , index }) {
     return (
-        <tr>
+        <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">
                 {title}
             </td>

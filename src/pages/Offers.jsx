@@ -72,7 +72,7 @@ export function Offers({ loged }) {
                                 </thead>
                                 <tbody>
                                     {type === "received" &&
-                                        receivedOffers?.data?.map(item => (
+                                        receivedOffers?.data?.map((item , index) => (
                                             <OfferCard
                                                 key={item.id}
                                                 id={item.id}
@@ -82,11 +82,12 @@ export function Offers({ loged }) {
                                                 status={item.status.title}
                                                 created_at={item.created_at}
                                                 type="received"
+                                                index={index}
                                             />
                                         ))
                                     }
                                     {type === "send" &&
-                                        sendedOffers?.data?.map(item => (
+                                        sendedOffers?.data?.map((item , index) => (
                                             <OfferCard
                                                 key={item.id}
                                                 id={item.id}
@@ -96,6 +97,7 @@ export function Offers({ loged }) {
                                                 status={item.status.title}
                                                 created_at={item.created_at}
                                                 type="send"
+                                                index={index}
                                             />
                                         ))
                                     }

@@ -1,6 +1,6 @@
-export function ProposalCard({code , name , status , score , created_at}) {
+export function ProposalCard({code , name , status , score , created_at , index}) {
     return (
-        <tr>
+        <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{code}</td>
             <td className="py-3 px-2">{name}</td>
             <td className="py-3 px-2 text-[#6c757d] text-sm whitespace-nowrap">{score == 0 ? "Henüz Değerlendirme Yok" : score}</td>

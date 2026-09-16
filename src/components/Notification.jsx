@@ -7,7 +7,7 @@ export function Notification({content , time , is_read}) {
                 <img className="w-7 h-7" src={noti} alt="" />
             </div>
             <div className="pl-2.5 w-full">
-                <p className={` ${is_read === 1 ? "text-[#a6a6a6]" : "text-black"} text-sm mb-1.25 font-semibold hover:text-[#27C5D2] transition-colors duration-300 ease-in-out`}>
+                <p className={` ${is_read === 1 ? "text-[#a6a6a6]" : "text-black"} text-sm mb-1.25 font-medium hover:text-[#27C5D2] transition-colors duration-300 ease-in-out`}>
                     {content}
                 </p>
                 <p className="text-xs text-black opacity-50">

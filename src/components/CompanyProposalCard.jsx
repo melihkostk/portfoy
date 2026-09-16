@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-export function CompanyProposalCard({name , code , personal , created_at , score , status , count , id}){
+export function CompanyProposalCard({name , index , code , personal , created_at , score , status , count , id}){
      return (
-        <tr>
-            <td className="py-3 px-2 whitespace-nowrap overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{code} ({count} İlan)</td>
+        <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
+            <td className="py-3 px-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-[30ch] truncate">{code} ({count} İlan)</td>
             <td className="py-3 px-2 whitespace-nowrap">{name}</td>
-            <td className="py-3 px-2 whitespace-nowrap text-sm whitespace-nowrap">{personal}</td>
+            <td className="py-3 px-2 whitespace-nowrap text-sm">{personal}</td>
             <td className="py-3 px-2 whitespace-nowrap">{created_at}</td>
             <td className="text-sm whitespace-nowrap text-[#6c757d]">{score === 0 ? "Henüz Değerlendirme Yok" : score}</td>
             <td>
