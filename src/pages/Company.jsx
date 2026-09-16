@@ -160,6 +160,7 @@ export function Company({ loged }) {
                             <PropertiesCard
                                 page="company"
                                 key={item.id}
+                                id={item.id}
                                 title={item.title}
                                 cover={item.cover}
                                 price={item.price.formatted}

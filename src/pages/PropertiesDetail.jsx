@@ -17,6 +17,8 @@ import close from "../assets/blue-close.png"
 import { createPriceOffer, toggleWishlist } from "../services/propertiesApi"
 import grayHeart from "../assets/gray-heart.png"
 import { CreateOfferModel } from "../components/CreateOfferModal"
+import graph from "../assets/increase-graph.png"
+import pen from "../assets/pen.png"
 
 export function PropertiesDetail({ loged }) {
 
@@ -42,7 +44,7 @@ export function PropertiesDetail({ loged }) {
             if (data.status === "error") {
                 return
             }
-            getDetails(id).then(setDetails).finally(() => {setLoaded(true); setToogleMessage(data.message); setToogleMessageShown(true)})
+            getDetails(id).then(setDetails).finally(() => { setLoaded(true); setToogleMessage(data.message); setToogleMessageShown(true) })
         }))
     }
 
@@ -74,9 +76,9 @@ export function PropertiesDetail({ loged }) {
     const [selectedCustomer, setSelectedCustomer] = useState("");
     const [selectedCurrencie, setSelectedCurrencie] = useState("");
 
-    const [customerNote , setCustomerNote] = useState("")
+    const [customerNote, setCustomerNote] = useState("")
 
-    const [step , setStep] = useState(1)
+    const [step, setStep] = useState(1)
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -105,7 +107,7 @@ export function PropertiesDetail({ loged }) {
             />}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İlanlar {">"}</span><span className="text-[#9a9898]"> { details?.type?.title} {">"}</span><span className="text-[#9a9898]"> { details?.title}</span></p>
+                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İlanlar {">"}</span><span className="text-[#9a9898]"> {details?.type?.title} {">"}</span><span className="text-[#9a9898]"> {details?.title}</span></p>
                 </div>
             </div>
             {toogleMessageShown && <div className="fixed right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
@@ -194,6 +196,9 @@ export function PropertiesDetail({ loged }) {
                         </div>
                     </div>
                     <div className="w-1/2 pl-12.5 max-[992px]:w-full max-[992px]:pl-0">
+                        {details.status === "draft" && <div className="text-[#664d03] bg-[#fff3cd] border border-[#ffecb5] p-4 mb-4 rounded-lg">
+                            Bu ilan şuanda yayında olmadığı için sadece siz görüntüleyebilirsiniz
+                        </div>}
                         <p className="text-sm text-[#888888] mb-2.5">{details.no}</p>
                         <h1 className="text-[25px] text-[#212529] mb-3.75 font-semibold">{details.title}</h1>
                         <ul className="flex flex-wrap gap-5">
@@ -226,7 +231,7 @@ export function PropertiesDetail({ loged }) {
                                 <div className="uppercase text-xs bg-[#FFCA64] w-fit py-1.25 px-2 rounded-lg font-semibold">{details.badges[0].title}</div>
                             )}
                         </div>
-                        <div className="flex gap-2.5 flex-wrap">
+                        {details.status !== "draft" ? (<div className="flex gap-2.5 flex-wrap">
                             <button onClick={() => handleToogle(id)} className={` ${details.in_wishlist ? "bg-[#27c5d2]" : "bg-[#f1f1f1]"} w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out`}>
                                 <img className="w-5 h-5" src={details.in_wishlist ? heart : grayHeart} alt="" />
                             </button>
@@ -236,14 +241,28 @@ export function PropertiesDetail({ loged }) {
                             <button onClick={() => setOfferModalShown(true)} className="bg-[#f1f1f1] w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                 <img className="w-5 h-5" src={folder} alt="" />
                             </button>
-                        </div>
-                        <div className="mt-10">
+                        </div>) : (
+                            <div className="flex gap-2.5 flex-wrap">
+                                <button className="bg-[#f1f1f1] rounded-lg flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                    <img className="w-5 h-5" src={pen} alt="" />
+                                    <span>İlanı Düzenle</span>
+                                </button>
+                                <button className="bg-[#ffca64] rounded-lg flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">
+                                    <img className="w-4 h-4" src={graph} alt="" />
+                                    İlanı Öne Çıkar
+                                </button>
+                                <button onClick={() => setOfferModalShown(true)} className="bg-[#f1f1f1] w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                    <img className="w-5 h-5" src={folder} alt="" />
+                                </button>
+                            </div>
+                        )}
+                        {details.status !== "draft" && <div className="mt-10">
                             <a className="text-[#767676] text-sm font-semibold cursor-pointer hover:text-black transition-colors duration-300 ease-in-out" href="#detail">İlanın detaylı özelliklerini inceleyin</a>
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </div>
-            <div id="detail" className="w-full max-w-[90%] mt-12.5">
+            {details.status !== "draft" && <div id="detail" className="w-full max-w-[90%] mt-12.5">
                 <div className="flex max-[992px]:flex-col-reverse max-[992px]:gap-20">
                     <div className="w-[30%] max-[992px]:w-full">
                         <div className="mb-7.5">
@@ -289,7 +308,7 @@ export function PropertiesDetail({ loged }) {
                         </div>}
                     </div>
                 </div>
-            </div>
+            </div>}
             <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />
