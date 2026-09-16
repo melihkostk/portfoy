@@ -87,8 +87,8 @@ export function OfferDetail({ loged }) {
                             <p className="font-semibold text-lg mb-1.25">{details?.data?.status?.message}</p>
                             <p className="text-base">Bu ilan için tekrar fiyat teklifi oluşturabilirsiniz</p>
                         </div>}
-                        {details?.data?.status?.key === "confirm" && <div className="mt-4 rounded-lg bg-[#0f5132] p-4 border border-[#badbcc]">
-                            <p className="font-semibold text-lg mb-1.25 text-[#0f5132]">{details?.data?.status?.title}</p>
+                        {details?.data?.status?.key === "confirm" && <div className="mt-4 rounded-lg bg-[#d1e7dd] p-4 border border-[#badbcc]">
+                            <p className="font-semibold text-lg mb-1.25 text-[#0f5132]">Fiyat Teklifiniz {details?.data?.status?.title}</p>
                             <p className="text-[#0f5132] text-base">{details?.data?.status?.message}</p>
                         </div>}
                     </div>

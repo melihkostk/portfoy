@@ -2,8 +2,12 @@ import bgImage from "../assets/company-bg.png"
 import { Link } from "react-router-dom"
 import star from "../assets/white-star.png"
 import menu from "../assets/white-menu.png"
+import settingsIcon from "../assets/settings.png"
+import pen from "../assets/pen.png"
+import box from "../assets/box.png"
+import graph from "../assets/graph.png"
 
-export function CompanyHeader({ page, id , name , created_at , type , badges , logo , code }) {
+export function CompanyHeader({ page, id, name, created_at, type, badges, logo, code }) {
 
     return (
         <div style={{ backgroundImage: `url(${bgImage})` }} className="w-full bg-cover bg-center pt-7.5 flex justify-center">
@@ -25,7 +29,7 @@ export function CompanyHeader({ page, id , name , created_at , type , badges , l
                                     {type}
                                 </li>
                                 <li>
-                                    {page === "companyDetail" ? badges : code }
+                                    {page === "companyDetail" ? badges : code}
                                 </li>
                             </ul>
                         </div>
@@ -41,22 +45,38 @@ export function CompanyHeader({ page, id , name , created_at , type , badges , l
                         </ul>
                     </div>
                 </div>
+                <div>
+                    {page !== "companyDetail" && <div className="flex items-center gap-2.5 -mt-12 min-[1233px]:hidden mb-7.5">
+                        <Link to={"/company/subscription"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
+                            <img className="w-4 h-4" src={box} alt="" />
+                        </Link>
+                        <Link to={"/company/summary"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
+                            <img className="w-4 h-4" src={graph} alt="" />
+                        </Link>
+                        <Link to={"/company/edit"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
+                            <img className="w-5 h-5" src={pen} alt="" />
+                        </Link>
+                        <Link to={"/company/settings"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
+                            <img className="w-4 h-4" src={settingsIcon} alt="" />
+                        </Link>
+                    </div>}
+                </div>
                 <div className="flex justify-between">
-                    <ul className="flex gap-2.5 items-end max-w-full overflow-auto">
-                        {page !== "companyDetail" && <li className={`${page === "company" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                    <ul className="flex gap-2.5 items-end max-w-full max-[1233px]:overflow-auto whitespace-nowrap">
+                        {page !== "companyDetail" && <li className={`${page === "company" ? "bg-white" : "bg-[#ffffffb3]"} font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company"}>Portföy</Link>
                         </li>}
                         {page === "companyDetail" &&
-                            <li className={`${page === "company" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                            <li className={`${page === "company" ? "bg-white" : "bg-[#ffffffb3]"} hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                                 <Link to={`/companies/${id}`}>Portföy</Link>
                             </li>}
-                        {page !== "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                        {page !== "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company/team"}>Ekip</Link>
                         </li>}
-                        {page === "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                        {page === "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={`/companies/${id}/team`}>Ekip</Link>
                         </li>}
-                        {page !== "companyDetail" && <li className={`${page === "location" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
+                        {page !== "companyDetail" && <li className={`${page === "location" ? "bg-white" : "bg-[#ffffffb3]"} hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
                             <Link to={"/company/contacts"}>Konum & İletişim</Link>
                         </li>}
                         {page === "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-semibold rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
@@ -73,11 +93,23 @@ export function CompanyHeader({ page, id , name , created_at , type , badges , l
                             </>
                         )}
                     </ul>
-                    {page !== "companyDetail" && <div className="flex items-center gap-2.5 -mt-12 max-[1005px]:hidden">
-                        <Link to={"/company/subscription"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">Aboneliği Yönet</Link>
-                        <Link to={"/company/summary"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">Firma özeti</Link>
-                        <Link to={"/company/edit"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">Firma profilini düzenle</Link>
-                        <Link to={"/company/settings"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">Firma tercihleri</Link>
+                    {page !== "companyDetail" && <div className="flex items-center gap-2.5 -mt-12 max-[1233px]:hidden">
+                        <Link to={"/company/subscription"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
+                            <img className="w-4 h-4" src={box} alt="" />
+                            Aboneliği Yönet
+                        </Link>
+                        <Link to={"/company/summary"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
+                            <img className="w-4 h-4" src={graph} alt="" />
+                            Firma özeti
+                        </Link>
+                        <Link to={"/company/edit"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
+                            <img className="w-5 h-5" src={pen} alt="" />
+                            Firma profilini düzenle
+                        </Link>
+                        <Link to={"/company/settings"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
+                            <img className="w-4 h-4" src={settingsIcon} alt="" />
+                            Firma tercihleri
+                        </Link>
                     </div>}
                 </div>
             </div>
