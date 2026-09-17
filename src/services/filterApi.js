@@ -29,3 +29,8 @@ export const getAllLanguages = async () => {
     const response = await api.get("/front/languages")
     return response.data.data;
 }
+
+export const getAllFilterOptions = async (id) => {
+    const response = await api.get(`/properties/types/${id}/filters`);
+    return response.data.data;
+}

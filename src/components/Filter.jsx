@@ -1,28 +1,28 @@
 import downArrow from "../assets/down-arrow.png"
-import React, { useEffect } from "react"
-import { getAllCities, getAllCountries, getAllDistricts, getAllStreets , getAllCurrencies } from "../services/filterApi"
+import { useEffect, useState } from "react"
+import { getAllCities, getAllCountries, getAllDistricts, getAllStreets, getAllCurrencies, getAllFilterOptions } from "../services/filterApi"
+import { getAllPropertiesType } from "../services/propertiesApi"
 
 export function Filter() {
 
-    const [type, setType] = React.useState("All")
-    const [priceFilter, setPriceFilter] = React.useState(false)
-    const [cateFilter, setCateFilter] = React.useState(false)
-    const [locationFilter, setLocationFilter] = React.useState(false);
+    const [priceFilter, setPriceFilter] = useState(false)
+    const [cateFilter, setCateFilter] = useState(false)
+    const [locationFilter, setLocationFilter] = useState(false);
 
-    const [countries, setCountries] = React.useState([])
-    const [countryId, setCountryId] = React.useState("");
+    const [countries, setCountries] = useState([])
+    const [countryId, setCountryId] = useState("");
 
-    const [cities, setCities] = React.useState([])
-    const [cityId, setCityId] = React.useState("");
+    const [cities, setCities] = useState([])
+    const [cityId, setCityId] = useState("");
 
-    const [district, setDistrict] = React.useState([]);
-    const [districtId, setDistrictId] = React.useState("");
+    const [district, setDistrict] = useState([]);
+    const [districtId, setDistrictId] = useState("");
 
-    const [street, setStreet] = React.useState([]);
-    const [streetId, setStreetId] = React.useState("");
+    const [street, setStreet] = useState([]);
+    const [streetId, setStreetId] = useState("");
 
-    const [currencies , setCurrencies] = React.useState([]);
-    const [currencieId , setCurrenciId] = React.useState("")
+    const [currencies, setCurrencies] = useState([]);
+    const [currencieId, setCurrenciId] = useState("")
 
     useEffect(() => {
         getAllCountries().then(setCountries)
@@ -53,36 +53,35 @@ export function Filter() {
         getAllStreets(districtId).then(setStreet)
     }, [districtId])
 
-    useEffect(()=>{
+    useEffect(() => {
         getAllCurrencies().then(setCurrencies);
     }, [])
 
+    const [propertiesType, setPropertiesType] = useState([])
 
+    useEffect(() => {
+        getAllPropertiesType().then(setPropertiesType)
+    }, [])
 
+    const [type, setType] = useState("All")
+
+    const [filterOptions , setFilterOptions] = useState([]);
+
+    useEffect(() => {
+        getAllFilterOptions(type).then(setFilterOptions)
+    }, [])
+  
     return (
         <div className="flex flex-col">
             <ul className='flex mt-10 max-w-full overflow-x-auto scrollbar-thin scrollbar-thumb-[#27C5D2]'>
                 <li>
                     <button onClick={() => setType("All")} className='px-7.5 py-2.5 text-sm opacity-70 text-black cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100'>Tümü</button>
                 </li>
-                <li>
-                    <button onClick={() => setType("Apartment")} className='px-7.5 py-2.5 text-sm opacity-70 cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100'>Apartman</button>
-                </li>
-                <li>
-                    <button onClick={() => setType("Project")} className='px-7.5 py-2.5 text-sm opacity-70 cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100'>Proje Apartmanlar</button>
-                </li>
-                <li>
-                    <button onClick={() => setType("Villa")} className='px-7.5 py-2.5 text-sm opacity-70 cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100'>Villa</button>
-                </li>
-                <li>
-                    <button onClick={() => setType("Project Villa")} className='px-7.5 py-2.5 text-sm opacity-70 cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100'>Proje Villa</button>
-                </li>
-                <li>
-                    <button onClick={() => setType("Land")} className='px-7.5 py-2.5 text-sm opacity-70 cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100'>Arsa</button>
-                </li>
-                <li>
-                    <button onClick={() => setType("Field")} className='px-7.5 py-2.5 text-sm opacity-70 cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100'>Tarla</button>
-                </li>
+                {propertiesType?.map(item => (
+                    <li key={item.id}>
+                        <button onClick={() => setType(item.id)} className='px-7.5 py-2.5 text-sm opacity-70 cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100'>{item.title}</button>
+                    </li>
+                ))}
             </ul>
             {type === "All" && (
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
@@ -226,7 +225,7 @@ export function Filter() {
                         <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full w-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
                     </div>
                 </div>)}
-            {type === "Apartment" && (
+            {type === 27 && (
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
@@ -464,7 +463,7 @@ export function Filter() {
                     </div>
                 </div>
             )}
-            {type === "Villa" && (
+            {type === 21 && (
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
@@ -669,7 +668,7 @@ export function Filter() {
                     </div>
                 </div>
             )}
-            {type === "Land" && (
+            {type === 9 && (
                 <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
@@ -775,7 +774,7 @@ export function Filter() {
                     </div>
                 </div>
             )}
-            {type === "Field" && (
+            {type === 10 && (
                 <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
