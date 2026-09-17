@@ -215,6 +215,22 @@ export function EditProperty({ loged }) {
                     </div>
                 </div>
             </div>}
+            {editType === "move" && <div className="w-full max-w-[90%] p-2.5 border border-[#f8f8f8] rounded-lg">
+                <div className="w-full mb-7.5 p-4">
+                   <div className="flex p-3.75">
+                        <div className="w-15 h-15">
+                            <img className="w-full h-full rounded-full" src="https://ui-avatars.com/api/?name=Enes+Bayba%C4%9Fan&background=d0d0d0&color=fff&size=32&bold=1&uppercase=1&format=svg&length=2" alt="" />
+                        </div>
+                        <div className="ml-4">
+                            <h5>
+                                <a className="text-black text-base opacity-70">Enes Baybağan</a>
+                                <small className="text-sm text-[#6c757d] ml-1">1 yıl önce</small>
+                            </h5>
+                            <p className="text-lg text-[#6c757d]">CR0285ARS0003000015 numaralı ilanı oluşturdu</p>
+                        </div>
+                   </div>
+                </div>
+            </div>}
             <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />
