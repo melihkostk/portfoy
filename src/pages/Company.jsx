@@ -134,7 +134,7 @@ export function Company({ loged }) {
                         />
                     </div>
                     <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-wrap">
-                        {companyProperties.map((item) => (
+                        {companyProperties.length > 0 ? companyProperties.map((item) => (
                             <PropertiesCard
                                 page="company"
                                 id={item.id}
@@ -149,7 +149,9 @@ export function Company({ loged }) {
                                 created_by={item.creator}
                                 status={item.status}
                             />
-                        ))}
+                        )) : (
+                            <div className="text-[#636464] bg-[#fafafa] rounded-lg p-3.75 m-3.75 w-full max-h-fit">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
+                        )}
                     </div>
                 </div>
             </div>
