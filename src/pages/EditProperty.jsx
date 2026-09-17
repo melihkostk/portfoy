@@ -3,10 +3,13 @@ import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import { useState } from "react";
 import { PropertySettingsCard } from "../components/PropertySettingsCard";
+import defaultProperty from "../assets/default-property.jpg"
+import chain from "../assets/chain.png"
 
 export function EditProperty({ loged }) {
 
     const [editType, setEditType] = useState("info");
+    const [understand, setUnderstand] = useState(true)
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -39,9 +42,6 @@ export function EditProperty({ loged }) {
                             </li>
                             <li>
                                 <button onClick={() => setEditType("galery")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "galery" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Galeri</button>
-                            </li>
-                            <li>
-                                <button onClick={() => setEditType("offers")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "offers" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Teklifler</button>
                             </li>
                             <li>
                                 <button onClick={() => setEditType("move")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "move" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Hareketler</button>
@@ -217,7 +217,7 @@ export function EditProperty({ loged }) {
             </div>}
             {editType === "move" && <div className="w-full max-w-[90%] p-2.5 border border-[#f8f8f8] rounded-lg">
                 <div className="w-full mb-7.5 p-4">
-                   <div className="flex p-3.75">
+                    <div className="flex p-3.75">
                         <div className="w-15 h-15">
                             <img className="w-full h-full rounded-full" src="https://ui-avatars.com/api/?name=Enes+Bayba%C4%9Fan&background=d0d0d0&color=fff&size=32&bold=1&uppercase=1&format=svg&length=2" alt="" />
                         </div>
@@ -228,7 +228,61 @@ export function EditProperty({ loged }) {
                             </h5>
                             <p className="text-lg text-[#6c757d]">CR0285ARS0003000015 numaralı ilanı oluşturdu</p>
                         </div>
-                   </div>
+                    </div>
+                </div>
+            </div>}
+            {editType === "galery" && <div className="w-full max-w-[90%]">
+                <div className="w-full mb-7.5">
+                    <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
+                        <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
+                            <h5 className="text-[#676767] text-lg py-1.25">Kapak Fotoğrafı</h5>
+                        </div>
+                        <div className="p-4">
+                            {understand && <div className="w-full flex items-center justify-between p-4 mb-4 bg-[#fff3cd] rounded-lg">
+                                <p className="text-[#664d03]">Lütfen logolu resimler eklemeyin. Aksi halde ilanınız pasif edilecektir</p>
+                                <button onClick={() => setUnderstand(false)} className="bg-[#ffca64] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">Anladım</button>
+                            </div>}
+                            <div className="h-87.5 rounded-lg relative">
+                                <img className="w-full h-full object-cover rounded-lg" src={defaultProperty} alt="" />
+                                <div className="absolute flex items-center bottom-6 right-6">
+                                    <button className="bg-[#f1f1f1] cursor-pointer text-[#4b4b4b] py-2 px-5 rounded-lg mr-2 hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                        <img className="w-5 h-5" src={chain} alt="" />
+                                    </button>
+                                    <button className="bg-[#f1f1f1] cursor-pointer text-[#4b4b4b] py-2 px-5 rounded-lg text-sm hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Kapak Fotoğrafını Değiştir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="w-full mb-7.5">
+                    <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
+                        <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
+                            <h5 className="text-[#676767] text-lg py-1.25">Arsa Fotoğrafı</h5>
+                        </div>
+                        <div className="p-4">
+                            <div className="h-50 text-center p-5 flex items-center justify-center border-2 border-[#eee] border-dashed">
+                                <input className="w-full h-full" type="file" id="file" hidden></input>
+                                <label className="w-full h-full flex items-center justify-center cursor-pointer text-xl text-[#929292]" htmlFor="file">
+                                    Dosyaları buraya sürükleyin veya seçmek için tıklayın
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="w-full mb-7.5">
+                    <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
+                        <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
+                            <h5 className="text-[#676767] text-lg py-1.25">Videolar</h5>
+                        </div>
+                        <div className="p-4">
+                            <div className="w-full flex items-center justify-between p-4 mb-4 bg-[#fff3cd] rounded-lg">
+                                <p className="text-[#664d03]">Henüz video yüklemediniz</p>
+                            </div>
+                            <div>
+                                <button className="bg-[#f1f1f1] cursor-pointer text-[#4b4b4b] text-sm rounded-lg py-2 px-5 hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Video Yükleyin</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>}
             <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
