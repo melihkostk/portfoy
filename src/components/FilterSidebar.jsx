@@ -99,8 +99,8 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                             <label className={`text-[13px] ${status === "published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-published">Sadece Yayında Olanlar</label>
                         </div>
                         <div className="flex items-center gap-2.5">
-                            <input id="status-unpublished" name="status" type="checkbox" checked={status === "unpublished"} onChange={() => setStatus("unpublished")} />
-                            <label className={`text-[13px] ${status === "unpublished" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-unpublished">Sadece Yayında Olmayanlar</label>
+                            <input id="status-not_published" name="status" type="checkbox" checked={status === "not_published"} onChange={() => setStatus("not_published")} />
+                            <label className={`text-[13px] ${status === "not_published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-not_published">Sadece Yayında Olmayanlar</label>
                         </div>
                         <div className="flex items-center gap-2.5">
                             <input id="status-sold" name="status" type="checkbox" checked={status === "sold"} onChange={() => setStatus("sold")} />

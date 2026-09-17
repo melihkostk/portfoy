@@ -69,12 +69,6 @@ export function Company({ loged }) {
     const [maxSell, setMaxSell] = useState("");
     const [status, setStatus] = useState("");
 
-    const [draft, setDraft] = useState([])
-
-    useEffect(() => {
-        getDraftProperties().then(setDraft)
-    }, [])
-
     const [selectedType, setSelectedType] = useState([]);
 
     const [ınfo, setInfo] = useState([])
@@ -145,22 +139,6 @@ export function Company({ loged }) {
                                 page="company"
                                 id={item.id}
                                 key={item.id}
-                                title={item.title}
-                                cover={item.cover}
-                                price={item.price.formatted}
-                                company={item.company.title}
-                                type={item.type.title}
-                                city={item.city.title}
-                                district={item.district.title}
-                                created_by={item.creator}
-                                status={item.status}
-                            />
-                        ))}
-                        {draft.map(item => (
-                            <PropertiesCard
-                                page="company"
-                                key={item.id}
-                                id={item.id}
                                 title={item.title}
                                 cover={item.cover}
                                 price={item.price.formatted}
