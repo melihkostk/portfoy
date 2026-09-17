@@ -4,11 +4,51 @@ import pg from "../assets/pg.jpg"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { Link } from "react-router-dom"
+import { getActiveSubscription, getCompanyInfo, getTeam } from "../services/myCompanyApi"
+import { useEffect, useState } from "react"
+import { ClipLoader } from "react-spinners"
 
-export function Account({loged}) {
+export function Account({ loged }) {
+
+    const [info, setInfo] = useState([]);
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+    }, [])
+
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        const userInfo = localStorage.getItem("user");
+        if (userInfo) {
+            setUser(JSON.parse(userInfo));
+        }
+    }, [])
+
+    const [team , setTeam] = useState([]);
+
+    useEffect(() => {
+        getTeam().then(setTeam)
+    }, [])
+
+    const [sub , setSub] = useState([]);
+
+    useEffect(() => {
+        getActiveSubscription().then(setSub)
+    }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
@@ -18,7 +58,7 @@ export function Account({loged}) {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="w-[28%] max-[992px]:w-full">
-                        <Sidebar page="account" />
+                        <Sidebar page="account" info={info} user={user} />
                     </div>
                     <div className="pl-7.5 w-[72%] max-[992px]:w-full max-[992px]:pl-0">
                         <h2 className="text-[#212529] text-[25px] mb-5 font-semibold">Firma Bilgilerim</h2>
@@ -28,11 +68,11 @@ export function Account({loged}) {
                                     <img className="max-w-full align-middle" src={pg} alt="" />
                                 </div>
                                 <div>
-                                    <h1 className="text-xl text-[#212529] font-semibold mb-2.5">Burak Pigasoft</h1>
+                                    <h1 className="text-xl text-[#212529] font-semibold mb-2.5">{info?.name}</h1>
                                     <ul className="text-sm text-[#909090]">
                                         <li>
                                             Oluşturma Tarihi
-                                            11 Eylül 2024
+                                            {" " + info?.created_at}
                                         </li>
                                         <li>
                                             Oluşturan
@@ -40,7 +80,7 @@ export function Account({loged}) {
                                         </li>
                                         <li>
                                             Ekip
-                                            23 Kişi
+                                            {" " + team?.personals?.length} Kişi
                                         </li>
                                     </ul>
                                     <div className="mt-7.5">
@@ -55,17 +95,17 @@ export function Account({loged}) {
                                 <div>
                                     <h3 className="text-xl text-[#212529] mb-2 font-medium">Abonelik Bilgileri</h3>
                                     <div>
-                                        <div className="flex items-center max-[992px]:flex-col max-[992px]:items-start gap-1.25">
-                                            <p className="text-[25px] max-[992px]:text-lg text-[#212529] font-semibold w-[80%] max-[992px]:w-full">
-                                                Premium Pazarlama Firması Paket
+                                        <div className="flex items-center max-[992px]:flex-col max-[992px]:items-start justify-between">
+                                            <p className="text-[25px] max-[992px]:text-lg text-[#212529] font-semibold w-[70%] max-[992px]:w-full">
+                                                {sub?.package?.title}
                                             </p>
-                                            <p className="w-[20%] bg-[#f8f8f8] py-1.25 px-2 rounded-lg text-sm text-center max-[992px]:max-w-fit max-[992px]:whitespace-nowrap">
+                                            {sub?.subscription?.is_trial && <p className="w-[20%] bg-[#f8f8f8] py-1.25 px-2 rounded-lg text-sm text-center max-[992px]:max-w-fit max-[992px]:whitespace-nowrap">
                                                 Deneme Sürümü
-                                            </p>
+                                            </p>}
                                         </div>
                                         <p className="text-sm text-[#a1a1a1]">
                                             Sona Erme Süresi
-                                            28 Ocak 2027
+                                            {" " + sub?.subscription?.finish_at?.date}
                                         </p>
                                     </div>
                                 </div>
@@ -77,11 +117,11 @@ export function Account({loged}) {
                                 <div className="flex mb-2.5">
                                     <div className="pr-3 w-1/2">
                                         <label htmlFor="">İsim ve Soyisim</label>
-                                        <input className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" value={"Pigasoft"} />
+                                        <input className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" value={user?.data?.name} />
                                     </div>
                                     <div className="pl-3 w-1/2">
                                         <label htmlFor="">E-Posta</label>
-                                        <input disabled className="block border border-[#D9D9D9] bg-[#e9ecef] w-full rounded-lg py-1.5 px-3" type="mail" value={"admin@pigasoft.com"} />
+                                        <input disabled className="block border border-[#D9D9D9] bg-[#e9ecef] w-full rounded-lg py-1.5 px-3" type="mail" value={user?.data?.email} />
                                     </div>
                                 </div>
                                 <div>
@@ -96,7 +136,7 @@ export function Account({loged}) {
                                                     <option value="01">(01)</option>
                                                 </select>
                                             </div>
-                                            <input className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" placeholder="Telefon" value="5533773828"></input>
+                                            <input className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" placeholder="Telefon" value={user?.data?.phone?.number}></input>
                                         </div>
                                     </div>
                                 </div>

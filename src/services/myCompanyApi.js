@@ -85,6 +85,11 @@ export const getSubscriptions = async () => {
     return response.data.data
 }
 
+export const getActiveSubscription = async () => {
+    const response = await api.get("/auth/company/subscriptions/active");
+    return response.data.data;
+}
+
 export const getSubsFeatures = async () => {
     const response = await api.get("/auth/company/subscriptions/active");
     return response.data.data;

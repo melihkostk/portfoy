@@ -3,7 +3,7 @@ import arrow from "../assets/black-arrow-right.png"
 import { Link } from "react-router-dom"
 import React from "react"
 
-export function Sidebar({page , type}) {
+export function Sidebar({page , type , info , user}) {
     const [subMenu, setSubMenu] = React.useState(false)
     return (
         <div>
@@ -14,13 +14,13 @@ export function Sidebar({page , type}) {
                 <div className="flex flex-col items-center justify-center">
                     <h1 className="text-[25px] mt-3.75 mb-0.75 font-semibold">Pigasoft</h1>
                     <p className="mb-4 text-[#212529]">
-                        Burak Pigasoft
+                        {info?.name}
                     </p>
                     <ul className="mb-10">
-                        <li className="text-[#7e7e7e] bg-[#eee] text-xs py-1.25 px-2.5 rounded-lg font-semibold">Sistem Yöneticisi</li>
+                        <li className="text-[#7e7e7e] bg-[#eee] text-xs py-1.25 px-2.5 rounded-lg font-semibold">{user?.data?.roles?.[0]?.title}</li>
                     </ul>
-                    <p className="text-[#696969] text-sm font-semibold">
-                        Üyelik tarihi: 29 Şubat 2024
+                    <p className="text-[#696969] text-sm">
+                        Üyelik tarihi: {info?.created_at}
                     </p>
                 </div>
             </div>
