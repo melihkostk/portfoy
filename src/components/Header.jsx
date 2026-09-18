@@ -55,7 +55,6 @@ export function Header({ loged, details }) {
         }
         ))
     }
-
     return (
         <div className="py-7.5 w-full max-w-[90%]">
             {sidebarShown && <MainSidebar setSidebarShown={setSidebarShown} loged={loged} />}
@@ -178,10 +177,16 @@ export function Header({ loged, details }) {
                                     Tümünü Okundu Olarak İşaretle
                                 </button>
                             </div>
-                            <div className="max-h-[50vh] overflow-auto bg-white mb-5 p-3.75">
-                                {notifications?.data?.notifications?.map(item => (
-                                    <Notification key={item.id} id={item.id} content={item.content} time={item.time_diff} is_read={item.is_read} />
-                                ))}
+                            <div className="p-3.75 max-h-[50vh] overflow-auto bg-white mb-5">
+                                <div className="bg-[#eeeeee] p-2.5 rounded-lg flex items-center gap-2 mb-5">
+                                    <input className="w-5 h-5" type="checkbox" />
+                                    <label className="text-sm text-[#212529]" htmlFor="">Sadece okunmamışları göster</label>
+                                </div>
+                                <div>
+                                    {notifications?.data?.notifications?.map(item => (
+                                        <Notification key={item.id} id={item.id} content={item.content} time={item.time_diff} is_read={item.is_read} />
+                                    ))}
+                                </div>
                             </div>
                             <div className="text-center w-full px-3.75">
                                 <button className="bg-[#eee] w-full text-[#727272] text-sm font-medium py-2.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white hover:shadow-[0_0_30px_#27C5D2] transition[colors,shadow] duration-300 ease-in-out">
@@ -201,10 +206,10 @@ export function Header({ loged, details }) {
                     {loged && <div className="relative">
                         <div className="flex">
                             <div className="h-12.5 border-r border-r-[#ffffff38]">
-                                <div className="flex items-center h-full px-5 max-[1100px]:px-2.5 rounded-l-[5px] max-[1100px]:rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                                <Link to={"/profile"} className="flex items-center justify-center h-full px-5 max-[1100px]:px-2.5 rounded-l-[5px] max-[1100px]:rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                                     <img className="object-cover w-7 h-7" src={person} alt="" />
-                                    <Link to={"/profile"} className="text-white max-[1400px]:hidden">Hesabım</Link>
-                                </div>
+                                    <p className="text-white max-[1400px]:hidden">Hesabım</p>
+                                </Link>
                             </div>
                             <div onClick={() => setAccountShown(prev => !prev)} className="flex max-[1100px]:hidden items-center justify-center bg-[#27C5D2] rounded-r-[5px] w-7.5 cursor-pointer hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
                                 <img className=" w-4 h-4" src={whiteDownArrow} alt="" />

@@ -1,21 +1,40 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { AppLinks } from "../components/AppLinks"
 import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
+import { getCompanyProfile } from "../services/myCompanyApi"
 
-export function Edit({loged}) {
+export function Edit({ loged }) {
 
-    const [name , setName] = useState("");
-    const [type , setType] = useState("");
-    const [centralNumber , setCentralNumber] = useState("");
-    const [taxNumber , setTaxNumber] = useState("");
-    const [email , setEmail] = useState("");
-    const [website , setWebsite] = useState("");
-    const [phone , setPhone] = useState("");
-    const [address ,setAddress] = useState("");
-    const [taxOffice , setTaxOffice] = useState("");
-    const [tradeName , setTradeName] = useState("");
+    const [name, setName] = useState("");
+    const [type, setType] = useState("");
+    const [centralNumber, setCentralNumber] = useState("");
+    const [taxNumber, setTaxNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [website, setWebsite] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState("");
+    const [taxOffice, setTaxOffice] = useState("");
+    const [tradeName, setTradeName] = useState("");
+
+    const [profile, setProfile] = useState([]);
+    const [loaded, setLoaded] = useState(false)
+
+    useEffect(() => {
+        getCompanyProfile().then((data) => {
+            setProfile(data);
+            setName(data.name)
+            setType(data.type)
+            setTaxNumber(data?.profile?.tax_number)
+            setCentralNumber(data?.profile?.licance_number)
+            setEmail(data?.profile?.email)
+            setPhone(data?.profile?.phone?.number)
+            setTradeName(data?.profile?.billing?.trade_name)
+            setTaxOffice(data?.profile?.billing?.tax_office)
+            setAddress(data?.profile?.billing?.address)
+        }).finally(() => setLoaded(true))
+    }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -37,7 +56,7 @@ export function Edit({loged}) {
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Firma Tipi</label>
-                                <input value={type} onChange={(e) => setType(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Firma Tipi" />
+                                <input disabled value={type} onChange={(e) => setType(e.target.value)} className="px-3 bg-[#eee] py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Firma Tipi" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Vergi Levhası (PDF)</label>
@@ -89,7 +108,7 @@ export function Edit({loged}) {
                         <div className="flex max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Ticari Ünvan</label>
-                                <input value={tradeName} onChange={(e) => setTradeName(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text"  placeholder="Ticari Ünvan" />
+                                <input value={tradeName} onChange={(e) => setTradeName(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Ticari Ünvan" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Vergi Dairesi</label>

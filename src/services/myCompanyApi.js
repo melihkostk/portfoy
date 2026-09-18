@@ -190,3 +190,8 @@ export const updateInvite = async (id, name, email, role, locale, phone, phone_c
     });
     return response.data;
 }
+
+export const getCompanyProfile = async () => {
+    const response = await api.get("/auth/company/profile");
+    return response.data.data;
+}
