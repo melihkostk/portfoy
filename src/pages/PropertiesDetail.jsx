@@ -40,6 +40,7 @@ export function PropertiesDetail({ loged }) {
     const [errorMessageShown, setErrorMessageShown] = useState(false)
 
     function handleToogle(id) {
+        setLoaded(false)
         toggleWishlist(id).then((data => {
             if (data.status === "error") {
                 return
@@ -82,7 +83,7 @@ export function PropertiesDetail({ loged }) {
         <div className='flex flex-col items-center font-sf'>
             {(offerShown || errorMessageShown || offerModelShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}
                         color="#27c5d2"
