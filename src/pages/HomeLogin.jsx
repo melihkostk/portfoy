@@ -55,11 +55,11 @@ export function HomeLogin({ loged, news, logOut }) {
                 <div className="w-full py-18.75">
                     <div className="flex items-center justify-between">
                         <h2 className="text-[32px] text-[#45443f] mb-2">Fırsat İlanları</h2>
-                        <Link className="text-[#B7B9BF] text-xl hover:text-[#45443F] transition-colors duration-300 ease-in-out" to={"/properties"}>Tümünü Gör</Link>
+                        <Link className="text-[#B7B9BF] text-xl hover:text-[#45443F] transition-colors duration-300 ease-in-out" to={"/properties?discounted=1"}>Tümünü Gör</Link>
                     </div>
                     <div>
                         <div ref={discountedScrollRef} className="flex overflow-auto scrollbar-none">
-                            {discountedProperties.map(item => (
+                            {discountedProperties?.data?.map(item => (
                                 <PropertiesCard
                                     id={item.id}
                                     key={item.id}

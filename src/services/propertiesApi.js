@@ -5,9 +5,9 @@ export const getRecentlyProperties = async () => {
   return response.data.data;
 };
 
-export const getDiscountedProperties = async () => {
-  const response = await api.post("/properties/discounted");
-  return response.data.data;
+export const getDiscountedProperties = async (page) => {
+  const response = await api.post("/properties/discounted", { page });
+  return response.data;
 };
 
 export const getAllProperties = async (sort, page) => {

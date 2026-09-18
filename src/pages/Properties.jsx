@@ -5,10 +5,11 @@ import flex from "../assets/flex.png"
 import { PropertiesCard } from "../components/PropertiesCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
-import { getAllProperties, getSortingOptions } from "../services/propertiesApi"
+import { getAllProperties, getDiscountedProperties, getSortingOptions } from "../services/propertiesApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
+import { useSearchParams } from "react-router-dom"
 
 export function Properties({ loged }) {
 
@@ -31,6 +32,17 @@ export function Properties({ loged }) {
     useEffect(() => {
         getSortingOptions().then(setSortingOptions)
     }, []);
+
+    const [searchParams] = useSearchParams();
+    const category = searchParams.get('discounted');
+
+    const [discounted, setDiscounted] = useState([])
+
+    useEffect(() => {
+        if (!category) return;
+
+        getDiscountedProperties(page).then(setDiscounted);
+    }, [category , page]);
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -58,7 +70,7 @@ export function Properties({ loged }) {
             <div className="w-full max-w-[90%] pt-20">
                 <div className="flex items-center flex-wrap justify-between">
                     <h1 className="text-[25px] text-[#212529] font-medium">
-                        İlanlar
+                        {!category ? "İlanlar" : "Fırsat İlanlar"}
                     </h1>
                     <div className="flex items-center gap-5">
                         <div className="flex items-center gap-1.25 max-[992px]:hidden">
@@ -78,26 +90,42 @@ export function Properties({ loged }) {
                         </div>
                     </div>
                 </div>
-                <div className={`flex ${flexDirection === "flex-col" ? "flex-col" : ""} flex-wrap max-[992px]:flex-col items-center justify-start -mx-3.75 max-[992px]:m-0`}>
-                    {properties?.data?.map(item => (
-                        <PropertiesCard
-                            key={item.id}
-                            title={item.title}
-                            cover={item.cover}
-                            price={item.price.formatted}
-                            company={item.company.title}
-                            type={item.type.title}
-                            city={item.city.title}
-                            district={item.district.title}
-                            id={item.id}
-                            page="properties"
-                            flexDirection={flexDirection}
-                        />
-                    ))}
+                <div className={`flex ${flexDirection === "flex-col" ? "flex-col" : ""} flex-wrap max-[992px]:flex-col max-[992px]:gap-4 items-stretch justify-between -mx-3.75 max-[992px]:m-0`}>
+                    {!category
+                        ? properties?.data?.map(item => (
+                            <PropertiesCard
+                                key={item.id}
+                                title={item.title}
+                                cover={item.cover}
+                                price={item.price.formatted}
+                                company={item.company.title}
+                                type={item.type.title}
+                                city={item.city.title}
+                                district={item.district.title}
+                                id={item.id}
+                                page="properties"
+                                flexDirection={flexDirection}
+                            />
+                        ))
+                        : discounted?.data?.map(item => (
+                            <PropertiesCard
+                                key={item.id}
+                                title={item.title}
+                                cover={item.cover}
+                                price={item.price.formatted}
+                                company={item.company.title}
+                                type={item.type.title}
+                                city={item.city.title}
+                                district={item.district.title}
+                                id={item.id}
+                                page="properties"
+                                flexDirection={flexDirection}
+                            />
+                        ))}
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
-                <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center">
+                {!category ? <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center">
                     <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
                         {properties?.pagination?.pagination_text}
                     </p>
@@ -105,7 +133,17 @@ export function Properties({ loged }) {
                         pagination={properties?.pagination}
                         onPageChange={setPage}
                     />
-                </div>
+                </div> : (
+                    <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center">
+                        <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
+                            {discounted?.pagination?.pagination_text}
+                        </p>
+                        <Pagination
+                            pagination={discounted?.pagination}
+                            onPageChange={setPage}
+                        />
+                    </div>
+                )}
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
