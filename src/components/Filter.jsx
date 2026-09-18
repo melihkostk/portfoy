@@ -69,7 +69,7 @@ export function Filter() {
 
     useEffect(() => {
         getAllFilterOptions(type).then(setFilterOptions)
-    }, [])
+    }, [type])
   
     return (
         <div className="flex flex-col">

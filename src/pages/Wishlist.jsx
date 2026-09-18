@@ -143,7 +143,7 @@ export function Wishlist({ loged }) {
                             />
                         </div>
                         <div className="flex flex-wrap justify-between -mx-3.75">
-                            {wishlist?.data?.length > 0 &&
+                            {wishlist?.data?.length > 0 ?
                                 wishlist?.data?.map(item => (
                                     <PropertiesCard
                                         key={item.id}
@@ -158,7 +158,9 @@ export function Wishlist({ loged }) {
                                         district={item.district.title}
                                         handleToggleWishlist={handleToggleWishlist}
                                     />
-                                ))
+                                )) : (
+                                    <div className="text-[#636464] bg-[#fafafa] rounded-lg p-3.75 m-3.75 w-full max-h-fit">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
+                                )
                             }
                         </div>
                     </div>
