@@ -5,7 +5,7 @@ import { PropertiesCard } from "../components/PropertiesCard"
 import { NewsCard } from "../components/NewsCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
-import {getRecentlyProperties } from "../services/propertiesApi"
+import { getRecentlyProperties } from "../services/propertiesApi"
 import { getDiscountedProperties } from "../services/propertiesApi"
 import { useState, useEffect, useRef } from "react"
 import { ClipLoader } from "react-spinners"
@@ -48,7 +48,7 @@ export function HomeLogin({ loged, news, logOut }) {
             )}
             <Header loged={loged} logOut={logOut} />
             <div className='w-full max-w-[90%] py-20'>
-                <h1 className='text-[35px] text-black font-medium mb-2'>İlanları Filtrele</h1>
+                <h1 className='text-[35px] text-[#45443f] font-medium mb-2'>İlanları Filtrele</h1>
                 <Filter />
             </div>
             <div className='w-full max-w-[90%] flex flex-col items-center'>
@@ -71,6 +71,7 @@ export function HomeLogin({ loged, news, logOut }) {
                                     city={item.city.title}
                                     district={item.district.title}
                                     page="homeLogin"
+                                    badges={item?.badges?.[0]?.title}
                                 />
                             ))}
                         </div>
@@ -123,7 +124,7 @@ export function HomeLogin({ loged, news, logOut }) {
             <div className='w-full bg-[#f7f7fb] py-18.75'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center'>
                     <div className='flex justify-between items-center w-full'>
-                        <h2 className='text-[#45443F] text-[32px] font-semibold'>Haberler ve Duyurular</h2>
+                        <h2 className='text-[#45443F] text-[32px]'>Haberler ve Duyurular</h2>
                         <Link to={"/articles"} className='text-[#B7B9BF] text-xl font-medium hover:text-[#45443f] transition-colors duration-300 ease-in-out' href="https://demo.pigasoft.com/portfoy/public/tr/articles">Tümünü Gör</Link>
                     </div>
                     <div className='flex items-start overflow-hidden -mx-5 max-[992px]:flex-col max-[992px]:m-0'>

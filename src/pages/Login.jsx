@@ -9,7 +9,7 @@ export function Login({ setLoged }) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [locale] = useState("tr")
+    const [locale , setLocale] = useState("")
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate ();
@@ -47,7 +47,7 @@ export function Login({ setLoged }) {
                             <img className="max-w-full align-middle" src={logo} alt="" />
                         </Link>
                     </div>
-                    <LanguageSelect />
+                    <LanguageSelect setLocale={setLocale} locale={locale} />
                 </div>
                 <div className="w-full bg-white shadow-[0_0_30px_rgb(247_247_247)] p-7.5 rounded-lg">
                     <div className="mt-6.25 mb-7.5">

@@ -3,7 +3,7 @@ import downArrow from "../assets/down-arrow.png"
 import { useEffect, useState } from "react"
 import { getAllLanguages } from "../services/filterApi"
 
-export function LanguageSelect() {
+export function LanguageSelect({ setLocale }) {
 
     const [languageShown, setLanguageShown] = useState(false);
 
@@ -22,7 +22,7 @@ export function LanguageSelect() {
             </div>
             {languageShown && <ul className="bg-white z-50 shadow-[0_0_30px_rgba(0,0,0,0.1)] rounded-[10px] p-5 w-40 min-w-full absolute">
                 {languages?.map(item => (
-                    <li className=" text-[#212529] flex items-center gap-2.5 pt-2 hover:text-[#27C5D2] transition-colors duration-300 ease-in-out cursor-pointer">
+                    <li onClick={() => setLocale(item?.code)} className=" text-[#212529] flex items-center gap-2.5 pt-2 hover:text-[#27C5D2] transition-colors duration-300 ease-in-out cursor-pointer">
                         <img className="w-5 h-5 object-fill rounded-[5px]" src={item?.flag?.url} alt="" />
                         <p className="font-semibold text-sm">{item?.native}</p>
                     </li>
