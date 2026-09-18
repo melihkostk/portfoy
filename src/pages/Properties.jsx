@@ -120,6 +120,7 @@ export function Properties({ loged }) {
                                 id={item.id}
                                 page="properties"
                                 flexDirection={flexDirection}
+                                badges={item?.badges?.[0]?.title}
                             />
                         ))}
                 </div>

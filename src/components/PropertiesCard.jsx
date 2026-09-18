@@ -17,6 +17,9 @@ export function PropertiesCard(props) {
                     {props.status == "draft" && <div className="bg-[#FFCA64] z-50 uppercase text-black text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
                         Taslak
                     </div>}
+                    {props.badges === "Fiyatı Düştü" && <div className="bg-[#FFCA64] z-30 uppercase text-black text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
+                        {props.badges}
+                    </div>}
                 </div>
             </div>
             <div className={`pl-5 w-[50%]`}>
