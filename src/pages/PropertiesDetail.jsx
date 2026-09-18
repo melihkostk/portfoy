@@ -198,7 +198,7 @@ export function PropertiesDetail({ loged }) {
                             Bu ilan şuanda yayında olmadığı için sadece siz görüntüleyebilirsiniz
                         </div>}
                         <p className="text-sm text-[#888888] mb-2.5">{details.no}</p>
-                        <h1 className="text-[25px] text-[#212529] mb-3.75 font-semibold">{details.title}</h1>
+                        <h1 className="text-[25px] text-[#212529] mb-3.75">{details.title}</h1>
                         <ul className="flex flex-wrap gap-5">
                             <li className="flex items-center">
                                 <img className="w-5 h-5 mr-1.25" src={location} alt="" />
@@ -213,7 +213,7 @@ export function PropertiesDetail({ loged }) {
                                 <p className="text-[#c2c2c2] text-sm">{details.updated_at}</p>
                             </li>
                         </ul>
-                        <div className="flex items-center gap-5 bg-[#f2f2f2] p-3.75 w-fit rounded-lg my-7.5 max-[992px]:w-full">
+                        <Link to={`/companies/${details?.company?.id}`} className="flex items-center gap-5 bg-[#f2f2f2] p-3.75 w-fit rounded-lg my-7.5 max-[992px]:w-full">
                             <div className="w-13.75 h-13.75 shadow-[0_0_30px_rgb(234_234_234/10%)]">
                                 <img className="w-full h-full rounded-full object-cover bg-white" src={defaultImg} alt="" />
                             </div>
@@ -221,7 +221,7 @@ export function PropertiesDetail({ loged }) {
                                 <p className="mb-1.25 font-bold">{details?.company?.title}</p>
                                 <p className="text-xs font-semibold">Firma 1 yıl önce katıldı</p>
                             </div>
-                        </div>
+                        </Link>
                         <div className="mb-4">
                             <p className="uppercase text-[#5f5f5f] text-xs font-semibold">Satış Fiyatı</p>
                             <p className="text-[#FFCA64] text-[25px] font-semibold mb-4">{details?.prices?.primary?.formatted}</p>
