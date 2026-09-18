@@ -1,9 +1,9 @@
 import pencil from "../assets/pencil.png"
 import bin from "../assets/bin.png"
 
-export function FilterCard({title , created_at , notify , handleDelete , id , handleEditClick}) {
+export function FilterCard({title , created_at , notify , handleDelete , id , handleEditClick , index}) {
     return (
-        <tr>
+        <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : "bg-white"}`}>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{title}</td>
             <td className="py-3 px-2">
                 <span className={`${notify ? "bg-[#00cc83] text-white" : "bg-[#FFCA64] text-black"} text-xs py-1.25 px-2 font-semibold rounded-md`}>{notify ? "Aktif" : "Pasif"}</span>

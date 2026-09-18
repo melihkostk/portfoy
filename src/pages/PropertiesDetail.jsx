@@ -59,13 +59,11 @@ export function PropertiesDetail({ loged }) {
                 setErrorMessage(data.message)
             }
             else {
-                setOfferShown(false)
-                setPrice("")
-                setNote("")
+                setLoaded(false)
                 setToogleMessage(data.message)
                 setToogleMessageShown(true)
             }
-        })
+        }).finally(() => {setOfferShown(false); setLoaded(true)})
     }
 
     const [price, setPrice] = useState("");

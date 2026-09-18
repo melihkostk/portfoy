@@ -18,8 +18,8 @@ export function QuickFilters({ loged }) {
         getQuickFilters().then(setQuickFilters).finally(() => setLoaded(true))
     }, [])
 
-    const [deleteMessageShown , setDeleteMessageShown] = useState(false);
-    const [deleteMessage , setDeleteMessage] = useState("");
+    const [deleteMessageShown, setDeleteMessageShown] = useState(false);
+    const [deleteMessage, setDeleteMessage] = useState("");
 
     function handleDelete(id) {
         deleteQuickFilters(id).then(data => {
@@ -27,7 +27,7 @@ export function QuickFilters({ loged }) {
                 return
             }
             setLoaded(false)
-            getQuickFilters().then(setQuickFilters).finally(() => {setLoaded(true) ; setDeleteMessageShown(true) ; setDeleteMessage(data.message)})
+            getQuickFilters().then(setQuickFilters).finally(() => { setLoaded(true); setDeleteMessageShown(true); setDeleteMessage(data.message) })
         })
     }
 
@@ -120,7 +120,7 @@ export function QuickFilters({ loged }) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {quickFilters?.map(item => (
+                                    {quickFilters?.map((item, index) => (
                                         <FilterCard
                                             key={item.id}
                                             id={item.id}
@@ -129,6 +129,7 @@ export function QuickFilters({ loged }) {
                                             notify={item.notify}
                                             handleDelete={handleDelete}
                                             handleEditClick={handleEditClick}
+                                            index={index}
                                         />
                                     ))}
                                 </tbody>
