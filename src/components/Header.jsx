@@ -26,6 +26,7 @@ export function Header({ loged, details }) {
     const [offerModelShown, setOfferModalShown] = React.useState(false)
     const [notifications, setNotifications] = React.useState([])
     const [number, setNumber] = useState(0);
+    const [showUnreadOnly, setShowUnreadOnly] = React.useState(false)
     const [step, setStep] = React.useState(1)
     const [selectedCustomer, setSelectedCustomer] = React.useState("")
     const [selectedCurrencie, setSelectedCurrencie] = React.useState("")
@@ -55,6 +56,15 @@ export function Header({ loged, details }) {
         }
         ))
     }
+
+    function handleClick(){
+        setShowUnreadOnly(prev => !prev)
+    }
+
+    const visibleNotifications = showUnreadOnly
+        ? notifications?.data?.notifications?.filter(item => item.is_read === 0)
+        : notifications?.data?.notifications
+
     return (
         <div className="py-7.5 w-full max-w-[90%]">
             {sidebarShown && <MainSidebar setSidebarShown={setSidebarShown} loged={loged} />}
@@ -178,12 +188,12 @@ export function Header({ loged, details }) {
                                 </button>
                             </div>
                             <div className="p-3.75 max-h-[50vh] overflow-auto bg-white mb-5">
-                                <div className="bg-[#eeeeee] p-2.5 rounded-lg flex items-center gap-2 mb-5">
-                                    <input className="w-5 h-5" type="checkbox" />
-                                    <label className="text-sm text-[#212529]" htmlFor="">Sadece okunmamışları göster</label>
+                                <div className="bg-[#eeeeee] p-2.5 rounded-lg flex items-center gap-2 mb-5 ">
+                                    <input checked={showUnreadOnly} onChange={handleClick} className="w-5 h-5" type="checkbox" id="unread" name="unread" />
+                                    <label className="text-sm text-[#212529] cursor-pointer select-none" htmlFor="unread">Sadece okunmamışları göster</label>
                                 </div>
                                 <div>
-                                    {notifications?.data?.notifications?.map(item => (
+                                    {visibleNotifications?.map(item => (
                                         <Notification key={item.id} id={item.id} content={item.content} time={item.time_diff} is_read={item.is_read} />
                                     ))}
                                 </div>
