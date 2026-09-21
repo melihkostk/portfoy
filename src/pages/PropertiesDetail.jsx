@@ -53,6 +53,7 @@ export function PropertiesDetail({ loged }) {
 
     function handlePriceOffer(e) {
         e.preventDefault()
+        setLoaded(false)
         createPriceOffer(id, price, note).then(data => {
             if (data.status === "error") {
                 setOfferShown(false)
@@ -60,11 +61,13 @@ export function PropertiesDetail({ loged }) {
                 setErrorMessage(data.message)
             }
             else {
-                setLoaded(false)
+                setOfferShown(false)
+                setPrice("")
+                setNote("")
                 setToogleMessage(data.message)
                 setToogleMessageShown(true)
             }
-        }).finally(() => {setOfferShown(false); setLoaded(true)})
+        }).finally(() => { setLoaded(true) })
     }
 
     const [price, setPrice] = useState("");

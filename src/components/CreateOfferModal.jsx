@@ -48,7 +48,7 @@ export function CreateOfferModel({ setOfferModalShown, step, setStep, customerNo
                                 <label htmlFor="" className="mb-2 text-[#212529]">Müşteri Seçin</label>
                                 <select value={selectedCustomer} onChange={(e) => setSelectedCustomer(e.target.value)} required name="" id="" className="border border-[#d9d9d9] rounded-lg py-1.5 px-3">
                                     <option disabled value="">Müşteri Seçin</option>
-                                    {customers?.customers?.map(item => (
+                                    {customers?.data?.customers?.map(item => (
                                         <option value={item.name} key={item.id}>{item.name}</option>
                                     ))}
                                 </select>

@@ -87,7 +87,7 @@ export function HomeLogin({ loged, news, logOut }) {
                     </div>
                 </div>
             </div>
-            <div className='w-full max-w-[90%] flex flex-col items-center mb-30'>
+            <div className='w-full max-w-[90%] flex flex-col items-center'>
                 <div className="w-full py-18.75">
                     <div className="flex items-center justify-between">
                         <h2 className="text-[32px] text-[#45443f] mb-2">Yeni İlanlar</h2>
