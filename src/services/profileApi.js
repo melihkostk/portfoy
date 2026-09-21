@@ -39,3 +39,13 @@ export const showOffer = async (id) => {
     const response = await api.get(`/offers/${id}/show`)
     return response.data;
 }
+
+export const updateProfile = async (name , phone_code , phone , locale) => {
+    const response = await api.post("/auth/profile/update" , {
+        name:name,
+        phone_code:phone_code,
+        phone:phone,
+        locale:locale
+    });
+    return response.data;
+}

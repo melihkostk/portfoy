@@ -5,10 +5,16 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { Link } from "react-router-dom"
 import { getActiveSubscription, getCompanyInfo, getTeam } from "../services/myCompanyApi"
+import { updateProfile } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 
 export function Account({ loged }) {
+
+    const [name , setName] = useState("");
+    const [code , setCode] = useState("");
+    const [phone , setPhone] = useState("");
+    const [updating, setUpdating] = useState(false);
 
     const [info, setInfo] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -22,7 +28,11 @@ export function Account({ loged }) {
     useEffect(() => {
         const userInfo = localStorage.getItem("user");
         if (userInfo) {
-            setUser(JSON.parse(userInfo));
+            const parsedUser = JSON.parse(userInfo);
+            setUser(parsedUser);
+            setName(parsedUser?.data?.name || "")
+            setCode(parsedUser?.data?.phone?.code || "")
+            setPhone(parsedUser?.data?.phone?.number || "")
         }
     }, [])
 
@@ -37,6 +47,12 @@ export function Account({ loged }) {
     useEffect(() => {
         getActiveSubscription().then(setSub)
     }, [])
+
+    function handleUpdate(e) {
+        e.preventDefault();
+        setUpdating(true);
+        updateProfile(name, code, phone , "tr").finally(() => setUpdating(false));
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -113,11 +129,11 @@ export function Account({ loged }) {
                         </div>
                         <div className="mb-10">
                             <h2 className="text-[25px] mb-5 font-semibold">Hesap Bilgilerim</h2>
-                            <form action="">
+                            <form onSubmit={handleUpdate}>
                                 <div className="flex mb-2.5">
                                     <div className="pr-3 w-1/2">
                                         <label htmlFor="">İsim ve Soyisim</label>
-                                        <input className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" value={user?.data?.name} />
+                                        <input onChange={(e) => setName(e.target.value)} className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" value={name} />
                                     </div>
                                     <div className="pl-3 w-1/2">
                                         <label htmlFor="">E-Posta</label>
@@ -129,19 +145,19 @@ export function Account({ loged }) {
                                         <label htmlFor="">Telefon</label>
                                         <div className="flex items-center gap-3.75">
                                             <div>
-                                                <select className="border border-[#D9D9D9] rounded-lg text-base py-1.5 px-3" name="" id="">
+                                                <select onChange={(e) => setCode(e.target.value)} value={code} className="border border-[#D9D9D9] rounded-lg text-base py-1.5 px-3" name="" id="">
                                                     <option value="357">(357)</option>
-                                                    <option value="90" selected>(90)</option>
+                                                    <option value="90">(90)</option>
                                                     <option value="971">(971)</option>
                                                     <option value="01">(01)</option>
                                                 </select>
                                             </div>
-                                            <input className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" placeholder="Telefon" value={user?.data?.phone?.number}></input>
+                                            <input onChange={(e) => setPhone(e.target.value)} className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" placeholder="Telefon" value={phone}></input>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="text-end">
-                                    <button className="text-white text-base font-semibold bg-[#27C5D2] px-5 rounded-[5px] h-12.5 whitespace-nowrap cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Güncelle</button>
+                                    <button disabled={updating} className="text-white text-base font-semibold bg-[#27C5D2] px-5 rounded-[5px] h-12.5 whitespace-nowrap cursor-pointer hover:bg-[#026872] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-300 ease-in-out" type="submit">{updating ? "Güncelleniyor..." : "Güncelle"}</button>
                                 </div>
                             </form>
                         </div>
