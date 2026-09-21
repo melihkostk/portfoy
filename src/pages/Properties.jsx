@@ -103,6 +103,7 @@ export function Properties({ loged }) {
                                 city={item.city.title}
                                 district={item.district.title}
                                 id={item.id}
+                                badges={item?.badges?.[0]?.title}
                                 page="properties"
                                 flexDirection={flexDirection}
                             />
