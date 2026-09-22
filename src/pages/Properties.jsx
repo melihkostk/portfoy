@@ -86,7 +86,7 @@ export function Properties({ loged }) {
                     <h1 className="text-[35px]">İlanları Filtrele</h1>
                     <Filter setFilterShown={setFilterShown} />
                 </div>}
-                <div className="items-end justify-end p-3.75 flex gap-1">
+                {searchParams.toString() && <div className="items-end justify-end p-3.75 flex gap-1">
                     <button className="px-7.5 py-2.5 text-sm cursor-pointer flex items-start hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out bg-[#f8f8f8] rounded-lg text-[#565656] font-semibold">
                         <img className="w-4 h-4 mr-2.5" src={save} alt="" />
                         Filtreyi Kaydet
@@ -95,7 +95,7 @@ export function Properties({ loged }) {
                         <img className="w-4 h-4 mr-2.5" src={blind} alt="" />
                         Filtreyi Gizle
                     </button>
-                </div>
+                </div>}
             </div>
             <div className={`w-full max-w-[90%] ${filterShown ? "pt-12.5" : "pt-5"}`}>
                 <div className="flex items-center flex-wrap justify-between">
