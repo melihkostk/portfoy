@@ -84,7 +84,7 @@ export function Properties({ loged }) {
             <div className={`w-full max-w-[90%] ${filterShown ? "py-7.5" : "py-5"}`}>
                 {filterShown && <div>
                     <h1 className="text-[35px]">İlanları Filtrele</h1>
-                    <Filter setFilterShown={setFilterShown} />
+                    <Filter setFilterShown={setFilterShown} searchParams={searchParams} />
                 </div>}
                 {searchParams.toString() && <div className="items-end justify-end p-3.75 flex gap-1">
                     <button className="px-7.5 py-2.5 text-sm cursor-pointer flex items-start hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out bg-[#f8f8f8] rounded-lg text-[#565656] font-semibold">

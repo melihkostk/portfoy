@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets, getAllCurrencies, getAllFilterOptions } from "../services/filterApi"
 import { getAllPropertiesType } from "../services/propertiesApi"
 
-export function Filter() {
+export function Filter({searchParams}) {
 
     const [priceFilter, setPriceFilter] = useState(false)
     const [cateFilter, setCateFilter] = useState(false)
@@ -89,19 +89,19 @@ export function Filter() {
 
     return (
         <div>
-            <div className="flex flex-col">
-                <ul className='flex mt-10 max-w-full overflow-x-auto scrollbar-thin scrollbar-thumb-[#27C5D2]'>
+            <div className="flex flex-col gap-2">
+                <ul className='flex mt-10 max-w-full overflow-x-auto scrollbar-thin scrollbar-thumb-[#27C5D2] gap-2.5'>
                     <li>
                         <button onClick={() => setType("All")} className='px-7.5 py-2.5 text-sm opacity-70 text-black cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100'>Tümü</button>
                     </li>
                     {propertiesType?.map(item => (
                         <li key={item.id}>
-                            <button onClick={() => setType(item.id)} className='px-7.5 py-2.5 text-sm opacity-70 cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100'>{item.title}</button>
+                            <button onClick={() => setType(item.id)} className={`px-7.5 ${searchParams.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"} py-2.5 text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100`}>{item.title}</button>
                         </li>
                     ))}
                 </ul>
                 {type === "All" && (
-                    <form action={"/properties"} method="GET" className="flex max-[992px]:flex-col gap-2.5 p-3.75">
+                    <form action={"/properties"} method="GET" className={`flex ${searchParams.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col gap-2.5 p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-w-[calc(100%/3)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Kategoriler</label>
@@ -220,9 +220,9 @@ export function Filter() {
                         </div>
                     </form>)}
                 {type === 27 && (
-                    <form action={"/properties"} method="GET" className="flex max-[992px]:flex-col gap-2.5 p-3.75">
+                    <form action={"/properties"} method="GET" className={`flex max-[992px]:flex-col ${searchParams.toString() ? "bg-[#f8f8f8]" : ""}  gap-2.5 p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
-                        <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -253,7 +253,7 @@ export function Filter() {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -312,7 +312,7 @@ export function Filter() {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name="room_count" value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
@@ -336,7 +336,7 @@ export function Filter() {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Isıtma sistemi</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name="heating_id" value={heatingId} onChange={(e) => setHeatingId(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
@@ -357,7 +357,7 @@ export function Filter() {
                 {type === "Project" && (
                     <form action={"/properties"} method="GET" className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                         <input type="hidden" name="type_id" value={type} />
-                        <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -388,7 +388,7 @@ export function Filter() {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -439,7 +439,7 @@ export function Filter() {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select className="font-semibold text-[13px] w-full cursor-pointer">
@@ -465,9 +465,9 @@ export function Filter() {
                     </form>
                 )}
                 {type === 21 && (
-                    <form action={"/properties"} method="GET" className="flex max-[992px]:flex-col gap-2.5 p-3.75">
+                    <form action={"/properties"} method="GET" className={`flex max-[992px]:flex-col ${searchParams.toString() ? "bg-[#f8f8f8]" : ""} gap-2.5 p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
-                        <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -498,7 +498,7 @@ export function Filter() {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -557,7 +557,7 @@ export function Filter() {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name="room_count" value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
@@ -568,14 +568,14 @@ export function Filter() {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
                             <button type="button" className="flex justify-between cursor-pointer w-full">
                                 <input name="min_area" value={minArea} onChange={(e) => setMinArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="min" />
                                 <input name="max_area" value={maxArea} onChange={(e) => setMaxArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="max" />
                             </button>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">bina yaşı</label>
                             <button type="button" className="flex justify-between cursor-pointer flex-1">
                                 <input name="min_building_age" min={0} value={minBuildingAge} onChange={(e) => setMinBuildingAge(e.target.value)} className="text-sm flex-1" type="number" placeholder="min" />
@@ -588,7 +588,7 @@ export function Filter() {
                     </form>
                 )}
                 {type === "Project Villa" && (
-                    <form action={"/properties"} method="GET" className="flex gap-2.5 max-[992px]:flex-col p-3.75">
+                    <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
@@ -678,9 +678,9 @@ export function Filter() {
                     </form>
                 )}
                 {type === 9 && (
-                    <form action={"/properties"} method="GET" className="flex gap-2.5 max-[992px]:flex-col p-3.75">
+                    <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
-                        <div className="flex-1 max-w-[calc(100%/4)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[25%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -711,7 +711,7 @@ export function Filter() {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/4)] pr-2.5">
+                        <div className="flex-1 max-w-[25%] pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -770,7 +770,7 @@ export function Filter() {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/4)] pr-2.5">
+                        <div className="flex-1 max-w-[25%] pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Arsa Tapu Türü</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name="land_title_type_id" value={landTitleTypeId} onChange={(e) => setLandTitleTypeId(e.target.value)} className="text-[13px] font-semibold w-full" id="">
@@ -781,7 +781,7 @@ export function Filter() {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/4)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[25%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
                             <button type="button" className="flex justify-between cursor-pointer w-full">
                                 <input name="min_area" value={minArea} onChange={(e) => setMinArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="min" />
@@ -794,9 +794,9 @@ export function Filter() {
                     </form>
                 )}
                 {type === 10 && (
-                    <form action={"/properties"} method="GET" className="flex gap-2.5 max-[992px]:flex-col p-3.75">
+                    <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
-                        <div className="flex-1 max-w-[calc(100%/4)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[25%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -827,7 +827,7 @@ export function Filter() {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/4)] pr-2.5">
+                        <div className="flex-1 max-w-[25%] pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -886,14 +886,14 @@ export function Filter() {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/4)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-[25%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
                             <button type="button" className="flex justify-between cursor-pointer w-full">
                                 <input name="min_area" value={minArea} onChange={(e) => setMinArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="min" />
                                 <input name="max_area" value={maxArea} onChange={(e) => setMaxArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="max" />
                             </button>
                         </div>
-                        <div className="flex-1 max-w-[calc(100%/4)] pr-2.5">
+                        <div className="flex-1 max-w-[25%] pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Tarla Tapu Türü</label>
                             <select name="field_title_type_id" value={fieldTitleTypeId} onChange={(e) => setFieldTitleTypeId(e.target.value)} className="text-[13px] font-semibold w-full" id="">
                                 <option value="">Tarla Tapu Türü</option>
