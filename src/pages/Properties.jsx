@@ -10,8 +10,12 @@ import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
 import { useSearchParams } from "react-router-dom"
+import blind from "../assets/blind.png"
+import save from "../assets/save.png"
 
 export function Properties({ loged }) {
+
+    const [filterShown, setFilterShown] = useState(true);
 
     const [properties, setProperties] = useState([])
     const [loaded, setLoaded] = useState(false)
@@ -58,7 +62,7 @@ export function Properties({ loged }) {
         if (!category) return;
 
         getDiscountedProperties(page).then(setDiscounted);
-    }, [category , page , filter]);
+    }, [category, page, filter]);
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -77,13 +81,23 @@ export function Properties({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İlanlar</span></p>
                 </div>
             </div>
-            <div className="w-full max-w-[90%] py-20">
-                <div>
+            <div className={`w-full max-w-[90%] ${filterShown ? "py-7.5" : "py-5"}`}>
+                {filterShown && <div>
                     <h1 className="text-[35px]">İlanları Filtrele</h1>
-                    <Filter />
+                    <Filter setFilterShown={setFilterShown} />
+                </div>}
+                <div className="items-end justify-end p-3.75 flex gap-1">
+                    <button className="px-7.5 py-2.5 text-sm cursor-pointer flex items-start hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out bg-[#f8f8f8] rounded-lg text-[#565656] font-semibold">
+                        <img className="w-4 h-4 mr-2.5" src={save} alt="" />
+                        Filtreyi Kaydet
+                    </button>
+                    <button onClick={() => setFilterShown(prev => !prev)} className="px-7.5 py-2.5 text-sm cursor-pointer flex items-start hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out bg-[#f8f8f8] rounded-lg text-[#565656] font-semibold">
+                        <img className="w-4 h-4 mr-2.5" src={blind} alt="" />
+                        Filtreyi Gizle
+                    </button>
                 </div>
             </div>
-            <div className="w-full max-w-[90%] pt-20">
+            <div className={`w-full max-w-[90%] ${filterShown ? "pt-12.5" : "pt-5"}`}>
                 <div className="flex items-center flex-wrap justify-between">
                     <h1 className="text-[25px] text-[#212529] font-medium">
                         {!category ? "İlanlar" : "Fırsat İlanlar"}
