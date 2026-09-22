@@ -5,7 +5,7 @@ import flex from "../assets/flex.png"
 import { PropertiesCard } from "../components/PropertiesCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
-import { getAllProperties, getDiscountedProperties, getSortingOptions } from "../services/propertiesApi"
+import { filterPublishedProperties, getDiscountedProperties, getSortingOptions } from "../services/propertiesApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
@@ -22,11 +22,27 @@ export function Properties({ loged }) {
     const [searchParams] = useSearchParams();
     const category = searchParams.get('discounted');
     const filter = searchParams.get("q")
+    const typeId = searchParams.get("type_id");
+    const minSellPrice = searchParams.get("min_sell_price");
+    const maxSellPrice = searchParams.get("max_sell_price");
+    const cityId = searchParams.get("city_id");
+    const featured = searchParams.get("featured");
+    const customerId = searchParams.get("customer_id");
 
     useEffect(() => {
         setLoaded(false)
-        getAllProperties(selectedSorting, page , filter).then(setProperties).finally(() => setLoaded(true))
-    }, [selectedSorting, page , filter ])
+        filterPublishedProperties({
+            r: selectedSorting,
+            page,
+            q: filter,
+            type_id: typeId,
+            min_sell_price: minSellPrice,
+            max_sell_price: maxSellPrice,
+            city_id: cityId,
+            featured,
+            customer_id: customerId,
+        }).then(setProperties).finally(() => setLoaded(true))
+    }, [selectedSorting, page, filter, typeId, minSellPrice, maxSellPrice, cityId, featured, customerId])
 
     const [flexDirection, setFlexDirection] = useState("");
 

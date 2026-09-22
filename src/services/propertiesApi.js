@@ -10,9 +10,9 @@ export const getDiscountedProperties = async (page) => {
   return response.data;
 };
 
-export const getAllProperties = async (sort, page , q) => {
+export const getAllProperties = async (sort, page, q) => {
   const response = await api.get("/properties", {
-    params: { r: sort, page: page , q:q },
+    params: { r: sort, page: page, q: q },
   });
 
   return response.data;
@@ -41,5 +41,14 @@ export const createPriceOffer = async (property_id, price, note) => {
     price: price,
     note: note
   })
+  return response.data;
+}
+
+export const filterPublishedProperties = async (params = {}) => {
+  const cleanParams = Object.fromEntries(
+    Object.entries(params).filter(([, value]) => value !== undefined && value !== null && value !== "")
+  );
+
+  const response = await api.post("/properties", cleanParams)
   return response.data;
 }
