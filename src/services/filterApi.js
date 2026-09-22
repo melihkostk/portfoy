@@ -32,5 +32,5 @@ export const getAllLanguages = async () => {
 
 export const getAllFilterOptions = async (id) => {
     const response = await api.get(`/properties/types/${id}/filters`);
-    return response.data.data;
+    return response.data;
 }
