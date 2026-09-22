@@ -486,38 +486,46 @@ export function Filter() {
                                     <div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
-                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            <select value={countryId} placeholder="Ülke Seçin" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option value="" disabled>
+                                                    Ülke Seçin
+                                                </option>
+                                                {countries.data.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
-                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            <select value={cityId} onChange={(e) => setCityId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option value="" disabled>
+                                                    İl Seçin
+                                                </option>
+                                                {cities.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
-                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            <select value={districtId} onChange={(e) => setDistrictId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option value="" disabled>
+                                                    İlçe Seçin
+                                                </option>
+                                                {district.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
-                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            <select value={streetId} onChange={(e) => setStreetId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option value="" disabled>
+                                                    Mahalle
+                                                </option>
+                                                {street.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                     </div>
@@ -530,11 +538,9 @@ export function Filter() {
                         <div className="flex justify-between cursor-pointer w-full">
                             <select className="font-semibold text-[13px] w-full cursor-pointer">
                                 <option disabled selected value="">Oda Sayısı</option>
-                                <option value="">1+0</option>
-                                <option value="">1+0 Bahçeli Daire</option>
-                                <option value="">1+1</option>
-                                <option value="">1+1 Dublex</option>
-                                <option value="">1+1 Bahçeli Dublex</option>
+                                {filterOptions?.data?.[0]?.params?.[0]?.options.map(item => (
+                                    <option key={item.id}>{item.title}</option>
+                                ))}
                             </select>
                         </div>
                     </div>
@@ -548,7 +554,7 @@ export function Filter() {
                     <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">bina yaşı</label>
                         <button className="flex justify-between cursor-pointer flex-1">
-                            <input className="text-sm flex-1" type="number" placeholder="min" />
+                            <input min={0} className="text-sm flex-1" type="number" placeholder="min" />
                             <input className="text-sm flex-1" type="number" placeholder="max" />
                         </button>
                     </div>
@@ -691,38 +697,46 @@ export function Filter() {
                                     <div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
-                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            <select value={countryId} placeholder="Ülke Seçin" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option value="" disabled>
+                                                    Ülke Seçin
+                                                </option>
+                                                {countries.data.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
-                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            <select value={cityId} onChange={(e) => setCityId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option value="" disabled>
+                                                    İl Seçin
+                                                </option>
+                                                {cities.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
-                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            <select value={districtId} onChange={(e) => setDistrictId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option value="" disabled>
+                                                    İlçe Seçin
+                                                </option>
+                                                {district.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
-                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            <select value={streetId} onChange={(e) => setStreetId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option value="" disabled>
+                                                    Mahalle
+                                                </option>
+                                                {street.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                     </div>
@@ -735,8 +749,9 @@ export function Filter() {
                         <div className="flex justify-between cursor-pointer w-full">
                             <select className="text-[13px] font-semibold w-full" name="" id="">
                                 <option selected disabled value="">Arsa Tapu Türü</option>
-                                <option value="">Arazi Tapusu</option>
-                                <option value="">Paylaşılan Tapu</option>
+                                {filterOptions?.data?.[0]?.params?.[8]?.options.map(item => (
+                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                ))}
                             </select>
                         </div>
                     </div>
