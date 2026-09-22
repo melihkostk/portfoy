@@ -10,9 +10,9 @@ export const getDiscountedProperties = async (page) => {
   return response.data;
 };
 
-export const getAllProperties = async (sort, page) => {
+export const getAllProperties = async (sort, page , q) => {
   const response = await api.get("/properties", {
-    params: { r: sort, page: page },
+    params: { r: sort, page: page , q:q },
   });
 
   return response.data;

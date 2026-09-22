@@ -31,6 +31,7 @@ export function Header({ loged, details }) {
     const [selectedCustomer, setSelectedCustomer] = React.useState("")
     const [selectedCurrencie, setSelectedCurrencie] = React.useState("")
     const [customerNote, setCustomerNote] = React.useState("")
+    const [searchInput , setSearchInput] = React.useState("")
     const navigate = useNavigate();
 
     React.useEffect(() => {
@@ -127,9 +128,9 @@ export function Header({ loged, details }) {
                         </li>
                     </ul>
                 </div>}
-                {loged && <div className="px-7.5 max-[1100px]:hidden">
-                    <input className="bg-[#c4c4c426] h-12.5 px-2 rounded-[5px] text-sm" type="text" placeholder="İlanlarda Ara" />
-                </div>}
+                {loged && <form action="/properties" method="GET" className="px-7.5 max-[1100px]:hidden">
+                    <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] h-12.5 px-2 rounded-[5px] text-sm" type="text" placeholder="İlanlarda Ara" />
+                </form>}
                 <div className="flex items-center justify-between gap-2.5">
                     <LanguageSelect />
                     {!loged && <div className="relative">

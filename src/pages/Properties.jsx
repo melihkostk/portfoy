@@ -19,11 +19,14 @@ export function Properties({ loged }) {
     const [selectedSorting, setSelectingOption] = useState("");
 
     const [page, setPage] = useState(1);
+    const [searchParams] = useSearchParams();
+    const category = searchParams.get('discounted');
+    const filter = searchParams.get("q")
 
     useEffect(() => {
         setLoaded(false)
-        getAllProperties(selectedSorting, page).then(setProperties).finally(() => setLoaded(true))
-    }, [selectedSorting, page])
+        getAllProperties(selectedSorting, page , filter).then(setProperties).finally(() => setLoaded(true))
+    }, [selectedSorting, page , filter ])
 
     const [flexDirection, setFlexDirection] = useState("");
 
@@ -33,16 +36,13 @@ export function Properties({ loged }) {
         getSortingOptions().then(setSortingOptions)
     }, []);
 
-    const [searchParams] = useSearchParams();
-    const category = searchParams.get('discounted');
-
     const [discounted, setDiscounted] = useState([])
 
     useEffect(() => {
         if (!category) return;
 
         getDiscountedProperties(page).then(setDiscounted);
-    }, [category , page]);
+    }, [category , page , filter]);
 
     return (
         <div className='flex flex-col items-center font-sf'>
