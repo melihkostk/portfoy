@@ -96,12 +96,12 @@ export function Filter({searchParams}) {
                     </li>
                     {propertiesType?.map(item => (
                         <li key={item.id}>
-                            <button onClick={() => setType(item.id)} className={`px-7.5 ${searchParams.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"} py-2.5 text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100`}>{item.title}</button>
+                            <button onClick={() => setType(item.id)} className={`px-7.5 ${searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"} py-2.5 text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100`}>{item.title}</button>
                         </li>
                     ))}
                 </ul>
                 {type === "All" && (
-                    <form action={"/properties"} method="GET" className={`flex ${searchParams.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col gap-2.5 p-3.75`}>
+                    <form action={"/properties"} method="GET" className={`flex ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col gap-2.5 p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-w-[calc(100%/3)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Kategoriler</label>
@@ -220,7 +220,7 @@ export function Filter({searchParams}) {
                         </div>
                     </form>)}
                 {type === 27 && (
-                    <form action={"/properties"} method="GET" className={`flex max-[992px]:flex-col ${searchParams.toString() ? "bg-[#f8f8f8]" : ""}  gap-2.5 p-3.75`}>
+                    <form action={"/properties"} method="GET" className={`flex max-[992px]:flex-col ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""}  gap-2.5 p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
@@ -465,7 +465,7 @@ export function Filter({searchParams}) {
                     </form>
                 )}
                 {type === 21 && (
-                    <form action={"/properties"} method="GET" className={`flex max-[992px]:flex-col ${searchParams.toString() ? "bg-[#f8f8f8]" : ""} gap-2.5 p-3.75`}>
+                    <form action={"/properties"} method="GET" className={`flex max-[992px]:flex-col ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} gap-2.5 p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
@@ -588,7 +588,7 @@ export function Filter({searchParams}) {
                     </form>
                 )}
                 {type === "Project Villa" && (
-                    <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
+                    <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
@@ -678,7 +678,7 @@ export function Filter({searchParams}) {
                     </form>
                 )}
                 {type === 9 && (
-                    <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
+                    <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-[25%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
@@ -794,7 +794,7 @@ export function Filter({searchParams}) {
                     </form>
                 )}
                 {type === 10 && (
-                    <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
+                    <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-[25%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
