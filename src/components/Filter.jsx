@@ -85,7 +85,7 @@ export function Filter() {
             </ul>
             {type === "All" && (
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-w-[calc(100%/3)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Kategoriler</label>
                         <div className="relative">
                             <button onClick={() => setCateFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -107,7 +107,7 @@ export function Filter() {
                             </ul>}
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 w-[calc(100%/3)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Satış fiyatı</label>
                         <div className="relative">
                             <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -138,7 +138,7 @@ export function Filter() {
                             </ul>}
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5">
+                    <div className="flex-1 w-[calc(100%/3)] pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Konum</label>
                         <div className="relative">
                             <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -203,7 +203,7 @@ export function Filter() {
                 </div>)}
             {type === 27 && (
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                         <div className="relative">
                             <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -234,7 +234,7 @@ export function Filter() {
                             </ul>}
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                         <div className="relative">
                             <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -293,7 +293,7 @@ export function Filter() {
                             </ul>}
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                         <div className="flex justify-between cursor-pointer w-full">
                             <select className="font-semibold text-[13px] w-full cursor-pointer">
@@ -315,7 +315,7 @@ export function Filter() {
                             </select>
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Isıtma sistemi</label>
                         <div className="flex justify-between cursor-pointer w-full">
                             <select className="font-semibold text-[13px] w-full cursor-pointer">
@@ -334,7 +334,7 @@ export function Filter() {
             )}
             {type === "Project" && (
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                         <div className="relative">
                             <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -365,7 +365,7 @@ export function Filter() {
                             </ul>}
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                         <div className="relative">
                             <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -416,7 +416,7 @@ export function Filter() {
                             </ul>}
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                         <div className="flex justify-between cursor-pointer w-full">
                             <select className="font-semibold text-[13px] w-full cursor-pointer">
@@ -443,7 +443,7 @@ export function Filter() {
             )}
             {type === 21 && (
                 <div className="flex max-[992px]:flex-col gap-2.5 p-3.75">
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                         <div className="relative">
                             <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -474,7 +474,7 @@ export function Filter() {
                             </ul>}
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                         <div className="relative">
                             <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -533,7 +533,7 @@ export function Filter() {
                             </ul>}
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                         <div className="flex justify-between cursor-pointer w-full">
                             <select className="font-semibold text-[13px] w-full cursor-pointer">
@@ -544,14 +544,14 @@ export function Filter() {
                             </select>
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
                         <button className="flex justify-between cursor-pointer w-full">
                             <input className="text-sm flex-1" type="number" placeholder="min" />
                             <input className="text-sm flex-1" type="number" placeholder="max" />
                         </button>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/5)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">bina yaşı</label>
                         <button className="flex justify-between cursor-pointer flex-1">
                             <input min={0} className="text-sm flex-1" type="number" placeholder="min" />
@@ -654,7 +654,7 @@ export function Filter() {
             )}
             {type === 9 && (
                 <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/4)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                         <div className="relative">
                             <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -685,7 +685,7 @@ export function Filter() {
                             </ul>}
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5">
+                    <div className="flex-1 max-w-[calc(100%/4)] pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                         <div className="relative">
                             <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -744,7 +744,7 @@ export function Filter() {
                             </ul>}
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5">
+                    <div className="flex-1 max-w-[calc(100%/4)] pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Arsa Tapu Türü</label>
                         <div className="flex justify-between cursor-pointer w-full">
                             <select className="text-[13px] font-semibold w-full" name="" id="">
@@ -755,7 +755,7 @@ export function Filter() {
                             </select>
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/4)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
                         <button className="flex justify-between cursor-pointer w-full">
                             <input className="text-sm flex-1" type="number" placeholder="min" />
@@ -769,7 +769,7 @@ export function Filter() {
             )}
             {type === 10 && (
                 <div className="flex gap-2.5 max-[992px]:flex-col p-3.75">
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/4)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                         <div className="relative">
                             <button onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -800,7 +800,7 @@ export function Filter() {
                             </ul>}
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5">
+                    <div className="flex-1 max-w-[calc(100%/4)] pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                         <div className="relative">
                             <button onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -812,38 +812,46 @@ export function Filter() {
                                     <div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
-                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            <select value={countryId} placeholder="Ülke Seçin" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option value="" disabled>
+                                                    Ülke Seçin
+                                                </option>
+                                                {countries.data.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
-                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            <select value={cityId} onChange={(e) => setCityId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option value="" disabled>
+                                                    İl Seçin
+                                                </option>
+                                                {cities.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
-                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            <select value={districtId} onChange={(e) => setDistrictId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option value="" disabled>
+                                                    İlçe Seçin
+                                                </option>
+                                                {district.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
-                                            <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                <option selected value="">Ülke Seçin</option>
-                                                <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                <option value="">Türkiye</option>
-                                                <option value="">Birleşik Arap Emirlikleri</option>
+                                            <select value={streetId} onChange={(e) => setStreetId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
+                                                <option value="" disabled>
+                                                    Mahalle
+                                                </option>
+                                                {street.map(item => (
+                                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                                ))}
                                             </select>
                                         </div>
                                     </div>
@@ -851,19 +859,20 @@ export function Filter() {
                             </ul>}
                         </div>
                     </div>
-                    <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                    <div className="flex-1 max-w-[calc(100%/4)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
                         <button className="flex justify-between cursor-pointer w-full">
                             <input className="text-sm flex-1" type="number" placeholder="min" />
                             <input className="text-sm flex-1" type="number" placeholder="max" />
                         </button>
                     </div>
-                    <div className="flex-1 pr-2.5">
+                    <div className="flex-1 max-w-[calc(100%/4)] pr-2.5">
                         <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Tarla Tapu Türü</label>
                         <select className="text-[13px] font-semibold w-full" name="" id="">
                             <option selected disabled value="">Tarla Tapu Türü</option>
-                            <option value="">Müstakil Tapu</option>
-                            <option value="">Paylaşımlı Tapu</option>
+                            {filterOptions?.data?.[0]?.params?.[9]?.options.map(item => (
+                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                ))}
                         </select>
                     </div>
                     <div className="max-[992px]:w-full">
