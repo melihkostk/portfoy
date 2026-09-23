@@ -12,6 +12,7 @@ import { Pagination } from "../components/Pagination"
 import { Link, useSearchParams } from "react-router-dom"
 import blind from "../assets/blind.png"
 import save from "../assets/save.png"
+import downArrow from "../assets/down-arrow.png"
 import { getAllFilterOptions } from "../services/filterApi"
 
 export function Properties({ loged }) {
@@ -34,8 +35,55 @@ export function Properties({ loged }) {
     const featured = searchParams.get("featured");
     const customerId = searchParams.get("customer_id");
 
+    const [paramValues, setParamValues] = useState({});
+    const [appliedParamValues, setAppliedParamValues] = useState({});
+
+    useEffect(() => {
+        setParamValues({});
+        setAppliedParamValues({});
+    }, [typeId]);
+
+    const handleSelectParam = (paramId, value) => {
+        setParamValues(prev => ({ ...prev, [paramId]: value === "" ? undefined : value }));
+    };
+
+    const handleRangeParam = (paramId, key, value) => {
+        setParamValues(prev => ({
+            ...prev,
+            [paramId]: { ...(typeof prev[paramId] === "object" && prev[paramId] ? prev[paramId] : {}), [key]: value }
+        }));
+    };
+
+    const handleTextParam = (paramId, value) => {
+        setParamValues(prev => ({ ...prev, [paramId]: value === "" ? undefined : value }));
+    };
+
+    const applyParamFilters = () => {
+        setAppliedParamValues(paramValues);
+        setPage(1);
+    };
+
     useEffect(() => {
         setLoaded(false)
+
+        const details = {};
+
+        for (const [key, value] of searchParams.entries()) {
+            const match = key.match(/^details\[(\d+)\]$/);
+            if (match) details[match[1]] = value;
+        }
+
+        Object.entries(appliedParamValues).forEach(([paramId, value]) => {
+            if (value && typeof value === "object") {
+                const { min, max } = value;
+                if (!min && !max) return;
+                details[paramId] = { min: min || undefined, max: max || undefined };
+                return;
+            }
+            if (value === undefined || value === null || value === "") return;
+            details[paramId] = value;
+        });
+
         filterPublishedProperties({
             r: selectedSorting,
             page,
@@ -46,8 +94,9 @@ export function Properties({ loged }) {
             city_id: cityId,
             featured,
             customer_id: customerId,
+            details: Object.keys(details).length ? details : undefined,
         }).then(setProperties).finally(() => setLoaded(true))
-    }, [selectedSorting, page, filter, typeId, minSellPrice, maxSellPrice, cityId, featured, customerId])
+    }, [selectedSorting, page, filter, typeId, minSellPrice, maxSellPrice, cityId, featured, customerId, appliedParamValues, searchParams])
 
     const [flexDirection, setFlexDirection] = useState("");
 
@@ -70,6 +119,12 @@ export function Properties({ loged }) {
     useEffect(() => {
         getAllFilterOptions(typeId).then(setOptions)
     }, [typeId])
+
+    const [openGroups, setOpenGroups] = useState({});
+
+    const toggleGroup = (title) => {
+        setOpenGroups(prev => ({ ...prev, [title]: !prev[title] }));
+    };
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -132,61 +187,94 @@ export function Properties({ loged }) {
                         <div>
                             <button className="text-center w-full bg-[#f8f8f8] rounded-lg py-2.5 mb-5 text-sm cursor-pointer hover:bg-[#27c5d2] hover:text-white transition-colors duration-300 ease-in-out">Hızlı Filtreler</button>
                         </div>
-                        <div className="p-3.75 bg-[#f8f8f8] rounded-lg mb-7.5">
-                            <p className="text-[#212529] mb-1.25 font-medium">Otomatik Yenile</p>
-                            <p className="text-[#525252] text-[13px]">Filtrelerde yapılan değişikliklerde ilan listesi yenilenir</p>
-                            <input className="w-8" type="checkbox" role="switch" id="autoRefreshListPicker"></input>
-                            <label className="text-[13px] text-[#212529]" htmlFor="">Aktif</label>
-                        </div>
                         <div>
                             <div className="flex justify-between mb-3.75">
                                 <p className="uppercase text-sm text-[#b4b4b4]">Ilanları Filtrele</p>
                                 <Link className="underline text-sm cursor-pointer text-[#b4b4b4] hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">Temizle</Link>
                             </div>
                             <div className="mb-5">
-                                {options?.data?.map(item => (
-                                    <div key={item.title} className="py-2.5 text-[#6c757d] text-sm cursor-pointer w-full text-start">
-                                        <h2 className="uppercase py-2.5">{item.title}</h2>
-                                        <div>
-                                            {item?.params?.filter(param => param.details?.can_filter)?.map((param) => (
-                                                <div className="flex flex-col" key={param.id}>
-                                                    <label className="text-sm text-[#878787] mb-2">{param.title}</label>
+                                {options?.data?.map(item => {
+                                    const isOpen = !!openGroups[item.title];
+                                    return (
+                                        <div key={item.title} className="py-2.5 text-[#6c757d] text-sm w-full text-start">
+                                            <button
+                                                type="button"
+                                                onClick={() => toggleGroup(item.title)}
+                                                className="flex items-center justify-between w-full uppercase py-2.5 cursor-pointer"
+                                            >
+                                                <h2>{item.title}</h2>
+                                                <img
+                                                    className={`w-3 h-3 transition-transform duration-300 ease-in-out ${isOpen ? "rotate-180" : ""}`}
+                                                    src={downArrow}
+                                                    alt=""
+                                                />
+                                            </button>
+                                            {isOpen && (
+                                                <div className="flex flex-col gap-3.75 pt-2.5">
+                                                    {item?.params?.filter(param => param.details?.can_filter)?.map((param) => (
+                                                        <div className="flex flex-col" key={param.id}>
+                                                            <label className="text-sm text-[#878787] mb-2">{param.title}</label>
 
-                                                    {param.input_type === "select" && (
-                                                        <select className="border border-[#ced4da] rounded-lg py-1.5 px-3 min-h-9.5">
-                                                            <option value="">Seçiniz</option>
-                                                            {param.options.map((opt) => (
-                                                                <option key={opt.id} value={opt.id}>
-                                                                    {opt.title}
-                                                                </option>
-                                                            ))}
-                                                        </select>
-                                                    )}
+                                                            {param.input_type === "select" && (
+                                                                <select
+                                                                    className="border border-[#ced4da] rounded-lg py-1.5 px-3 min-h-9.5"
+                                                                    value={paramValues[param.id] ?? ""}
+                                                                    onChange={(e) => handleSelectParam(param.id, e.target.value)}
+                                                                >
+                                                                    <option value="">Seçiniz</option>
+                                                                    {param.options.map((opt) => (
+                                                                        <option key={opt.id} value={opt.id}>
+                                                                            {opt.title}
+                                                                        </option>
+                                                                    ))}
+                                                                </select>
+                                                            )}
 
-                                                    {param.input_type === "number" && (
-                                                        <div className="flex gap-2">
-                                                            <input type="number" min={param.details?.min ?? undefined} placeholder="En az" className="border border-[#ced4da] rounded-lg py-1.5 px-3 w-full  min-h-9.5" />
-                                                            {param.details?.is_range === "1" && (
-                                                                <input type="number" max={param.details?.max ?? undefined} placeholder="En fazla" className="border border-[#ced4da] rounded-lg py-1.5 px-3 w-full" />
+                                                            {param.input_type === "number" && (
+                                                                <div className="flex gap-2">
+                                                                    <input
+                                                                        type="number"
+                                                                        min={param.details?.min ?? undefined}
+                                                                        placeholder="En az"
+                                                                        className="border border-[#ced4da] rounded-lg py-1.5 px-3 w-full  min-h-9.5"
+                                                                        value={paramValues[param.id]?.min ?? ""}
+                                                                        onChange={(e) => handleRangeParam(param.id, "min", e.target.value)}
+                                                                    />
+                                                                    {param.details?.is_range === "1" && (
+                                                                        <input
+                                                                            type="number"
+                                                                            max={param.details?.max ?? undefined}
+                                                                            placeholder="En fazla"
+                                                                            className="border border-[#ced4da] rounded-lg py-1.5 px-3 w-full"
+                                                                            value={paramValues[param.id]?.max ?? ""}
+                                                                            onChange={(e) => handleRangeParam(param.id, "max", e.target.value)}
+                                                                        />
+                                                                    )}
+                                                                </div>
+                                                            )}
+
+                                                            {param.input_type === "text" && (
+                                                                <input
+                                                                    type="text"
+                                                                    className="border border-[#ced4da] rounded-lg py-1.5 px-3 min-h-9.5"
+                                                                    value={paramValues[param.id] ?? ""}
+                                                                    onChange={(e) => handleTextParam(param.id, e.target.value)}
+                                                                />
                                                             )}
                                                         </div>
-                                                    )}
-
-                                                    {param.input_type === "text" && (
-                                                        <input type="text" className="border border-[#ced4da] rounded-lg py-1.5 px-3 min-h-9.5" />
-                                                    )}
+                                                    ))}
                                                 </div>
-                                            ))}
+                                            )}
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                             <div>
-                                <button className="w-full py-2 px-5 bg-[#f1f1f1] uppercase text-sm cursor-pointer text-[#4b4b4b] rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                                <button type="button" onClick={applyParamFilters} className="w-full py-2 px-5 bg-[#f1f1f1] uppercase text-sm cursor-pointer text-[#4b4b4b] rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
                             </div>
                         </div>
                     </div>}
-                    <div className={`flex ${flexDirection === "flex-col" ? "flex-col" : ""} ${searchParams.toString() ? "w-[calc(100%-320px)] pl-12.5" : ""}  flex-wrap max-[992px]:flex-col max-[992px]:gap-4 items-stretch justify-between -mx-3.75 max-[992px]:m-0`}>
+                    <div className={`flex ${flexDirection === "flex-col" ? "flex-col" : ""} ${searchParams.toString() ? "w-[calc(100%-320px)] pl-12.5" : ""}  flex-wrap max-[992px]:flex-col max-[992px]:gap-4 items-start justify-start -mx-3.75 max-[992px]:m-0`}>
                         {!category
                             ? properties?.data?.map(item => (
                                 <PropertiesCard

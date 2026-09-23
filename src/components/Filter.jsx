@@ -91,6 +91,9 @@ export function Filter({searchParams , typeId}) {
         getAllFilterOptions(type).then(setFilterOptions)
     }, [type])
 
+    const findFilterParam = (title) =>
+        filterOptions?.data?.flatMap(group => group.params || [])?.find(param => param.title === title);
+
     return (
         <div>
             <div className="flex flex-col gap-2">
@@ -319,9 +322,9 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                             <div className="flex justify-between cursor-pointer w-full">
-                                <select name="room_count" value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
+                                <select name={findFilterParam("Oda Sayısı")?.id ? `details[${findFilterParam("Oda Sayısı").id}]` : undefined} value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
                                     <option value="">Tümü</option>
-                                    {filterOptions?.data?.[0]?.params?.[0]?.options.map(item => (
+                                    {findFilterParam("Oda Sayısı")?.options?.map(item => (
                                         <option key={item.id} value={item.id}>{item.title}</option>
                                     ))}
                                 </select>
@@ -330,9 +333,9 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Cephe</label>
                             <div className="flex justify-between cursor-pointer w-full">
-                                <select name="facade_id" value={facadeId} onChange={(e) => setFacadeId(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
+                                <select name={findFilterParam("Cephe")?.id ? `details[${findFilterParam("Cephe").id}]` : undefined} value={facadeId} onChange={(e) => setFacadeId(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
                                     <option value="">Tümü</option>
-                                    {filterOptions?.data?.[0]?.params?.[10]?.options?.map((item) => (
+                                    {findFilterParam("Cephe")?.options?.map((item) => (
                                         <option key={item.id} value={item.id}>
                                             {item.title}
                                         </option>
@@ -343,9 +346,9 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Isıtma sistemi</label>
                             <div className="flex justify-between cursor-pointer w-full">
-                                <select name="heating_id" value={heatingId} onChange={(e) => setHeatingId(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
+                                <select name={findFilterParam("Isıtma Sistemi")?.id ? `details[${findFilterParam("Isıtma Sistemi").id}]` : undefined} value={heatingId} onChange={(e) => setHeatingId(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
                                     <option value="">Tümü</option>
-                                    {filterOptions?.data?.[0]?.params?.[12]?.options?.map((item) => (
+                                    {findFilterParam("Isıtma Sistemi")?.options?.map((item) => (
                                         <option key={item.id} value={item.id}>
                                             {item.title}
                                         </option>
@@ -564,9 +567,9 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                             <div className="flex justify-between cursor-pointer w-full">
-                                <select name="room_count" value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
+                                <select name={findFilterParam("Oda Sayısı")?.id ? `details[${findFilterParam("Oda Sayısı").id}]` : undefined} value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
                                     <option value="">Oda Sayısı</option>
-                                    {filterOptions?.data?.[0]?.params?.[0]?.options.map(item => (
+                                    {findFilterParam("Oda Sayısı")?.options?.map(item => (
                                         <option key={item.id} value={item.id}>{item.title}</option>
                                     ))}
                                 </select>
@@ -777,9 +780,9 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-[25%] pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Arsa Tapu Türü</label>
                             <div className="flex justify-between cursor-pointer w-full">
-                                <select name="land_title_type_id" value={landTitleTypeId} onChange={(e) => setLandTitleTypeId(e.target.value)} className="text-[13px] font-semibold w-full" id="">
+                                <select name={findFilterParam("Arsa Tapu Türü")?.id ? `details[${findFilterParam("Arsa Tapu Türü").id}]` : undefined} value={landTitleTypeId} onChange={(e) => setLandTitleTypeId(e.target.value)} className="text-[13px] font-semibold w-full" id="">
                                     <option value="">Arsa Tapu Türü</option>
-                                    {filterOptions?.data?.[0]?.params?.[8]?.options.map(item => (
+                                    {findFilterParam("Arsa Tapu Türü")?.options?.map(item => (
                                         <option key={item.id} value={item.id}>{item.title}</option>
                                     ))}
                                 </select>
@@ -899,9 +902,9 @@ export function Filter({searchParams , typeId}) {
                         </div>
                         <div className="flex-1 max-w-[25%] pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Tarla Tapu Türü</label>
-                            <select name="field_title_type_id" value={fieldTitleTypeId} onChange={(e) => setFieldTitleTypeId(e.target.value)} className="text-[13px] font-semibold w-full" id="">
+                            <select name={findFilterParam("Tarla Tapu Türü")?.id ? `details[${findFilterParam("Tarla Tapu Türü").id}]` : undefined} value={fieldTitleTypeId} onChange={(e) => setFieldTitleTypeId(e.target.value)} className="text-[13px] font-semibold w-full" id="">
                                 <option value="">Tarla Tapu Türü</option>
-                                {filterOptions?.data?.[0]?.params?.[9]?.options.map(item => (
+                                {findFilterParam("Tarla Tapu Türü")?.options?.map(item => (
                                     <option key={item.id} value={item.id}>{item.title}</option>
                                 ))}
                             </select>

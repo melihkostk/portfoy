@@ -10,7 +10,7 @@ import personal from "../assets/personal.png"
 
 export function PropertiesCard(props) {
     return (
-        <div className={`flex items-start ${props.page === "proposalDetail" ? "w-full m-0 p-7.5" : ""} bg-[#FAFAFA] shrink-0 max-[992px]:w-full max-[992px]:m-0 ${props.flexDirection === "flex-col" ? "w-full" : ""}  max-[992px]:flex-col p-3.75 m-3.75 rounded-[10px] ${props.page === "wishlist" ? "w-[46%]" : "w-[30%]"} ${props.page === "myProperties" ? "w-full" : ""}`}>
+        <div className={`flex max-h-fit items-start ${props.page === "proposalDetail" ? "w-full m-0 p-7.5" : ""} bg-[#FAFAFA] shrink-0 max-[992px]:w-full max-[992px]:m-0 ${props.flexDirection === "flex-col" ? "w-full" : ""}  max-[992px]:flex-col p-3.75 m-3.75 rounded-[10px] ${props.page === "wishlist" ? "w-[46%]" : "w-[30%]"} ${props.page === "myProperties" ? "w-full" : ""}`}>
             <div className={`w-[50%] ${props.page === "company" ? "aspect-square" : ""} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} max-[992px]:w-full max-[992px]:mb-3.75 ${props.page === "myProperties" ? "aspect-video" : "aspect-square"}`}>
                 <div className="relative h-full">
                     <img className={`rounded-[10px] ${props.page === "company" ? "aspect-square h-1/2" : "h-full"} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} h-full  object-cover max-[992px]:aspect-video`} src={defaultProperty} alt="" />
