@@ -25,6 +25,5 @@ export const createQuickFilter = async (title, notify, filterDetails) => {
         notify: notify,
         filter_details: JSON.stringify(filterDetails),
     })
-    console.log(response.data)
     return response.data;
 }

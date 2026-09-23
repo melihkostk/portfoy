@@ -17,6 +17,7 @@ import { getAllFilterOptions } from "../services/filterApi"
 import close from "../assets/blue-close.png"
 import { createQuickFilter, getQuickFilters } from "../services/quickFiltersApi"
 import menu from "../assets/dark-menu.png"
+import { SuccessPopUp } from "../components/SuccessPopup"
 
 export function Properties({ loged }) {
 
@@ -175,12 +176,17 @@ export function Properties({ loged }) {
         return filterDetails;
     };
 
+    const [error , setError] = useState("");
+    const [successPopUp, setSuccessPopUp] = useState(false);
+
     const handleSaveQuickFilter = async () => {
         await createQuickFilter(filterTitle, notify, buildQuickFilterDetails());
         setAddQuickFilterMenu(false);
         setFilterTitle("");
         setNotify(0);
         getQuickFilters().then(setQuickFilters);
+        setSuccessPopUp(true);
+        setError("Filtre başarıyla kaydedildi");
     };
 
     const titleAndSortRow = (
@@ -221,6 +227,7 @@ export function Properties({ loged }) {
                 </div>
             )}
             <Header loged={loged} />
+            {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
             {quickFilterMenu && <div className="fixed top-1/2 max-h-fit left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[70%] w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
                     <h2 className="text-xl text-[#212529]">Hızlı Filtreler</h2>
@@ -228,7 +235,7 @@ export function Properties({ loged }) {
                 </div>
                 <div className="w-full p-4">
                     {quickFilters.map(item => (
-                        <div className="flex justify-between items-center pb-2.5 mb-2.5 border-b border-b-[#eee]">
+                        <div key={item.id} className="flex justify-between items-center pb-2.5 mb-2.5 border-b border-b-[#eee]">
                             <div className="text-base text-[#212529]">{item.title}</div>
                             <div>
                                 <button className="bg-[#f1f1f1] flex items-start gap-1 cursor-pointer py-2 px-5 rounded-lg text-sm text-[#4b4b4b] hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
