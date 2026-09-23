@@ -1,15 +1,42 @@
 import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PropertySettingsCard } from "../components/PropertySettingsCard";
 import defaultProperty from "../assets/default-property.jpg"
 import chain from "../assets/chain.png"
+import { getDetails } from "../services/propertyDetails";
+import { useParams } from "react-router-dom";
 
 export function EditProperty({ loged }) {
 
     const [editType, setEditType] = useState("info");
     const [understand, setUnderstand] = useState(true)
+
+    const { id } = useParams()
+
+    const [title , setTitle] = useState("")
+    const [passPrice , setPassPrice] = useState("")
+    const [sellPrice , setSellPrice] = useState("");
+    const [currency , setCurrency] = useState("");
+    const [country , setCountry] = useState("");
+    const [city , setCity] = useState("");
+    const [district , setDistrict] = useState("");
+    const [street , setStreet] = useState("");
+
+    useEffect(() => {
+        getDetails(id).then(data => {
+            setTitle(data?.title)
+            setPassPrice(data?.prices?.secondary?.number)
+            setSellPrice(data?.prices?.primary?.number)
+            setCurrency(data?.currency?.title)
+            setCountry(data?.country?.title)
+            setCity(data?.city?.title)
+            setDistrict(data?.district?.title)
+            setStreet(data?.street?.title)
+            
+        });
+    }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -66,40 +93,40 @@ export function EditProperty({ loged }) {
                             <h5 className="text-[#676767] text-lg py-1.25">Temel Bilgiler</h5>
                         </div>
                         <div className="p-4">
-                            <div className="px-3">
+                            <div className="px-3 mb-2">
                                 <label className="text-[#6c757d]" htmlFor="">Başlık</label>
-                                <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <input value={title} onChange={(e) => setTitle(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                             </div>
                             <div className="flex">
-                                <div className="flex-1 px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <div className="flex-1 px-3 mb-2">
+                                    <label className="text-[#27c5d2]" htmlFor="">Pass Fiyatı <span className="text-sm">(Amerikan Doları)</span></label>
+                                    <input value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                                 </div>
-                                <div className="flex-1 px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <div className="flex-1 px-3 mb-2">
+                                    <label className="text-[#27c5d2]" htmlFor="">Satış Fiyatı <span className="text-sm">(Amerikan Doları)</span></label>
+                                    <input value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                                 </div>
-                                <div className="flex-1 px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <div className="flex-1 px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Para Birimi</label>
+                                    <input value={currency} onChange={(e) => setCurrency(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
                             </div>
                             <div className="flex">
-                                <div className="flex-1 px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <div className="flex-1 px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Ülke Seçin</label>
+                                    <input value={country} onChange={(e) => setCountry(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="flex-1 px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <div className="flex-1 px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">İl Seçin</label>
+                                    <input value={city} onChange={(e) => setCity(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="flex-1 px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <div className="flex-1 px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">İlçe Seçin</label>
+                                    <input value={district} onChange={(e) => setDistrict(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="flex-1 px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <div className="flex-1 px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Mahalle</label>
+                                    <input value={street} onChange={(e) => setStreet(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
                             </div>
                         </div>
@@ -125,52 +152,52 @@ export function EditProperty({ loged }) {
                         </div>
                         <div className="p-4">
                             <div className="flex flex-wrap justify-between">
-                                <div className="w-[25%] px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
+                                <div className="w-[25%] px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Emlak Acentesi Satış İzni</label>
                                     <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="w-[25%] px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
+                                <div className="w-[25%] px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">İmar Durumu</label>
                                     <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="w-[25%] px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
+                                <div className="w-[25%] px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Ada Numarası *</label>
                                     <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="w-[25%] px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
+                                <div className="w-[25%] px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Parsel Numarası *</label>
                                     <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="w-[25%] px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
+                                <div className="w-[25%] px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Kaks(Emsal)</label>
                                     <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="w-[25%] px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
+                                <div className="w-[25%] px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Gabari</label>
                                     <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="w-[25%] px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
+                                <div className="w-[25%] px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Kat Karşılığı</label>
                                     <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="w-[25%] px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
+                                <div className="w-[25%] px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Takasa Uygun</label>
                                     <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="w-[25%] px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
+                                <div className="w-[25%] px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Arsa Tapu Türü *</label>
                                     <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="w-[25%] px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
+                                <div className="w-[25%] px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Arsa Altyapı</label>
                                     <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="w-[25%] px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
+                                <div className="w-[25%] px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Metrekare (m²) *</label>
                                     <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
-                                <div className="w-[25%] px-3">
-                                    <label className="text-[#6c757d]" htmlFor="">Başlık</label>
+                                <div className="w-[25%] px-3 mb-2">
+                                    <label className="text-[#6c757d]" htmlFor="">Taksitli Satışa Uygun</label>
                                     <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
                             </div>

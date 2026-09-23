@@ -15,7 +15,7 @@ export function DoughnutChart() {
                     data={{
                         labels: ["Apartman", "Arsa", "Villa", "Tarla", "Proje Villa", "Proje Apartman"],
                         datasets: [{
-                            label: "Değerlendirmeler",
+                            label: "Kategorisine Göre İlanlar",
                             data: [0, 2, 4, 6, 8, 10],
                             backgroundColor: ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300"],
                             borderColor: "#fcfcfb",
