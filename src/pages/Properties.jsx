@@ -147,6 +147,8 @@ export function Properties({ loged }) {
         getQuickFilters().then(setQuickFilters)
     }, [])
 
+    const [addQuickFilterMenu , setAddQuickFilterMenu] = useState(false)
+
     const titleAndSortRow = (
         <div className="flex items-center flex-wrap justify-between">
             <h1 className="text-[25px] text-[#212529] font-medium">
@@ -174,7 +176,7 @@ export function Properties({ loged }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            {quickFilterMenu && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(quickFilterMenu || addQuickFilterMenu) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -204,6 +206,26 @@ export function Properties({ loged }) {
                     ))}
                 </div>
             </div>}
+            {addQuickFilterMenu && <div className="fixed top-1/2 max-h-fit left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[70%] w-[30%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529]">Filtreyi Kaydet</h2>
+                    <img onClick={() => setAddQuickFilterMenu(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
+                </div>
+                <div className="p-4">
+                    <p className="text-base text-[#212529] mb-4">Filtreleme seçeneklerinizi daha sonra kullanmak üzere kaydedebilirsiniz. Ayrıca isterseniz kaydettiğiniz filtreye uygun yeni ilan eklendiğinde bildirim alabilirsiniz.</p>
+                    <div className="mb-2">
+                        <label className="text-[#212529]" htmlFor="title">Filtre Başlığı</label>
+                        <input id="title" name="title" className="block w-full px-3 py-1.5 border border-[#d9d9d9] rounded-lg" type="text" placeholder="Filtre Başlığı" />    
+                    </div>
+                    <div className="mb-2">
+                        <input id="notify" name="notify" type="checkbox" />
+                        <label className="text-base text-[#212529] ml-2" htmlFor="notify">Filtreye uygun yeni ilan eklendiğinde beni bildir</label>
+                    </div>
+                    <div>
+                        <button className="text-white bg-[#27c5d2] cursor-pointer rounded-lg text-sm py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">Kaydet</button>    
+                    </div>                
+                </div>
+            </div>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İlanlar</span></p>
@@ -215,7 +237,7 @@ export function Properties({ loged }) {
                     <Filter setFilterShown={setFilterShown} searchParams={searchParams} typeId={typeId} />
                 </div>}
                 {searchParams.toString() && <div className="items-end justify-end p-3.75 flex gap-1">
-                    <button className="px-7.5 py-2.5 text-sm cursor-pointer flex items-start hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out bg-[#f8f8f8] rounded-lg text-[#565656] font-semibold">
+                    <button onClick={() => setAddQuickFilterMenu(true)} className="px-7.5 py-2.5 text-sm cursor-pointer flex items-start hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out bg-[#f8f8f8] rounded-lg text-[#565656] font-semibold">
                         <img className="w-4 h-4 mr-2.5" src={save} alt="" />
                         Filtreyi Kaydet
                     </button>
