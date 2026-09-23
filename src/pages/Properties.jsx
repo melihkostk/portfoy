@@ -14,6 +14,9 @@ import blind from "../assets/blind.png"
 import save from "../assets/save.png"
 import downArrow from "../assets/down-arrow.png"
 import { getAllFilterOptions } from "../services/filterApi"
+import close from "../assets/blue-close.png"
+import { getQuickFilters } from "../services/quickFiltersApi"
+import menu from "../assets/dark-menu.png"
 
 export function Properties({ loged }) {
 
@@ -96,7 +99,7 @@ export function Properties({ loged }) {
             customer_id: customerId,
             details: Object.keys(details).length ? details : undefined,
         }).then(setProperties).finally(() => setLoaded(true))
-    }, [selectedSorting, page, filter, typeId, minSellPrice, maxSellPrice, cityId, featured, customerId, appliedParamValues, searchParams.toString()])
+    }, [selectedSorting, page, filter, typeId, minSellPrice, maxSellPrice, cityId, featured, customerId, appliedParamValues, searchParams])
 
     const [flexDirection, setFlexDirection] = useState("");
 
@@ -137,6 +140,13 @@ export function Properties({ loged }) {
     const currentList = !category ? properties?.data : discounted?.data;
     const isEmpty = loaded && currentList?.length === 0;
 
+    const [quickFilterMenu, setQuickFilterMenu] = useState(false)
+    const [quickFilters , setQuickFilters] = useState([]);
+
+    useEffect(() => {
+        getQuickFilters().then(setQuickFilters)
+    }, [])
+
     const titleAndSortRow = (
         <div className="flex items-center flex-wrap justify-between">
             <h1 className="text-[25px] text-[#212529] font-medium">
@@ -164,6 +174,7 @@ export function Properties({ loged }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {quickFilterMenu && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -174,6 +185,25 @@ export function Properties({ loged }) {
                 </div>
             )}
             <Header loged={loged} />
+            {quickFilterMenu && <div className="fixed top-1/2 max-h-fit left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[70%] w-[30%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529]">Hızlı Filtreler</h2>
+                    <img onClick={() => setQuickFilterMenu(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
+                </div>
+                <div className="w-full p-4">
+                    {quickFilters.map(item => (
+                        <div className="flex justify-between items-center pb-2.5 mb-2.5 border-b border-b-[#eee]">
+                            <div className="text-base text-[#212529]">{item.title}</div>
+                            <div>
+                                <button className="bg-[#f1f1f1] flex items-start gap-1 cursor-pointer py-2 px-5 rounded-lg text-sm text-[#4b4b4b] hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                    <img className="w-3.5 h-3.5" src={menu} alt="" />
+                                    Seçenekleri Uygula
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İlanlar</span></p>
@@ -200,7 +230,7 @@ export function Properties({ loged }) {
                 <div className="flex">
                     {typeId && <div className="w-80">
                         <div>
-                            <button className="text-center w-full bg-[#f8f8f8] rounded-lg py-2.5 mb-5 text-sm cursor-pointer hover:bg-[#27c5d2] hover:text-white transition-colors duration-300 ease-in-out">Hızlı Filtreler</button>
+                            <button onClick={() => setQuickFilterMenu(true)} className="text-center w-full bg-[#f8f8f8] rounded-lg py-2.5 mb-5 text-sm cursor-pointer hover:bg-[#27c5d2] hover:text-white transition-colors duration-300 ease-in-out">Hızlı Filtreler</button>
                         </div>
                         <div>
                             <div className="flex justify-between mb-3.75">
