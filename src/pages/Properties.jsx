@@ -9,7 +9,7 @@ import { filterPublishedProperties, getAllPropertiesType, getDiscountedPropertie
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
-import { Link, useSearchParams } from "react-router-dom"
+import { Link, useNavigate, useSearchParams } from "react-router-dom"
 import blind from "../assets/blind.png"
 import save from "../assets/save.png"
 import downArrow from "../assets/down-arrow.png"
@@ -29,6 +29,7 @@ export function Properties({ loged }) {
     const [selectedSorting, setSelectingOption] = useState("");
 
     const [page, setPage] = useState(1);
+    const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const category = searchParams.get('discounted');
     const filter = searchParams.get("q")
@@ -156,6 +157,37 @@ export function Properties({ loged }) {
 
     const [addQuickFilterMenu , setAddQuickFilterMenu] = useState(false)
 
+    const handleApplyQuickFilter = (item) => {
+        let filterDetails = item.filter_details;
+        if (typeof filterDetails === "string") {
+            try {
+                filterDetails = JSON.parse(filterDetails);
+            } catch {
+                filterDetails = {};
+            }
+        }
+        filterDetails = filterDetails || {};
+
+        const params = new URLSearchParams();
+
+        if (filterDetails.types?.length) params.set("type_id", filterDetails.types[0]);
+        if (filterDetails.min_sell_price) params.set("min_sell_price", filterDetails.min_sell_price);
+        if (filterDetails.max_sell_price) params.set("max_sell_price", filterDetails.max_sell_price);
+        if (filterDetails.city_id) params.set("city_id", filterDetails.city_id);
+        if (filterDetails.q) params.set("q", filterDetails.q);
+        if (filterDetails.featured) params.set("featured", filterDetails.featured);
+        if (filterDetails.customer_id) params.set("customer_id", filterDetails.customer_id);
+
+        Object.entries(filterDetails.details || {}).forEach(([paramId, value]) => {
+            if (value && typeof value === "object") return;
+            if (value === undefined || value === null || value === "") return;
+            params.set(`details[${paramId}]`, value);
+        });
+
+        setQuickFilterMenu(false);
+        navigate(`/properties?${params.toString()}`);
+    };
+
     const [filterTitle , setFilterTitle] = useState("");
     const [notify , setNotify] = useState(0)
 
@@ -238,7 +270,7 @@ export function Properties({ loged }) {
                         <div key={item.id} className="flex justify-between items-center pb-2.5 mb-2.5 border-b border-b-[#eee]">
                             <div className="text-base text-[#212529]">{item.title}</div>
                             <div>
-                                <button className="bg-[#f1f1f1] flex items-start gap-1 cursor-pointer py-2 px-5 rounded-lg text-sm text-[#4b4b4b] hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                <button type="button" onClick={() => handleApplyQuickFilter(item)} className="bg-[#f1f1f1] flex items-start gap-1 cursor-pointer py-2 px-5 rounded-lg text-sm text-[#4b4b4b] hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                     <img className="w-3.5 h-3.5" src={menu} alt="" />
                                     Seçenekleri Uygula
                                 </button>

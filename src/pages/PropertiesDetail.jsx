@@ -19,6 +19,7 @@ import grayHeart from "../assets/gray-heart.png"
 import { CreateOfferModel } from "../components/CreateOfferModal"
 import graph from "../assets/increase-graph.png"
 import pen from "../assets/pen.png"
+import whiteClose from "../assets/close.png"
 
 export function PropertiesDetail({ loged }) {
 
@@ -112,8 +113,9 @@ export function PropertiesDetail({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İlanlar {">"}</span><span className="text-[#9a9898]"> {details?.type?.title} {">"}</span><span className="text-[#9a9898]"> {details?.title}</span></p>
                 </div>
             </div>
-            {toogleMessageShown && <div className="fixed right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+            {toogleMessageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
                 <p>{toogleMessage}</p>
+                <img onClick={() => setToogleMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
             </div>}
             {errorMessageShown && <div className="fixed top-1/2 left-1/2 flex flex-col items-center justify-start p-3 -translate-x-1/2 -translate-y-1/2 h-1/2 w-1/2 bg-white border border-[#eee] rounded-lg z-50">
                 <div onClick={() => setErrorMessageShown(false)} className="self-end cursor-pointer">
