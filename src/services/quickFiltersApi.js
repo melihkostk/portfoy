@@ -18,3 +18,13 @@ export const editQuickFilters = async (id, title , notify) => {
         });
     return response.data;
 }
+
+export const createQuickFilter = async (title, notify, filterDetails) => {
+    const response = await api.post("/auth/quick-filters/create", {
+        title: title,
+        notify: notify,
+        filter_details: JSON.stringify(filterDetails),
+    })
+    console.log(response.data)
+    return response.data;
+}

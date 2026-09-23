@@ -15,7 +15,7 @@ import save from "../assets/save.png"
 import downArrow from "../assets/down-arrow.png"
 import { getAllFilterOptions } from "../services/filterApi"
 import close from "../assets/blue-close.png"
-import { getQuickFilters } from "../services/quickFiltersApi"
+import { createQuickFilter, getQuickFilters } from "../services/quickFiltersApi"
 import menu from "../assets/dark-menu.png"
 
 export function Properties({ loged }) {
@@ -66,9 +66,7 @@ export function Properties({ loged }) {
         setPage(1);
     };
 
-    useEffect(() => {
-        setLoaded(false)
-
+    const buildDetails = () => {
         const details = {};
 
         for (const [key, value] of searchParams.entries()) {
@@ -86,6 +84,14 @@ export function Properties({ loged }) {
             if (value === undefined || value === null || value === "") return;
             details[paramId] = value;
         });
+
+        return details;
+    };
+
+    useEffect(() => {
+        setLoaded(false)
+
+        const details = buildDetails();
 
         filterPublishedProperties({
             r: selectedSorting,
@@ -148,6 +154,34 @@ export function Properties({ loged }) {
     }, [])
 
     const [addQuickFilterMenu , setAddQuickFilterMenu] = useState(false)
+
+    const [filterTitle , setFilterTitle] = useState("");
+    const [notify , setNotify] = useState(0)
+
+    const buildQuickFilterDetails = () => {
+        const filterDetails = {};
+
+        if (typeId) filterDetails.types = [Number(typeId)];
+        if (minSellPrice) filterDetails.min_sell_price = minSellPrice;
+        if (maxSellPrice) filterDetails.max_sell_price = maxSellPrice;
+        if (cityId) filterDetails.city_id = cityId;
+        if (filter) filterDetails.q = filter;
+        if (featured) filterDetails.featured = featured;
+        if (customerId) filterDetails.customer_id = customerId;
+
+        const details = buildDetails();
+        if (Object.keys(details).length) filterDetails.details = details;
+
+        return filterDetails;
+    };
+
+    const handleSaveQuickFilter = async () => {
+        await createQuickFilter(filterTitle, notify, buildQuickFilterDetails());
+        setAddQuickFilterMenu(false);
+        setFilterTitle("");
+        setNotify(0);
+        getQuickFilters().then(setQuickFilters);
+    };
 
     const titleAndSortRow = (
         <div className="flex items-center flex-wrap justify-between">
@@ -215,14 +249,14 @@ export function Properties({ loged }) {
                     <p className="text-base text-[#212529] mb-4">Filtreleme seçeneklerinizi daha sonra kullanmak üzere kaydedebilirsiniz. Ayrıca isterseniz kaydettiğiniz filtreye uygun yeni ilan eklendiğinde bildirim alabilirsiniz.</p>
                     <div className="mb-2">
                         <label className="text-[#212529]" htmlFor="title">Filtre Başlığı</label>
-                        <input id="title" name="title" className="block w-full px-3 py-1.5 border border-[#d9d9d9] rounded-lg" type="text" placeholder="Filtre Başlığı" />    
+                        <input value={filterTitle} onChange={(e) => setFilterTitle(e.target.value)} id="title" name="title" className="block w-full px-3 py-1.5 border border-[#d9d9d9] rounded-lg" type="text" placeholder="Filtre Başlığı" />    
                     </div>
                     <div className="mb-2">
-                        <input id="notify" name="notify" type="checkbox" />
+                        <input checked={notify === 1} onChange={(e) => setNotify(e.target.checked ? 1 : 0)} id="notify" name="notify" type="checkbox" />
                         <label className="text-base text-[#212529] ml-2" htmlFor="notify">Filtreye uygun yeni ilan eklendiğinde beni bildir</label>
                     </div>
                     <div>
-                        <button className="text-white bg-[#27c5d2] cursor-pointer rounded-lg text-sm py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">Kaydet</button>    
+                        <button type="button" onClick={handleSaveQuickFilter} className="text-white bg-[#27c5d2] cursor-pointer rounded-lg text-sm py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">Kaydet</button>    
                     </div>                
                 </div>
             </div>}
