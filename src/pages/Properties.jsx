@@ -414,7 +414,7 @@ export function Properties({ loged }) {
                             </div>
                         </div>
                     </div>}
-                    <div className={`${searchParams.toString() ? "w-[calc(100%-320px)] pl-12.5" : "w-full"}`}>
+                    <div className={`${searchParams.toString() && typeId ? "w-[calc(100%-320px)] pl-12.5" : "w-full"}`}>
                         {searchParams.toString() && (
                             <div className="mb-7.5">
                                 {titleAndSortRow}
