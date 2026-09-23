@@ -5,7 +5,7 @@ import flex from "../assets/flex.png"
 import { PropertiesCard } from "../components/PropertiesCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
-import { filterPublishedProperties, getDiscountedProperties, getSortingOptions } from "../services/propertiesApi"
+import { filterPublishedProperties, getAllPropertiesType, getDiscountedProperties, getSortingOptions } from "../services/propertiesApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
@@ -96,7 +96,7 @@ export function Properties({ loged }) {
             customer_id: customerId,
             details: Object.keys(details).length ? details : undefined,
         }).then(setProperties).finally(() => setLoaded(true))
-    }, [selectedSorting, page, filter, typeId, minSellPrice, maxSellPrice, cityId, featured, customerId, appliedParamValues, searchParams])
+    }, [selectedSorting, page, filter, typeId, minSellPrice, maxSellPrice, cityId, featured, customerId, appliedParamValues, searchParams.toString()])
 
     const [flexDirection, setFlexDirection] = useState("");
 
@@ -125,6 +125,42 @@ export function Properties({ loged }) {
     const toggleGroup = (title) => {
         setOpenGroups(prev => ({ ...prev, [title]: !prev[title] }));
     };
+
+    const [propertiesTypes, setPropertiesTypes] = useState([]);
+
+    useEffect(() => {
+        getAllPropertiesType().then(setPropertiesTypes)
+    }, []);
+
+    const currentTypeName = propertiesTypes?.find(item => item.id === Number(typeId))?.title;
+
+    const currentList = !category ? properties?.data : discounted?.data;
+    const isEmpty = loaded && currentList?.length === 0;
+
+    const titleAndSortRow = (
+        <div className="flex items-center flex-wrap justify-between">
+            <h1 className="text-[25px] text-[#212529] font-medium">
+                {category ? "Fırsat İlanlar" : currentTypeName ? `${currentTypeName} İlanları` : "İlanlar"}
+            </h1>
+            <div className="flex items-center gap-5">
+                <div className="flex items-center gap-1.25 max-[992px]:hidden">
+                    <button onClick={() => setFlexDirection("")} className={`${flexDirection === "flex-col" ? "opacity-80 bg-white border border-[#eee]" : ""} w-9.5 h-9.5 rounded-lg bg-[#F8F8F8] cursor-pointer flex items-center justify-center`}>
+                        <img className="w-7 h-7" src={grid} alt="" />
+                    </button>
+                    <button onClick={() => setFlexDirection("flex-col")} className={` ${flexDirection === "flex-col" ? "" : "opacity-80 bg-white border border-[#eee]"} w-9.5 h-9.5 bg-[#F8F8F8] cursor-pointer rounded-lg flex items-center justify-center`}>
+                        <img className="w-4 h-4" src={flex} alt="" />
+                    </button>
+                </div>
+                <div>
+                    <select value={selectedSorting} onChange={(e) => { setSelectingOption(e.target.value); setPage(1) }} className="border border-[#D9D9D9] h-9.5 w-full rounded-lg py-1.5 px-3 text-[#212529]" name="" id="">
+                        {sortingOptions.map(item => (
+                            <option value={item.key} key={item.key}>{item.title}</option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+        </div>
+    );
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -160,28 +196,7 @@ export function Properties({ loged }) {
                 </div>}
             </div>
             <div className={`w-full max-w-[90%] ${filterShown ? "pt-12.5" : "pt-5"}`}>
-                <div className="flex items-center flex-wrap justify-between">
-                    <h1 className="text-[25px] text-[#212529] font-medium">
-                        {!category ? "İlanlar" : "Fırsat İlanlar"}
-                    </h1>
-                    <div className="flex items-center gap-5">
-                        <div className="flex items-center gap-1.25 max-[992px]:hidden">
-                            <button onClick={() => setFlexDirection("")} className={`${flexDirection === "flex-col" ? "opacity-80 bg-white border border-[#eee]" : ""} w-9.5 h-9.5 rounded-lg bg-[#F8F8F8] cursor-pointer flex items-center justify-center`}>
-                                <img className="w-7 h-7" src={grid} alt="" />
-                            </button>
-                            <button onClick={() => setFlexDirection("flex-col")} className={` ${flexDirection === "flex-col" ? "" : "opacity-80 bg-white border border-[#eee]"} w-9.5 h-9.5 bg-[#F8F8F8] cursor-pointer rounded-lg flex items-center justify-center`}>
-                                <img className="w-4 h-4" src={flex} alt="" />
-                            </button>
-                        </div>
-                        <div>
-                            <select value={selectedSorting} onChange={(e) => { setSelectingOption(e.target.value); setPage(1) }} className="border border-[#D9D9D9] h-9.5 w-full rounded-lg py-1.5 px-3 text-[#212529]" name="" id="">
-                                {sortingOptions.map(item => (
-                                    <option value={item.key} key={item.key}>{item.title}</option>
-                                ))}
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                {!searchParams.toString() && titleAndSortRow}
                 <div className="flex">
                     {typeId && <div className="w-80">
                         <div>
@@ -274,63 +289,74 @@ export function Properties({ loged }) {
                             </div>
                         </div>
                     </div>}
-                    <div className={`flex ${flexDirection === "flex-col" ? "flex-col" : ""} ${searchParams.toString() ? "w-[calc(100%-320px)] pl-12.5" : ""}  flex-wrap max-[992px]:flex-col max-[992px]:gap-4 items-start justify-start -mx-3.75 max-[992px]:m-0`}>
-                        {!category
-                            ? properties?.data?.map(item => (
-                                <PropertiesCard
-                                    key={item.id}
-                                    title={item.title}
-                                    cover={item.cover}
-                                    price={item.price.formatted}
-                                    company={item.company.title}
-                                    type={item.type.title}
-                                    city={item.city.title}
-                                    district={item.district.title}
-                                    id={item.id}
-                                    badges={item?.badges?.[0]?.title}
-                                    page="properties"
-                                    flexDirection={flexDirection}
+                    <div className={`${searchParams.toString() ? "w-[calc(100%-320px)] pl-12.5" : "w-full"}`}>
+                        {searchParams.toString() && (
+                            <div className="mb-7.5">
+                                {titleAndSortRow}
+                            </div>
+                        )}
+                        {isEmpty ? (
+                            <div className="w-full p-3.75 m-3.75 text-start text-[#636464] bg-[#fafafa] rounded-lg">
+                                <p>Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</p>
+                            </div>
+                        ) : (
+                            <div className={`flex ${flexDirection === "flex-col" ? "flex-col" : ""} flex-wrap max-[992px]:flex-col max-[992px]:gap-4 items-start justify-start -mx-3.75 max-[992px]:m-0`}>
+                                {!category
+                                    ? properties?.data?.map(item => (
+                                        <PropertiesCard
+                                            key={item.id}
+                                            title={item.title}
+                                            cover={item.cover}
+                                            price={item.price.formatted}
+                                            company={item.company.title}
+                                            type={item.type.title}
+                                            city={item.city.title}
+                                            district={item.district.title}
+                                            id={item.id}
+                                            badges={item?.badges?.[0]?.title}
+                                            page="properties"
+                                            flexDirection={flexDirection}
+                                        />
+                                    ))
+                                    : discounted?.data?.map(item => (
+                                        <PropertiesCard
+                                            key={item.id}
+                                            title={item.title}
+                                            cover={item.cover}
+                                            price={item.price.formatted}
+                                            company={item.company.title}
+                                            type={item.type.title}
+                                            city={item.city.title}
+                                            district={item.district.title}
+                                            id={item.id}
+                                            page="properties"
+                                            flexDirection={flexDirection}
+                                            badges={item?.badges?.[0]?.title}
+                                        />
+                                    ))}
+                            </div>
+                        )}
+                        {!isEmpty && (!category ? <div className="flex items-center justify-between w-full mt-0 max-[992px]:flex-col max-[992px]:items-center">
+                            <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
+                                {properties?.pagination?.pagination_text}
+                            </p>
+                            <Pagination
+                                pagination={properties?.pagination}
+                                onPageChange={setPage}
+                            />
+                        </div> : (
+                            <div className="flex items-center justify-between w-full mt-7.5 max-[992px]:flex-col max-[992px]:items-center">
+                                <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
+                                    {discounted?.pagination?.pagination_text}
+                                </p>
+                                <Pagination
+                                    pagination={discounted?.pagination}
+                                    onPageChange={setPage}
                                 />
-                            ))
-                            : discounted?.data?.map(item => (
-                                <PropertiesCard
-                                    key={item.id}
-                                    title={item.title}
-                                    cover={item.cover}
-                                    price={item.price.formatted}
-                                    company={item.company.title}
-                                    type={item.type.title}
-                                    city={item.city.title}
-                                    district={item.district.title}
-                                    id={item.id}
-                                    page="properties"
-                                    flexDirection={flexDirection}
-                                    badges={item?.badges?.[0]?.title}
-                                />
-                            ))}
+                            </div>
+                        ))}
                     </div>
                 </div>
-            </div>
-            <div className="w-full max-w-[90%]">
-                {!category ? <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center">
-                    <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
-                        {properties?.pagination?.pagination_text}
-                    </p>
-                    <Pagination
-                        pagination={properties?.pagination}
-                        onPageChange={setPage}
-                    />
-                </div> : (
-                    <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center">
-                        <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
-                            {discounted?.pagination?.pagination_text}
-                        </p>
-                        <Pagination
-                            pagination={discounted?.pagination}
-                            onPageChange={setPage}
-                        />
-                    </div>
-                )}
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
