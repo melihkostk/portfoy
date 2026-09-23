@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets, getAllCurrencies, getAllFilterOptions } from "../services/filterApi"
 import { getAllPropertiesType } from "../services/propertiesApi"
 
-export function Filter({searchParams}) {
+export function Filter({searchParams , typeId}) {
 
     const [priceFilter, setPriceFilter] = useState(false)
     const [cateFilter, setCateFilter] = useState(false)
@@ -79,7 +79,11 @@ export function Filter({searchParams}) {
         getAllPropertiesType().then(setPropertiesType)
     }, [])
 
-    const [type, setType] = useState("All")
+    const [type, setType] = useState(typeId ? Number(typeId) : "All")
+
+    useEffect(() => {
+        setType(typeId ? Number(typeId) : "All")
+    }, [typeId])
 
     const [filterOptions, setFilterOptions] = useState([]);
 
@@ -92,11 +96,11 @@ export function Filter({searchParams}) {
             <div className="flex flex-col gap-2">
                 <ul className='flex mt-10 max-w-full overflow-x-auto scrollbar-thin scrollbar-thumb-[#27C5D2] gap-2.5'>
                     <li>
-                        <button onClick={() => setType("All")} className='px-7.5 py-2.5 text-sm opacity-70 text-black cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100'>Tümü</button>
+                        <button onClick={() => setType("All")} className={`px-7.5 py-2.5 text-sm text-black cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === "All" ? "bg-[#27c5d2] opacity-100" : "opacity-70"}`}>Tümü</button>
                     </li>
                     {propertiesType?.map(item => (
                         <li key={item.id}>
-                            <button onClick={() => setType(item.id)} className={`px-7.5 ${searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"} py-2.5 text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100`}>{item.title}</button>
+                            <button onClick={() => setType(item.id)} className={`px-7.5 py-2.5 text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === item.id ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"}`}>{item.title}</button>
                         </li>
                     ))}
                 </ul>
