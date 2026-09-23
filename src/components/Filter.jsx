@@ -99,7 +99,7 @@ export function Filter({searchParams , typeId}) {
             <div className="flex flex-col gap-2">
                 <ul className='flex mt-10 max-w-full overflow-x-auto scrollbar-thin scrollbar-thumb-[#27C5D2] gap-2.5'>
                     <li>
-                        <button onClick={() => setType("All")} className={`px-7.5 py-2.5 text-sm text-black cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === "All" ? "bg-[#27c5d2] opacity-100" : "opacity-70"}`}>Tümü</button>
+                        <button onClick={() => setType("All")} className={`px-7.5 py-2.5 text-sm text-black cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === "All" ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : "opacity-70"}`}>Tümü</button>
                     </li>
                     {propertiesType?.map(item => (
                         <li key={item.id}>

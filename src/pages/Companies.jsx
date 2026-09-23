@@ -108,6 +108,7 @@ export function Companies({ loged }) {
                     </div>
                     <CompanyFilter
                         type={type}
+                        page="companies"
                         selectedType={selectedType}
                         setSelectedType={setSelectedType}
                         countries={countries}

@@ -7,7 +7,7 @@ import { PropertiesCard } from "../components/PropertiesCard"
 import { getWishlist } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
-import { getSortingOptions, toggleWishlist } from "../services/propertiesApi"
+import { getAllPropertiesType, getSortingOptions, toggleWishlist } from "../services/propertiesApi"
 import close from "../assets/close.png"
 import { getCompanyTypes } from "../services/companiesApi"
 import { getAllCities, getAllCountries, getAllDistricts } from "../services/filterApi"
@@ -70,6 +70,13 @@ export function Wishlist({ loged }) {
         getWishlist(selectedSort, selectedType, selectedCountry, selectedCity, selectedDistrict, page).then(setWishlist).finally(() => setLoaded(true))
     }, [selectedSort])
 
+    const [propertyType , setPropertyType] = useState([]);
+    const [selectedPropertyType , setSelectedPropertyType] = useState("");
+
+    useEffect(() => {
+        getAllPropertiesType().then(setPropertyType)
+    }, [])
+
     const [toogleMessageShown, setToogleMessageShown] = useState(false)
     const [toogleMessage, setToogleMessage] = useState("")
 
@@ -83,9 +90,9 @@ export function Wishlist({ loged }) {
         })
     }
 
-    function handleFilterWishlist(type, country, city, district) {
+    function handleFilterWishlist(selectedPropertyType, country, city, district) {
         setLoaded(false)
-        getWishlist(selectedSort, type, country, city, district).then(setWishlist).finally(() => setLoaded(true))
+        getWishlist(selectedSort, selectedPropertyType, country, city, district).then(setWishlist).finally(() => setLoaded(true))
     }
 
     return (
@@ -140,6 +147,9 @@ export function Wishlist({ loged }) {
                                 selectedType={selectedType}
                                 setSelectedType={setSelectedType}
                                 filterCompany={handleFilterWishlist}
+                                propertyType={propertyType}
+                                selectedPropertyType={selectedPropertyType}
+                                setSelectedPropertyType={setSelectedPropertyType}
                             />
                         </div>
                         <div className="flex flex-wrap justify-between -mx-3.75">
