@@ -80,10 +80,10 @@ export function Offers({ loged }) {
                             </div>}
                             <div>
                                 <div className="flex">
-                                    <div className="flex-1 max-w-full text-center">
+                                    {offerInfo?.data?.pricing_type === "PASS" && <div className="flex-1 max-w-full text-center">
                                         <p className="text-sm text-[#212529] opacity-70 font-semibold">Pass Fiyatı</p>
                                         <p className="text-[22px] text-[#212529]">{offerInfo?.data?.prices?.secondary?.formatted}</p>
-                                    </div>
+                                    </div>}
                                     <div className="flex-1 max-w-full text-center">
                                         <p className="text-sm text-[#212529] opacity-70 font-semibold">Satış Fiyatı</p>
                                         <p className="text-[22px] text-[#212529]">{offerInfo?.data?.prices?.primary?.formatted}</p>
