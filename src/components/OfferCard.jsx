@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { showOffer } from "../services/profileApi";
 
-export function OfferCard({ title, price, offered_price, status, created_at, setLoaded , id, type , index , setOfferMenuShown , offerInfo , setOfferInfo }) {
+export function OfferCard({ title, price, offered_price, status, created_at, setLoaded , id, type , index , setOfferMenuShown , setOfferInfo , setSelectedOfferId }) {
 
     const handleShowOffer = () => {
         setOfferMenuShown(true)
+        setSelectedOfferId(id)
         setLoaded(false)
         showOffer(id).then(setOfferInfo).finally(() => setLoaded(true))
     }

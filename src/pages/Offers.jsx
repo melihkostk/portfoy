@@ -3,12 +3,14 @@ import { Sidebar } from "../components/Sidebar"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { OfferCard } from "../components/OfferCard"
-import { getReceivedOffers, getSendedOffers } from "../services/profileApi"
+import { getReceivedOffers, getSendedOffers, replyOffer } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import {useParams } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
+import { SuccessPopUp } from "../components/SuccessPopup"
 import close from "../assets/blue-close.png"
+import defaultCompany from "../assets/default-company.png"
 
 export function Offers({ loged }) {
 
@@ -33,9 +35,34 @@ export function Offers({ loged }) {
 
     const [offerMenuShown, setOfferMenuShown] = useState(false)
     const [offerInfo, setOfferInfo] = useState([]);
+    const [selectedOfferId, setSelectedOfferId] = useState(null);
+
+    const [status , setStatus] = useState("");
+    const [note , setNote] = useState("");
+
+    const [error , setError] = useState("");
+    const [successPopUp, setSuccessPopUp] = useState(false);
+
+    const closeOfferMenu = () => {
+        setOfferMenuShown(false)
+        setSelectedOfferId(null)
+        setStatus("")
+        setNote("")
+    }
+
+    const handleReplyOffer = async () => {
+        if (!status) return
+        console.log(selectedOfferId)
+        await replyOffer(selectedOfferId, status, note)
+        closeOfferMenu()
+        getReceivedOffers(page).then(setReceivedOffers)
+        setError(status === "confirm" ? "Teklif kabul edildi" : "Teklif reddedildi")
+        setSuccessPopUp(true)
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
             {offerMenuShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
@@ -52,10 +79,10 @@ export function Offers({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım {">"}</span><span className="text-[#9a9898]"> Fiyat Tekliflerim</span></p>
                 </div>
             </div>
-            {offerMenuShown && <div className="fixed overflow-y-scroll scrollbar-none top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 w-[25%] h-auto bg-white border border-[#eee] rounded-lg z-50">
+            {offerMenuShown && <div className="fixed overflow-y-scroll scrollbar-none top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 w-[25%] max-h-[95%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">Fiyat Teklifini Görüntüle</h2>
-                    <img onClick={() => setOfferMenuShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
+                    <img onClick={closeOfferMenu} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
                 <div className="p-4 w-full">
                     {!loaded ? (
@@ -65,8 +92,8 @@ export function Offers({ loged }) {
                     ) : (
                         <>
                             <div className="flex bg-[#f9f9f9] p-3.75 rounded-lg w-full mb-7.5 gap-7.5 justify-start">
-                                <div className="w-20 h-20">
-                                    <img className="w-full h-full" src={offerInfo?.data?.company?.logo} alt="company-logo" />
+                                <div className="w-20 h-20 bg-white rounded-full shadow-[0_0_30px_rgba(0,0,0,0.1)]">
+                                    <img className="w-full h-full rounded-full" src={defaultCompany} alt="company-logo" />
                                 </div>
                                 <div>
                                     <div className="text-lg text-[#212529] font-semibold">{offerInfo?.data?.company?.name}</div>
@@ -99,14 +126,14 @@ export function Offers({ loged }) {
                             {offerInfo?.data?.status?.key === "waiting" && <div className="p-3.75 bg-[#f9f9f9] rounded-lg">
                                 <h2 className="text-xl text-[#212529] mb-5 font-semibold">Teklife Yanıt Verin</h2>
                                 <div className="mb-5 flex justify-start gap-2.5">
-                                    <button className="text-sm bg-[#e7e7e7] p-2.5 flex-1 rounded-lg cursor-pointer">Kabul Et</button>
-                                    <button className="text-sm bg-[#e7e7e7] p-2.5 flex-1 rounded-lg cursor-pointer">Reddet</button>
+                                    <button onClick={() => setStatus("confirm")} className={`text-sm ${status === "confirm" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]" } p-2.5 flex-1 rounded-lg cursor-pointer`}>Kabul Et</button>
+                                    <button onClick={() => setStatus("reject")} className={`text-sm ${status === "reject" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]" } p-2.5 flex-1 rounded-lg cursor-pointer`}>Reddet</button>
                                 </div>
                                 <div className="mb-2">
                                     <label className="text-[#212529]" htmlFor="note">Notunuz</label>
-                                    <textarea className="bg-white px-3 py-1.5 block w-full border border-[#d9d9d9] rounded-lg min-h-[calc(1.5em+0.75rem+2px)]" type="text" id="note" name="note" />
+                                    <textarea value={note} onChange={(e) => setNote(e.target.value)} className="bg-white px-3 py-1.5 block w-full border border-[#d9d9d9] rounded-lg min-h-[calc(1.5em+0.75rem+2px)]" type="text" id="note" name="note" />
                                 </div>
-                                <button className="w-full text-white text-sm font-semibold cursor-pointer hover:bg-[#157347] transition-colors duration-300 ease-in-out bg-[#198754] py-2 px-5 rounded-lg">Kaydet</button>
+                                <button disabled={!status} onClick={handleReplyOffer} className="w-full text-white text-sm font-semibold cursor-pointer hover:bg-[#157347] transition-colors duration-300 ease-in-out bg-[#198754] py-2 px-5 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#198754]">Kaydet</button>
                             </div>}
                         </>
                     )}
@@ -149,8 +176,8 @@ export function Offers({ loged }) {
                                                 type="received"
                                                 index={index}
                                                 setOfferMenuShown={setOfferMenuShown}
-                                                offerInfo={offerInfo}
                                                 setOfferInfo={setOfferInfo}
+                                                setSelectedOfferId={setSelectedOfferId}
                                                 loaded={loaded}
                                                 setLoaded={setLoaded}
                                             />

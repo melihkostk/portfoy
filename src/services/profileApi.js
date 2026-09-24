@@ -40,6 +40,15 @@ export const showOffer = async (id) => {
     return response.data;
 }
 
+export const replyOffer = async (id , status , note) => {
+    const response = await api.post(`/offers/${id}/reply` , {
+        status:status,
+        note:note
+    } );
+    console.log(response.data)
+    return response.data;
+}
+
 export const updateProfile = async (name , phone_code , phone , locale) => {
     const response = await api.post("/auth/profile/update" , {
         name:name,
