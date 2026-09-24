@@ -3,10 +3,46 @@ import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
 import { ProfileCard } from "../components/ProfileCard"
 import { Sidebar } from "../components/Sidebar"
+import heart from "../assets/black-heart.png"
+import menu from "../assets/black-menu.png"
+import file from "../assets/black-file.png"
+import { getProposals, getUserProperties, getWishlist } from "../services/profileApi"
+import { useEffect, useState } from "react"
+import { ClipLoader } from "react-spinners"
+import { getCustomerProposals } from "../services/myCompanyApi"
 
 export function Profile({loged}) {
+
+    const [loaded , setLoaded] = useState(false)
+    const [wishlist , setWishlist] = useState([]);
+
+    useEffect(() => {
+        getWishlist().then(setWishlist).finally(() => setLoaded(true))
+    }, [])
+
+    const [properties , setProperties] = useState([]);
+
+    useEffect(() => {
+        getUserProperties().then(setProperties)
+    }, [])
+
+    const [proposals , setProposals] = useState([]);
+
+    useEffect(() => {
+        getCustomerProposals().then(setProposals)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
@@ -20,10 +56,10 @@ export function Profile({loged}) {
                     </div>
                     <div className="w-[72%] pl-7.5 max-[992px]:w-full max-[992px]:pl-0">
                         <div className="flex max-[992px]:flex-wrap justify-between -ml-3.75 -mr-3.75">
-                            <ProfileCard />
-                            <ProfileCard />
-                            <ProfileCard />
-                            <ProfileCard />
+                            <ProfileCard title="ilan" link="auth/properties" img={menu} number={properties?.pagination?.total} />
+                            <ProfileCard title="favori ilan" link="wishlist" img={heart} number={wishlist?.data?.length} />
+                            <ProfileCard title="teklif" link="proposals" img={file} number={proposals?.proposals?.length} />
+                            <ProfileCard title = "kullanıcı davetiye" link="company/team" img={menu} number="18" />
                         </div>
                         <div className="mt-7.5">
                             <h2 className="mb-5 text-[25px] text-[#212529]">Güncellenme Gerektiren İlanlar</h2>

@@ -45,7 +45,6 @@ export const replyOffer = async (id , status , note) => {
         status:status,
         note:note
     } );
-    console.log(response.data)
     return response.data;
 }
 
