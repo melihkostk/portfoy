@@ -72,7 +72,7 @@ export function Offers({ loged }) {
                                 </thead>
                                 <tbody>
                                     {type === "received" &&
-                                        receivedOffers?.data?.map((item , index) => (
+                                        receivedOffers?.data?.map((item, index) => (
                                             <OfferCard
                                                 key={item.id}
                                                 id={item.id}
@@ -87,7 +87,7 @@ export function Offers({ loged }) {
                                         ))
                                     }
                                     {type === "send" &&
-                                        sendedOffers?.data?.map((item , index) => (
+                                        sendedOffers?.data?.map((item, index) => (
                                             <OfferCard
                                                 key={item.id}
                                                 id={item.id}
@@ -104,18 +104,16 @@ export function Offers({ loged }) {
                                 </tbody>
                             </table>
                         </div>
+                        <div className="flex items-center justify-between mt-5 w-full max-[992px]:flex-col max-[992px]:items-center">
+                            <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
+                                {type === "received" ? receivedOffers?.pagination?.pagination_text : sendedOffers?.pagination?.pagination_text}
+                            </p>
+                            <Pagination
+                                pagination={type === "received" ? receivedOffers?.pagination : sendedOffers?.pagination}
+                                onPageChange={setPage}
+                            />
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div className="w-full max-w-[90%]">
-                <div className="flex items-center justify-between mt-5 w-full max-[992px]:flex-col max-[992px]:items-center">
-                    <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
-                        {type === "received" ? receivedOffers?.pagination?.pagination_text : sendedOffers?.pagination?.pagination_text}
-                    </p>
-                    <Pagination
-                        pagination={type === "received" ? receivedOffers?.pagination : sendedOffers?.pagination}
-                        onPageChange={setPage}
-                    />
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>

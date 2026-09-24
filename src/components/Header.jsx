@@ -128,8 +128,8 @@ export function Header({ loged, details }) {
                         </li>
                     </ul>
                 </div>}
-                {loged && <form action="/properties" method="GET" className="px-7.5 max-[1100px]:hidden">
-                    <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] h-12.5 px-2 rounded-[5px] text-sm" type="text" placeholder="İlanlarda Ara" />
+                {loged && <form action="/properties" method="GET" className="px-7.5 max-[1100px]:hidden grow">
+                    <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] h-12.5 px-2 rounded-[5px] text-sm w-full" type="text" placeholder="İlanlarda Ara" />
                 </form>}
                 <div className="flex items-center justify-between gap-2.5">
                     <LanguageSelect />
