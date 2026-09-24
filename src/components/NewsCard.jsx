@@ -4,7 +4,7 @@ import grayCalendar from "../assets/gray-calendar.png"
 
 export function NewsCard({ title, created, id, page }) {
     return (
-        <div className={`bg-white w-[22%] ${page === "detail" ? "w-full m-0 p-0" : "m-5 p-7.5"} shrink-0 rounded-[10px] shadow-[0_0_30px_rgb(246_246_246)] max-[992px]:w-full max-[992px]:m-0`}>
+        <div className={`bg-white w-[22.5%] ${page === "detail" ? "w-full m-0 p-0" : "m-5 p-7.5"} shrink-0 rounded-[10px] shadow-[0_0_30px_rgb(246_246_246)] max-[992px]:w-full max-[992px]:m-0`}>
             <div>
                 <img className="align-middle aspect-square object-cover max-w-full w-full rounded-[10px]" src={news1} alt={title} />
             </div>
