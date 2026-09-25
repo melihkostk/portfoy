@@ -5,7 +5,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip,
 
 export function LineChart({ visits = {} }) {
     return (
-        <div className="bg-white p-7.5 rounded-lg w-[31%]">
+        <div className="bg-white p-7.5 rounded-lg w-[31%] max-[992px]:w-full">
             <div className="bg-[#f7f6fb] w-full rounded-lg mb-7.5 text-center">
                 <p className="text-xl py-2.5">Son Profil Ziyaretleri</p>
             </div>

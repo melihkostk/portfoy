@@ -55,11 +55,11 @@ export function Summary({ loged }) {
                 logo={counts?.data?.logo}
             />
             <div className="w-full max-w-[90%] mt-12.5">
-                <div className="flex items-center">
-                    <div>
+                <div className="flex items-center max-[992px]:flex-col">
+                    <div className="max-[992px]:w-full">
                         <ScoreCard />
                     </div>
-                    <div className="flex pl-2.5 w-full flex-wrap">
+                    <div className="flex pl-2.5 max-[992px]:pl-0 w-full max-[992px]:justify-between flex-wrap">
                         {counts?.data?.summary?.counts?.map(item => (
                             <CountCard key={item.title} title={item.title} value={item.value} />
                         ))}
@@ -68,7 +68,7 @@ export function Summary({ loged }) {
             </div>
             <div className="w-full py-7.5 my-7.5 bg-[#F7F6FB] flex items-center justify-center">
                 <div className="w-full max-w-[90%]">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between max-[992px]:flex-col">
                         <DoughnutChart types={counts?.data?.summary?.graphs?.types} />
                         <BarChart review={counts?.data?.summary?.graphs?.review} />
                         <LineChart visits={counts?.data?.summary?.graphs?.visits} />
@@ -76,68 +76,68 @@ export function Summary({ loged }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%] mt-12.5">
-                <div className="mb-7.5 flex items-center justify-between">
+                <div className="mb-7.5 flex items-center justify-between flex-wrap">
                     <h2 className="text-[25px] text-[#212529]">İlanlar</h2>
                     <div className="relative">
-                        <div className="bg-[#f1f1f1] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out text-sm text-[#4b4b4b] rounded-lg py-2 px-5 font-semibold" onClick={() => setViewOptions(prev => !prev)}>
+                        <div className="bg-[#f1f1f1] cursor-pointer select-none hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out text-sm text-[#4b4b4b] rounded-lg py-2 px-5 font-semibold" onClick={() => setViewOptions(prev => !prev)}>
                             Görüntüleme Seçenekleri
                         </div>
                         {viewOptions && <div className="bg-white absolute rounded-b-lg w-full shadow-[0_0_30px_rgba(0,0,0,0.1)]">
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">#</label>
+                                <input id="id" name="id" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="id">#</label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">İlan Numarası</label>
+                                <input id="number" name="number" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="number">İlan Numarası</label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">Oluşturan Kullanıcı</label>
+                                <input id="user" name="user" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="">Oluşturan Kullanıcı</label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">Durum</label>
+                                <input id="status" name="status" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="status">Durum</label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">Başlık</label>
+                                <input id="title" name="title" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="title">Başlık</label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">Kategori</label>
+                                <input id="category" name="category" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="category">Kategori</label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">Konum</label>
+                                <input id="location" name="location" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="location">Konum</label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">Satış Fiyatı</label>
+                                <input id="price" name="price" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="price">Satış Fiyatı</label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">Görüntülenme</label>
+                                <input id="view" name="view" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="view">Görüntülenme</label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">Favori</label>
+                                <input id="fav" name="fav" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="fav">Favori</label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">Teklifler</label>
+                                <input id="offer" name="offer" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="offer">Teklifler</label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">Değerlendirme</label>
+                                <input id="score" name="score" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="score">Değerlendirme</label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">Oluşturma Tarihi</label>
+                                <input id="created_at" name="created_at" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="created_at">Oluşturma Tarihi</label>
                             </div>
                             <div className="px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input type="checkbox" />
-                                <label className="text-sm font-semibold" htmlFor="">Güncellenme Tarihi</label>
+                                <input id="updated_at" name="updated_at" type="checkbox" />
+                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="updated_at">Güncellenme Tarihi</label>
                             </div>
                         </div>}
                     </div>
