@@ -12,6 +12,7 @@ import close from "../assets/close.png"
 import { getCompanyTypes } from "../services/companiesApi"
 import { getAllCities, getAllCountries, getAllDistricts } from "../services/filterApi"
 import { Pagination } from "../components/Pagination"
+import { getCompanyInfo } from "../services/myCompanyApi"
 
 export function Wishlist({ loged }) {
 
@@ -70,8 +71,8 @@ export function Wishlist({ loged }) {
         getWishlist(selectedSort, selectedType, selectedCountry, selectedCity, selectedDistrict, page).then(setWishlist).finally(() => setLoaded(true))
     }, [selectedSort])
 
-    const [propertyType , setPropertyType] = useState([]);
-    const [selectedPropertyType , setSelectedPropertyType] = useState("");
+    const [propertyType, setPropertyType] = useState([]);
+    const [selectedPropertyType, setSelectedPropertyType] = useState("");
 
     useEffect(() => {
         getAllPropertiesType().then(setPropertyType)
@@ -94,6 +95,22 @@ export function Wishlist({ loged }) {
         setLoaded(false)
         getWishlist(selectedSort, selectedPropertyType, country, city, district).then(setWishlist).finally(() => setLoaded(true))
     }
+
+    const [info, setInfo] = useState([]);
+
+    useEffect(() => {
+        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+    }, [])
+
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        const userInfo = localStorage.getItem("user");
+        if (userInfo) {
+            const parsedUser = JSON.parse(userInfo);
+            setUser(parsedUser);
+        }
+    }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -119,7 +136,7 @@ export function Wishlist({ loged }) {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
                     <div className="w-[28%] max-[992px]:w-full sticky top-0">
-                        <Sidebar page="wishlist" />
+                        <Sidebar page="wishlist" user={user} info={info} />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <div className="flex justify-between items-center mb-5 flex-wrap">

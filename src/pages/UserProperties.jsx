@@ -7,10 +7,11 @@ import { getUserProperties } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
+import { getCompanyInfo } from "../services/myCompanyApi"
 
 export function UserProperties({ loged }) {
 
-    const [page , setPage] = useState(1)
+    const [page, setPage] = useState(1)
 
     const [userProperties, setUserProperties] = useState([]);
     const [loaded, setLoaded] = useState(false)
@@ -19,6 +20,22 @@ export function UserProperties({ loged }) {
         setLoaded(false)
         getUserProperties(page).then(setUserProperties).finally(() => setLoaded(true))
     }, [page])
+
+    const [info, setInfo] = useState([]);
+   
+    useEffect(() => {
+        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+    }, [])
+
+    const [user, setUser] = useState([]);
+
+     useEffect(() => {
+        const userInfo = localStorage.getItem("user");
+        if (userInfo) {
+            const parsedUser = JSON.parse(userInfo);
+            setUser(parsedUser);
+        }
+    }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -40,7 +57,7 @@ export function UserProperties({ loged }) {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
                     <div className="w-[28%] max-[992px]:w-full sticky top-0">
-                        <Sidebar page="properties" />
+                        <Sidebar page="properties" info={info} user={user} />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] font-medium mb-2">İlanlarım</h2>

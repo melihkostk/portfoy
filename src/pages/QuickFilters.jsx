@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 import whiteClose from "../assets/close.png"
+import { getCompanyInfo } from "../services/myCompanyApi"
 
 export function QuickFilters({ loged }) {
 
@@ -57,6 +58,22 @@ export function QuickFilters({ loged }) {
         }))
     }
 
+     const [info, setInfo] = useState([]);
+   
+    useEffect(() => {
+        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+    }, [])
+
+    const [user, setUser] = useState([]);
+
+     useEffect(() => {
+        const userInfo = localStorage.getItem("user");
+        if (userInfo) {
+            const parsedUser = JSON.parse(userInfo);
+            setUser(parsedUser);
+        }
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {editFilterShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -105,7 +122,7 @@ export function QuickFilters({ loged }) {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
                     <div className="w-[28%] max-[992px]:w-full sticky top-0">
-                        <Sidebar page="quickFilters" />
+                        <Sidebar page="quickFilters" user={user} info={info} />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] font-medium mb-2">Hızlı Filtreler</h2>

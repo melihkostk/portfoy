@@ -163,7 +163,7 @@ export function Account({ loged }) {
                         </div>
                         <div className="max-[992px]:mb-10">
                             <h2 className="text-[25px] mb-5 font-semibold">Şifre Değiştir</h2>
-                            <div className="mb-4 bg-[#fff3cd] text-[#664d03] p-4 rounded-lg">
+                            <div className="mb-4 bg-[#fff3cd] text-[#664d03] p-4 rounded-lg border border-[#ffecb5]">
                                 Henüz şifre değişikliği yok
                             </div>
                             <button className="bg-[#27C5D2] text-white text-sm py-2 px-5 font-semibold rounded-lg">Şifre Değiştir</button>

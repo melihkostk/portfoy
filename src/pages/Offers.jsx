@@ -5,12 +5,13 @@ import { Footer } from "../components/Footer"
 import { OfferCard } from "../components/OfferCard"
 import { getReceivedOffers, getSendedOffers, replyOffer } from "../services/profileApi"
 import { useEffect, useState } from "react"
-import {useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
 import { SuccessPopUp } from "../components/SuccessPopup"
 import close from "../assets/blue-close.png"
 import defaultCompany from "../assets/default-company.png"
+import { getCompanyInfo } from "../services/myCompanyApi"
 
 export function Offers({ loged }) {
 
@@ -37,10 +38,10 @@ export function Offers({ loged }) {
     const [offerInfo, setOfferInfo] = useState([]);
     const [selectedOfferId, setSelectedOfferId] = useState(null);
 
-    const [status , setStatus] = useState("");
-    const [note , setNote] = useState("");
+    const [status, setStatus] = useState("");
+    const [note, setNote] = useState("");
 
-    const [error , setError] = useState("");
+    const [error, setError] = useState("");
     const [successPopUp, setSuccessPopUp] = useState(false);
 
     const closeOfferMenu = () => {
@@ -59,6 +60,21 @@ export function Offers({ loged }) {
         setError(status === "confirm" ? "Teklif kabul edildi" : "Teklif reddedildi")
         setSuccessPopUp(true)
     }
+    const [info, setInfo] = useState([]);
+
+    useEffect(() => {
+        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+    }, [])
+
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        const userInfo = localStorage.getItem("user");
+        if (userInfo) {
+            const parsedUser = JSON.parse(userInfo);
+            setUser(parsedUser);
+        }
+    }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -126,8 +142,8 @@ export function Offers({ loged }) {
                             {offerInfo?.data?.status?.key === "waiting" && <div className="p-3.75 bg-[#f9f9f9] rounded-lg">
                                 <h2 className="text-xl text-[#212529] mb-5 font-semibold">Teklife Yanıt Verin</h2>
                                 <div className="mb-5 flex justify-start gap-2.5">
-                                    <button onClick={() => setStatus("confirm")} className={`text-sm ${status === "confirm" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]" } p-2.5 flex-1 rounded-lg cursor-pointer`}>Kabul Et</button>
-                                    <button onClick={() => setStatus("reject")} className={`text-sm ${status === "reject" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]" } p-2.5 flex-1 rounded-lg cursor-pointer`}>Reddet</button>
+                                    <button onClick={() => setStatus("confirm")} className={`text-sm ${status === "confirm" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]"} p-2.5 flex-1 rounded-lg cursor-pointer`}>Kabul Et</button>
+                                    <button onClick={() => setStatus("reject")} className={`text-sm ${status === "reject" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]"} p-2.5 flex-1 rounded-lg cursor-pointer`}>Reddet</button>
                                 </div>
                                 <div className="mb-2">
                                     <label className="text-[#212529]" htmlFor="note">Notunuz</label>
@@ -142,11 +158,11 @@ export function Offers({ loged }) {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
                     <div className="w-[28%] max-[992px]:w-full sticky top-0">
-                        <Sidebar type={type} />
+                        <Sidebar type={type} info={info} user={user} />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] font-medium mb-2">{type === "received" ? "Aldığım teklifler" : "Gönderdiğim teklifler"}</h2>
-                        {type === "received" && <div className="p-4 mb-4 bg-[#fff3cd] rounded-lg">
+                        {type === "received" && <div className="p-4 mb-4 bg-[#fff3cd] rounded-lg border border-[#ffecb5]">
                             <p className="text-[#664d03]">Bu sayfada sadece sizin oluşturduğunuz ilanların tekliflerini görüntüleyebilirsiniz.</p>
                         </div>}
                         <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
