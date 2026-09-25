@@ -67,9 +67,9 @@ export function Summary({ loged }) {
             <div className="w-full py-7.5 my-7.5 bg-[#F7F6FB] flex items-center justify-center">
                 <div className="w-full max-w-[90%]">
                     <div className="flex justify-between">
-                        <DoughnutChart />
-                        <BarChart />
-                        <LineChart />
+                        <DoughnutChart types={counts?.data?.summary?.graphs?.types} />
+                        <BarChart review={counts?.data?.summary?.graphs?.review} />
+                        <LineChart visits={counts?.data?.summary?.graphs?.visits} />
                     </div>
                 </div>
             </div>

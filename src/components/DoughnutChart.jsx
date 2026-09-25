@@ -3,7 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-export function DoughnutChart() {
+export function DoughnutChart({ types = [] }) {
 
     return (
         <div className="bg-white p-7.5 rounded-lg w-[31%]">
@@ -13,11 +13,11 @@ export function DoughnutChart() {
             <div>
                 <Doughnut
                     data={{
-                        labels: ["Apartman", "Arsa", "Villa", "Tarla", "Proje Villa", "Proje Apartman"],
+                        labels: types.map(item => item.name),
                         datasets: [{
                             label: "Kategorisine Göre İlanlar",
-                            data: [0, 2, 4, 6, 8, 10],
-                            backgroundColor: ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300"],
+                            data: types.map(item => item.data),
+                            backgroundColor: types.map(item => item.color),
                             borderColor: "#fcfcfb",
                             borderWidth: 2
                         }]

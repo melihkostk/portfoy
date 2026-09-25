@@ -3,7 +3,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend)
 
-export function LineChart() {
+export function LineChart({ visits = {} }) {
     return (
         <div className="bg-white p-7.5 rounded-lg w-[31%]">
             <div className="bg-[#f7f6fb] w-full rounded-lg mb-7.5 text-center">
@@ -12,10 +12,10 @@ export function LineChart() {
             <div>
                 <Line
                     data={{
-                        labels: ["1 Yıldız", "2 Yıldız", "3 Yıldız", "4 Yıldız", "5 Yıldız"],
+                        labels: visits?.labels ?? [],
                         datasets: [{
                             label: "Son Profil Ziyaretleri",
-                            data: [0, 2, 4, 6, 8],
+                            data: visits?.datasets?.data ?? [],
                             borderColor: "#2a78d6",
                             backgroundColor: "rgba(42, 120, 214, 0.12)",
                             pointBackgroundColor: "#2a78d6",
