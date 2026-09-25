@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { CompanyHeader } from "../components/CompanyHeader"
 import { CountCard } from "../components/CountCard"
 import { Header } from "../components/Header"
@@ -28,6 +28,21 @@ export function Summary({ loged }) {
     }, [])
 
     const [viewOptions, setViewOptions] = useState(false)
+
+    const [id , setID] = useState(true);
+    const [number , setNumber] = useState(true);
+    const [user , setUser] = useState(true)
+    const [status , setStatus] = useState(true)
+    const [title , setTitle] = useState(true)
+    const [cate , setCate] = useState(true)
+    const [location , setLocation] = useState(true)
+    const [price , setPrice] = useState(true)
+    const [view , setView] = useState(true)
+    const [fav , setFav] = useState(true)
+    const [offer , setOffer] = useState(true)
+    const [score , setScore] = useState(true)
+    const [created , setCreated] = useState(true)
+    const [updated , setUpdated] = useState(true)
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -84,60 +99,60 @@ export function Summary({ loged }) {
                         </div>
                         {viewOptions && <div className="bg-white absolute rounded-b-lg w-full shadow-[0_0_30px_rgba(0,0,0,0.1)]">
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="id" name="id" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="id">#</label>
+                                <input checked={id} onChange={(e) => setID(e.target.checked)} id="id" name="id" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${id ? "text-[#27c5d2]" : ""}`} htmlFor="id">#</label>
                             </div>
-                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="number" name="number" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="number">İlan Numarası</label>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
+                                <input checked={number} onChange={(e) => setNumber(e.target.checked)} id="number" name="number" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${number ? "text-[#27c5d2]" : ""}`} htmlFor="number">İlan Numarası</label>
                             </div>
-                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="user" name="user" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="">Oluşturan Kullanıcı</label>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
+                                <input checked={user} onChange={(e) => setUser(e.target.checked)} id="user" name="user" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${user ? "text-[#27c5d2]" : ""}`} htmlFor="user">Oluşturan Kullanıcı</label>
                             </div>
-                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="status" name="status" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="status">Durum</label>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
+                                <input checked={status} onChange={(e) => setStatus(e.target.checked)} id="status" name="status" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${status ? "text-[#27c5d2]" : ""}`} htmlFor="status">Durum</label>
                             </div>
-                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="title" name="title" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="title">Başlık</label>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
+                                <input checked={title} onChange={(e) => setTitle(e.target.checked)} id="title" name="title" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${title ? "text-[#27c5d2]" : ""}`} htmlFor="title">Başlık</label>
                             </div>
-                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="category" name="category" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="category">Kategori</label>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
+                                <input checked={cate} onChange={(e) => setCate(e.target.checked)} id="category" name="category" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${cate ? "text-[#27c5d2]" : ""}`} htmlFor="category">Kategori</label>
                             </div>
-                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="location" name="location" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="location">Konum</label>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
+                                <input checked={location} onChange={(e) => setLocation(e.target.checked)} id="location" name="location" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${location ? "text-[#27c5d2]" : ""}`} htmlFor="location">Konum</label>
                             </div>
-                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="price" name="price" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="price">Satış Fiyatı</label>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
+                                <input checked={price} onChange={(e) => setPrice(e.target.checked)} id="price" name="price" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${price ? "text-[#27c5d2]" : ""}`} htmlFor="price">Satış Fiyatı</label>
                             </div>
-                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="view" name="view" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="view">Görüntülenme</label>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
+                                <input checked={view} onChange={(e) => setView(e.target.checked)} id="view" name="view" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${view ? "text-[#27c5d2]" : ""}`} htmlFor="view">Görüntülenme</label>
                             </div>
-                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="fav" name="fav" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="fav">Favori</label>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
+                                <input checked={fav} onChange={(e) => setFav(e.target.checked)} id="fav" name="fav" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${fav ? "text-[#27c5d2]" : ""}`} htmlFor="fav">Favori</label>
                             </div>
-                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="offer" name="offer" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="offer">Teklifler</label>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
+                                <input checked={offer} onChange={(e) => setOffer(e.target.checked)} id="offer" name="offer" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${offer ? "text-[#27c5d2]" : ""}`} htmlFor="offer">Teklifler</label>
                             </div>
-                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="score" name="score" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="score">Değerlendirme</label>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
+                                <input checked={score} onChange={(e) => setScore(e.target.checked)} id="score" name="score" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${score ? "text-[#27c5d2]" : ""}`} htmlFor="score">Değerlendirme</label>
                             </div>
-                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="created_at" name="created_at" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="created_at">Oluşturma Tarihi</label>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex mt-1 items-center gap-2.5">
+                                <input checked={created} onChange={(e) => setCreated(e.target.checked)} id="created_at" name="created_at" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${created ? "text-[#27c5d2]" : ""}`} htmlFor="created_at">Oluşturma Tarihi</label>
                             </div>
-                            <div className="px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input id="updated_at" name="updated_at" type="checkbox" />
-                                <label className="text-sm cursor-pointer flex-1 font-semibold select-none" htmlFor="updated_at">Güncellenme Tarihi</label>
+                            <div className="px-2.5 py-1.25 flex items-center gap-2.5 mt-1">
+                                <input checked={updated} onChange={(e) => setUpdated(e.target.checked)} id="updated_at" name="updated_at" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${updated ? "text-[#27c5d2]" : ""}`} htmlFor="updated_at">Güncellenme Tarihi</label>
                             </div>
                         </div>}
                     </div>
@@ -146,20 +161,20 @@ export function Summary({ loged }) {
                     <table className="w-full">
                         <thead>
                             <tr>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg whitespace-nowrap">#</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">İlan Numarası</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Oluşturan Kullanıcı</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Durum</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Başlık</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Kategori</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Konum</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Satış Fiyatı</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Görüntülenme</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Favori</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Teklifler</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Değerlendirme</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Oluşturma Tarihi</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-r-lg whitespace-nowrap">Güncellenme Tarihi</th>
+                                {id && <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg whitespace-nowrap">#</th>}
+                                {number && <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">İlan Numarası</th>}
+                                {user && <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Oluşturan Kullanıcı</th>}
+                                {status && <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Durum</th>}
+                                {title && <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Başlık</th>}
+                                {cate && <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Kategori</th>}
+                                {location && <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Konum</th>}
+                                {price && <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Satış Fiyatı</th>}
+                                {view && <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Görüntülenme</th>}
+                                {fav && <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Favori</th>}
+                                {offer && <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Teklifler</th>}
+                                {score && <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Değerlendirme</th>}
+                                {created && <th className="text-start bg-[#ececec] py-4 px-2.5  whitespace-nowrap">Oluşturma Tarihi</th>}
+                                {updated && <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-r-lg whitespace-nowrap">Güncellenme Tarihi</th>}
                             </tr>
                         </thead>
                         <tbody>
@@ -181,6 +196,20 @@ export function Summary({ loged }) {
                                     created_at={item.created_at}
                                     updated_at={item.updated_at}
                                     index={index}
+                                    showId={id}
+                                    showNo={number}
+                                    showCreator={user}
+                                    showStatus={status}
+                                    showTitle={title}
+                                    showType={cate}
+                                    showLocation={location}
+                                    showPrice={price}
+                                    showViews={view}
+                                    showFavorites={fav}
+                                    showProposals={offer}
+                                    showScore={score}
+                                    showCreatedAt={created}
+                                    showUpdatedAt={updated}
                                 />
                             ))}
                         </tbody>
