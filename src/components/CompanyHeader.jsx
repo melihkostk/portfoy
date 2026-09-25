@@ -12,23 +12,23 @@ export function CompanyHeader({ page, id, name, created_at, type, badges, logo, 
     return (
         <div style={{ backgroundImage: `url(${bgImage})` }} className="w-full bg-cover bg-center pt-7.5 flex justify-center">
             <div className="w-full max-w-[90%]">
-                <div className="flex justify-between items-start mb-20">
+                <div className="flex justify-between items-start h-[20vh]">
                     <div className="flex items-center gap-3.75">
                         <div className="w-20 h-20">
                             <img className="w-full h-full object-contain rounded-full" src={logo} alt="" />
                         </div>
                         <div className="max-w-full">
-                            <p className="text-white text-xl mb-2">{name}</p>
+                            <p className="text-white font-semibold text-xl mb-2">{name}</p>
                             <ul className="flex text-white gap-5 text-sm max-[1005px]:hidden">
-                                <li className="flex items-start gap-1">
+                                <li className="flex items-start gap-1 font-semibold">
                                     <img className="w-4 h-4" src={star} alt="" />
                                     {created_at}
                                 </li>
-                                <li className="flex items-center gap-1">
+                                <li className="flex items-center gap-1 font-semibold">
                                     <img className="w-3 h-3" src={menu} alt="" />
                                     {type}
                                 </li>
-                                <li>
+                                <li className="font-semibold">
                                     {page === "companyDetail" ? badges : code}
                                 </li>
                             </ul>
@@ -94,19 +94,19 @@ export function CompanyHeader({ page, id, name, created_at, type, badges, logo, 
                         )}
                     </ul>
                     {page !== "companyDetail" && <div className="flex items-center gap-2.5 -mt-12 max-[1233px]:hidden">
-                        <Link to={"/company/subscription"} className="py-2 px-4 bg-white opacity-70 text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
+                        <Link to={"/company/subscription"} className={`py-2 px-4 bg-white ${page === "subscription" ? "opacity-100" : "opacity-70" } text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
                             <img className="w-4 h-4" src={box} alt="" />
                             Aboneliği Yönet
                         </Link>
-                        <Link to={"/company/summary"} className="py-2 px-4 bg-white opacity-70 text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
+                        <Link to={"/company/summary"} className={`py-2 px-4 bg-white ${page === "summary" ? "opacity-100" : "opacity-70" } text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
                             <img className="w-4 h-4" src={graph} alt="" />
                             Firma özeti
                         </Link>
-                        <Link to={"/company/edit"} className="py-2 px-4 bg-white opacity-70 text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
+                        <Link to={"/company/edit"} className={`py-2 px-4 bg-white ${page === "edit" ? "opacity-100" : "opacity-70" } text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
                             <img className="w-5 h-5" src={pen} alt="" />
                             Firma profilini düzenle
                         </Link>
-                        <Link to={"/company/settings"} className="py-2 px-4 bg-white opacity-70 text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
+                        <Link to={"/company/settings"} className={`py-2 px-4 bg-white ${page === "settings" ? "opacity-100" : "opacity-70" } text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
                             <img className="w-4 h-4" src={settingsIcon} alt="" />
                             Firma tercihleri
                         </Link>

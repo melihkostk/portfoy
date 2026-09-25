@@ -4,7 +4,7 @@ import { SubscriptionCard } from "../components/SubscriptionCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getSubscriptions, getSubsUsage } from "../services/myCompanyApi"
+import { getCompanyInfo, getSubscriptions, getSubsUsage } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 
@@ -23,6 +23,12 @@ export function Subscription({ loged }) {
 
     useEffect(() => {
         getSubsUsage().then(setSubsUsage)
+    }, [])
+
+    const [companyInfo, setCompanyInfo] = useState([]);
+
+    useEffect(() => {
+        getCompanyInfo().then(setCompanyInfo)
     }, [])
 
     return (
@@ -55,7 +61,7 @@ export function Subscription({ loged }) {
                             {subsUsage.map((item) => (
                                 <tr key={item?.key}>
                                     <td className="border border-[#eee] p-2.5">{item?.title}</td>
-                                    <td className={`border border-[#eee] font-semibold p-2.5 ${item?.can_usage ? "text-[#212529]" : "text-[#ff4f4f]" }`}>{item?.used}</td>
+                                    <td className={`border border-[#eee] font-semibold p-2.5 ${item?.can_usage ? "text-[#212529]" : "text-[#ff4f4f]"}`}>{item?.used}</td>
                                     <td className="border border-[#eee] font-semibold p-2.5">{item?.limit}</td>
                                 </tr>
                             ))}
@@ -69,7 +75,14 @@ export function Subscription({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Abonelik Yönetimi</span></p>
                 </div>
             </div>
-            <CompanyHeader />
+            <CompanyHeader
+                page="subscription"
+                name={companyInfo?.name}
+                code={companyInfo?.code}
+                created_at={companyInfo?.created_at}
+                type={companyInfo?.type}
+                logo={companyInfo?.logo}
+            />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
                     <button onClick={() => setTableShown(true)} className="bg-[#eee] py-2.5 rounded-lg px-7.5 mb-7.5 cursor-pointer font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">

@@ -15,7 +15,7 @@ import { ClipLoader } from "react-spinners";
 export function Summary({ loged }) {
 
     const [counts, setCounts] = useState([]);
-    const [loaded , setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         getCount().then(setCounts).finally(() => setLoaded(true))
@@ -44,14 +44,21 @@ export function Summary({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Firma Özeti</span></p>
                 </div>
             </div>
-            <CompanyHeader page="customers" />
+            <CompanyHeader
+                page="summary"
+                name={counts?.data?.name}
+                code={counts?.data?.code}
+                created_at={counts?.data?.created_at}
+                type={counts?.data?.type}
+                logo={counts?.data?.logo}
+            />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex items-center">
                     <div>
                         <ScoreCard />
                     </div>
                     <div className="flex pl-2.5 w-full flex-wrap">
-                        {counts.map(item => (
+                        {counts?.data?.summary?.counts?.map(item => (
                             <CountCard key={item.title} title={item.title} value={item.value} />
                         ))}
                     </div>

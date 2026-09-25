@@ -19,21 +19,22 @@ export function Edit({ loged }) {
     const [taxOffice, setTaxOffice] = useState("");
     const [tradeName, setTradeName] = useState("");
 
-    const [profile, setProfile] = useState([]);
+    const [profile , setProfile] = useState([])
+
     const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         getCompanyProfile().then((data) => {
-            setProfile(data);
-            setName(data.name)
-            setType(data.type)
-            setTaxNumber(data?.profile?.tax_number)
-            setCentralNumber(data?.profile?.licance_number)
-            setEmail(data?.profile?.email)
-            setPhone(data?.profile?.phone?.number)
-            setTradeName(data?.profile?.billing?.trade_name)
-            setTaxOffice(data?.profile?.billing?.tax_office)
-            setAddress(data?.profile?.billing?.address)
+            setProfile(data)
+            setName(data?.data?.name)
+            setType(data?.data?.type)
+            setTaxNumber(data?.data.profile?.tax_number)
+            setCentralNumber(data?.data?.profile?.licance_number)
+            setEmail(data?.data?.profile?.email)
+            setPhone(data?.data?.profile?.phone?.number)
+            setTradeName(data?.data?.profile?.billing?.trade_name)
+            setTaxOffice(data?.data?.profile?.billing?.tax_office)
+            setAddress(data?.data?.profile?.billing?.address)
         }).finally(() => setLoaded(true))
     }, [])
 
@@ -54,7 +55,14 @@ export function Edit({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Firma profilini düzenle</span></p>
                 </div>
             </div>
-            <CompanyHeader />
+            <CompanyHeader
+                page="edit"
+                name={profile?.data?.name}
+                code={profile?.data?.code}
+                created_at={profile?.data?.created_at}
+                type={profile?.data?.type}
+                logo={profile?.data?.logo}
+            />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
                     <div className="p-12.5 max-[992px]:p-7.5">

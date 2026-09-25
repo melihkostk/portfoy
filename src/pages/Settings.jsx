@@ -1,10 +1,19 @@
+import { useEffect, useState } from "react"
 import { AppLinks } from "../components/AppLinks"
 import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
 import { SettingsCard } from "../components/SettingsCard"
+import { getCompanyInfo } from "../services/myCompanyApi"
 
-export function Settings({loged}) {
+export function Settings({ loged }) {
+
+    const [companyInfo, setCompanyInfo] = useState([]);
+
+    useEffect(() => {
+        getCompanyInfo().then(setCompanyInfo)
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
@@ -13,7 +22,14 @@ export function Settings({loged}) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Firma Tercihleri</span></p>
                 </div>
             </div>
-            <CompanyHeader />
+            <CompanyHeader
+                page="settings"
+                name={companyInfo?.name}
+                code={companyInfo?.code}
+                created_at={companyInfo?.created_at}
+                type={companyInfo?.type}
+                logo={companyInfo?.logo}
+            />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
                     <p className="text-[32px] mb-10">Firma Tercihleri</p>
