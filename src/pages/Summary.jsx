@@ -27,6 +27,8 @@ export function Summary({ loged }) {
         getSummaryProperties().then(setSummaryProperties)
     }, [])
 
+    const [viewOptions, setViewOptions] = useState(false)
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {!loaded && (
@@ -74,8 +76,71 @@ export function Summary({ loged }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%] mt-12.5">
-                <div className="mb-7.5">
+                <div className="mb-7.5 flex items-center justify-between">
                     <h2 className="text-[25px] text-[#212529]">İlanlar</h2>
+                    <div className="relative">
+                        <div className="bg-[#f1f1f1] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out text-sm text-[#4b4b4b] rounded-lg py-2 px-5 font-semibold" onClick={() => setViewOptions(prev => !prev)}>
+                            Görüntüleme Seçenekleri
+                        </div>
+                        {viewOptions && <div className="bg-white absolute rounded-b-lg w-full shadow-[0_0_30px_rgba(0,0,0,0.1)]">
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">#</label>
+                            </div>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">İlan Numarası</label>
+                            </div>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">Oluşturan Kullanıcı</label>
+                            </div>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">Durum</label>
+                            </div>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">Başlık</label>
+                            </div>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">Kategori</label>
+                            </div>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">Konum</label>
+                            </div>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">Satış Fiyatı</label>
+                            </div>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">Görüntülenme</label>
+                            </div>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">Favori</label>
+                            </div>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">Teklifler</label>
+                            </div>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">Değerlendirme</label>
+                            </div>
+                            <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">Oluşturma Tarihi</label>
+                            </div>
+                            <div className="px-2.5 py-1.25 flex items-center gap-2.5">
+                                <input type="checkbox" />
+                                <label className="text-sm font-semibold" htmlFor="">Güncellenme Tarihi</label>
+                            </div>
+                        </div>}
+                    </div>
                 </div>
                 <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
                     <table className="w-full">
@@ -98,7 +163,7 @@ export function Summary({ loged }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {summaryProperties.map(item => (
+                            {summaryProperties.map((item , index) => (
                                 <SummaryCard
                                     key={item.id}
                                     id={item.id}
@@ -115,6 +180,7 @@ export function Summary({ loged }) {
                                     score={item.score.avg}
                                     created_at={item.created_at}
                                     updated_at={item.updated_at}
+                                    index={index}
                                 />
                             ))}
                         </tbody>

@@ -1,6 +1,6 @@
-export function SummaryCard({id , no , creator , status , title , type , location , price , views , favorites , proposals , score , created_at , updated_at}){
+export function SummaryCard({id , no , creator , index , status , title , type , location , price , views , favorites , proposals , score , created_at , updated_at}){
      return (
-        <tr>
+        <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : "" }`}>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{id}</td>
             <td className="py-3 px-2">{no}</td>
             <td className="py-3 px-2 text-[#212529] text-base whitespace-nowrap">{creator}</td>
