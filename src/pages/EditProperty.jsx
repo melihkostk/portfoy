@@ -16,18 +16,21 @@ export function EditProperty({ loged }) {
 
     const { id } = useParams()
 
-    const [title , setTitle] = useState("")
-    const [passPrice , setPassPrice] = useState("")
-    const [sellPrice , setSellPrice] = useState("");
-    const [currency , setCurrency] = useState("");
-    const [country , setCountry] = useState("");
-    const [city , setCity] = useState("");
-    const [district , setDistrict] = useState("");
-    const [street , setStreet] = useState("");
-    const [no , setNo] = useState("");
-    const [type , setType] = useState("");
+    const [title, setTitle] = useState("")
+    const [passPrice, setPassPrice] = useState("")
+    const [sellPrice, setSellPrice] = useState("");
+    const [currency, setCurrency] = useState("");
+    const [country, setCountry] = useState("");
+    const [city, setCity] = useState("");
+    const [district, setDistrict] = useState("");
+    const [street, setStreet] = useState("");
+    const [no, setNo] = useState("");
+    const [type, setType] = useState("");
+    const [latitude, setLatitude] = useState("");
+    const [longitude, setLongitude] = useState("");
 
-    const [loaded , setLoaded] = useState(false);
+
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         getDetails(id).then(data => {
@@ -41,7 +44,10 @@ export function EditProperty({ loged }) {
             setDistrict(data?.district?.title)
             setStreet(data?.street?.title)
             setType(data?.type?.title)
-            
+            setLatitude(data?.map?.latitude);
+            setLongitude(data?.map?.longitude);
+
+
         }).finally(() => setLoaded(true));
     }, [id])
 
@@ -68,19 +74,19 @@ export function EditProperty({ loged }) {
                         <h1 className="text-[25px]">{title}</h1>
                         <ul className="flex text-sm text-[#7d7d7d] mt-1.25">
                             <li>
-                                Taslak 
+                                Taslak
                             </li>
                             <li className="mx-2.5">
                                 -
                             </li>
                             <li>
-                                {no} 
+                                {no}
                             </li>
                             <li className="mx-2.5">
                                 -
                             </li>
                             <li>
-                                {type} 
+                                {type}
                             </li>
                         </ul>
                     </div>
@@ -160,9 +166,21 @@ export function EditProperty({ loged }) {
                             <h5 className="text-[#676767] text-lg py-1.25">Harita Bilgisi</h5>
                         </div>
                         <div className="p-4">
-                            <div className="flex flex-col items-center justify-center h-50">
-                                <p className="text-[#6c757d] mb-4">Harita üzerinde ilanın konumunu belirleyin</p>
-                                <button className="text-sm text-white py-2 px-5 rounded-lg cursor-pointer bg-[#27c5d2] hover:bg-[#026872] transition-colors duration-300 ease-in-out">Konum Belirleyin</button>
+                            <div className={`flex flex-col items-center justify-center ${latitude && longitude ? "h-100" : "h-50"}`}>
+                                {!(latitude && longitude) && <div className="flex flex-col items-center">
+                                    <p className="text-[#6c757d] mb-4">Harita üzerinde ilanın konumunu belirleyin</p>
+                                    <button className="text-sm font-semibold text-white py-2 px-5 rounded-lg cursor-pointer bg-[#27c5d2] hover:bg-[#026872] transition-colors duration-300 ease-in-out">Konum Belirleyin</button>
+                                </div>}
+                                {(latitude && longitude) && <div className="w-full h-full">
+                                    <iframe
+                                        src={`https://www.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`}
+                                        className="w-full block h-full border-0 rounded-lg"
+                                        allowFullScreen
+                                        loading="lazy"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                        title="Google Maps"
+                                    />
+                                </div>}
                             </div>
                         </div>
                     </div>

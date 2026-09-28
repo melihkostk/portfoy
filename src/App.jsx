@@ -82,7 +82,6 @@ function App() {
         <Route path="/articles" element={<News loged={loged} news={news} />} />
         <Route path="/corporate" element={<Corporate loged={loged} />} />
         <Route path="/contacts" element={<Contacts loged={loged} />} />
-        <Route path="/contacts" element={<Contacts loged={loged} />} />
         <Route path="/login" element={<Login loged={loged} setLoged={setLoged} />} />
         <Route path="/register" element={<SignIn />} />
         <Route path="/application" element={<Application loged={loged} />} />
