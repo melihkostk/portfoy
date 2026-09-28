@@ -9,7 +9,7 @@ export function CompanyProposalCard({name , index , code , personal , created_at
             <td className="py-3 px-2 whitespace-nowrap">{created_at}</td>
             <td className="text-sm whitespace-nowrap text-[#6c757d]">{score === 0 ? "Henüz Değerlendirme Yok" : score}</td>
             <td>
-                <span className={`text-white text-xs text-center py-2 font-semibold px-2 rounded-lg whitespace-nowrap ${status === "Süresi Doldu" ? "bg-[#ed0000]" : "bg-[#00cc83]"}`}>
+                <span className={`text-white text-xs text-center py-2 font-semibold px-2 rounded-lg whitespace-nowrap ${status === "Beklemede" ? "bg-[#27c5d2]" : "" } ${status === "Süresi Doldu" ? "bg-[#ed0000]" : "bg-[#00cc83]"}`}>
                     {status}
                 </span>
             </td>

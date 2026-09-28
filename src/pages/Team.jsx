@@ -5,7 +5,7 @@ import { UserInvite } from "../components/UserInvite"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getTeam, getAllInvitations, removeInvite, getAllRoles, addInvite, toogleStatus, updateTeamMember, updateInvite, getCompanyInfo } from "../services/myCompanyApi"
+import { getTeam, getAllInvitations, removeInvite, getAllRoles, addInvite, toogleStatus, updateTeamMember, updateInvite, getCompanyInfo, getPermissions } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
@@ -153,9 +153,19 @@ export function Team({ loged }) {
         getCompanyInfo().then(setInfo)
     }, [])
 
+    const [editPermissionShown, setEditPermissionShown] = useState(false)
+
+    const [permissions, setPermissions] = useState([])
+
+    function handleGetPermissions(id) {
+        getPermissions(id).then((data) => {
+            setPermissions(data)
+        })
+    }
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(errorPopUp || addShown || editShown || inviteEditShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(errorPopUp || addShown || editShown || inviteEditShown || editPermissionShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -305,6 +315,31 @@ export function Team({ loged }) {
                     </form>
                 </div>
             </div>}
+            {editPermissionShown && <div className="fixed top-1/2 overflow-y-auto left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-full  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529] font-semibold">Yetkileri düzenleyin</h2>
+                    <img onClick={() => setEditPermissionShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
+                </div>
+                <div className="w-full p-4">
+                    <div className="bg-[#eeeeee] rounded-lg p-7.5 mb-5">
+                        <p className="text-xl text-[#212529] font-semibold">PİGASOFT</p>
+                        <p className="text-sm text-[#747474] font-semibold">Genel Müdür</p>
+                    </div>
+                    {permissions.map((item,index) => (
+                        <div key={index} className="p-3.75 border border-[#eee] rounded-lg mb-5">
+                            <p className="p-3.75 mb-4 rounded-lg bg-[#eeeeee] text-[#212529] font-semibold">{item.title}</p>
+                            <div>
+                                {item.permissions.map(item => (
+                                    <div key={item.key}>
+                                        <input onChange={(e) => e.target.checked} disabled={item?.disabled} checked={item?.checked} type="checkbox" />
+                                        <label className="text-[#212529] text-base">{item.title}</label>
+                                    </div>
+                            ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>}
             {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
@@ -342,6 +377,8 @@ export function Team({ loged }) {
                             page="companyTeam"
                             handleToggleStatus={handleToggleStatus}
                             onEditClick={() => handleEditClick(item)}
+                            setEditPermissionShown={setEditPermissionShown}
+                            handleGetPermissions={handleGetPermissions}
                         />
                     ))}
                 </div>
