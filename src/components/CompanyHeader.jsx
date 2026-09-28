@@ -6,16 +6,17 @@ import settingsIcon from "../assets/settings.png"
 import pen from "../assets/pen.png"
 import box from "../assets/box.png"
 import graph from "../assets/graph.png"
+import pp from "../assets/default-company.png"
 
-export function CompanyHeader({ page, id, name, created_at, type, badges, logo, code }) {
+export function CompanyHeader({ page, id, name, created_at, type, badges, code }) {
 
     return (
         <div style={{ backgroundImage: `url(${bgImage})` }} className="w-full bg-cover bg-center pt-7.5 flex justify-center">
             <div className="w-full max-w-[90%]">
                 <div className="flex justify-between items-start h-[20vh]">
                     <div className="flex items-center gap-3.75">
-                        <div className="w-20 h-20">
-                            <img className="w-full h-full object-contain rounded-full" src={logo} alt="" />
+                        <div className="w-20 h-20 bg-white rounded-full">
+                            <img className="w-full h-full object-contain rounded-full" src={pp} alt="" />
                         </div>
                         <div className="max-w-full">
                             <p className="text-white font-semibold text-xl mb-2">{name}</p>

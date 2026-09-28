@@ -7,6 +7,7 @@ import defaultProperty from "../assets/default-property.jpg"
 import chain from "../assets/chain.png"
 import { getDetails } from "../services/propertyDetails";
 import { useParams } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 export function EditProperty({ loged }) {
 
@@ -23,10 +24,15 @@ export function EditProperty({ loged }) {
     const [city , setCity] = useState("");
     const [district , setDistrict] = useState("");
     const [street , setStreet] = useState("");
+    const [no , setNo] = useState("");
+    const [type , setType] = useState("");
+
+    const [loaded , setLoaded] = useState(false);
 
     useEffect(() => {
         getDetails(id).then(data => {
             setTitle(data?.title)
+            setNo(data?.no)
             setPassPrice(data?.prices?.secondary?.number)
             setSellPrice(data?.prices?.primary?.number)
             setCurrency(data?.currency?.title)
@@ -34,12 +40,22 @@ export function EditProperty({ loged }) {
             setCity(data?.city?.title)
             setDistrict(data?.district?.title)
             setStreet(data?.street?.title)
+            setType(data?.type?.title)
             
-        });
-    }, [])
+        }).finally(() => setLoaded(true));
+    }, [id])
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
@@ -49,16 +65,22 @@ export function EditProperty({ loged }) {
             <div className="w-full max-w-[90%] mb-7.5">
                 <div className="w-full flex justify-between items-center sticky top-0">
                     <div>
-                        <h1 className="text-[25px]">KEYFE KEDER DOSTA GİDER</h1>
-                        <ul className="flex text-sm text-[#7d7d7d]">
+                        <h1 className="text-[25px]">{title}</h1>
+                        <ul className="flex text-sm text-[#7d7d7d] mt-1.25">
                             <li>
-                                Taslak -
+                                Taslak 
+                            </li>
+                            <li className="mx-2.5">
+                                -
                             </li>
                             <li>
-                                CR0285ARS0003000015 -
+                                {no} 
+                            </li>
+                            <li className="mx-2.5">
+                                -
                             </li>
                             <li>
-                                Arsa -
+                                {type} 
                             </li>
                         </ul>
                     </div>
@@ -81,7 +103,7 @@ export function EditProperty({ loged }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
-                <div className="w-full flex items-center justify-between p-4 mb-4 bg-[#fff3cd] rounded-lg">
+                <div className="w-full flex items-center justify-between border border-[#ffecb5] p-4 mb-4 bg-[#fff3cd] rounded-lg">
                     <p className="text-[#664d03]">Bu ilan şuanda taslak durumunda, ilan bilgilerinizi tamamladıktan sonra yayınlayabilirsiniz.</p>
                     <button className="bg-[#ffca64] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">Şimdi Yayınla</button>
                 </div>
@@ -99,11 +121,11 @@ export function EditProperty({ loged }) {
                             </div>
                             <div className="flex">
                                 <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#27c5d2]" htmlFor="">Pass Fiyatı <span className="text-sm">(Amerikan Doları)</span></label>
+                                    <label className="text-[#6c757d]" htmlFor="">Pass Fiyatı <span className="text-sm">({currency})</span></label>
                                     <input value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                                 </div>
                                 <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#27c5d2]" htmlFor="">Satış Fiyatı <span className="text-sm">(Amerikan Doları)</span></label>
+                                    <label className="text-[#6c757d]" htmlFor="">Satış Fiyatı <span className="text-sm">({currency})</span></label>
                                     <input value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                                 </div>
                                 <div className="flex-1 px-3 mb-2">
