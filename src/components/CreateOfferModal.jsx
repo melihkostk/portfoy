@@ -3,7 +3,7 @@ import blackClose from "../assets/black-close.svg"
 import { getAllCustomers } from "../services/myCompanyApi";
 import { getAllCurrencies } from "../services/filterApi";
 
-export function CreateOfferModel({ setOfferModalShown, step, setStep, customerNote, setCustomerNote, details, selectedCustomer, setSelectedCurrencie, selectedCurrencie, setSelectedCustomer }) {
+export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,handleCreateProposal , property_id , step, setStep, customerNote, setCustomerNote, details, selectedCustomer, setSelectedCurrencie, selectedCurrencie, setSelectedCustomer }) {
 
     const [customers, setCustomer] = useState([])
 
@@ -43,13 +43,13 @@ export function CreateOfferModel({ setOfferModalShown, step, setStep, customerNo
                 {step === 1 && (
                     <div>
                         <h2 className="mb-4 text-[#212529]">Teklif oluşturmak için lütfen önce müşteri seçin</h2>
-                        <form onSubmit={() => { setStep(2); setOfferModalShown(false) }}>
+                        <form onSubmit={() => { setStep(2); console.log(property_id)}}>
                             <div className="flex flex-col mb-2">
                                 <label htmlFor="" className="mb-2 text-[#212529]">Müşteri Seçin</label>
                                 <select value={selectedCustomer} onChange={(e) => setSelectedCustomer(e.target.value)} required name="" id="" className="border border-[#d9d9d9] rounded-lg py-1.5 px-3">
                                     <option disabled value="">Müşteri Seçin</option>
                                     {customers?.data?.customers?.map(item => (
-                                        <option value={item.name} key={item.id}>{item.name}</option>
+                                        <option value={item.id} key={item.id}>{item.name}</option>
                                     ))}
                                 </select>
                             </div>
@@ -82,7 +82,7 @@ export function CreateOfferModel({ setOfferModalShown, step, setStep, customerNo
                                 <p className="text-lg">{selectedCustomer}</p>
                             </div>
                             <div>
-                                <button onClick={() => setOfferModalShown(false)} className="text-sm text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
+                                <button onClick={() => {setOfferModalShown(false); setStep(1)}} className="text-sm text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
                             </div>
                         </div>
                         <div className="flex">
@@ -116,20 +116,20 @@ export function CreateOfferModel({ setOfferModalShown, step, setStep, customerNo
                 )}
                 {step === 3 && (
                     <div>
-                        <form action="">
+                        <div>
                             <div className="mb-2">
                                 <label className="mb-2" htmlFor="note">Notunuz (Müşteri İçin)</label>
                                 <textarea value={customerNote} onChange={(e) => setCustomerNote(e.target.value)} className="block w-full py-1.5 px-3 border border-[#d9d9d9] rounded-lg" placeholder="Notunuz (Müşteri İçin)" name="note" id="note"></textarea>
                             </div>
                             <div className="flex items-center gap-1">
-                                <input type="checkbox" name="mail" id="mail" />
+                                <input onChange={(e) => {setNotify(e.target.checked); console.log(notify)}} checked={notify} type="checkbox" name="mail" id="mail" />
                                 <label htmlFor="mail">Müşteriye teklifi e-posta ile bildir.</label>
                             </div>
                             <div className="flex justify-between items-center mt-6">
                                 <button className="text-[#545454] text-sm cursor-pointer hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">Seçilen Ilanlara Dön</button>
-                                <button className="uppercase bg-[#f1f1f1] text-[#4b4b4b] cursor-pointer py-2 px-5 rounded-lg text-sm hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Teklifi Oluştur</button>
+                                <button onClick={handleCreateProposal} className="uppercase bg-[#f1f1f1] text-[#4b4b4b] cursor-pointer py-2 px-5 rounded-lg text-sm hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Teklifi Oluştur</button>
                             </div>
-                        </form>
+                        </div>
                     </div>)}
             </div>
         </div >

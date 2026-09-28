@@ -5,7 +5,7 @@ import defaultImg from "../assets/default-property.jpg"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getDetails } from "../services/propertyDetails"
+import { createProposal, getDetails } from "../services/propertyDetails"
 import { Link, useParams } from "react-router-dom"
 import location from "../assets/gray-location.png"
 import building from "../assets/building.png"
@@ -83,6 +83,12 @@ export function PropertiesDetail({ loged }) {
 
     const [step, setStep] = useState(1)
 
+    const [notify , setNotify] = useState(true)
+
+    function handleCreateProposal(){
+        createProposal(customerNote , notify , selectedCurrencie , selectedCustomer , [id]).then(data => console.log(data))
+    }
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {(offerShown || errorMessageShown || offerModelShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -107,6 +113,10 @@ export function PropertiesDetail({ loged }) {
                 setCustomerNote={setCustomerNote}
                 step={step}
                 setStep={setStep}
+                property_id={id}
+                handleCreateProposal={handleCreateProposal}
+                setNotify={setNotify}
+                notify={notify}
             />}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
