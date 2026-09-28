@@ -320,7 +320,7 @@ export function Team({ loged }) {
                     <h2 className="text-xl text-[#212529] font-semibold">Yetkileri düzenleyin</h2>
                     <img onClick={() => setEditPermissionShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
-                <div className="w-full p-4">
+                <div className="w-full p-4 flex flex-col">
                     <div className="bg-[#eeeeee] rounded-lg p-7.5 mb-5">
                         <p className="text-xl text-[#212529] font-semibold">PİGASOFT</p>
                         <p className="text-sm text-[#747474] font-semibold">Genel Müdür</p>
@@ -332,12 +332,15 @@ export function Team({ loged }) {
                                 {item.permissions.map(item => (
                                     <div key={item.key}>
                                         <input onChange={(e) => e.target.checked} disabled={item?.disabled} checked={item?.checked} type="checkbox" />
-                                        <label className="text-[#212529] text-base">{item.title}</label>
+                                        <label className="text-[#212529] text-base font-medium">{item.title}</label>
                                     </div>
                             ))}
                             </div>
                         </div>
                     ))}
+                    <div className="self-end">
+                        <button className="bg-[#27c5d2] text-white font-semibold rounded-lg py-2 px-5 text-sm">Güncelle</button>
+                    </div>
                 </div>
             </div>}
             {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
