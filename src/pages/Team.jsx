@@ -158,16 +158,17 @@ export function Team({ loged }) {
     const [permissions, setPermissions] = useState([])
 
     function handleGetPermissions(id) {
+        setLoaded(false)
         getPermissions(id).then((data) => {
             setPermissions(data)
-        })
+        }).finally(() => setLoaded(true))
     }
 
     return (
         <div className='flex flex-col items-center font-sf'>
             {(errorPopUp || addShown || editShown || inviteEditShown || editPermissionShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}
                         color="#27c5d2"
@@ -330,8 +331,8 @@ export function Team({ loged }) {
                             <p className="p-3.75 mb-4 rounded-lg bg-[#eeeeee] text-[#212529] font-semibold">{item.title}</p>
                             <div>
                                 {item.permissions.map(item => (
-                                    <div key={item.key}>
-                                        <input onChange={(e) => e.target.checked} disabled={item?.disabled} checked={item?.checked} type="checkbox" />
+                                    <div className={`flex items-center gap-2.5 py-1 ${item.checked ? "opacity-70" : "opacity-100"}`} key={item.key}>
+                                        <input className={`${item.disabled ? "cursor-not-allowed" : "cursor-pointer"}`} onChange={(e) => e.target.checked} disabled={item?.disabled} checked={item?.checked} type="checkbox" />
                                         <label className="text-[#212529] text-base font-medium">{item.title}</label>
                                     </div>
                             ))}

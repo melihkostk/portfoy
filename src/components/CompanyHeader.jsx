@@ -46,8 +46,8 @@ export function CompanyHeader({ page, id, name, created_at, type, badges, code }
                         </ul>
                     </div>
                 </div>
-                <div>
-                    {page !== "companyDetail" && <div className="flex items-center gap-2.5 -mt-12 min-[1233px]:hidden mb-7.5">
+                <div className="my-7.5">
+                    {page !== "companyDetail" && <div className="flex items-center gap-2.5 -mt-12 min-[1233px]:hidden">
                         <Link to={"/company/subscription"} className="py-2 px-4 bg-white opacity-70 text-black font-semibold uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out">
                             <img className="w-4 h-4" src={box} alt="" />
                         </Link>
