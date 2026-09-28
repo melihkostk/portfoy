@@ -6,7 +6,7 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
 import { createProposal, getDetails } from "../services/propertyDetails"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import location from "../assets/gray-location.png"
 import building from "../assets/building.png"
 import mark from "../assets/mark.png"
@@ -24,6 +24,7 @@ import whiteClose from "../assets/close.png"
 export function PropertiesDetail({ loged }) {
 
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const [details, setDetails] = useState([]);
     const [loaded, setLoaded] = useState(false)
@@ -86,7 +87,18 @@ export function PropertiesDetail({ loged }) {
     const [notify , setNotify] = useState(true)
 
     function handleCreateProposal(){
-        createProposal(customerNote , notify , selectedCurrencie , selectedCustomer , [id]).then(data => console.log(data))
+        setLoaded(false)
+        setOfferModalShown(false)
+        const properties = { [id]: { price: Number(details?.prices?.primary?.number), title: details?.title } }
+        createProposal(customerNote , notify , selectedCurrencie , selectedCustomer , properties).then(data => {
+            if(data.status === "success"){
+                navigate("/company/proposals", { replace: true });
+            }
+            else {
+                setToogleMessageShown(true)
+                setToogleMessage(data.message)
+            }
+        }).finally(() => setLoaded(true))
     }
 
     return (

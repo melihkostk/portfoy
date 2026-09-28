@@ -43,7 +43,7 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                 {step === 1 && (
                     <div>
                         <h2 className="mb-4 text-[#212529]">Teklif oluşturmak için lütfen önce müşteri seçin</h2>
-                        <form onSubmit={() => { setStep(2); console.log(property_id)}}>
+                        <form onSubmit={() => setStep(2)}>
                             <div className="flex flex-col mb-2">
                                 <label htmlFor="" className="mb-2 text-[#212529]">Müşteri Seçin</label>
                                 <select value={selectedCustomer} onChange={(e) => setSelectedCustomer(e.target.value)} required name="" id="" className="border border-[#d9d9d9] rounded-lg py-1.5 px-3">
@@ -58,7 +58,7 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                                 <select value={selectedCurrencie} onChange={(e) => setSelectedCurrencie(e.target.value)} required name="" id="" className="border border-[#d9d9d9] rounded-lg py-1.5 px-3">
                                     <option disabled value="">Para Birimi Seçin</option>
                                     {currencies?.map(item => (
-                                        <option value={item.id} key={item.id}>{item.code}</option>
+                                        <option value={item.code} key={item.id}>{item.code}</option>
                                     ))}
                                 </select>
                             </div>
