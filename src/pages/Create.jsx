@@ -6,8 +6,11 @@ import { createProperty, getAllPropertiesType } from "../services/propertiesApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getAllCities, getAllCountries, getAllCurrencies, getAllDistricts, getAllStreets } from "../services/filterApi"
+import { useNavigate } from "react-router-dom"
 
 export function Create({ loged }) {
+
+    const navigate = useNavigate();
 
     const [title, setTitle] = useState("");
 
@@ -50,7 +53,7 @@ export function Create({ loged }) {
         getAllStreets(selectedDistrict).then(setStreets)
     }, [selectedDistrict])
 
-    const[selectedStreet , setSelectedStreet] = useState("");
+    const [selectedStreet, setSelectedStreet] = useState("");
 
     const [address, setAddress] = useState("");
 
@@ -64,16 +67,18 @@ export function Create({ loged }) {
 
     const [pricingType, setPricingType] = useState("PASS")
 
-    const [passPrice , setPassPrice] = useState("");
-    const [sellPrice , setSellPrice] = useState("");
+    const [passPrice, setPassPrice] = useState("");
+    const [sellPrice, setSellPrice] = useState("");
 
-    const [commutionSellPrice , setCommutionSellPrice] = useState("");
-    const [buyerCommutionRate , setBuyerCommutionRate] = useState("");
-    const [sellerCommutionRate , setSellerCommutionRate] = useState("");
+    const [commutionSellPrice, setCommutionSellPrice] = useState("");
+    const [buyerCommutionRate, setBuyerCommutionRate] = useState("");
+    const [sellerCommutionRate, setSellerCommutionRate] = useState("");
 
-    function handleAdd(){
-        createProperty(selectedType,title, 1 ,selectedCountry,selectedCity,selectedDistrict,selectedStreet,selectedCurrencie,sellPrice,passPrice,pricingType).then(data => {
-            console.log(data)
+    function handleAdd() {
+        createProperty(selectedType, title, 1, selectedCountry, selectedCity, selectedDistrict, selectedStreet, selectedCurrencie, sellPrice, passPrice, pricingType).then(data => {
+            if (data.status === "success") {
+                navigate(`/properties/${data?.data?.property?.id}/edit`)
+            }
         })
     }
 
@@ -185,11 +190,11 @@ export function Create({ loged }) {
                             {pricingType === "PASS" && <div>
                                 <div className="mb-5">
                                     <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Pass Fiyatı</label>
-                                    <input value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder="Pass Fiyatı" />
+                                    <input value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder="Pass Fiyatı" />
                                 </div>
                                 <div className="mb-5">
                                     <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Satış Fiyatı</label>
-                                    <input value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder="Satış Fiyatı" />
+                                    <input value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder="Satış Fiyatı" />
                                 </div>
                             </div>}
                             {pricingType === "COMISSION" && <div>
