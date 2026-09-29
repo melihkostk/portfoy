@@ -332,7 +332,11 @@ export function Team({ loged }) {
                             <div>
                                 {item.permissions.map(item => (
                                     <div className={`flex items-center gap-2.5 py-1 ${item.checked ? "opacity-70" : "opacity-100"}`} key={item.key}>
-                                        <input className={`${item.disabled ? "cursor-not-allowed" : "cursor-pointer"}`} onChange={(e) => e.target.checked} disabled={item?.disabled} checked={item?.checked} type="checkbox" />
+                                        <label className={`relative inline-flex items-center shrink-0 w-9 h-5 ${item.disabled ? "cursor-not-allowed" : "cursor-pointer"}`}>
+                                            <input className="sr-only peer" onChange={(e) => e.target.checked} disabled={item?.disabled} checked={item?.checked} type="checkbox" />
+                                            <span className="absolute inset-0 rounded-full bg-[#d9d9d9] peer-checked:bg-[#27c5d2] peer-disabled:opacity-60 transition-colors duration-300 ease-in-out"></span>
+                                            <span className="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-300 ease-in-out peer-checked:translate-x-4"></span>
+                                        </label>
                                         <label className="text-[#212529] text-base font-medium">{item.title}</label>
                                     </div>
                             ))}

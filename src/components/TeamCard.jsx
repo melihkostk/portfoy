@@ -3,6 +3,9 @@ import grayPhone from "../assets/gray-phone.png"
 import wp from "../assets/wp.png"
 import grayMail from "../assets/gray-mail.png"
 import { useState } from "react"
+import removePerson from "../assets/person-off.png"
+import edit from "../assets/edit.png"
+import list from "../assets/list.png"
 
 export function TeamCard({ name, handleGetPermissions , setEditPermissionShown, role, email, avatar, phone, code, page, id, is_active, handleToggleStatus, onEditClick }) {
 
@@ -18,13 +21,20 @@ export function TeamCard({ name, handleGetPermissions , setEditPermissionShown, 
             </div>}
             {optionsShown && <div className="absolute bg-white rounded-lg border top-12 -right-20 border-[#f8f8f8] py-2 shadow-[0_0_30px_rgba(0,0,0,0.1)] z-50">
                 <div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
-                    <p onClick={() => handleToggleStatus(id)} className="text-sm">{is_active ? "Bu kişinin hesabını pasife al" : "Bu kişinin hesabını aktif et"}</p>
+                    <div className="flex" onClick={() => handleToggleStatus(id)}>
+                        <img className="w-5 h-5 mr-2" src={removePerson} alt="" />
+                        <p className="text-sm">{is_active ? "Bu kişinin hesabını pasife al" : "Bu kişinin hesabını aktif et"}</p>
+                    </div>
                 </div>
                 {<div className={`py-1 px-4 text-[#747474] ${role === "Genel Müdür" ? "" : "cursor-pointer hover:text-black transition-colors duration-300 ease-in-out"}`}>
-                    <button disabled={role === "Genel Müdür"} onClick={() => { onEditClick(); setOptionsShown(false) }} className={`${role === "Genel Müdür" ? "opacity-50" : "cursor-pointer"} text-sm`}>Düzenle</button>
+                    <button disabled={role === "Genel Müdür"} onClick={() => { onEditClick(); setOptionsShown(false) }} className={`${role === "Genel Müdür" ? "opacity-50" : "cursor-pointer"} text-sm flex`}>
+                        <img className="w-5 h-5 mr-2" src={edit} alt="" />
+                        <p>Düzenle</p>
+                    </button>
                 </div>}
-                <div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
-                    <p onClick={() => { setEditPermissionShown(true); setOptionsShown(false); handleGetPermissions(id) }} className="text-sm">Yetkileri düzenleyin</p>
+                <div onClick={() => { setEditPermissionShown(true); setOptionsShown(false); handleGetPermissions(id) }} className="py-1 flex px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
+                    <img className="w-5 h-5 mr-2" src={list} alt="" />
+                    <p className="text-sm">Yetkileri düzenleyin</p>
                 </div>
             </div>}
             <div className="text-center">
