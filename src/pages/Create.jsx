@@ -2,14 +2,14 @@ import { CreateButton } from "../components/CreateButton"
 import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
-import { getAllPropertiesType } from "../services/propertiesApi"
+import { createProperty, getAllPropertiesType } from "../services/propertiesApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
-import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
+import { getAllCities, getAllCountries, getAllCurrencies, getAllDistricts, getAllStreets } from "../services/filterApi"
 
 export function Create({ loged }) {
 
-    const [title , setTitle] = useState("");
+    const [title, setTitle] = useState("");
 
     const [propertyType, setPropertyType] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -18,39 +18,64 @@ export function Create({ loged }) {
         getAllPropertiesType().then(setPropertyType).finally(() => setLoaded(true))
     }, [])
 
-    const [selectedType , setSelectedType] = useState("");
+    const [selectedType, setSelectedType] = useState("");
 
-    const [countries , setCountries] = useState([]);
+    const [countries, setCountries] = useState([]);
 
     useEffect(() => {
         getAllCountries().then(setCountries);
     }, [])
 
-    const [selectedCountry , setSelectedCountry] = useState("");
+    const [selectedCountry, setSelectedCountry] = useState("");
 
-    const [cities , setCities] = useState([]);
+    const [cities, setCities] = useState([]);
 
     useEffect(() => {
         getAllCities(selectedCountry).then(setCities);
     }, [selectedCountry])
 
-    const [selectedCity , setSelectedCity] = useState("");
+    const [selectedCity, setSelectedCity] = useState("");
 
-    const [district , setDistrict] = useState([]);
+    const [district, setDistrict] = useState([]);
 
     useEffect(() => {
         getAllDistricts(selectedCity).then(setDistrict)
     }, [selectedCity])
 
-    const [selectedDistrict , setSelectedDistrict] = useState("");
+    const [selectedDistrict, setSelectedDistrict] = useState("");
 
-    const [streets , setStreets] = useState([]);
+    const [streets, setStreets] = useState([]);
 
     useEffect(() => {
         getAllStreets(selectedDistrict).then(setStreets)
     }, [selectedDistrict])
 
-    const [address , setAddress] = useState("");
+    const[selectedStreet , setSelectedStreet] = useState("");
+
+    const [address, setAddress] = useState("");
+
+    const [currencies, setCurrencies] = useState([]);
+
+    useEffect(() => {
+        getAllCurrencies().then(setCurrencies);
+    }, [])
+
+    const [selectedCurrencie, setSelectedCurrencie] = useState(1);
+
+    const [pricingType, setPricingType] = useState("PASS")
+
+    const [passPrice , setPassPrice] = useState("");
+    const [sellPrice , setSellPrice] = useState("");
+
+    const [commutionSellPrice , setCommutionSellPrice] = useState("");
+    const [buyerCommutionRate , setBuyerCommutionRate] = useState("");
+    const [sellerCommutionRate , setSellerCommutionRate] = useState("");
+
+    function handleAdd(){
+        createProperty(selectedType,title, 1 ,selectedCountry,selectedCity,selectedDistrict,selectedStreet,selectedCurrencie,sellPrice,passPrice,pricingType).then(data => {
+            console.log(data)
+        })
+    }
 
 
 
@@ -121,7 +146,7 @@ export function Create({ loged }) {
                                 </div>
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">Mahalle</label>
-                                    <select className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <select value={selectedStreet} onChange={(e) => setSelectedStreet(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">Mahalle</option>
                                         {streets.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -140,38 +165,55 @@ export function Create({ loged }) {
                         <div>
                             <div className="flex flex-col items-center">
                                 <p className="mb-1.25 text-sm text-[#212529] text-center opacity-50">Lütfen ilanınızda kullanmak istediğiniz fiyatlandırma tipini seçin.</p>
-                                <label className="text-center bg-[#e2e2e2] text-sm font-semibold py-2.5 px-7.5 rounded-lg mb-7.5">Pass Fiyatı</label>
+                                <div>
+                                    <button onClick={() => setPricingType("PASS")} className={`${pricingType === "PASS" ? "bg-[#e2e2e2] rounded-lg" : "bg-[#f8f8f8]"} text-center text-sm font-semibold py-2.5 px-7.5 mb-7.5 hover:bg-[#e2e2e2] transition-colors duration-300 ease-in-out cursor-pointer`}>Pass Fiyatı</button>
+                                    {(selectedType === 27 || selectedType === 21) && <button onClick={() => setPricingType("COMISSION")} className={`${pricingType === "COMISSION" ? "bg-[#e2e2e2] rounded-lg" : "bg-[#f8f8f8]"} text-center text-sm font-semibold py-2.5 px-7.5 cursor-pointer mb-7.5 hover:bg-[#e2e2e2] transition-colors duration-300 ease-in-out`}>Komisyon Oranı</button>}
+                                </div>
                             </div>
                             <div className="flex flex-col items-center">
                                 <p className="mb-1.25 text-sm text-[#212529] opacity-50 text-center">
                                     Lütfen ilanınızda kullanmak istediğiniz para birimini seçin.
                                 </p>
                                 <div className="flex items-center mb-7.5">
-                                    <div className="text-sm text-[#212529] font-semibold py-2.5 px-7.5 bg-[#e2e2e2] rounded-lg">
-                                        TRY
-                                    </div>
-                                    <div className="text-sm text-[#212529] font-semibold py-2.5 px-7.5">
-                                        USD
-                                    </div>
-                                    <div className="text-sm text-[#212529] font-semibold py-2.5 px-7.5">
-                                        EUR
-                                    </div>
+                                    {currencies.map(item => (
+                                        <button key={item.id} onClick={() => setSelectedCurrencie(item.id)} className={`text-sm text-[#212529] cursor-pointer font-semibold py-2.5 px-7.5 hover:bg-[#e2e2e2] transition-colors duration-300 ease-in-out ${item.id === selectedCurrencie ? "bg-[#e2e2e2] rounded-lg" : "bg-[#f8f8f8]"}`}>{item.code}</button>
+                                    ))}
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full">
-                            <div className="mb-5">
-                                <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Pass Fiyatı</label>
-                                <input className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder="Pass Fiyatı" />
-                            </div>
-                            <div className="mb-5">
-                                <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Satış Fiyatı</label>
-                                <input className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder="Satış Fiyatı" />
-                            </div>
+                        <div className="w-full mb-12.5">
+                            {pricingType === "PASS" && <div>
+                                <div className="mb-5">
+                                    <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Pass Fiyatı</label>
+                                    <input value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder="Pass Fiyatı" />
+                                </div>
+                                <div className="mb-5">
+                                    <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Satış Fiyatı</label>
+                                    <input value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder="Satış Fiyatı" />
+                                </div>
+                            </div>}
+                            {pricingType === "COMISSION" && <div>
+                                <div>
+                                    <div className="mb-5">
+                                        <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Satış Fiyatı</label>
+                                        <input value={commutionSellPrice} onChange={(e) => setCommutionSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder="Satış Fiyatı" />
+                                    </div>
+                                    <div className="flex gap-3.75">
+                                        <div className="mb-5 flex-1">
+                                            <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Alıcı Komisyon Oranı (%)</label>
+                                            <input value={buyerCommutionRate} onChange={(e) => setBuyerCommutionRate(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder="Satış Fiyatı" />
+                                        </div>
+                                        <div className="mb-5 flex-1">
+                                            <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Satıcı Komisyon Oranı (%)</label>
+                                            <input value={sellerCommutionRate} onChange={(e) => setSellerCommutionRate(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder="Satış Fiyatı" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>}
                         </div>
                     </div>
                     <div className="flex justify-center">
-                        <button className="h-12.5 bg-[#27C5D2] px-5 cursor-pointer rounded-[5px] text-white whitespace-nowrap hover:bg-[#026872] transition-colors duration-300 ease-in-out">Yeni İlan Oluştur</button>
+                        <button onClick={handleAdd} className="h-12.5 bg-[#27C5D2] px-5 cursor-pointer rounded-[5px] text-white whitespace-nowrap hover:bg-[#026872] transition-colors duration-300 ease-in-out">Yeni İlan Oluştur</button>
                     </div>
                 </div>
             </div>
