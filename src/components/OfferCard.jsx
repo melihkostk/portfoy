@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { showOffer } from "../services/profileApi";
+import eye from "../assets/eye.png"
 
 export function OfferCard({ title, price, offered_price, status, created_at, setLoaded , id, type , index , setOfferMenuShown , setOfferInfo , setSelectedOfferId }) {
 
@@ -31,10 +32,12 @@ export function OfferCard({ title, price, offered_price, status, created_at, set
                 {created_at}
             </td>
             <td>
-                {type === "send" && <Link to={`/offers/${id}/detail`} className="bg-[#27C5D2] text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
+                {type === "send" && <Link to={`/offers/${id}/detail`} className="bg-[#27C5D2] flex items-center gap-1.25 text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
+                    <img className="w-4 h-4" src={eye} alt="" />
                     Görüntüle
                 </Link>}
-                {type === "received" && <button onClick={handleShowOffer} className="bg-[#27C5D2] text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
+                {type === "received" && <button onClick={handleShowOffer} className="bg-[#27C5D2] flex items-center gap-1.25 text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
+                    <img className="w-4 h-4" src={eye} alt="" />
                     Görüntüle
                 </button>}
             </td>

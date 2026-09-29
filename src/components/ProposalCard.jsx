@@ -1,3 +1,5 @@
+import eye from "../assets/eye.png"
+
 export function ProposalCard({code , name , status , score , created_at , index}) {
     return (
         <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
@@ -9,7 +11,10 @@ export function ProposalCard({code , name , status , score , created_at , index}
             </td>
             <td className="py-3 px-2 whitespace-nowrap">{created_at}</td>
             <td className="text-end py-3 px-2">
-                <button className="bg-[#27C5D2] text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Görüntüle</button>
+                <button className="bg-[#27C5D2] text-xs flex items-center gap-1.25 text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
+                    <img className="w-4 h-4" src={eye} alt="" />
+                    Görüntüle
+                </button>
             </td>
         </tr>
     )
