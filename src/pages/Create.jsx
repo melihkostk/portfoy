@@ -2,11 +2,35 @@ import { CreateButton } from "../components/CreateButton"
 import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { getAllPropertiesType } from "../services/propertiesApi"
+import { useEffect, useState } from "react"
+import { ClipLoader } from "react-spinners"
 
-export function Create({loged}) {
+export function Create({ loged }) {
+
+    const [propertyType, setPropertyType] = useState([]);
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        getAllPropertiesType().then(setPropertyType).finally(() => setLoaded(true))
+    }, [])
+
+    const [selectedType , setSelectedType] = useState("");
+
+
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
+            {!loaded && (
+                <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İlanlar</span> {">"} <span className="text-[#9a9898]"> Yeni İlan Oluştur</span></p>
@@ -18,18 +42,15 @@ export function Create({loged}) {
                         <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-medium">Temel Bilgiler</p>
                         <input className="p-3.75 rounded-lg border border-[#ededed] w-full" type="text" placeholder="İlan Başlığı" />
                         <div className="flex overflow-x-auto scrollbar-none mt-7.5">
-                            <CreateButton />
-                            <CreateButton />
-                            <CreateButton />
-                            <CreateButton />
-                            <CreateButton />
-                        </div>
-                        <div className="mt-5">
-                            <select className="w-full bg-[#f8f8f8] text-[#818181] p-2.5 rounded-lg" name="" id="">
-                                <option value="">Seçim Yapın</option>
-                                <option value="">Proje Apartman</option>
-                                <option value="">Proje Villa</option>
-                            </select>
+                            {propertyType.map(item => (
+                                <CreateButton
+                                    key={item.id}
+                                    title={item.title}
+                                    id={item.id}
+                                    selectedType={selectedType}
+                                    setSelectedType={setSelectedType}
+                                />
+                            ))}
                         </div>
                     </div>
                     <div className="mb-12.5">
@@ -103,20 +124,6 @@ export function Create({loged}) {
                             <div className="mb-5">
                                 <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Satış Fiyatı</label>
                                 <input className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder="Satış Fiyatı" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="mb-12.5">
-                        <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-medium">Yetki Belgesi</p>
-                        <div>
-                            <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Proje Satış Vekaletinizi Ekleyin</label>
-                            <input className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="file" accept="application/pdf" required />
-                            <div className="p-4 mt-2 mb-4 bg-[#fff3cd] rounded-lg text-[#664d03]">
-                                <p>Pazarlama Firması türündeki firma olarak herhangi bir inşaat firmasından belirli sayıda bir daireyi satmak istiyorsanız ekteki belgeyi inşaat firmasına doldurtup imzalatıp ve sisteme yüklemeniz yeterli olacaktır.</p>
-                                <p className="mt-5 mb-4">
-                                    Yetki belgesi örneğini indirin
-                                </p>
-                                <a href="https://demo.pigasoft.com/portfoy/public/licence-of-authorization.pdf" className="uppercase bg-[#FFCA64] py-2 px-5 rounded-lg text-black text-sm hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out cursor-pointer">İndir</a>
                             </div>
                         </div>
                     </div>
