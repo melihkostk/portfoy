@@ -5,8 +5,11 @@ import { Footer } from "../components/Footer"
 import { getAllPropertiesType } from "../services/propertiesApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
+import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
 
 export function Create({ loged }) {
+
+    const [title , setTitle] = useState("");
 
     const [propertyType, setPropertyType] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -16,6 +19,38 @@ export function Create({ loged }) {
     }, [])
 
     const [selectedType , setSelectedType] = useState("");
+
+    const [countries , setCountries] = useState([]);
+
+    useEffect(() => {
+        getAllCountries().then(setCountries);
+    }, [])
+
+    const [selectedCountry , setSelectedCountry] = useState("");
+
+    const [cities , setCities] = useState([]);
+
+    useEffect(() => {
+        getAllCities(selectedCountry).then(setCities);
+    }, [selectedCountry])
+
+    const [selectedCity , setSelectedCity] = useState("");
+
+    const [district , setDistrict] = useState([]);
+
+    useEffect(() => {
+        getAllDistricts(selectedCity).then(setDistrict)
+    }, [selectedCity])
+
+    const [selectedDistrict , setSelectedDistrict] = useState("");
+
+    const [streets , setStreets] = useState([]);
+
+    useEffect(() => {
+        getAllStreets(selectedDistrict).then(setStreets)
+    }, [selectedDistrict])
+
+    const [address , setAddress] = useState("");
 
 
 
@@ -40,7 +75,7 @@ export function Create({ loged }) {
                 <div className="w-[50%] max-[992px]:w-full">
                     <div className="mb-12.5">
                         <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-medium">Temel Bilgiler</p>
-                        <input className="p-3.75 rounded-lg border border-[#ededed] w-full" type="text" placeholder="İlan Başlığı" />
+                        <input value={title} onChange={(e) => setTitle(e.target.value)} className="p-3.75 rounded-lg border border-[#ededed] w-full" type="text" placeholder="İlan Başlığı" />
                         <div className="flex overflow-x-auto scrollbar-none mt-7.5">
                             {propertyType.map(item => (
                                 <CreateButton
@@ -57,38 +92,46 @@ export function Create({ loged }) {
                         <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-medium">Konum Bilgileri</p>
                         <div>
                             <div className="flex justify-start flex-wrap items-start max-[992px]:flex-col">
-                                <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-[992px]:w-full">
+                                <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">Ülke Seçin</label>
-                                    <select className="p-2.5 border border-[#e8e8e8] rounded-lg">
+                                    <select value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">Ülke Seçin</option>
-                                        <option value="">Türkiye</option>
-                                        <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
+                                        {countries?.data?.map(item => (
+                                            <option key={item.id} value={item.id}>{item.title}</option>
+                                        ))}
                                     </select>
                                 </div>
-                                <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-[992px]:w-full">
+                                <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">İl Seçin</label>
-                                    <select className="p-2.5 border border-[#e8e8e8] rounded-lg">
-                                        <option value="">Ankara</option>
-                                        <option value="">Konya</option>
-                                        <option value="">İstanbul</option>
+                                    <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                        <option value="">İl Seçin</option>
+                                        {cities.map(item => (
+                                            <option key={item.id} value={item.id}>{item.title}</option>
+                                        ))}
                                     </select>
                                 </div>
-                                <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-[992px]:w-full">
+                                <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">İlçe Seçin</label>
-                                    <select className="p-2.5 border border-[#e8e8e8] rounded-lg">
+                                    <select value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">İlçe Seçin</option>
+                                        {district.map(item => (
+                                            <option key={item.id} value={item.id}>{item.title}</option>
+                                        ))}
                                     </select>
                                 </div>
-                                <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-[992px]:w-full">
+                                <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">Mahalle</label>
-                                    <select className="p-2.5 border border-[#e8e8e8] rounded-lg">
-                                        <option value="">Mahalle Seçin</option>
+                                    <select className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                        <option value="">Mahalle</option>
+                                        {streets.map(item => (
+                                            <option key={item.id} value={item.id}>{item.title}</option>
+                                        ))}
                                     </select>
                                 </div>
                             </div>
                             <div className="px-2.5 max-[992px]:w-full max-[992px]:px-0">
                                 <label className="text-sm text-[#212529] opacity-50" htmlFor="">Adres</label>
-                                <input className="p-2.5 rounded-lg border border-[#e8e8e8] block w-full" type="text" placeholder="Adres" />
+                                <input value={address} onChange={(e) => setAddress(e.target.value)} className="p-2.5 rounded-lg border border-[#e8e8e8] block w-full" type="text" placeholder="Adres" />
                             </div>
                         </div>
                     </div>
