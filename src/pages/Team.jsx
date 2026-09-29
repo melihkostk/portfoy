@@ -340,7 +340,7 @@ export function Team({ loged }) {
                         </div>
                     ))}
                     <div className="self-end">
-                        <button className="bg-[#27c5d2] text-white font-semibold rounded-lg py-2 px-5 text-sm">Güncelle</button>
+                        <button className="bg-[#27c5d2] text-white font-semibold cursor-pointer hover:bg-[#026872] duration-300 ease-in-out rounded-lg py-2 px-5 text-sm">Güncelle</button>
                     </div>
                 </div>
             </div>}

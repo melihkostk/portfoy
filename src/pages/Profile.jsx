@@ -9,7 +9,7 @@ import file from "../assets/black-file.png"
 import { getUserProperties, getWishlist } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
-import { getCustomerProposals } from "../services/myCompanyApi"
+import { getCompanyInfo, getCustomerProposals } from "../services/myCompanyApi"
 
 export function Profile({loged}) {
 
@@ -32,6 +32,22 @@ export function Profile({loged}) {
         getCustomerProposals().then(setProposals)
     }, [])
 
+    const [info, setInfo] = useState([]);
+
+    useEffect(() => {
+        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+    }, [])
+
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        const userInfo = localStorage.getItem("user");
+        if (userInfo) {
+            const parsedUser = JSON.parse(userInfo);
+            setUser(parsedUser);
+        }
+    }, [])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {!loaded && (
@@ -52,7 +68,7 @@ export function Profile({loged}) {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="w-[28%] max-[992px]:w-full">
-                        <Sidebar />
+                        <Sidebar info={info} user={user} />
                     </div>
                     <div className="w-[72%] pl-7.5 max-[992px]:w-full max-[992px]:pl-0">
                         <div className="flex max-[992px]:flex-wrap justify-between -ml-3.75 -mr-3.75">
