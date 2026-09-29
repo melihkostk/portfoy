@@ -6,10 +6,13 @@ import { PropertySettingsCard } from "../components/PropertySettingsCard";
 import defaultProperty from "../assets/default-property.jpg"
 import chain from "../assets/chain.png"
 import { getDetails } from "../services/propertyDetails";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+import { deleteProperty } from "../services/propertiesApi";
 
 export function EditProperty({ loged }) {
+
+    const navigate = useNavigate();
 
     const [editType, setEditType] = useState("info");
     const [understand, setUnderstand] = useState(true)
@@ -50,6 +53,14 @@ export function EditProperty({ loged }) {
 
         }).finally(() => setLoaded(true));
     }, [id])
+
+    function handleDelete(){
+        deleteProperty(id).then(data => {
+            if(data.status === "success"){
+                navigate("/company")
+            }
+        })
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -273,6 +284,7 @@ export function EditProperty({ loged }) {
                             title="İlanı Sil"
                             description="Bu ilana ait hareketleri, teklifleri ve benzeri tüm kayıtları tamamen kaldırın."
                             button="İlanı Sil"
+                            handleDelete={handleDelete}
                         />
                         <PropertySettingsCard
                             title="İlan Satıldı"

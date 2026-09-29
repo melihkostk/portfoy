@@ -69,3 +69,8 @@ export const createProperty = async (type_id , title, is_under_construction , co
   });
   return response.data;
 }
+
+export const deleteProperty = async (id) => {
+  const response = await api.post(`/properties/${id}/delete`);
+  return response.data;
+}

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getAllCities, getAllCountries, getAllCurrencies, getAllDistricts, getAllStreets } from "../services/filterApi"
 import { useNavigate } from "react-router-dom"
+import whiteClose from "../assets/close.png"
 
 export function Create({ loged }) {
 
@@ -74,19 +75,28 @@ export function Create({ loged }) {
     const [buyerCommutionRate, setBuyerCommutionRate] = useState("");
     const [sellerCommutionRate, setSellerCommutionRate] = useState("");
 
-    function handleAdd() {
+    const [errorMessageShown, setErrorMessageShown] = useState(false)
+
+    function handleAdd(e) {
+        e.preventDefault()
+        setLoaded(false)
         createProperty(selectedType, title, 1, selectedCountry, selectedCity, selectedDistrict, selectedStreet, selectedCurrencie, sellPrice, passPrice, pricingType).then(data => {
             if (data.status === "success") {
                 navigate(`/properties/${data?.data?.property?.id}/edit`)
             }
-        })
+            else {
+                setErrorMessageShown(true)
+            }
+        }).finally(() => setLoaded(true))
     }
-
-
 
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
+            {errorMessageShown && <div className="fixed max-w-1/2 flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-linear-to-r from-[rgb(201,61,61)] to-[rgb(151,5,5)] p-3 text-white">
+                <p>Lütfen tüm alanları doğru bir şekilde doldurun.</p>
+                <img onClick={() => setErrorMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
             {!loaded && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -102,10 +112,10 @@ export function Create({ loged }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%] flex items-center justify-center">
-                <div className="w-[50%] max-[992px]:w-full">
+                <form onSubmit={handleAdd} className="w-[50%] max-[992px]:w-full">
                     <div className="mb-12.5">
                         <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-medium">Temel Bilgiler</p>
-                        <input value={title} onChange={(e) => setTitle(e.target.value)} className="p-3.75 rounded-lg border border-[#ededed] w-full" type="text" placeholder="İlan Başlığı" />
+                        <input required value={title} onChange={(e) => setTitle(e.target.value)} className="p-3.75 rounded-lg border border-[#ededed] w-full" type="text" placeholder="İlan Başlığı" />
                         <div className="flex overflow-x-auto scrollbar-none mt-7.5">
                             {propertyType.map(item => (
                                 <CreateButton
@@ -124,7 +134,7 @@ export function Create({ loged }) {
                             <div className="flex justify-start flex-wrap items-start max-[992px]:flex-col">
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">Ülke Seçin</label>
-                                    <select value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <select required value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">Ülke Seçin</option>
                                         {countries?.data?.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -133,7 +143,7 @@ export function Create({ loged }) {
                                 </div>
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">İl Seçin</label>
-                                    <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <select required value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">İl Seçin</option>
                                         {cities.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -142,7 +152,7 @@ export function Create({ loged }) {
                                 </div>
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">İlçe Seçin</label>
-                                    <select value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <select required value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">İlçe Seçin</option>
                                         {district.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -151,7 +161,7 @@ export function Create({ loged }) {
                                 </div>
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
                                     <label className="text-sm text-[#212529] opacity-50" htmlFor="">Mahalle</label>
-                                    <select value={selectedStreet} onChange={(e) => setSelectedStreet(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <select required value={selectedStreet} onChange={(e) => setSelectedStreet(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">Mahalle</option>
                                         {streets.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -161,7 +171,7 @@ export function Create({ loged }) {
                             </div>
                             <div className="px-2.5 max-[992px]:w-full max-[992px]:px-0">
                                 <label className="text-sm text-[#212529] opacity-50" htmlFor="">Adres</label>
-                                <input value={address} onChange={(e) => setAddress(e.target.value)} className="p-2.5 rounded-lg border border-[#e8e8e8] block w-full" type="text" placeholder="Adres" />
+                                <input required value={address} onChange={(e) => setAddress(e.target.value)} className="p-2.5 rounded-lg border border-[#e8e8e8] block w-full" type="text" placeholder="Adres" />
                             </div>
                         </div>
                     </div>
@@ -190,27 +200,27 @@ export function Create({ loged }) {
                             {pricingType === "PASS" && <div>
                                 <div className="mb-5">
                                     <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Pass Fiyatı</label>
-                                    <input value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder="Pass Fiyatı" />
+                                    <input required value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder="Pass Fiyatı" />
                                 </div>
                                 <div className="mb-5">
                                     <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Satış Fiyatı</label>
-                                    <input value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder="Satış Fiyatı" />
+                                    <input required value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder="Satış Fiyatı" />
                                 </div>
                             </div>}
                             {pricingType === "COMISSION" && <div>
                                 <div>
                                     <div className="mb-5">
                                         <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Satış Fiyatı</label>
-                                        <input value={commutionSellPrice} onChange={(e) => setCommutionSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder="Satış Fiyatı" />
+                                        <input required value={commutionSellPrice} onChange={(e) => setCommutionSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder="Satış Fiyatı" />
                                     </div>
                                     <div className="flex gap-3.75">
                                         <div className="mb-5 flex-1">
                                             <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Alıcı Komisyon Oranı (%)</label>
-                                            <input value={buyerCommutionRate} onChange={(e) => setBuyerCommutionRate(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder="Satış Fiyatı" />
+                                            <input required value={buyerCommutionRate} onChange={(e) => setBuyerCommutionRate(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder="Satış Fiyatı" />
                                         </div>
                                         <div className="mb-5 flex-1">
                                             <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">Satıcı Komisyon Oranı (%)</label>
-                                            <input value={sellerCommutionRate} onChange={(e) => setSellerCommutionRate(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder="Satış Fiyatı" />
+                                            <input required value={sellerCommutionRate} onChange={(e) => setSellerCommutionRate(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder="Satış Fiyatı" />
                                         </div>
                                     </div>
                                 </div>
@@ -218,9 +228,9 @@ export function Create({ loged }) {
                         </div>
                     </div>
                     <div className="flex justify-center">
-                        <button onClick={handleAdd} className="h-12.5 bg-[#27C5D2] px-5 cursor-pointer rounded-[5px] text-white whitespace-nowrap hover:bg-[#026872] transition-colors duration-300 ease-in-out">Yeni İlan Oluştur</button>
+                        <button type="submit" className="h-12.5 bg-[#27C5D2] px-5 cursor-pointer rounded-[5px] text-white whitespace-nowrap hover:bg-[#026872] transition-colors duration-300 ease-in-out">Yeni İlan Oluştur</button>
                     </div>
-                </div>
+                </form>
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
