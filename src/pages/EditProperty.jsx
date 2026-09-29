@@ -9,6 +9,8 @@ import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { deleteProperty } from "../services/propertiesApi";
+import close from "../assets/blue-close.png"
+import trash from "../assets/trash.png"
 
 export function EditProperty({ loged }) {
 
@@ -54,16 +56,19 @@ export function EditProperty({ loged }) {
         }).finally(() => setLoaded(true));
     }, [id])
 
-    function handleDelete(){
+    function handleDelete() {
         deleteProperty(id).then(data => {
-            if(data.status === "success"){
+            if (data.status === "success") {
                 navigate("/company")
             }
         })
     }
 
+    const [deletePopUp, setDeletePopUp] = useState(false)
+
     return (
         <div className='flex flex-col items-center font-sf'>
+            {deletePopUp && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -74,6 +79,24 @@ export function EditProperty({ loged }) {
                 </div>
             )}
             <Header loged={loged} />
+            {deletePopUp && <div className="fixed top-1/2 left-1/2 overflow-y-auto pb-5 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="flex justify-end items-center w-full p-4 border-b-[#dee2e6]">
+                    <img onClick={() => setDeletePopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
+                </div>
+                <div className="text-center flex flex-col items-center justify-start h-full w-full">
+                    <div className="flex flex-col items-center">
+                        <img className="w-25 h-25" src={trash} alt="" />
+                        <div className="mt-4 flex flex-col items-center">
+                            <p className="text-[#545454] text-2xl mb-2">Emin misiniz ?</p>
+                            <p className="text-lg text-[#6c757d] max-w-[60%] leading-none">İlanı sildiğinizde tekrar geri alamayacaksınız, silmek istediğinize emin misiniz?</p>
+                        </div>
+                    </div>
+                    <div className="mt-5 flex gap-2.5 justify-center">
+                        <button onClick={() => handleDelete()} className="bg-[#dc3545] cursor-pointer font-semibold hover:bg-[#bb2d3b] transition-colors duration-300 ease-in-out text-white py-2 px-5 rounded-lg text-sm">Evet, eminim</button>
+                        <button onClick={() => setDeletePopUp(false)} className="bg-[#f1f1f1] cursor-pointer font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out text-[#4b4b4b] py-2 px-5 rounded-lg text-sm">İptal</button>
+                    </div>
+                </div>
+            </div>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"}</p>
@@ -284,7 +307,7 @@ export function EditProperty({ loged }) {
                             title="İlanı Sil"
                             description="Bu ilana ait hareketleri, teklifleri ve benzeri tüm kayıtları tamamen kaldırın."
                             button="İlanı Sil"
-                            handleDelete={handleDelete}
+                            setDeletePopUp={setDeletePopUp}
                         />
                         <PropertySettingsCard
                             title="İlan Satıldı"

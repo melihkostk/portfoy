@@ -261,7 +261,7 @@ export function PropertiesDetail({ loged }) {
                             <button onClick={() => handleToogle(id)} className={` ${details.in_wishlist ? "bg-[#27c5d2]" : "bg-[#f1f1f1]"} w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out`}>
                                 <img className="w-5 h-5" src={details.in_wishlist ? heart : grayHeart} alt="" />
                             </button>
-                            <button onClick={() => setOfferShown(true)} className="uppercase text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 text-sm rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                            <button onClick={() => setOfferShown(true)} className="uppercase font-semibold text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 text-sm rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                 Fiyat Teklifi Oluştur
                             </button>
                             <button onClick={() => setOfferModalShown(true)} className="bg-[#f1f1f1] w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">

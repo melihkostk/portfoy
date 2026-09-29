@@ -116,7 +116,7 @@ export function Create({ loged }) {
                     <div className="mb-12.5">
                         <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-medium">Temel Bilgiler</p>
                         <input required value={title} onChange={(e) => setTitle(e.target.value)} className="p-3.75 rounded-lg border border-[#ededed] w-full" type="text" placeholder="İlan Başlığı" />
-                        <div className="flex overflow-x-auto scrollbar-none mt-7.5">
+                        <div className="flex overflow-x-auto justify-between scrollbar-none mt-7.5">
                             {propertyType.map(item => (
                                 <CreateButton
                                     key={item.id}
