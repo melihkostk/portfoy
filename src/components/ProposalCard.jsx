@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom"
 import eye from "../assets/eye.png"
 
-export function ProposalCard({code , name , status , score , created_at , index}) {
+export function ProposalCard({code , name , status , score , created_at , index , id}) {
     return (
         <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{code}</td>
@@ -11,10 +12,10 @@ export function ProposalCard({code , name , status , score , created_at , index}
             </td>
             <td className="py-3 px-2 whitespace-nowrap">{created_at}</td>
             <td className="text-end py-3 px-2">
-                <button className="bg-[#27C5D2] text-xs flex items-center gap-1.25 text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
+                <Link to={`/proposals/${id}/details`} className="bg-[#27C5D2] w-full text-xs flex items-center justify-center gap-1.25 text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
                     <img className="w-4 h-4" src={eye} alt="" />
                     Görüntüle
-                </button>
+                </Link>
             </td>
         </tr>
     )

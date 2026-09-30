@@ -80,6 +80,15 @@ export function Boost({ loged }) {
                                     </ul>
                                 </div>
                             </div>
+                            {!details.status === "draft" && <div className="flex flex-col">
+                                <div className="text-center my-12.5">
+                                    <span className="text-[25px] font-semibold">Süre: 7 Gün</span>
+                                    <input className="block mt-4 w-full h-3.75 bg-[#efefef]" type="range" min={7} max={60} name="days" />
+                                </div>
+                                <div>
+                                    <button className="w-full bg-[#27c5d2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out text-white rounded-lg font-semibold text-sm h-12.5 px-5">TRY ₺70,00 Öde</button>
+                                </div>
+                            </div>}
                         </div>
                     </div>
                 </div>
