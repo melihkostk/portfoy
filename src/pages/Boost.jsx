@@ -39,12 +39,12 @@ export function Boost({ loged }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
-                <div className="flex justify-between items-center gap-12.5">
-                    <div className="w-1/2">
-                        <h1 className="text-[35px] max-w-[80%] font-semibold mb-7.5">İlanınız daha fazla Port-foy kullanıcısının dikkatini çeksin ister misiniz?</h1>
+                <div className="flex justify-between items-center gap-12.5 max-[1100px]:flex-col">
+                    <div className="w-1/2 max-[1100px]:w-full">
+                        <h1 className="text-[35px] max-w-[80%] font-semibold mb-7.5 max-[1100px]:max-w-full">İlanınız daha fazla Port-foy kullanıcısının dikkatini çeksin ister misiniz?</h1>
                         <p className="text-[#808080]">İlanı öne çıkarma başvuru yapın ve daha çok dikkatleri ilanınıza toplayın.</p>
                     </div>
-                    <div className="w-1/2 p-7.5">
+                    <div className="w-1/2 p-7.5 max-[1100px]:w-full max-[1100px]:p-0">
                         {details.status === "draft" && <div className="bg-[#f9d7da] text-[#842029] border border-[#f5c2c7] p-4 mb-4 rounded-lg">
                             Sadece yayında olan ilanlarınızı öne çıkarabilirsiniz.
                         </div>}
@@ -62,9 +62,9 @@ export function Boost({ loged }) {
                                     <img className="w-full rounded-lg h-auto" src={defaultProperty} alt="" />
                                 </div>
                                 <div className="pl-7.5 w-[calc(100%-200px)]">
-                                    <p className="text-lg font-semibold">{details?.title}</p>
-                                    <p className="text-sm opacity-70 mb-4">{details.no}</p>
-                                    <ul className="flex text-sm text-[#747474] gap-2.5">
+                                    <p className="text-lg font-semibold whitespace-pre-line text-ellipsis overflow-hidden">{details?.title}</p>
+                                    <p className="text-sm opacity-70 mb-4 whitespace-break-spaces text-ellipsis overflow-hidden">{details.no}</p>
+                                    <ul className="flex text-sm text-[#747474] gap-2.5 flex-wrap">
                                         <li className="flex">
                                             <img className="w-5 h-5 mr-1.25" src={location} alt="" />
                                             {details?.city?.title} / {details?.district?.title}

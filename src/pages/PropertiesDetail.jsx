@@ -31,7 +31,7 @@ export function PropertiesDetail({ loged }) {
 
     useEffect(() => {
         getDetails(id).then(setDetails).finally(() => setLoaded(true))
-    }, [])
+    }, [id])
 
     const [offerShown, setOfferShown] = useState(false)
 
@@ -150,16 +150,16 @@ export function PropertiesDetail({ loged }) {
                     {errorMessage}
                 </div>
             </div>}
-            {offerShown && <div className="fixed top-1/2 max-h-150 overflow-y-auto scrollbar-thin scrollbar-thumb-[#27c5d2] left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[50%] bg-white border border-[#eee] rounded-lg z-50">
+            {offerShown && <div className="fixed top-1/2 scrollbar-thin scrollbar-thumb-[#27c5d2] left-1/2 flex flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[40%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between w-full p-4 border-b border-b-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">Fiyat Teklifi Oluşturun</h2>
                     <img onClick={() => setOfferShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
-                <div className="flex w-full">
-                    <div className="w-1/2 pl-3.75 pt-3.75 pb-3.75">
-                        <img className="object-cover" src={details?.cover} alt="cover" />
+                <div className="flex w-full max-[992px]:flex-col">
+                    <div className="w-1/2 pl-3.75 pt-3.75 pb-3.75 max-[992px]:w-full max-[992px]:p-3.75">
+                        <img className="object-cover rounded-lg h-full" src={defaultImg} alt="cover" />
                     </div>
-                    <div className="w-1/2 p-12.5">
+                    <div className="w-1/2 p-12.5 max-[992px]:w-full max-[992px]:p-3.75">
                         <h1 className="text-[#212529] text-[25px] mb-2">{details?.title}</h1>
                         <p className="text-sm text-[#6c757d]">{details?.no}</p>
                         <div className="my-7.5">
