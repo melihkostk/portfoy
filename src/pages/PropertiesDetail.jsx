@@ -226,7 +226,7 @@ export function PropertiesDetail({ loged }) {
                             Bu ilan şuanda yayında olmadığı için sadece siz görüntüleyebilirsiniz
                         </div>}
                         <p className="text-sm text-[#888888] mb-2.5">{details.no}</p>
-                        <h1 className="text-[25px] text-[#212529] mb-3.75">{details.title}</h1>
+                        <h1 className="text-[25px] text-[#212529] mb-3.75 font-semibold">{details.title}</h1>
                         <ul className="flex flex-wrap gap-5">
                             <li className="flex items-center">
                                 <img className="w-5 h-5 mr-1.25" src={location} alt="" />
@@ -234,7 +234,7 @@ export function PropertiesDetail({ loged }) {
                             </li>
                             <li className="flex items-center">
                                 <img className="w-5 h-5 mr-1.25" src={building} alt="" />
-                                {details?.property_type === "ready" ? <p className="text-[#c2c2c2] text-sm">Hazır</p> : <p className="text-[#c2c2c2] text-sm"></p>}
+                                {details?.property_type === "ready" ? <p className="text-[#c2c2c2] text-sm">Hazır</p> : <p className="text-[#c2c2c2] text-sm">Proje</p>}
                             </li>
                             <li className="flex items-center">
                                 <img className="w-5 h-5 mr-1.25" src={calendar} alt="" />

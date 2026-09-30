@@ -169,7 +169,7 @@ export function Wishlist({ loged }) {
                                 setSelectedPropertyType={setSelectedPropertyType}
                             />
                         </div>
-                        <div className="flex flex-wrap justify-between -mx-3.75">
+                        <div className="flex flex-wrap justify-between -mx-3.75 mt-7.5">
                             {wishlist?.data?.length > 0 ?
                                 wishlist?.data?.map(item => (
                                     <PropertiesCard
