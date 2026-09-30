@@ -65,10 +65,11 @@ export function EditProperty({ loged }) {
     }
 
     const [deletePopUp, setDeletePopUp] = useState(false)
+    const [copyPopUp, setCopyPopUp] = useState(false);
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            {deletePopUp && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(deletePopUp || copyPopUp) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -94,6 +95,29 @@ export function EditProperty({ loged }) {
                     <div className="mt-5 flex gap-2.5 justify-center">
                         <button onClick={() => handleDelete()} className="bg-[#dc3545] cursor-pointer font-semibold hover:bg-[#bb2d3b] transition-colors duration-300 ease-in-out text-white py-2 px-5 rounded-lg text-sm">Evet, eminim</button>
                         <button onClick={() => setDeletePopUp(false)} className="bg-[#f1f1f1] cursor-pointer font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out text-[#4b4b4b] py-2 px-5 rounded-lg text-sm">İptal</button>
+                    </div>
+                </div>
+            </div>}
+            {copyPopUp && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529] font-semibold">İlanı Kopyala</h2>
+                    <img onClick={() => setCopyPopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
+                </div>
+                <div className="p-4 w-full">
+                    <div className="mb-4">
+                        <label className="text-[#212529]" htmlFor="title">Başlık</label>
+                        <input className="block px-3 py-1.5 w-full mt-2 rounded-lg border border-[#d9d9d9]" id="title" name="title" type="text" placeholder="Başlık" />
+                    </div>
+                    <div>
+                        <p className="text-[#6c757d] mb-4">Seçenekler</p>
+                        <div className="flex items-center gap-2">
+                            <input id="transfer" name="transfer" type="checkbox" />
+                            <label className="select-none" htmlFor="transfer">Görselleri Aktar</label>
+                        </div>
+                    </div>
+                    <div className="flex justify-end gap-2 mt-6">
+                        <button className="text-[#4b4b4b] cursor-pointer bg-[#f1f1f1] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
+                        <button className="text-white cursor-pointer bg-[#198754] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#157347] transition-colors duration-300 ease-in-out">Kaydet</button>
                     </div>
                 </div>
             </div>}
@@ -302,12 +326,13 @@ export function EditProperty({ loged }) {
                             title="İlanı Kopyala"
                             description="Bu ilanın galeri görselleri dahil tüm özelliklerini kullanarak yeni bir ilan oluşturabilirsiniz."
                             button="Kopyala"
+                            onClick={() => setCopyPopUp(true)}
                         />
                         <PropertySettingsCard
                             title="İlanı Sil"
                             description="Bu ilana ait hareketleri, teklifleri ve benzeri tüm kayıtları tamamen kaldırın."
                             button="İlanı Sil"
-                            setDeletePopUp={setDeletePopUp}
+                            onClick={() => setDeletePopUp(true)}
                         />
                         <PropertySettingsCard
                             title="İlan Satıldı"
