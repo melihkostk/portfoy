@@ -45,6 +45,7 @@ import { NewsDetail } from "./pages/NewsDetail.jsx";
 import { ProposalDetail } from "./pages/ProposalDetail.jsx";
 import { OfferDetail } from "./pages/OfferDetail.jsx";
 import { EditProperty } from "./pages/EditProperty.jsx";
+import { Boost } from "./pages/Boost.jsx"
 
 function App() {
 
@@ -113,10 +114,11 @@ function App() {
         <Route path="/companies/:id/team" element={<CompaniesDetailTeam loged={loged} />}></Route>
         <Route path="/companies/:id/contacts" element={<CompaniesDetailLocation loged={loged} />}></Route>
         <Route path="/properties/:id" element={<PropertiesDetail loged={loged} />}></Route>
-        <Route path="/articles/:id" element={<NewsDetail loged={loged} news={news}  />}></Route>
+        <Route path="/articles/:id" element={<NewsDetail loged={loged} news={news} />}></Route>
         <Route path="/proposals/:id/details" element={<ProposalDetail loged={loged} />}></Route>
         <Route path="/offers/:id/detail" element={<OfferDetail loged={loged} />}></Route>
         <Route path="/properties/:id/edit" element={<EditProperty loged={loged} />}></Route>
+        <Route path="/properties/:id/boost" element={<Boost loged={loged} />}></Route>
       </Routes>
     </BrowserRouter>
 

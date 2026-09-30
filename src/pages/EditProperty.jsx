@@ -335,6 +335,7 @@ export function EditProperty({ loged }) {
                             title="İlanı Öne Çıkar"
                             description="Belirli bir süre için ilanınızı öne çıkararak daha fazla kullanıcının görmesini sağlayabilirsiniz."
                             button="İlanı Öne Çıkar"
+                            onClick={() => navigate(`/properties/${id}/boost`)}
                         />
                         <PropertySettingsCard
                             title="İlanı Kopyala"
