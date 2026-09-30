@@ -70,15 +70,22 @@ export function EditProperty({ loged }) {
     const [copyTitle , setCopyTitle] = useState("");
     const [cloneImage , setCloneImage] = useState(0)
 
-    function handleClone(){
-        cloneProperty(id, copyTitle , cloneImage).then(data => console.log(data));
+    function handleClone(e){
+        e.preventDefault();
+        setLoaded(false)
+        cloneProperty(id, copyTitle , cloneImage).then(data => {
+            if(data.status === "success"){
+                setCopyPopUp(false)
+                navigate(`/properties/${data?.data?.id}/edit`)
+            }
+        }).finally(() => setLoaded(true));
     }
 
     return (
         <div className='flex flex-col items-center font-sf'>
             {(deletePopUp || copyPopUp) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}
                         color="#27c5d2"
@@ -105,7 +112,7 @@ export function EditProperty({ loged }) {
                     </div>
                 </div>
             </div>}
-            {copyPopUp && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
+            {copyPopUp && <form onSubmit={handleClone} className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">İlanı Kopyala</h2>
                     <img onClick={() => setCopyPopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
@@ -113,7 +120,7 @@ export function EditProperty({ loged }) {
                 <div className="p-4 w-full">
                     <div className="mb-4">
                         <label className="text-[#212529]" htmlFor="title">Başlık</label>
-                        <input value={copyTitle} onChange={(e) => setCopyTitle(e.target.value)} className="block px-3 py-1.5 w-full mt-2 rounded-lg border border-[#d9d9d9]" id="title" name="title" type="text" placeholder="Başlık" />
+                        <input required value={copyTitle} onChange={(e) => setCopyTitle(e.target.value)} className="block px-3 py-1.5 w-full mt-2 rounded-lg border border-[#d9d9d9]" id="title" name="title" type="text" placeholder="Başlık" />
                     </div>
                     <div>
                         <p className="text-[#6c757d] mb-4">Seçenekler</p>
@@ -124,10 +131,10 @@ export function EditProperty({ loged }) {
                     </div>
                     <div className="flex justify-end gap-2 mt-6">
                         <button onClick={() => setCopyPopUp(false)} className="text-[#4b4b4b] cursor-pointer bg-[#f1f1f1] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
-                        <button onClick={() => handleClone()} className="text-white cursor-pointer bg-[#198754] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#157347] transition-colors duration-300 ease-in-out">Kaydet</button>
+                        <button className="text-white cursor-pointer bg-[#198754] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#157347] transition-colors duration-300 ease-in-out">Kaydet</button>
                     </div>
                 </div>
-            </div>}
+            </form>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"}</p>
