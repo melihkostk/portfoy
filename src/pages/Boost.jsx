@@ -2,10 +2,36 @@ import { Header } from "../components/Header"
 import defaultProperty from "../assets/default-property.jpg"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { getDetails } from "../services/propertyDetails"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { ClipLoader } from "react-spinners"
+import location from "../assets/gray-location.png"
+import building from "../assets/building.png"
+import calendar from "../assets/calendar.png"
 
 export function Boost({ loged }) {
+
+    const {id} = useParams();
+    
+    const [loaded , setLoaded] = useState(false)
+    const [details , setDetails] = useState([])
+
+    useEffect(() => {
+        getDetails(id).then(setDetails).finally(() => setLoaded(true))
+    }, [id])
+
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
@@ -22,7 +48,7 @@ export function Boost({ loged }) {
                         <div className="bg-[#f9d7da] text-[#842029] border border-[#f5c2c7] p-4 mb-4 rounded-lg">
                             Sadece yayında olan ilanlarınızı öne çıkarabilirsiniz.
                         </div>
-                        <div className="p-7.5 bg-[#f8f8f8] rounded-lg">
+                        <div className="p-7.5 bg-[#f8f8f8] rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.1)]">
                             <div>
                                 <h2 className="text-[25px] font-semibold mb-2">İlanı Öne Çıkarma Başvurusu</h2>
                                 <p className="text-sm text-[#212529] mb-4">
@@ -36,12 +62,21 @@ export function Boost({ loged }) {
                                     <img className="w-full rounded-lg h-auto" src={defaultProperty} alt="" />
                                 </div>
                                 <div className="pl-7.5 w-[calc(100%-200px)]">
-                                    <p className="text-lg font-semibold">KEYFE KEDER DOSTA GİDER</p>
-                                    <p className="text-sm opacity-70 mb-4">CR0285ARS0003000015</p>
+                                    <p className="text-lg font-semibold">{details?.title}</p>
+                                    <p className="text-sm opacity-70 mb-4">{details.no}</p>
                                     <ul className="flex text-sm text-[#747474] gap-2.5">
-                                        <li>Konya / Selçuklu</li>
-                                        <li>Hazır</li>
-                                        <li>30 Eylül 2024</li>
+                                        <li className="flex">
+                                            <img className="w-5 h-5 mr-1.25" src={location} alt="" />
+                                            {details?.city?.title} / {details?.district?.title}
+                                        </li>
+                                        <li className="flex">
+                                            <img className="w-5 h-5 mr-1.25" src={building} alt="" />
+                                            {details?.property_type === "ready" ? "Hazır" : "Proje"}
+                                        </li>
+                                        <li className="flex">
+                                            <img className="w-5 h-5 mr-1.25" src={calendar} alt="" />
+                                            {details?.updated_at}
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
