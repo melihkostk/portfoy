@@ -34,11 +34,14 @@ export function EditProperty({ loged }) {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
 
+    const [detail , setDetail] = useState([])
+
 
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         getDetails(id).then(data => {
+            setDetail(data)
             setTitle(data?.title)
             setNo(data?.no)
             setPassPrice(data?.prices?.secondary?.number)
@@ -180,12 +183,12 @@ export function EditProperty({ loged }) {
                     </div>
                 </div>
             </div>
-            <div className="w-full max-w-[90%]">
+            {detail.status === "draft" && <div className="w-full max-w-[90%]">
                 <div className="w-full flex items-center justify-between border border-[#ffecb5] p-4 mb-4 bg-[#fff3cd] rounded-lg">
                     <p className="text-[#664d03]">Bu ilan şuanda taslak durumunda, ilan bilgilerinizi tamamladıktan sonra yayınlayabilirsiniz.</p>
                     <button className="bg-[#ffca64] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">Şimdi Yayınla</button>
                 </div>
-            </div>
+            </div>}
             {editType === "info" && <div className="w-full max-w-[90%]">
                 <div className="w-full mb-7.5">
                     <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
@@ -330,29 +333,34 @@ export function EditProperty({ loged }) {
                             title="İlanı Pasife Al"
                             description="İlan havuzunda yer almasını istemediğiniz ilanları pasif durumuna alabilirsiniz"
                             button="Pasife Al"
+                            status={detail?.status}
                         />
                         <PropertySettingsCard
                             title="İlanı Öne Çıkar"
                             description="Belirli bir süre için ilanınızı öne çıkararak daha fazla kullanıcının görmesini sağlayabilirsiniz."
                             button="İlanı Öne Çıkar"
                             onClick={() => navigate(`/properties/${id}/boost`)}
+                            status={detail?.status}
                         />
                         <PropertySettingsCard
                             title="İlanı Kopyala"
                             description="Bu ilanın galeri görselleri dahil tüm özelliklerini kullanarak yeni bir ilan oluşturabilirsiniz."
                             button="Kopyala"
                             onClick={() => setCopyPopUp(true)}
+                            status={detail?.status}
                         />
                         <PropertySettingsCard
                             title="İlanı Sil"
                             description="Bu ilana ait hareketleri, teklifleri ve benzeri tüm kayıtları tamamen kaldırın."
                             button="İlanı Sil"
                             onClick={() => setDeletePopUp(true)}
+                            status={detail?.status}
                         />
                         <PropertySettingsCard
                             title="İlan Satıldı"
                             description="İlanı satıldı olarak işaretleyin ve tercihinize göre portföyünüzde kalmasını sağlayın."
                             button="İlan Satıldı"
+                            status={detail?.status}
                         />
                     </div>
                 </div>

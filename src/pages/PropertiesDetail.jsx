@@ -257,7 +257,7 @@ export function PropertiesDetail({ loged }) {
                                 <div className="uppercase text-xs bg-[#FFCA64] w-fit py-1.25 px-2 rounded-lg font-semibold">{details.badges[0].title}</div>
                             )}
                         </div>
-                        {details.status !== "draft" ? (<div className="flex gap-2.5 flex-wrap">
+                        {!details.is_owner_company ? (<div className="flex gap-2.5 flex-wrap">
                             <button onClick={() => handleToogle(id)} className={` ${details.in_wishlist ? "bg-[#27c5d2]" : "bg-[#f1f1f1]"} w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out`}>
                                 <img className="w-5 h-5" src={details.in_wishlist ? heart : grayHeart} alt="" />
                             </button>
@@ -273,7 +273,7 @@ export function PropertiesDetail({ loged }) {
                                     <img className="w-5 h-5" src={pen} alt="" />
                                     <span>İlanı Düzenle</span>
                                 </Link>
-                                <button className="bg-[#ffca64] rounded-lg flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">
+                                <button onClick={() => navigate(`/properties/${id}/boost`)} className="bg-[#ffca64] rounded-lg flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">
                                     <img className="w-4 h-4" src={graph} alt="" />
                                     İlanı Öne Çıkar
                                 </button>

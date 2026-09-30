@@ -45,9 +45,9 @@ export function Boost({ loged }) {
                         <p className="text-[#808080]">İlanı öne çıkarma başvuru yapın ve daha çok dikkatleri ilanınıza toplayın.</p>
                     </div>
                     <div className="w-1/2 p-7.5">
-                        <div className="bg-[#f9d7da] text-[#842029] border border-[#f5c2c7] p-4 mb-4 rounded-lg">
+                        {details.status === "draft" && <div className="bg-[#f9d7da] text-[#842029] border border-[#f5c2c7] p-4 mb-4 rounded-lg">
                             Sadece yayında olan ilanlarınızı öne çıkarabilirsiniz.
-                        </div>
+                        </div>}
                         <div className="p-7.5 bg-[#f8f8f8] rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.1)]">
                             <div>
                                 <h2 className="text-[25px] font-semibold mb-2">İlanı Öne Çıkarma Başvurusu</h2>
