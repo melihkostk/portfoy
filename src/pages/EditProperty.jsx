@@ -8,7 +8,7 @@ import chain from "../assets/chain.png"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { deleteProperty } from "../services/propertiesApi";
+import { cloneProperty, deleteProperty } from "../services/propertiesApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 
@@ -67,6 +67,13 @@ export function EditProperty({ loged }) {
     const [deletePopUp, setDeletePopUp] = useState(false)
     const [copyPopUp, setCopyPopUp] = useState(false);
 
+    const [copyTitle , setCopyTitle] = useState("");
+    const [cloneImage , setCloneImage] = useState(0)
+
+    function handleClone(){
+        cloneProperty(id, copyTitle , cloneImage).then(data => console.log(data));
+    }
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {(deletePopUp || copyPopUp) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -106,18 +113,18 @@ export function EditProperty({ loged }) {
                 <div className="p-4 w-full">
                     <div className="mb-4">
                         <label className="text-[#212529]" htmlFor="title">Başlık</label>
-                        <input className="block px-3 py-1.5 w-full mt-2 rounded-lg border border-[#d9d9d9]" id="title" name="title" type="text" placeholder="Başlık" />
+                        <input value={copyTitle} onChange={(e) => setCopyTitle(e.target.value)} className="block px-3 py-1.5 w-full mt-2 rounded-lg border border-[#d9d9d9]" id="title" name="title" type="text" placeholder="Başlık" />
                     </div>
                     <div>
                         <p className="text-[#6c757d] mb-4">Seçenekler</p>
                         <div className="flex items-center gap-2">
                             <input id="transfer" name="transfer" type="checkbox" />
-                            <label className="select-none" htmlFor="transfer">Görselleri Aktar</label>
+                            <label checked={cloneImage === 1} onChange={(e) => setCloneImage(e.target.checked ? 1 : 0)} className="select-none" htmlFor="transfer">Görselleri Aktar</label>
                         </div>
                     </div>
                     <div className="flex justify-end gap-2 mt-6">
-                        <button className="text-[#4b4b4b] cursor-pointer bg-[#f1f1f1] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
-                        <button className="text-white cursor-pointer bg-[#198754] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#157347] transition-colors duration-300 ease-in-out">Kaydet</button>
+                        <button onClick={() => setCopyPopUp(false)} className="text-[#4b4b4b] cursor-pointer bg-[#f1f1f1] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
+                        <button onClick={() => handleClone()} className="text-white cursor-pointer bg-[#198754] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#157347] transition-colors duration-300 ease-in-out">Kaydet</button>
                     </div>
                 </div>
             </div>}

@@ -53,8 +53,8 @@ export const filterPublishedProperties = async (params = {}) => {
   return response.data;
 }
 
-export const createProperty = async (type_id , title, is_under_construction , country_id , city_id , district_id , street_id , currency_id , sell_price , pass_price , pricing_type) => {
-  const response = await api.post("/properties/drafts/create" , {
+export const createProperty = async (type_id, title, is_under_construction, country_id, city_id, district_id, street_id, currency_id, sell_price, pass_price, pricing_type) => {
+  const response = await api.post("/properties/drafts/create", {
     type_id,
     title,
     country_id,
@@ -72,5 +72,13 @@ export const createProperty = async (type_id , title, is_under_construction , co
 
 export const deleteProperty = async (id) => {
   const response = await api.post(`/properties/${id}/delete`);
+  return response.data;
+}
+
+export const cloneProperty = async (id, title, clone_images) => {
+  const response = await api.post(`/properties/${id}/clone`, {
+    title: title,
+    clone_images: clone_images
+  });
   return response.data;
 }
