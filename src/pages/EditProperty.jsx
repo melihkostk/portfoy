@@ -11,6 +11,7 @@ import { ClipLoader } from "react-spinners";
 import { cloneProperty, deleteProperty, updateDraftStatus } from "../services/propertiesApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
+import file from "../assets/ff.png"
 
 export function EditProperty({ loged }) {
 
@@ -158,9 +159,12 @@ export function EditProperty({ loged }) {
                     <img onClick={() => setToogleMenu(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 <div className="p-4 w-full">
-                    <div>
-                        <p className="text-center mb-2 text-2xl text-[#545454]">İlanı pasife almak istediğinize emin misiniz?</p>
-                        <p className="text-center text-lg text-[#6c757d]">Pasife alınan ilanlar ilan havuzunda görünmez ve ilan limitlerinizi etkilemez</p>
+                    <div className="flex flex-col items-center justify-center">
+                        <img className="w-25 h-25" src={file} alt="" />
+                        <div className="mt-6 max-w-[87%]">
+                            <p className="text-center mb-2 text-2xl text-[#545454]">İlanı pasife almak istediğinize emin misiniz?</p>
+                            <p className="text-center text-lg text-[#6c757d]">Pasife alınan ilanlar ilan havuzunda görünmez ve ilan limitlerinizi etkilemez</p>
+                        </div>
                     </div>
                     <div className="flex items-center justify-center gap-2.5 mt-5">
                         <button onClick={handleToggleStatus} className="bg-[#ffca64] text-black text-sm font-semibold py-2 px-5 rounded-lg hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out cursor-pointer">Evet, pasife al</button>
@@ -363,7 +367,7 @@ export function EditProperty({ loged }) {
                             title="İlanı Pasife Al"
                             description="İlan havuzunda yer almasını istemediğiniz ilanları pasif durumuna alabilirsiniz"
                             button="Pasife Al"
-                            status={detail?.status}
+                            disabled={detail?.status === "draft"}
                             onClick={() => setToogleMenu(true)}
                         />
                         <PropertySettingsCard
