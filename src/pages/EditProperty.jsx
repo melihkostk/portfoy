@@ -8,7 +8,7 @@ import chain from "../assets/chain.png"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { cloneProperty, deleteProperty } from "../services/propertiesApi";
+import { cloneProperty, deleteProperty, updateDraftStatus } from "../services/propertiesApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 
@@ -33,8 +33,9 @@ export function EditProperty({ loged }) {
     const [type, setType] = useState("");
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
+    const [status, setStatus] = useState("");
 
-    const [detail , setDetail] = useState([])
+    const [detail, setDetail] = useState([])
 
 
     const [loaded, setLoaded] = useState(false);
@@ -54,6 +55,7 @@ export function EditProperty({ loged }) {
             setType(data?.type?.title)
             setLatitude(data?.map?.latitude);
             setLongitude(data?.map?.longitude);
+            setStatus(data?.status)
 
 
         }).finally(() => setLoaded(true));
@@ -70,23 +72,36 @@ export function EditProperty({ loged }) {
     const [deletePopUp, setDeletePopUp] = useState(false)
     const [copyPopUp, setCopyPopUp] = useState(false);
 
-    const [copyTitle , setCopyTitle] = useState("");
-    const [cloneImage , setCloneImage] = useState(0)
+    const [copyTitle, setCopyTitle] = useState("");
+    const [cloneImage, setCloneImage] = useState(0)
 
-    function handleClone(e){
+    function handleClone(e) {
         e.preventDefault();
         setLoaded(false)
-        cloneProperty(id, copyTitle , cloneImage).then(data => {
-            if(data.status === "success"){
+        cloneProperty(id, copyTitle, cloneImage).then(data => {
+            if (data.status === "success") {
                 setCopyPopUp(false)
                 navigate(`/properties/${data?.data?.id}/edit`)
             }
         }).finally(() => setLoaded(true));
     }
 
+    function handleToggleStatus() {
+        const newStatus = status === "published" ? "draft" : "published";
+        setLoaded(false)
+        updateDraftStatus(id, newStatus).then(data => {
+            if (data.status === "success") {
+                setToogleMenu(false)
+                setEditType("info")
+            }
+        }).finally(() => setLoaded(true));
+    }
+
+    const [toggleMenu, setToogleMenu] = useState(false);
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(deletePopUp || copyPopUp) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(deletePopUp || copyPopUp || toggleMenu) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -138,6 +153,21 @@ export function EditProperty({ loged }) {
                     </div>
                 </div>
             </form>}
+            {toggleMenu && <div className="fixed top-1/2 left-1/2 overflow-y-auto pb-5 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="flex justify-end items-center w-full p-4 border-b-[#dee2e6]">
+                    <img onClick={() => setToogleMenu(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
+                </div>
+                <div className="p-4 w-full">
+                    <div>
+                        <p className="text-center mb-2 text-2xl text-[#545454]">İlanı pasife almak istediğinize emin misiniz?</p>
+                        <p className="text-center text-lg text-[#6c757d]">Pasife alınan ilanlar ilan havuzunda görünmez ve ilan limitlerinizi etkilemez</p>
+                    </div>
+                    <div className="flex items-center justify-center gap-2.5 mt-5">
+                        <button onClick={handleToggleStatus} className="bg-[#ffca64] text-black text-sm font-semibold py-2 px-5 rounded-lg hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out cursor-pointer">Evet, pasife al</button>
+                        <button onClick={() => setToogleMenu(false)} className="bg-[#f1f1f1] text-[#4c4c4c] text-sm font-semibold py-2 px-5 rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">İptal</button>
+                    </div>
+                </div>
+            </div>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"}</p>
@@ -334,6 +364,7 @@ export function EditProperty({ loged }) {
                             description="İlan havuzunda yer almasını istemediğiniz ilanları pasif durumuna alabilirsiniz"
                             button="Pasife Al"
                             status={detail?.status}
+                            onClick={() => setToogleMenu(true)}
                         />
                         <PropertySettingsCard
                             title="İlanı Öne Çıkar"

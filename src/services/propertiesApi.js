@@ -82,3 +82,10 @@ export const cloneProperty = async (id, title, clone_images) => {
   });
   return response.data;
 }
+
+export const updateDraftStatus = async (id , status) => {
+  const response = await api.post(`/properties/${id}/status/update` , {
+    status:status
+  });
+  return response.data;
+}

@@ -2,6 +2,7 @@ import { Header } from "../components/Header"
 import heart from "../assets/heart.png"
 import folder from "../assets/gray-folder.png"
 import defaultImg from "../assets/default-property.jpg"
+import defaultPP from "../assets/default-company.png"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
@@ -214,9 +215,9 @@ export function PropertiesDetail({ loged }) {
                                     <img className="rounded-lg" src={defaultImg} alt="" />
                                 </div>
                             </div>
-                            <div className="w-[calc(100%-160px)] max-[992px]:w-full pl-5 max-[992px]:pl-0">
+                            <a href={defaultImg} className="w-[calc(100%-160px)] max-[992px]:w-full pl-5 max-[992px]:pl-0">
                                 <img className="w-full h-full object-cover rounded-lg" src={defaultImg} alt="" />
-                            </div>
+                            </a>
                         </div>
                         <div>
                         </div>
@@ -243,7 +244,7 @@ export function PropertiesDetail({ loged }) {
                         </ul>
                         <Link to={`/companies/${details?.company?.id}`} className="flex items-center gap-5 bg-[#f2f2f2] p-3.75 w-fit rounded-lg my-7.5 max-[992px]:w-full">
                             <div className="w-13.75 h-13.75 shadow-[0_0_30px_rgb(234_234_234/10%)]">
-                                <img className="w-full h-full rounded-full object-cover bg-white" src={defaultImg} alt="" />
+                                <img className="w-full h-full rounded-full object-cover bg-white" src={defaultPP} alt="" />
                             </div>
                             <div>
                                 <p className="mb-1.25 font-bold">{details?.company?.title}</p>

@@ -132,7 +132,7 @@ export function Filter({searchParams , typeId}) {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 w-[calc(100%/3)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1  pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Satış fiyatı</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -163,7 +163,7 @@ export function Filter({searchParams , typeId}) {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 w-[calc(100%/3)] pr-2.5">
+                        <div className="flex-1 pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Konum</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
