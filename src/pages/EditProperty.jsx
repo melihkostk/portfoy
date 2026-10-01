@@ -12,6 +12,7 @@ import { cloneProperty, deleteProperty, updateDraftStatus } from "../services/pr
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
+import { getAllFilterOptions } from "../services/filterApi";
 
 export function EditProperty({ loged }) {
 
@@ -35,8 +36,8 @@ export function EditProperty({ loged }) {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
     const [status, setStatus] = useState("");
-
     const [detail, setDetail] = useState([])
+    const [propertyType, setPropertyType] = useState("");
 
 
     const [loaded, setLoaded] = useState(false);
@@ -57,6 +58,7 @@ export function EditProperty({ loged }) {
             setLatitude(data?.map?.latitude);
             setLongitude(data?.map?.longitude);
             setStatus(data?.status)
+            setPropertyType(data?.type?.id)
 
 
         }).finally(() => setLoaded(true));
@@ -99,6 +101,12 @@ export function EditProperty({ loged }) {
     }
 
     const [toggleMenu, setToogleMenu] = useState(false);
+
+    const [options, setOptions] = useState([]);
+
+    useEffect(() => {
+        getAllFilterOptions(propertyType).then(setOptions)
+    }, [propertyType])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -295,63 +303,23 @@ export function EditProperty({ loged }) {
                     </div>
                 </div>
                 <div className="w-full mb-7.5">
-                    <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
-                        <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
-                            <h5 className="text-[#676767] text-lg py-1.25">Arsa Bilgileri</h5>
-                        </div>
-                        <div className="p-4">
-                            <div className="flex flex-wrap justify-between">
-                                <div className="w-[25%] px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Emlak Acentesi Satış İzni</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="w-[25%] px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">İmar Durumu</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="w-[25%] px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Ada Numarası *</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="w-[25%] px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Parsel Numarası *</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="w-[25%] px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Kaks(Emsal)</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="w-[25%] px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Gabari</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="w-[25%] px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Kat Karşılığı</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="w-[25%] px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Takasa Uygun</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="w-[25%] px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Arsa Tapu Türü *</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="w-[25%] px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Arsa Altyapı</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="w-[25%] px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Metrekare (m²) *</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="w-[25%] px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Taksitli Satışa Uygun</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                    {options?.data?.map((item) => (
+                        <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
+                            <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
+                                <h5 className="text-[#676767] text-lg py-1.25">{item.title}</h5>
+                            </div>
+                            <div className="p-4">
+                                <div className="flex flex-wrap justify-start">
+                                    {item.params?.map(item => (
+                                        <div className="w-[25%] px-3 mb-2">
+                                        <label className="text-[#6c757d]" htmlFor="">{item?.title}</label>
+                                        <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                    </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
                 <div className="w-full mb-7.5">
                     <div className="flex gap-1">
