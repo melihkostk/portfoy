@@ -12,7 +12,7 @@ import { cloneProperty, deleteProperty, updateDraftStatus } from "../services/pr
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
-import { getAllFilterOptions } from "../services/filterApi";
+
 
 export function EditProperty({ loged }) {
 
@@ -37,9 +37,6 @@ export function EditProperty({ loged }) {
     const [longitude, setLongitude] = useState("");
     const [status, setStatus] = useState("");
     const [detail, setDetail] = useState([])
-    const [propertyType, setPropertyType] = useState("");
-
-
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
@@ -58,9 +55,6 @@ export function EditProperty({ loged }) {
             setLatitude(data?.map?.latitude);
             setLongitude(data?.map?.longitude);
             setStatus(data?.status)
-            setPropertyType(data?.type?.id)
-
-
         }).finally(() => setLoaded(true));
     }, [id])
 
@@ -101,12 +95,6 @@ export function EditProperty({ loged }) {
     }
 
     const [toggleMenu, setToogleMenu] = useState(false);
-
-    const [options, setOptions] = useState([]);
-
-    useEffect(() => {
-        getAllFilterOptions(propertyType).then(setOptions)
-    }, [propertyType])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -303,19 +291,19 @@ export function EditProperty({ loged }) {
                     </div>
                 </div>
                 <div className="w-full mb-7.5">
-                    {options?.data?.map((item) => (
+                    {detail?.features?.map((item) => (
                         <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
                             <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
                                 <h5 className="text-[#676767] text-lg py-1.25">{item.title}</h5>
                             </div>
                             <div className="p-4">
                                 <div className="flex flex-wrap justify-start">
-                                    {item.params?.map(item => (
-                                        <div className="w-[25%] px-3 mb-2 flex flex-col">
+                                    {item.features?.map(item => (
+                                        <div key={item.id} className="w-[25%] px-3 mb-2 flex flex-col">
                                             <label className="text-[#6c757d]" htmlFor="">{item?.title}</label>
                                             {item.input_type !== "select"
-                                                ? <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type={item.input_type} />
-                                                : <select className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]">
+                                                ? <input key={item.id} value={item.input_type === "text" || item.input_type === "number" ? item?.value : ""} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type={item.input_type} />
+                                                : <select key={item.id} value={item.value} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]">
                                                     <option>{item.title}</option>
                                                     {item.options.map(item => (
                                                         <option key={item.id}>{item.title}</option>
@@ -332,7 +320,7 @@ export function EditProperty({ loged }) {
                 <div className="w-full mb-7.5">
                     <div className="flex gap-1">
                         <button className="text-sm bg-[#27c5d2] text-white rounded-lg py-2 px-5 cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Güncelle</button>
-                        <button className="text-sm bg-[#F1F1F1] text-[#4B4B4B] rounded-lg py-2 px-5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Güncelle ve Yayınla</button>
+                        {status === "draft" && <button className="text-sm bg-[#F1F1F1] text-[#4B4B4B] rounded-lg py-2 px-5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Güncelle ve Yayınla</button>}
                     </div>
                 </div>
             </div>}
