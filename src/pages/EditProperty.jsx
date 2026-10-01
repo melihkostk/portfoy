@@ -311,10 +311,18 @@ export function EditProperty({ loged }) {
                             <div className="p-4">
                                 <div className="flex flex-wrap justify-start">
                                     {item.params?.map(item => (
-                                        <div className="w-[25%] px-3 mb-2">
-                                        <label className="text-[#6c757d]" htmlFor="">{item?.title}</label>
-                                        <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                    </div>
+                                        <div className="w-[25%] px-3 mb-2 flex flex-col">
+                                            <label className="text-[#6c757d]" htmlFor="">{item?.title}</label>
+                                            {item.input_type !== "select"
+                                                ? <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type={item.input_type} />
+                                                : <select className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]">
+                                                    <option>{item.title}</option>
+                                                    {item.options.map(item => (
+                                                        <option key={item.id}>{item.title}</option>
+                                                    ))}
+                                                </select>
+                                            }
+                                        </div>
                                     ))}
                                 </div>
                             </div>
