@@ -9,15 +9,18 @@ import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getAllPropertiesType } from "../services/propertiesApi"
 import { getAllCities, getAllCountries, getAllCurrencies, getAllDistricts } from "../services/filterApi"
+import { Pagination } from "../components/Pagination"
 
 export function Company({ loged }) {
 
     const [companyProperties, setCompanyProperties] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
+     const [page, setPage] = useState(1)
+
     useEffect(() => {
         getCompanyProperties().then(setCompanyProperties).finally(() => setLoaded(true))
-    }, [])
+    }, [page])
 
     const [type, setType] = useState([]);
 
@@ -62,7 +65,7 @@ export function Company({ loged }) {
 
     function handleFilter(selectedCountry, selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status, selectedType) {
         setLoaded(false)
-        getCompanyProperties(selectedCountry, selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status, selectedType).then(setCompanyProperties).finally(() => setLoaded(true))
+        getCompanyProperties(selectedCountry ,selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status, selectedType).then(setCompanyProperties).finally(() => setLoaded(true))
     }
 
     const [minSell, setMinSell] = useState("");
@@ -133,25 +136,36 @@ export function Company({ loged }) {
                             setSelectedType={setSelectedType}
                         />
                     </div>
-                    <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-wrap">
-                        {companyProperties.length > 0 ? companyProperties.map((item) => (
-                            <PropertiesCard
-                                page="company"
-                                id={item.id}
-                                key={item.id}
-                                title={item.title}
-                                cover={item.cover}
-                                price={item.price.formatted}
-                                company={item.company.title}
-                                type={item.type.title}
-                                city={item.city.title}
-                                district={item.district.title}
-                                created_by={item.creator}
-                                status={item.status}
+                    <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-col">
+                        <div className="flex flex-wrap">
+                            {companyProperties?.data?.properties?.length > 0 ? companyProperties?.data?.properties?.map((item) => (
+                                <PropertiesCard
+                                    page="company"
+                                    id={item.id}
+                                    key={item.id}
+                                    title={item.title}
+                                    cover={item.cover}
+                                    price={item.price.formatted}
+                                    company={item.company.title}
+                                    type={item.type.title}
+                                    city={item.city.title}
+                                    district={item.district.title}
+                                    created_by={item.creator}
+                                    status={item.status}
+                                />
+                            )) : (
+                                <div className="text-[#636464] bg-[#fafafa] rounded-lg p-3.75 m-3.75 w-full max-h-fit">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
+                            )}
+                        </div>
+                        <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center mt-5">
+                            <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
+                                {companyProperties?.pagination?.pagination_text}
+                            </p>
+                            <Pagination
+                                pagination={companyProperties?.pagination}
+                                onPageChange={setPage}
                             />
-                        )) : (
-                            <div className="text-[#636464] bg-[#fafafa] rounded-lg p-3.75 m-3.75 w-full max-h-fit">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </div>

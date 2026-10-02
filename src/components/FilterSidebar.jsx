@@ -11,7 +11,7 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
     return (
         <div className="w-full">
             <div className="mb-5 w-full">
-                <div className="bg-[#f8f8f8] text-[#7d7d7d] min-w-full text-center py-2.5 rounded-lg hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                <div className="bg-[#f8f8f8] text-[#7d7d7d] font-semibold min-w-full text-center py-2.5 rounded-lg hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     <Link to={"/properties/create"}>Yeni İlan Oluştur</Link>
                 </div>
             </div>
@@ -108,7 +108,7 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                         </div>
                     </div>
                 </div>
-                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie , status , selectedType)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie , status , selectedType)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] font-semibold text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
 
             </form>
 

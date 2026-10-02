@@ -70,7 +70,7 @@ export const getCompanyProperties = async (country_id, city_id, district_id, cre
         property_status:property_status,
         types: types
     });
-    return response.data.data.properties;
+    return response.data;
 }
 
 export const getCompanyProposals = async () => {

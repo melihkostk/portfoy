@@ -176,11 +176,11 @@ export function Team({ loged }) {
                     />
                 </div>
             )}
-            {errorPopUp && <div className="fixed top-1/2 left-1/2 flex flex-col items-center justify-start p-3 -translate-x-1/2 -translate-y-1/2 h-1/2 w-1/2 bg-white border border-[#eee] rounded-lg z-50">
+            {errorPopUp && <div className="fixed top-1/2 left-1/2 flex flex-col items-center justify-start p-10 -translate-x-1/2 -translate-y-1/2 h-auto w-1/2 bg-white border border-[#eee] rounded-lg z-50">
                 <div onClick={() => setErrorPopUp(false)} className="self-end cursor-pointer">
                     <img src={close} alt="" />
                 </div>
-                <div className="border-4 border-[#f8bb86] w-fit rounded-full p-5 mt-10">
+                <div className="border-4 border-[#f8bb86] w-fit rounded-full p-5">
                     <img src={mark} alt="" />
                 </div>
                 <div className="text-xl text-[#545454] pt-4">
