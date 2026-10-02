@@ -96,9 +96,11 @@ export function EditProperty({ loged }) {
 
     const [toggleMenu, setToogleMenu] = useState(false);
 
+    const [soldPopUp, setSoldPopUp] = useState(false)
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(deletePopUp || copyPopUp || toggleMenu) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(deletePopUp || copyPopUp || toggleMenu || soldPopUp) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -167,6 +169,30 @@ export function EditProperty({ loged }) {
                         <button onClick={() => setToogleMenu(false)} className="bg-[#f1f1f1] text-[#4c4c4c] text-sm font-semibold py-2 px-5 rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">İptal</button>
                     </div>
                 </div>
+            </div>}
+            {soldPopUp && <div className="fixed top-1/2 left-1/2 overflow-y-auto pb-5 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
+                    <p className="text-xl text-[#212529] font-semibold">İlan Satıldı</p>
+                    <img onClick={() => setSoldPopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
+                </div>
+                {status === "published" ? <div className="p-4">
+                    <div className="text-[#664d03] bg-[#fff3cd] border border-[#ffecb5] p-4 mb-4 rounded-lg">
+                        <p>İlan satıldı olarak belirlendikten sonra arama sonuçlarında ve ilan listesinde yer alamaz. Tercihinize bağlı olarak sadece portföyünüzde görünebilir.</p>
+                    </div>
+                    <p className="text-lg text-[#212529] mb-4 font-semibold">Satılan ilanı portföyünüzde tutmak ister misiniz?</p>
+                    <div className="w-full flex">
+                        <button className="flex-1 rounded-l-lg py-2.5 bg-[#f8f8f8] text-sm text-[#212529] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out font-semibold border-r border-r-[#0000002D]">Evet</button>
+                        <button className="flex-1 rounded-r-lg py-2.5 bg-[#f8f8f8] text-sm text-[#212529] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out font-semibold">Hayır</button>
+                    </div>
+                    <div className="flex justify-end mt-6 gap-2">
+                        <button className="py-2 px-5 rounded-lg text-sm text-[#4b4b4b] font-semibold bg-[#f1f1f1] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
+                        <button className="py-2 px-5 rounded-lg text-sm text-white font-semibold bg-[#198754] cursor-pointer hover:bg-[#157347] transition-colors duration-300 ease-in-out">Kaydet</button>
+                    </div>
+                </div> : <div className="p-4 w-full">
+                    <div className="text-[#842029] bg-[#f8d7da] w-full p-4 rounded-lg border border-[#f5c2c7]">
+                        <p>Sadece yayında olan ilanları satıldı olarak belirleyebilirsiniz.</p>
+                    </div>
+                </div>}
             </div>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
@@ -360,6 +386,7 @@ export function EditProperty({ loged }) {
                             description="İlanı satıldı olarak işaretleyin ve tercihinize göre portföyünüzde kalmasını sağlayın."
                             button="İlan Satıldı"
                             status={detail?.status}
+                            onClick={() => setSoldPopUp(true)}
                         />
                     </div>
                 </div>
