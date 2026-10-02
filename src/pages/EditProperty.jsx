@@ -104,7 +104,7 @@ export function EditProperty({ loged }) {
         updateSoldStatus(id, hold, "sold").then(data => {
             if (data.status === "success") {
                 setSoldPopUp(false)
-                setStatus("sold")
+                navigate("/company")
             }
         }).finally(() => setLoaded(true));
     }
@@ -192,8 +192,8 @@ export function EditProperty({ loged }) {
                     </div>
                     <p className="text-lg text-[#212529] mb-4 font-semibold">Satılan ilanı portföyünüzde tutmak ister misiniz?</p>
                     <div className="w-full flex">
-                        <button onClick={() => setHold(1)} className="flex-1 rounded-l-lg py-2.5 bg-[#f8f8f8] text-sm text-[#212529] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out font-semibold border-r border-r-[#0000002D]">Evet</button>
-                        <button onClick={() => setHold(0)} className="flex-1 rounded-r-lg py-2.5 bg-[#f8f8f8] text-sm text-[#212529] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out font-semibold">Hayır</button>
+                        <button onClick={() => setHold(1)} className={`flex-1 rounded-l-lg py-2.5 ${hold === 1 ? "bg-[#27c5d2] text-white" : "bg-[#f8f8f8] text-[#212529] hover:bg-[#c3c3c3]"} text-sm cursor-pointer transition-colors duration-300 ease-in-out font-semibold border-r border-r-[#0000002D]`}>Evet</button>
+                        <button onClick={() => setHold(0)} className={`flex-1 rounded-r-lg py-2.5 ${hold === 0 ? "bg-[#27c5d2] text-white" : "bg-[#f8f8f8] text-[#212529] hover:bg-[#c3c3c3]"} cursor-pointer transition-colors duration-300 ease-in-out font-semibold`}>Hayır</button>
                     </div>
                     <div className="flex justify-end mt-6 gap-2">
                         <button onClick={() => setSoldPopUp(false)} className="py-2 px-5 rounded-lg text-sm text-[#4b4b4b] font-semibold bg-[#f1f1f1] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
@@ -243,9 +243,9 @@ export function EditProperty({ loged }) {
                             <li>
                                 <button onClick={() => setEditType("move")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "move" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Hareketler</button>
                             </li>
-                            <li>
+                            {detail.status !== "sold" && <li>
                                 <button onClick={() => setEditType("settings")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "settings" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Ayarlar</button>
-                            </li>
+                            </li>}
                         </ul>
                     </div>
                 </div>
