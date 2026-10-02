@@ -17,8 +17,8 @@ export function CompanyCard({name , type , location , id}) {
             </div>
             <div>
                 <ul className="text-xs font-medium flex items-center justify-center flex-wrap gap-2.5">
-                    {location.map(item => (
-                        <li key={item.id} className="py-1.5 px-2 text-center rounded-sm bg-[#e8e8e8]">{item}</li>
+                    {location.map((item , index) => (
+                        <li key={index} className="py-1.5 px-2 text-center rounded-sm bg-[#e8e8e8]">{item}</li>
                     ))}
                 </ul>
             </div>
