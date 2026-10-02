@@ -89,3 +89,11 @@ export const updateDraftStatus = async (id , status) => {
   });
   return response.data;
 }
+
+export const updateSoldStatus = async (id , hold , action) => {
+  const response = await api.post(`/properties/${id}/sold/update` , {
+    hold:hold,
+    action:action
+  })
+  return response.data;
+}

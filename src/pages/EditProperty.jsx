@@ -8,11 +8,10 @@ import chain from "../assets/chain.png"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { cloneProperty, deleteProperty, updateDraftStatus } from "../services/propertiesApi";
+import { cloneProperty, deleteProperty, updateDraftStatus, updateSoldStatus } from "../services/propertiesApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
-
 
 export function EditProperty({ loged }) {
 
@@ -98,6 +97,18 @@ export function EditProperty({ loged }) {
 
     const [soldPopUp, setSoldPopUp] = useState(false)
 
+    const [hold , setHold] = useState("");
+
+    function handleSoldStatus(){
+        setLoaded(false)
+        updateSoldStatus(id, hold, "sold").then(data => {
+            if (data.status === "success") {
+                setSoldPopUp(false)
+                setStatus("sold")
+            }
+        }).finally(() => setLoaded(true));
+    }
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {(deletePopUp || copyPopUp || toggleMenu || soldPopUp) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -181,12 +192,12 @@ export function EditProperty({ loged }) {
                     </div>
                     <p className="text-lg text-[#212529] mb-4 font-semibold">Satılan ilanı portföyünüzde tutmak ister misiniz?</p>
                     <div className="w-full flex">
-                        <button className="flex-1 rounded-l-lg py-2.5 bg-[#f8f8f8] text-sm text-[#212529] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out font-semibold border-r border-r-[#0000002D]">Evet</button>
-                        <button className="flex-1 rounded-r-lg py-2.5 bg-[#f8f8f8] text-sm text-[#212529] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out font-semibold">Hayır</button>
+                        <button onClick={() => setHold(1)} className="flex-1 rounded-l-lg py-2.5 bg-[#f8f8f8] text-sm text-[#212529] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out font-semibold border-r border-r-[#0000002D]">Evet</button>
+                        <button onClick={() => setHold(0)} className="flex-1 rounded-r-lg py-2.5 bg-[#f8f8f8] text-sm text-[#212529] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out font-semibold">Hayır</button>
                     </div>
                     <div className="flex justify-end mt-6 gap-2">
                         <button onClick={() => setSoldPopUp(false)} className="py-2 px-5 rounded-lg text-sm text-[#4b4b4b] font-semibold bg-[#f1f1f1] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
-                        <button className="py-2 px-5 rounded-lg text-sm text-white font-semibold bg-[#198754] cursor-pointer hover:bg-[#157347] transition-colors duration-300 ease-in-out">Kaydet</button>
+                        <button onClick={handleSoldStatus} className="py-2 px-5 rounded-lg text-sm text-white font-semibold bg-[#198754] cursor-pointer hover:bg-[#157347] transition-colors duration-300 ease-in-out">Kaydet</button>
                     </div>
                 </div> : <div className="p-4 w-full">
                     <div className="text-[#842029] bg-[#f8d7da] w-full p-4 rounded-lg border border-[#f5c2c7]">
