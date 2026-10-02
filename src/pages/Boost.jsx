@@ -21,6 +21,8 @@ export function Boost({ loged }) {
         getDetails(id).then(setDetails).finally(() => setLoaded(true))
     }, [id])
 
+    const [day , setDay] = useState(7);
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {!loaded && (
@@ -82,11 +84,11 @@ export function Boost({ loged }) {
                             </div>
                             {details.status !== "draft" && <div className="flex flex-col">
                                 <div className="text-center my-12.5">
-                                    <span className="text-[25px] font-semibold">Süre: 7 Gün</span>
-                                    <input className="block mt-4 w-full h-3.75 bg-[#efefef]" type="range" min={7} max={60} name="days" />
+                                    <span className="text-[25px] font-semibold">Süre: {day} Gün</span>
+                                    <input value={day} onChange={(e) => setDay(e.target.value)} className="block mt-4 w-full h-3.75 bg-[#efefef]" type="range" min={7} max={60} name="days" />
                                 </div>
                                 <div>
-                                    <button className="w-full bg-[#27c5d2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out text-white rounded-lg font-semibold text-sm h-12.5 px-5">TRY ₺70,00 Öde</button>
+                                    <button className="w-full bg-[#27c5d2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out text-white rounded-lg font-semibold text-sm h-12.5 px-5">TRY ₺{day * 10},00 Öde</button>
                                 </div>
                             </div>}
                         </div>
