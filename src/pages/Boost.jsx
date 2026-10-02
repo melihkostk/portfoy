@@ -80,7 +80,7 @@ export function Boost({ loged }) {
                                     </ul>
                                 </div>
                             </div>
-                            {!details.status === "draft" && <div className="flex flex-col">
+                            {details.status !== "draft" && <div className="flex flex-col">
                                 <div className="text-center my-12.5">
                                     <span className="text-[25px] font-semibold">Süre: 7 Gün</span>
                                     <input className="block mt-4 w-full h-3.75 bg-[#efefef]" type="range" min={7} max={60} name="days" />

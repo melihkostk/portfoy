@@ -8,6 +8,7 @@ import grayStar from "../assets/star-gray.png"
 import defaultProperty from "../assets/default-property.jpg"
 import personal from "../assets/personal.png"
 import trash from "../assets/gray-trash.png"
+import addFolder from "../assets/add-folder.png"
 
 export function PropertiesCard(props) {
     return (
@@ -43,7 +44,7 @@ export function PropertiesCard(props) {
                         <span>{props.type}</span>
                     </li>
                     <li className="w-full flex items-center gap-1">
-                        <img className="w-6 h-6" src={props.page === "company" ? personal : shop} alt="" />
+                        <img className="w-5 h-5" src={props.page === "company" ? personal : shop} alt="" />
                         {props.page === "company" ? <span>{props.created_by}</span> : <span>{props.company}</span>}
                     </li>
                 </ul>
@@ -75,11 +76,13 @@ export function PropertiesCard(props) {
                         </div>
                     ))}
                 </div>}
-                {props.page === "company" && <button className="bg-[#e6e6e6] max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
-                    İlanı teklif listesine ekle
+                {props.page === "company" && <button title="İlanı teklif listesine ekle" className="bg-[#e6e6e6] flex items-center gap-2.5 max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                    <img className="w-4.5 h-4.5" src={addFolder} alt="" />
+                    <p className="whitespace-nowrap overflow-hidden truncate">İlanı teklif listesine ekle</p>
                 </button>}
-                {props.page === "properties" && <button className="bg-[#e6e6e6] max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
-                    İlanı teklif listesine ekle
+                {props.page === "properties" && <button title="İlanı teklif listesine ekle" className="bg-[#e6e6e6] flex items-center gap-2.5 max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                    <img src={addFolder} alt="" />
+                    <p className="whitespace-nowrap overflow-hidden truncate">İlanı teklif listesine ekle</p>
                 </button>}
                 {props.page === "wishlist" && <button onClick={() => props.handleToggleWishlist(props.id)} className="bg-white border gap-1.25 max-w-full whitespace-nowrap overflow-hidden truncate border-[#eee] py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 flex items-center font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     <img className="w-5 h-5" src={trash} alt="" />

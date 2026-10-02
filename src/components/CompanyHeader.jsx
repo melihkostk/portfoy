@@ -7,6 +7,8 @@ import pen from "../assets/pen.png"
 import box from "../assets/box.png"
 import graph from "../assets/graph.png"
 import pp from "../assets/default-company.png"
+import phone from "../assets/white-phone.png"
+import mail from "../assets/white-mail.png"
 
 export function CompanyHeader({ page, id, name, created_at, type, badges, code }) {
 
@@ -37,11 +39,13 @@ export function CompanyHeader({ page, id, name, created_at, type, badges, code }
                     </div>
                     <div>
                         <ul className="flex items-center text-white text-sm gap-5 max-[1005px]:hidden">
-                            <li className="opacity-80 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
-                                90 (553) 300 68 25
+                            <li className="opacity-80 cursor-pointer flex items-center hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                                <img className="w-5 h-5 mr-1" src={phone} alt="" />
+                                <p>90 (553) 300 68 25</p>
                             </li>
-                            <li className="opacity-80 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
-                                loos.katya@yandex.ru
+                            <li className="opacity-80 cursor-pointer flex items-center hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                                <img className="w-4 h-4 mr-2" src={mail} alt="" />
+                                <p>loos.katya@yandex.ru</p>
                             </li>
                         </ul>
                     </div>

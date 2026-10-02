@@ -8,9 +8,9 @@ export function CompanyCard({name , type , location , id}) {
                 <img src={defaultImage} className="w-full h-full object-cover rounded-full" alt="" />
             </div>
             <div className="text-center">
-                <p className="font-semibold mt-2 mb-0.75">
+                <Link to={`/companies/${id}`} className="font-semibold mt-2 mb-0.75 text-black hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">
                     {name}
-                </p>
+                </Link>
                 <p className="text-sm my-3.75 text-[#686868]">
                     {type}
                 </p>
