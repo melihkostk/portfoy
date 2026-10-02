@@ -229,7 +229,7 @@ export function Filter({searchParams , typeId}) {
                 {type === 27 && (
                     <form action={"/properties"} method="GET" className={`flex max-[992px]:flex-col ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""}  gap-2.5 p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
-                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -260,7 +260,7 @@ export function Filter({searchParams , typeId}) {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -319,7 +319,7 @@ export function Filter({searchParams , typeId}) {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name={findFilterParam("Oda Sayısı")?.id ? `details[${findFilterParam("Oda Sayısı").id}]` : undefined} value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
@@ -330,7 +330,7 @@ export function Filter({searchParams , typeId}) {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Cephe</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name={findFilterParam("Cephe")?.id ? `details[${findFilterParam("Cephe").id}]` : undefined} value={facadeId} onChange={(e) => setFacadeId(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
@@ -343,7 +343,7 @@ export function Filter({searchParams , typeId}) {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Isıtma sistemi</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name={findFilterParam("Isıtma Sistemi")?.id ? `details[${findFilterParam("Isıtma Sistemi").id}]` : undefined} value={heatingId} onChange={(e) => setHeatingId(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
@@ -474,7 +474,7 @@ export function Filter({searchParams , typeId}) {
                 {type === 21 && (
                     <form action={"/properties"} method="GET" className={`flex max-[992px]:flex-col ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} gap-2.5 p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
-                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -505,7 +505,7 @@ export function Filter({searchParams , typeId}) {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -564,7 +564,7 @@ export function Filter({searchParams , typeId}) {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name={findFilterParam("Oda Sayısı")?.id ? `details[${findFilterParam("Oda Sayısı").id}]` : undefined} value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
@@ -575,19 +575,19 @@ export function Filter({searchParams , typeId}) {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
-                            <button type="button" className="flex justify-between cursor-pointer w-full">
+                            <div type="button" className="flex justify-between cursor-pointer w-full">
                                 <input name="min_area" value={minArea} onChange={(e) => setMinArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="min" />
                                 <input name="max_area" value={maxArea} onChange={(e) => setMaxArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="max" />
-                            </button>
+                            </div>
                         </div>
-                        <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">bina yaşı</label>
-                            <button type="button" className="flex justify-between cursor-pointer flex-1">
+                            <div type="button" className="flex justify-between cursor-pointer flex-1">
                                 <input name="min_building_age" min={0} value={minBuildingAge} onChange={(e) => setMinBuildingAge(e.target.value)} className="text-sm flex-1" type="number" placeholder="min" />
                                 <input name="max_building_age" value={maxBuildingAge} onChange={(e) => setMaxBuildingAge(e.target.value)} className="text-sm flex-1" type="number" placeholder="max" />
-                            </button>
+                            </div>
                         </div>
                         <div>
                             <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
@@ -595,9 +595,9 @@ export function Filter({searchParams , typeId}) {
                     </form>
                 )}
                 {type === "Project Villa" && (
-                    <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
+                    <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75 w-full`}>
                         <input type="hidden" name="type_id" value={type} />
-                        <div className="flex-1 pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -687,7 +687,7 @@ export function Filter({searchParams , typeId}) {
                 {type === 9 && (
                     <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
-                        <div className="flex-1 max-w-[25%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -718,7 +718,7 @@ export function Filter({searchParams , typeId}) {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[25%] pr-2.5">
+                        <div className="flex-1 max-w-full pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -777,7 +777,7 @@ export function Filter({searchParams , typeId}) {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[25%] pr-2.5">
+                        <div className="flex-1 max-w-full pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Arsa Tapu Türü</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name={findFilterParam("Arsa Tapu Türü")?.id ? `details[${findFilterParam("Arsa Tapu Türü").id}]` : undefined} value={landTitleTypeId} onChange={(e) => setLandTitleTypeId(e.target.value)} className="text-[13px] font-semibold w-full" id="">
@@ -788,7 +788,7 @@ export function Filter({searchParams , typeId}) {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[25%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
                             <button type="button" className="flex justify-between cursor-pointer w-full">
                                 <input name="min_area" value={minArea} onChange={(e) => setMinArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="min" />
@@ -803,7 +803,7 @@ export function Filter({searchParams , typeId}) {
                 {type === 10 && (
                     <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
-                        <div className="flex-1 max-w-[25%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -834,7 +834,7 @@ export function Filter({searchParams , typeId}) {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[25%] pr-2.5">
+                        <div className="flex-1 max-w-full pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
@@ -893,14 +893,14 @@ export function Filter({searchParams , typeId}) {
                                 </ul>}
                             </div>
                         </div>
-                        <div className="flex-1 max-w-[25%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
+                        <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
                             <button type="button" className="flex justify-between cursor-pointer w-full">
                                 <input name="min_area" value={minArea} onChange={(e) => setMinArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="min" />
                                 <input name="max_area" value={maxArea} onChange={(e) => setMaxArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="max" />
                             </button>
                         </div>
-                        <div className="flex-1 max-w-[25%] pr-2.5">
+                        <div className="flex-1 max-w-full pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Tarla Tapu Türü</label>
                             <select name={findFilterParam("Tarla Tapu Türü")?.id ? `details[${findFilterParam("Tarla Tapu Türü").id}]` : undefined} value={fieldTitleTypeId} onChange={(e) => setFieldTitleTypeId(e.target.value)} className="text-[13px] font-semibold w-full" id="">
                                 <option value="">Tarla Tapu Türü</option>
