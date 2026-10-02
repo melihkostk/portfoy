@@ -185,7 +185,7 @@ export function EditProperty({ loged }) {
                         <button className="flex-1 rounded-r-lg py-2.5 bg-[#f8f8f8] text-sm text-[#212529] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out font-semibold">Hayır</button>
                     </div>
                     <div className="flex justify-end mt-6 gap-2">
-                        <button className="py-2 px-5 rounded-lg text-sm text-[#4b4b4b] font-semibold bg-[#f1f1f1] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
+                        <button onClick={() => setSoldPopUp(false)} className="py-2 px-5 rounded-lg text-sm text-[#4b4b4b] font-semibold bg-[#f1f1f1] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
                         <button className="py-2 px-5 rounded-lg text-sm text-white font-semibold bg-[#198754] cursor-pointer hover:bg-[#157347] transition-colors duration-300 ease-in-out">Kaydet</button>
                     </div>
                 </div> : <div className="p-4 w-full">
