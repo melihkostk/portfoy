@@ -256,6 +256,12 @@ export function EditProperty({ loged }) {
                     <button className="bg-[#ffca64] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">Şimdi Yayınla</button>
                 </div>
             </div>}
+             {detail.status === "sold" && <div className="w-full max-w-[90%]">
+                <div className="w-full flex items-center justify-between border border-[#27C5D2] p-4 mb-4 bg-[#27c5d217] rounded-lg">
+                    <p className="text-[#27c5d2]">Bu ilan Port-Foy.com aracılığı ile satılmıştır.</p>
+                    <button className="bg-[#27C5D2] text-white text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Taslağa Çevir</button>
+                </div>
+            </div>}
             {editType === "info" && <div className="w-full max-w-[90%]">
                 <div className="w-full mb-7.5">
                     <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
