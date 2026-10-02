@@ -158,9 +158,9 @@ export function Company({ loged }) {
                             )}
                         </div>
                         <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center mt-5">
-                            <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
+                            {companyProperties?.data?.properties?.length > 0 && <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
                                 {companyProperties?.pagination?.pagination_text}
-                            </p>
+                            </p>}
                             <Pagination
                                 pagination={companyProperties?.pagination}
                                 onPageChange={setPage}

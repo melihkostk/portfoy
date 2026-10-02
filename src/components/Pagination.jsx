@@ -9,8 +9,6 @@ export function Pagination({ pagination, onPageChange }) {
 
   const totalPages = Math.ceil(total / per_page);
 
-  if (totalPages <= 1) return null;
-
   const pages = [];
 
   for (let page = 1; page <= totalPages; page++) {
