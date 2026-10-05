@@ -85,11 +85,12 @@ export function EditProperty({ loged }) {
     const [error, setError] = useState([]);
 
     function handleToggleStatus() {
-        const newStatus = status === "published" ? "draft" : "published";
+        const newStatus = status === "published" || status === "sold" ? "draft" : "published";
         setLoaded(false)
         updateDraftStatus(id, newStatus).then(data => {
             if (data.status === "success") {
                 setToogleMenu(false);
+                setSoldToDraft(false)
                 getDetails(id).then(data => {
                     setDetail(data)
                 })
@@ -119,9 +120,11 @@ export function EditProperty({ loged }) {
 
     const [publishPopUp, setPublishPopUp] = useState(false);
 
+    const [soldToDraft, setSoldToDraft] = useState(false)
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(deletePopUp || copyPopUp || toggleMenu || soldPopUp || publishPopUp) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(deletePopUp || copyPopUp || toggleMenu || soldPopUp || publishPopUp || soldToDraft) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -215,6 +218,22 @@ export function EditProperty({ loged }) {
                     </div>
                 </div>}
             </div>}
+            {soldToDraft && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529]">Taslağa Çevir</h2>
+                    <img onClick={() => setCopyPopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
+                </div>
+                <div className="p-4">
+                    <div>
+                        <p className="text-2xl text-[#212529] mb-2">Emin misiniz ?</p>
+                        <p className="text-base text-[#212529] mb-4">Pasife alınan ilanlar ilan havuzunda görünmez ve ilan limitlerinizi etkilemez</p>
+                    </div>
+                    <div className="flex justify-end gap-2 mt-6">
+                        <button onClick={() => setSoldToDraft(false)} className="bg-[#f1f1f1] text-[#4b4b4b] text-sm rounded-lg cursor-pointer py-2 px-5 font-semibold">İptal</button>
+                        <button onClick={handleToggleStatus} className="bg-[#198754] text-white text-sm rounded-lg cursor-pointer py-2 px-5 font-semibold">Taslağa Çevir</button>
+                    </div>
+                </div>
+            </div>}
             {publishPopUp && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">İlanı Yayınla</h2>
@@ -278,7 +297,7 @@ export function EditProperty({ loged }) {
                     </div>
                 </div>
             </div>
-            {error.length !== 0 && <div  className="w-full max-w-[90%] bg-[#f8d7da] p-4 rounded-lg mt-2 mb-4 border border-[#f5c2c7]">
+            {error.length !== 0 && <div className="w-full max-w-[90%] bg-[#f8d7da] p-4 rounded-lg mt-2 mb-4 border border-[#f5c2c7]">
                 {error?.data?.map((item, index) => {
                     const messages = typeof item === "string" ? [item] : Object.values(item).flat();
                     return (
@@ -299,7 +318,7 @@ export function EditProperty({ loged }) {
             {detail.status === "sold" && <div className="w-full max-w-[90%]">
                 <div className="w-full flex items-center justify-between border border-[#27C5D2] p-4 mb-4 bg-[#27c5d217] rounded-lg">
                     <p className="text-[#27c5d2]">Bu ilan Port-Foy.com aracılığı ile satılmıştır.</p>
-                    <button className="bg-[#27C5D2] text-white text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Taslağa Çevir</button>
+                    <button onClick={() => setSoldToDraft(true)} className="bg-[#27C5D2] text-white text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Taslağa Çevir</button>
                 </div>
             </div>}
             {editType === "info" && <div className="w-full max-w-[90%]">
