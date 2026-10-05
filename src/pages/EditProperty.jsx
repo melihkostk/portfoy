@@ -13,7 +13,7 @@ import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
 
-export function EditProperty({ loged , setMessage , setMessageShown }) {
+export function EditProperty({ loged, setMessage, setMessageShown }) {
 
     const navigate = useNavigate();
 
@@ -81,7 +81,7 @@ export function EditProperty({ loged , setMessage , setMessageShown }) {
                 navigate(`/properties/${data?.data?.id}/edit`)
                 setMessage(data.message)
             }
-        }).finally(() => {setLoaded(true); setMessageShown(true)});
+        }).finally(() => { setLoaded(true); setMessageShown(true) });
     }
 
     const [error, setError] = useState([]);
@@ -99,7 +99,7 @@ export function EditProperty({ loged , setMessage , setMessageShown }) {
                 setError(data);
                 setToogleMenu(false);
             }
-        }).finally(() => {setLoaded(true); setMessageShown(true)});
+        }).finally(() => { setLoaded(true); setMessageShown(true) });
     }
 
     const [toggleMenu, setToogleMenu] = useState(false);
@@ -116,7 +116,7 @@ export function EditProperty({ loged , setMessage , setMessageShown }) {
                 navigate("/company")
                 setMessage(data.message)
             }
-        }).finally(() => {setLoaded(true); setMessageShown(true)});
+        }).finally(() => { setLoaded(true); setMessageShown(true) });
     }
 
     const [publishPopUp, setPublishPopUp] = useState(false);
@@ -403,7 +403,10 @@ export function EditProperty({ loged , setMessage , setMessageShown }) {
                                 <div className="flex flex-wrap justify-start">
                                     {item.features?.map(item => (
                                         <div key={item.id} className="w-[25%] px-3 mb-2 flex flex-col">
-                                            <label className="text-[#6c757d]" htmlFor="">{item?.title}</label>
+                                            <div className="flex justify-between items-center">
+                                                <label className="text-[#6c757d]" htmlFor="">{item?.title}</label>
+                                                {item.input_type === "file" && <a className="text-xs text-[#026872] font-semibold" target="_blank" href={item?.value[0]?.path}>Dosyaları Görüntüle (1 Dosya)</a>}
+                                            </div>
                                             {item.input_type !== "select"
                                                 ? <input key={item.id} value={item.input_type === "text" || item.input_type === "number" ? item?.value : ""} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type={item.input_type} />
                                                 : <select key={item.id} value={item.value} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]">
