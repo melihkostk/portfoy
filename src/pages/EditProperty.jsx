@@ -82,6 +82,8 @@ export function EditProperty({ loged }) {
         }).finally(() => setLoaded(true));
     }
 
+    const [error, setError] = useState([]);
+
     function handleToggleStatus() {
         const newStatus = status === "published" ? "draft" : "published";
         setLoaded(false)
@@ -91,6 +93,10 @@ export function EditProperty({ loged }) {
                 getDetails(id).then(data => {
                     setDetail(data)
                 })
+            }
+            else {
+                setPublishPopUp(false);
+                setError(data);
             }
         }).finally(() => setLoaded(true));
     }
@@ -111,9 +117,11 @@ export function EditProperty({ loged }) {
         }).finally(() => setLoaded(true));
     }
 
+    const [publishPopUp, setPublishPopUp] = useState(false);
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(deletePopUp || copyPopUp || toggleMenu || soldPopUp) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(deletePopUp || copyPopUp || toggleMenu || soldPopUp || publishPopUp) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -207,6 +215,21 @@ export function EditProperty({ loged }) {
                     </div>
                 </div>}
             </div>}
+            {publishPopUp && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529] font-semibold">İlanı Yayınla</h2>
+                    <img onClick={() => setPublishPopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
+                </div>
+                <div className="p-4">
+                    <p className="text-[#212529]">
+                        İlana hiç görsel eklemediniz, görsel eklemeden yayına almak istediğinize emin misiniz?
+                    </p>
+                    <div className="mt-6 flex justify-end gap-2">
+                        <button onClick={() => setPublishPopUp(false)} className="bg-[#f1f1f1] text-[#4b4b4b] text-sm rounded-lg cursor-pointer py-2 px-5 font-semibold">İptal</button>
+                        <button onClick={handleToggleStatus} className="bg-[#198754] text-white text-sm rounded-lg cursor-pointer py-2 px-5 font-semibold">Evet</button>
+                    </div>
+                </div>
+            </div>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"}</p>
@@ -255,10 +278,22 @@ export function EditProperty({ loged }) {
                     </div>
                 </div>
             </div>
+            {error.length !== 0 && <div  className="w-full max-w-[90%] bg-[#f8d7da] p-4 rounded-lg mt-2 mb-4 border border-[#f5c2c7]">
+                {error?.data?.map((item, index) => {
+                    const messages = typeof item === "string" ? [item] : Object.values(item).flat();
+                    return (
+                        <div className="w-full" key={index}>
+                            {messages.map((message, i) => (
+                                <p className="text-[#842029]" key={i}>{message}</p>
+                            ))}
+                        </div>
+                    );
+                })}
+            </div>}
             {detail.status === "draft" && <div className="w-full max-w-[90%]">
                 <div className="w-full flex items-center justify-between border border-[#ffecb5] p-4 mb-4 bg-[#fff3cd] rounded-lg">
                     <p className="text-[#664d03]">Bu ilan şuanda taslak durumunda, ilan bilgilerinizi tamamladıktan sonra yayınlayabilirsiniz.</p>
-                    <button className="bg-[#ffca64] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">Şimdi Yayınla</button>
+                    <button onClick={() => setPublishPopUp(true)} className="bg-[#ffca64] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">Şimdi Yayınla</button>
                 </div>
             </div>}
             {detail.status === "sold" && <div className="w-full max-w-[90%]">
