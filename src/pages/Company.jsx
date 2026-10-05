@@ -10,13 +10,14 @@ import { ClipLoader } from "react-spinners"
 import { getAllPropertiesType } from "../services/propertiesApi"
 import { getAllCities, getAllCountries, getAllCurrencies, getAllDistricts } from "../services/filterApi"
 import { Pagination } from "../components/Pagination"
+import whiteClose from "../assets/close.png"
 
-export function Company({ loged }) {
+export function Company({ loged, message, messageShown , setMessageShown }) {
 
     const [companyProperties, setCompanyProperties] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
-     const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         getCompanyProperties().then(setCompanyProperties).finally(() => setLoaded(true))
@@ -65,7 +66,7 @@ export function Company({ loged }) {
 
     function handleFilter(selectedCountry, selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status, selectedType) {
         setLoaded(false)
-        getCompanyProperties(selectedCountry ,selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status, selectedType).then(setCompanyProperties).finally(() => setLoaded(true))
+        getCompanyProperties(selectedCountry, selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status, selectedType).then(setCompanyProperties).finally(() => setLoaded(true))
     }
 
     const [minSell, setMinSell] = useState("");
@@ -97,6 +98,10 @@ export function Company({ loged }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
                 </div>
             </div>
+            {messageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-40 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{message}</p>
+                <img onClick={() => setMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
             <CompanyHeader
                 page="company"
                 name={ınfo?.name}

@@ -74,6 +74,9 @@ function App() {
     getArticles().then(setNews)
   }, [])
 
+  const [message , setMessage] = useState("");
+  const [messageShown , setMessageShown] = useState(false);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -101,7 +104,7 @@ function App() {
         <Route path="/offers/:type" element={<Offers loged={loged} />} />
         <Route path="/auth/properties" element={<UserProperties loged={loged} />} />
         <Route path="/support" element={<Support loged={loged} />} />
-        <Route path="/company" element={<Company loged={loged} />} />
+        <Route path="/company" element={<Company loged={loged} message={message} messageShown={messageShown} setMessageShown={setMessageShown} />} />
         <Route path="/company/team" element={<Team loged={loged} />} />
         <Route path="/company/contacts" element={<Location loged={loged} />} />
         <Route path="/company/customers" element={<Customers loged={loged} />} />
@@ -117,7 +120,7 @@ function App() {
         <Route path="/articles/:id" element={<NewsDetail loged={loged} news={news} />}></Route>
         <Route path="/proposals/:id/details" element={<ProposalDetail loged={loged} />}></Route>
         <Route path="/offers/:id/detail" element={<OfferDetail loged={loged} />}></Route>
-        <Route path="/properties/:id/edit" element={<EditProperty loged={loged} />}></Route>
+        <Route path="/properties/:id/edit" element={<EditProperty loged={loged} setMessage={setMessage} setMessageShown={setMessageShown} />}></Route>
         <Route path="/properties/:id/boost" element={<Boost loged={loged} />}></Route>
       </Routes>
     </BrowserRouter>

@@ -13,7 +13,7 @@ import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
 
-export function EditProperty({ loged }) {
+export function EditProperty({ loged , setMessage , setMessageShown }) {
 
     const navigate = useNavigate();
 
@@ -61,8 +61,9 @@ export function EditProperty({ loged }) {
         deleteProperty(id).then(data => {
             if (data.status === "success") {
                 navigate("/company")
+                setMessage(data.message)
             }
-        })
+        }).finally(() => setMessageShown(true))
     }
 
     const [deletePopUp, setDeletePopUp] = useState(false)
@@ -78,8 +79,9 @@ export function EditProperty({ loged }) {
             if (data.status === "success") {
                 setCopyPopUp(false)
                 navigate(`/properties/${data?.data?.id}/edit`)
+                setMessage(data.message)
             }
-        }).finally(() => setLoaded(true));
+        }).finally(() => {setLoaded(true); setMessageShown(true)});
     }
 
     const [error, setError] = useState([]);
@@ -90,13 +92,14 @@ export function EditProperty({ loged }) {
         updateDraftStatus(id, newStatus).then(data => {
             if (data.status === "success") {
                 navigate("/company")
+                setMessage(data.message)
             }
             else {
                 setPublishPopUp(false);
                 setError(data);
                 setToogleMenu(false);
             }
-        }).finally(() => setLoaded(true));
+        }).finally(() => {setLoaded(true); setMessageShown(true)});
     }
 
     const [toggleMenu, setToogleMenu] = useState(false);
@@ -111,8 +114,9 @@ export function EditProperty({ loged }) {
             if (data.status === "success") {
                 setSoldPopUp(false)
                 navigate("/company")
+                setMessage(data.message)
             }
-        }).finally(() => setLoaded(true));
+        }).finally(() => {setLoaded(true); setMessageShown(true)});
     }
 
     const [publishPopUp, setPublishPopUp] = useState(false);
