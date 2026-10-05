@@ -87,8 +87,10 @@ export function EditProperty({ loged }) {
         setLoaded(false)
         updateDraftStatus(id, newStatus).then(data => {
             if (data.status === "success") {
-                setToogleMenu(false)
-                setEditType("info")
+                setToogleMenu(false);
+                getDetails(id).then(data => {
+                    setDetail(data)
+                })
             }
         }).finally(() => setLoaded(true));
     }
@@ -97,9 +99,9 @@ export function EditProperty({ loged }) {
 
     const [soldPopUp, setSoldPopUp] = useState(false)
 
-    const [hold , setHold] = useState("");
+    const [hold, setHold] = useState("");
 
-    function handleSoldStatus(){
+    function handleSoldStatus() {
         setLoaded(false)
         updateSoldStatus(id, hold, "sold").then(data => {
             if (data.status === "success") {
@@ -241,6 +243,9 @@ export function EditProperty({ loged }) {
                                 <button onClick={() => setEditType("galery")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "galery" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Galeri</button>
                             </li>
                             <li>
+                                <button onClick={() => setEditType("offers")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "offers" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Teklifler</button>
+                            </li>
+                            <li>
                                 <button onClick={() => setEditType("move")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "move" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Hareketler</button>
                             </li>
                             {detail.status !== "sold" && <li>
@@ -256,7 +261,7 @@ export function EditProperty({ loged }) {
                     <button className="bg-[#ffca64] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">Şimdi Yayınla</button>
                 </div>
             </div>}
-             {detail.status === "sold" && <div className="w-full max-w-[90%]">
+            {detail.status === "sold" && <div className="w-full max-w-[90%]">
                 <div className="w-full flex items-center justify-between border border-[#27C5D2] p-4 mb-4 bg-[#27c5d217] rounded-lg">
                     <p className="text-[#27c5d2]">Bu ilan Port-Foy.com aracılığı ile satılmıştır.</p>
                     <button className="bg-[#27C5D2] text-white text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Taslağa Çevir</button>
@@ -421,6 +426,68 @@ export function EditProperty({ loged }) {
                             </h5>
                             <p className="text-lg text-[#6c757d]">CR0285ARS0003000015 numaralı ilanı oluşturdu</p>
                         </div>
+                    </div>
+                </div>
+            </div>}
+            {editType === "offers" && <div className="w-full max-w-[90%]">
+                <div className="p-2.5 mb-7.5 rounded-lg border border-[#f8f8f8]">
+                    <div className="text-lg text-[#676767] py-2 px-4 bg-[#f8f8f8] rounded-lg">
+                        <p className="py-1.25">Müşteriye Gelen Fiyat Teklifleri</p>
+                    </div>
+                    <div className="w-full p-4">
+                        <table className="w-full">
+                            <thead>
+                                <tr className="bg-[#ececec] text-[#6c757d]">
+                                    <th className="text-start py-4 px-2.5 rounded-l-lg">Teklif Gönderen</th>
+                                    <th className="text-start py-4 px-2.5">Fiyat</th>
+                                    <th className="text-start py-4 px-2.5">Durum</th>
+                                    <th className="text-start py-4 px-2.5">Oluşturma Tarihi</th>
+                                    <th className="text-start py-4 px-2.5 rounded-r-lg">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div className="p-2.5 mb-7.5 rounded-lg border border-[#f8f8f8]">
+                    <div className="text-lg text-[#676767] py-2 px-4 bg-[#f8f8f8] rounded-lg">
+                        <p className="py-1.25">Müşteriye Gönderilen Teklifler</p>
+                    </div>
+                    <div className="w-full p-4">
+                        <table className="w-full">
+                            <thead>
+                                <tr className="bg-[#ececec] rounded-lg text-[#6c757d]">
+                                    <th className="text-start py-4 px-2.5 rounded-l-lg">#</th>
+                                    <th className="text-start py-4 px-2.5">Müşteri</th>
+                                    <th className="text-start py-4 px-2.5">Değerlendirme</th>
+                                    <th className="text-start py-4 px-2.5">Durum</th>
+                                    <th className="text-start py-4 px-2.5">Oluşturma Tarihi</th>
+                                    <th className="text-start py-4 px-2.5 rounded-r-lg">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div className="p-2.5 mb-7.5 rounded-lg border border-[#f8f8f8]">
+                    <div className="text-lg text-[#676767] py-2 px-4 bg-[#f8f8f8] rounded-lg">
+                        <p className="py-1.25">Diğer Firmaların Oluşturduğu Teklifler</p>
+                    </div>
+                    <div className="w-full p-4">
+                        <table className="w-full">
+                            <thead>
+                                <tr className="bg-[#ececec] rounded-lg text-[#6c757d]">
+                                    <th className="text-start py-4 px-2.5 rounded-l-lg">Firma</th>
+                                    <th className="text-start py-4 px-2.5">Değerlendirme</th>
+                                    <th className="text-start py-4 px-2.5">Durum</th>
+                                    <th className="text-start py-4 px-2.5 rounded-r-lg">Oluşturma Tarihi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>}
