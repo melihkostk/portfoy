@@ -85,14 +85,14 @@ export function PropertiesDetail({ loged }) {
 
     const [step, setStep] = useState(1)
 
-    const [notify , setNotify] = useState(true)
+    const [notify, setNotify] = useState(true)
 
-    function handleCreateProposal(){
+    function handleCreateProposal() {
         setLoaded(false)
         setOfferModalShown(false)
         const properties = { [id]: { price: Number(details?.prices?.primary?.number), title: details?.title } }
-        createProposal(customerNote , notify , selectedCurrencie , selectedCustomer , properties).then(data => {
-            if(data.status === "success"){
+        createProposal(customerNote, notify, selectedCurrencie, selectedCustomer, properties).then(data => {
+            if (data.status === "success") {
                 navigate("/company/proposals", { replace: true });
             }
             else {
@@ -223,7 +223,7 @@ export function PropertiesDetail({ loged }) {
                         </div>
                     </div>
                     <div className="w-1/2 pl-12.5 max-[992px]:w-full max-[992px]:pl-0">
-                        {(details.status === "draft" || details.status === "sold")  && <div className="text-[#664d03] bg-[#fff3cd] border border-[#ffecb5] p-4 mb-4 rounded-lg">
+                        {(details.status === "draft" || details.status === "sold") && <div className="text-[#664d03] bg-[#fff3cd] border border-[#ffecb5] p-4 mb-4 rounded-lg">
                             Bu ilan şuanda yayında olmadığı için sadece siz görüntüleyebilirsiniz
                         </div>}
                         <p className="text-sm text-[#888888] mb-2.5">{details.no}</p>
@@ -289,27 +289,17 @@ export function PropertiesDetail({ loged }) {
                     </div>
                 </div>
             </div>
-            {details.status !== "draft" && <div id="detail" className="w-full max-w-[90%] mt-12.5">
+            <div id="detail" className="w-full max-w-[90%] mt-12.5">
                 <div className="flex max-[992px]:flex-col-reverse max-[992px]:gap-20">
                     <div className="w-[30%] max-[992px]:w-full">
-                        <div className="mb-7.5">
-                            <h2 className="p-5 mb-4 text-xl text-[#212529] font-semibold">{details?.features?.[0]?.title}</h2>
-                            {details?.features?.[0]?.features?.map((item) => (
-                                <FeatureCard key={item.id} title={item.title} value={item.value} id={item.id} />
-                            ))}
-                        </div>
-                        <div className="mb-7.5">
-                            <h2 className="p-5 mb-4 text-xl text-[#212529] font-semibold">{details?.features?.[1]?.title}</h2>
-                            {details?.features?.[1]?.features?.map((item) => (
-                                <FeatureCard key={item.id} title={item.title} value={item.value} id={item.id} />
-                            ))}
-                        </div>
-                        <div className="mb-7.5">
-                            <h2 className="p-5 mb-4 text-xl text-[#212529] font-semibold">{details?.features?.[2]?.title}</h2>
-                            {details?.features?.[2]?.features?.map((item) => (
-                                <FeatureCard key={item.id} title={item.title} value={item.value} id={item.id} />
-                            ))}
-                        </div>
+                        {details?.features?.map(item => (
+                            <div key={item.id} className="mb-7.5">
+                                <h2 className="p-5 mb-4 text-xl text-[#212529] font-semibold">{item.title}</h2>
+                                {item?.features?.map((item, index) => (
+                                    <FeatureCard index={index} key={item.id} title={item.title} value={item.value} id={item.id} />
+                                ))}
+                            </div>
+                        ))}
                     </div>
                     <div className="w-[70%] pl-12.5 sticky top-0 h-[calc(100vh-100px)] max-[992px]:static max-[992px]:w-full max-[992px]:pl-0">
                         <div className="mb-5">
@@ -335,7 +325,7 @@ export function PropertiesDetail({ loged }) {
                         </div>}
                     </div>
                 </div>
-            </div>}
+            </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />

@@ -26,7 +26,7 @@ export function ProposalDetail({ loged }) {
 
     useEffect(() => {
         showProposal(id).then(setDetails).finally(() => setLoaded(true))
-    }, [])
+    }, [id])
 
     return (
         <div className='flex flex-col items-center font-sf'>
