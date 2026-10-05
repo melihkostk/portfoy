@@ -89,15 +89,12 @@ export function EditProperty({ loged }) {
         setLoaded(false)
         updateDraftStatus(id, newStatus).then(data => {
             if (data.status === "success") {
-                setToogleMenu(false);
-                setSoldToDraft(false)
-                getDetails(id).then(data => {
-                    setDetail(data)
-                })
+                navigate("/company")
             }
             else {
                 setPublishPopUp(false);
                 setError(data);
+                setToogleMenu(false);
             }
         }).finally(() => setLoaded(true));
     }
@@ -260,7 +257,7 @@ export function EditProperty({ loged }) {
                         <h1 className="text-[25px]">{title}</h1>
                         <ul className="flex text-sm text-[#7d7d7d] mt-1.25">
                             <li>
-                                Taslak
+                                {status === "draft" ? "Taslak" : "Yayında"}
                             </li>
                             <li className="mx-2.5">
                                 -
