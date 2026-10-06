@@ -34,9 +34,22 @@ export function Settings({ loged }) {
                 <div>
                     <p className="text-[32px] mb-10">Firma Tercihleri</p>
                     <div>
-                        <SettingsCard />
-                        <SettingsCard />
-                        <SettingsCard />
+                        <SettingsCard
+                            title="Fiyat Teklifleri için Personel Seçimi"
+                            description="İlana yapılan fiyat teklifleri için hangi kullanıcılara bildirim gideceğini seçin"
+                        />
+                        <SettingsCard
+                            title="Personel Bilgilerinin Görünürlüğü"
+                            description="Ekibinizdeki personellerin bilgilerinin diğer Port-Foy kullanıcılarına görünürlüğünü seçin"
+                        />
+                        <SettingsCard
+                            title="Pass Fiyatı Görünürlüğü"
+                            description="İlanlarınızın Pass Fiyatının diğer kullanıcı tarafından görünürlüğünü belirleyin"
+                        />
+                        <SettingsCard
+                            title="Komisyon Oranları Görünürlüğü"
+                            description="İlanlarınızın komisyon oranları diğer kullanıcı tarafından görünürlüğünü belirleyin"
+                        />
                     </div>
                 </div>
                 <div>
