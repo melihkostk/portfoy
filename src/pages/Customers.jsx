@@ -160,14 +160,22 @@ export function Customers({ loged }) {
                 logo={customers?.data?.logo}
             />
             <div className="w-full max-w-[90%] mt-12.5">
-                <div className="flex justify-between items-center mb-5 flex-wrap">
-                    <h2 className="text-[#212529] text-[32px]">Müşteriler</h2>
-                    <div className="flex items-center gap-2.5">
-                        <form onSubmit={(e) => { e.preventDefault(); handleFilterCustomer(filterName); }} className="flex items-center relative max-[992px]:w-full">
+                <div className="flex flex-col mb-5">
+                    <div className="flex justify-between items-center mb-5 flex-wrap">
+                        <h2 className="text-[#212529] text-[32px]">Müşteriler</h2>
+                        <div className="flex items-center gap-2.5">
+                            <form onSubmit={(e) => { e.preventDefault(); handleFilterCustomer(filterName); }} className="flex max-[992px]:hidden items-center relative max-[992px]:w-full">
+                                <img className="w-4 h-4 absolute left-1" src={graySearch} alt="" />
+                                <input value={filterName} onChange={(e) => setFilterName(e.target.value)} className="text-sm pl-7 rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder="Müşteri adı ile arayın" />
+                            </form>
+                            <div onClick={openAddCustomer} className="text-[#4b4b4b] bg-[#f1f1f1] whitespace-nowrap text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">Müşteri Oluştur</div>
+                        </div>
+                    </div>
+                    <div className="hidden max-[991px]:flex border border-[#eee] rounded-lg">
+                        <form onSubmit={(e) => {e.preventDefault(); handleFilterCustomer(filterName);}} className="flex items-center relative w-full">
                             <img className="w-4 h-4 absolute left-1" src={graySearch} alt="" />
                             <input value={filterName} onChange={(e) => setFilterName(e.target.value)} className="text-sm pl-7 rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder="Müşteri adı ile arayın" />
                         </form>
-                        <div onClick={openAddCustomer} className="text-[#4b4b4b] bg-[#f1f1f1] whitespace-nowrap text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">Müşteri Oluştur</div>
                     </div>
                 </div>
                 <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
@@ -185,7 +193,7 @@ export function Customers({ loged }) {
                         </thead>
                         <tbody>
                             {!result ? (
-                                customers?.data?.customers?.map((item,index) => (
+                                customers?.data?.customers?.map((item, index) => (
                                     <CustomerCard
                                         key={item.id}
                                         id={item.id}
