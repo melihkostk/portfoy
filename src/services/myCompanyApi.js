@@ -31,19 +31,19 @@ export const getAllCustomers = async () => {
 }
 
 export const filterCustomer = async (q) => {
-    const response = await api.post("/auth/company/customers" , {
-        q:q
+    const response = await api.post("/auth/company/customers", {
+        q: q
     })
     return response.data;
 }
 
-export const editCustomer = async (id , name , email , phone , phone_code) => {
-    const response = await api.post(`/auth/company/customers/${id}/update` , {
-        name:name,
-        email:email,
-        phone:phone,
-        phone_code:phone_code,
-        locale:"tr"
+export const editCustomer = async (id, name, email, phone, phone_code) => {
+    const response = await api.post(`/auth/company/customers/${id}/update`, {
+        name: name,
+        email: email,
+        phone: phone,
+        phone_code: phone_code,
+        locale: "tr"
     })
     return response.data;
 }
@@ -58,7 +58,7 @@ export const getDraftProperties = async () => {
     return response.data.data;
 }
 
-export const getCompanyProperties = async (country_id, city_id, district_id, created_by, min_sell_price , max_sell_price , currency_id , property_status, types) => {
+export const getCompanyProperties = async (country_id, city_id, district_id, created_by, min_sell_price, max_sell_price, currency_id, property_status, types) => {
     const response = await api.post("/auth/company/properties", {
         country_id: country_id,
         city_id: city_id,
@@ -66,8 +66,8 @@ export const getCompanyProperties = async (country_id, city_id, district_id, cre
         created_by: created_by,
         min_sell_price: min_sell_price,
         max_sell_price: max_sell_price,
-        currency_id:currency_id,
-        property_status:property_status,
+        currency_id: currency_id,
+        property_status: property_status,
         types: types
     });
     return response.data;
@@ -203,5 +203,22 @@ export const getCompanyProfile = async () => {
 
 export const getPreference = async () => {
     const response = await api.get("/auth/company/preferences");
+    return response.data;
+}
+
+export const updateCompanyProfile = async (company_name, tax_number, licence_number, email, phone, phone_code, licence_file, tax_plate) => {
+    const formData = new FormData();
+    formData.append("company_name", company_name);
+    formData.append("tax_number", tax_number);
+    formData.append("licence_number", licence_number);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("phone_code", phone_code);
+    if (licence_file) formData.append("licence_file", licence_file);
+    if (tax_plate) formData.append("tax_plate", tax_plate);
+
+    const response = await api.post("/auth/company/profile/update", formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+    })
     return response.data;
 }

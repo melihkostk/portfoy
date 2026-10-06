@@ -3,8 +3,9 @@ import { AppLinks } from "../components/AppLinks"
 import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
-import { getCompanyProfile } from "../services/myCompanyApi"
+import { getCompanyProfile, updateCompanyProfile } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
+import whiteClose from "../assets/close.png"
 
 export function Edit({ loged }) {
 
@@ -18,10 +19,16 @@ export function Edit({ loged }) {
     const [address, setAddress] = useState("");
     const [taxOffice, setTaxOffice] = useState("");
     const [tradeName, setTradeName] = useState("");
+    const [code, setCode] = useState()
+    const [licenceFile, setLicenceFile] = useState(null)
+    const [taxPlate, setTaxPlate] = useState(null)
 
-    const [profile , setProfile] = useState([])
+    const [profile, setProfile] = useState([])
 
     const [loaded, setLoaded] = useState(false)
+
+    const [error, setError] = useState("");
+    const [errorShown, setErrorShown] = useState(false);
 
     useEffect(() => {
         getCompanyProfile().then((data) => {
@@ -37,6 +44,21 @@ export function Edit({ loged }) {
             setAddress(data?.data?.profile?.billing?.address)
         }).finally(() => setLoaded(true))
     }, [])
+
+    function handleUpdate() {
+        setLoaded(false)
+        updateCompanyProfile(name, taxNumber, centralNumber, email, phone, code, licenceFile, taxPlate).then(data => {
+            if (data.status === "success") {
+                getCompanyProfile().then((data) => {
+                    setProfile(data)
+                })
+            }
+            else {
+                setError(data.message);
+                setErrorShown(true);
+            }
+        }).finally(() => setLoaded(true))
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -63,6 +85,10 @@ export function Edit({ loged }) {
                 type={profile?.data?.type}
                 logo={profile?.data?.logo}
             />
+            {errorShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(155,0,0),rgb(220,38,38))] p-3 text-white">
+                <p>{error}</p>
+                <img onClick={() => setErrorShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
                     <div className="p-12.5 max-[992px]:p-7.5">
@@ -78,7 +104,7 @@ export function Edit({ loged }) {
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Vergi Levhası (PDF)</label>
-                                <input className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="file" placeholder="Firma Adı" />
+                                <input onChange={(e) => setTaxPlate(e.target.files[0])} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="file" placeholder="Firma Adı" />
                                 <a className="text-sm text-[#7f7f7f] mt-1.25 hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">Dosyayı Görüntüle</a>
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
@@ -87,7 +113,7 @@ export function Edit({ loged }) {
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Ticaret Odası Faaliyet Belgesi (PDF)</label>
-                                <input className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="file" placeholder="Firma Adı" />
+                                <input onChange={(e) => setLicenceFile(e.target.files[0])} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="file" placeholder="Firma Adı" />
                                 <a className="text-sm text-[#7f7f7f] mt-1.25 hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">Dosyayı Görüntüle</a>
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
@@ -106,11 +132,11 @@ export function Edit({ loged }) {
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Telefon</label>
                                 <div className="flex gap-3.75">
-                                    <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded-lg" name="" id="">
-                                        <option value="">(357)</option>
-                                        <option value="">(90)</option>
-                                        <option value="">(971)</option>
-                                        <option value="">(01)</option>
+                                    <select value={code} onChange={(e) => setCode(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded-lg" name="" id="">
+                                        <option value="357">(357)</option>
+                                        <option value="90">(90)</option>
+                                        <option value="971">(971)</option>
+                                        <option value="01">(01)</option>
                                     </select>
                                     <input value={phone} onChange={(e) => setPhone(e.target.value)} className="px-3 py-1.5 w-full border border-[#D9D9D9] rounded-lg" type="text" placeholder="Mersis Numarası" />
                                 </div>
@@ -138,7 +164,7 @@ export function Edit({ loged }) {
                             </div>
                         </div>
                     </div>
-                    <button className="bg-[#198754] text-white rounded-lg py-2 px-5 ml-12.5">Kaydet</button>
+                    <button onClick={handleUpdate} className="bg-[#198754] hover:bg-[#157347] transition-colors duration-300 ease-in-out cursor-pointer text-white rounded-lg py-2 px-5 ml-12.5">Kaydet</button>
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>

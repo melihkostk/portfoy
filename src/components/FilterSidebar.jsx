@@ -59,8 +59,8 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                     <p className="text-sm text-[#878787] mb-2" htmlFor="">Konum</p>
                     <div>
                         <div className="mb-2">
-                            <label className="text-[13px] text-[#212529] font-semibold" htmlFor="">Ülke Seçin</label>
-                            <select value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="block border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" name="" id="">
+                            <label className="text-[13px] text-[#212529] font-semibold" htmlFor="country">Ülke Seçin</label>
+                            <select name="country" id="country" value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="block border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
                                 <option value="">Ülke Seçin</option>
                                 {countries?.data?.map(item => (
                                     <option key={item.id} value={item.id}>{item.title}</option>
@@ -68,8 +68,8 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                             </select>
                         </div>
                         <div className="mb-2">
-                            <label className="text-[13px] text-[#212529] font-semibold" htmlFor="">İl Seçin</label>
-                            <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="block border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" name="" id="">
+                            <label htmlFor="city" className="text-[13px] text-[#212529] font-semibold">İl Seçin</label>
+                            <select id="city" name="city" value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="block border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
                                 <option value="">İl Seçin</option>
                                 {cities.map(item => (
                                     <option key={item.id} value={item.id}>{item.title}</option>
@@ -77,8 +77,8 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                             </select>
                         </div>
                         <div className="mb-2">
-                            <label className="text-[13px] text-[#212529] font-semibold" htmlFor="">İlçe Seçin</label>
-                            <select value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="block border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" name="" id="">
+                            <label htmlFor="district" className="text-[13px] text-[#212529] font-semibold">İlçe Seçin</label>
+                            <select id="district" name="district" value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="block border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
                                 <option value="">İlçe Seçin</option>
                                 {districts.map(item => (
                                     <option key={item.id} value={item.id}>{item.title}</option>
@@ -96,15 +96,15 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                         </div>
                         <div className="flex items-center gap-2.5">
                             <input id="status-published" name="status" type="checkbox" checked={status === "published"} onChange={() => setStatus("published")} />
-                            <label className={`text-[13px] ${status === "published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-published">Sadece Yayında Olanlar</label>
+                            <label htmlFor="status-published" className={`text-[13px] ${status === "published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-published">Sadece Yayında Olanlar</label>
                         </div>
                         <div className="flex items-center gap-2.5">
                             <input id="status-not_published" name="status" type="checkbox" checked={status === "not_published"} onChange={() => setStatus("not_published")} />
-                            <label className={`text-[13px] ${status === "not_published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-not_published">Sadece Yayında Olmayanlar</label>
+                            <label htmlFor="status-not_published" className={`text-[13px] ${status === "not_published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-not_published">Sadece Yayında Olmayanlar</label>
                         </div>
                         <div className="flex items-center gap-2.5">
                             <input id="status-sold" name="status" type="checkbox" checked={status === "sold"} onChange={() => setStatus("sold")} />
-                            <label className={`text-[13px] ${status === "sold" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-sold">Sadece Satılan İlanlar</label>
+                            <label htmlFor="status-sold" className={`text-[13px] ${status === "sold" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-sold">Sadece Satılan İlanlar</label>
                         </div>
                     </div>
                 </div>
