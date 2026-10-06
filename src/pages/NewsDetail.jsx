@@ -17,8 +17,9 @@ export function NewsDetail({ loged, news }) {
     const [loaded , setLoaded] = useState(false)
 
     useEffect(() => {
+        setLoaded(false)
         showArticle(id).then(setArticle).finally(() => setLoaded(true))
-    }, [])
+    }, [id])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -46,7 +47,7 @@ export function NewsDetail({ loged, news }) {
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="flex flex-col bg-white gap-7.5 w-[22%] max-[992px]:w-full max-[992px]:mt-7.5 border border-[#eee] rounded-lg p-3.75">
                         <div className="bg-[#eaeaea] text-[#808080] text-center py-2.5 rounded-lg">Diğer Haberler</div>
-                        {news.map(item => (
+                        {news.filter(item => item.id != id).slice(0,3).map(item => (
                             <NewsCard page="detail" key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
                         ))}
                     </div>
