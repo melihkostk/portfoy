@@ -37,6 +37,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
     const [status, setStatus] = useState("");
     const [detail, setDetail] = useState([])
     const [loaded, setLoaded] = useState(false);
+    const [features, setFeatures] = useState([]);
 
     useEffect(() => {
         getDetails(id).then(data => {
@@ -54,8 +55,21 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
             setLatitude(data?.map?.latitude);
             setLongitude(data?.map?.longitude);
             setStatus(data?.status)
+            setFeatures(data?.features ?? [])
         }).finally(() => setLoaded(true));
     }, [id])
+
+    function handleFeatureChange(groupIndex, featureId, newValue) {
+        setFeatures(prev => prev.map((group, index) => {
+            if (index !== groupIndex) return group;
+            return {
+                ...group,
+                features: group.features.map(feature =>
+                    feature.id === featureId ? { ...feature, value: newValue } : feature
+                )
+            };
+        }));
+    }
 
     function handleDelete() {
         deleteProperty(id).then(data => {
@@ -394,25 +408,25 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                     </div>
                 </div>
                 <div className="w-full mb-7.5">
-                    {detail?.features?.map((item) => (
-                        <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
+                    {features?.map((item, groupIndex) => (
+                        <div key={groupIndex} className="p-2.5 border border-[#f8f8f8] rounded-lg">
                             <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
                                 <h5 className="text-[#676767] text-lg py-1.25">{item.title}</h5>
                             </div>
                             <div className="p-4">
                                 <div className="flex flex-wrap justify-start">
-                                    {item.features?.map(item => (
-                                        <div key={item.id} className="w-[25%] px-3 mb-2 flex flex-col">
+                                    {item.features?.map(feature => (
+                                        <div key={feature.id} className="w-[25%] px-3 mb-2 flex flex-col">
                                             <div className="flex justify-between items-center">
-                                                <label className="text-[#6c757d]" htmlFor="">{item?.title}</label>
-                                                {item.input_type === "file" && <a className="text-xs text-[#026872] font-semibold" target="_blank" href={item?.value[0]?.path}>Dosyaları Görüntüle (1 Dosya)</a>}
+                                                <label className="text-[#6c757d]" htmlFor="">{feature?.title}</label>
+                                                {feature.input_type === "file" && <a className="text-xs text-[#026872] font-semibold" target="_blank" href={feature?.value[0]?.path}>Dosyaları Görüntüle (1 Dosya)</a>}
                                             </div>
-                                            {item.input_type !== "select"
-                                                ? <input key={item.id} value={item.input_type === "text" || item.input_type === "number" ? item?.value : ""} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type={item.input_type} />
-                                                : <select key={item.id} value={item.value} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]">
-                                                    <option>{item.title}</option>
-                                                    {item.options.map(item => (
-                                                        <option key={item.id}>{item.title}</option>
+                                            {feature.input_type !== "select"
+                                                ? <input key={feature.id} value={feature.input_type === "text" || feature.input_type === "number" ? feature?.value : ""} onChange={(e) => handleFeatureChange(groupIndex, feature.id, e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type={feature.input_type} />
+                                                : <select key={feature.id} value={feature.value} onChange={(e) => handleFeatureChange(groupIndex, feature.id, e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]">
+                                                    <option>{feature.title}</option>
+                                                    {feature.options.map(option => (
+                                                        <option key={option.id}>{option.title}</option>
                                                     ))}
                                                 </select>
                                             }
