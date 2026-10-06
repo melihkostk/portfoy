@@ -4,7 +4,7 @@ import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
 import { SettingsCard } from "../components/SettingsCard"
-import { getCompanyInfo, getTeam } from "../services/myCompanyApi"
+import { getCompanyInfo, getPreference, getTeam } from "../services/myCompanyApi"
 import close from "../assets/blue-close.png"
 import { PersonelCard } from "../components/PersonalCard"
 
@@ -22,6 +22,12 @@ export function Settings({ loged }) {
 
     useEffect(() => {
         getTeam().then(setTeam);
+    }, [])
+
+    const [preference, setPreference] = useState([]);
+
+    useEffect(() => {
+        getPreference().then(setPreference)
     }, [])
 
     return (
@@ -47,6 +53,7 @@ export function Settings({ loged }) {
                                 avatar={item.avatar}
                                 name={item.name}
                                 role={item.roles[0].title}
+                                preference={preference}
                             />
                         ))}
                     </div>
@@ -71,6 +78,8 @@ export function Settings({ loged }) {
                             title="Fiyat Teklifleri için Personel Seçimi"
                             description="İlana yapılan fiyat teklifleri için hangi kullanıcılara bildirim gideceğini seçin"
                             setPersonalSelectPopUp={setPersonalSelectPopUp}
+                            preference={preference}
+                            team={team}
                         />
                         <SettingsCard
                             title="Personel Bilgilerinin Görünürlüğü"

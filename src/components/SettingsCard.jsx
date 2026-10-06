@@ -1,4 +1,4 @@
-export function SettingsCard({title , description , setPersonalSelectPopUp}) {
+export function SettingsCard({ title, description, setPersonalSelectPopUp, preference, team }) {
     return (
         <div className="flex justify-between items-center max-[992px]:flex-col max-[992px]:items-start max-[992px]:gap-7.5 p-7.5 my-3.75 rounded-lg bg-[#f8f8f8]">
             <div>
@@ -17,17 +17,25 @@ export function SettingsCard({title , description , setPersonalSelectPopUp}) {
                         Personel bazlı seçim
                     </option>}
                 </select> : <div className="flex items-center justify-center gap-7.5">
-                        <div className="flex">
-                            <div className="hover:-translate-y-2.5 transition-all duration-300 ease-in-out">
-                                <img className="rounded-full border border-white" src="https://ui-avatars.com/api/?name=Rahime&amp;background=27c5d2&amp;color=fff&amp;size=32&amp;bold=1&amp;uppercase=1&amp;format=svg&amp;length=2" alt=""></img>
-                            </div>
-                            <div className="-ml-2 hover:-translate-y-2.5 transition-all duration-300 ease-in-out">
-                                <img className="rounded-full border border-white" src="https://ui-avatars.com/api/?name=Enes+Bayba%C4%9Fan&amp;background=27c5d2&amp;color=fff&amp;size=32&amp;bold=1&amp;uppercase=1&amp;format=svg&amp;length=2" alt=""></img>
-                            </div>
-                        </div>
-                        <div>
-                            <button onClick={() => setPersonalSelectPopUp(true)} className="py-2 px-5 cursor-pointer rounded-lg text-sm text-[#4b4b4b] bg-[#f1f1f1] font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Değiştir</button>
-                        </div>
+                    <div className="flex">
+                        {team?.personals
+                            ?.filter(item => preference.data.price_offer_users.includes(item.id))
+                            .map(item => (
+                                <div
+                                    key={item.id}
+                                    className="hover:-translate-y-2.5 transition-all duration-300 ease-in-out"
+                                >
+                                    <img
+                                        className="rounded-full border border-white"
+                                        src={item.avatar}
+                                        alt=""
+                                    />
+                                </div>
+                            ))}
+                    </div>
+                    <div>
+                        <button onClick={() => setPersonalSelectPopUp(true)} className="py-2 px-5 cursor-pointer rounded-lg text-sm text-[#4b4b4b] bg-[#f1f1f1] font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Değiştir</button>
+                    </div>
                 </div>}
             </div>
         </div>

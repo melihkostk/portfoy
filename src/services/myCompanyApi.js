@@ -200,3 +200,8 @@ export const getCompanyProfile = async () => {
     const response = await api.get("/auth/company/profile");
     return response.data;
 }
+
+export const getPreference = async () => {
+    const response = await api.get("/auth/company/preferences");
+    return response.data;
+}
