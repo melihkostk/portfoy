@@ -1,4 +1,4 @@
-export function SettingsCard({title , description}) {
+export function SettingsCard({title , description , setPersonalSelectPopUp}) {
     return (
         <div className="flex justify-between items-center max-[992px]:flex-col max-[992px]:items-start max-[992px]:gap-7.5 p-7.5 my-3.75 rounded-lg bg-[#f8f8f8]">
             <div>
@@ -26,7 +26,7 @@ export function SettingsCard({title , description}) {
                             </div>
                         </div>
                         <div>
-                            <button className="py-2 px-5 cursor-pointer rounded-lg text-sm text-[#4b4b4b] bg-[#f1f1f1] font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Değiştir</button>
+                            <button onClick={() => setPersonalSelectPopUp(true)} className="py-2 px-5 cursor-pointer rounded-lg text-sm text-[#4b4b4b] bg-[#f1f1f1] font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Değiştir</button>
                         </div>
                 </div>}
             </div>
