@@ -255,7 +255,7 @@ export function PropertiesDetail({ loged }) {
                             <p className="uppercase text-[#5f5f5f] text-xs font-semibold">Satış Fiyatı</p>
                             <p className="text-[#FFCA64] text-[25px] font-semibold mb-4">{details?.prices?.primary?.formatted}</p>
                             {details?.badges?.[0]?.title && (
-                                <div className={`uppercase text-xs ${details?.badges?.[0]?.title === "Taslak" ? "bg-[#FFCA64]" : "bg-[#27c5d2] text-white"} w-fit py-1.25 px-2 rounded-lg font-semibold`}>{details.badges[0].title}</div>
+                                <div className={`uppercase text-xs ${details?.badges?.[0]?.title === "Fiyatı Düştü" || details?.badges?.[0]?.title === "Taslak"  ? "bg-[#FFCA64]" : "bg-[#27c5d2] text-white"} w-fit py-1.25 px-2 rounded-lg font-semibold`}>{details.badges[0].title}</div>
                             )}
                         </div>
                         {!details.is_owner_company ? (<div className="flex gap-2.5 flex-wrap">
