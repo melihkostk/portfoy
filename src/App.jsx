@@ -47,6 +47,7 @@ import { OfferDetail } from "./pages/OfferDetail.jsx";
 import { EditProperty } from "./pages/EditProperty.jsx";
 import { Boost } from "./pages/Boost.jsx"
 import { NotFound } from "./pages/NotFound.jsx";
+import { ProtectedRoutes } from "./components/ProtectedRoutes.jsx";
 
 function App() {
 
@@ -75,8 +76,8 @@ function App() {
     getArticles().then(setNews)
   }, [])
 
-  const [message , setMessage] = useState("");
-  const [messageShown , setMessageShown] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageShown, setMessageShown] = useState(false);
 
   return (
     <BrowserRouter>
@@ -93,37 +94,39 @@ function App() {
         <Route path="/check" element={<Check loged={loged} />} />
         <Route path="/faqs" element={<Faqs loged={loged} />} />
         <Route path="/consent" element={<Consent loged={loged} />} />
-        <Route path="/companies" element={<Companies loged={loged} />} />
-        <Route path="/properties" element={<Properties loged={loged} />} />
-        <Route path="/properties/create" element={<Create loged={loged} />} />
-        <Route path="/profile" element={<Profile loged={loged} />} />
-        <Route path="/account" element={<Account loged={loged} />} />
-        <Route path="/proposals" element={<Proposals loged={loged} />} />
-        <Route path="/notifications" element={<Notifications loged={loged} />} />
-        <Route path="/quick-filters" element={<QuickFilters loged={loged} />} />
-        <Route path="/wishlist" element={<Wishlist loged={loged} />} />
-        <Route path="/offers/:type" element={<Offers loged={loged} />} />
-        <Route path="/auth/properties" element={<UserProperties loged={loged} />} />
-        <Route path="/support" element={<Support loged={loged} />} />
-        <Route path="/company" element={<Company loged={loged} message={message} messageShown={messageShown} setMessageShown={setMessageShown} />} />
-        <Route path="/company/team" element={<Team loged={loged} />} />
-        <Route path="/company/contacts" element={<Location loged={loged} />} />
-        <Route path="/company/customers" element={<Customers loged={loged} />} />
-        <Route path="/company/subscription" element={<Subscription loged={loged} />} />
-        <Route path="/company/settings" element={<Settings loged={loged} />} />
-        <Route path="/company/edit" element={<Edit loged={loged} />} />
-        <Route path="/company/proposals" element={<CompanyProposals loged={loged} />}></Route>
-        <Route path="/company/summary" element={<Summary loged={loged} />}></Route>
-        <Route path="/companies/:id" element={<CompaniesDetail loged={loged} />}></Route>
-        <Route path="/companies/:id/team" element={<CompaniesDetailTeam loged={loged} />}></Route>
-        <Route path="/companies/:id/contacts" element={<CompaniesDetailLocation loged={loged} />}></Route>
-        <Route path="/properties/:id" element={<PropertiesDetail loged={loged} />}></Route>
-        <Route path="/articles/:id" element={<NewsDetail loged={loged} news={news} />}></Route>
-        <Route path="/proposals/:id/details" element={<ProposalDetail loged={loged} />}></Route>
-        <Route path="/offers/:id/detail" element={<OfferDetail loged={loged} />}></Route>
-        <Route path="/properties/:id/edit" element={<EditProperty loged={loged} setMessage={setMessage} setMessageShown={setMessageShown} />}></Route>
-        <Route path="/properties/:id/boost" element={<Boost loged={loged} />}></Route>
         <Route path="*" element={<NotFound />}></Route>
+        <Route element={<ProtectedRoutes loged={loged} />}>
+          <Route path="/companies" element={<Companies loged={loged} />} />
+          <Route path="/properties" element={<Properties loged={loged} />} />
+          <Route path="/properties/create" element={<Create loged={loged} />} />
+          <Route path="/profile" element={<Profile loged={loged} />} />
+          <Route path="/account" element={<Account loged={loged} />} />
+          <Route path="/proposals" element={<Proposals loged={loged} />} />
+          <Route path="/notifications" element={<Notifications loged={loged} />} />
+          <Route path="/quick-filters" element={<QuickFilters loged={loged} />} />
+          <Route path="/wishlist" element={<Wishlist loged={loged} />} />
+          <Route path="/offers/:type" element={<Offers loged={loged} />} />
+          <Route path="/auth/properties" element={<UserProperties loged={loged} />} />
+          <Route path="/support" element={<Support loged={loged} />} />
+          <Route path="/company" element={<Company loged={loged} message={message} messageShown={messageShown} setMessageShown={setMessageShown} />} />
+          <Route path="/company/team" element={<Team loged={loged} />} />
+          <Route path="/company/contacts" element={<Location loged={loged} />} />
+          <Route path="/company/customers" element={<Customers loged={loged} />} />
+          <Route path="/company/subscription" element={<Subscription loged={loged} />} />
+          <Route path="/company/settings" element={<Settings loged={loged} />} />
+          <Route path="/company/edit" element={<Edit loged={loged} />} />
+          <Route path="/company/proposals" element={<CompanyProposals loged={loged} />}></Route>
+          <Route path="/company/summary" element={<Summary loged={loged} />}></Route>
+          <Route path="/companies/:id" element={<CompaniesDetail loged={loged} />}></Route>
+          <Route path="/companies/:id/team" element={<CompaniesDetailTeam loged={loged} />}></Route>
+          <Route path="/companies/:id/contacts" element={<CompaniesDetailLocation loged={loged} />}></Route>
+          <Route path="/properties/:id" element={<PropertiesDetail loged={loged} />}></Route>
+          <Route path="/articles/:id" element={<NewsDetail loged={loged} news={news} />}></Route>
+          <Route path="/proposals/:id/details" element={<ProposalDetail loged={loged} />}></Route>
+          <Route path="/offers/:id/detail" element={<OfferDetail loged={loged} />}></Route>
+          <Route path="/properties/:id/edit" element={<EditProperty loged={loged} setMessage={setMessage} setMessageShown={setMessageShown} />}></Route>
+          <Route path="/properties/:id/boost" element={<Boost loged={loged} />}></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
 
