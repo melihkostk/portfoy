@@ -368,14 +368,26 @@ return (
                             <input value={title} onChange={(e) => setTitle(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                         </div>
                         <div className="flex">
-                            <div className="flex-1 px-3 mb-2">
+                            {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
                                 <label className="text-[#6c757d]" htmlFor="">Pass Fiyatı <span className="text-sm">({currency})</span></label>
                                 <input value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
-                            </div>
-                            <div className="flex-1 px-3 mb-2">
+                            </div>}
+                            {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
                                 <label className="text-[#6c757d]" htmlFor="">Satış Fiyatı <span className="text-sm">({currency})</span></label>
+                                <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
+                            </div>}
+                            {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
+                                <label className="text-[#6c757d]" htmlFor="">Minimum Fiyat <span className="text-sm">({currency})</span></label>
                                 <input value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
-                            </div>
+                            </div>}
+                            {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
+                                <label className="text-[#6c757d]" htmlFor="">Minimum Fiyat <span className="text-sm">({currency})</span></label>
+                                <input value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
+                            </div>}
+                            {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
+                                <label className="text-[#6c757d]" htmlFor="">Fiyat Seçenekleri ( 1 Seçenek )</label>
+                                <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
+                            </div>}
                             <div className="flex-1 px-3 mb-2">
                                 <label className="text-[#6c757d]" htmlFor="">Para Birimi</label>
                                 <input value={currency} onChange={(e) => setCurrency(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
