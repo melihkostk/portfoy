@@ -97,3 +97,17 @@ export const updateSoldStatus = async (id , hold , action) => {
   })
   return response.data;
 }
+
+export const updateProperty = async (id , title , country_id , city_id , district_id ,street_id , sell_price , pass_price , details) => {
+  const response = await api.post(`/properties/${id}/update` , {
+    title:title,
+    country_id:country_id,
+    city_id:city_id,
+    district_id:district_id,
+    street_id:street_id,
+    sell_price:sell_price,
+    pass_price:pass_price,
+    details:details
+  });
+  return response.data;
+}

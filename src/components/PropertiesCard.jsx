@@ -27,7 +27,7 @@ export function PropertiesCard(props) {
                     </div>}
                 </div>
             </div>
-            <div className={`pl-5 w-[50%]`}>
+            <div className={`pl-5 w-[50%] max-[992px]:w-full max-[992px]:pl-0`}>
                 <Link to={`/properties/${props.id}`} className={`min-h-12.5 ${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" || props.page === "wishlist" ? "text-xl" : "text-base"} text-black hover:text-[#FFCA64] transition-colors duration-300 ease-in-out`}>{props.title}</Link>
                 <ul className="text-[11px] text-[#B7BFB9] font-medium flex flex-wrap gap-2.5 my-2.5">
                     <li className="w-full flex items-center gap-1">

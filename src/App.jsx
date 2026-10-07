@@ -53,6 +53,7 @@ function App() {
 
   const [loged, setLoged] = useState(false)
   const [token, setToken] = useState("")
+  const [authChecked, setAuthChecked] = useState(false)
 
   useEffect(() => {
     try {
@@ -67,6 +68,8 @@ function App() {
       setLoged(true);
     } catch {
       setLoged(false);
+    } finally {
+      setAuthChecked(true);
     }
   }, []);
 
@@ -95,7 +98,7 @@ function App() {
         <Route path="/faqs" element={<Faqs loged={loged} />} />
         <Route path="/consent" element={<Consent loged={loged} />} />
         <Route path="*" element={<NotFound />}></Route>
-        <Route element={<ProtectedRoutes loged={loged} />}>
+        <Route element={<ProtectedRoutes loged={loged} authChecked={authChecked} />}>
           <Route path="/companies" element={<Companies loged={loged} />} />
           <Route path="/properties" element={<Properties loged={loged} />} />
           <Route path="/properties/create" element={<Create loged={loged} />} />
