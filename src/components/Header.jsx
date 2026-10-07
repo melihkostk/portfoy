@@ -209,7 +209,7 @@ export function Header({ loged, details }) {
                         </div>}
                     </div>}
                     {loged && <button onClick={() => setOfferModalShown(prev => !prev)} className={`w-12.5 max-[1100px]:hidden ${selectedCustomer ? "w-30 gap-2" : ""} h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out`}>
-                        <img className="w-5 h-5" src={folder} alt="" />
+                        <img className="w-4 h-4" src={folder} alt="" />
                         {selectedCustomer && <p className="text-white font-semibold whitespace-nowrap overflow-hidden text-ellipsis">{selectedCustomer}</p>}
                     </button>}
                     {loged && <Link to={"/company"} className="h-12.5 px-5 max-[1100px]:hidden text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">

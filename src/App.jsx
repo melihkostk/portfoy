@@ -46,6 +46,7 @@ import { ProposalDetail } from "./pages/ProposalDetail.jsx";
 import { OfferDetail } from "./pages/OfferDetail.jsx";
 import { EditProperty } from "./pages/EditProperty.jsx";
 import { Boost } from "./pages/Boost.jsx"
+import { NotFound } from "./pages/NotFound.jsx";
 
 function App() {
 
@@ -122,6 +123,7 @@ function App() {
         <Route path="/offers/:id/detail" element={<OfferDetail loged={loged} />}></Route>
         <Route path="/properties/:id/edit" element={<EditProperty loged={loged} setMessage={setMessage} setMessageShown={setMessageShown} />}></Route>
         <Route path="/properties/:id/boost" element={<Boost loged={loged} />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>
 
