@@ -83,31 +83,31 @@ export const cloneProperty = async (id, title, clone_images) => {
   return response.data;
 }
 
-export const updateDraftStatus = async (id , status) => {
-  const response = await api.post(`/properties/${id}/status/update` , {
-    status:status
+export const updateDraftStatus = async (id, status) => {
+  const response = await api.post(`/properties/${id}/status/update`, {
+    status: status
   });
   return response.data;
 }
 
-export const updateSoldStatus = async (id , hold , action) => {
-  const response = await api.post(`/properties/${id}/sold/update` , {
-    hold:hold,
-    action:action
+export const updateSoldStatus = async (id, hold, action) => {
+  const response = await api.post(`/properties/${id}/sold/update`, {
+    hold: hold,
+    action: action
   })
   return response.data;
 }
 
-export const updateProperty = async (id , title , country_id , city_id , district_id ,street_id , sell_price , pass_price , details) => {
-  const response = await api.post(`/properties/${id}/update` , {
-    title:title,
-    country_id:country_id,
-    city_id:city_id,
-    district_id:district_id,
-    street_id:street_id,
-    sell_price:sell_price,
-    pass_price:pass_price,
-    details:details
+export const updateProperty = async (id, title, country_id, city_id, district_id, street_id, sell_price, pass_price, details) => {
+  const response = await api.post(`/properties/${id}/update`, {
+    title: title,
+    country_id: country_id,
+    city_id: city_id,
+    district_id: district_id,
+    street_id: street_id,
+    sell_price: sell_price,
+    pass_price: pass_price,
+    details: details
   });
   return response.data;
 }
@@ -119,5 +119,10 @@ export const getExternalProposals = async (id) => {
 
 export const getAllOffers = async (id) => {
   const response = await api.post(`/properties/${id}/offers`);
+  return response.data;
+}
+
+export const getAllProposals = async (id) => {
+  const response = await api.post(`/properties/${id}/proposals`);
   return response.data;
 }

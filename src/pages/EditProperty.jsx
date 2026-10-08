@@ -8,7 +8,7 @@ import chain from "../assets/chain.png"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { cloneProperty, deleteProperty, getAllOffers, getExternalProposals, updateDraftStatus, updateProperty, updateSoldStatus } from "../services/propertiesApi";
+import { cloneProperty, deleteProperty, getAllOffers, getAllProposals, getExternalProposals, updateDraftStatus, updateProperty, updateSoldStatus } from "../services/propertiesApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
@@ -157,10 +157,10 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
         })
     }
 
-    const [proposals, setProposals] = useState([]);
+    const [externalProposals, setExternalProposals] = useState([]);
 
     useEffect(() => {
-        getExternalProposals(id).then(setProposals);
+        getExternalProposals(id).then(setExternalProposals);
     }, [id])
 
     const [offers, setOffers] = useState([]);
@@ -169,8 +169,11 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
         getAllOffers(id).then(setOffers);
     }, [id])
 
+    const [proposals, setProposals] = useState([]);
 
-
+    useEffect(() => {
+        getAllProposals(id).then(setProposals)
+    }, [id])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -561,21 +564,21 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                     <th className="text-start py-4 px-2.5">Fiyat</th>
                                     <th className="text-start py-4 px-2.5">Durum</th>
                                     <th className="text-start py-4 px-2.5">Oluşturma Tarihi</th>
-                                    <th className="text-start py-4 px-2.5 rounded-r-lg">İşlemler</th>
+                                    <th className="text-end py-4 px-2.5 rounded-r-lg">İşlemler</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {offers?.data?.map(item => (
-                                    <OfferCard 
-                                    price={item.offered_price.formatted}
-                                    name={item.company.personal} 
-                                    status={item.status.title}
-                                    key={item.id}
-                                    created_at={item.created_at}
-                                    page="edit" 
-                                    
+                                    <OfferCard
+                                        price={item.offered_price.formatted}
+                                        name={item.company.personal}
+                                        status={item.status.title}
+                                        key={item.id}
+                                        created_at={item.created_at}
+                                        page="edit"
+
                                     />
-                            ))}
+                                ))}
                             </tbody>
                         </table>
                     </div>
@@ -593,10 +596,21 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                     <th className="text-start py-4 px-2.5">Değerlendirme</th>
                                     <th className="text-start py-4 px-2.5">Durum</th>
                                     <th className="text-start py-4 px-2.5">Oluşturma Tarihi</th>
-                                    <th className="text-start py-4 px-2.5 rounded-r-lg">İşlemler</th>
+                                    <th className="text-end py-4 px-2.5 rounded-r-lg">İşlemler</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {proposals.data.map(item => (
+                                    <ProposalCard
+                                        score={item.score}
+                                        created_at={item.created_at}
+                                        status={item.status.title}
+                                        page="edit"
+                                        name={item.customer.name}
+                                        key={item.id} 
+                                        code={item.code}
+                                        />
+                                ))}
                             </tbody>
                         </table>
                     </div>
@@ -616,8 +630,14 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {proposals?.data.map(item => (
-                                    <ProposalCard score={item.score} created_at={item.created_at} status={item.status.title} page="edit" name={item.company.name} key={item.id} />
+                                {externalProposals?.data.map(item => (
+                                    <ProposalCard
+                                        score={item.score}
+                                        created_at={item.created_at}
+                                        status={item.status.title}
+                                        page="external"
+                                        name={item.company.name}
+                                        key={item.id} />
                                 ))}
                             </tbody>
                         </table>
