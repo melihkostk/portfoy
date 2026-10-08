@@ -116,3 +116,8 @@ export const getExternalProposals = async (id) => {
   const response = await api.post(`/properties/${id}/proposals/external`);
   return response.data;
 }
+
+export const getAllOffers = async (id) => {
+  const response = await api.post(`/properties/${id}/offers`);
+  return response.data;
+}
