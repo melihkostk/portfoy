@@ -6,7 +6,7 @@ import { Sidebar } from "../components/Sidebar"
 import heart from "../assets/black-heart.png"
 import menu from "../assets/black-menu.png"
 import file from "../assets/black-file.png"
-import { getUserProperties, getWishlist } from "../services/profileApi"
+import { getPropertyAlerts, getUserProperties, getWishlist } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getCompanyInfo, getCustomerProposals } from "../services/myCompanyApi"
@@ -47,6 +47,13 @@ export function Profile({loged}) {
             setUser(parsedUser);
         }
     }, [])
+
+    const [alerts , setAlerts] = useState([]);
+
+    useEffect(() => {
+        getPropertyAlerts().then(setAlerts);
+    }, [])
+
 
     return (
         <div className='flex flex-col items-center font-sf'>

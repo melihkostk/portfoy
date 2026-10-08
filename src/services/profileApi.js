@@ -57,3 +57,8 @@ export const updateProfile = async (name , phone_code , phone , locale) => {
     });
     return response.data;
 }
+
+export const getPropertyAlerts = async () => {
+    const response = await api.post("/auth/properties/alerts");
+    return response.data;
+}

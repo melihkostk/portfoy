@@ -141,6 +141,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
     const [soldToDraft, setSoldToDraft] = useState(false)
 
     function handleUpdateProperty() {
+        setLoaded(false)
         const details = {};
         features.forEach(group => {
             group.features.forEach(feature => {
@@ -155,7 +156,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
             else {
                 console.log(data.message)
             }
-        })
+        }).finally(() => setLoaded(true))
     }
 
     const [externalProposals, setExternalProposals] = useState([]);
@@ -318,7 +319,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 <div className="w-full flex justify-between items-center sticky top-0 max-[992px]:flex-col max-[992px]:items-start">
                     <div>
                         <h1 className="text-[25px]">{title}</h1>
-                        <ul className="flex text-sm text-[#7d7d7d] mt-1.25 max-[992px]:mb-5">
+                        <ul className="flex text-sm text-[#7d7d7d] mt-1.25 max-[992px]:mb-5 flex-wrap">
                             <li>
                                 {status === "draft" ? "Taslak" : "Yayında"}
                             </li>
@@ -566,11 +567,11 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                         <table className="w-full">
                             <thead>
                                 <tr className="bg-[#ececec] text-[#6c757d]">
-                                    <th className="text-start py-4 px-2.5 rounded-l-lg">Teklif Gönderen</th>
-                                    <th className="text-start py-4 px-2.5">Fiyat</th>
-                                    <th className="text-start py-4 px-2.5">Durum</th>
-                                    <th className="text-start py-4 px-2.5">Oluşturma Tarihi</th>
-                                    <th className="text-end py-4 px-2.5 rounded-r-lg">İşlemler</th>
+                                    <th className="text-start py-4 px-2.5 rounded-l-lg whitespace-nowrap">Teklif Gönderen</th>
+                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Fiyat</th>
+                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Durum</th>
+                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Oluşturma Tarihi</th>
+                                    <th className="text-end py-4 px-2.5 rounded-r-lg whitespace-nowrap">İşlemler</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -597,12 +598,12 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                         <table className="w-full">
                             <thead>
                                 <tr className="bg-[#ececec] rounded-lg text-[#6c757d]">
-                                    <th className="text-start py-4 px-2.5 rounded-l-lg">#</th>
-                                    <th className="text-start py-4 px-2.5">Müşteri</th>
-                                    <th className="text-start py-4 px-2.5">Değerlendirme</th>
-                                    <th className="text-start py-4 px-2.5">Durum</th>
-                                    <th className="text-start py-4 px-2.5">Oluşturma Tarihi</th>
-                                    <th className="text-end py-4 px-2.5 rounded-r-lg">İşlemler</th>
+                                    <th className="text-start py-4 px-2.5 rounded-l-lg whitespace-nowrap">#</th>
+                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Müşteri</th>
+                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Değerlendirme</th>
+                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Durum</th>
+                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Oluşturma Tarihi</th>
+                                    <th className="text-end py-4 px-2.5 rounded-r-lg whitespace-nowrap">İşlemler</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -629,10 +630,10 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                         <table className="w-full">
                             <thead>
                                 <tr className="bg-[#ececec] rounded-lg text-[#6c757d]">
-                                    <th className="text-start py-4 px-2.5 rounded-l-lg">Firma</th>
-                                    <th className="text-start py-4 px-2.5">Değerlendirme</th>
-                                    <th className="text-start py-4 px-2.5">Durum</th>
-                                    <th className="text-start py-4 px-2.5 rounded-r-lg">Oluşturma Tarihi</th>
+                                    <th className="text-start py-4 px-2.5 rounded-l-lg whitespace-nowrap">Firma</th>
+                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Değerlendirme</th>
+                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Durum</th>
+                                    <th className="text-start py-4 px-2.5 rounded-r-lg whitespace-nowrap">Oluşturma Tarihi</th>
                                 </tr>
                             </thead>
                             <tbody>
