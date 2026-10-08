@@ -1,6 +1,6 @@
 export function PropertySettingsCard({ title, description, button, onClick, disabled }) {
     return (
-        <div className="mb-7.5 border border-[#f8f8f8] rounded-lg w-[32%] mx-2">
+        <div className="mb-7.5 border border-[#f8f8f8] rounded-lg w-[32%] mx-2 max-[992px]:w-full">
             <div className="p-2.5">
                 <div className="p-4">
                     <h4 className="text-2xl text-[#6c757d] font-semibold mb-2">{title}</h4>

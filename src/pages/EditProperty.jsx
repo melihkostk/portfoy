@@ -180,7 +180,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
 
     useEffect(() => {
         getAllTransactions(id).then(setTransactions);
-    }, [])
+    }, [id])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -315,10 +315,10 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 </div>
             </div>
             <div className="w-full max-w-[90%] mb-7.5">
-                <div className="w-full flex justify-between items-center sticky top-0">
+                <div className="w-full flex justify-between items-center sticky top-0 max-[992px]:flex-col max-[992px]:items-start">
                     <div>
                         <h1 className="text-[25px]">{title}</h1>
-                        <ul className="flex text-sm text-[#7d7d7d] mt-1.25">
+                        <ul className="flex text-sm text-[#7d7d7d] mt-1.25 max-[992px]:mb-5">
                             <li>
                                 {status === "draft" ? "Taslak" : "Yayında"}
                             </li>
@@ -336,22 +336,22 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                             </li>
                         </ul>
                     </div>
-                    <div>
-                        <ul className="flex">
+                    <div className="w-full max-w-fit">
+                        <ul className="flex overflow-x-auto scrollbar-thin">
                             <li>
-                                <button onClick={() => setEditType("info")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "info" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>İlan Bilgileri</button>
+                                <button onClick={() => setEditType("info")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "info" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>İlan Bilgileri</button>
                             </li>
                             <li>
-                                <button onClick={() => setEditType("galery")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "galery" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Galeri</button>
+                                <button onClick={() => setEditType("galery")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "galery" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Galeri</button>
                             </li>
                             <li>
-                                <button onClick={() => setEditType("offers")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "offers" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Teklifler</button>
+                                <button onClick={() => setEditType("offers")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "offers" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Teklifler</button>
                             </li>
                             <li>
-                                <button onClick={() => setEditType("move")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "move" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Hareketler</button>
+                                <button onClick={() => setEditType("move")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "move" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Hareketler</button>
                             </li>
                             {detail.status !== "sold" && <li>
-                                <button onClick={() => setEditType("settings")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "settings" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Ayarlar</button>
+                                <button onClick={() => setEditType("settings")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "settings" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Ayarlar</button>
                             </li>}
                         </ul>
                     </div>
@@ -392,7 +392,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                 <label className="text-[#6c757d]" htmlFor="">Başlık</label>
                                 <input value={title} onChange={(e) => setTitle(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                             </div>
-                            <div className="flex">
+                            <div className="flex max-[992px]:flex-col">
                                 {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
                                     <label className="text-[#6c757d]" htmlFor="">Pass Fiyatı <span className="text-sm">({currency})</span></label>
                                     <input value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
@@ -418,7 +418,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                     <input value={currency} onChange={(e) => setCurrency(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
                             </div>
-                            <div className="flex">
+                            <div className="flex max-[992px]:flex-col">
                                 <div className="flex-1 px-3 mb-2">
                                     <label className="text-[#6c757d]" htmlFor="">Ülke Seçin</label>
                                     <input value={country} onChange={(e) => setCountry(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
@@ -471,9 +471,9 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                 <h5 className="text-[#676767] text-lg py-1.25">{item.title}</h5>
                             </div>
                             <div className="p-4">
-                                <div className="flex flex-wrap justify-start">
+                                <div className="flex flex-wrap justify-start max-[992px]:flex-col">
                                     {item.features?.map(feature => (
-                                        <div key={feature.id} className="w-[25%] px-3 mb-2 flex flex-col">
+                                        <div key={feature.id} className="w-[25%] px-3 mb-2 flex flex-col max-[992px]:w-full">
                                             <div className="flex justify-between items-center">
                                                 <label className="text-[#6c757d]" htmlFor="">{feature?.title}</label>
                                                 {feature.input_type === "file" && <a className="text-xs text-[#026872] font-semibold" target="_blank" href={feature?.value[0]?.path}>Dosyaları Görüntüle (1 Dosya)</a>}
@@ -503,7 +503,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
             </div>}
             {editType === "settings" && <div className="w-full max-w-[90%]">
                 <div className="w-full mb-7.5">
-                    <div className="flex flex-wrap ">
+                    <div className="flex flex-wrap max-[992px]:flex-col ">
                         <PropertySettingsCard
                             title="İlanı Pasife Al"
                             description="İlan havuzunda yer almasını istemediğiniz ilanları pasif durumuna alabilirsiniz"
@@ -549,7 +549,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                             name={item.user.name}
                             avatar={item.user.avatar}
                             message={item.message}
-                            key={item.id}
+                            key={index}
                             time={item.time}
                             index={index}
                             transactions={transactions}
@@ -560,9 +560,9 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
             {editType === "offers" && <div className="w-full max-w-[90%]">
                 <div className="p-2.5 mb-7.5 rounded-lg border border-[#f8f8f8]">
                     <div className="text-lg text-[#676767] py-2 px-4 bg-[#f8f8f8] rounded-lg">
-                        <p className="py-1.25">Müşteriden Gelen Fiyat Teklifleri</p>
+                        <p className="py-1.25 font-semibold">Müşteriden Gelen Fiyat Teklifleri</p>
                     </div>
-                    <div className="w-full p-4">
+                    <div className="w-full p-4 overflow-x-auto scrollbar-thin">
                         <table className="w-full">
                             <thead>
                                 <tr className="bg-[#ececec] text-[#6c757d]">
@@ -591,9 +591,9 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 </div>
                 <div className="p-2.5 mb-7.5 rounded-lg border border-[#f8f8f8]">
                     <div className="text-lg text-[#676767] py-2 px-4 bg-[#f8f8f8] rounded-lg">
-                        <p className="py-1.25">Müşteriye Gönderilen Teklifler</p>
+                        <p className="py-1.25 font-semibold">Müşteriye Gönderilen Teklifler</p>
                     </div>
-                    <div className="w-full p-4">
+                    <div className="w-full p-4 overflow-x-auto scrollbar-thin">
                         <table className="w-full">
                             <thead>
                                 <tr className="bg-[#ececec] rounded-lg text-[#6c757d]">
@@ -623,9 +623,9 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 </div>
                 <div className="p-2.5 mb-7.5 rounded-lg border border-[#f8f8f8]">
                     <div className="text-lg text-[#676767] py-2 px-4 bg-[#f8f8f8] rounded-lg">
-                        <p className="py-1.25">Diğer Firmaların Oluşturduğu Teklifler</p>
+                        <p className="py-1.25 font-semibold">Diğer Firmaların Oluşturduğu Teklifler</p>
                     </div>
-                    <div className="w-full p-4">
+                    <div className="w-full p-4 overflow-x-auto scrollbar-thin">
                         <table className="w-full">
                             <thead>
                                 <tr className="bg-[#ececec] rounded-lg text-[#6c757d]">
