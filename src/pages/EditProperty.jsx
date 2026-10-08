@@ -8,10 +8,11 @@ import chain from "../assets/chain.png"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { cloneProperty, deleteProperty, updateDraftStatus, updateProperty, updateSoldStatus } from "../services/propertiesApi";
+import { cloneProperty, deleteProperty, getExternalProposals, updateDraftStatus, updateProperty, updateSoldStatus } from "../services/propertiesApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
+import { ProposalCard } from "../components/ProposalCard";
 
 export function EditProperty({ loged, setMessage, setMessageShown }) {
 
@@ -154,6 +155,12 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
             }
         })
     }
+
+    const [proposals , setProposals] = useState([]);
+
+    useEffect(() => {
+        getExternalProposals(id).then(setProposals);
+    }, [id])
         
 
 
@@ -590,6 +597,9 @@ return (
                             </tr>
                         </thead>
                         <tbody>
+                            {proposals?.data.map(item => (
+                                <ProposalCard score={item.score} created_at={item.created_at} status={item.status.title} page="edit" name={item.company.name} key={item.id} />
+                            ))}
                         </tbody>
                     </table>
                 </div>

@@ -111,3 +111,8 @@ export const updateProperty = async (id , title , country_id , city_id , distric
   });
   return response.data;
 }
+
+export const getExternalProposals = async (id) => {
+  const response = await api.post(`/properties/${id}/proposals/external`);
+  return response.data;
+}
