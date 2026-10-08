@@ -8,12 +8,13 @@ import chain from "../assets/chain.png"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { cloneProperty, deleteProperty, getAllOffers, getAllProposals, getExternalProposals, updateDraftStatus, updateProperty, updateSoldStatus } from "../services/propertiesApi";
+import { cloneProperty, deleteProperty, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateDraftStatus, updateProperty, updateSoldStatus } from "../services/propertiesApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
 import { ProposalCard } from "../components/ProposalCard";
 import { OfferCard } from "../components/OfferCard"
+import { TransactionCard } from "../components/TransactionCard";
 
 export function EditProperty({ loged, setMessage, setMessageShown }) {
 
@@ -174,6 +175,12 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
     useEffect(() => {
         getAllProposals(id).then(setProposals)
     }, [id])
+
+    const [transactions, setTransactions] = useState([]);
+
+    useEffect(() => {
+        getAllTransactions(id).then(setTransactions);
+    }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -536,19 +543,16 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 </div>
             </div>}
             {editType === "move" && <div className="w-full max-w-[90%] p-2.5 border border-[#f8f8f8] rounded-lg">
-                <div className="w-full mb-7.5 p-4">
-                    <div className="flex p-3.75">
-                        <div className="w-15 h-15">
-                            <img className="w-full h-full rounded-full" src="https://ui-avatars.com/api/?name=Enes+Bayba%C4%9Fan&background=d0d0d0&color=fff&size=32&bold=1&uppercase=1&format=svg&length=2" alt="" />
-                        </div>
-                        <div className="ml-4">
-                            <h5>
-                                <a className="text-black text-base opacity-70">Enes Baybağan</a>
-                                <small className="text-sm text-[#6c757d] ml-1">1 yıl önce</small>
-                            </h5>
-                            <p className="text-lg text-[#6c757d]">CR0285ARS0003000015 numaralı ilanı oluşturdu</p>
-                        </div>
-                    </div>
+                <div className="w-full p-4">
+                    {transactions?.data?.map(item => (
+                        <TransactionCard
+                            name={item.user.name}
+                            avatar={item.user.avatar}
+                            message={item.message}
+                            key={item.id}
+                            time={item.time}
+                        />
+                    ))}
                 </div>
             </div>}
             {editType === "offers" && <div className="w-full max-w-[90%]">
@@ -607,9 +611,9 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                         status={item.status.title}
                                         page="edit"
                                         name={item.customer.name}
-                                        key={item.id} 
+                                        key={item.id}
                                         code={item.code}
-                                        />
+                                    />
                                 ))}
                             </tbody>
                         </table>

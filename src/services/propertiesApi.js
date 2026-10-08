@@ -126,3 +126,8 @@ export const getAllProposals = async (id) => {
   const response = await api.post(`/properties/${id}/proposals`);
   return response.data;
 }
+
+export const getAllTransactions = async (id) => {
+  const response = await api.get(`/properties/${id}/transactions`);
+  return response.data;
+}
