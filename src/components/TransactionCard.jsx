@@ -1,6 +1,6 @@
-export function TransactionCard({name , avatar , message , time}) {
+export function TransactionCard({name , avatar , message , time , index , transactions}) {
     return (
-        <div className="flex p-3.75 border-b border-b-[#eee]">
+        <div className={`flex p-3.75 ${index !== transactions.data.length-1 ? "border-b border-b-[#eee]" : ""}`}>
             <div className="w-15 h-15">
                 <img className="w-full h-full rounded-full" src={avatar} alt="" />
             </div>
