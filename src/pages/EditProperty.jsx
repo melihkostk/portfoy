@@ -390,51 +390,51 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                         </div>
                         <div className="p-4">
                             <div className="px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="">Başlık</label>
-                                <input value={title} onChange={(e) => setTitle(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <label className="text-[#6c757d]" htmlFor="title">Başlık</label>
+                                <input id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                             </div>
                             <div className="flex max-[992px]:flex-col">
                                 {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Pass Fiyatı <span className="text-sm">({currency})</span></label>
-                                    <input value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
+                                    <label className="text-[#6c757d]" htmlFor="pass">Pass Fiyatı <span className="text-sm">({currency})</span></label>
+                                    <input id="pass" name="pass" value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                                 </div>}
                                 {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Satış Fiyatı <span className="text-sm">({currency})</span></label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
+                                    <label className="text-[#6c757d]" htmlFor="sell">Satış Fiyatı <span className="text-sm">({currency})</span></label>
+                                    <input id="sell" name="sell" className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                                 </div>}
                                 {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Minimum Fiyat <span className="text-sm">({currency})</span></label>
-                                    <input value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
+                                    <label className="text-[#6c757d]" htmlFor="min">Minimum Fiyat <span className="text-sm">({currency})</span></label>
+                                    <input id="min" name="min" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                                 </div>}
                                 {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Minimum Fiyat <span className="text-sm">({currency})</span></label>
-                                    <input value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
+                                    <label className="text-[#6c757d]" htmlFor="max">Maximum Fiyat <span className="text-sm">({currency})</span></label>
+                                    <input id="max" name="max" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                                 </div>}
                                 {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Fiyat Seçenekleri ( 1 Seçenek )</label>
-                                    <input className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
+                                    <label className="text-[#6c757d]" htmlFor="price-option">Fiyat Seçenekleri ( 1 Seçenek )</label>
+                                    <input id="price-option" name="price-option" className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                                 </div>}
                                 <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Para Birimi</label>
-                                    <input value={currency} onChange={(e) => setCurrency(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                    <label className="text-[#6c757d]" htmlFor="currency">Para Birimi</label>
+                                    <input id="currency" name="currency" value={currency} onChange={(e) => setCurrency(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
                             </div>
                             <div className="flex max-[992px]:flex-col">
                                 <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Ülke Seçin</label>
-                                    <input value={country} onChange={(e) => setCountry(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                    <label className="text-[#6c757d]" htmlFor="country">Ülke Seçin</label>
+                                    <input id="country" name="country" value={country} onChange={(e) => setCountry(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
                                 <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">İl Seçin</label>
-                                    <input value={city} onChange={(e) => setCity(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                    <label className="text-[#6c757d]" htmlFor="city">İl Seçin</label>
+                                    <input id="city" name="city" value={city} onChange={(e) => setCity(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
                                 <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">İlçe Seçin</label>
-                                    <input value={district} onChange={(e) => setDistrict(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                    <label className="text-[#6c757d]" htmlFor="district">İlçe Seçin</label>
+                                    <input id="district" name="district" value={district} onChange={(e) => setDistrict(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
                                 <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="">Mahalle</label>
-                                    <input value={street} onChange={(e) => setStreet(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                    <label className="text-[#6c757d]" htmlFor="street">Mahalle</label>
+                                    <input id="street" name="street" value={street} onChange={(e) => setStreet(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                                 </div>
                             </div>
                         </div>
@@ -476,12 +476,12 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                     {item.features?.map(feature => (
                                         <div key={feature.id} className="w-[25%] px-3 mb-2 flex flex-col max-[992px]:w-full">
                                             <div className="flex justify-between items-center">
-                                                <label className="text-[#6c757d]" htmlFor="">{feature?.title}</label>
+                                                <label className="text-[#6c757d]" htmlFor={feature.id}>{feature?.title}</label>
                                                 {feature.input_type === "file" && <a className="text-xs text-[#026872] font-semibold" target="_blank" href={feature?.value[0]?.path}>Dosyaları Görüntüle (1 Dosya)</a>}
                                             </div>
                                             {feature.input_type !== "select"
-                                                ? <input key={feature.id} value={feature.input_type === "text" || feature.input_type === "number" ? feature?.value : ""} onChange={(e) => handleFeatureChange(groupIndex, feature.id, e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type={feature.input_type} />
-                                                : <select key={feature.id} value={feature.value} onChange={(e) => handleFeatureChange(groupIndex, feature.id, e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]">
+                                                ? <input id={feature.id} name={feature.id} key={feature.id} value={feature.input_type === "text" || feature.input_type === "number" ? feature?.value : ""} onChange={(e) => handleFeatureChange(groupIndex, feature.id, e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type={feature.input_type} />
+                                                : <select id={feature.id} name={feature.id} key={feature.id} value={feature.value} onChange={(e) => handleFeatureChange(groupIndex, feature.id, e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]">
                                                     <option>{feature.title}</option>
                                                     {feature.options.map(option => (
                                                         <option key={option.id}>{option.title}</option>

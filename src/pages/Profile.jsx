@@ -86,9 +86,9 @@ export function Profile({loged}) {
                         </div>
                         <div className="mt-7.5">
                             <h2 className="mb-5 text-[25px] text-[#212529]">Güncellenme Gerektiren İlanlar</h2>
-                            <div className="bg-[#fff3cd] text-[#664d03] p-4 rounded-lg max-[992px]:mb-4">
+                            {alerts?.data?.length === 0 && <div className="bg-[#fff3cd] border border-[#ffecb5] text-[#664d03] p-4 rounded-lg max-[992px]:mb-4">
                                 Hiç kayıt yok
-                            </div>
+                            </div>}
                         </div>
                     </div>
 
