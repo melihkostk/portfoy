@@ -131,3 +131,10 @@ export const getAllTransactions = async (id) => {
   const response = await api.get(`/properties/${id}/transactions`);
   return response.data;
 }
+
+export const deleteVideo = async (id , video_id) => {
+  const response = await api.post(`/properties/${video_id}/videos/delete` , {
+    video_id:video_id
+  });
+  return response.data;
+}

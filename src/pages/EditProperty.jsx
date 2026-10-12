@@ -7,7 +7,7 @@ import defaultProperty from "../assets/default-property.jpg"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { cloneProperty, deleteProperty, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateDraftStatus, updateProperty, updateSoldStatus } from "../services/propertiesApi";
+import { cloneProperty, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateDraftStatus, updateProperty, updateSoldStatus } from "../services/propertiesApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
@@ -189,6 +189,12 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
     }, [id])
 
     const [deleteVideoPopUp , setDeleteVideoPopUp] = useState(false);
+    const [videoID, setVideoID] = useState(null);
+
+    function handleDeleteVideo(){
+        setLoaded(false);
+        deleteVideo(id, videoID).then(data => console.log(data)).finally(() => {setDeleteVideoPopUp(false); setLoaded(true)});
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -221,7 +227,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                     </div>
                 </div>
             </div>}
-            {deleteVideoPopUp && <DeleteVideoPopUp setDeleteVideoPopUp={setDeleteVideoPopUp} />}
+            {deleteVideoPopUp && <DeleteVideoPopUp setDeleteVideoPopUp={setDeleteVideoPopUp} handleDeleteVideo={handleDeleteVideo} />}
             {copyPopUp && <form onSubmit={handleClone} className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">İlanı Kopyala</h2>
@@ -719,13 +725,13 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                 <p className="text-[#664d03]">Henüz video yüklemediniz</p>
                             </div> : <div className="flex flex-wrap">
                                 {detail?.videos?.map(item => (
-                                    <div key={item.id} className="w-[calc(33.3%-30px)] p-7.5 rounded-lg flex items-end aspect-square bg-cover bg-center m-3.75" style={{ backgroundImage: `url(${cover})` }}>
+                                    <div id={item.id} key={item.id} className="w-[calc(33.3%-30px)] p-7.5 rounded-lg flex items-end aspect-square bg-cover bg-center m-3.75" style={{ backgroundImage: `url(${cover})` }}>
                                         <div className="flex text-white gap-3.75 flex-wrap w-full">
                                             <a href={item.path} target="_blank" className="bg-[#27c5d2] flex items-center hover:shadow-[0_0_30px_#27c5d2] transition-shadow duration-300 ease-in-out py-1.25 px-3.75 rounded-lg">
                                                 <img className="w-5 h-5 mr-2" src={play} alt="" />
                                                 Oynat
                                             </a>
-                                            <button onClick={() => setDeleteVideoPopUp(true)} className="bg-[#e10606] flex items-center cursor-pointer hover:shadow-[0_0_30px_#e10606] transition-shadow duration-300 ease-in-out py-1.25 px-3.75 rounded-lg">
+                                            <button onClick={() => { setVideoID(item.id); setDeleteVideoPopUp(true); }} className="bg-[#e10606] flex items-center cursor-pointer hover:shadow-[0_0_30px_#e10606] transition-shadow duration-300 ease-in-out py-1.25 px-3.75 rounded-lg">
                                                 <img className="w-6 h-6 mr-2" src={can} alt="" />
                                                 Kaldır
                                             </button>
