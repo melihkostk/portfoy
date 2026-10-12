@@ -47,26 +47,29 @@ export function CompaniesDetail({ loged }) {
 
             />
             <div className="max-w-[90%] w-full pt-12.5">
-                <div className="flex flex-wrap">
-                    {companyDetailProperties?.properties?.length > 0 ? companyDetailProperties?.properties?.map(item => (
-                        <PropertiesCard
-                            key={item.id}
-                            id={item.id}
-                            title={item.title}
-                            cover={item.cover}
-                            price={item.price.formatted}
-                            company={item.company.title}
-                            type={item.type.title}
-                            city={item.city.title}
-                            district={item.district.title}
-                            page="companiesDetail"
-                        />
-                    ))
-                    :(
-                        <div className="text-[#636464] w-full bg-[#fafafa] h-fit p-3.75 rounded-lg">Henüz bir ilan yok.</div>
-                    )
-                }
-                </div>
+                {companyDetailProperties?.properties?.length > 0 ? [...new Set(companyDetailProperties.properties.map(item => item.type.title))].map(type => (
+                    <div key={type} className="mb-7.5">
+                        <h3 className="text-[25px] font-semibold text-[#212529] mb-3.75">{type}</h3>
+                        <div className="flex flex-wrap">
+                            {companyDetailProperties.properties.filter(item => item.type.title === type).map(item => (
+                                <PropertiesCard
+                                    key={item.id}
+                                    id={item.id}
+                                    title={item.title}
+                                    cover={item.cover}
+                                    price={item.price.formatted}
+                                    company={item.company.title}
+                                    type={item.type.title}
+                                    city={item.city.title}
+                                    district={item.district.title}
+                                    page="companiesDetail"
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )) : (
+                    <div className="text-[#636464] w-full bg-[#fafafa] h-fit p-3.75 rounded-lg">Henüz bir ilan yok.</div>
+                )}
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>

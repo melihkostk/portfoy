@@ -45,6 +45,7 @@ export function Team({ loged }) {
     const [code, setCode] = useState("")
 
     function handleDelete(id) {
+        setLoaded(false)
         removeInvite(id).then((data) => {
             if (data.status === "error") {
                 setErrorPopUp(true)
@@ -54,7 +55,7 @@ export function Team({ loged }) {
             getAllInvitations().then(setInvitations)
             setSuccessPopUp(true)
             setError("Davetiye kodu başarıyla silindi")
-        })
+        }).finally(() => setLoaded(true))
     }
 
     function handleAdd(e) {
@@ -73,6 +74,7 @@ export function Team({ loged }) {
     }
 
     function handleToggleStatus(id) {
+        setLoaded(false)
         toogleStatus(id)
         getTeam().then(setTeam).finally(() => setLoaded(true))
     }
@@ -132,6 +134,7 @@ export function Team({ loged }) {
     }
 
     function handleEdit(e) {
+        setLoaded(false)
         e.preventDefault()
         updateTeamMember(editId, editName, editEmail, editRole, "tr", editNumber, editCode).then((data) => {
             if (data.status === "error") {
@@ -144,7 +147,7 @@ export function Team({ loged }) {
             setSuccessPopUp(true)
             setEditShown(false)
             setError("Personel bilgileri başarıyla güncellendi")
-        })
+        }).finally(() => setLoaded(true))
     }
 
     const [ınfo, setInfo] = useState([])
