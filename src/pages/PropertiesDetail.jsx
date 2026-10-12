@@ -107,6 +107,8 @@ export function PropertiesDetail({ loged }) {
         }).finally(() => setLoaded(true))
     }
 
+    const [thumbnailType , setThumbnailType] = useState(null);
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {(offerShown || errorMessageShown || offerModelShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -198,7 +200,7 @@ export function PropertiesDetail({ loged }) {
                     <div className="w-1/2 p-3.75 border border-[#eee] rounded-lg max-[992px]:w-full">
                         <div className="flex">
                             <div className="w-40 h-112.5 overflow-y-auto flex flex-col pr-3.75 gap-3.75 max-[992px]:hidden">
-                                {details?.galleries?.map(item => (
+                                {details?.galleries?.filter(item => !thumbnailType || item.title === thumbnailType).map(item => (
                                     (item.images.length > 0 && <div className="flex flex-col gap-3.75" key={item.id}>
                                         <div className="text-center">
                                             <p className="text-[#a0a0a0] text-xs uppercase font-semibold">{item.title}</p>
@@ -215,7 +217,9 @@ export function PropertiesDetail({ loged }) {
                         </div>
                         <div className="flex gap-2.5 items-center overflow-x-auto py-3.75">
                             {details?.galleries?.map(item => (
-                                (item.images.length > 0 && <button className="whitespace-nowrap cursor-pointer text-[#4b4b4b] font-semibold text-sm border-2 border-[#f1f1f1] py-1 px-2 rounded-lg hover:shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-shadow duration-300 ease-in-out" key={item.id}>{item.title} ({item.images.length})</button>)
+                                item.images.length > 0 && (item.title.includes("Kapak Fotoğrafı")
+                                    ? <button onClick={() => setThumbnailType("")} className="whitespace-nowrap cursor-pointer text-[#4b4b4b] font-semibold text-sm border-2 border-[#f1f1f1] py-1 px-2 rounded-lg hover:shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-shadow duration-300 ease-in-out" key={item.id}>Tümü ({details?.gallery_count})</button>
+                                    : <button onClick={() => setThumbnailType(item.title)} className="whitespace-nowrap cursor-pointer text-[#4b4b4b] font-semibold text-sm border-2 border-[#f1f1f1] py-1 px-2 rounded-lg hover:shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-shadow duration-300 ease-in-out" key={item.id}>{item.title} ({item.images.length})</button>)
                             ))}
                         </div>
                     </div>
