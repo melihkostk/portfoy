@@ -193,27 +193,16 @@ export function PropertiesDetail({ loged }) {
                     <div className="w-1/2 p-3.75 border border-[#eee] rounded-lg max-[992px]:w-full">
                         <div className="flex">
                             <div className="w-40 h-112.5 overflow-y-auto flex flex-col pr-3.75 gap-3.75 max-[992px]:hidden">
-                                <div className="text-center">
-                                    <p className="text-[#a0a0a0] text-xs uppercase font-semibold">Kapak Fotoğrafı</p>
-                                </div>
-                                <div className="cursor-pointer">
-                                    <img className="rounded-lg" src={defaultImg} alt="" />
-                                </div>
-                                <div className="text-center">
-                                    <p className="text-[#a0a0a0] text-xs uppercase font-semibold">Site Çevresi Fotoğrafları</p>
-                                </div>
-                                <div className="cursor-pointer">
-                                    <img className="rounded-lg" src={defaultImg} alt="" />
-                                </div>
-                                <div className="cursor-pointer">
-                                    <img className="rounded-lg" src={defaultImg} alt="" />
-                                </div>
-                                <div className="cursor-pointer">
-                                    <img className="rounded-lg" src={defaultImg} alt="" />
-                                </div>
-                                <div className="cursor-pointer">
-                                    <img className="rounded-lg" src={defaultImg} alt="" />
-                                </div>
+                                {details?.galleries?.map(item => (
+                                    (item.images.length > 0 && <div className="flex flex-col gap-3.75" key={item.id}>
+                                        <div className="text-center">
+                                            <p className="text-[#a0a0a0] text-xs uppercase font-semibold">{item.title}</p>
+                                        </div>
+                                        <div className="cursor-pointer">
+                                            <img className="rounded-lg" src={defaultImg} alt="" />
+                                        </div>
+                                    </div>)
+                                ))}
                             </div>
                             <a href={defaultImg} className="w-[calc(100%-160px)] max-[992px]:w-full pl-5 max-[992px]:pl-0">
                                 <img className="w-full h-full object-cover rounded-lg" src={defaultImg} alt="" />
@@ -255,7 +244,7 @@ export function PropertiesDetail({ loged }) {
                             <p className="uppercase text-[#5f5f5f] text-xs font-semibold">Satış Fiyatı</p>
                             <p className="text-[#FFCA64] text-[25px] font-semibold mb-4">{details?.prices?.primary?.formatted}</p>
                             {details?.badges?.[0]?.title && (
-                                <div className={`uppercase text-xs ${details?.badges?.[0]?.title === "Fiyatı Düştü" || details?.badges?.[0]?.title === "Taslak"  ? "bg-[#FFCA64]" : "bg-[#27c5d2] text-white"} w-fit py-1.25 px-2 rounded-lg font-semibold`}>{details.badges[0].title}</div>
+                                <div className={`uppercase text-xs ${details?.badges?.[0]?.title === "Fiyatı Düştü" || details?.badges?.[0]?.title === "Taslak" ? "bg-[#FFCA64]" : "bg-[#27c5d2] text-white"} w-fit py-1.25 px-2 rounded-lg font-semibold`}>{details.badges[0].title}</div>
                             )}
                         </div>
                         {!details.is_owner_company ? (<div className="flex gap-2.5 flex-wrap">
