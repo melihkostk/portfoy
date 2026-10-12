@@ -30,8 +30,13 @@ export function PropertiesDetail({ loged }) {
     const [details, setDetails] = useState([]);
     const [loaded, setLoaded] = useState(false)
 
+    const [photo , setPhoto] = useState("");
+
     useEffect(() => {
-        getDetails(id).then(setDetails).finally(() => setLoaded(true))
+        getDetails(id).then(data => {
+            setDetails(data)
+            setPhoto(data?.cover)
+        }).finally(() => setLoaded(true))
     }, [id])
 
     const [offerShown, setOfferShown] = useState(false)
@@ -198,7 +203,7 @@ export function PropertiesDetail({ loged }) {
                                         <div className="text-center">
                                             <p className="text-[#a0a0a0] text-xs uppercase font-semibold">{item.title}</p>
                                         </div>
-                                        <div className="cursor-pointer">
+                                        <div onClick={() => setPhoto(item?.images?.[0]?.path?.small)} className="cursor-pointer">
                                             <img className="rounded-lg" src={defaultImg} alt="" />
                                         </div>
                                     </div>)
@@ -208,7 +213,10 @@ export function PropertiesDetail({ loged }) {
                                 <img className="w-full h-full object-cover rounded-lg" src={defaultImg} alt="" />
                             </a>
                         </div>
-                        <div>
+                        <div className="flex gap-2.5 items-center overflow-x-auto py-3.75">
+                            {details?.galleries?.map(item => (
+                                (item.images.length > 0 && <button className="whitespace-nowrap cursor-pointer text-[#4b4b4b] font-semibold text-sm border-2 border-[#f1f1f1] py-1 px-2 rounded-lg hover:shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-shadow duration-300 ease-in-out" key={item.id}>{item.title} ({item.images.length})</button>)
+                            ))}
                         </div>
                     </div>
                     <div className="w-1/2 pl-12.5 max-[992px]:w-full max-[992px]:pl-0">
