@@ -9,6 +9,7 @@ import graph from "../assets/graph.png"
 import pp from "../assets/default-company.png"
 import phone from "../assets/white-phone.png"
 import mail from "../assets/white-mail.png"
+import badge from "../assets/badge.png"
 
 export function CompanyHeader({ page, id, name, created_at, type, badges, code }) {
 
@@ -22,7 +23,7 @@ export function CompanyHeader({ page, id, name, created_at, type, badges, code }
                         </div>
                         <div className="max-w-full">
                             <p className="text-white font-semibold text-xl mb-2">{name}</p>
-                            <ul className="flex text-white gap-5 text-sm max-[1005px]:hidden">
+                            <ul className="flex items-center text-white gap-5 text-sm max-[1005px]:hidden">
                                 <li className="flex items-start gap-1 font-semibold">
                                     <img className="w-4 h-4" src={star} alt="" />
                                     {created_at}
@@ -31,7 +32,8 @@ export function CompanyHeader({ page, id, name, created_at, type, badges, code }
                                     <img className="w-3 h-3" src={menu} alt="" />
                                     {type}
                                 </li>
-                                <li className="font-semibold">
+                                <li className="font-semibold flex items-center">
+                                    {badges && <img className="w-5 h-6 mr-2" src={badge} alt="" />}
                                     {page === "companyDetail" ? badges : code}
                                 </li>
                             </ul>
