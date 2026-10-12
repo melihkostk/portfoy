@@ -19,6 +19,7 @@ import play from "../assets/play-white.png"
 import can from "../assets/can.png"
 import calendar from "../assets/w-calendar.png"
 import whiteChain from "../assets/white-chain.png"
+import { DeleteVideoPopUp } from "../components/DeleteVideoPopUp";
 
 export function EditProperty({ loged, setMessage, setMessageShown }) {
 
@@ -187,9 +188,11 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
         getAllTransactions(id).then(setTransactions);
     }, [id])
 
+    const [deleteVideoPopUp , setDeleteVideoPopUp] = useState(false);
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(deletePopUp || copyPopUp || toggleMenu || soldPopUp || publishPopUp || soldToDraft) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(deletePopUp || copyPopUp || toggleMenu || soldPopUp || publishPopUp || soldToDraft || deleteVideoPopUp) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -218,6 +221,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                     </div>
                 </div>
             </div>}
+            {deleteVideoPopUp && <DeleteVideoPopUp setDeleteVideoPopUp={setDeleteVideoPopUp} />}
             {copyPopUp && <form onSubmit={handleClone} className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">İlanı Kopyala</h2>
@@ -721,7 +725,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                                 <img className="w-5 h-5 mr-2" src={play} alt="" />
                                                 Oynat
                                             </a>
-                                            <button className="bg-[#e10606] flex items-center cursor-pointer hover:shadow-[0_0_30px_#e10606] transition-shadow duration-300 ease-in-out py-1.25 px-3.75 rounded-lg">
+                                            <button onClick={() => setDeleteVideoPopUp(true)} className="bg-[#e10606] flex items-center cursor-pointer hover:shadow-[0_0_30px_#e10606] transition-shadow duration-300 ease-in-out py-1.25 px-3.75 rounded-lg">
                                                 <img className="w-6 h-6 mr-2" src={can} alt="" />
                                                 Kaldır
                                             </button>
