@@ -1,23 +1,27 @@
 import { Link } from "react-router-dom"
 import defaultImage from "../assets/default-company.png"
+import badge from "../assets/badge.png"
 
-export function CompanyCard({name , type , location , id}) {
+export function CompanyCard({ name, type, location, id, badges }) {
     return (
         <div className="p-7.5 m-3.75 w-[22.5%] max-[992px]:mx-0 max-[992px]:my-3.75 max-[992px]:w-full shrink-0 bg-[#f8f8f8] rounded-lg flex flex-col items-center">
-            <div className="w-20 h-20 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(0,0,0,0.1)]">
+            <div className="w-20 h-20 mb-2 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(0,0,0,0.1)]">
                 <img src={defaultImage} className="w-full h-full object-cover rounded-full" alt="" />
             </div>
             <div className="text-center">
                 <Link to={`/companies/${id}`} className="font-semibold mt-2 mb-0.75 text-black hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">
                     {name}
                 </Link>
-                <p className="text-sm my-3.75 text-[#686868]">
-                    {type}
-                </p>
+                <div className="flex items-center justify-center gap-2.5">
+                    {badges.length > 0 && <img className="w-5 h-6" src={badge} title={badges?.[0]?.title} alt={badges?.[0]?.title} />}
+                    <p className="text-sm my-3.75 text-[#686868]">
+                        {type}
+                    </p>
+                </div>
             </div>
             <div>
                 <ul className="text-xs font-medium flex items-center justify-center flex-wrap gap-2.5">
-                    {location.map((item , index) => (
+                    {location.map((item, index) => (
                         <li key={index} className="py-1.5 px-2 text-center rounded-sm bg-[#e8e8e8]">{item}</li>
                     ))}
                 </ul>

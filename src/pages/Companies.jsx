@@ -138,6 +138,7 @@ export function Companies({ loged }) {
                             type={item?.type}
                             location={item?.locations}
                             logo={item?.logo}
+                            badges={item.badges}
                         />
                     ))
                         : (
