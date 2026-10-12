@@ -4,7 +4,6 @@ import { Footer } from "../components/Footer";
 import { useEffect, useState } from "react";
 import { PropertySettingsCard } from "../components/PropertySettingsCard";
 import defaultProperty from "../assets/default-property.jpg"
-import chain from "../assets/chain.png"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
@@ -18,6 +17,8 @@ import { TransactionCard } from "../components/TransactionCard";
 import cover from "../assets/video-1.jpg"
 import play from "../assets/play-white.png"
 import can from "../assets/can.png"
+import calendar from "../assets/w-calendar.png"
+import whiteChain from "../assets/white-chain.png"
 
 export function EditProperty({ loged, setMessage, setMessageShown }) {
 
@@ -679,6 +680,27 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                             <img className="w-full h-full object-cover rounded-lg" src={defaultProperty}></img>
                                         </div>}
                                 </div>
+                                {(item?.images[0]?.path?.small && item.title !== "3D Kapak Fotoğrafı") && <div className="h-auto w-[25%] mt-5 bg-linear-to-b from-transparent to-black rounded-lg">
+                                    <img src={item?.images[0]?.path?.small} alt={item?.images[0]?.path?.small} />
+                                    <div className="p-4 flex flex-col items-end">
+                                        <div>
+                                            <button className="text-white flex items-center gap-2 text-[13px] font-medium p-1.25 rounded-sm cursor-pointer hover:bg-[#00000080] transition-colors duration-300 ease-in-out">
+                                                Belirtilmedi
+                                                <img className="w-4 h-4" src={calendar} alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="flex w-full justify-between items-end">
+                                            <div className="text-white">
+                                                <p className="text-sm opacity-80">119.46 kB</p>
+                                                <p className="text-xs opacity-80">jpeg</p>
+                                            </div>
+                                            <div className="text-white flex items-center">
+                                                <img className="w-4.5 h-4.5 mr-2 opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out" src={whiteChain} alt="" />
+                                                <img className="w-5.5 h-5.5 mr-2 opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out" src={can} alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>}
                             </div>
                         </div>
                     ))}

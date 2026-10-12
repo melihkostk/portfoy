@@ -17,7 +17,7 @@ export function CompaniesDetail({ loged }) {
 
     useEffect(() => {
         getCompaniesProperties(id).then(setCompanyDetailProperties).finally(() => setLoaded(true))
-    }, [])
+    }, [id])
 
     return (
         <div className='flex flex-col items-center font-sf'>
