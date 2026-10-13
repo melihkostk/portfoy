@@ -133,8 +133,17 @@ export const getAllTransactions = async (id) => {
 }
 
 export const deleteVideo = async (id , video_id) => {
-  const response = await api.post(`/properties/${video_id}/videos/delete` , {
+  const response = await api.post(`/properties/${id}/videos/delete` , {
     video_id:video_id
+  });
+  return response.data;
+}
+
+export const uploadVideo = async (id , type , video , cover ) => {
+  const response = await api.post(`/properties/${id}/videos/upload` , {
+    type:type,
+    video:video,
+    cover:cover
   });
   return response.data;
 }

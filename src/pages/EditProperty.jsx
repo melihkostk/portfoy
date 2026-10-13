@@ -7,7 +7,7 @@ import defaultProperty from "../assets/default-property.jpg"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { cloneProperty, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateDraftStatus, updateProperty, updateSoldStatus } from "../services/propertiesApi";
+import { cloneProperty, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateDraftStatus, updateProperty, updateSoldStatus, uploadVideo } from "../services/propertiesApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
@@ -210,7 +210,26 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
     const [errorMessage , setErrorMessage] = useState("");
     const [errorMessageShown , setErrorMessageShown] = useState(false);
 
-    const [uploadVideoShown , setUploadVideoShown] = useState(false); 
+    const [uploadVideoShown , setUploadVideoShown] = useState(false);
+
+    const [videoType , setVideoType] = useState("local");
+    const [coverImg , setCoverImg] = useState(null);
+    const [video , setVideo] = useState(null);
+    
+    function handleAddOutsourceVideo(e){
+        setLoaded(false)
+        e.preventDefault()
+        uploadVideo(id , videoType , video).then(data => {
+            if(!data.status){
+                setUploadVideoShown(false)
+                setErrorMessage(data.message);
+                setErrorMessageShown(true)
+            }
+            else {
+                console.log(data)
+            }
+        }).finally(() => setLoaded(true))
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -690,7 +709,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 </div>
             </div>}
             {editType === "galery" && <div className="w-full max-w-[90%]">
-                {uploadVideoShown && <UploadVideoPopup setUploadVideoShown={setUploadVideoShown} />}
+                {uploadVideoShown && <UploadVideoPopup setUploadVideoShown={setUploadVideoShown} handleAddOutsourceVideo={handleAddOutsourceVideo} setVideoType={setVideoType} videoType={videoType} video={video} setVideo={setVideo} coverImg={coverImg} setCoverImg={setCoverImg} />}
                 <div className="w-full mb-7.5">
                     {detail?.galleries?.map(item => (
                         <div key={item.id} className="p-2.5 border border-[#f8f8f8] rounded-lg">
