@@ -202,25 +202,27 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
 
             }
             else {
-                navigate("/company")
+                getDetails(id).then(data => {
+                    setDetail(data)
+                })
             }
         }).finally(() => { setDeleteVideoPopUp(false); setLoaded(true) });
     }
 
-    const [errorMessage , setErrorMessage] = useState("");
-    const [errorMessageShown , setErrorMessageShown] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessageShown, setErrorMessageShown] = useState(false);
 
-    const [uploadVideoShown , setUploadVideoShown] = useState(false);
+    const [uploadVideoShown, setUploadVideoShown] = useState(false);
 
-    const [videoType , setVideoType] = useState("local");
-    const [coverImg , setCoverImg] = useState(null);
-    const [video , setVideo] = useState(null);
-    
-    function handleAddOutsourceVideo(e){
+    const [videoType, setVideoType] = useState("local");
+    const [coverImg, setCoverImg] = useState(null);
+    const [video, setVideo] = useState(null);
+
+    function handleAddOutsourceVideo(e) {
         setLoaded(false)
         e.preventDefault()
-        uploadVideo(id , videoType , video).then(data => {
-            if(!data.status){
+        uploadVideo(id, videoType, video).then(data => {
+            if (!data.status) {
                 setUploadVideoShown(false)
                 setErrorMessage(data.message);
                 setErrorMessageShown(true)
