@@ -21,6 +21,7 @@ import calendar from "../assets/w-calendar.png"
 import whiteChain from "../assets/white-chain.png"
 import { DeleteVideoPopUp } from "../components/DeleteVideoPopUp";
 import whiteClose from "../assets/close.png"
+import { UploadVideoPopup } from "../components/UploadVideoPopup";
 
 export function EditProperty({ loged, setMessage, setMessageShown }) {
 
@@ -209,9 +210,11 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
     const [errorMessage , setErrorMessage] = useState("");
     const [errorMessageShown , setErrorMessageShown] = useState(false);
 
+    const [uploadVideoShown , setUploadVideoShown] = useState(false); 
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(deletePopUp || copyPopUp || toggleMenu || soldPopUp || publishPopUp || soldToDraft || deleteVideoPopUp) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(deletePopUp || copyPopUp || toggleMenu || soldPopUp || publishPopUp || soldToDraft || deleteVideoPopUp || uploadVideoShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -687,6 +690,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 </div>
             </div>}
             {editType === "galery" && <div className="w-full max-w-[90%]">
+                {uploadVideoShown && <UploadVideoPopup setUploadVideoShown={setUploadVideoShown} />}
                 <div className="w-full mb-7.5">
                     {detail?.galleries?.map(item => (
                         <div key={item.id} className="p-2.5 border border-[#f8f8f8] rounded-lg">
@@ -762,7 +766,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                             </div>}
                         </div>
                         <div>
-                            <button className="bg-[#f1f1f1] cursor-pointer font-semibold text-[#4b4b4b] text-sm rounded-lg py-2 px-5 hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Video Yükleyin</button>
+                            <button onClick={() => setUploadVideoShown(true)} className="bg-[#f1f1f1] cursor-pointer font-semibold text-[#4b4b4b] text-sm rounded-lg py-2 px-5 hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Video Yükleyin</button>
                         </div>
                     </div>
                 </div>
