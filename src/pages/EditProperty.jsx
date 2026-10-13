@@ -20,6 +20,7 @@ import can from "../assets/can.png"
 import calendar from "../assets/w-calendar.png"
 import whiteChain from "../assets/white-chain.png"
 import { DeleteVideoPopUp } from "../components/DeleteVideoPopUp";
+import whiteClose from "../assets/close.png"
 
 export function EditProperty({ loged, setMessage, setMessageShown }) {
 
@@ -188,13 +189,25 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
         getAllTransactions(id).then(setTransactions);
     }, [id])
 
-    const [deleteVideoPopUp , setDeleteVideoPopUp] = useState(false);
+    const [deleteVideoPopUp, setDeleteVideoPopUp] = useState(false);
     const [videoID, setVideoID] = useState(null);
 
-    function handleDeleteVideo(){
+    function handleDeleteVideo() {
         setLoaded(false);
-        deleteVideo(id, videoID).then(data => console.log(data)).finally(() => {setDeleteVideoPopUp(false); setLoaded(true)});
+        deleteVideo(id, videoID).then(data => {
+            if (data.status === "error") {
+                setErrorMessage(data.message);
+                setErrorMessageShown(true)
+
+            }
+            else {
+                navigate("/company")
+            }
+        }).finally(() => { setDeleteVideoPopUp(false); setLoaded(true) });
     }
+
+    const [errorMessage , setErrorMessage] = useState("");
+    const [errorMessageShown , setErrorMessageShown] = useState(false);
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -251,6 +264,10 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                     </div>
                 </div>
             </form>}
+            {errorMessageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(155,0,0),rgb(220,38,38))] p-3 text-white">
+                <p>{errorMessage}</p>
+                <img onClick={() => setErrorMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
             {toggleMenu && <div className="fixed top-1/2 left-1/2 overflow-y-auto pb-5 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-end items-center w-full p-4 border-b-[#dee2e6]">
                     <img onClick={() => setToogleMenu(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
@@ -597,6 +614,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                         key={item.id}
                                         created_at={item.created_at}
                                         page="edit"
+                                        id={item.id}
 
                                     />
                                 ))}
@@ -630,6 +648,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                         name={item.customer.name}
                                         key={item.id}
                                         code={item.code}
+                                        id={item.id}
                                     />
                                 ))}
                             </tbody>
@@ -658,7 +677,9 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                         status={item.status.title}
                                         page="external"
                                         name={item.company.name}
-                                        key={item.id} />
+                                        key={item.id}
+                                        id={item.id}
+                                    />
                                 ))}
                             </tbody>
                         </table>
