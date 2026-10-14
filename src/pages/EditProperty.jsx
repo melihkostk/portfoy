@@ -22,6 +22,7 @@ import whiteChain from "../assets/white-chain.png"
 import { DeleteVideoPopUp } from "../components/DeleteVideoPopUp";
 import whiteClose from "../assets/close.png"
 import { UploadVideoPopup } from "../components/UploadVideoPopup";
+import plus from "../assets/gray-plus.png"
 
 export function EditProperty({ loged, setMessage, setMessageShown }) {
 
@@ -202,6 +203,8 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
 
             }
             else {
+                setSuccessMessage(data.message);
+                setSuccessMessageShown(true)
                 getDetails(id).then(data => {
                     setDetail(data)
                 })
@@ -211,6 +214,10 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
 
     const [errorMessage, setErrorMessage] = useState("");
     const [errorMessageShown, setErrorMessageShown] = useState(false);
+
+    const [successMessage, setSuccessMessage] = useState("");
+    const [successMessageShown, setSuccessMessageShown] = useState(false);
+
 
     const [uploadVideoShown, setUploadVideoShown] = useState(false);
 
@@ -227,10 +234,39 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 setErrorMessage(data.message);
                 setErrorMessageShown(true)
             }
+            else if (data.status === "error") {
+                setUploadVideoShown(false)
+                setErrorMessage(data.message);
+                setErrorMessageShown(true)
+            }
             else {
-                console.log(data)
+                setUploadVideoShown(false)
+                setSuccessMessage(data.message);
+                setSuccessMessageShown(true)
+                getDetails(id).then(data => {
+                    setDetail(data);
+                })
             }
         }).finally(() => setLoaded(true))
+    }
+
+    function handleAddLocalVideo(e) {
+        setLoaded(false);
+        e.preventDefault();
+        uploadVideo(id, videoType, video, coverImg).then(data => {
+            if (!data.status) {
+                setUploadVideoShown(false)
+                setErrorMessage(data.message);
+                setErrorMessageShown(true)
+            }
+            else {
+                setUploadVideoShown(false)
+                getDetails(id).then(data => {
+                    setDetail(data);
+                })
+            }
+        }).finally(() => setLoaded(true))
+
     }
 
     return (
@@ -291,6 +327,10 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
             {errorMessageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(155,0,0),rgb(220,38,38))] p-3 text-white">
                 <p>{errorMessage}</p>
                 <img onClick={() => setErrorMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
+            {successMessageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{successMessage}</p>
+                <img onClick={() => setSuccessMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
             </div>}
             {toggleMenu && <div className="fixed top-1/2 left-1/2 overflow-y-auto pb-5 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-end items-center w-full p-4 border-b-[#dee2e6]">
@@ -711,7 +751,17 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 </div>
             </div>}
             {editType === "galery" && <div className="w-full max-w-[90%]">
-                {uploadVideoShown && <UploadVideoPopup setUploadVideoShown={setUploadVideoShown} handleAddOutsourceVideo={handleAddOutsourceVideo} setVideoType={setVideoType} videoType={videoType} video={video} setVideo={setVideo} coverImg={coverImg} setCoverImg={setCoverImg} />}
+                {uploadVideoShown && <UploadVideoPopup
+                    setUploadVideoShown={setUploadVideoShown}
+                    handleAddOutsourceVideo={handleAddOutsourceVideo}
+                    setVideoType={setVideoType}
+                    videoType={videoType}
+                    video={video}
+                    setVideo={setVideo}
+                    coverImg={coverImg}
+                    setCoverImg={setCoverImg}
+                    handleAddLocalVideo={handleAddLocalVideo}
+                />}
                 <div className="w-full mb-7.5">
                     {detail?.galleries?.map(item => (
                         <div key={item.id} className="p-2.5 border border-[#f8f8f8] rounded-lg">
@@ -787,7 +837,10 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                             </div>}
                         </div>
                         <div>
-                            <button onClick={() => setUploadVideoShown(true)} className="bg-[#f1f1f1] cursor-pointer font-semibold text-[#4b4b4b] text-sm rounded-lg py-2 px-5 hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Video Yükleyin</button>
+                            <button onClick={() => setUploadVideoShown(true)} className="bg-[#f1f1f1] flex gap-1 items-center cursor-pointer font-semibold text-[#4b4b4b] text-sm rounded-lg py-2 px-5 hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                <img className="w-4 h-4" src={plus} alt="" />
+                                Video Yükleyin
+                            </button>
                         </div>
                     </div>
                 </div>
