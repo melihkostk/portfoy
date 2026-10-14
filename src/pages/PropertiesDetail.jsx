@@ -21,6 +21,7 @@ import { CreateOfferModel } from "../components/CreateOfferModal"
 import graph from "../assets/increase-graph.png"
 import pen from "../assets/pen.png"
 import whiteClose from "../assets/close.png"
+import play from "../assets/white-play.png"
 
 export function PropertiesDetail({ loged }) {
 
@@ -302,7 +303,7 @@ export function PropertiesDetail({ loged }) {
                             </div>
                         ))}
                     </div>
-                    <div className="w-[70%] pl-12.5 sticky top-0 h-[calc(100vh-100px)] max-[992px]:static max-[992px]:w-full max-[992px]:pl-0">
+                    <div className="w-[70%] pl-12.5 sticky top-0 max-[992px]:h-auto h-[calc(100vh-100px)] max-[992px]:static max-[992px]:w-full max-[992px]:pl-0">
                         <div className="mb-5">
                             <button onClick={() => setDetailType("map")} className={`${detailType === "map" ? "bg-[#27C5D2] text-white hover:bg-[#026872]" : "bg-[#eee] text-black hover:bg-[#c3c3c3]"} mr-1.25 py-3.75 px-7.5 cursor-pointer font-semibold rounded-lg transition-colors duration-300 ease-in-out`}>Harita Konumu</button>
                             <button onClick={() => setDetailType("video")} className={`${detailType === "video" ? "bg-[#27C5D2] text-white hover:bg-[#026872]" : "bg-[#eee] text-black hover:bg-[#c3c3c3]"} py-3.75 px-7.5 cursor-pointer font-semibold rounded-lg transition-colors duration-300 ease-in-out`}>Videolar ({details?.videos?.length > 0 ? details.videos.length : "0"})</button>
@@ -317,10 +318,13 @@ export function PropertiesDetail({ loged }) {
                                 title="Google Maps"
                             />
                         </div>}
-                        {detailType === "video" && <div className="h-full w-full">
+                        {detailType === "video" && <div className="w-full flex">
                             {details?.videos?.map(item => (
-                                <a className="w-1/2 h-1/2" key={item.id} href={item.path}>
-                                    <img className="w-1/2 h-1/2" src={item.cover} alt="cover" />
+                                <a target="_blank" className="w-[calc(33.3%-30px)] relative m-2.5 group" key={item.id} href={item.path}>
+                                    <img className="w-full h-full aspect-square object-cover rounded-lg" src={item.cover} alt="cover" />
+                                    <div className="absolute rounded-lg flex group-hover:opacity-100 transition-opacity duration-300 ease-in-out items-center w-full h-full justify-center opacity-80 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                        <img className="max-w-full max-h-full rounded-full group-hover:shadow-[0_0_60px_#fff] transition-shadow duration-300 ease-in-out" src={play} alt="" />
+                                    </div>
                                 </a>
                             ))}
                         </div>}
