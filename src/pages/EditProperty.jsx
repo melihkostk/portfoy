@@ -7,7 +7,7 @@ import defaultProperty from "../assets/default-property.jpg"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { cloneProperty, deleteGalery, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateCover, updateDraftStatus, updateProperty, updateSoldStatus, uploadVideo } from "../services/propertiesApi";
+import { cloneProperty, deleteGalery, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateCover, updateDraftStatus, updateProperty, updateSoldStatus, uploadGallery, uploadVideo } from "../services/propertiesApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
@@ -263,6 +263,8 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
             }
             else {
                 setUploadVideoShown(false)
+                setSuccessMessage(data.message);
+                setSuccessMessageShown(true)
                 getDetails(id).then(data => {
                     setDetail(data);
                 })
@@ -294,6 +296,26 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
     function handleUpdateCover() {
         setLoaded(false);
         updateCover(id, coverFile).then(data => {
+            if (data.status === "error") {
+                setErrorMessage(data.message);
+                setErrorMessageShown(true)
+            }
+            else {
+                setSuccessMessage(data.message);
+                setSuccessMessageShown(true)
+                getDetails(id).then(data => {
+                    setDetail(data)
+                })
+            }
+        }).finally(() => setLoaded(true))
+    }
+
+    const [galeryFile , setGaleryFile] = useState(null);
+    const [categoryID , setCategoryID] = useState("");
+
+    function handleUploadGallery() {
+        setLoaded(false);
+        uploadGallery(id, galeryFile, categoryID).then(data => {
             if (data.status === "error") {
                 setErrorMessage(data.message);
                 setErrorMessageShown(true)
@@ -816,7 +838,12 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                     {!item.title.includes("Kapak Fotoğrafı") ?
                                         <div className="w-full flex flex-col">
                                             <div className="h-50 text-center p-5 flex w-full items-center justify-center border-2 border-[#eee] border-dashed">
-                                                <input className="w-full h-full" type="file" id={`file-${item.id}`} hidden></input>
+                                                <input onChange={(e) => {
+                                                    const file = e.target.files?.[0];
+                                                    setCategoryID(item.id);
+                                                    setGaleryFile(file);
+                                                    if (file) handleUploadGallery();
+                                                }} className="w-full h-full" type="file" id={`file-${item.id}`} hidden></input>
                                                 <label className="w-full h-full flex items-center justify-center cursor-pointer text-xl text-[#929292]" htmlFor={`file-${item.id}`}>
                                                     Dosyaları buraya sürükleyin veya seçmek için tıklayın
                                                 </label>

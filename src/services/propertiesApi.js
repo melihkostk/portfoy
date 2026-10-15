@@ -167,3 +167,13 @@ export const updateCover = async (id, cover) => {
   });
   return response.data;
 }
+
+export const uploadGallery = async (id, file, category_id) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("category_id", category_id);
+  const response = await api.post(`/properties/${id}/galleries/upload`, formData, {
+    headers: { "Content-Type": undefined },
+  });
+  return response.data;
+}
