@@ -314,12 +314,9 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
         }).finally(() => setLoaded(true))
     }
 
-    const [galeryFile, setGaleryFile] = useState(null);
-    const [categoryID, setCategoryID] = useState("");
-
-    function handleUploadGallery() {
+    function handleUploadGallery(file, categoryId) {
         setLoaded(false);
-        uploadGallery(id, galeryFile, categoryID).then(data => {
+        uploadGallery(id, file, categoryId).then(data => {
             if (data.status === "error") {
                 setErrorMessage(data.message);
                 setErrorMessageShown(true)
@@ -936,9 +933,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                             <div className="h-50 text-center p-5 flex w-full items-center justify-center border-2 border-[#eee] border-dashed">
                                                 <input onChange={(e) => {
                                                     const file = e.target.files?.[0];
-                                                    setCategoryID(item.id);
-                                                    setGaleryFile(file);
-                                                    if (file) handleUploadGallery();
+                                                    if (file) handleUploadGallery(file, item.id);
                                                 }} className="w-full h-full" type="file" id={`file-${item.id}`} hidden></input>
                                                 <label className="w-full h-full flex items-center justify-center cursor-pointer text-xl text-[#929292]" htmlFor={`file-${item.id}`}>
                                                     Dosyaları buraya sürükleyin veya seçmek için tıklayın
