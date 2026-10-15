@@ -154,3 +154,12 @@ export const deleteGalery = async (id, media_id) => {
   });
   return response.data;
 }
+
+export const updateCover = async (id, cover) => {
+  const formData = new FormData();
+  formData.append("cover", cover);
+  const response = await api.post(`/properties/${id}/galleries/cover/upload`, formData, {
+    headers: { "Content-Type": undefined },
+  });
+  return response.data;
+}

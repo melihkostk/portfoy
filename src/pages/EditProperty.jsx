@@ -7,7 +7,7 @@ import defaultProperty from "../assets/default-property.jpg"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { cloneProperty, deleteGalery, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateDraftStatus, updateProperty, updateSoldStatus, uploadVideo } from "../services/propertiesApi";
+import { cloneProperty, deleteGalery, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateCover, updateDraftStatus, updateProperty, updateSoldStatus, uploadVideo } from "../services/propertiesApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
@@ -270,7 +270,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
         }).finally(() => setLoaded(true))
     }
 
-    const [mediaID , setMediaID] = useState("");
+    const [mediaID, setMediaID] = useState("");
 
     function handleDeleteGalery() {
         setLoaded(false);
@@ -287,6 +287,25 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 })
             }
         }).finally(() => { setDeleteVideoPopUp(false); setLoaded(true) });
+    }
+
+    const [coverFile, setCoverFile] = useState(null);
+
+    function handleUpdateCover() {
+        setLoaded(false);
+        updateCover(id, coverFile).then(data => {
+            if (data.status === "error") {
+                setErrorMessage(data.message);
+                setErrorMessageShown(true)
+            }
+            else {
+                setSuccessMessage(data.message);
+                setSuccessMessageShown(true)
+                getDetails(id).then(data => {
+                    setDetail(data)
+                })
+            }
+        }).finally(() => setLoaded(true))
     }
 
     return (
@@ -804,11 +823,19 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                             </div>
                                         </div> : <div className="w-full h-full relative">
                                             <img className="w-full h-full object-cover rounded-lg" src={defaultProperty}></img>
-                                            <div className="absolute right-7.5 bottom-7.5 flex items-center">
-                                                <button className="text-sm bg-[#f1f1f1] mr-2 text-[#4b4b4b] font-semibold py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                            <div className="absolute right-7.5 bottom-7.5 flex flex-wrap items-center">
+                                                <a href={item?.images?.[0]?.path?.large} target="_blank" rel="noopener noreferrer" className="text-sm bg-[#f1f1f1] mr-2 text-[#4b4b4b] font-semibold py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                                     <img className="w-5 h-5" src={chain} alt="" />
-                                                </button>
-                                                <button className="text-sm bg-[#f1f1f1] text-[#4b4b4b] font-semibold py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Kapak Fotoğrafını Değiştir</button>
+                                                </a>
+                                                <div>
+                                                    <label htmlFor="cover" className="text-sm bg-[#f1f1f1] text-[#4b4b4b] font-semibold py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Kapak Fotoğrafını Değiştir</label>
+                                                    <input onChange={(e) => {
+                                                        const file = e.target.files?.[0];
+                                                        setCoverFile(file);
+                                                        if (file) handleUpdateCover()
+                                                    }}
+                                                    type="file" className="hidden" id="cover" name="cover" />
+                                                </div>
                                             </div>
                                         </div>}
                                 </div>
