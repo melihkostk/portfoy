@@ -19,6 +19,7 @@ import play from "../assets/play-white.png"
 import can from "../assets/can.png"
 import calendar from "../assets/w-calendar.png"
 import whiteChain from "../assets/white-chain.png"
+import chain from "../assets/chain.png"
 import { DeleteVideoPopUp } from "../components/DeleteVideoPopUp";
 import whiteClose from "../assets/close.png"
 import { UploadVideoPopup } from "../components/UploadVideoPopUp";
@@ -783,7 +784,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 />}
                 <div className="w-full mb-7.5">
                     {detail?.galleries?.map(item => (
-                        <div key={item.id} className="p-2.5 border border-[#f8f8f8] rounded-lg">
+                        <div key={item.id} className="p-2.5 border border-[#f8f8f8] rounded-lg mb-7.5">
                             <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
                                 <h5 className="text-[#676767] text-lg py-1.25">{item.title}</h5>
                             </div>
@@ -792,7 +793,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                     <p className="text-[#664d03]">Lütfen logolu resimler eklemeyin. Aksi halde ilanınız pasif edilecektir</p>
                                     <button onClick={() => setUnderstand(false)} className="bg-[#ffca64] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">Anladım</button>
                                 </div>}
-                                <div className="h-50 text-center flex items-center justify-center">
+                                <div className={`${item.title.includes("Kapak Fotoğrafı") ? "h-87.5" : "h-50"} text-center flex items-center justify-center`}>
                                     {!item.title.includes("Kapak Fotoğrafı") ?
                                         <div className="w-full flex flex-col">
                                             <div className="h-50 text-center p-5 flex w-full items-center justify-center border-2 border-[#eee] border-dashed">
@@ -801,8 +802,14 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                                     Dosyaları buraya sürükleyin veya seçmek için tıklayın
                                                 </label>
                                             </div>
-                                        </div> : <div className="w-full h-50">
+                                        </div> : <div className="w-full h-full relative">
                                             <img className="w-full h-full object-cover rounded-lg" src={defaultProperty}></img>
+                                            <div className="absolute right-7.5 bottom-7.5 flex items-center">
+                                                <button className="text-sm bg-[#f1f1f1] mr-2 text-[#4b4b4b] font-semibold py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                                    <img className="w-5 h-5" src={chain} alt="" />
+                                                </button>
+                                                <button className="text-sm bg-[#f1f1f1] text-[#4b4b4b] font-semibold py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Kapak Fotoğrafını Değiştir</button>
+                                            </div>
                                         </div>}
                                 </div>
                                 {(item?.images[0]?.path?.small && item.title !== "3D Kapak Fotoğrafı") && <div className="h-auto w-[25%] mt-5 bg-linear-to-b from-transparent to-black rounded-lg">
@@ -820,7 +827,9 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                                 <p className="text-xs opacity-80">jpeg</p>
                                             </div>
                                             <div className="text-white flex items-center">
-                                                <img className="w-4.5 h-4.5 mr-2 opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out" src={whiteChain} alt="" />
+                                                <a target="_blank" href={item?.images[0]?.path?.small}>
+                                                    <img className="w-4.5 h-4.5 mr-2 opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out" src={whiteChain} alt="" />
+                                                </a>
                                                 <img onClick={() => { setDeleteVideoPopUp(true); setMediaID(item.images[0].id); setDeleteTarget("media"); }} className="w-5.5 h-5.5 mr-2 opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out" src={can} alt="" />
                                             </div>
                                         </div>
