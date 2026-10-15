@@ -7,7 +7,7 @@ import defaultProperty from "../assets/default-property.jpg"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { cloneProperty, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateDraftStatus, updateProperty, updateSoldStatus, uploadVideo } from "../services/propertiesApi";
+import { cloneProperty, deleteGalery, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateDraftStatus, updateProperty, updateSoldStatus, uploadVideo } from "../services/propertiesApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
@@ -21,7 +21,7 @@ import calendar from "../assets/w-calendar.png"
 import whiteChain from "../assets/white-chain.png"
 import { DeleteVideoPopUp } from "../components/DeleteVideoPopUp";
 import whiteClose from "../assets/close.png"
-import { UploadVideoPopup } from "../components/UploadVideoPopup";
+import { UploadVideoPopup } from "../components/UploadVideoPopUp";
 import plus from "../assets/gray-plus.png"
 
 export function EditProperty({ loged, setMessage, setMessageShown }) {
@@ -193,6 +193,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
 
     const [deleteVideoPopUp, setDeleteVideoPopUp] = useState(false);
     const [videoID, setVideoID] = useState(null);
+    const [deleteTarget, setDeleteTarget] = useState("video");
 
     function handleDeleteVideo() {
         setLoaded(false);
@@ -266,7 +267,25 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 })
             }
         }).finally(() => setLoaded(true))
+    }
 
+    const [mediaID , setMediaID] = useState("");
+
+    function handleDeleteGalery() {
+        setLoaded(false);
+        deleteGalery(id, mediaID).then(data => {
+            if (data.status === "error") {
+                setErrorMessage(data.message);
+                setErrorMessageShown(true)
+            }
+            else {
+                setSuccessMessage(data.message);
+                setSuccessMessageShown(true)
+                getDetails(id).then(data => {
+                    setDetail(data)
+                })
+            }
+        }).finally(() => { setDeleteVideoPopUp(false); setLoaded(true) });
     }
 
     return (
@@ -300,7 +319,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                     </div>
                 </div>
             </div>}
-            {deleteVideoPopUp && <DeleteVideoPopUp setDeleteVideoPopUp={setDeleteVideoPopUp} handleDeleteVideo={handleDeleteVideo} />}
+            {deleteVideoPopUp && <DeleteVideoPopUp setDeleteVideoPopUp={setDeleteVideoPopUp} onClick={deleteTarget === "media" ? handleDeleteGalery : handleDeleteVideo} />}
             {copyPopUp && <form onSubmit={handleClone} className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">İlanı Kopyala</h2>
@@ -802,7 +821,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                             </div>
                                             <div className="text-white flex items-center">
                                                 <img className="w-4.5 h-4.5 mr-2 opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out" src={whiteChain} alt="" />
-                                                <img className="w-5.5 h-5.5 mr-2 opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out" src={can} alt="" />
+                                                <img onClick={() => { setDeleteVideoPopUp(true); setMediaID(item.images[0].id); setDeleteTarget("media"); }} className="w-5.5 h-5.5 mr-2 opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out" src={can} alt="" />
                                             </div>
                                         </div>
                                     </div>
@@ -827,7 +846,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                                                 <img className="w-5 h-5 mr-2" src={play} alt="" />
                                                 Oynat
                                             </a>
-                                            <button onClick={() => { setVideoID(item.id); setDeleteVideoPopUp(true); }} className="bg-[#e10606] flex items-center cursor-pointer hover:shadow-[0_0_30px_#e10606] transition-shadow duration-300 ease-in-out py-1.25 px-3.75 rounded-lg">
+                                            <button onClick={() => { setVideoID(item.id); setDeleteVideoPopUp(true); setDeleteTarget("video"); }} className="bg-[#e10606] flex items-center cursor-pointer hover:shadow-[0_0_30px_#e10606] transition-shadow duration-300 ease-in-out py-1.25 px-3.75 rounded-lg">
                                                 <img className="w-6 h-6 mr-2" src={can} alt="" />
                                                 Kaldır
                                             </button>

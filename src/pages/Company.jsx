@@ -142,7 +142,7 @@ export function Company({ loged, message, messageShown , setMessageShown }) {
                         />
                     </div>
                     <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-col">
-                        <div className="flex flex-wrap">
+                        <div className="flex flex-wrap justify-start">
                             {companyProperties?.data?.properties?.length > 0 ? companyProperties?.data?.properties?.map((item) => (
                                 <PropertiesCard
                                     page="company"
