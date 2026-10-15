@@ -1,6 +1,6 @@
 import close from "../assets/blue-close.png"
 
-export function UploadVideoPopup({ setUploadVideoShown, handleAddOutsourceVideo, handleAddLocalVideo, videoType, setVideoType, setVideo, setCoverImg, video, coverImg }) {
+export function UploadVideoPopup({ setUploadVideoShown, handleAddOutsourceVideo, handleAddLocalVideo, videoType, setVideoType, setVideo, setCoverImg }) {
 
     return (
         <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
@@ -14,19 +14,19 @@ export function UploadVideoPopup({ setUploadVideoShown, handleAddOutsourceVideo,
                     <button onClick={() => setVideoType("outsource")} className={`${videoType === "outsource" ? "bg-[#27c5d2] text-white" : "bg-[#eeeeee] text-black"} py-2.5 px-5 rounded-lg w-[calc(50%-5px)] whitespace-nowrap cursor-pointer`}>Youtube Bağlantısı Paylaş</button>
                 </div>
                 <div className="p-7.5 rounded-lg border border-[#eee]">
-                    {videoType === "local" ? <form onSubmit={handleAddLocalVideo}>
+                    {videoType === "local" ? <form key="local" onSubmit={handleAddLocalVideo}>
                         <div className="flex flex-col mb-2">
                             <label className="text-[#212529] mb-2 font-semibold" htmlFor="">Video kapak görseli seçin</label>
-                            <input accept="image/*" required value={coverImg} onChange={(e) => setCoverImg(e.target.files[0])} className="border z-50 border-[#d9d9d9] py-1.5 px-3 rounded-lg" type="file" />
+                            <input accept="image/*" required onChange={(e) => setCoverImg(e.target.files[0])} className="border z-50 border-[#d9d9d9] py-1.5 px-3 rounded-lg" type="file" />
                         </div>
                         <div className="flex flex-col">
                             <label className="text-[#212529] mb-2 font-semibold" htmlFor="">Video Seçin</label>
-                            <input accept="video/mp4,video/webm,video/ogv" required value={video} onChange={(e) => setVideo(e.target.files[0])} className="border border-[#d9d9d9] py-1.5 px-3 rounded-lg" type="file" />
+                            <input accept="video/mp4,video/webm,video/ogv" required onChange={(e) => setVideo(e.target.files[0])} className="border border-[#d9d9d9] py-1.5 px-3 rounded-lg" type="file" />
                         </div>
                         <div className="text-right">
                             <button type="submit" className="text-white bg-[#27c5d2] text-sm rounded-lg py-2 px-5 mt-2 font-semibold cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Yükle</button>
                         </div>
-                    </form> : <form onSubmit={handleAddOutsourceVideo}>
+                    </form> : <form key="outsource" onSubmit={handleAddOutsourceVideo}>
                         <div className="flex flex-col">
                             <label className="text-[#212529] mb-2 font-semibold" htmlFor="">Youtube Bağlantısı</label>
                             <input required onChange={(e) => setVideo(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 rounded-lg" type="text" placeholder="Youtube Bağlantısı" />

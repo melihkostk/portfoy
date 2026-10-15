@@ -140,10 +140,14 @@ export const deleteVideo = async (id, video_id) => {
 }
 
 export const uploadVideo = async (id, type, video, cover) => {
-  const response = await api.post(`/properties/${id}/videos/upload`, {
-    type: type,
-    video: video,
-    cover: cover
+  const formData = new FormData();
+  formData.append("type", type);
+  formData.append("video", video);
+  if (cover) {
+    formData.append("cover", cover);
+  }
+  const response = await api.post(`/properties/${id}/videos/upload`, formData, {
+    headers: { "Content-Type": undefined },
   });
   return response.data;
 }
