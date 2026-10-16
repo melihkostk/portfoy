@@ -11,8 +11,13 @@ import { getAllPropertiesType } from "../services/propertiesApi"
 import { getAllCities, getAllCountries, getAllCurrencies, getAllDistricts } from "../services/filterApi"
 import { Pagination } from "../components/Pagination"
 import whiteClose from "../assets/close.png"
+import { CreateOfferModel } from "../components/CreateOfferModal"
+import { createProposal, getDetails } from "../services/propertyDetails"
+import { useNavigate } from "react-router-dom"
 
 export function Company({ loged, message, messageShown , setMessageShown }) {
+
+    const navigate = useNavigate();
 
     const [companyProperties, setCompanyProperties] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -81,9 +86,55 @@ export function Company({ loged, message, messageShown , setMessageShown }) {
         getCompanyInfo().then(setInfo)
     }, [])
 
+    const [offerModelShown, setOfferModalShown] = useState(false)
+    const [offerDetails, setOfferDetails] = useState([])
+    const [offerPropertyId, setOfferPropertyId] = useState(null)
+
+    const [selectedCustomer, setSelectedCustomer] = useState("")
+    const [offerCurrencie, setOfferCurrencie] = useState("")
+    const [customerNote, setCustomerNote] = useState("")
+    const [step, setStep] = useState(1)
+    const [notify, setNotify] = useState(true)
+
+    function handleOfferModal(id) {
+        setLoaded(false)
+        getDetails(id).then(data => {
+            setOfferDetails(data)
+            setOfferPropertyId(id)
+            setStep(1)
+            setOfferModalShown(true)
+        }).finally(() => setLoaded(true))
+    }
+
+    function handleCreateProposal() {
+        setLoaded(false)
+        setOfferModalShown(false)
+        const properties = { [offerPropertyId]: { price: Number(offerDetails?.prices?.primary?.number), title: offerDetails?.title } }
+        createProposal(customerNote, notify, offerCurrencie, selectedCustomer, properties).then(() => {
+            navigate("/company/proposals", { replace: true })
+        }).finally(() => setLoaded(true))
+    }
+
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header loged={loged} />
+            {offerModelShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {offerModelShown && <CreateOfferModel
+                setOfferModalShown={setOfferModalShown}
+                selectedCustomer={selectedCustomer}
+                setSelectedCustomer={setSelectedCustomer}
+                selectedCurrencie={offerCurrencie}
+                setSelectedCurrencie={setOfferCurrencie}
+                details={offerDetails}
+                customerNote={customerNote}
+                setCustomerNote={setCustomerNote}
+                step={step}
+                setStep={setStep}
+                property_id={offerPropertyId}
+                handleCreateProposal={handleCreateProposal}
+                notify={notify}
+                setNotify={setNotify}
+            />}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -157,6 +208,7 @@ export function Company({ loged, message, messageShown , setMessageShown }) {
                                     district={item.district.title}
                                     created_by={item.creator}
                                     status={item.status}
+                                    handleOfferModal={handleOfferModal}
                                 />
                             )) : (
                                 <div className="text-[#636464] bg-[#fafafa] rounded-lg p-3.75 m-3.75 w-full max-h-fit">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
