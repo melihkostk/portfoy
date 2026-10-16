@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import blackClose from "../assets/black-close.svg"
 import { getAllCustomers } from "../services/myCompanyApi";
 import { getAllCurrencies } from "../services/filterApi";
+import defaultProperty from "../assets/default-property.jpg";
 
 export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,handleCreateProposal , property_id , step, setStep, customerNote, setCustomerNote, details, selectedCustomer, setSelectedCurrencie, selectedCurrencie, setSelectedCustomer }) {
 
@@ -86,11 +87,11 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                             </div>
                         </div>
                         <div className="flex">
-                            <div>
-                                <img src={details?.cover} alt="cover" />
+                            <div className="w-[25%] pr-3">
+                                <img className="rounded-lg object-cover" src={defaultProperty} alt="cover" />
                             </div>
-                            <div className="w-full px-3">
-                                <p className="text-lg text-black mb-2.5">{details?.title}</p>
+                            <div className="w-[75%] px-3">
+                                <p className="text-lg text-black mb-2.5 font-semibold">{details?.title}</p>
                                 <p className="text-sm text-[#6c757d]">{details?.type?.title} <span>/ {details?.property_type === "ready" ? "Hazır" : "Proje"}</span></p>
                                 <p className="text-sm text-[#6c757d]">{details?.no}</p>
                                 <div className="flex items-end">
@@ -102,7 +103,7 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                                         </div>
                                     </div>
                                     <div className="flex-1">
-                                        <button className="border border-[#D9D9D9] rounded-sm h-9.5 py-1.25 px-2 text-[#717171] text-xs w-full font-semibold cursor-pointer hover:bg-[#d40000] hover:text-white hover:shadow-[0_0_30px_rgba(212,0,0,0.43)] transition-[color, box-shadow] duration-300 ease-in-out">Kaldır</button>
+                                        <button onClick={() => setOfferModalShown(false)} className="border border-[#D9D9D9] rounded-sm h-9.5 py-1.25 px-2 text-[#717171] text-xs w-full font-semibold cursor-pointer hover:bg-[#d40000] hover:text-white hover:shadow-[0_0_30px_rgba(212,0,0,0.43)] transition-[color, box-shadow] duration-300 ease-in-out">Kaldır</button>
                                     </div>
                                 </div>
                             </div>
