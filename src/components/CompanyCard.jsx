@@ -4,7 +4,7 @@ import badge from "../assets/badge.png"
 
 export function CompanyCard({ name, type, location, id, badges }) {
     return (
-        <div className="p-7.5 m-3.75 w-[22.5%] max-[992px]:mx-0 max-[992px]:my-3.75 max-[992px]:w-full shrink-0 bg-[#f8f8f8] rounded-lg flex flex-col items-center">
+        <div className="p-7.5 m-3.75 w-[calc(25%-30px)] max-[992px]:mx-0 max-[992px]:my-3.75 max-[992px]:w-full shrink-0 bg-[#f8f8f8] rounded-lg flex flex-col items-center">
             <div className="w-20 h-20 mb-2 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(0,0,0,0.1)]">
                 <img src={defaultImage} className="w-full h-full object-cover rounded-full" alt="" />
             </div>

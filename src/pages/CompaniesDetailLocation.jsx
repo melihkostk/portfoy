@@ -17,7 +17,7 @@ export function CompaniesDetailLocation({ loged }) {
 
     useEffect(() => {
         getCompaniesLocation(id).then(setLocation).finally(() => setLoaded(true))
-    }, [])
+    }, [id])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -49,7 +49,7 @@ export function CompaniesDetailLocation({ loged }) {
             <div className="max-w-[90%] w-full pt-12.5">
                 <h2 className="mb-2 text-[#212529] text-[32px]">Konum ve İletişim</h2>
                 <div className="flex items-start w-full justify-between max-[992px]:flex-col">
-                    <div className="w-1/2 sticky top-3 max-[992px]:static max-[992px]:w-full">
+                    <div className="w-1/2 sticky top-3 pr-7.5 max-[992px]:static max-[992px]:w-full">
                         <div className="flex flex-col mt-7.5">
                             {location?.locations?.map(item => (
                                 <LocationCard
@@ -65,7 +65,7 @@ export function CompaniesDetailLocation({ loged }) {
                     </div>
                     <div className="w-1/2 max-[992px]:w-full">
                         <iframe
-                            src={`https://www.google.com/maps?q=${location?.locations?.map?.latitude},${location?.locations?.map?.longitude}&z=15&output=embed`}
+                            src={`https://www.google.com/maps?q=${location?.locations?.[0]?.map?.latitude},${location?.locations?.[0]?.map?.longitude}&z=15&output=embed`}
                             className="w-full h-[calc(100vh-100px)] border-0 rounded-lg"
                             allowFullScreen
                             loading="lazy"

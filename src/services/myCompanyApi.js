@@ -206,7 +206,7 @@ export const getPreference = async () => {
     return response.data;
 }
 
-export const updateCompanyProfile = async (company_name, tax_number, licence_number, email, phone, phone_code, licence_file, tax_plate) => {
+export const updateCompanyProfile = async (company_name, tax_number, licence_number, email, phone, phone_code, licence_file, tax_plate , trade_name , tax_office , address) => {
     const formData = new FormData();
     formData.append("company_name", company_name);
     formData.append("tax_number", tax_number);
@@ -216,9 +216,12 @@ export const updateCompanyProfile = async (company_name, tax_number, licence_num
     formData.append("phone_code", phone_code);
     if (licence_file) formData.append("licence_file", licence_file);
     if (tax_plate) formData.append("tax_plate", tax_plate);
+    formData.append("trade_name", trade_name);
+    formData.append("tax_office", tax_office);
+    formData.append("address", address);
 
     const response = await api.post("/auth/company/profile/update", formData, {
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: { "Content-Type": undefined }
     })
     return response.data;
 }

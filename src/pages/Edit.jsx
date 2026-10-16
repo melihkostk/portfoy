@@ -47,7 +47,7 @@ export function Edit({ loged }) {
 
     function handleUpdate() {
         setLoaded(false)
-        updateCompanyProfile(name, taxNumber, centralNumber, email, phone, code, licenceFile, taxPlate).then(data => {
+        updateCompanyProfile(name, taxNumber, centralNumber, email, phone, code, licenceFile, taxPlate , tradeName , taxOffice , address).then(data => {
             if (data.status === "success") {
                 getCompanyProfile().then((data) => {
                     setProfile(data)
@@ -91,12 +91,12 @@ export function Edit({ loged }) {
             </div>}
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
-                    <div className="p-12.5 max-[992px]:p-7.5">
+                    <div className="p-12.5 max-[992px]:p-7.5 bg-[#fbfbfb] rounded-lg">
                         <h2 className="text-[32px] text-[#212529]">Firma Bilgileri</h2>
                         <div className="flex flex-wrap justify-between max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0 ">
                                 <label className="text-[#212529]" htmlFor="">Firma Adı</label>
-                                <input value={name} onChange={(e) => setName(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Firma Adı" />
+                                <input value={name} onChange={(e) => setName(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg bg-white" type="text" placeholder="Firma Adı" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Firma Tipi</label>
@@ -104,21 +104,21 @@ export function Edit({ loged }) {
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Vergi Levhası (PDF)</label>
-                                <input onChange={(e) => setTaxPlate(e.target.files[0])} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="file" placeholder="Firma Adı" />
+                                <input onChange={(e) => setTaxPlate(e.target.files[0])} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg bg-white" type="file" placeholder="Firma Adı" />
                                 <a className="text-sm text-[#7f7f7f] mt-1.25 hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">Dosyayı Görüntüle</a>
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Vergi Numarası</label>
-                                <input value={taxNumber} onChange={(e) => setTaxNumber(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="number" placeholder="Vergi Numarası" />
+                                <input value={taxNumber} onChange={(e) => setTaxNumber(e.target.value)} className="px-3 py-1.5 border bg-white border-[#D9D9D9] rounded-lg" type="number" placeholder="Vergi Numarası" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Ticaret Odası Faaliyet Belgesi (PDF)</label>
-                                <input onChange={(e) => setLicenceFile(e.target.files[0])} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="file" placeholder="Firma Adı" />
+                                <input onChange={(e) => setLicenceFile(e.target.files[0])} className="px-3 py-1.5 border border-[#D9D9D9] bg-white rounded-lg" type="file" placeholder="Firma Adı" />
                                 <a className="text-sm text-[#7f7f7f] mt-1.25 hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">Dosyayı Görüntüle</a>
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Mersis Numarası</label>
-                                <input value={centralNumber} onChange={(e) => setCentralNumber(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="number" placeholder="Mersis Numarası" />
+                                <input value={centralNumber} onChange={(e) => setCentralNumber(e.target.value)} className="px-3 py-1.5 border bg-white border-[#D9D9D9] rounded-lg" type="number" placeholder="Mersis Numarası" />
                             </div>
                         </div>
                     </div>
@@ -127,44 +127,44 @@ export function Edit({ loged }) {
                         <div className="flex flex-wrap justify-between max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">E-Posta</label>
-                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="E-Posta" />
+                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="E-Posta" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Telefon</label>
                                 <div className="flex gap-3.75">
-                                    <select value={code} onChange={(e) => setCode(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded-lg" name="" id="">
+                                    <select value={code} onChange={(e) => setCode(e.target.value)} className="py-1.5 bg-white pl-3 pr-9 border border-[#d9d9d9] rounded-lg" name="" id="">
                                         <option value="357">(357)</option>
                                         <option value="90">(90)</option>
                                         <option value="971">(971)</option>
                                         <option value="01">(01)</option>
                                     </select>
-                                    <input value={phone} onChange={(e) => setPhone(e.target.value)} className="px-3 py-1.5 w-full border border-[#D9D9D9] rounded-lg" type="text" placeholder="Mersis Numarası" />
+                                    <input value={phone} onChange={(e) => setPhone(e.target.value)} className="px-3 bg-white py-1.5 w-full border border-[#D9D9D9] rounded-lg" type="text" placeholder="Mersis Numarası" />
                                 </div>
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Website</label>
-                                <input value={website} onChange={(e) => setWebsite(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="email" placeholder="Website" />
+                                <input value={website} onChange={(e) => setWebsite(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="email" placeholder="Website" />
                             </div>
                         </div>
                     </div>
-                    <div className="p-12.5 max-[992px]:p-7.5">
+                    <div className="p-12.5 max-[992px]:p-7.5 bg-[#fbfbfb]">
                         <h2 className="text-[32px] text-[#212529]">Fatura Bilgileri</h2>
                         <div className="flex max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Ticari Ünvan</label>
-                                <input value={tradeName} onChange={(e) => setTradeName(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Ticari Ünvan" />
+                                <input value={tradeName} onChange={(e) => setTradeName(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Ticari Ünvan" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Vergi Dairesi</label>
-                                <input value={taxOffice} onChange={(e) => setTaxOffice(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Vergi Dairesi" />
+                                <input value={taxOffice} onChange={(e) => setTaxOffice(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Vergi Dairesi" />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">Firma Adresi</label>
-                                <input value={address} onChange={(e) => setAddress(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Firma Adresi" />
+                                <input value={address} onChange={(e) => setAddress(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder="Firma Adresi" />
                             </div>
                         </div>
                     </div>
-                    <button onClick={handleUpdate} className="bg-[#198754] hover:bg-[#157347] transition-colors duration-300 ease-in-out cursor-pointer text-white rounded-lg py-2 px-5 ml-12.5">Kaydet</button>
+                    <button onClick={handleUpdate} className="bg-[#198754] hover:bg-[#157347] transition-colors duration-300 ease-in-out cursor-pointer mt-7.5 text-white rounded-lg py-2 px-5 ml-12.5">Kaydet</button>
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
