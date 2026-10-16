@@ -18,6 +18,8 @@ import close from "../assets/blue-close.png"
 import { createQuickFilter, getQuickFilters } from "../services/quickFiltersApi"
 import menu from "../assets/dark-menu.png"
 import { SuccessPopUp } from "../components/SuccessPopup"
+import { CreateOfferModel } from "../components/CreateOfferModal"
+import { createProposal, getDetails } from "../services/propertyDetails"
 
 export function Properties({ loged }) {
 
@@ -221,6 +223,35 @@ export function Properties({ loged }) {
         setError("Filtre başarıyla kaydedildi");
     };
 
+    const [offerModelShown, setOfferModalShown] = useState(false)
+    const [offerDetails, setOfferDetails] = useState([])
+    const [offerPropertyId, setOfferPropertyId] = useState(null)
+
+    const [selectedCustomer, setSelectedCustomer] = useState("")
+    const [offerCurrencie, setOfferCurrencie] = useState("")
+    const [customerNote, setCustomerNote] = useState("")
+    const [offerStep, setOfferStep] = useState(1)
+    const [offerNotify, setOfferNotify] = useState(true)
+
+    function handleOfferModal(id) {
+        setLoaded(false)
+        getDetails(id).then(data => {
+            setOfferDetails(data)
+            setOfferPropertyId(id)
+            setOfferStep(1)
+            setOfferModalShown(true)
+        }).finally(() => setLoaded(true))
+    }
+
+    function handleCreateProposal() {
+        setLoaded(false)
+        setOfferModalShown(false)
+        const properties = { [offerPropertyId]: { price: Number(offerDetails?.prices?.primary?.number), title: offerDetails?.title } }
+        createProposal(customerNote, offerNotify, offerCurrencie, selectedCustomer, properties).then(() => {
+            navigate("/company/proposals", { replace: true })
+        }).finally(() => setLoaded(true))
+    }
+
     const titleAndSortRow = (
         <div className="flex items-center flex-wrap justify-between">
             <h1 className="text-[25px] text-[#212529] font-medium">
@@ -248,7 +279,23 @@ export function Properties({ loged }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(quickFilterMenu || addQuickFilterMenu) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(quickFilterMenu || addQuickFilterMenu || offerModelShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {offerModelShown && <CreateOfferModel
+                setOfferModalShown={setOfferModalShown}
+                selectedCustomer={selectedCustomer}
+                setSelectedCustomer={setSelectedCustomer}
+                selectedCurrencie={offerCurrencie}
+                setSelectedCurrencie={setOfferCurrencie}
+                details={offerDetails}
+                customerNote={customerNote}
+                setCustomerNote={setCustomerNote}
+                step={offerStep}
+                setStep={setOfferStep}
+                property_id={offerPropertyId}
+                handleCreateProposal={handleCreateProposal}
+                notify={offerNotify}
+                setNotify={setOfferNotify}
+            />}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -441,6 +488,7 @@ export function Properties({ loged }) {
                                             badges={item?.badges?.[0]?.title}
                                             page="properties"
                                             flexDirection={flexDirection}
+                                            handleOfferModal={handleOfferModal}
                                         />
                                     ))
                                     : discounted?.data?.map(item => (
@@ -457,6 +505,7 @@ export function Properties({ loged }) {
                                             page="properties"
                                             flexDirection={flexDirection}
                                             badges={item?.badges?.[0]?.title}
+                                            handleOfferModal={handleOfferModal}
                                         />
                                     ))}
                             </div>
