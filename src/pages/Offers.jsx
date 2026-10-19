@@ -12,8 +12,9 @@ import { SuccessPopUp } from "../components/SuccessPopup"
 import close from "../assets/blue-close.png"
 import defaultCompany from "../assets/default-company.png"
 import { getCompanyInfo } from "../services/myCompanyApi"
+import {getTranslation} from "../services/translation"
 
-export function Offers({ loged }) {
+export function Offers({ loged , locale }) {
 
     const { type } = useParams();
 
@@ -76,6 +77,12 @@ export function Offers({ loged }) {
         }
     }, [])
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation)
+    }, [locale])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
@@ -89,10 +96,10 @@ export function Offers({ loged }) {
                     />
                 </div>
             )}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım {">"}</span><span className="text-[#9a9898]"> Fiyat Tekliflerim</span></p>
+                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.my_offers}</span></p>
                 </div>
             </div>
             {offerMenuShown && <div className="fixed overflow-y-scroll scrollbar-none top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 w-[25%] max-h-[95%] bg-white border border-[#eee] rounded-lg z-50">
@@ -158,24 +165,24 @@ export function Offers({ loged }) {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
                     <div className="w-[28%] max-[992px]:w-full sticky top-0">
-                        <Sidebar type={type} info={info} user={user} />
+                        <Sidebar translation={translation} type={type} info={info} user={user} />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
-                        <h2 className="text-[32px] text-[#212529] font-medium mb-2">{type === "received" ? "Aldığım teklifler" : "Gönderdiğim teklifler"}</h2>
+                        <h2 className="text-[32px] text-[#212529] font-medium mb-2">{type === "received" ? translation?.data?.business?.offers_as_received : translation?.data?.business?.offers_as_sent}</h2>
                         {type === "received" && <div className="p-4 mb-4 bg-[#fff3cd] rounded-lg border border-[#ffecb5]">
-                            <p className="text-[#664d03]">Bu sayfada sadece sizin oluşturduğunuz ilanların tekliflerini görüntüleyebilirsiniz.</p>
+                            <p className="text-[#664d03]">{translation?.data?.business?.my_property_price_offers_warning}</p>
                         </div>}
                         <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
                             <table className="w-full">
                                 <thead>
                                     <tr>
-                                        <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg whitespace-nowrap">İlan</th>
-                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Geçerli Fiyat</th>
-                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Pass / Komisyon</th>
-                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap ">Teklif Edilen Tutar</th>
-                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Durum</th>
-                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Oluşturma Tarihi</th>
-                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap rounded-r-lg">İşlemler</th>
+                                        <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg whitespace-nowrap">{translation?.data?.business?.property}</th>
+                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.current_price}</th>
+                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.pass_price_or_commission_rates}</th>
+                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap ">{translation?.data?.business?.offered_amount}</th>
+                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.status}</th>
+                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.created_at}</th>
+                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap rounded-r-lg">{translation?.data?.business?.actions}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -196,6 +203,7 @@ export function Offers({ loged }) {
                                                 setSelectedOfferId={setSelectedOfferId}
                                                 loaded={loaded}
                                                 setLoaded={setLoaded}
+                                                translation={translation}
                                             />
                                         ))
                                     }
@@ -211,6 +219,7 @@ export function Offers({ loged }) {
                                                 created_at={item.created_at}
                                                 type="send"
                                                 index={index}
+                                                translation={translation}
                                             />
                                         ))
                                     }
@@ -231,11 +240,11 @@ export function Offers({ loged }) {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )
