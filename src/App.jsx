@@ -106,7 +106,7 @@ function App() {
           <Route path="/properties/create" element={<Create loged={loged} locale={locale} />} />
           <Route path="/profile" element={<Profile loged={loged} />} />
           <Route path="/account" element={<Account loged={loged} />} />
-          <Route path="/proposals" element={<Proposals loged={loged} />} />
+          <Route path="/proposals" element={<Proposals locale={locale} loged={loged} />} />
           <Route path="/notifications" element={<Notifications loged={loged} locale={locale} />} />
           <Route path="/quick-filters" element={<QuickFilters loged={loged} locale={locale} />} />
           <Route path="/wishlist" element={<Wishlist locale={locale} loged={loged} />} />

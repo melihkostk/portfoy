@@ -8,34 +8,43 @@ import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
 import { getCompanyInfo } from "../services/myCompanyApi"
+import { getTranslation } from "../services/translation"
 
-export function Proposals({ loged }) {
+export function Proposals({ loged, locale }) {
 
     const [usersProposal, setUsersProposals] = useState([]);
     const [loaded, setLoaded] = useState(false)
 
-    const [page , setPage] = useState(1)
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         setLoaded(false)
         getProposals(page).then(setUsersProposals).finally(() => setLoaded(true))
     }, [page])
 
-     const [info, setInfo] = useState([]);
-       
-        useEffect(() => {
-            getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
-        }, [])
-    
-        const [user, setUser] = useState([]);
-    
-         useEffect(() => {
-            const userInfo = localStorage.getItem("user");
-            if (userInfo) {
-                const parsedUser = JSON.parse(userInfo);
-                setUser(parsedUser);
-            }
-        }, [])
+    const [info, setInfo] = useState([]);
+
+    useEffect(() => {
+        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+    }, [])
+
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        const userInfo = localStorage.getItem("user");
+        if (userInfo) {
+            const parsedUser = JSON.parse(userInfo);
+            setUser(parsedUser);
+        }
+    }, [])
+
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
+
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -48,33 +57,33 @@ export function Proposals({ loged }) {
                     />
                 </div>
             )}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım {">"}</span><span className="text-[#9a9898]"> Müşteriye gönderilen teklifler</span></p>
+                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.my_proposals}</span></p>
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="w-[28%] max-[992px]:w-full">
-                        <Sidebar page="proposals" info={info} user={user} />
+                        <Sidebar translation={translation} page="proposals" info={info} user={user} />
                     </div>
                     <div className="w-[72%]  max-[992px]:w-full pl-7.5  max-[992px]:pl-0">
-                        <h2 className="text-[32px] text-[#212529] mb-2">Müşteriye gönderilen teklifler</h2>
+                        <h2 className="text-[32px] text-[#212529] mb-2">{translation?.data?.business?.proposals_to_customers}</h2>
                         <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
                             <table className="w-full">
                                 <thead>
                                     <tr>
                                         <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap rounded-l-lg">#</th>
-                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Müşteri</th>
-                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Değerlendirme</th>
-                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Durum</th>
-                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Oluşturma Tarihi</th>
-                                        <th className="text-end bg-[#ececec] py-4 px-2.5 whitespace-nowrap rounded-r-lg">İşlemler</th>
+                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.customer}</th>
+                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.review}</th>
+                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.status}</th>
+                                        <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.created_at}</th>
+                                        <th className="text-end bg-[#ececec] py-4 px-2.5 whitespace-nowrap rounded-r-lg">{translation?.data?.business?.actions}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {usersProposal?.data?.map((item , index) => (
+                                    {usersProposal?.data?.map((item, index) => (
                                         <ProposalCard
                                             key={item.id}
                                             id={item.id}
@@ -84,7 +93,7 @@ export function Proposals({ loged }) {
                                             status={item.status.title}
                                             created_at={item.created_at}
                                             index={index}
-
+                                            translation={translation}
                                         />
                                     ))}
                                 </tbody>
@@ -106,11 +115,11 @@ export function Proposals({ loged }) {
             </div>
             <div className='w-full mt-30 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )
