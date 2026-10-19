@@ -3,7 +3,7 @@ import arrow from "../assets/black-arrow-right.png"
 import { Link } from "react-router-dom"
 import React from "react"
 
-export function Sidebar({page , type , info , user}) {
+export function Sidebar({page , type , info , user , translation}) {
     const [subMenu, setSubMenu] = React.useState(false)
     return (
         <div>
@@ -20,7 +20,7 @@ export function Sidebar({page , type , info , user}) {
                         <li className="text-[#7e7e7e] bg-[#eee] text-xs py-1.25 px-2.5 rounded-lg font-semibold">{user?.data?.roles?.[0]?.title}</li>
                     </ul>
                     <p className="text-[#696969] text-sm">
-                        Üyelik tarihi: {info?.created_at}
+                        {translation?.data?.business?.user_created_at_with_date.replace(":date" , "")} {info?.created_at}
                     </p>
                 </div>
             </div>
@@ -29,20 +29,19 @@ export function Sidebar({page , type , info , user}) {
                     <li className={`${page==="account" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/account"} className="flex items-center">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
-                            Hesap Bilgilerim
+                            {translation?.data?.business?.my_account_info}
                         </Link>
                     </li>
                     <li className={`${page==="properties" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/auth/properties"} className="flex items-center">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
-                            İlanlarım
+                            {translation?.data?.business?.my_properties}
                         </Link>
-
                     </li>
                     <li className={`${page==="proposals" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/proposals"} className="flex items-center">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
-                            Müşteriye Gönderilen Teklifler
+                            {translation?.data?.business?.proposals_to_customers}
                         </Link>
                     </li>
                     <li className="my-0.5 rounded-lg cursor-pointer">
@@ -52,7 +51,7 @@ export function Sidebar({page , type , info , user}) {
                                 className="flex items-center py-2 px-2.5 w-full rounded-lg hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out"
                             >
                                 <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
-                                Fiyat Tekliflerim
+                                {translation?.data?.business?.my_offers}
                             </div>
 
                             {subMenu && (
@@ -61,14 +60,14 @@ export function Sidebar({page , type , info , user}) {
                                         <li className={`${type === "received" ? "bg-[#27c5d2] text-white" : "bg-white text-[#5f5f5f]"} rounded-lg hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out`}>
                                             <Link to="/offers/received" className="flex items-center py-2 px-2.5 text-sm hover:text-white transition-colors duration-300 ease-in-out">
                                                 <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
-                                                Aldığım teklifler
+                                                {translation?.data?.business?.offers_as_received}
                                             </Link>
                                         </li>
 
                                         <li className={`${type === "send" ? "bg-[#27c5d2] text-white" : "bg-white text-[#5f5f5f]"} rounded-lg hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out`}>
                                             <Link to="/offers/send" className="flex items-center py-2 px-2.5 text-sm hover:text-white transition-colors duration-300 ease-in-out">
                                                 <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
-                                                Gönderdiğim teklifler
+                                                {translation?.data?.business?.offers_as_sent}
                                             </Link>
                                         </li>
                                     </ul>
@@ -79,19 +78,19 @@ export function Sidebar({page , type , info , user}) {
                     <li className={`${page==="wishlist" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/wishlist"} className="flex items-center" href="">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
-                            Favorilerim
+                           {translation?.data?.business?.my_wishlist}
                         </Link>
                     </li>
                     <li className={`${page==="quickFilters" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/quick-filters"} className="flex items-center" href="">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
-                            Hızlı Filtreler
+                            {translation?.data?.business?.quick_filters}
                         </Link>
                     </li>
                     <li className={`${page==="notifications" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/notifications"} className="flex items-center" href="">
                             <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
-                            Bildirimlerim
+                            {translation?.data?.business?.my_notifications}
                         </Link>
                     </li>
                 </ul>
