@@ -109,7 +109,7 @@ function App() {
           <Route path="/proposals" element={<Proposals loged={loged} />} />
           <Route path="/notifications" element={<Notifications loged={loged} locale={locale} />} />
           <Route path="/quick-filters" element={<QuickFilters loged={loged} locale={locale} />} />
-          <Route path="/wishlist" element={<Wishlist loged={loged} />} />
+          <Route path="/wishlist" element={<Wishlist locale={locale} loged={loged} />} />
           <Route path="/offers/:type" element={<Offers loged={loged} />} />
           <Route path="/auth/properties" element={<UserProperties loged={loged} />} />
           <Route path="/support" element={<Support loged={loged} />} />

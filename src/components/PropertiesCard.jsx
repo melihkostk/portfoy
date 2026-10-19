@@ -89,7 +89,7 @@ export function PropertiesCard(props) {
                 </button>}
                 {props.page === "wishlist" && <button onClick={() => props.handleToggleWishlist(props.id)} className="bg-white border gap-1.25 max-w-full whitespace-nowrap overflow-hidden truncate border-[#eee] py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 flex items-center font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     <img className="w-5 h-5" src={trash} alt="" />
-                    Favorilerden Kaldır
+                    {props.translation?.data?.business?.property_remove_from_wishlist}
                 </button>}
             </div>
         </div>
