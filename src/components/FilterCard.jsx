@@ -1,7 +1,7 @@
 import pencil from "../assets/pencil.png"
 import bin from "../assets/bin.png"
 
-export function FilterCard({title , created_at , notify , handleDelete , id , handleEditClick , index}) {
+export function FilterCard({title , created_at , notify , handleDelete , id , handleEditClick , index , translation}) {
     return (
         <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : "bg-white"}`}>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{title}</td>
@@ -10,7 +10,7 @@ export function FilterCard({title , created_at , notify , handleDelete , id , ha
             </td>
             <td className="py-3 px-2 whitespace-nowrap">{created_at}</td>
             <td className="py-3 px-2 flex items-center justify-end gap-2">
-                <button className="text-xs whitespace-nowrap cursor-pointer text-white font-semibold bg-[#27C5D2] py-2 px-5 rounded-sm hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                <button className="text-xs whitespace-nowrap cursor-pointer text-white font-semibold bg-[#27C5D2] py-2 px-5 rounded-sm hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
                 <button onClick={() => handleEditClick({ id, title, notify })} className="bg-[#f1f1f1] cursor-pointer whitespace-nowrap py-2 px-5 rounded-sm hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                     <img className="w-4 h-4 min-h-4 min-w-4" src={pencil} alt="" />
                 </button>
