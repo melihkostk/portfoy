@@ -5,11 +5,10 @@ import { LanguageSelect } from "../components/LanguageSelect"
 import { useState } from "react"
 import { loginRequest } from "../services/authApi"
 
-export function Login({ setLoged }) {
+export function Login({ setLoged , locale , setLocale }) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [locale , setLocale] = useState("")
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate ();

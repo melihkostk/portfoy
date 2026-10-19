@@ -8,8 +8,9 @@ import { filterCompany, getCompanyTypes } from "../services/companiesApi"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
+import { getTranslation } from "../services/translation"
 
-export function Companies({ loged }) {
+export function Companies({ loged, locale }) {
 
     const [companies, setCompanies] = useState([]);
 
@@ -81,6 +82,12 @@ export function Companies({ loged }) {
 
     const [q, setQ] = useState("")
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {!loaded && (
@@ -101,9 +108,9 @@ export function Companies({ loged }) {
             <div className="w-full max-w-[90%]">
                 <div>
                     <div>
-                        <h2 className="text-[32px] mb-2 font-medium">Üye firmalar</h2>
+                        <h2 className="text-[32px] mb-2 font-medium">{translation?.data?.business?.companies_page_section_title}</h2>
                         <p className="text-sm text-[#9A9A9A]">
-                            Üye firmaların yetkililerin iletişim bilgilerini ve yetkili oldukları proje ve gayrimenkulleri buradan görebilirsiniz.
+                            {translation?.data?.business?.companies_page_section_description}
                         </p>
                     </div>
                     <CompanyFilter
@@ -125,6 +132,7 @@ export function Companies({ loged }) {
                         filterCompany={handleFilterCompany}
                         q={q}
                         setQ={setQ}
+                        translation={translation}
                     />
                 </div>
             </div>
@@ -139,6 +147,7 @@ export function Companies({ loged }) {
                             location={item?.locations}
                             logo={item?.logo}
                             badges={item.badges}
+                            translation={translation}
                         />
                     ))
                         : (
@@ -160,11 +169,11 @@ export function Companies({ loged }) {
             </div>
             <div className='w-full mt-40 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer loged={loged} translation={translation} />
             </div>
         </div>
     )

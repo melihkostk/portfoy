@@ -82,6 +82,8 @@ function App() {
   const [message, setMessage] = useState("");
   const [messageShown, setMessageShown] = useState(false);
 
+  const [locale , setLocale] = useState("tr");
+
   return (
     <BrowserRouter>
       <Routes>
@@ -91,7 +93,7 @@ function App() {
         <Route path="/articles" element={<News loged={loged} news={news} />} />
         <Route path="/corporate" element={<Corporate loged={loged} />} />
         <Route path="/contacts" element={<Contacts loged={loged} />} />
-        <Route path="/login" element={<Login loged={loged} setLoged={setLoged} />} />
+        <Route path="/login" element={<Login loged={loged} setLoged={setLoged} locale={locale} setLocale={setLocale} />} />
         <Route path="/register" element={<SignIn />} />
         <Route path="/application" element={<Application loged={loged} />} />
         <Route path="/check" element={<Check loged={loged} />} />
@@ -99,7 +101,7 @@ function App() {
         <Route path="/consent" element={<Consent loged={loged} />} />
         <Route path="*" element={<NotFound />}></Route>
         <Route element={<ProtectedRoutes loged={loged} authChecked={authChecked} />}>
-          <Route path="/companies" element={<Companies loged={loged} />} />
+          <Route path="/companies" element={<Companies locale={locale} loged={loged} />} />
           <Route path="/properties" element={<Properties loged={loged} />} />
           <Route path="/properties/create" element={<Create loged={loged} />} />
           <Route path="/profile" element={<Profile loged={loged} />} />

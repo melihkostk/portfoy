@@ -5,7 +5,7 @@ import facebook from "../assets/facebook.png"
 import instagram from "../assets/instagram.png"
 import { Link } from "react-router-dom"
 
-export function Footer({loged}) {
+export function Footer({loged , translation}) {
 
     return (
         <div className="w-full">
@@ -90,17 +90,14 @@ export function Footer({loged}) {
             <div className="w-full bg-[#27C5D2] flex justify-center py-3.75 mt-20">
                 <div className="w-full max-w-[90%] flex justify-between px-3 max-[992px]:flex-col max-[992px]:gap-3.75 items-center">
                     {loged && <p className="text-white font-medium text-center">
-                        Müşteri Destek Hattı
+                        {translation?.data.business?.customer_support_line}
                         <a className="font-bold" href="https://demo.pigasoft.com/portfoy/public/tr/tel: 0 850 851 44 94"> 0 850 851 44 94</a>
                     </p>}
                     <p className="text-white text-base font-medium text-center">
-                        Copyright @ Port-Foy 2024. Her hakkı saklıdır.
+                        {translation?.data.business?.footer_copyright}
                     </p>
                     <p className="text-white text-base font-normal text-center">
-                        <a className="text-white font-bold cursor-pointer" href="">Pigasoft</a>
-                        {" "}ve{" "}
-                        <a className="text-white font-bold cursor-pointer" href="">Order Teknoloji</a>
-                        {" "}tarafından geliştirilmiştir.
+                        {translation?.data.business?.footer_developed_by?.replace(/<[^>]*>/g, '')}
                     </p>
                 </div>
             </div>

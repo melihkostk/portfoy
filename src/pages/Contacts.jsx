@@ -38,8 +38,6 @@ export function Contacts({ loged }) {
         }
     }, []);
 
-   
-
     return (
         <div className='flex flex-col items-center font-sf'>
             {!loaded && (

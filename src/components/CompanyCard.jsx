@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import defaultImage from "../assets/default-company.png"
 import badge from "../assets/badge.png"
 
-export function CompanyCard({ name, type, location, id, badges }) {
+export function CompanyCard({ name, type, location, id, badges , translation }) {
     return (
         <div className="p-7.5 m-3.75 w-[calc(25%-30px)] max-[992px]:mx-0 max-[992px]:my-3.75 max-[992px]:w-full shrink-0 bg-[#f8f8f8] rounded-lg flex flex-col items-center">
             <div className="w-20 h-20 mb-2 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(0,0,0,0.1)]">
@@ -26,7 +26,7 @@ export function CompanyCard({ name, type, location, id, badges }) {
                     ))}
                 </ul>
             </div>
-            <Link to={`/companies/${id}`} className="text-center mt-7.5 text-[#626262] text-sm font-medium bg-[#e8e8e8] hover:text-white hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out w-full py-2.5 rounded-lg uppercase" href="">Profili Görüntüle</Link>
+            <Link to={`/companies/${id}`} className="text-center mt-7.5 text-[#626262] text-sm font-medium bg-[#e8e8e8] hover:text-white hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out w-full py-2.5 rounded-lg uppercase" href="">{translation?.data?.business?.show_company_profile}</Link>
         </div>
     )
 }
