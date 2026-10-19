@@ -103,7 +103,7 @@ function App() {
         <Route element={<ProtectedRoutes loged={loged} authChecked={authChecked} />}>
           <Route path="/companies" element={<Companies locale={locale} loged={loged} />} />
           <Route path="/properties" element={<Properties loged={loged} />} />
-          <Route path="/properties/create" element={<Create loged={loged} />} />
+          <Route path="/properties/create" element={<Create loged={loged} locale={locale} />} />
           <Route path="/profile" element={<Profile loged={loged} />} />
           <Route path="/account" element={<Account loged={loged} />} />
           <Route path="/proposals" element={<Proposals loged={loged} />} />

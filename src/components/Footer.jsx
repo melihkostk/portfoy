@@ -90,14 +90,14 @@ export function Footer({loged , translation}) {
             <div className="w-full bg-[#27C5D2] flex justify-center py-3.75 mt-20">
                 <div className="w-full max-w-[90%] flex justify-between px-3 max-[992px]:flex-col max-[992px]:gap-3.75 items-center">
                     {loged && <p className="text-white font-medium text-center">
-                        {translation?.data.business?.customer_support_line}
+                        {translation?.data?.business?.customer_support_line}
                         <a className="font-bold" href="https://demo.pigasoft.com/portfoy/public/tr/tel: 0 850 851 44 94"> 0 850 851 44 94</a>
                     </p>}
                     <p className="text-white text-base font-medium text-center">
-                        {translation?.data.business?.footer_copyright}
+                        {translation?.data?.business?.footer_copyright}
                     </p>
                     <p className="text-white text-base font-normal text-center">
-                        {translation?.data.business?.footer_developed_by?.replace(/<[^>]*>/g, '')}
+                        {translation?.data?.business?.footer_developed_by?.replace(/<[^>]*>/g, '')}
                     </p>
                 </div>
             </div>
