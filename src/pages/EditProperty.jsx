@@ -2,30 +2,21 @@ import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import { useEffect, useState } from "react";
-import { PropertySettingsCard } from "../components/PropertySettingsCard";
-import defaultProperty from "../assets/default-property.jpg"
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { cloneProperty, deleteGalery, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateCover, updateDraftStatus, updateProperty, updateSoldStatus, uploadGallery, uploadVideo } from "../services/propertiesApi";
 import { replyOffer } from "../services/profileApi";
-import defaultCompany from "../assets/default-company.png"
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
 import file from "../assets/ff.png"
-import { ProposalCard } from "../components/ProposalCard";
-import { OfferCard } from "../components/OfferCard"
-import { TransactionCard } from "../components/TransactionCard";
-import cover from "../assets/video-1.jpg"
-import play from "../assets/play-white.png"
-import can from "../assets/can.png"
-import calendar from "../assets/w-calendar.png"
-import whiteChain from "../assets/white-chain.png"
-import chain from "../assets/chain.png"
 import { DeleteVideoPopUp } from "../components/DeleteVideoPopUp";
 import whiteClose from "../assets/close.png"
-import { UploadVideoPopup } from "../components/UploadVideoPopUp";
-import plus from "../assets/gray-plus.png"
+import { EditPropertyGallery } from "../components/EditPropertyGallery";
+import { EditPropertyOffers } from "../components/EditPropertyOffers";
+import { EditPropertyMove } from "../components/EditPropertyMove";
+import { EditPropertySettings } from "../components/EditPropertySettings";
+import { EditPropertyInfo } from "../components/EditPropertyInfo";
 
 export function EditProperty({ loged, setMessage, setMessageShown }) {
 
@@ -568,456 +559,81 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                     <button onClick={() => setSoldToDraft(true)} className="bg-[#27C5D2] text-white text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Taslağa Çevir</button>
                 </div>
             </div>}
-            {editType === "info" && <div className="w-full max-w-[90%]">
-                <div className="w-full mb-7.5">
-                    <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
-                        <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
-                            <h5 className="text-[#676767] text-lg py-1.25">Temel Bilgiler</h5>
-                        </div>
-                        <div className="p-4">
-                            <div className="px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="title">Başlık</label>
-                                <input id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                            </div>
-                            <div className="flex max-[992px]:flex-col">
-                                {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="pass">Pass Fiyatı <span className="text-sm">({currency})</span></label>
-                                    <input id="pass" name="pass" value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
-                                </div>}
-                                {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="sell">Satış Fiyatı <span className="text-sm">({currency})</span></label>
-                                    <input id="sell" name="sell" className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
-                                </div>}
-                                {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="min">Minimum Fiyat <span className="text-sm">({currency})</span></label>
-                                    <input id="min" name="min" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
-                                </div>}
-                                {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="max">Maximum Fiyat <span className="text-sm">({currency})</span></label>
-                                    <input id="max" name="max" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
-                                </div>}
-                                {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="price-option">Fiyat Seçenekleri ( 1 Seçenek )</label>
-                                    <input id="price-option" name="price-option" className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
-                                </div>}
-                                <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="currency">Para Birimi</label>
-                                    <input id="currency" name="currency" value={currency} onChange={(e) => setCurrency(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                            </div>
-                            <div className="flex max-[992px]:flex-col">
-                                <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="country">Ülke Seçin</label>
-                                    <input id="country" name="country" value={country} onChange={(e) => setCountry(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="city">İl Seçin</label>
-                                    <input id="city" name="city" value={city} onChange={(e) => setCity(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="district">İlçe Seçin</label>
-                                    <input id="district" name="district" value={district} onChange={(e) => setDistrict(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                                <div className="flex-1 px-3 mb-2">
-                                    <label className="text-[#6c757d]" htmlFor="street">Mahalle</label>
-                                    <input id="street" name="street" value={street} onChange={(e) => setStreet(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full mb-7.5">
-                    <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
-                        <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
-                            <h5 className="text-[#676767] text-lg py-1.25">Harita Bilgisi</h5>
-                        </div>
-                        <div className="p-4">
-                            <div className={`flex flex-col items-center justify-center ${latitude && longitude ? "h-100" : "h-50"}`}>
-                                {!(latitude && longitude) && <div className="flex flex-col items-center">
-                                    <p className="text-[#6c757d] mb-4">Harita üzerinde ilanın konumunu belirleyin</p>
-                                    <button className="text-sm font-semibold text-white py-2 px-5 rounded-lg cursor-pointer bg-[#27c5d2] hover:bg-[#026872] transition-colors duration-300 ease-in-out">Konum Belirleyin</button>
-                                </div>}
-                                {(latitude && longitude) && <div className="w-full h-full">
-                                    <iframe
-                                        src={`https://www.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`}
-                                        className="w-full block h-full border-0 rounded-lg"
-                                        allowFullScreen
-                                        loading="lazy"
-                                        referrerPolicy="strict-origin-when-cross-origin"
-                                        title="Google Maps"
-                                    />
-                                </div>}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full mb-7.5">
-                    {features?.map((item, groupIndex) => (
-                        <div key={groupIndex} className="p-2.5 border border-[#f8f8f8] rounded-lg">
-                            <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
-                                <h5 className="text-[#676767] text-lg py-1.25">{item.title}</h5>
-                            </div>
-                            <div className="p-4">
-                                <div className="flex flex-wrap justify-start max-[992px]:flex-col">
-                                    {item.features?.map(feature => (
-                                        <div key={feature.id} className="w-[25%] px-3 mb-2 flex flex-col max-[992px]:w-full">
-                                            <div className="flex justify-between items-center">
-                                                <label className="text-[#6c757d]" htmlFor={feature.id}>{feature?.title}</label>
-                                                {feature.input_type === "file" && <a className="text-xs text-[#026872] font-semibold" target="_blank" href={feature?.value[0]?.path}>Dosyaları Görüntüle (1 Dosya)</a>}
-                                            </div>
-                                            {feature.input_type !== "select"
-                                                ? <input id={feature.id} name={feature.id} key={feature.id} value={feature.input_type === "text" || feature.input_type === "number" ? feature?.value : ""} onChange={(e) => handleFeatureChange(groupIndex, feature.id, e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type={feature.input_type} />
-                                                : <select id={feature.id} name={feature.id} key={feature.id} value={feature.value} onChange={(e) => handleFeatureChange(groupIndex, feature.id, e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]">
-                                                    <option>{feature.title}</option>
-                                                    {feature.options.map(option => (
-                                                        <option key={option.id}>{option.title}</option>
-                                                    ))}
-                                                </select>
-                                            }
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <div className="w-full mb-7.5">
-                    <div className="flex gap-1">
-                        <button onClick={handleUpdateProperty} className="text-sm bg-[#27c5d2] text-white rounded-lg py-2 px-5 cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Güncelle</button>
-                        {status === "draft" && <button className="text-sm bg-[#F1F1F1] text-[#4B4B4B] rounded-lg py-2 px-5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Güncelle ve Yayınla</button>}
-                    </div>
-                </div>
-            </div>}
-            {editType === "settings" && <div className="w-full max-w-[90%]">
-                <div className="w-full mb-7.5">
-                    <div className="flex flex-wrap max-[992px]:flex-col ">
-                        <PropertySettingsCard
-                            title="İlanı Pasife Al"
-                            description="İlan havuzunda yer almasını istemediğiniz ilanları pasif durumuna alabilirsiniz"
-                            button="Pasife Al"
-                            disabled={detail?.status === "draft"}
-                            onClick={() => setToogleMenu(true)}
-                        />
-                        <PropertySettingsCard
-                            title="İlanı Öne Çıkar"
-                            description="Belirli bir süre için ilanınızı öne çıkararak daha fazla kullanıcının görmesini sağlayabilirsiniz."
-                            button="İlanı Öne Çıkar"
-                            onClick={() => navigate(`/properties/${id}/boost`)}
-                            status={detail?.status}
-                        />
-                        <PropertySettingsCard
-                            title="İlanı Kopyala"
-                            description="Bu ilanın galeri görselleri dahil tüm özelliklerini kullanarak yeni bir ilan oluşturabilirsiniz."
-                            button="Kopyala"
-                            onClick={() => setCopyPopUp(true)}
-                            status={detail?.status}
-                        />
-                        <PropertySettingsCard
-                            title="İlanı Sil"
-                            description="Bu ilana ait hareketleri, teklifleri ve benzeri tüm kayıtları tamamen kaldırın."
-                            button="İlanı Sil"
-                            onClick={() => setDeletePopUp(true)}
-                            status={detail?.status}
-                        />
-                        <PropertySettingsCard
-                            title="İlan Satıldı"
-                            description="İlanı satıldı olarak işaretleyin ve tercihinize göre portföyünüzde kalmasını sağlayın."
-                            button="İlan Satıldı"
-                            status={detail?.status}
-                            onClick={() => setSoldPopUp(true)}
-                        />
-                    </div>
-                </div>
-            </div>}
-            {editType === "move" && <div className="w-full max-w-[90%] p-2.5 border border-[#f8f8f8] rounded-lg">
-                <div className="w-full p-4">
-                    {transactions?.data?.map((item, index) => (
-                        <TransactionCard
-                            name={item.user.name}
-                            avatar={item.user.avatar}
-                            message={item.message}
-                            key={index}
-                            time={item.time}
-                            index={index}
-                            transactions={transactions}
-                        />
-                    ))}
-                </div>
-            </div>}
-            {editType === "offers" && <div className="w-full max-w-[90%]">
-                {offerMenuShown && <div className="fixed overflow-y-scroll scrollbar-none top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 w-[25%] max-h-[95%] bg-white border border-[#eee] rounded-lg z-50">
-                    <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
-                        <h2 className="text-xl text-[#212529] font-semibold">Fiyat Teklifini Görüntüle</h2>
-                        <img onClick={closeOfferMenu} className="w-6 h-6 cursor-pointer" src={close} alt="" />
-                    </div>
-                    <div className="p-4 w-full">
-                        {!loaded ? (
-                            <div className="flex items-center justify-center py-10 w-full">
-                                <ClipLoader size={50} color="#27c5d2" aria-label="Loading Spinner" />
-                            </div>
-                        ) : (
-                            <>
-                                <div className="flex bg-[#f9f9f9] p-3.75 rounded-lg w-full mb-7.5 gap-7.5 justify-start">
-                                    <div className="w-20 h-20 bg-white rounded-full shadow-[0_0_30px_rgba(0,0,0,0.1)]">
-                                        <img className="w-full h-full rounded-full" src={defaultCompany} alt="company-logo" />
-                                    </div>
-                                    <div>
-                                        <div className="text-lg text-[#212529] font-semibold">{offerInfo?.data?.company?.name}</div>
-                                        <div className="text-sm text-[#212529] mb-2.5 opacity-80">{offerInfo?.data?.company?.type}</div>
-                                        <div className="text-[13px] font-semibold text-[#212529] opacity-50">{offerInfo?.data?.company?.personal}</div>
-                                    </div>
-                                </div>
-                                {offerInfo?.data?.notes !== null && <div className="p-3.75 rounded-lg mb-5 border border-[#ececec]">
-                                    <p className="mb-4 text-[#212529] font-semibold">Müşteri Notu</p>
-                                    <p className="mb-4 text-[#212529] font-meidum">{offerInfo?.data?.notes}</p>
-                                </div>}
-                                <div>
-                                    <div className="flex">
-                                        {offerInfo?.data?.pricing_type === "PASS" && <div className="flex-1 max-w-full text-center">
-                                            <p className="text-sm text-[#212529] opacity-70 font-semibold">Pass Fiyatı</p>
-                                            <p className="text-[22px] text-[#212529]">{offerInfo?.data?.prices?.secondary?.formatted}</p>
-                                        </div>}
-                                        <div className="flex-1 max-w-full text-center">
-                                            <p className="text-sm text-[#212529] opacity-70 font-semibold">Satış Fiyatı</p>
-                                            <p className="text-[22px] text-[#212529]">{offerInfo?.data?.prices?.primary?.formatted}</p>
-                                        </div>
-                                    </div>
-                                    <div className="my-7.5">
-                                        <div className="flex-1 max-w-full text-center">
-                                            <p className="text-sm text-[#212529] opacity-70 font-semibold">Teklif Edilen Tutar</p>
-                                            <p className="text-[22px] text-[#212529]">{offerInfo?.data?.offered_price?.formatted}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                {offerInfo?.data?.status?.key === "waiting" && <div className="p-3.75 bg-[#f9f9f9] rounded-lg">
-                                    <h2 className="text-xl text-[#212529] mb-5 font-semibold">Teklife Yanıt Verin</h2>
-                                    <div className="mb-5 flex justify-start gap-2.5">
-                                        <button onClick={() => setOfferStatus("confirm")} className={`text-sm ${offerStatus === "confirm" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]"} p-2.5 flex-1 rounded-lg cursor-pointer`}>Kabul Et</button>
-                                        <button onClick={() => setOfferStatus("reject")} className={`text-sm ${offerStatus === "reject" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]"} p-2.5 flex-1 rounded-lg cursor-pointer`}>Reddet</button>
-                                    </div>
-                                    <div className="mb-2">
-                                        <label className="text-[#212529]" htmlFor="note">Notunuz</label>
-                                        <textarea value={note} onChange={(e) => setNote(e.target.value)} className="bg-white px-3 py-1.5 block w-full border border-[#d9d9d9] rounded-lg min-h-[calc(1.5em+0.75rem+2px)]" type="text" id="note" name="note" />
-                                    </div>
-                                    <button disabled={!offerStatus} onClick={handleReplyOffer} className="w-full text-white text-sm font-semibold cursor-pointer hover:bg-[#157347] transition-colors duration-300 ease-in-out bg-[#198754] py-2 px-5 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#198754]">Kaydet</button>
-                                </div>}
-                            </>
-                        )}
-                    </div>
-                </div>}
-                <div className="p-2.5 mb-7.5 rounded-lg border border-[#f8f8f8]">
-                    <div className="text-lg text-[#676767] py-2 px-4 bg-[#f8f8f8] rounded-lg">
-                        <p className="py-1.25 font-semibold">Müşteriden Gelen Fiyat Teklifleri</p>
-                    </div>
-                    <div className="w-full p-4 overflow-x-auto scrollbar-thin">
-                        <table className="w-full">
-                            <thead>
-                                <tr className="bg-[#ececec] text-[#6c757d]">
-                                    <th className="text-start py-4 px-2.5 rounded-l-lg whitespace-nowrap">Teklif Gönderen</th>
-                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Fiyat</th>
-                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Durum</th>
-                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Oluşturma Tarihi</th>
-                                    <th className="text-end py-4 px-2.5 rounded-r-lg whitespace-nowrap">İşlemler</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {offers?.data?.map(item => (
-                                    <OfferCard
-                                        price={item.offered_price.formatted}
-                                        name={item.company.personal}
-                                        status={item.status.title}
-                                        key={item.id}
-                                        created_at={item.created_at}
-                                        page="edit"
-                                        id={item.id}
-                                        setOfferMenuShown={setOfferMenuShown}
-                                        setOfferInfo={setOfferInfo}
-                                        setSelectedOfferId={setSelectedOfferId}
-                                        setLoaded={setLoaded}
-                                    />
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div className="p-2.5 mb-7.5 rounded-lg border border-[#f8f8f8]">
-                    <div className="text-lg text-[#676767] py-2 px-4 bg-[#f8f8f8] rounded-lg">
-                        <p className="py-1.25 font-semibold">Müşteriye Gönderilen Teklifler</p>
-                    </div>
-                    <div className="w-full p-4 overflow-x-auto scrollbar-thin">
-                        <table className="w-full">
-                            <thead>
-                                <tr className="bg-[#ececec] rounded-lg text-[#6c757d]">
-                                    <th className="text-start py-4 px-2.5 rounded-l-lg whitespace-nowrap">#</th>
-                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Müşteri</th>
-                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Değerlendirme</th>
-                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Durum</th>
-                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Oluşturma Tarihi</th>
-                                    <th className="text-end py-4 px-2.5 rounded-r-lg whitespace-nowrap">İşlemler</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {proposals.data.map(item => (
-                                    <ProposalCard
-                                        score={item.score}
-                                        created_at={item.created_at}
-                                        status={item.status.title}
-                                        page="edit"
-                                        name={item.customer.name}
-                                        key={item.id}
-                                        code={item.code}
-                                        id={item.id}
-                                    />
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div className="p-2.5 mb-7.5 rounded-lg border border-[#f8f8f8]">
-                    <div className="text-lg text-[#676767] py-2 px-4 bg-[#f8f8f8] rounded-lg">
-                        <p className="py-1.25 font-semibold">Diğer Firmaların Oluşturduğu Teklifler</p>
-                    </div>
-                    <div className="w-full p-4 overflow-x-auto scrollbar-thin">
-                        <table className="w-full">
-                            <thead>
-                                <tr className="bg-[#ececec] rounded-lg text-[#6c757d]">
-                                    <th className="text-start py-4 px-2.5 rounded-l-lg whitespace-nowrap">Firma</th>
-                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Değerlendirme</th>
-                                    <th className="text-start py-4 px-2.5 whitespace-nowrap">Durum</th>
-                                    <th className="text-start py-4 px-2.5 rounded-r-lg whitespace-nowrap">Oluşturma Tarihi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {externalProposals?.data.map(item => (
-                                    <ProposalCard
-                                        score={item.score}
-                                        created_at={item.created_at}
-                                        status={item.status.title}
-                                        page="external"
-                                        name={item.company.name}
-                                        key={item.id}
-                                        id={item.id}
-                                    />
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>}
-            {editType === "galery" && <div className="w-full max-w-[90%]">
-                {uploadVideoShown && <UploadVideoPopup
-                    setUploadVideoShown={setUploadVideoShown}
-                    handleAddOutsourceVideo={handleAddOutsourceVideo}
-                    setVideoType={setVideoType}
-                    videoType={videoType}
-                    video={video}
-                    setVideo={setVideo}
-                    coverImg={coverImg}
-                    setCoverImg={setCoverImg}
-                    handleAddLocalVideo={handleAddLocalVideo}
-                />}
-                <div className="w-full mb-7.5">
-                    {detail?.galleries?.map(item => (
-                        <div key={item.id} className="p-2.5 border border-[#f8f8f8] rounded-lg mb-7.5">
-                            <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
-                                <h5 className="text-[#676767] text-lg py-1.25">{item.title}</h5>
-                            </div>
-                            <div className="p-4">
-                                {(item.title.includes("Kapak Fotoğrafı") && understand) && <div className="w-full flex items-center justify-between p-4 mb-4 bg-[#fff3cd] rounded-lg border border-[#ffecb5]">
-                                    <p className="text-[#664d03]">Lütfen logolu resimler eklemeyin. Aksi halde ilanınız pasif edilecektir</p>
-                                    <button onClick={() => setUnderstand(false)} className="bg-[#ffca64] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">Anladım</button>
-                                </div>}
-                                <div className={`${item.title.includes("Kapak Fotoğrafı") ? "h-87.5" : "h-50"} text-center flex items-center justify-center`}>
-                                    {!item.title.includes("Kapak Fotoğrafı") ?
-                                        <div className="w-full flex flex-col">
-                                            <div className="h-50 text-center p-5 flex w-full items-center justify-center border-2 border-[#eee] border-dashed">
-                                                <input onChange={(e) => {
-                                                    const file = e.target.files?.[0];
-                                                    if (file) handleUploadGallery(file, item.id);
-                                                }} className="w-full h-full" type="file" id={`file-${item.id}`} hidden></input>
-                                                <label className="w-full h-full flex items-center justify-center cursor-pointer text-xl text-[#929292]" htmlFor={`file-${item.id}`}>
-                                                    Dosyaları buraya sürükleyin veya seçmek için tıklayın
-                                                </label>
-                                            </div>
-                                        </div> : <div className="w-full h-full relative">
-                                            <img className="w-full h-full object-cover rounded-lg" src={defaultProperty}></img>
-                                            <div className="absolute right-7.5 bottom-7.5 flex flex-wrap items-center">
-                                                <a href={item?.images?.[0]?.path?.large} target="_blank" rel="noopener noreferrer" className="text-sm bg-[#f1f1f1] mr-2 text-[#4b4b4b] font-semibold py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
-                                                    <img className="w-5 h-5" src={chain} alt="" />
-                                                </a>
-                                                <div>
-                                                    <label htmlFor="cover" className="text-sm bg-[#f1f1f1] text-[#4b4b4b] font-semibold py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Kapak Fotoğrafını Değiştir</label>
-                                                    <input onChange={(e) => {
-                                                        const file = e.target.files?.[0];
-                                                        setCoverFile(file);
-                                                        if (file) handleUpdateCover()
-                                                    }}
-                                                        type="file" className="hidden" id="cover" name="cover" />
-                                                </div>
-                                            </div>
-                                        </div>}
-                                </div>
-                                {(item?.images[0]?.path?.small && item.title !== "3D Kapak Fotoğrafı") && <div className="h-auto w-[25%] mt-5 bg-linear-to-b from-transparent to-black rounded-lg">
-                                    <img src={item?.images[0]?.path?.small} alt={item?.images[0]?.path?.small} />
-                                    <div className="p-4 flex flex-col items-end">
-                                        <div>
-                                            <button className="text-white flex items-center gap-2 text-[13px] font-medium p-1.25 rounded-sm cursor-pointer hover:bg-[#00000080] transition-colors duration-300 ease-in-out">
-                                                Belirtilmedi
-                                                <img className="w-4 h-4" src={calendar} alt="" />
-                                            </button>
-                                        </div>
-                                        <div className="flex w-full justify-between items-end">
-                                            <div className="text-white">
-                                                <p className="text-sm opacity-80">119.46 kB</p>
-                                                <p className="text-xs opacity-80">jpeg</p>
-                                            </div>
-                                            <div className="text-white flex items-center">
-                                                <a target="_blank" href={item?.images[0]?.path?.small}>
-                                                    <img className="w-4.5 h-4.5 mr-2 opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out" src={whiteChain} alt="" />
-                                                </a>
-                                                <img onClick={() => { setDeleteVideoPopUp(true); setMediaID(item.images[0].id); setDeleteTarget("media"); }} className="w-5.5 h-5.5 mr-2 opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out" src={can} alt="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <div className="w-full mb-7.5">
-                    <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
-                        <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
-                            <h5 className="text-[#676767] text-lg py-1.25">Videolar</h5>
-                        </div>
-                        <div className="p-4">
-                            {detail.videos.length === 0 ? <div className="w-full flex items-center justify-between p-4 mb-4 bg-[#fff3cd] rounded-lg">
-                                <p className="text-[#664d03]">Henüz video yüklemediniz</p>
-                            </div> : <div className="flex flex-wrap">
-                                {detail?.videos?.map(item => (
-                                    <div id={item.id} key={item.id} className="w-[calc(33.3%-30px)] p-7.5 rounded-lg flex items-end aspect-square bg-cover bg-center m-3.75" style={{ backgroundImage: `url(${cover})` }}>
-                                        <div className="flex text-white gap-3.75 flex-wrap w-full">
-                                            <a href={item.path} target="_blank" className="bg-[#27c5d2] flex items-center hover:shadow-[0_0_30px_#27c5d2] transition-shadow duration-300 ease-in-out py-1.25 px-3.75 rounded-lg">
-                                                <img className="w-5 h-5 mr-2" src={play} alt="" />
-                                                Oynat
-                                            </a>
-                                            <button onClick={() => { setVideoID(item.id); setDeleteVideoPopUp(true); setDeleteTarget("video"); }} className="bg-[#e10606] flex items-center cursor-pointer hover:shadow-[0_0_30px_#e10606] transition-shadow duration-300 ease-in-out py-1.25 px-3.75 rounded-lg">
-                                                <img className="w-6 h-6 mr-2" src={can} alt="" />
-                                                Kaldır
-                                            </button>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>}
-                        </div>
-                        <div>
-                            <button onClick={() => setUploadVideoShown(true)} className="bg-[#f1f1f1] flex gap-1 items-center cursor-pointer font-semibold text-[#4b4b4b] text-sm rounded-lg py-2 px-5 hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
-                                <img className="w-4 h-4" src={plus} alt="" />
-                                Video Yükleyin
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>}
+            {editType === "info" && <EditPropertyInfo
+                detail={detail}
+                title={title}
+                setTitle={setTitle}
+                currency={currency}
+                setCurrency={setCurrency}
+                passPrice={passPrice}
+                setPassPrice={setPassPrice}
+                sellPrice={sellPrice}
+                setSellPrice={setSellPrice}
+                country={country}
+                setCountry={setCountry}
+                city={city}
+                setCity={setCity}
+                district={district}
+                setDistrict={setDistrict}
+                street={street}
+                setStreet={setStreet}
+                latitude={latitude}
+                longitude={longitude}
+                features={features}
+                handleFeatureChange={handleFeatureChange}
+                handleUpdateProperty={handleUpdateProperty}
+                status={status}
+            />}
+            {editType === "settings" && <EditPropertySettings
+                detail={detail}
+                navigate={navigate}
+                id={id}
+                setToogleMenu={setToogleMenu}
+                setCopyPopUp={setCopyPopUp}
+                setDeletePopUp={setDeletePopUp}
+                setSoldPopUp={setSoldPopUp}
+            />}
+            {editType === "move" && <EditPropertyMove transactions={transactions} />}
+            {editType === "offers" && <EditPropertyOffers
+                offerMenuShown={offerMenuShown}
+                closeOfferMenu={closeOfferMenu}
+                loaded={loaded}
+                offerInfo={offerInfo}
+                offerStatus={offerStatus}
+                setOfferStatus={setOfferStatus}
+                note={note}
+                setNote={setNote}
+                handleReplyOffer={handleReplyOffer}
+                offers={offers}
+                setOfferMenuShown={setOfferMenuShown}
+                setOfferInfo={setOfferInfo}
+                setSelectedOfferId={setSelectedOfferId}
+                setLoaded={setLoaded}
+                proposals={proposals}
+                externalProposals={externalProposals}
+            />}
+            {editType === "galery" && <EditPropertyGallery
+                detail={detail}
+                understand={understand}
+                setUnderstand={setUnderstand}
+                handleUploadGallery={handleUploadGallery}
+                handleUpdateCover={handleUpdateCover}
+                setCoverFile={setCoverFile}
+                setDeleteVideoPopUp={setDeleteVideoPopUp}
+                setMediaID={setMediaID}
+                setDeleteTarget={setDeleteTarget}
+                setVideoID={setVideoID}
+                uploadVideoShown={uploadVideoShown}
+                setUploadVideoShown={setUploadVideoShown}
+                handleAddOutsourceVideo={handleAddOutsourceVideo}
+                setVideoType={setVideoType}
+                videoType={videoType}
+                video={video}
+                setVideo={setVideo}
+                coverImg={coverImg}
+                setCoverImg={setCoverImg}
+                handleAddLocalVideo={handleAddLocalVideo}
+            />}
             <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
                     <AppLinks />

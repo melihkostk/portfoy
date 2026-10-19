@@ -298,7 +298,7 @@ export function PropertiesDetail({ loged }) {
                             <div key={item.id} className="mb-7.5">
                                 <h2 className="p-5 mb-4 text-xl text-[#212529] font-semibold">{item.title}</h2>
                                 {item?.features?.map((item, index) => (
-                                    <FeatureCard index={index} key={item.id} title={item.title} value={item.value} id={item.id} />
+                                    <FeatureCard index={index} key={item.id} title={item.title} value={item.title !== "Metrekare (m²)" ? item.value : `${item.value.min} - ${item.value.max}`} id={item.id} />
                                 ))}
                             </div>
                         ))}
