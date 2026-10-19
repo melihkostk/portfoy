@@ -155,10 +155,11 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
 
         updateProperty(id, title, country, city, district, street, sellPrice, passPrice, details).then(data => {
             if (data.status === "success") {
-                console.log(data)
+                navigate("/company")
             }
             else {
-                console.log(data.message)
+                setErrorMessage(data.message)
+                setErrorMessageShown(true)
             }
         }).finally(() => setLoaded(true))
     }
