@@ -9,8 +9,9 @@ import { getRecentlyProperties } from "../services/propertiesApi"
 import { getDiscountedProperties } from "../services/propertiesApi"
 import { useState, useEffect, useRef } from "react"
 import { ClipLoader } from "react-spinners"
+import { getTranslation } from "../services/translation"
 
-export function HomeLogin({ loged, news, logOut }) {
+export function HomeLogin({ loged, news, logOut , locale }) {
 
     const [recentlyProperties, setRecentlyProperties] = useState([])
     const [discountedProperties, setDiscountedProperties] = useState([])
@@ -35,6 +36,12 @@ export function HomeLogin({ loged, news, logOut }) {
         el.scrollTo({ left: (maxScroll / (dotCount - 1)) * index, behavior: "smooth" })
     }
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation)
+    }, [locale])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {!loaded && (
@@ -46,16 +53,16 @@ export function HomeLogin({ loged, news, logOut }) {
                     />
                 </div>
             )}
-            <Header loged={loged} logOut={logOut} />
+            <Header translation={translation} loged={loged} logOut={logOut} />
             <div className='w-full max-w-[90%] py-20'>
-                <h1 className='text-[35px] text-[#45443f] font-medium mb-2'>İlanları Filtrele</h1>
+                <h1 className='text-[35px] text-[#45443f] font-medium mb-2'>{translation?.data?.business?.filter_properties}</h1>
                 <Filter />
             </div>
             <div className='w-full max-w-[90%] flex flex-col items-center'>
                 <div className="w-full py-18.75">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-[32px] text-[#45443f] mb-2">Fırsat İlanları</h2>
-                        <Link className="text-[#B7B9BF] text-xl hover:text-[#45443F] transition-colors duration-300 ease-in-out" to={"/properties?discounted=1"}>Tümünü Gör</Link>
+                        <h2 className="text-[32px] text-[#45443f] mb-2">{translation?.data?.business?.discounted_properties}</h2>
+                        <Link className="text-[#B7B9BF] text-xl hover:text-[#45443F] transition-colors duration-300 ease-in-out" to={"/properties?discounted=1"}>{translation?.data?.business?.view_all}</Link>
                     </div>
                     <div>
                         <div ref={discountedScrollRef} className="flex overflow-auto scrollbar-none">
@@ -90,7 +97,7 @@ export function HomeLogin({ loged, news, logOut }) {
             <div className='w-full max-w-[90%] flex flex-col items-center'>
                 <div className="w-full py-18.75">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-[32px] text-[#45443f] mb-2">Yeni İlanlar</h2>
+                        <h2 className="text-[32px] text-[#45443f] mb-2">{translation?.data?.business?.new_properties}</h2>
                     </div>
                     <div>
                         <div ref={recentlyScrollRef} className="flex overflow-auto py-6.25 scrollbar-none">
@@ -124,23 +131,23 @@ export function HomeLogin({ loged, news, logOut }) {
             <div className='w-full bg-[#f7f7fb] py-18.75'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center'>
                     <div className='flex justify-between items-center w-full'>
-                        <h2 className='text-[#45443F] text-[32px]'>Haberler ve Duyurular</h2>
-                        <Link to={"/articles"} className='text-[#B7B9BF] text-xl font-medium hover:text-[#45443f] transition-colors duration-300 ease-in-out' href="https://demo.pigasoft.com/portfoy/public/tr/articles">Tümünü Gör</Link>
+                        <h2 className='text-[#45443F] text-[32px]'>{translation?.data?.business?.article_and_announcements}</h2>
+                        <Link to={"/articles"} className='text-[#B7B9BF] text-xl font-medium hover:text-[#45443f] transition-colors duration-300 ease-in-out' href="https://demo.pigasoft.com/portfoy/public/tr/articles">{translation?.data?.business?.view_all}</Link>
                     </div>
                     <div className='flex items-start overflow-hidden -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
                         {news.map(item => (
-                            <NewsCard key={item.id} title={item.title} cover={item.cover} created={item.created_at} id={item.id} />
+                            <NewsCard translation={translation} key={item.id} title={item.title} cover={item.cover} created={item.created_at} id={item.id} />
                         ))}
                     </div>
                 </div>
             </div>
             <div className='w-full mt-30 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )

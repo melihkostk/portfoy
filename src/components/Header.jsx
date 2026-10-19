@@ -17,7 +17,7 @@ import { getAllNotifications } from "../services/notificationsApi"
 import { logOut } from "../services/authApi"
 import sea from "../assets/sea.png"
 
-export function Header({ loged, details }) {
+export function Header({ loged, details , translation }) {
 
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
@@ -91,47 +91,47 @@ export function Header({ loged, details }) {
                 {!loged && <div className="max-[1100px]:hidden">
                     <ul className="flex gap-5 pl-5">
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/">Anasayfa</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/">{translation?.data?.business?.home}</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/discover">Port-foy Nedir?</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/discover">{translation?.data?.business?.what_is_portfoy}</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/pricing">Fiyatlandırma</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/pricing">{translation?.data?.business?.pricing}</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/articles">Haberler</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/articles">{translation?.data?.business?.articles}</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/corporate">Kurumsal</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/corporate">{translation?.data?.business?.corporate}</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/contacts">İletişim</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/contacts">{translation?.data?.business?.contacts}</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" href="">Blog</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" href="">{translation?.data?.business?.blog}</Link>
                         </li>
                     </ul>
                 </div>}
                 {loged && <div className="max-[1100px]:hidden px-6.25">
                     <ul className="flex gap-5 pl-5">
                         <li>
-                            <Link to={"/properties"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">İlanlar</Link>
+                            <Link to={"/properties"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">{translation?.data?.business?.properties}</Link>
                         </li>
                         <li>
-                            <Link to={"/companies"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">Firmalar</Link>
+                            <Link to={"/companies"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">{translation?.data?.business?.companies}</Link>
                         </li>
                         <li>
-                            <Link to={"/properties/create"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">Yeni İlan Oluştur</Link>
+                            <Link to={"/properties/create"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">{translation?.data?.business?.create_property}</Link>
                         </li>
                         <li>
-                            <Link to={"/contacts"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">İletişim</Link>
+                            <Link to={"/contacts"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">{translation?.data?.business?.contacts}</Link>
                         </li>
                     </ul>
                 </div>}
                 {loged && <form action="/properties" method="GET" className="px-7.5 flex items-center relative max-[1100px]:hidden grow">
                     <img className="absolute left-10 w-5 h-5" src={sea} alt="" />
-                    <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] pl-10 h-12.5 px-2 rounded-[5px] text-sm w-full" type="text" placeholder="İlanlarda Ara" />
+                    <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] pl-10 h-12.5 px-2 rounded-[5px] text-sm w-full" type="text" placeholder={translation?.data?.business?.search_in_properties} />
                 </form>}
                 <div className="flex items-center justify-between gap-2.5">
                     <LanguageSelect />
@@ -214,14 +214,14 @@ export function Header({ loged, details }) {
                     </button>}
                     {loged && <Link to={"/company"} className="h-12.5 px-5 max-[1100px]:hidden text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                         <img className="object-cover w-5 h-5" src={shop} alt="" />
-                        <span className="max-[1400px]:hidden">Portföyüm</span>
+                        <span className="max-[1400px]:hidden">{translation?.data?.business?.my_portfolio}</span>
                     </Link>}
                     {loged && <div className="relative">
                         <div className="flex">
                             <div className="h-12.5 border-r border-r-[#ffffff38]">
                                 <Link to={"/profile"} className="flex items-center justify-center h-full px-5 max-[1100px]:px-2.5 rounded-l-[5px] max-[1100px]:rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                                     <img className="object-cover w-7 h-7" src={person} alt="" />
-                                    <p className="text-white max-[1400px]:hidden">Hesabım</p>
+                                    <p className="text-white max-[1400px]:hidden">{translation?.data?.business?.my_account}</p>
                                 </Link>
                             </div>
                             <div onClick={() => setAccountShown(prev => !prev)} className="flex max-[1100px]:hidden items-center justify-center bg-[#27C5D2] rounded-r-[5px] w-7.5 cursor-pointer hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
@@ -237,28 +237,28 @@ export function Header({ loged, details }) {
                                 <ul>
                                     <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
-                                        <Link to={"/wishlist"} className="text-white text-sm">Favorilerim</Link>
+                                        <Link to={"/wishlist"} className="text-white text-sm">{translation?.data?.business?.my_wishlist}</Link>
                                     </li>
                                     <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
                                         <Link to={"/offers/send"} className="text-white text-sm truncate">
-                                            Müşteriye gönderilen teklifler
+                                            {translation?.data?.business?.my_proposals}
                                         </Link>
                                     </li>
                                     <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
                                         <Link to={"/support"} className="text-white text-sm">
-                                            Yardım & Destek
+                                            {translation?.data?.business?.support}
                                         </Link>
                                     </li>
                                     <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
-                                        <Link className="text-white text-sm">Yönetim Paneli</Link>
+                                        <Link className="text-white text-sm">{translation?.data?.business?.dashboard}</Link>
                                     </li>
                                     <li onClick={handleLogOut} className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
                                         <span className="text-white text-sm">
-                                            Çıkış Yap
+                                            {translation?.data?.business?.logout}
                                         </span>
                                     </li>
                                 </ul>

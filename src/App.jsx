@@ -73,21 +73,21 @@ function App() {
     }
   }, []);
 
+   const [locale , setLocale] = useState("tr");
+
   const [news, setNews] = useState([])
 
   useEffect(() => {
-    getArticles().then(setNews)
-  }, [])
+    getArticles(locale).then(setNews)
+  }, [locale])
 
   const [message, setMessage] = useState("");
   const [messageShown, setMessageShown] = useState(false);
 
-  const [locale , setLocale] = useState("tr");
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={loged ? <HomeLogin news={news} loged={loged} setLoged={setLoged} /> : <Home loged={loged} setLoged={setLoged} news={news} />} />
+        <Route path="/" element={loged ? <HomeLogin locale={locale} news={news} loged={loged} setLoged={setLoged} /> : <Home loged={loged} setLoged={setLoged} news={news} />} />
         <Route path="/discover" element={<Discover loged={loged} />} />
         <Route path="/pricing" element={<Pricing loged={loged} />} />
         <Route path="/articles" element={<News loged={loged} news={news} />} />
