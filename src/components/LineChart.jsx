@@ -3,18 +3,18 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend)
 
-export function LineChart({ visits = {} }) {
+export function LineChart({ visits = {} , translation}) {
     return (
         <div className="bg-white p-7.5 rounded-lg w-[31%] max-[992px]:w-full">
             <div className="bg-[#f7f6fb] w-full rounded-lg mb-7.5 text-center">
-                <p className="text-xl py-2.5">Son Profil Ziyaretleri</p>
+                <p className="text-xl py-2.5">{translation?.data?.business?.last_company_profile_visits}</p>
             </div>
             <div>
                 <Line
                     data={{
                         labels: visits?.labels ?? [],
                         datasets: [{
-                            label: "Son Profil Ziyaretleri",
+                            label: translation?.data?.business?.last_company_profile_visits,
                             data: visits?.datasets?.data ?? [],
                             borderColor: "#2a78d6",
                             backgroundColor: "rgba(42, 120, 214, 0.12)",
