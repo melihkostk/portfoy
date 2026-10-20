@@ -244,7 +244,7 @@ export function PropertiesDetail({ loged , locale }) {
                             </li>
                             <li className="flex items-center">
                                 <img className="w-5 h-5 mr-1.25" src={building} alt="" />
-                                {details?.property_type === "ready" ? <p className="text-[#c2c2c2] text-sm">Hazır</p> : <p className="text-[#c2c2c2] text-sm">Proje</p>}
+                                {details?.property_type === "ready" ? <p className="text-[#c2c2c2] text-sm">{translation?.data?.business?.building_statusess.ready}</p> : <p className="text-[#c2c2c2] text-sm">{translation?.data?.business?.building_statusess.under_construction}</p>}
                             </li>
                             <li className="flex items-center">
                                 <img className="w-5 h-5 mr-1.25" src={calendar} alt="" />
