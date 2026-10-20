@@ -9,8 +9,9 @@ import { addLocation, deleteAddress, getLocation, updateLocation } from "../serv
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
+import { getTranslation } from "../services/translation"
 
-export function Location({ loged }) {
+export function Location({ loged , locale }) {
 
     const [location, setLocation] = useState([])
     const [loaded, setLoaded] = useState(false)
@@ -145,6 +146,12 @@ export function Location({ loged }) {
         })
     }
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {(locationMenu || updateMapShown || editShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -159,7 +166,7 @@ export function Location({ loged }) {
             )}
             {updateMapShown && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[90%] w-1/2 bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529]">Harita Konumunu Düzenle</h2>
+                    <h2 className="text-xl text-[#212529]">{translation?.data?.business?.edit_map_location}</h2>
                     <img onClick={() => setUpdateMapShown(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 <div className="w-full h-full p-4">
@@ -179,7 +186,7 @@ export function Location({ loged }) {
                     </div>
                 </div>
             </div>}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Konum & İletişim</span></p>
@@ -192,11 +199,12 @@ export function Location({ loged }) {
                 created_at={location?.data?.created_at}
                 type={location?.data?.type}
                 logo={location?.data?.logo}
+                translation={translation}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center max-[992px]:flex-col max-[992px]:items-start">
-                    <h2 className="text-[#212529] text-[32px]">Konum & İletişim</h2>
-                    <div onClick={() => setLocationMenu(true)} className="text-[#4b4b4b] bg-[#f1f1f1] text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">Adres Oluştur</div>
+                    <h2 className="text-[#212529] text-[32px]">{translation?.data?.business?.company_contacts}</h2>
+                    <div onClick={() => setLocationMenu(true)} className="text-[#4b4b4b] bg-[#f1f1f1] text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">{translation?.data?.business?.create_address}</div>
                 </div>
             </div>
             <div className="w-full max-w-[90%] mt-12.5">
@@ -214,6 +222,7 @@ export function Location({ loged }) {
                                 handleDeleteLocation={handleDeleteLocation}
                                 setUpdateMapShown={setUpdateMapShown}
                                 onEditClick={() => handleEditClick(item)}
+                                translation={translation}
                             />
                         ))}
                     </div>
@@ -329,11 +338,11 @@ export function Location({ loged }) {
             </div>}
             <div className='w-full mt-40 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )
