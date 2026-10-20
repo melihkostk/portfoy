@@ -7,8 +7,9 @@ import { SettingsCard } from "../components/SettingsCard"
 import { getCompanyInfo, getPreference, getTeam } from "../services/myCompanyApi"
 import close from "../assets/blue-close.png"
 import { PersonelCard } from "../components/PersonalCard"
+import { getTranslation } from "../services/translation"
 
-export function Settings({ loged }) {
+export function Settings({ loged , locale }) {
 
     const [companyInfo, setCompanyInfo] = useState([]);
 
@@ -30,10 +31,16 @@ export function Settings({ loged }) {
         getPreference().then(setPreference)
     }, [])
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {personalSelectPopUp && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Firma Tercihleri</span></p>
@@ -69,43 +76,44 @@ export function Settings({ loged }) {
                 created_at={companyInfo?.created_at}
                 type={companyInfo?.type}
                 logo={companyInfo?.logo}
+                translation={translation}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
-                    <p className="text-[32px] mb-10">Firma Tercihleri</p>
+                    <p className="text-[32px] mb-10">{translation?.data?.business?.manage_company}</p>
                     <div>
                         <SettingsCard
-                            title="Fiyat Teklifleri için Personel Seçimi"
-                            description="İlana yapılan fiyat teklifleri için hangi kullanıcılara bildirim gideceğini seçin"
+                            title={translation?.data?.business?.company_settings?.price_offers?.title}
+                            description={translation?.data?.business?.company_settings?.price_offers?.description}
                             setPersonalSelectPopUp={setPersonalSelectPopUp}
                             preference={preference}
                             team={team}
                         />
                         <SettingsCard
-                            title="Personel Bilgilerinin Görünürlüğü"
-                            description="Ekibinizdeki personellerin bilgilerinin diğer Port-Foy kullanıcılarına görünürlüğünü seçin"
+                            title={translation?.data?.business?.company_settings?.personal_visibility?.title}
+                            description={translation?.data?.business?.company_settings?.personal_visibility?.description}
                         />
                         <SettingsCard
-                            title="Pass Fiyatı Görünürlüğü"
-                            description="İlanlarınızın Pass Fiyatının diğer kullanıcı tarafından görünürlüğünü belirleyin"
+                            title={translation?.data?.business?.company_settings?.pass_price_visibility?.title}
+                            description={translation?.data?.business?.company_settings?.pass_price_visibility?.description}
                         />
                         <SettingsCard
-                            title="Komisyon Oranları Görünürlüğü"
-                            description="İlanlarınızın komisyon oranları diğer kullanıcı tarafından görünürlüğünü belirleyin"
+                            title={translation?.data?.business?.company_settings?.properties_commission_rates_visibility?.title}
+                            description={translation?.data?.business?.company_settings?.properties_commission_rates_visibility?.title}
                         />
                     </div>
                 </div>
                 <div>
-                    <button className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold text-sm py-2 px-5 rounded-lg">Kaydet</button>
+                    <button className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold text-sm py-2 px-5 rounded-lg">{translation?.data?.business?.save}</button>
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )

@@ -118,7 +118,7 @@ function App() {
           <Route path="/company/contacts" element={<Location locale={locale} loged={loged} />} />
           <Route path="/company/customers" element={<Customers locale={locale} loged={loged} />} />
           <Route path="/company/subscription" element={<Subscription locale={locale} loged={loged} />} />
-          <Route path="/company/settings" element={<Settings loged={loged} />} />
+          <Route path="/company/settings" element={<Settings locale={locale} loged={loged} />} />
           <Route path="/company/edit" element={<Edit locale={locale} loged={loged} />} />
           <Route path="/company/proposals" element={<CompanyProposals locale={locale} loged={loged} />}></Route>
           <Route path="/company/summary" element={<Summary locale={locale} loged={loged} />}></Route>
