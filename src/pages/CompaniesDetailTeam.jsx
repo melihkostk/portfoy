@@ -7,8 +7,9 @@ import { getCompaniesTeam } from "../services/companiesApi";
 import { CompanyHeader } from "../components/CompanyHeader";
 import { TeamCard } from "../components/TeamCard";
 import { ClipLoader } from "react-spinners";
+import { getTranslation } from "../services/translation";
 
-export function CompaniesDetailTeam({ loged }) {
+export function CompaniesDetailTeam({ loged , locale }) {
     const { id } = useParams();
 
     const [companyDetailTeam, setCompanyDetailTeam] = useState([]);
@@ -16,7 +17,13 @@ export function CompaniesDetailTeam({ loged }) {
 
     useEffect(() => {
         getCompaniesTeam(id).then(setCompanyDetailTeam).finally(() => setLoaded(true))
-    }, [])
+    }, [id])
+
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -29,7 +36,7 @@ export function CompaniesDetailTeam({ loged }) {
                     />
                 </div>
             )}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
@@ -43,6 +50,7 @@ export function CompaniesDetailTeam({ loged }) {
                 type={companyDetailTeam?.type}
                 badges={companyDetailTeam?.badges?.[0]?.title}
                 logo={companyDetailTeam?.logo}
+                translation={translation}
             />
             <div className="max-w-[90%] w-full pt-12.5 mb-5">
                 <h2 className="text-[32px] text-[#212529] font-medium">Ekip</h2>
@@ -65,11 +73,11 @@ export function CompaniesDetailTeam({ loged }) {
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )
