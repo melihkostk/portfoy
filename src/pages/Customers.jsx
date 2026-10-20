@@ -8,8 +8,9 @@ import { addCustomer, editCustomer, filterCustomer, getAllCustomers, getAllLangu
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
+import { getTranslation } from "../services/translation"
 
-export function Customers({ loged }) {
+export function Customers({ loged , locale }) {
 
     const [customers, setCustomers] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -87,6 +88,12 @@ export function Customers({ loged }) {
         })).finally(() => setLoaded(true))
     }
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {customerMenu && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -99,7 +106,7 @@ export function Customers({ loged }) {
                     />
                 </div>
             )}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Müşteriler</span></p>
@@ -107,13 +114,13 @@ export function Customers({ loged }) {
             </div>
             {customerMenu && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529] font-semibold">{editId ? "Müşteriyi Düzenle" : "Müşteri Oluştur"}</h2>
+                    <h2 className="text-xl text-[#212529] font-semibold">{editId ? translation?.data?.business?.edit : translation?.data?.business?.create_customer}</h2>
                     <img onClick={() => setCustomerMenu(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
                 <div className="w-full p-4">
                     <form action="" onSubmit={handleCustomerSubmit}>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="language">Dil</label>
+                            <label htmlFor="language">{translation?.data?.business?.language}</label>
                             <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="language" id="language">
                                 {languages.map(item => (
                                     <option key={item.name}>{item.name}</option>
@@ -121,15 +128,15 @@ export function Customers({ loged }) {
                             </select>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="name">Müşteri Adı ve Soyadı</label>
-                            <input value={name} onChange={(e) => setName(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="name" placeholder="Personel Adı ve Soyadı" required />
+                            <label htmlFor="name">{translation?.data?.business?.customer_fullname}</label>
+                            <input value={name} onChange={(e) => setName(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="name" placeholder={translation?.data?.business?.customer_fullname} required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="name">E-posta</label>
-                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="email" name="mail" id="mail" placeholder="E-Posta" required />
+                            <label htmlFor="name">{translation?.data?.business?.email}</label>
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="email" name="mail" id="mail" placeholder={translation?.data?.business?.email} required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="phone">Telefon</label>
+                            <label htmlFor="phone">{translation?.data?.business?.phone}</label>
                             <div className="flex gap-3.75">
                                 <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" value={code} onChange={(e) => setCode(e.target.value)} name="" id="">
                                     <option value="90">(90)</option>
@@ -138,15 +145,15 @@ export function Customers({ loged }) {
                                     <option value="357">(357)</option>
                                     <option value="01">(01)</option>
                                 </select>
-                                <input value={number} onChange={(e) => setNumber(e.target.value)} className="border py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="phone" placeholder="Telefon" required />
+                                <input value={number} onChange={(e) => setNumber(e.target.value)} className="border py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="phone" placeholder={translation?.data?.business?.phone} required />
                             </div>
                         </div>
                         {!editId && <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="name">Notunuz</label>
-                            <input value={note} onChange={(e) => setNote(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="mail" id="mail" placeholder="Notunuz" required />
+                            <label htmlFor="name">{translation?.data?.business?.my_notes}</label>
+                            <input value={note} onChange={(e) => setNote(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="mail" id="mail" placeholder={translation?.data?.business?.my_notes} required />
                         </div>}
                         <div className="flex justify-end mt-4">
-                            <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Kaydet</button>
+                            <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">{translation?.data?.business?.save}</button>
                         </div>
                     </form>
                 </div>
@@ -158,17 +165,18 @@ export function Customers({ loged }) {
                 created_at={customers?.data?.created_at}
                 type={customers?.data?.type}
                 logo={customers?.data?.logo}
+                translation={translation}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex flex-col mb-5">
                     <div className="flex justify-between items-center mb-5 flex-wrap">
-                        <h2 className="text-[#212529] text-[32px]">Müşteriler</h2>
+                        <h2 className="text-[#212529] text-[32px]">{translation?.data?.business?.customers}</h2>
                         <div className="flex items-center gap-2.5">
                             <form onSubmit={(e) => { e.preventDefault(); handleFilterCustomer(filterName); }} className="flex max-[992px]:hidden items-center relative max-[992px]:w-full">
                                 <img className="w-4 h-4 absolute left-1" src={graySearch} alt="" />
-                                <input value={filterName} onChange={(e) => setFilterName(e.target.value)} className="text-sm pl-7 rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder="Müşteri adı ile arayın" />
+                                <input value={filterName} onChange={(e) => setFilterName(e.target.value)} className="text-sm pl-7 rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder={translation?.data?.business?.search_in_customers} />
                             </form>
-                            <div onClick={openAddCustomer} className="text-[#4b4b4b] bg-[#f1f1f1] whitespace-nowrap text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">Müşteri Oluştur</div>
+                            <div onClick={openAddCustomer} className="text-[#4b4b4b] bg-[#f1f1f1] whitespace-nowrap text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">{translation?.data?.business?.create_customer}</div>
                         </div>
                     </div>
                     <div className="hidden max-[991px]:flex border border-[#eee] rounded-lg">
@@ -182,13 +190,13 @@ export function Customers({ loged }) {
                     <table className="w-full">
                         <thead>
                             <tr>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg whitespace-nowrap">İsim ve Soyisim</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">E-Posta</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Telefon</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Dil</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Notunuz</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Oluşturma Tarihi</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-r-lg whitespace-nowrap">Teklif ve İşlemler</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg whitespace-nowrap">{translation?.data?.business?.name}</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.validation?.attributes?.email}</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.phone}</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.language}</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.my_notes}</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.created_at}</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-r-lg whitespace-nowrap">{translation?.data?.business?.proposals_and_actions}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -207,6 +215,7 @@ export function Customers({ loged }) {
                                         proposals={item.proposals}
                                         onEditClick={() => handleEditClick(item)}
                                         index={index}
+                                        translation={translation}
                                     />
                                 ))
                             ) : (
@@ -223,6 +232,7 @@ export function Customers({ loged }) {
                                         note={item.notes}
                                         proposals={item.proposals}
                                         onEditClick={() => handleEditClick(item)}
+                                        translation={translation}
                                     />
                                 ))
                             )}
@@ -232,11 +242,11 @@ export function Customers({ loged }) {
             </div>
             <div className='w-full mt-40 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )

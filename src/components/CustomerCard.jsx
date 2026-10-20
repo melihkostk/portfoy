@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import pencil from "../assets/pencil.png"
 import darkMenu from "../assets/dark-menu.png"
 
-export function CustomerCard({name , index , email , phoneCode, phoneNumber, locale , created_at , note , proposals , id , onEditClick}){
+export function CustomerCard({name, translation , index , email , phoneCode, phoneNumber, locale , created_at , note , proposals , id , onEditClick}){
     return(
         <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{name}</td>
@@ -25,7 +25,7 @@ export function CustomerCard({name , index , email , phoneCode, phoneNumber, loc
                 </button>
                 <Link to={`/company/proposals?customer=${id}`} className="bg-[#f1f1f1] py-2 px-5 flex items-center gap-1 rounded-lg whitespace-nowrap text-sm text-[#4b4b4b] font-semibold cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                     {proposals > 0 ?  <img className="w-4 h-4" src={darkMenu}></img> : ""}
-                    {proposals > 0 ?  `${proposals} Teklif` : "Hiç teklif yok"}
+                    {proposals > 0 ?  `${proposals} ${translation?.data?.business?.proposals}` : translation?.data?.business?.no_proposals}
                 </Link>
            </td>
         </tr>
