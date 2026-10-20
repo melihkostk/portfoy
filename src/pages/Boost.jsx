@@ -9,19 +9,26 @@ import { ClipLoader } from "react-spinners"
 import location from "../assets/gray-location.png"
 import building from "../assets/building.png"
 import calendar from "../assets/calendar.png"
+import { getTranslation } from "../services/translation"
 
-export function Boost({ loged }) {
+export function Boost({ loged, locale }) {
 
-    const {id} = useParams();
-    
-    const [loaded , setLoaded] = useState(false)
-    const [details , setDetails] = useState([])
+    const { id } = useParams();
+
+    const [loaded, setLoaded] = useState(false)
+    const [details, setDetails] = useState([])
 
     useEffect(() => {
         getDetails(id).then(setDetails).finally(() => setLoaded(true))
     }, [id])
 
-    const [day , setDay] = useState(7);
+    const [day, setDay] = useState(7);
+
+    const [translation, setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -34,7 +41,7 @@ export function Boost({ loged }) {
                     />
                 </div>
             )}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İlanlar {">"}</span><span className="text-[#9a9898]">Öne Çıkar</span></p>
@@ -43,8 +50,8 @@ export function Boost({ loged }) {
             <div className="w-full max-w-[90%]">
                 <div className="flex justify-between items-center gap-12.5 max-[1100px]:flex-col">
                     <div className="w-1/2 max-[1100px]:w-full">
-                        <h1 className="text-[35px] max-w-[80%] font-semibold mb-7.5 max-[1100px]:max-w-full">İlanınız daha fazla Port-foy kullanıcısının dikkatini çeksin ister misiniz?</h1>
-                        <p className="text-[#808080]">İlanı öne çıkarma başvuru yapın ve daha çok dikkatleri ilanınıza toplayın.</p>
+                        <h1 className="text-[35px] max-w-[80%] font-semibold mb-7.5 max-[1100px]:max-w-full">{translation?.data?.business?.boost_page?.title}</h1>
+                        <p className="text-[#808080]">{translation?.data?.business?.boost_page?.description}</p>
                     </div>
                     <div className="w-1/2 p-7.5 max-[1100px]:w-full max-[1100px]:p-0">
                         {details.status === "draft" && <div className="bg-[#f9d7da] text-[#842029] border border-[#f5c2c7] p-4 mb-4 rounded-lg">
@@ -52,11 +59,9 @@ export function Boost({ loged }) {
                         </div>}
                         <div className="p-7.5 bg-[#f8f8f8] rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.1)]">
                             <div>
-                                <h2 className="text-[25px] font-semibold mb-2">İlanı Öne Çıkarma Başvurusu</h2>
+                                <h2 className="text-[25px] font-semibold mb-2">{translation?.data?.business?.boost_page?.form_title}</h2>
                                 <p className="text-sm text-[#212529] mb-4">
-                                    Başvurunuzu yapmadan önce lütfen ilanınızın, tüm detayları ile birlikte
-                                    doğru bir şekilde girildiğinden emin olun. İlanınızı tek seferde 60 güne
-                                    kadar öne çıkarabilirsiniz.
+                                    {translation?.data?.business?.boost_page?.form_description}
                                 </p>
                             </div>
                             <div className="bg-white flex items-center justify-between rounded-lg p-3.75">
@@ -73,7 +78,7 @@ export function Boost({ loged }) {
                                         </li>
                                         <li className="flex">
                                             <img className="w-5 h-5 mr-1.25" src={building} alt="" />
-                                            {details?.property_type === "ready" ? "Hazır" : "Proje"}
+                                            {details?.property_type === "ready" ? translation?.data?.business?.building_statusess?.ready : translation?.data?.business?.building_statusess?.under_construction}
                                         </li>
                                         <li className="flex">
                                             <img className="w-5 h-5 mr-1.25" src={calendar} alt="" />
@@ -84,11 +89,14 @@ export function Boost({ loged }) {
                             </div>
                             {details.status !== "draft" && <div className="flex flex-col">
                                 <div className="text-center my-12.5">
-                                    <span className="text-[25px] font-semibold">Süre: {day} Gün</span>
+                                    <span className="text-[25px] font-semibold">{translation?.data?.business?.boost_page?.time} {day} {translation?.data?.business?.boost_page?.days.replace(":day", "")}</span>
                                     <input value={day} onChange={(e) => setDay(e.target.value)} className="block mt-4 w-full h-3.75 bg-[#efefef]" type="range" min={7} max={60} name="days" />
                                 </div>
                                 <div>
-                                    <button className="w-full bg-[#27c5d2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out text-white rounded-lg font-semibold text-sm h-12.5 px-5">TRY ₺{day * 10},00 Öde</button>
+                                    <button className="w-full bg-[#27c5d2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out text-white rounded-lg font-semibold text-sm h-12.5 px-5">{translation?.data?.business?.boost_page?.payment_button?.replace(
+                                        ":amount",
+                                        `₺${(day * 10).toFixed(2).replace(".", ",")}`
+                                    )}</button>
                                 </div>
                             </div>}
                         </div>
@@ -97,11 +105,11 @@ export function Boost({ loged }) {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )
