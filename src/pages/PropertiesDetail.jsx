@@ -22,8 +22,9 @@ import graph from "../assets/increase-graph.png"
 import pen from "../assets/pen.png"
 import whiteClose from "../assets/close.png"
 import play from "../assets/white-play.png"
+import { getTranslation } from "../services/translation"
 
-export function PropertiesDetail({ loged }) {
+export function PropertiesDetail({ loged , locale }) {
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -110,6 +111,12 @@ export function PropertiesDetail({ loged }) {
 
     const [thumbnailType , setThumbnailType] = useState("");
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {(offerShown || errorMessageShown || offerModelShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -122,7 +129,7 @@ export function PropertiesDetail({ loged }) {
                     />
                 </div>
             )}
-            <Header loged={loged} details={details} />
+            <Header translation={translation} loged={loged} details={details} />
             {offerModelShown && <CreateOfferModel
                 setOfferModalShown={setOfferModalShown}
                 selectedCustomer={selectedCustomer}
@@ -161,7 +168,7 @@ export function PropertiesDetail({ loged }) {
             </div>}
             {offerShown && <div className="fixed top-1/2 scrollbar-thin scrollbar-thumb-[#27c5d2] left-1/2 flex flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[40%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between w-full p-4 border-b border-b-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529] font-semibold">Fiyat Teklifi Oluşturun</h2>
+                    <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.create_price_offer}</h2>
                     <img onClick={() => setOfferShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
                 <div className="flex w-full max-[992px]:flex-col">
@@ -172,7 +179,7 @@ export function PropertiesDetail({ loged }) {
                         <h1 className="text-[#212529] text-[25px] mb-2">{details?.title}</h1>
                         <p className="text-sm text-[#6c757d]">{details?.no}</p>
                         <div className="my-7.5">
-                            <p className="text-sm text-[#212529] opacity-70">Satış Fiyatı</p>
+                            <p className="text-sm text-[#212529] opacity-70">{translation?.data?.business?.sell_price}</p>
                             <p className="text-lg text-[#212529] font-semibold mb-4">{details?.prices?.primary?.formatted}</p>
                             {details?.badges?.[0]?.title && (
                                 <div className="uppercase text-xs bg-[#FFCA64] w-fit py-1.25 px-2 rounded-lg font-semibold">{details.badges[0].title}</div>
@@ -181,15 +188,15 @@ export function PropertiesDetail({ loged }) {
                         <div>
                             <form onSubmit={handlePriceOffer}>
                                 <div>
-                                    <label htmlFor="price">Teklif ettiğiniz fiyat (TRY)</label>
+                                    <label htmlFor="price">{translation?.data?.business?.your_offer_price}</label>
                                     <input value={price} onChange={(e) => setPrice(e.target.value)} required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="number" placeholder="" name="price" id="price" min={1} />
                                 </div>
                                 <div>
-                                    <label htmlFor="note">Notunuz</label>
+                                    <label htmlFor="note">{translation?.data?.business?.notes}</label>
                                     <textarea value={note} onChange={(e) => setNote(e.target.value)} required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="text" placeholder="" name="note" id="note" />
                                 </div>
                                 <div>
-                                    <button className="bg-[#27c5d2] text-white rounded-sm h-12.5 px-5 font-semibold cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Gönder</button>
+                                    <button className="bg-[#27c5d2] text-white rounded-sm h-12.5 px-5 font-semibold cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">{translation?.data?.business?.submit}</button>
                                 </div>
                             </form>
                         </div>
@@ -250,11 +257,11 @@ export function PropertiesDetail({ loged }) {
                             </div>
                             <div>
                                 <p className="mb-1.25 font-bold">{details?.company?.title}</p>
-                                <p className="text-xs font-semibold">Firma 1 yıl önce katıldı</p>
+                                <p className="text-xs font-semibold">{translation?.data?.business?.created_at_for_company.replace(":time" , "1 yıl önce")}</p>
                             </div>
                         </Link>
                         <div className="mb-4">
-                            <p className="uppercase text-[#5f5f5f] text-xs font-semibold">Satış Fiyatı</p>
+                            <p className="uppercase text-[#5f5f5f] text-xs font-semibold">{translation?.data?.business?.sell_price}</p>
                             <p className="text-[#FFCA64] text-[25px] font-semibold mb-4">{details?.prices?.primary?.formatted}</p>
                             {details?.badges?.[0]?.title && (
                                 <div className={`uppercase text-xs ${details?.badges?.[0]?.title === "Fiyatı Düştü" || details?.badges?.[0]?.title === "Taslak" ? "bg-[#FFCA64]" : "bg-[#27c5d2] text-white"} w-fit py-1.25 px-2 rounded-lg font-semibold`}>{details.badges[0].title}</div>
@@ -265,7 +272,7 @@ export function PropertiesDetail({ loged }) {
                                 <img className="w-5 h-5" src={details.in_wishlist ? heart : grayHeart} alt="" />
                             </button>
                             <button onClick={() => setOfferShown(true)} className="uppercase font-semibold text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 text-sm rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
-                                Fiyat Teklifi Oluştur
+                                {translation?.data?.business?.create_price_offer}
                             </button>
                             <button onClick={() => setOfferModalShown(true)} className="bg-[#f1f1f1] w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                 <img className="w-5 h-5" src={folder} alt="" />
@@ -274,11 +281,11 @@ export function PropertiesDetail({ loged }) {
                             <div className="flex gap-2.5 flex-wrap">
                                 <Link to={`/properties/${id}/edit`} className="bg-[#f1f1f1] rounded-lg flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                     <img className="w-5 h-5" src={pen} alt="" />
-                                    <span>İlanı Düzenle</span>
+                                    <span>{translation?.data?.business?.property_edit}</span>
                                 </Link>
                                 <button onClick={() => navigate(`/properties/${id}/boost`)} className="bg-[#ffca64] rounded-lg flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">
                                     <img className="w-4 h-4" src={graph} alt="" />
-                                    İlanı Öne Çıkar
+                                    {translation?.data?.business?.boost_property}
                                 </button>
                                 <button onClick={() => setOfferModalShown(true)} className="bg-[#f1f1f1] w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                     <img className="w-5 h-5" src={folder} alt="" />
@@ -286,7 +293,7 @@ export function PropertiesDetail({ loged }) {
                             </div>
                         )}
                         {details.status !== "draft" && <div className="mt-10">
-                            <a className="text-[#767676] text-sm font-semibold cursor-pointer hover:text-black transition-colors duration-300 ease-in-out" href="#detail">İlanın detaylı özelliklerini inceleyin</a>
+                            <a className="text-[#767676] text-sm font-semibold cursor-pointer hover:text-black transition-colors duration-300 ease-in-out" href="#detail">{translation?.data?.business?.show_property_details_description}</a>
                         </div>}
                     </div>
                 </div>
@@ -305,8 +312,8 @@ export function PropertiesDetail({ loged }) {
                     </div>
                     <div className="w-[70%] pl-12.5 sticky top-0 max-[992px]:h-auto h-[calc(100vh-100px)] max-[992px]:static max-[992px]:w-full max-[992px]:pl-0">
                         <div className="mb-5">
-                            <button onClick={() => setDetailType("map")} className={`${detailType === "map" ? "bg-[#27C5D2] text-white hover:bg-[#026872]" : "bg-[#eee] text-black hover:bg-[#c3c3c3]"} mr-1.25 py-3.75 px-7.5 cursor-pointer font-semibold rounded-lg transition-colors duration-300 ease-in-out`}>Harita Konumu</button>
-                            <button onClick={() => setDetailType("video")} className={`${detailType === "video" ? "bg-[#27C5D2] text-white hover:bg-[#026872]" : "bg-[#eee] text-black hover:bg-[#c3c3c3]"} py-3.75 px-7.5 cursor-pointer font-semibold rounded-lg transition-colors duration-300 ease-in-out`}>Videolar ({details?.videos?.length > 0 ? details.videos.length : "0"})</button>
+                            <button onClick={() => setDetailType("map")} className={`${detailType === "map" ? "bg-[#27C5D2] text-white hover:bg-[#026872]" : "bg-[#eee] text-black hover:bg-[#c3c3c3]"} mr-1.25 py-3.75 px-7.5 cursor-pointer font-semibold rounded-lg transition-colors duration-300 ease-in-out`}>{translation?.data?.business.map_location}</button>
+                            <button onClick={() => setDetailType("video")} className={`${detailType === "video" ? "bg-[#27C5D2] text-white hover:bg-[#026872]" : "bg-[#eee] text-black hover:bg-[#c3c3c3]"} py-3.75 px-7.5 cursor-pointer font-semibold rounded-lg transition-colors duration-300 ease-in-out`}>{translation?.data?.business.videos} ({details?.videos?.length > 0 ? details.videos.length : "0"})</button>
                         </div>
                         {detailType === "map" && <div className="h-full">
                             <iframe
@@ -333,11 +340,11 @@ export function PropertiesDetail({ loged }) {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )
