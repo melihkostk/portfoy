@@ -73,7 +73,7 @@ function App() {
     }
   }, []);
 
-   const [locale , setLocale] = useState("tr");
+  const [locale , setLocale] = useState("en");
 
   const [news, setNews] = useState([])
 
@@ -114,7 +114,7 @@ function App() {
           <Route path="/auth/properties" element={<UserProperties locale={locale} loged={loged} />} />
           <Route path="/support" element={<Support loged={loged} />} />
           <Route path="/company" element={<Company locale={locale} loged={loged} message={message} messageShown={messageShown} setMessageShown={setMessageShown} />} />
-          <Route path="/company/team" element={<Team loged={loged} />} />
+          <Route path="/company/team" element={<Team locale={locale} loged={loged} />} />
           <Route path="/company/contacts" element={<Location loged={loged} />} />
           <Route path="/company/customers" element={<Customers loged={loged} />} />
           <Route path="/company/subscription" element={<Subscription loged={loged} />} />

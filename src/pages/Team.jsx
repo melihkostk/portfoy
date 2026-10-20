@@ -10,8 +10,9 @@ import { ClipLoader } from "react-spinners"
 import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
 import { SuccessPopUp } from "../components/SuccessPopup"
+import { getTranslation } from "../services/translation"
 
-export function Team({ loged }) {
+export function Team({ loged , locale}) {
 
     const [team, setTeam] = useState([]);
     const [loaded, setLoaded] = useState(false)
@@ -173,6 +174,12 @@ export function Team({ loged }) {
             permissions: group.permissions.map(p => p.key === permKey ? { ...p, checked: !p.checked } : p)
         }))
     }
+
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -359,10 +366,10 @@ export function Team({ loged }) {
                 </div>
             </div>}
             {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Ekip</span></p>
+                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_portfolio} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.team}</span></p>
                 </div>
             </div>
             <CompanyHeader
@@ -372,12 +379,13 @@ export function Team({ loged }) {
                 created_at={ınfo?.created_at}
                 type={ınfo?.type}
                 logo={ınfo?.logo}
+                translation={translation}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex items-center justify-between">
-                    <h2 className="text-[#212529] text-[32px] mb-5">Ekip</h2>
+                    <h2 className="text-[#212529] text-[32px] mb-5">{translation?.data?.business?.company_team}</h2>
                     <div onClick={() => setAddShown(true)} className="bg-[#f1f1f1] text-[#4b4b4b] text-sm rounded-lg py-2 px-5 font-semibold cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
-                        Davetiye Oluştur
+                        {translation?.data?.business?.user_invitation_code}
                     </div>
                 </div>
                 <div className="flex flex-wrap justify-between items-stretch max-[992px]:flex-col">
@@ -397,6 +405,7 @@ export function Team({ loged }) {
                             onEditClick={() => handleEditClick(item)}
                             setEditPermissionShown={setEditPermissionShown}
                             handleGetPermissions={handleGetPermissions}
+                            translation={translation}
                         />
                     ))}
                 </div>
@@ -405,12 +414,12 @@ export function Team({ loged }) {
                 <table className="w-full">
                     <thead>
                         <tr>
-                            <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg whitespace-nowrap">Davetiye Kodu</th>
-                            <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">İsim ve Soyisim</th>
-                            <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Rol</th>
-                            <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Oluşturma Tarihi</th>
-                            <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Sona Erme Süresi</th>
-                            <th className="text-end bg-[#ececec] py-4 px-2.5 rounded-r-lg whitespace-nowrap">İşlemler</th>
+                            <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg whitespace-nowrap">{translation?.data?.business?.invitation_code}</th>
+                            <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.name}</th>
+                            <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.role}</th>
+                            <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.created_at}</th>
+                            <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.expired_at}</th>
+                            <th className="text-end bg-[#ececec] py-4 px-2.5 rounded-r-lg whitespace-nowrap">{translation?.data?.business?.actions}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -426,6 +435,7 @@ export function Team({ loged }) {
                                 handleDelete={handleDelete}
                                 setErrorPopUp={setErrorPopUp}
                                 onEditClick={() => handleInviteEditClick(item)}
+                                translation={translation}
                             />
                         ))}
                     </tbody>
@@ -433,11 +443,11 @@ export function Team({ loged }) {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )
