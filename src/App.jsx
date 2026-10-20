@@ -124,7 +124,7 @@ function App() {
           <Route path="/company/summary" element={<Summary locale={locale} loged={loged} />}></Route>
           <Route path="/companies/:id" element={<CompaniesDetail locale={locale} loged={loged} />}></Route>
           <Route path="/companies/:id/team" element={<CompaniesDetailTeam locale={locale} loged={loged} />}></Route>
-          <Route path="/companies/:id/contacts" element={<CompaniesDetailLocation loged={loged} />}></Route>
+          <Route path="/companies/:id/contacts" element={<CompaniesDetailLocation locale={locale} loged={loged} />}></Route>
           <Route path="/properties/:id" element={<PropertiesDetail locale={locale} loged={loged} />}></Route>
           <Route path="/articles/:id" element={<NewsDetail loged={loged} news={news} />}></Route>
           <Route path="/proposals/:id/details" element={<ProposalDetail loged={loged} />}></Route>

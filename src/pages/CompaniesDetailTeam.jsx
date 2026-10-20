@@ -53,7 +53,7 @@ export function CompaniesDetailTeam({ loged , locale }) {
                 translation={translation}
             />
             <div className="max-w-[90%] w-full pt-12.5 mb-5">
-                <h2 className="text-[32px] text-[#212529] font-medium">Ekip</h2>
+                <h2 className="text-[32px] text-[#212529] font-medium">{translation?.data?.business?.team}</h2>
             </div>
             <div className="max-w-[90%] w-full">
                 <div className="flex flex-wrap">

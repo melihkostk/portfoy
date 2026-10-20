@@ -7,8 +7,9 @@ import { AppLinks } from "../components/AppLinks";
 import { getCompaniesLocation } from "../services/companiesApi";
 import { LocationCard } from "../components/LocationCard";
 import { ClipLoader } from "react-spinners";
+import { getTranslation } from "../services/translation";
 
-export function CompaniesDetailLocation({ loged }) {
+export function CompaniesDetailLocation({ loged , locale }) {
 
     const { id } = useParams();
 
@@ -18,6 +19,12 @@ export function CompaniesDetailLocation({ loged }) {
     useEffect(() => {
         getCompaniesLocation(id).then(setLocation).finally(() => setLoaded(true))
     }, [id])
+
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -30,7 +37,7 @@ export function CompaniesDetailLocation({ loged }) {
                     />
                 </div>
             )}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
@@ -44,10 +51,11 @@ export function CompaniesDetailLocation({ loged }) {
                 type={location?.type}
                 badges={location?.badges?.[0]?.title}
                 logo={location?.logo}
+                translation={translation}
 
             />
             <div className="max-w-[90%] w-full pt-12.5">
-                <h2 className="mb-2 text-[#212529] text-[32px]">Konum ve İletişim</h2>
+                <h2 className="mb-2 text-[#212529] text-[32px]">{translation?.data?.business?.company_contacts}</h2>
                 <div className="flex items-start w-full justify-between max-[992px]:flex-col">
                     <div className="w-1/2 sticky top-3 pr-7.5 max-[992px]:static max-[992px]:w-full">
                         <div className="flex flex-col mt-7.5">
@@ -77,11 +85,11 @@ export function CompaniesDetailLocation({ loged }) {
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )
