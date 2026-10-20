@@ -8,8 +8,9 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { useSearchParams } from "react-router-dom"
+import { getTranslation } from "../services/translation"
 
-export function CompanyProposals({ loged }) {
+export function CompanyProposals({ loged , locale }) {
 
     const [searchParams] = useSearchParams();
     const customer_id = searchParams.get("customer");
@@ -27,6 +28,12 @@ export function CompanyProposals({ loged }) {
         getCustomerProposals(customer_id).then(setCustomerPropoals)
     }, [customer_id])
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {!loaded && (
@@ -38,7 +45,7 @@ export function CompanyProposals({ loged }) {
                     />
                 </div>
             )}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Teklifler</span></p>
@@ -51,22 +58,23 @@ export function CompanyProposals({ loged }) {
                 created_at={proposals?.data?.created_at}
                 type={proposals?.data?.type}
                 logo={proposals?.data?.logo}
+                translation={translation}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center mb-5 flex-wrap">
-                    <h2 className="text-[#212529] text-[32px]">Teklifler</h2>
+                    <h2 className="text-[#212529] text-[32px]">{translation?.data?.business?.proposals}</h2>
                 </div>
                 <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
                     <table className="w-full">
                         <thead>
                             <tr>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg whitespace-nowrap">Kod</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Müşteri</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Oluşturan Kullanıcı</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Oluşturma Tarihi</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Değerlendirme</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">Durum</th>
-                                <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-r-lg whitespace-nowrap">İşlemler</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg whitespace-nowrap">{translation?.data?.business?.code}</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.customer}</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.created_by}</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.created_at}</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.review}</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.status}</th>
+                                <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-r-lg whitespace-nowrap">{translation?.data?.business?.actions}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -82,6 +90,7 @@ export function CompanyProposals({ loged }) {
                                     status={item.status.title}
                                     count={item.property_count}
                                     index={index}
+                                    translation={translation}
 
                                 />
                             ))}
@@ -98,6 +107,7 @@ export function CompanyProposals({ loged }) {
                                         status={item.status.title}
                                         count={item.property_count}
                                         index={index}
+                                        translation={translation}
                                     />
                                 ))
                             }
@@ -107,11 +117,11 @@ export function CompanyProposals({ loged }) {
             </div>
             <div className='w-full mt-40 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )

@@ -1,20 +1,20 @@
 import { Link } from "react-router-dom";
 
-export function CompanyProposalCard({name , index , code , personal , created_at , score , status , count , id}){
+export function CompanyProposalCard({name, translation , index , code , personal , created_at , score , status , count , id}){
      return (
         <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
-            <td className="py-3 px-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-[30ch] truncate">{code} ({count} İlan)</td>
+            <td className="py-3 px-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-[30ch] truncate">{code} ({count} {translation?.data?.business?.property})</td>
             <td className="py-3 px-2 whitespace-nowrap">{name}</td>
             <td className="py-3 px-2 whitespace-nowrap text-sm">{personal}</td>
             <td className="py-3 px-2 whitespace-nowrap">{created_at}</td>
-            <td className="text-sm whitespace-nowrap text-[#6c757d]">{score === 0 ? "Henüz Değerlendirme Yok" : score}</td>
+            <td className="text-sm whitespace-nowrap text-[#6c757d]">{score === 0 ? translation?.data?.business?.not_yet_review : score}</td>
             <td>
                 <span className={`text-white text-xs text-center py-2 font-semibold px-2 rounded-lg whitespace-nowrap ${status === "Beklemede" ? "bg-[#27c5d2]" : "" } ${status === "Süresi Doldu" ? "bg-[#ed0000]" : "bg-[#00cc83]"}`}>
                     {status}
                 </span>
             </td>
-            <td className="text-end py-3 px-2">
-                <Link to={`/proposals/${id}/details`} className="bg-[#f1f1f1] whitespace-nowrap text-sm text-[#4b4b4b] font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Detaylı İncele</Link>
+            <td className="text-start py-3 px-2">
+                <Link to={`/proposals/${id}/details`} className="bg-[#f1f1f1] whitespace-nowrap text-sm text-[#4b4b4b] font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.detailed_review}</Link>
             </td>
         </tr>
     )
