@@ -53,7 +53,7 @@ export function PropertiesCard(props) {
                 </ul>
                 <p>
                     <span className="text-[11px] text-[#B7BFB9] font-medium block py-1.25">
-                        Satış Fiyatı
+                        {props?.translation?.data?.business?.sell_price}
                     </span>
                     <span className={`${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" || props.page === "wishlist" ? "text-2xl" : "text-lg"} text-[#FFCA64] font-semibold wrap-break-word`}>
                         {props.price}
@@ -81,11 +81,11 @@ export function PropertiesCard(props) {
                 </div>}
                 {props.page === "company" && <button onClick={() => props.handleOfferModal(props.id)} title="İlanı teklif listesine ekle" className="bg-[#e6e6e6] flex items-center gap-2.5 max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     <img className="w-4.5 h-4.5" src={addFolder} alt="" />
-                    <p className="whitespace-nowrap overflow-hidden truncate">İlanı teklif listesine ekle</p>
+                    <p className="whitespace-nowrap overflow-hidden truncate">{props.translation?.data?.business?.add_property_to_proposal_properties}</p>
                 </button>}
                 {props.page === "properties" && <button onClick={() => props.handleOfferModal(props.id)} title="İlanı teklif listesine ekle" className="bg-[#e6e6e6] flex items-center gap-2.5 max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     <img src={addFolder} alt="" />
-                    <p className="whitespace-nowrap overflow-hidden truncate">İlanı teklif listesine ekle</p>
+                    <p className="whitespace-nowrap overflow-hidden truncate">{props.translation?.data?.business?.add_property_to_proposal_properties}</p>
                 </button>}
                 {props.page === "wishlist" && <button onClick={() => props.handleToggleWishlist(props.id)} className="bg-white border gap-1.25 max-w-full whitespace-nowrap overflow-hidden truncate border-[#eee] py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 flex items-center font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     <img className="w-5 h-5" src={trash} alt="" />

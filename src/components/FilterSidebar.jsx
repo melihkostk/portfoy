@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-export function FilterSidebar({ type , team , currencie , selectedTeam , setSelectedTeam , handleFilter ,selectedCurrencie , setSelectedCurrencie , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict , minSell ,  setMinSell , maxSell , setMaxSell , status , setStatus , selectedType , setSelectedType}) {
+export function FilterSidebar({ type, translation , team , currencie , selectedTeam , setSelectedTeam , handleFilter ,selectedCurrencie , setSelectedCurrencie , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict , minSell ,  setMinSell , maxSell , setMaxSell , status , setStatus , selectedType , setSelectedType}) {
 
     function toggleType(id) {
         setSelectedType(prev =>
@@ -12,13 +12,13 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
         <div className="w-full">
             <div className="mb-5 w-full">
                 <div className="bg-[#f8f8f8] text-[#7d7d7d] font-semibold min-w-full text-center py-2.5 rounded-lg hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
-                    <Link to={"/properties/create"}>Yeni İlan Oluştur</Link>
+                    <Link to={"/properties/create"}>{translation?.data?.business?.create_property}</Link>
                 </div>
             </div>
             <form action="">
                 <div className="flex justify-between items-center mb-3.75">
-                    <p className="uppercase text-[#b4b4b4] text-sm">İlanları Filtrele</p>
-                    <a className="text-[#b4b4b4] text-sm underline hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">Temizle</a>
+                    <p className="uppercase text-[#b4b4b4] text-sm">{translation?.data?.business?.filter_properties}</p>
+                    <a className="text-[#b4b4b4] text-sm underline hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">{translation?.data?.business?.clear}</a>
                 </div>
                 <div>
                     <ul className="my-7.5">
@@ -33,19 +33,19 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                     </ul>
                 </div>
                 <div className="mb-5">
-                    <p className="text-sm text-[#878787] mb-2" htmlFor="">Personel Seçimi</p>
+                    <p className="text-sm text-[#878787] mb-2" htmlFor="">{translation?.data?.business?.choose?.personal}</p>
                     <select value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)} className="block w-full border border-[#d9d9d9] rounded-lg py-1.5 pl-3 pr-9">
-                        <option value={""}>Tümü</option>
+                        <option value={""}>{translation?.data?.business?.all}</option>
                         {team?.personals?.map(item => (
                             <option value={item.id} key={item.id}>{item.name}</option>
                         ))}
                     </select>
                 </div>
                 <div className="mb-5">
-                    <p className="text-sm text-[#878787] mb-2" htmlFor="">Satış Fiyatı</p>
+                    <p className="text-sm text-[#878787] mb-2" htmlFor="">{translation?.data?.business?.sell_price}</p>
                     <div className="flex gap-1">
-                        <input value={minSell} onChange={(e) => setMinSell(e.target.value)} type="number" placeholder="En az" min={0} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
-                        <input value={maxSell} onChange={(e) => setMaxSell(e.target.value)} type="number" placeholder="En fazla" className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
+                        <input value={minSell} onChange={(e) => setMinSell(e.target.value)} type="number" placeholder={translation?.data?.business?.min} min={0} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
+                        <input value={maxSell} onChange={(e) => setMaxSell(e.target.value)} type="number" placeholder={translation?.data?.business?.max} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
                     </div>
                     <div className="mt-2">
                         <select value={selectedCurrencie} onChange={(e) => setSelectedCurrencie(e.target.value)} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
@@ -56,30 +56,30 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                     </div>
                 </div>
                 <div className="mb-5">
-                    <p className="text-sm text-[#878787] mb-2" htmlFor="">Konum</p>
+                    <p className="text-sm text-[#878787] mb-2" htmlFor="">{translation?.data?.business?.location}</p>
                     <div>
                         <div className="mb-2">
-                            <label className="text-[13px] text-[#212529] font-semibold" htmlFor="country">Ülke Seçin</label>
+                            <label className="text-[13px] text-[#212529] font-semibold" htmlFor="country">{translation?.data?.business?.choose?.country}</label>
                             <select name="country" id="country" value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="block border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
-                                <option value="">Ülke Seçin</option>
+                                <option value="">{translation?.data?.business?.choose?.country}</option>
                                 {countries?.data?.map(item => (
                                     <option key={item.id} value={item.id}>{item.title}</option>
                                 ))}
                             </select>
                         </div>
                         <div className="mb-2">
-                            <label htmlFor="city" className="text-[13px] text-[#212529] font-semibold">İl Seçin</label>
+                            <label htmlFor="city" className="text-[13px] text-[#212529] font-semibold">{translation?.data?.business?.choose?.city}</label>
                             <select id="city" name="city" value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="block border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
-                                <option value="">İl Seçin</option>
+                                <option value="">{translation?.data?.business?.choose?.city}</option>
                                 {cities.map(item => (
                                     <option key={item.id} value={item.id}>{item.title}</option>
                                 ))}
                             </select>
                         </div>
                         <div className="mb-2">
-                            <label htmlFor="district" className="text-[13px] text-[#212529] font-semibold">İlçe Seçin</label>
+                            <label htmlFor="district" className="text-[13px] text-[#212529] font-semibold">{translation?.data?.business?.choose?.district}</label>
                             <select id="district" name="district" value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="block border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
-                                <option value="">İlçe Seçin</option>
+                                <option value="">{translation?.data?.business?.choose?.district}</option>
                                 {districts.map(item => (
                                     <option key={item.id} value={item.id}>{item.title}</option>
                                 ))}
@@ -92,23 +92,23 @@ export function FilterSidebar({ type , team , currencie , selectedTeam , setSele
                     <div>
                         <div className="flex items-center gap-2.5">
                             <input id="status-all" name="status" type="checkbox" checked={status === ""} onChange={() => setStatus("")} />
-                            <label className={`text-[13px] ${status === "" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-all">Tümü</label>
+                            <label className={`text-[13px] ${status === "" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-all">{translation?.data?.business?.all}</label>
                         </div>
                         <div className="flex items-center gap-2.5">
                             <input id="status-published" name="status" type="checkbox" checked={status === "published"} onChange={() => setStatus("published")} />
-                            <label htmlFor="status-published" className={`text-[13px] ${status === "published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-published">Sadece Yayında Olanlar</label>
+                            <label htmlFor="status-published" className={`text-[13px] ${status === "published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`}>{translation?.data?.business?.only_published_properties}</label>
                         </div>
                         <div className="flex items-center gap-2.5">
                             <input id="status-not_published" name="status" type="checkbox" checked={status === "not_published"} onChange={() => setStatus("not_published")} />
-                            <label htmlFor="status-not_published" className={`text-[13px] ${status === "not_published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-not_published">Sadece Yayında Olmayanlar</label>
+                            <label htmlFor="status-not_published" className={`text-[13px] ${status === "not_published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`}>{translation?.data?.business?.only_not_published_properties}</label>
                         </div>
                         <div className="flex items-center gap-2.5">
                             <input id="status-sold" name="status" type="checkbox" checked={status === "sold"} onChange={() => setStatus("sold")} />
-                            <label htmlFor="status-sold" className={`text-[13px] ${status === "sold" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-sold">Sadece Satılan İlanlar</label>
+                            <label htmlFor="status-sold" className={`text-[13px] ${status === "sold" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`}>{translation?.data?.business?.only_sold_properties}</label>
                         </div>
                     </div>
                 </div>
-                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie , status , selectedType)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] font-semibold text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie , status , selectedType)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] font-semibold text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
 
             </form>
 

@@ -14,8 +14,9 @@ import whiteClose from "../assets/close.png"
 import { CreateOfferModel } from "../components/CreateOfferModal"
 import { createProposal, getDetails } from "../services/propertyDetails"
 import { useNavigate } from "react-router-dom"
+import { getTranslation } from "../services/translation"
 
-export function Company({ loged, message, messageShown , setMessageShown }) {
+export function Company({ loged, message, messageShown , setMessageShown, locale }) {
 
     const navigate = useNavigate();
 
@@ -115,9 +116,15 @@ export function Company({ loged, message, messageShown , setMessageShown }) {
         }).finally(() => setLoaded(true))
     }
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation)
+    }, [locale])
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             {offerModelShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {offerModelShown && <CreateOfferModel
                 setOfferModalShown={setOfferModalShown}
@@ -160,6 +167,7 @@ export function Company({ loged, message, messageShown , setMessageShown }) {
                 created_at={ınfo?.created_at}
                 type={ınfo?.type}
                 logo={ınfo?.logo}
+                translation={translation}
             />
             <div className="max-w-[90%] w-full pt-12.5">
                 <div className="flex max-[992px]:flex-col">
@@ -190,6 +198,7 @@ export function Company({ loged, message, messageShown , setMessageShown }) {
                             setStatus={setStatus}
                             selectedType={selectedType}
                             setSelectedType={setSelectedType}
+                            translation={translation}
                         />
                     </div>
                     <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-col">
@@ -209,6 +218,7 @@ export function Company({ loged, message, messageShown , setMessageShown }) {
                                     created_by={item.creator}
                                     status={item.status}
                                     handleOfferModal={handleOfferModal}
+                                    translation={translation}
                                 />
                             )) : (
                                 <div className="text-[#636464] bg-[#fafafa] rounded-lg p-3.75 m-3.75 w-full max-h-fit">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
@@ -228,11 +238,11 @@ export function Company({ loged, message, messageShown , setMessageShown }) {
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )

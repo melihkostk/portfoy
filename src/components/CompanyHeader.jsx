@@ -11,7 +11,7 @@ import phone from "../assets/white-phone.png"
 import mail from "../assets/white-mail.png"
 import badge from "../assets/badge.png"
 
-export function CompanyHeader({ page, id, name, created_at, type, badges, code }) {
+export function CompanyHeader({ page, id, name, created_at, type, badges, code , translation }) {
 
     return (
         <div style={{ backgroundImage: `url(${bgImage})` }} className="w-full bg-cover bg-center pt-7.5 flex justify-center">
@@ -71,31 +71,31 @@ export function CompanyHeader({ page, id, name, created_at, type, badges, code }
                 <div className="flex justify-between">
                     <ul className="flex gap-2.5 items-end max-w-full max-[1233px]:overflow-auto whitespace-nowrap">
                         {page !== "companyDetail" && <li className={`${page === "company" ? "bg-white" : "bg-[#ffffffb3]"} hover:bg-white transition-colors duration-300 ease-in-out font-medium rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
-                            <Link to={"/company"}>Portföy</Link>
+                            <Link to={"/company"}>{translation?.data?.business?.portfolio}</Link>
                         </li>}
                         {page === "companyDetail" &&
                             <li className={`${page === "company" ? "bg-white" : "bg-[#ffffffb3]"} hover:bg-white transition-colors duration-300 ease-in-out font-medium rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
-                                <Link to={`/companies/${id}`}>Portföy</Link>
+                                <Link to={`/companies/${id}`}>{translation?.data?.business?.portfolio}</Link>
                             </li>}
                         {page !== "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} hover:bg-white transition-colors duration-300 ease-in-out font-medium rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
-                            <Link to={"/company/team"}>Ekip</Link>
+                            <Link to={"/company/team"}>{translation?.data?.business?.company_team}</Link>
                         </li>}
                         {page === "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} hover:bg-white transition-colors duration-300 ease-in-out font-medium rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
-                            <Link to={`/companies/${id}/team`}>Ekip</Link>
+                            <Link to={`/companies/${id}/team`}>{translation?.data?.business?.company_team}</Link>
                         </li>}
                         {page !== "companyDetail" && <li className={`${page === "location" ? "bg-white" : "bg-[#ffffffb3]"} hover:bg-white transition-colors duration-300 ease-in-out font-medium rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
-                            <Link to={"/company/contacts"}>Konum & İletişim</Link>
+                            <Link to={"/company/contacts"}>{translation?.data?.business?.company_contacts}</Link>
                         </li>}
                         {page === "companyDetail" && <li className={`${page === "team" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-medium rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
-                            <Link to={`/companies/${id}/contacts`}>Konum & İletişim</Link>
+                            <Link to={`/companies/${id}/contacts`}>{translation?.data?.business?.company_contacts}</Link>
                         </li>}
                         {page !== "companyDetail" && (
                             <>
                                 <li className={`${page === "customers" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-medium rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
-                                    <Link to={"/company/customers"}>Müşteriler</Link>
+                                    <Link to={"/company/customers"}>{translation?.data?.business?.customers}</Link>
                                 </li>
                                 <li className={`${page === "proposals" ? "bg-white" : "bg-[#ffffffb3]"} whitespace-nowrap hover:bg-white transition-colors duration-300 ease-in-out font-medium rounded-t-lg text-black pt-3 pb-2.5 px-5 cursor-pointer`}>
-                                    <Link to={"/company/proposals"}>Teklifler</Link>
+                                    <Link to={"/company/proposals"}>{translation?.data?.business?.proposals}</Link>
                                 </li>
                             </>
                         )}
@@ -103,19 +103,19 @@ export function CompanyHeader({ page, id, name, created_at, type, badges, code }
                     {page !== "companyDetail" && <div className="flex items-center gap-2.5 -mt-12 max-[1233px]:hidden">
                         <Link to={"/company/subscription"} className={`py-2 px-4 bg-white ${page === "subscription" ? "opacity-100" : "opacity-70" } text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
                             <img className="w-4 h-4" src={box} alt="" />
-                            Aboneliği Yönet
+                            {translation?.data?.business?.manage_subscription}
                         </Link>
                         <Link to={"/company/summary"} className={`py-2 px-4 bg-white ${page === "summary" ? "opacity-100" : "opacity-70" } text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
                             <img className="w-4 h-4" src={graph} alt="" />
-                            Firma özeti
+                            {translation?.data?.business?.company_summary}
                         </Link>
                         <Link to={"/company/edit"} className={`py-2 px-4 bg-white ${page === "edit" ? "opacity-100" : "opacity-70" } text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
                             <img className="w-5 h-5" src={pen} alt="" />
-                            Firma profilini düzenle
+                            {translation?.data?.business?.company_edit}
                         </Link>
                         <Link to={"/company/settings"} className={`py-2 px-4 bg-white ${page === "settings" ? "opacity-100" : "opacity-70" } text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
                             <img className="w-4 h-4" src={settingsIcon} alt="" />
-                            Firma tercihleri
+                            {translation?.data?.business?.manage_company}
                         </Link>
                     </div>}
                 </div>
