@@ -182,7 +182,7 @@ export function Location({ loged , locale }) {
                         />
                     </div>
                     <div className="justify-self-end mt-4">
-                        <button className="bg-[#27c5d2] text-white text-sm py-2 px-5 rounded-lg">Kaydet</button>
+                        <button className="bg-[#27c5d2] text-white text-sm py-2 px-5 rounded-lg">{translation?.data?.business?.save}</button>
                     </div>
                 </div>
             </div>}
@@ -240,13 +240,13 @@ export function Location({ loged , locale }) {
             </div>
             {locationMenu && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529] font-semibold">Adres Oluştur</h2>
+                    <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.create_address}</h2>
                     <img onClick={() => setLocationMenu(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
                 <div className="w-full p-4">
                     <form onSubmit={handleAddLocation} className="w-full">
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="country">Ülke Seçin</label>
+                            <label htmlFor="country">{translation?.data?.business?.choose?.country}</label>
                             <select onChange={(e) => setCountryId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="country" id="country">
                                 {countries.data.map(item => (
                                     <option value={item.id} key={item.title}>{item.title}</option>
@@ -254,7 +254,7 @@ export function Location({ loged , locale }) {
                             </select>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="city">İl Seçin</label>
+                            <label htmlFor="city">{translation?.data?.business?.choose?.city}</label>
                             <select onChange={(e) => setCityId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="city" id="city">
                                 {cities?.map(item => (
                                     <option value={item.id} key={item.title}>{item.title}</option>
@@ -262,7 +262,7 @@ export function Location({ loged , locale }) {
                             </select>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="district">İlçe Seçin</label>
+                            <label htmlFor="district">{translation?.data?.business?.choose?.district}</label>
                             <select onChange={(e) => setDistrictId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="district" id="district">
                                 {district?.map(item => (
                                     <option value={item.id} key={item.title}>{item.title}</option>
@@ -270,7 +270,7 @@ export function Location({ loged , locale }) {
                             </select>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="street">Mahalle</label>
+                            <label htmlFor="street">{translation?.data?.business?.choose?.street}</label>
                             <select onChange={(e) => setStreetId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="street" id="street">
                                 {street?.map(item => (
                                     <option value={item.id} key={item.title}>{item.title}</option>
@@ -278,24 +278,24 @@ export function Location({ loged , locale }) {
                             </select>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="adres">Adres</label>
+                            <label htmlFor="adres">{translation?.data?.business?.address}</label>
                             <input value={address} onChange={(e) => setAddress(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" placeholder="Adres" name="adres" id="adres" required />
                         </div>
                         <div className="flex justify-end mt-4">
-                            <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Kaydet</button>
+                            <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">{translation?.data?.business?.save}</button>
                         </div>
                     </form>
                 </div>
             </div>}
             {editShown && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529] font-semibold">Adresi Düzenle</h2>
+                    <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.edit_address}</h2>
                     <img onClick={() => setEditShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
                 <div className="w-full p-4">
                     <form onSubmit={handleEditLocation} className="w-full">
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="editCountry">Ülke Seçin</label>
+                            <label htmlFor="editCountry">{translation?.data?.business?.choose?.country}</label>
                             <select required value={editCountryId} onChange={(e) => setEditCountryId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="country" id="editCountry">
                                 {countries.data.map(item => (
                                     <option value={item.id} key={item.title}>{item.title}</option>
@@ -303,7 +303,7 @@ export function Location({ loged , locale }) {
                             </select>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label required htmlFor="editCity">İl Seçin</label>
+                            <label required htmlFor="editCity">{translation?.data?.business?.choose?.city}</label>
                             <select value={editCityId} onChange={(e) => setEditCityId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="city" id="editCity">
                                 {editCities?.map(item => (
                                     <option value={item.id} key={item.title}>{item.title}</option>
@@ -311,7 +311,7 @@ export function Location({ loged , locale }) {
                             </select>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="editDistrict">İlçe Seçin</label>
+                            <label htmlFor="editDistrict">{translation?.data?.business?.choose?.district}</label>
                             <select required value={editDistrictId} onChange={(e) => setEditDistrictId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="district" id="editDistrict">
                                 {editDistrict?.map(item => (
                                     <option value={item.id} key={item.title}>{item.title}</option>
@@ -319,7 +319,7 @@ export function Location({ loged , locale }) {
                             </select>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="editStreet">Mahalle</label>
+                            <label htmlFor="editStreet">{translation?.data?.business?.choose?.street}</label>
                             <select required value={editStreetId} onChange={(e) => setEditStreetId(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" name="street" id="editStreet">
                                 {editStreet?.map(item => (
                                     <option value={item.id} key={item.title}>{item.title}</option>
@@ -327,11 +327,11 @@ export function Location({ loged , locale }) {
                             </select>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="editAdres">Adres</label>
-                            <input required value={editAddress} onChange={(e) => setEditAddress(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" placeholder="Adres" name="adres" id="editAdres" required />
+                            <label htmlFor="editAdres">{translation?.data?.business?.address}</label>
+                            <input required value={editAddress} onChange={(e) => setEditAddress(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" placeholder="Adres" name="adres" id="editAdres" />
                         </div>
                         <div className="flex justify-end mt-4">
-                            <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">Kaydet</button>
+                            <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">{translation?.data?.business?.save}</button>
                         </div>
                     </form>
                 </div>
