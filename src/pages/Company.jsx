@@ -219,9 +219,10 @@ export function Company({ loged, message, messageShown , setMessageShown, locale
                                     status={item.status}
                                     handleOfferModal={handleOfferModal}
                                     translation={translation}
+                                    propertyType={item.property_type}
                                 />
                             )) : (
-                                <div className="text-[#636464] bg-[#fafafa] rounded-lg p-3.75 m-3.75 w-full max-h-fit">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
+                                <div className="text-[#636464] bg-[#fafafa] rounded-lg p-3.75 m-3.75 w-full max-h-fit">{translation?.data?.business?.no_records_for_properties}</div>
                             )}
                         </div>
                         <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center mt-5">

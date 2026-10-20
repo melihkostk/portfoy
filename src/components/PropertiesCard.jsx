@@ -17,10 +17,10 @@ export function PropertiesCard(props) {
                 <div className="relative h-full">
                     <img className={`rounded-[10px] ${props.page === "company" ? "aspect-square h-1/2" : "h-full"} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} h-full  object-cover max-[992px]:aspect-video`} src={defaultProperty} alt="" />
                     {props.status == "draft" && <div className="bg-[#FFCA64] z-50 uppercase text-black text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
-                        Taslak
+                        {props?.translation?.data?.business?.statusess?.draft}
                     </div>}
                     {props.status == "sold" && <div className="bg-[#27c5d2] z-50 uppercase text-white text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
-                        Satıldı
+                        {props?.translation?.data?.business?.statusess?.sold}
                     </div>}
                     {props.badges === "Fiyatı Düştü" && <div className="bg-[#FFCA64] z-30 uppercase text-black text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
                         {props.badges}
@@ -40,7 +40,7 @@ export function PropertiesCard(props) {
                     </li>
                     <li className="flex items-center gap-1">
                         <img className="w-5 h-5" src={building} alt="" />
-                        <span>Hazır</span>
+                        <span>{props?.propertyType === "ready" ? props?.translation?.data?.business?.building_statusess?.ready : props?.translation?.data?.business?.building_statusess?.under_construction}</span>
                     </li>
                     <li className="flex items-center gap-1">
                         <img className="w-5 h-5" src={menu} alt="" />
