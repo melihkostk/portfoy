@@ -126,7 +126,7 @@ function App() {
           <Route path="/companies/:id/team" element={<CompaniesDetailTeam locale={locale} loged={loged} />}></Route>
           <Route path="/companies/:id/contacts" element={<CompaniesDetailLocation locale={locale} loged={loged} />}></Route>
           <Route path="/properties/:id" element={<PropertiesDetail locale={locale} loged={loged} />}></Route>
-          <Route path="/articles/:id" element={<NewsDetail loged={loged} news={news} />}></Route>
+          <Route path="/articles/:id" element={<NewsDetail locale={locale} loged={loged} news={news} />}></Route>
           <Route path="/proposals/:id/details" element={<ProposalDetail locale={locale} loged={loged} />}></Route>
           <Route path="/offers/:id/detail" element={<OfferDetail locale={locale} loged={loged} />}></Route>
           <Route path="/properties/:id/edit" element={<EditProperty locale={locale} loged={loged} setMessage={setMessage} setMessageShown={setMessageShown} />}></Route>
