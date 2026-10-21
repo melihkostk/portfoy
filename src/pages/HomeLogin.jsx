@@ -78,7 +78,7 @@ export function HomeLogin({ loged, news, logOut , locale }) {
                                     city={item.city.title}
                                     district={item.district.title}
                                     page="homeLogin"
-                                    badges={item?.badges?.[0]?.title}
+                                    badges={item?.badges?.[0]?.key}
                                 />
                             ))}
                         </div>

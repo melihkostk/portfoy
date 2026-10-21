@@ -22,7 +22,7 @@ export function PropertiesCard(props) {
                     {props.status == "sold" && <div className="bg-[#27c5d2] z-50 uppercase text-white text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
                         {props?.translation?.data?.business?.statusess?.sold}
                     </div>}
-                    {props.badges === "Fiyatı Düştü" && <div className="bg-[#FFCA64] z-30 uppercase text-black text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
+                    {props.badges === "discounted" && <div className="bg-[#FFCA64] z-30 uppercase text-black text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
                         {props.badges}
                     </div>}
                 </div>

@@ -233,7 +233,7 @@ export function PropertiesDetail({ loged , locale }) {
                     </div>
                     <div className="w-1/2 pl-12.5 max-[992px]:w-full max-[992px]:pl-0">
                         {(details.status === "draft" || details.status === "sold") && <div className="text-[#664d03] bg-[#fff3cd] border border-[#ffecb5] p-4 mb-4 rounded-lg">
-                            Bu ilan şuanda yayında olmadığı için sadece siz görüntüleyebilirsiniz
+                            {translation?.data?.business?.property_not_publish_warning_text}
                         </div>}
                         <p className="text-sm text-[#888888] mb-2.5">{details.no}</p>
                         <h1 className="text-[25px] text-[#212529] mb-3.75 font-semibold">{details.title}</h1>
@@ -264,7 +264,7 @@ export function PropertiesDetail({ loged , locale }) {
                             <p className="uppercase text-[#5f5f5f] text-xs font-semibold">{translation?.data?.business?.sell_price}</p>
                             <p className="text-[#FFCA64] text-[25px] font-semibold mb-4">{details?.prices?.primary?.formatted}</p>
                             {details?.badges?.[0]?.title && (
-                                <div className={`uppercase text-xs ${details?.badges?.[0]?.title === "Fiyatı Düştü" || details?.badges?.[0]?.title === "Taslak" ? "bg-[#FFCA64]" : "bg-[#27c5d2] text-white"} w-fit py-1.25 px-2 rounded-lg font-semibold`}>{details.badges[0].title}</div>
+                                <div className={`uppercase text-xs ${details?.badges?.[0]?.key === "discounted" || details?.badges?.[0]?.key === "draft" ? "bg-[#FFCA64]" : "bg-[#27c5d2] text-white"} w-fit py-1.25 px-2 rounded-lg font-semibold`}>{details.badges[0].title}</div>
                             )}
                         </div>
                         {!details.is_owner_company ? (<div className="flex gap-2.5 flex-wrap">
