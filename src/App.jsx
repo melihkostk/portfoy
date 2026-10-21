@@ -90,7 +90,7 @@ function App() {
         <Route path="/" element={loged ? <HomeLogin locale={locale} news={news} loged={loged} setLoged={setLoged} /> : <Home loged={loged} setLoged={setLoged} news={news} />} />
         <Route path="/discover" element={<Discover locale={locale} loged={loged} />} />
         <Route path="/pricing" element={<Pricing loged={loged} />} />
-        <Route path="/articles" element={<News loged={loged} news={news} />} />
+        <Route path="/articles" element={<News locale={locale} loged={loged} news={news} />} />
         <Route path="/corporate" element={<Corporate locale={locale} loged={loged} />} />
         <Route path="/contacts" element={<Contacts loged={loged} locale={locale} />} />
         <Route path="/login" element={<Login loged={loged} setLoged={setLoged} locale={locale} setLocale={setLocale} />} />
