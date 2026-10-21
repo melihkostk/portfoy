@@ -4,34 +4,43 @@ import { VideoCard } from "../components/VideoCard"
 import { Questions } from "../components/Questions"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { useEffect, useState } from "react"
+import { getTranslation } from "../services/translation"
 
-export function Support({loged}) {
+export function Support({loged , locale}) {
+
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation)
+    }, [locale])
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header loged={loged} />
-            <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-350">
+            <Header translation={translation} loged={loged} />
+            <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
+                <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Yardım & Destek</span></p>
                 </div>
             </div>
             <div className="w-full bg-[linear-gradient(70deg,#27C5D2,#048B99)] flex items-center justify-center py-10 mb-10">
-                <div className="flex flex-col items-center justify-center w-full max-w-[80%]">
-                    <h2 className="text-white text-[32px] font-medium">Nasıl yardımcı olabiliriz?</h2>
+                <div className="flex flex-col items-center justify-center w-full max-w-[90%]">
+                    <h2 className="text-white text-[32px] font-medium">{translation?.data?.business?.how_we_can_help_you}</h2>
                     <div className="w-[60%] relative mb-2.5 bg-[#FFFFFF33] shadow-[0_0_120px_#FFFFFF80]">
-                        <input className="w-full border border-white bg-transparent text-white rounded-lg p-2.5 placeholder:text-white" type="text" placeholder="Yardımda arayın" name="q"></input>
+                        <input className="w-full border border-white bg-transparent text-white rounded-lg p-2.5 placeholder:text-white" type="text" placeholder={translation?.data?.business?.search_on_faqs_and_videos} name="q"></input>
                         <button className="w-9 h-9 bg-[#FFFFFF4D] rounded-lg absolute right-1.5 top-1.5 flex items-center justify-center">
                             <img className="w-6 h-6" src={search} alt="" />
                         </button>
                     </div>
                     <div className="flex items-center gap-5">
                         <a className="text-white text-sm opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
-                            #Firma Başvurusu
+                            #{translation?.data?.business?.company_application}
                         </a>
                         <a className="text-white text-sm opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
-                            #Abonelik Yönetimi
+                            #{translation?.data?.business?.company_subscription}
                         </a>
                         <a className="text-white text-sm opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
-                            #İlanlar
+                            #{translation?.data?.business?.properties}
                         </a>
                     </div>
                 </div>
@@ -39,8 +48,8 @@ export function Support({loged}) {
             <div className="w-full max-w-350 mb-5">
                 <div>
                     <div>
-                        <h2 className="text-[32px] text-[#212529] mb-2">Videolar</h2>
-                        <p className="mb-4 text-[#212529]">Uygulamalarla nasıl yapıldığını öğrenin</p>
+                        <h2 className="text-[32px] text-[#212529] mb-2">{translation?.data?.business?.videos}</h2>
+                        <p className="mb-4 text-[#212529]">{translation?.data?.business?.support_videos_description}</p>
                     </div>
                     <div className="flex -mx-3.75">
                         <VideoCard />
@@ -52,7 +61,7 @@ export function Support({loged}) {
             </div>
             <div className="w-full max-w-350">
                 <div className="flex flex-col items-center justify-center w-full">
-                    <h2 className="text-[32px] text-[#212529] mb-2">Sıkça Sorulan Sorular</h2>
+                    <h2 className="text-[32px] text-[#212529] mb-2">{translation?.data?.business?.faqs_section_header}</h2>
                     <div className="w-full">
                         <Questions question="Port-foy.com’a üye olabilmem için firma sahibi olmam gerekli mi?" answer="Platforma üye olmak için vergi levhası sahibi olmanız gerekmektedir. Eğer freelancer çalışan iseniz üye firmanın bünyesinde çalışabilirsiniz. Vergi levhasız başvurular kabul edilmeyecektir." />
                         <Questions question="Port-foy.com’a kimler üye olabilir?" answer="Üyelik için öncelikle vergi levhası gerekmekte. Sadece Emlak firmaları, İnşaat firmaları ve pazarlama firmaları platforma üye olabilir. Araba kiralama firmaları, Seyahat acentaları ve benzeri firmalar üye olamazlar." />
@@ -69,11 +78,11 @@ export function Support({loged}) {
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )
