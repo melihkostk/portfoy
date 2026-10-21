@@ -96,7 +96,7 @@ function App() {
         <Route path="/login" element={<Login loged={loged} setLoged={setLoged} locale={locale} setLocale={setLocale} />} />
         <Route path="/register" element={<SignIn />} />
         <Route path="/application" element={<Application locale={locale} loged={loged} />} />
-        <Route path="/check" element={<Check loged={loged} />} />
+        <Route path="/check" element={<Check locale={locale} loged={loged} />} />
         <Route path="/faqs" element={<Faqs loged={loged} />} />
         <Route path="/consent" element={<Consent loged={loged} />} />
         <Route path="*" element={<NotFound />}></Route>
