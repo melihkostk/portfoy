@@ -17,8 +17,9 @@ import { EditPropertyOffers } from "../components/EditPropertyOffers";
 import { EditPropertyMove } from "../components/EditPropertyMove";
 import { EditPropertySettings } from "../components/EditPropertySettings";
 import { EditPropertyInfo } from "../components/EditPropertyInfo";
+import { getTranslation } from "../services/translation";
 
-export function EditProperty({ loged, setMessage, setMessageShown }) {
+export function EditProperty({ loged, setMessage, setMessageShown , locale }) {
 
     const navigate = useNavigate();
 
@@ -352,6 +353,12 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
         }).finally(() => setLoaded(true))
     }
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {(deletePopUp || copyPopUp || toggleMenu || soldPopUp || publishPopUp || soldToDraft || deleteVideoPopUp || uploadVideoShown || offerMenuShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -364,7 +371,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                     />
                 </div>
             )}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             {deletePopUp && <div className="fixed top-1/2 left-1/2 overflow-y-auto pb-5 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-end items-center w-full p-4 border-b-[#dee2e6]">
                     <img onClick={() => setDeletePopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
@@ -373,37 +380,37 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                     <div className="flex flex-col items-center">
                         <img className="w-25 h-25" src={trash} alt="" />
                         <div className="mt-4 flex flex-col items-center">
-                            <p className="text-[#545454] text-2xl mb-2">Emin misiniz ?</p>
-                            <p className="text-lg text-[#6c757d] max-w-[60%] leading-none">İlanı sildiğinizde tekrar geri alamayacaksınız, silmek istediğinize emin misiniz?</p>
+                            <p className="text-[#545454] text-2xl mb-2">{translation?.data?.business?.are_you_sure}</p>
+                            <p className="text-lg text-[#6c757d] max-w-[60%] leading-none">{translation?.data?.business?.delete_property_confirm_description}</p>
                         </div>
                     </div>
                     <div className="mt-5 flex gap-2.5 justify-center">
-                        <button onClick={() => handleDelete()} className="bg-[#dc3545] cursor-pointer font-semibold hover:bg-[#bb2d3b] transition-colors duration-300 ease-in-out text-white py-2 px-5 rounded-lg text-sm">Evet, eminim</button>
-                        <button onClick={() => setDeletePopUp(false)} className="bg-[#f1f1f1] cursor-pointer font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out text-[#4b4b4b] py-2 px-5 rounded-lg text-sm">İptal</button>
+                        <button onClick={() => handleDelete()} className="bg-[#dc3545] cursor-pointer font-semibold hover:bg-[#bb2d3b] transition-colors duration-300 ease-in-out text-white py-2 px-5 rounded-lg text-sm">{translation?.data?.business?.delete_property_confirm_button}</button>
+                        <button onClick={() => setDeletePopUp(false)} className="bg-[#f1f1f1] cursor-pointer font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out text-[#4b4b4b] py-2 px-5 rounded-lg text-sm">{translation?.data?.business?.cancel}</button>
                     </div>
                 </div>
             </div>}
-            {deleteVideoPopUp && <DeleteVideoPopUp setDeleteVideoPopUp={setDeleteVideoPopUp} onClick={deleteTarget === "media" ? handleDeleteGalery : handleDeleteVideo} />}
+            {deleteVideoPopUp && <DeleteVideoPopUp translation={translation} setDeleteVideoPopUp={setDeleteVideoPopUp} onClick={deleteTarget === "media" ? handleDeleteGalery : handleDeleteVideo} />}
             {copyPopUp && <form onSubmit={handleClone} className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529] font-semibold">İlanı Kopyala</h2>
+                    <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.clone_property}</h2>
                     <img onClick={() => setCopyPopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 <div className="p-4 w-full">
                     <div className="mb-4">
-                        <label className="text-[#212529]" htmlFor="title">Başlık</label>
-                        <input required value={copyTitle} onChange={(e) => setCopyTitle(e.target.value)} className="block px-3 py-1.5 w-full mt-2 rounded-lg border border-[#d9d9d9]" id="title" name="title" type="text" placeholder="Başlık" />
+                        <label className="text-[#212529]" htmlFor="title">{translation?.data?.business?.title}</label>
+                        <input required value={copyTitle} onChange={(e) => setCopyTitle(e.target.value)} className="block px-3 py-1.5 w-full mt-2 rounded-lg border border-[#d9d9d9]" id="title" name="title" type="text" placeholder={translation?.data?.business?.title} />
                     </div>
                     <div>
-                        <p className="text-[#6c757d] mb-4">Seçenekler</p>
+                        <p className="text-[#6c757d] mb-4">{translation?.data?.business?.choices}</p>
                         <div className="flex items-center gap-2">
                             <input id="transfer" name="transfer" type="checkbox" />
-                            <label checked={cloneImage === 1} onChange={(e) => setCloneImage(e.target.checked ? 1 : 0)} className="select-none" htmlFor="transfer">Görselleri Aktar</label>
+                            <label checked={cloneImage === 1} onChange={(e) => setCloneImage(e.target.checked ? 1 : 0)} className="select-none" htmlFor="transfer">{translation?.data?.business?.clone_images_with_property}</label>
                         </div>
                     </div>
                     <div className="flex justify-end gap-2 mt-6">
-                        <button onClick={() => setCopyPopUp(false)} className="text-[#4b4b4b] cursor-pointer bg-[#f1f1f1] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
-                        <button className="text-white cursor-pointer bg-[#198754] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#157347] transition-colors duration-300 ease-in-out">Kaydet</button>
+                        <button onClick={() => setCopyPopUp(false)} className="text-[#4b4b4b] cursor-pointer bg-[#f1f1f1] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.cancel}</button>
+                        <button className="text-white cursor-pointer bg-[#198754] text-sm rounded-lg py-2 px-5 font-semibold hover:bg-[#157347] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
                     </div>
                 </div>
             </form>}
@@ -423,13 +430,13 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                     <div className="flex flex-col items-center justify-center">
                         <img className="w-25 h-25" src={file} alt="" />
                         <div className="mt-6 max-w-[87%]">
-                            <p className="text-center mb-2 text-2xl text-[#545454]">İlanı pasife almak istediğinize emin misiniz?</p>
-                            <p className="text-center text-lg text-[#6c757d]">Pasife alınan ilanlar ilan havuzunda görünmez ve ilan limitlerinizi etkilemez</p>
+                            <p className="text-center mb-2 text-2xl text-[#545454]">{translation?.data?.business?.convert_draft_property_title}</p>
+                            <p className="text-center text-lg text-[#6c757d]">{translation?.data?.business?.convert_draft_property_description}</p>
                         </div>
                     </div>
                     <div className="flex items-center justify-center gap-2.5 mt-5">
-                        <button onClick={handleToggleStatus} className="bg-[#ffca64] text-black text-sm font-semibold py-2 px-5 rounded-lg hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out cursor-pointer">Evet, pasife al</button>
-                        <button onClick={() => setToogleMenu(false)} className="bg-[#f1f1f1] text-[#4c4c4c] text-sm font-semibold py-2 px-5 rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">İptal</button>
+                        <button onClick={handleToggleStatus} className="bg-[#ffca64] text-black text-sm font-semibold py-2 px-5 rounded-lg hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out cursor-pointer">{translation?.data?.business?.convert_draft_property_confirm}</button>
+                        <button onClick={() => setToogleMenu(false)} className="bg-[#f1f1f1] text-[#4c4c4c] text-sm font-semibold py-2 px-5 rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">{translation?.data?.business?.cancel}</button>
                     </div>
                 </div>
             </div>}
@@ -440,36 +447,36 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 </div>
                 {status === "published" ? <div className="p-4">
                     <div className="text-[#664d03] bg-[#fff3cd] border border-[#ffecb5] p-4 mb-4 rounded-lg">
-                        <p>İlan satıldı olarak belirlendikten sonra arama sonuçlarında ve ilan listesinde yer alamaz. Tercihinize bağlı olarak sadece portföyünüzde görünebilir.</p>
+                        <p>{translation?.data?.business?.property_sold_warning}</p>
                     </div>
-                    <p className="text-lg text-[#212529] mb-4 font-semibold">Satılan ilanı portföyünüzde tutmak ister misiniz?</p>
+                    <p className="text-lg text-[#212529] mb-4 font-semibold">{translation?.data?.business?.property_sold_confirm_hold_on_portfolio}</p>
                     <div className="w-full flex">
-                        <button onClick={() => setHold(1)} className={`flex-1 rounded-l-lg py-2.5 ${hold === 1 ? "bg-[#27c5d2] text-white" : "bg-[#f8f8f8] text-[#212529] hover:bg-[#c3c3c3]"} text-sm cursor-pointer transition-colors duration-300 ease-in-out font-semibold border-r border-r-[#0000002D]`}>Evet</button>
-                        <button onClick={() => setHold(0)} className={`flex-1 rounded-r-lg py-2.5 ${hold === 0 ? "bg-[#27c5d2] text-white" : "bg-[#f8f8f8] text-[#212529] hover:bg-[#c3c3c3]"} cursor-pointer transition-colors duration-300 ease-in-out font-semibold`}>Hayır</button>
+                        <button onClick={() => setHold(1)} className={`flex-1 rounded-l-lg py-2.5 ${hold === 1 ? "bg-[#27c5d2] text-white" : "bg-[#f8f8f8] text-[#212529] hover:bg-[#c3c3c3]"} text-sm cursor-pointer transition-colors duration-300 ease-in-out font-semibold border-r border-r-[#0000002D]`}>{translation?.data?.business?.yes}</button>
+                        <button onClick={() => setHold(0)} className={`flex-1 rounded-r-lg py-2.5 ${hold === 0 ? "bg-[#27c5d2] text-white" : "bg-[#f8f8f8] text-[#212529] hover:bg-[#c3c3c3]"} cursor-pointer transition-colors duration-300 ease-in-out font-semibold`}>{translation?.data?.business?.no}</button>
                     </div>
                     <div className="flex justify-end mt-6 gap-2">
-                        <button onClick={() => setSoldPopUp(false)} className="py-2 px-5 rounded-lg text-sm text-[#4b4b4b] font-semibold bg-[#f1f1f1] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">İptal</button>
-                        <button onClick={handleSoldStatus} className="py-2 px-5 rounded-lg text-sm text-white font-semibold bg-[#198754] cursor-pointer hover:bg-[#157347] transition-colors duration-300 ease-in-out">Kaydet</button>
+                        <button onClick={() => setSoldPopUp(false)} className="py-2 px-5 rounded-lg text-sm text-[#4b4b4b] font-semibold bg-[#f1f1f1] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.cancel}</button>
+                        <button onClick={handleSoldStatus} className="py-2 px-5 rounded-lg text-sm text-white font-semibold bg-[#198754] cursor-pointer hover:bg-[#157347] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
                     </div>
                 </div> : <div className="p-4 w-full">
                     <div className="text-[#842029] bg-[#f8d7da] w-full p-4 rounded-lg border border-[#f5c2c7]">
-                        <p>Sadece yayında olan ilanları satıldı olarak belirleyebilirsiniz.</p>
+                        <p>{translation?.data?.business?.property_can_sold_only_published}</p>
                     </div>
                 </div>}
             </div>}
             {soldToDraft && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529]">Taslağa Çevir</h2>
+                    <h2 className="text-xl text-[#212529]">{translation?.data?.business?.convert_draft}</h2>
                     <img onClick={() => setCopyPopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 <div className="p-4">
                     <div>
-                        <p className="text-2xl text-[#212529] mb-2">Emin misiniz ?</p>
-                        <p className="text-base text-[#212529] mb-4">Pasife alınan ilanlar ilan havuzunda görünmez ve ilan limitlerinizi etkilemez</p>
+                        <p className="text-2xl text-[#212529] mb-2">{translation?.data?.business?.are_you_sure}</p>
+                        <p className="text-base text-[#212529] mb-4">{translation?.data?.business?.convert_draft_property_description}</p>
                     </div>
                     <div className="flex justify-end gap-2 mt-6">
-                        <button onClick={() => setSoldToDraft(false)} className="bg-[#f1f1f1] text-[#4b4b4b] text-sm rounded-lg cursor-pointer py-2 px-5 font-semibold">İptal</button>
-                        <button onClick={handleToggleStatus} className="bg-[#198754] text-white text-sm rounded-lg cursor-pointer py-2 px-5 font-semibold">Taslağa Çevir</button>
+                        <button onClick={() => setSoldToDraft(false)} className="bg-[#f1f1f1] text-[#4b4b4b] text-sm rounded-lg cursor-pointer py-2 px-5 font-semibold">{translation?.data?.business?.cancel}</button>
+                        <button onClick={handleToggleStatus} className="bg-[#198754] text-white text-sm rounded-lg cursor-pointer py-2 px-5 font-semibold">{translation?.data?.business?.convert_draft}</button>
                     </div>
                 </div>
             </div>}
@@ -480,11 +487,11 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 </div>
                 <div className="p-4">
                     <p className="text-[#212529]">
-                        İlana hiç görsel eklemediniz, görsel eklemeden yayına almak istediğinize emin misiniz?
+                        {translation?.data?.business?.confirm_publish_property_without_gallery_description}
                     </p>
                     <div className="mt-6 flex justify-end gap-2">
-                        <button onClick={() => setPublishPopUp(false)} className="bg-[#f1f1f1] text-[#4b4b4b] text-sm rounded-lg cursor-pointer py-2 px-5 font-semibold">İptal</button>
-                        <button onClick={handleToggleStatus} className="bg-[#198754] text-white text-sm rounded-lg cursor-pointer py-2 px-5 font-semibold">Evet</button>
+                        <button onClick={() => setPublishPopUp(false)} className="bg-[#f1f1f1] text-[#4b4b4b] text-sm rounded-lg cursor-pointer py-2 px-5 font-semibold">{translation?.data?.business?.cancel}</button>
+                        <button onClick={handleToggleStatus} className="bg-[#198754] text-white text-sm rounded-lg cursor-pointer py-2 px-5 font-semibold">{translation?.data?.business?.yes}</button>
                     </div>
                 </div>
             </div>}
@@ -499,7 +506,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                         <h1 className="text-[25px]">{title}</h1>
                         <ul className="flex text-sm text-[#7d7d7d] mt-1.25 max-[992px]:mb-5 flex-wrap">
                             <li>
-                                {status === "draft" ? "Taslak" : "Yayında"}
+                                {status === "draft" ? translation?.data?.business?.statusess?.draft : translation?.data?.business?.statusess?.published}
                             </li>
                             <li className="mx-2.5">
                                 -
@@ -518,19 +525,19 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                     <div className="w-full max-w-fit">
                         <ul className="flex overflow-x-auto scrollbar-thin">
                             <li>
-                                <button onClick={() => setEditType("info")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "info" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>İlan Bilgileri</button>
+                                <button onClick={() => setEditType("info")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "info" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>{translation?.data?.business?.property_info}</button>
                             </li>
                             <li>
-                                <button onClick={() => setEditType("galery")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "galery" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Galeri</button>
+                                <button onClick={() => setEditType("galery")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "galery" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>{translation?.data?.business?.gallery}</button>
                             </li>
                             <li>
-                                <button onClick={() => setEditType("offers")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "offers" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Teklifler</button>
+                                <button onClick={() => setEditType("offers")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "offers" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>{translation?.data?.business?.proposals}</button>
                             </li>
                             <li>
-                                <button onClick={() => setEditType("move")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "move" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Hareketler</button>
+                                <button onClick={() => setEditType("move")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "move" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>{translation?.data?.business?.transactions}</button>
                             </li>
                             {detail.status !== "sold" && <li>
-                                <button onClick={() => setEditType("settings")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "settings" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>Ayarlar</button>
+                                <button onClick={() => setEditType("settings")} className={`py-2.5 px-5 text-sm cursor-pointer ${editType === "settings" ? "bg-[#d5d5d5]" : ""} text-[#565656] rounded-lg whitespace-nowrap hover:bg-[#ededed] transition-colors duration-300 ease-in-out`}>{translation?.data?.business?.settings}</button>
                             </li>}
                         </ul>
                     </div>
@@ -550,14 +557,14 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
             </div>}
             {detail.status === "draft" && <div className="w-full max-w-[90%]">
                 <div className="w-full flex items-center justify-between border border-[#ffecb5] p-4 mb-4 bg-[#fff3cd] rounded-lg">
-                    <p className="text-[#664d03]">Bu ilan şuanda taslak durumunda, ilan bilgilerinizi tamamladıktan sonra yayınlayabilirsiniz.</p>
-                    <button onClick={() => setPublishPopUp(true)} className="bg-[#ffca64] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">Şimdi Yayınla</button>
+                    <p className="text-[#664d03]">{translation?.data?.business?.property_draft_status_warning_text}</p>
+                    <button onClick={() => setPublishPopUp(true)} className="bg-[#ffca64] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">{translation?.data?.business?.now_publish}</button>
                 </div>
             </div>}
             {detail.status === "sold" && <div className="w-full max-w-[90%]">
                 <div className="w-full flex items-center justify-between border border-[#27C5D2] p-4 mb-4 bg-[#27c5d217] rounded-lg">
-                    <p className="text-[#27c5d2]">Bu ilan Port-Foy.com aracılığı ile satılmıştır.</p>
-                    <button onClick={() => setSoldToDraft(true)} className="bg-[#27C5D2] text-white text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Taslağa Çevir</button>
+                    <p className="text-[#27c5d2]">{translation?.data?.business?.property_is_sold_text}.</p>
+                    <button onClick={() => setSoldToDraft(true)} className="bg-[#27C5D2] text-white text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.convert_draft}</button>
                 </div>
             </div>}
             {editType === "info" && <EditPropertyInfo
@@ -584,6 +591,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 handleFeatureChange={handleFeatureChange}
                 handleUpdateProperty={handleUpdateProperty}
                 status={status}
+                translation={translation}
             />}
             {editType === "settings" && <EditPropertySettings
                 detail={detail}
@@ -593,6 +601,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 setCopyPopUp={setCopyPopUp}
                 setDeletePopUp={setDeletePopUp}
                 setSoldPopUp={setSoldPopUp}
+                translation={translation}
             />}
             {editType === "move" && <EditPropertyMove transactions={transactions} />}
             {editType === "offers" && <EditPropertyOffers
@@ -612,6 +621,7 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 setLoaded={setLoaded}
                 proposals={proposals}
                 externalProposals={externalProposals}
+                translation={translation}
             />}
             {editType === "galery" && <EditPropertyGallery
                 detail={detail}
@@ -634,14 +644,15 @@ export function EditProperty({ loged, setMessage, setMessageShown }) {
                 coverImg={coverImg}
                 setCoverImg={setCoverImg}
                 handleAddLocalVideo={handleAddLocalVideo}
+                translation={translation}
             />}
             <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div >
     )

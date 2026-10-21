@@ -21,12 +21,14 @@ export function EditPropertyOffers({
     setLoaded,
     proposals,
     externalProposals,
+    translation
+    
 }) {
     return (
         <div className="w-full max-w-[90%]">
             {offerMenuShown && <div className="fixed overflow-y-scroll scrollbar-none top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 w-[25%] max-h-[95%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529] font-semibold">Fiyat Teklifini Görüntüle</h2>
+                    <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.show_price_offer}</h2>
                     <img onClick={closeOfferMenu} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
                 <div className="p-4 w-full">
@@ -47,38 +49,38 @@ export function EditPropertyOffers({
                                 </div>
                             </div>
                             {offerInfo?.data?.notes !== null && <div className="p-3.75 rounded-lg mb-5 border border-[#ececec]">
-                                <p className="mb-4 text-[#212529] font-semibold">Müşteri Notu</p>
+                                <p className="mb-4 text-[#212529] font-semibold">{translation?.data?.business?.customer_notes}</p>
                                 <p className="mb-4 text-[#212529] font-meidum">{offerInfo?.data?.notes}</p>
                             </div>}
                             <div>
                                 <div className="flex">
                                     {offerInfo?.data?.pricing_type === "PASS" && <div className="flex-1 max-w-full text-center">
-                                        <p className="text-sm text-[#212529] opacity-70 font-semibold">Pass Fiyatı</p>
+                                        <p className="text-sm text-[#212529] opacity-70 font-semibold">{translation?.data?.business?.pass_price}</p>
                                         <p className="text-[22px] text-[#212529]">{offerInfo?.data?.prices?.secondary?.formatted}</p>
                                     </div>}
                                     <div className="flex-1 max-w-full text-center">
-                                        <p className="text-sm text-[#212529] opacity-70 font-semibold">Satış Fiyatı</p>
+                                        <p className="text-sm text-[#212529] opacity-70 font-semibold">{translation?.data?.business?.sell_price}</p>
                                         <p className="text-[22px] text-[#212529]">{offerInfo?.data?.prices?.primary?.formatted}</p>
                                     </div>
                                 </div>
                                 <div className="my-7.5">
                                     <div className="flex-1 max-w-full text-center">
-                                        <p className="text-sm text-[#212529] opacity-70 font-semibold">Teklif Edilen Tutar</p>
+                                        <p className="text-sm text-[#212529] opacity-70 font-semibold">{translation?.data?.business?.offered_amount}</p>
                                         <p className="text-[22px] text-[#212529]">{offerInfo?.data?.offered_price?.formatted}</p>
                                     </div>
                                 </div>
                             </div>
                             {offerInfo?.data?.status?.key === "waiting" && <div className="p-3.75 bg-[#f9f9f9] rounded-lg">
-                                <h2 className="text-xl text-[#212529] mb-5 font-semibold">Teklife Yanıt Verin</h2>
+                                <h2 className="text-xl text-[#212529] mb-5 font-semibold">{translation?.data?.business?.your_reply_for_offer}</h2>
                                 <div className="mb-5 flex justify-start gap-2.5">
-                                    <button onClick={() => setOfferStatus("confirm")} className={`text-sm ${offerStatus === "confirm" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]"} p-2.5 flex-1 rounded-lg cursor-pointer`}>Kabul Et</button>
-                                    <button onClick={() => setOfferStatus("reject")} className={`text-sm ${offerStatus === "reject" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]"} p-2.5 flex-1 rounded-lg cursor-pointer`}>Reddet</button>
+                                    <button onClick={() => setOfferStatus("confirm")} className={`text-sm ${offerStatus === "confirm" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]"} p-2.5 flex-1 rounded-lg cursor-pointer`}>{translation?.data?.business?.confirm_price_offer}</button>
+                                    <button onClick={() => setOfferStatus("reject")} className={`text-sm ${offerStatus === "reject" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]"} p-2.5 flex-1 rounded-lg cursor-pointer`}>{translation?.data?.business?.deny_price_offer}</button>
                                 </div>
                                 <div className="mb-2">
-                                    <label className="text-[#212529]" htmlFor="note">Notunuz</label>
+                                    <label className="text-[#212529]" htmlFor="note">{translation?.data?.business?.my_notes}</label>
                                     <textarea value={note} onChange={(e) => setNote(e.target.value)} className="bg-white px-3 py-1.5 block w-full border border-[#d9d9d9] rounded-lg min-h-[calc(1.5em+0.75rem+2px)]" type="text" id="note" name="note" />
                                 </div>
-                                <button disabled={!offerStatus} onClick={handleReplyOffer} className="w-full text-white text-sm font-semibold cursor-pointer hover:bg-[#157347] transition-colors duration-300 ease-in-out bg-[#198754] py-2 px-5 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#198754]">Kaydet</button>
+                                <button disabled={!offerStatus} onClick={handleReplyOffer} className="w-full text-white text-sm font-semibold cursor-pointer hover:bg-[#157347] transition-colors duration-300 ease-in-out bg-[#198754] py-2 px-5 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#198754]">{translation?.data?.business?.save}</button>
                             </div>}
                         </>
                     )}
@@ -86,17 +88,17 @@ export function EditPropertyOffers({
             </div>}
             <div className="p-2.5 mb-7.5 rounded-lg border border-[#f8f8f8]">
                 <div className="text-lg text-[#676767] py-2 px-4 bg-[#f8f8f8] rounded-lg">
-                    <p className="py-1.25 font-semibold">Müşteriden Gelen Fiyat Teklifleri</p>
+                    <p className="py-1.25 font-semibold">{translation?.data?.business?.customer_price_offers}</p>
                 </div>
                 <div className="w-full p-4 overflow-x-auto scrollbar-thin">
                     <table className="w-full">
                         <thead>
                             <tr className="bg-[#ececec] text-[#6c757d]">
-                                <th className="text-start py-4 px-2.5 rounded-l-lg whitespace-nowrap">Teklif Gönderen</th>
-                                <th className="text-start py-4 px-2.5 whitespace-nowrap">Fiyat</th>
-                                <th className="text-start py-4 px-2.5 whitespace-nowrap">Durum</th>
-                                <th className="text-start py-4 px-2.5 whitespace-nowrap">Oluşturma Tarihi</th>
-                                <th className="text-end py-4 px-2.5 rounded-r-lg whitespace-nowrap">İşlemler</th>
+                                <th className="text-start py-4 px-2.5 rounded-l-lg whitespace-nowrap">{translation?.data?.business?.price_offer_customer}</th>
+                                <th className="text-start py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.price}</th>
+                                <th className="text-start py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.status}</th>
+                                <th className="text-start py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.created_at}</th>
+                                <th className="text-end py-4 px-2.5 rounded-r-lg whitespace-nowrap">{translation?.data?.business?.actions}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -114,6 +116,7 @@ export function EditPropertyOffers({
                                     setOfferInfo={setOfferInfo}
                                     setSelectedOfferId={setSelectedOfferId}
                                     setLoaded={setLoaded}
+                                    translation={translation}
                                 />
                             ))}
                         </tbody>
@@ -122,18 +125,18 @@ export function EditPropertyOffers({
             </div>
             <div className="p-2.5 mb-7.5 rounded-lg border border-[#f8f8f8]">
                 <div className="text-lg text-[#676767] py-2 px-4 bg-[#f8f8f8] rounded-lg">
-                    <p className="py-1.25 font-semibold">Müşteriye Gönderilen Teklifler</p>
+                    <p className="py-1.25 font-semibold">{translation?.data?.business?.proposals_to_customers}</p>
                 </div>
                 <div className="w-full p-4 overflow-x-auto scrollbar-thin">
                     <table className="w-full">
                         <thead>
                             <tr className="bg-[#ececec] rounded-lg text-[#6c757d]">
                                 <th className="text-start py-4 px-2.5 rounded-l-lg whitespace-nowrap">#</th>
-                                <th className="text-start py-4 px-2.5 whitespace-nowrap">Müşteri</th>
-                                <th className="text-start py-4 px-2.5 whitespace-nowrap">Değerlendirme</th>
-                                <th className="text-start py-4 px-2.5 whitespace-nowrap">Durum</th>
-                                <th className="text-start py-4 px-2.5 whitespace-nowrap">Oluşturma Tarihi</th>
-                                <th className="text-end py-4 px-2.5 rounded-r-lg whitespace-nowrap">İşlemler</th>
+                                <th className="text-start py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.customer}</th>
+                                <th className="text-start py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.review}</th>
+                                <th className="text-start py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.status}</th>
+                                <th className="text-start py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.created_at}</th>
+                                <th className="text-end py-4 px-2.5 rounded-r-lg whitespace-nowrap">{translation?.data?.business?.actions}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -148,6 +151,7 @@ export function EditPropertyOffers({
                                     key={item.id}
                                     code={item.code}
                                     id={item.id}
+                                    translation={translation}
                                 />
                             ))}
                         </tbody>
@@ -156,16 +160,16 @@ export function EditPropertyOffers({
             </div>
             <div className="p-2.5 mb-7.5 rounded-lg border border-[#f8f8f8]">
                 <div className="text-lg text-[#676767] py-2 px-4 bg-[#f8f8f8] rounded-lg">
-                    <p className="py-1.25 font-semibold">Diğer Firmaların Oluşturduğu Teklifler</p>
+                    <p className="py-1.25 font-semibold">{translation?.data?.business?.external_proposals}</p>
                 </div>
                 <div className="w-full p-4 overflow-x-auto scrollbar-thin">
                     <table className="w-full">
                         <thead>
                             <tr className="bg-[#ececec] rounded-lg text-[#6c757d]">
-                                <th className="text-start py-4 px-2.5 rounded-l-lg whitespace-nowrap">Firma</th>
-                                <th className="text-start py-4 px-2.5 whitespace-nowrap">Değerlendirme</th>
-                                <th className="text-start py-4 px-2.5 whitespace-nowrap">Durum</th>
-                                <th className="text-start py-4 px-2.5 rounded-r-lg whitespace-nowrap">Oluşturma Tarihi</th>
+                                <th className="text-start py-4 px-2.5 rounded-l-lg whitespace-nowrap">{translation?.data?.business?.company}</th>
+                                <th className="text-start py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.review}</th>
+                                <th className="text-start py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.status}</th>
+                                <th className="text-start py-4 px-2.5 rounded-r-lg whitespace-nowrap">{translation?.data?.business?.created_at}</th>
                             </tr>
                         </thead>
                         <tbody>

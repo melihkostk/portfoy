@@ -1,42 +1,42 @@
 import { PropertySettingsCard } from "./PropertySettingsCard"
 
-export function EditPropertySettings({ detail, navigate, id, setToogleMenu, setCopyPopUp, setDeletePopUp, setSoldPopUp }) {
+export function EditPropertySettings({ detail, navigate, id, setToogleMenu, setCopyPopUp, setDeletePopUp, setSoldPopUp , translation }) {
     return (
         <div className="w-full max-w-[90%]">
             <div className="w-full mb-7.5">
                 <div className="flex flex-wrap max-[992px]:flex-col ">
                     <PropertySettingsCard
-                        title="İlanı Pasife Al"
-                        description="İlan havuzunda yer almasını istemediğiniz ilanları pasif durumuna alabilirsiniz"
-                        button="Pasife Al"
+                        title={translation?.data?.business?.set_property_passive}
+                        description={translation?.data?.business?.set_property_passive_description}
+                        button={translation?.data?.business?.set_passive}
                         disabled={detail?.status === "draft"}
                         onClick={() => setToogleMenu(true)}
                     />
                     <PropertySettingsCard
-                        title="İlanı Öne Çıkar"
-                        description="Belirli bir süre için ilanınızı öne çıkararak daha fazla kullanıcının görmesini sağlayabilirsiniz."
-                        button="İlanı Öne Çıkar"
+                        title={translation?.data?.business?.boost_property}
+                        description={translation?.data?.business?.boost_property_description}
+                        button={translation?.data?.business?.boost_property}
                         onClick={() => navigate(`/properties/${id}/boost`)}
                         status={detail?.status}
                     />
                     <PropertySettingsCard
-                        title="İlanı Kopyala"
-                        description="Bu ilanın galeri görselleri dahil tüm özelliklerini kullanarak yeni bir ilan oluşturabilirsiniz."
-                        button="Kopyala"
+                        title={translation?.data?.business?.clone_property}
+                        description={translation?.data?.business?.clone_property_description}
+                        button={translation?.data?.business?.copy}
                         onClick={() => setCopyPopUp(true)}
                         status={detail?.status}
                     />
                     <PropertySettingsCard
-                        title="İlanı Sil"
-                        description="Bu ilana ait hareketleri, teklifleri ve benzeri tüm kayıtları tamamen kaldırın."
-                        button="İlanı Sil"
+                        title={translation?.data?.business?.delete_property}
+                        description={translation?.data?.business?.delete_property_description}
+                        button={translation?.data?.business?.delete_property}
                         onClick={() => setDeletePopUp(true)}
                         status={detail?.status}
                     />
                     <PropertySettingsCard
-                        title="İlan Satıldı"
-                        description="İlanı satıldı olarak işaretleyin ve tercihinize göre portföyünüzde kalmasını sağlayın."
-                        button="İlan Satıldı"
+                        title={translation?.data?.business?.property_sold}
+                        description={translation?.data?.business?.property_sold_action_description}
+                        button={translation?.data?.business?.property_sold}
                         status={detail?.status}
                         onClick={() => setSoldPopUp(true)}
                     />

@@ -14,7 +14,7 @@ export function ProposalCard({code , name , status , statusKey , score , created
             {page !== "external" && <td className="text-end py-3 px-2 flex justify-end">
                 <Link to={`/proposals/${id}/details`} className="bg-[#27C5D2] w-full max-w-fit text-xs flex items-center justify-center gap-1.25 text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
                     <img className="w-4 h-4" src={eye} alt="" />
-                    {translation.data.business.view}
+                    {translation?.data?.business?.view}
                 </Link>
             </td>}
         </tr>

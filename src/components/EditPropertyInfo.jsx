@@ -22,60 +22,61 @@ export function EditPropertyInfo({
     handleFeatureChange,
     handleUpdateProperty,
     status,
+    translation
 }) {
     return (
         <div className="w-full max-w-[90%]">
             <div className="w-full mb-7.5">
                 <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
                     <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
-                        <h5 className="text-[#676767] text-lg py-1.25">Temel Bilgiler</h5>
+                        <h5 className="text-[#676767] text-lg py-1.25">{translation?.data?.business?.basic_info}</h5>
                     </div>
                     <div className="p-4">
                         <div className="px-3 mb-2">
-                            <label className="text-[#6c757d]" htmlFor="title">Başlık</label>
+                            <label className="text-[#6c757d]" htmlFor="title">{translation?.data?.business?.title}</label>
                             <input id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                         </div>
                         <div className="flex max-[992px]:flex-col">
                             {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="pass">Pass Fiyatı <span className="text-sm">({currency})</span></label>
+                                <label className="text-[#6c757d]" htmlFor="pass">{translation?.data?.business?.pass_price} <span className="text-sm">({currency})</span></label>
                                 <input id="pass" name="pass" value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="sell">Satış Fiyatı <span className="text-sm">({currency})</span></label>
+                                <label className="text-[#6c757d]" htmlFor="sell">{translation?.data?.business?.sell_price} <span className="text-sm">({currency})</span></label>
                                 <input id="sell" name="sell" className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="min">Minimum Fiyat <span className="text-sm">({currency})</span></label>
+                                <label className="text-[#6c757d]" htmlFor="min">{translation?.data?.business?.min_price} <span className="text-sm">({currency})</span></label>
                                 <input id="min" name="min" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="max">Maximum Fiyat <span className="text-sm">({currency})</span></label>
+                                <label className="text-[#6c757d]" htmlFor="max">{translation?.data?.business?.max_price} <span className="text-sm">({currency})</span></label>
                                 <input id="max" name="max" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="price-option">Fiyat Seçenekleri ( 1 Seçenek )</label>
+                                <label className="text-[#6c757d]" htmlFor="price-option">{translation?.data?.business?.property_type_prices} ( 1 {translation?.data?.business?.property_type_prices_count.replace(":count" , "")} )</label>
                                 <input id="price-option" name="price-option" className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="currency">Para Birimi</label>
+                                <label className="text-[#6c757d]" htmlFor="currency">{translation?.data?.business?.currency}</label>
                                 <input id="currency" name="currency" value={currency} onChange={(e) => setCurrency(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                             </div>
                         </div>
                         <div className="flex max-[992px]:flex-col">
                             <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="country">Ülke Seçin</label>
+                                <label className="text-[#6c757d]" htmlFor="country">{translation?.data?.business?.choose?.country}</label>
                                 <input id="country" name="country" value={country} onChange={(e) => setCountry(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                             </div>
                             <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="city">İl Seçin</label>
+                                <label className="text-[#6c757d]" htmlFor="city">{translation?.data?.business?.choose?.city}</label>
                                 <input id="city" name="city" value={city} onChange={(e) => setCity(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                             </div>
                             <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="district">İlçe Seçin</label>
+                                <label className="text-[#6c757d]" htmlFor="district">{translation?.data?.business?.choose?.district}</label>
                                 <input id="district" name="district" value={district} onChange={(e) => setDistrict(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                             </div>
                             <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="street">Mahalle</label>
+                                <label className="text-[#6c757d]" htmlFor="street">{translation?.data?.business?.choose?.street}</label>
                                 <input id="street" name="street" value={street} onChange={(e) => setStreet(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                             </div>
                         </div>
@@ -85,13 +86,13 @@ export function EditPropertyInfo({
             <div className="w-full mb-7.5">
                 <div className="p-2.5 border border-[#f8f8f8] rounded-lg">
                     <div className="bg-[#f8f8f8] py-2 px-4 rounded-lg">
-                        <h5 className="text-[#676767] text-lg py-1.25">Harita Bilgisi</h5>
+                        <h5 className="text-[#676767] text-lg py-1.25">{translation?.data?.business?.property_map_info}</h5>
                     </div>
                     <div className="p-4">
                         <div className={`flex flex-col items-center justify-center ${latitude && longitude ? "h-100" : "h-50"}`}>
                             {!(latitude && longitude) && <div className="flex flex-col items-center">
-                                <p className="text-[#6c757d] mb-4">Harita üzerinde ilanın konumunu belirleyin</p>
-                                <button className="text-sm font-semibold text-white py-2 px-5 rounded-lg cursor-pointer bg-[#27c5d2] hover:bg-[#026872] transition-colors duration-300 ease-in-out">Konum Belirleyin</button>
+                                <p className="text-[#6c757d] mb-4">{translation?.data?.business?.no_map_coordinates_warning}</p>
+                                <button className="text-sm font-semibold text-white py-2 px-5 rounded-lg cursor-pointer bg-[#27c5d2] hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.create_map_coordinates}</button>
                             </div>}
                             {(latitude && longitude) && <div className="w-full h-full">
                                 <iframe
@@ -139,8 +140,8 @@ export function EditPropertyInfo({
             </div>
             <div className="w-full mb-7.5">
                 <div className="flex gap-1">
-                    <button onClick={handleUpdateProperty} className="text-sm bg-[#27c5d2] text-white rounded-lg py-2 px-5 cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Güncelle</button>
-                    {status === "draft" && <button className="text-sm bg-[#F1F1F1] text-[#4B4B4B] rounded-lg py-2 px-5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Güncelle ve Yayınla</button>}
+                    <button onClick={handleUpdateProperty} className="text-sm bg-[#27c5d2] text-white rounded-lg py-2 px-5 cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.update}</button>
+                    {status === "draft" && <button className="text-sm bg-[#F1F1F1] text-[#4B4B4B] rounded-lg py-2 px-5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.update_and_publish}</button>}
                 </div>
             </div>
         </div>
