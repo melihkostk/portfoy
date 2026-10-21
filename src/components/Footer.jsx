@@ -13,8 +13,7 @@ export function Footer({loged , translation}) {
                 <div className="w-[40%] max-[992px]:w-full pr-7.5">
                     <img className="w-[40%] mb-5" src={logo} alt="" />
                     <p className="text-sm text-[#b9c0c1] font-medium mb-4">
-                        Port-foy.com olarak, gayrimenkul sektöründe faaliyet gösteren profesyonellerin
-                        işlerini kolaylaştırmak ve geniş kitlelere ulaşmalarını sağlamak amacıyla yenilikçi çözümler sunuyoruz.
+                        {translation?.data?.business?.footer_text}
                     </p>
                     <ul className="flex">
                         <a className="bg-[#bfb9bf] mr-2.5 w-10 h-10 rounded-lg flex items-center justify-center hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(39,197,210,0.5)]" href="https://www.linkedin.com/company/port-foy-com">
@@ -41,45 +40,45 @@ export function Footer({loged , translation}) {
                 </div>
                 <div className="flex max-[992px]:w-full">
                     <div className="flex-1">
-                        <p className="text-[24px] text-[#27c5d2] mb-4">Kurumsal</p>
+                        <p className="text-[24px] text-[#27c5d2] mb-4">{translation?.data?.business?.corporate}</p>
                         <ul className="text-[#b9b0b1] text-lg">
                             <li className="mb-3.75">
-                                <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">Kurumsal</Link>
+                                <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.corporate}</Link>
                             </li>
                             <li className="mb-3.75">
-                                <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">Misyon</Link>
+                                <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.mission}</Link>
                             </li>
                             <li className="mb-3.75">
-                                <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">Vizyon</Link>
+                                <Link to={"/corporate"} className="hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.vision}</Link>
                             </li>
                             <li className="mb-3.75">
-                                <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">Keşfet</Link>
+                                <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.discover}</Link>
                             </li>
                             <li>
-                                <Link to={"/contacts"} className="hover:text-black transition-colors duration-300 ease-in-out">İletişim</Link>
+                                <Link to={"/contacts"} className="hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.contacts}</Link>
                             </li>
                         </ul>
                     </div>
                     <div className="flex-1">
-                        <p className="text-[24px] text-[#27c5d2] mb-4">Keşfet</p>
+                        <p className="text-[24px] text-[#27c5d2] mb-4">{translation?.data?.business?.discover}</p>
                         <ul className="text-[#b9b0b1] text-lg ">
                             <li className="mb-3.75">
-                                <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">Port-Foy Nedir?</Link>
+                                <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.what_is_portfoy}</Link>
                             </li>
                             <li className="mb-3.75">
-                                <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">Özellikler ve Avantajlar</Link>
+                                <Link to={"/discover"} className="hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.app_features_and_advantages_section_title}</Link>
                             </li>
                             <li className="mb-3.75">
-                                <Link to={"/pricing"} className="hover:text-black transition-colors duration-300 ease-in-out">Fiyatlandırma</Link>
+                                <Link to={"/pricing"} className="hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.pricing}</Link>
                             </li>
                             <li>
-                                <Link to={"/faqs"} className="hover:text-black transition-colors duration-300 ease-in-out">Sıkça Sorulan Sorular</Link>
+                                <Link to={"/faqs"} className="hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.faqs_section_header}</Link>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div className="w-[20%] max-[992px]:w-full">
-                    <p className="text-[24px] text-[#27c5d2] mb-4">Sözleşmeler</p>
+                    <p className="text-[24px] text-[#27c5d2] mb-4">{translation?.data?.business?.contracts}</p>
                     <ul className="text-[#b9b0b1] text-lg font-normal">
                         <li>
                             <Link to={"/consent"} className="hover:text-black transition-colors duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tr/pages/3">Rıza Metni</Link>
