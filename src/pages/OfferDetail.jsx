@@ -7,8 +7,9 @@ import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
+import { getTranslation } from "../services/translation";
 
-export function OfferDetail({ loged }) {
+export function OfferDetail({ loged , locale }) {
 
     const { id } = useParams();
 
@@ -18,6 +19,12 @@ export function OfferDetail({ loged }) {
     useEffect(() => {
         showOffer(id).then(setDetails).finally(() => setLoaded(true))
     }, [id])
+
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -30,7 +37,7 @@ export function OfferDetail({ loged }) {
                     />
                 </div>
             )}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım</span></p>
@@ -39,10 +46,10 @@ export function OfferDetail({ loged }) {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
                     <div className="w-[28%] max-[992px]:w-full">
-                        <Sidebar />
+                        <Sidebar translation={translation} />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
-                        <h2 className="mb-5 text-[#212529] text-[25px]">Fiyat Teklifi Detayı</h2>
+                        <h2 className="mb-5 text-[#212529] text-[25px]">{translation?.data?.business?.offer_details}</h2>
                         <div className="bg-cover bg-center p-7.5 rounded-lg" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url(${bgImage})` }}>
                             <div className="flex justify-between items-start">
                                 <div>
@@ -50,12 +57,12 @@ export function OfferDetail({ loged }) {
                                     <p className="text-[25px] text-white font-semibold">{details?.data?.property?.title}</p>
                                     <p className="text-base text-white mb-4">{details?.data?.property?.type?.title}</p>
                                     <div>
-                                        <p className="text-xs text-white font-semibold">Notunuz</p>
+                                        <p className="text-xs text-white font-semibold">{translation?.data?.business?.my_notes}</p>
                                         <p className="text-sm text-white font-semibold">{details?.data?.notes}</p>
                                     </div>
                                 </div>
                                 <div>
-                                    <Link to={`/properties/${details?.data?.property?.id}`} className="py-2.5 px-5 bg-white text-black text-sm rounded-lg hover:text-white hover:bg-[#27c5d2] transition-colors duration-300 ease-in-out">İlana Git</Link>
+                                    <Link to={`/properties/${details?.data?.property?.id}`} className="py-2.5 px-5 bg-white text-black text-sm rounded-lg hover:text-white hover:bg-[#27c5d2] transition-colors duration-300 ease-in-out">{translation?.data?.business?.go_to_property}</Link>
                                 </div>
                             </div>
                             <div className="flex justify-between mt-25">
@@ -70,11 +77,11 @@ export function OfferDetail({ loged }) {
                                 </div>
                                 <div className="flex items-center gap-7.5">
                                     <div>
-                                        <p className="text-sm text-white">Geçerli Fiyat</p>
+                                        <p className="text-sm text-white">{translation?.data?.business?.current_price}</p>
                                         <p className="text-base text-white">{details?.data?.prices?.primary?.formatted}</p>
                                     </div>
                                     <div>
-                                        <p className="text-sm text-white">Teklif edilen tutar</p>
+                                        <p className="text-sm text-white">{translation?.data?.business?.offered_price}</p>
                                         <p className="text-base text-white">{details?.data?.offered_price?.formatted}</p>
                                     </div>
                                 </div>
@@ -96,11 +103,11 @@ export function OfferDetail({ loged }) {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )
