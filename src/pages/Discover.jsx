@@ -7,31 +7,34 @@ import { DiscoverAccordion } from "../components/DiscoverAccordion";
 import { PricingCard } from "../components/PricingCard";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getTranslation } from "../services/translation";
 
-export function Discover({ loged }) {
+export function Discover({ loged , locale }) {
 
     const [pricingCate, setPricingCate] = useState("Emlak Firması")
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Keşfet</span></p>
+                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.discover}</span></p>
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex items-center">
                     <div className="flex-1">
-                        <h1 className="text-[#212529] text-[40px] font-bold leading-[1.2] mb-5">Port-Foy ile daha kısa zamanda daha fazla emlak firmasına ulaşın.</h1>
-                        <p className="text-sm text-[#818181] font-medium mb-12.5">
-                            Firmanızın ürünlerini Port-foy.com’a yükleyin.
-                            Hem mobil telefonunuzdan hem de bilgisayarınızdan
-                            yakındaki veya uzaktaki gayrimenkullere anında ulaşın.
-                        </p>
+                        <h1 className="text-[#212529] text-[40px] font-bold leading-[1.2] mb-5">{translation?.data?.business?.discover_page_section_title}</h1>
+                        <p className="text-sm text-[#818181] font-medium mb-12.5">{translation?.data?.business?.discover_page_section_description}</p>
                         <div>
-                            <p className="text-sm text-[#212529] opacity-70 mb-2.5 font-medium">Uygulamayı şimdi ücretsiz indirin</p>
+                            <p className="text-sm text-[#212529] opacity-70 mb-2.5 font-medium">{translation?.data?.business?.download_app_free_now}</p>
                             <div className="flex gap-2.5">
                                 <a className="hover:opacity-70 transition-opacity duration-300 ease-in-out" href="https://apps.apple.com/tr/app/port-foy/id6745571274">
                                     <img src={googlePlay} alt="" />
@@ -49,11 +52,9 @@ export function Discover({ loged }) {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="text-center flex flex-col items-center my-15">
-                    <h1 className="mb-2.5 text-[32px] text-[#212529] font-semibold">
-                        Port-Foy'ü Keşfet
-                    </h1>
+                    <h1 className="mb-2.5 text-[34px] text-[#212529] font-semibold">{translation?.data?.business?.discover_portfoy}</h1>
                     <p className="text-base text-[#525252] font-medium max-w-[45%] max-[992px]:w-full max-[992px]:max-w-full">
-                        Size daha hızlı ve daha ekonomik çözümler sunan port-foy.com’un size sunduğu kolaylıklara birlikte inceleyelim.
+                        {translation?.data?.business?.discover_app_section_description}
                     </p>
                 </div>
                 <div>
@@ -379,13 +380,12 @@ export function Discover({ loged }) {
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
-
         </div>
     )
 }

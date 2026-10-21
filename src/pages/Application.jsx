@@ -12,8 +12,17 @@ import downArrow from "../assets/down-arrow.png"
 import { Link } from "react-router-dom"
 import { AppLinks } from "../components/AppLinks"
 import { LanguageSelect } from "../components/LanguageSelect"
+import { useEffect, useState } from "react"
+import { getTranslation } from "../services/translation"
 
-export function Application() {
+export function Application({ locale }) {
+
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation)
+    }, [locale])
+
     return (
         <div className="w-full flex flex-col items-center justify-center font-sf">
             <div className="w-full max-w-[90%]">
@@ -34,73 +43,69 @@ export function Application() {
                                 </a>
                                 <img className="border-6 border-[#27C5D2] rounded-full p-3 shadow-[0_0_60px_#27C5D2] bg-transparent backdrop-blur-sm absolute top-[40%] left-[42%] z-40" src={play} alt="" />
                             </div>
-                            <h1 className="mb-5 text-[25px] font-semibold">Port-Foy ile tanışın</h1>
+                            <h1 className="mb-5 text-[25px] font-semibold">{translation?.data?.business?.registration_page_section_title}</h1>
                             <p className="text-[#666666] font-medium mb-4">
-                                Firmanızın ürettiği ya da satmak yetkisi olan gayrimenkullerinizi;
-                                daha çok emlak firmasına ulaştırın. Hatta farklı şehirlerdeki emlak firmaları
-                                da sizin ürünlerinizi görebilsin. Bunun için reklam vermenize gerek yok.
-                                Hergün toplu mesaj sitelerinde “Drive link“ paylaşmanıza gerek yok.
-                                Bırakın bunu sizin için biz daha profesyonel bir şekilde yapalım.
+                                {translation?.data?.business.registration_page_section_description}
                             </p>
                             <ul className="list-disc mb-4 pl-8">
                                 <li className="text-[#666666]">
-                                    Firma bilgilerinizi girin
+                                    {translation?.data?.business?.registration_page_section_list_item_1}
                                 </li>
                                 <li className="text-[#666666]">
-                                    Onaylandıktan sonra firma profilinizi oluşturun
+                                    {translation?.data?.business?.registration_page_section_list_item_2}
                                 </li>
                                 <li className="text-[#666666]">
-                                    Gayrimenkul ürünlerinizi girin
+                                    {translation?.data?.business?.registration_page_section_list_item_3}
                                 </li>
                                 <li className="text-[#666666]">
-                                    Port-foy.com’un size sunduğu daha birçok kolaylığı keşfedin ve tadını çıkarın
+                                    {translation?.data?.business?.registration_page_section_list_item_4}
                                 </li>
                             </ul>
                             <div className="flex gap-2 flex-wrap">
                                 <Link className="py-2 px-5 text-sm text-white font-semibold bg-[#27C5D2] rounded-lg hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer" to={"/"} href="">
-                                    Port-foy'a Dön
+                                    {translation?.data?.business?.return_portfoy}
                                 </Link>
                                 <Link className="py-2 px-5 text-sm text-white font-semibold bg-[#27C5D2] rounded-lg hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer" to={"/check"} href="">
-                                    Başvuru Sorgulama
+                                    {translation?.data?.business?.application_check}
                                 </Link>
                             </div>
                         </div>
                     </div>
                     <div className="flex-1 p-12.5 max-[992px]:w-full max-[992px]:p-0 max-[992px]:mt-12.5">
                         <div className="mb-15">
-                            <h2 className="text-[#686868] mb-2 text-[18px] font-medium">FIRMA BAŞVURUSU FORMU</h2>
-                            <p className="text-sm text-[#a6a6a6] font-medium">Lütfen tüm alanları doğru bir şekilde doldurun.</p>
+                            <h2 className="text-[#686868] mb-2 text-[18px] uppercase font-medium">{translation?.data?.business?.company_application_form}</h2>
+                            <p className="text-sm text-[#a6a6a6] font-medium">{translation?.data?.business?.please_fill_fields}</p>
                         </div>
                         <div>
                             <form action="">
-                                <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">Kişisel Bilgiler</h3>
+                                <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">{translation?.data?.business?.personal_info}</h3>
                                 <div className="mb-12.5 flex flex-col flex-wrap gap-3.75">
                                     <div className="flex flex-col mx-2.5">
-                                        <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Adınız ve Soyadınız</label>
+                                        <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">{translation?.data?.business?.fullname}</label>
                                         <div className="relative flex items-center ">
                                             <img className="w-7 h-7 absolute bottom-2 left-2" src={person} alt="" />
-                                            <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Adınız ve Soyadınız" required />
+                                            <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.fullname} required />
                                         </div>
                                     </div>
                                     <div className="flex max-[992px]:flex-col max-[992px]:gap-3.75">
                                         <div className="flex flex-col mx-2.5 flex-1 ">
-                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Telefon Numaranız</label>
+                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">{translation?.data?.business?.your_phone}</label>
                                             <div className="relative flex items-center ">
                                                 <img className="w-6 h-6 absolute bottom-2 left-2" src={phone} alt="" />
-                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Telefon Numaranız" required />
+                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.your_phone} required />
                                             </div>
                                         </div>
                                         <div className="flex flex-col mx-2.5 flex-1">
-                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">E-posta Adresiniz</label>
+                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">{translation?.data?.business?.your_email}</label>
                                             <div className="relative flex items-center ">
                                                 <img className="w-5 h-5 absolute bottom-2 left-2" src={mail} alt="" />
-                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="E-posta Adresiniz" required />
+                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.your_email} required />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="mb-12.5">
-                                    <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">Konum Bilgileri</h3>
+                                    <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">{translation?.data?.business?.location_info}</h3>
                                     <div className="flex flex-col gap-3.75">
                                         <div className="flex justify-between border border-[#EDEDED] rounded-lg">
                                             <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
@@ -121,71 +126,72 @@ export function Application() {
                                             </div>
                                         </div>
                                         <div className="flex flex-col mx-2.5">
-                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Açık Adres</label>
+                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">{translation?.data?.business?.full_address}</label>
                                             <div className="relative flex items-center ">
                                                 <img className="w-6 h-6 absolute bottom-2 left-2" src={location} alt="" />
-                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Açık Adres" />
+                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.full_address} />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="mb-12.5">
-                                    <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">Firma Bilgileri</h3>
+                                    <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">{translation?.data?.business?.company_info}</h3>
                                     <div className="flex flex-wrap gap-3.75 items-start max-[992px]:flex-col">
                                         <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
-                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Firma Ünvanı</label>
+                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">{translation?.data?.business?.company_title}</label>
                                             <div className="relative flex items-center ">
                                                 <img className="w-7 h-7 absolute bottom-2 left-2" src={person} alt="" />
-                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Firma Ünvanı" required />
+                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.company_title} required />
                                             </div>
                                         </div>
                                         <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
-                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Faaliyet Alanı</label>
+                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">{translation?.data?.business?.activity_area}</label>
                                             <div className="relative flex items-center ">
                                                 <img className="w-4 h-4 absolute top-3.5 left-2" src={menu} alt="" />
-                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Faaliyet Alanı" required />
+                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.activity_area} required />
                                             </div>
                                         </div>
                                         <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
-                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Vergi Levhası (PDF)</label>
+                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">{translation?.data?.business?.tax_plate_file}</label>
                                             <div className="relative flex items-center">
                                                 <img className="w-5 h-5 absolute top-2.5 left-2" src={pdf} alt="" />
-                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Dosya Seçin" required />
+                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.choose?.file} required />
                                             </div>
                                         </div>
                                         <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
-                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Vergi Numarası</label>
+                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">{translation?.data?.business?.tax_number}</label>
                                             <div className="relative flex items-center">
                                                 <img className="w-5 h-5 absolute top-2.5 left-2" src={file} alt="" />
-                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Vergi Numarası" required />
+                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.tax_number} required />
                                             </div>
                                         </div>
                                         <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
-                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Ticaret Odası Faaliyet Belgesi (PDF)</label>
+                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">{translation?.data?.business?.licence_file}</label>
                                             <div className="relative flex items-center">
                                                 <img className="w-5 h-5 absolute top-2.5 left-2" src={pdf} alt="" />
-                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Dosya Seçin" required />
+                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.choose?.file} required />
                                             </div>
                                         </div>
                                         <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
-                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">Mersis Numarası</label>
+                                            <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="">{translation?.data?.business?.licence_number}</label>
                                             <div className="relative flex items-center">
                                                 <img className="w-5 h-5 absolute top-2.5 left-2" src={file} alt="" />
-                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder="Mersis Numarası" required />
+                                                <input className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.licence_number} required />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="mb-12.5">
-                                    <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">Yasal Sorumluluklar</h3>
+                                    <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">{translation?.data?.business?.legal_responsibilities}</h3>
                                     <div className="flex items-center gap-1.25">
                                         <input className="cursor-pointer w-5 h-5" type="checkbox" required />
-                                        <label className="text-sm text-[#868686] font-medium" htmlFor="">Rıza metnini ve kişisel verilerin korunması kanununu  okudum ve kabul ediyorum
+                                        <label className="text-sm text-[#868686] font-medium" htmlFor="">
+                                            {translation?.data?.business?.registration_page_legal_responsibilities_label?.replace(/<[^>]+>/g, "")}
                                         </label>
                                     </div>
                                 </div>
                                 <div>
-                                    <button className="bg-[#27C5D2] text-white font-medium w-1/2 py-3 rounded-lg max-[992px]:w-full hover:bg-[#026872] hover:shadow-[0_0_30px_#27C5D2] transition-[background-color,box-shadow] duration-300 ease-in-out cursor-pointer">Gönder</button>
+                                    <button className="bg-[#27C5D2] text-white font-medium w-1/2 py-3 rounded-lg max-[992px]:w-full hover:bg-[#026872] hover:shadow-[0_0_30px_#27C5D2] transition-[background-color,box-shadow] duration-300 ease-in-out cursor-pointer">{translation?.data?.business?.submit}</button>
                                 </div>
                             </form>
                         </div>

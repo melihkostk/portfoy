@@ -88,14 +88,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={loged ? <HomeLogin locale={locale} news={news} loged={loged} setLoged={setLoged} /> : <Home loged={loged} setLoged={setLoged} news={news} />} />
-        <Route path="/discover" element={<Discover loged={loged} />} />
+        <Route path="/discover" element={<Discover locale={locale} loged={loged} />} />
         <Route path="/pricing" element={<Pricing loged={loged} />} />
         <Route path="/articles" element={<News loged={loged} news={news} />} />
         <Route path="/corporate" element={<Corporate locale={locale} loged={loged} />} />
         <Route path="/contacts" element={<Contacts loged={loged} locale={locale} />} />
         <Route path="/login" element={<Login loged={loged} setLoged={setLoged} locale={locale} setLocale={setLocale} />} />
         <Route path="/register" element={<SignIn />} />
-        <Route path="/application" element={<Application loged={loged} />} />
+        <Route path="/application" element={<Application locale={locale} loged={loged} />} />
         <Route path="/check" element={<Check loged={loged} />} />
         <Route path="/faqs" element={<Faqs loged={loged} />} />
         <Route path="/consent" element={<Consent loged={loged} />} />
