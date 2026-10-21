@@ -91,6 +91,7 @@ export function Proposals({ loged, locale }) {
                                             name={item.customer.name}
                                             score={item.score}
                                             status={item.status.title}
+                                            statusKey={item.status.key}
                                             created_at={item.created_at}
                                             index={index}
                                             translation={translation}

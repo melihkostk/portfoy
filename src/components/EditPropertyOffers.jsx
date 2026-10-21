@@ -141,6 +141,7 @@ export function EditPropertyOffers({
                                     score={item.score}
                                     created_at={item.created_at}
                                     status={item.status.title}
+                                    statusKey={item.status.key}
                                     page="edit"
                                     name={item.customer.name}
                                     key={item.id}
@@ -172,6 +173,7 @@ export function EditPropertyOffers({
                                     score={item.score}
                                     created_at={item.created_at}
                                     status={item.status.title}
+                                    statusKey={item.status.key}
                                     page="external"
                                     name={item.company.name}
                                     key={item.id}
