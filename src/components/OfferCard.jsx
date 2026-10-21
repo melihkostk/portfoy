@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { showOffer } from "../services/profileApi";
 import eye from "../assets/eye.png"
 
-export function OfferCard({ title, translation ,  name , page , price, offered_price, status, created_at, setLoaded , id, type , index , setOfferMenuShown , setOfferInfo , setSelectedOfferId }) {
+export function OfferCard({ title, translation ,  name , page , price, offered_price, status, statusKey, created_at, setLoaded , id, type , index , setOfferMenuShown , setOfferInfo , setSelectedOfferId }) {
 
     const handleShowOffer = () => {
         setOfferMenuShown(true)
@@ -26,7 +26,7 @@ export function OfferCard({ title, translation ,  name , page , price, offered_p
                 {offered_price}
             </td>}
             <td className="py-3 px-2">
-                <span className={`${status === "Beklemede" ? "bg-[#27C5D2]" : ""} ${status === "Reddedildi" ? "bg-[#ed0000]" : ""} ${status === "Onaylandı" ? "bg-[#00cc83]" : ""} text-xs text-white font-semibold py-1.25 px-2 rounded-md`}>
+                <span className={`${statusKey === "waiting" ? "bg-[#27C5D2]" : ""} ${statusKey === "reject" ? "bg-[#ed0000]" : ""} ${statusKey === "confirm" ? "bg-[#00cc83]" : ""} text-xs text-white font-semibold py-1.25 px-2 rounded-md`}>
                     {status}
                 </span>
             </td>

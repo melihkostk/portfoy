@@ -105,6 +105,7 @@ export function EditPropertyOffers({
                                     price={item.offered_price.formatted}
                                     name={item.company.personal}
                                     status={item.status.title}
+                                    statusKey={item.status.key}
                                     key={item.id}
                                     created_at={item.created_at}
                                     page="edit"
