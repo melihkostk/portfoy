@@ -88,6 +88,7 @@ export function CompanyProposals({ loged , locale }) {
                                     created_at={item.created_at}
                                     score={item.score}
                                     status={item.status.title}
+                                    statusKey={item.status.key}
                                     count={item.property_count}
                                     index={index}
                                     translation={translation}
@@ -105,6 +106,7 @@ export function CompanyProposals({ loged , locale }) {
                                         created_at={item.created_at}
                                         score={item.score}
                                         status={item.status.title}
+                                        statusKey={item.status.key}
                                         count={item.property_count}
                                         index={index}
                                         translation={translation}

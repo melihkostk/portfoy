@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export function CompanyProposalCard({name, translation , index , code , personal , created_at , score , status , count , id}){
+export function CompanyProposalCard({name, translation , statusKey , index , code , personal , created_at , score , status , count , id}){
      return (
         <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
             <td className="py-3 px-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-[30ch] truncate">{code} ({count} {translation?.data?.business?.property})</td>
@@ -9,7 +9,7 @@ export function CompanyProposalCard({name, translation , index , code , personal
             <td className="py-3 px-2 whitespace-nowrap">{created_at}</td>
             <td className="text-sm whitespace-nowrap text-[#6c757d]">{score === 0 ? translation?.data?.business?.not_yet_review : score}</td>
             <td>
-                <span className={`text-white text-xs text-center py-2 font-semibold px-2 rounded-lg whitespace-nowrap ${status === "Beklemede" ? "bg-[#27c5d2]" : "" } ${status === "Süresi Doldu" ? "bg-[#ed0000]" : "bg-[#00cc83]"}`}>
+                <span className={`text-white text-xs text-center py-2 font-semibold px-2 rounded-lg whitespace-nowrap ${statusKey === "waiting" ? "bg-[#27c5d2]" : "" } ${statusKey === "expired" ? "bg-[#ed0000]" : "bg-[#00cc83]"}`}>
                     {status}
                 </span>
             </td>
