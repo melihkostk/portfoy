@@ -2,8 +2,9 @@ import logo from "../assets/logo.svg"
 import { AppLinks } from "../components/AppLinks"
 import { Link, useNavigate  } from "react-router-dom"
 import { LanguageSelect } from "../components/LanguageSelect"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { loginRequest } from "../services/authApi"
+import { getTranslation } from "../services/translation"
 
 export function Login({ setLoged , locale , setLocale }) {
 
@@ -37,9 +38,15 @@ export function Login({ setLoged , locale , setLocale }) {
             });
     }
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
     return (
         <div className="flex flex-col justify-center items-center min-h-screen bg-linear-to-b font-sf from-[#f7f6fb] from-35% to-white to-35%">
-            <div className="w-[40%] max-[992px]:w-full max-[992px]:max-w-[95%]">
+            <div className="w-[30%] h-full max-[992px]:w-full max-[992px]:max-w-[95%]">
                 <div className="flex items-center justify-between mb-7.5 py-5">
                     <div className="w-55">
                         <Link to={"/"}>
@@ -50,43 +57,43 @@ export function Login({ setLoged , locale , setLocale }) {
                 </div>
                 <div className="w-full bg-white shadow-[0_0_30px_rgb(247_247_247)] p-7.5 rounded-lg">
                     <div className="mt-6.25 mb-7.5">
-                        <h1 className="text-lg text-[#686868] uppercase font-semibold mb-2.5">Giriş Yap</h1>
-                        <p className="text-base text-[#a6a6a6]">Devam etmek için lütfen giriş yapın</p>
+                        <h1 className="text-lg text-[#686868] uppercase font-semibold mb-2.5">{translation?.data?.business?.login}</h1>
+                        <p className="text-base text-[#a6a6a6]">{translation?.data?.business?.login_description}</p> 
                     </div>
                     <form onSubmit={login}>
                         <div className="my-2.5">
-                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="username">E-Posta</label>
+                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="username">{translation?.data?.business?.email}</label>
                             <div>
-                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="username" type="email" placeholder="E-Posta" required />
+                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="username" type="email" placeholder={translation?.data?.business?.email} required />
                             </div>
                         </div>
                         <div className="my-2.5">
                             <div className="flex items-center justify-between">
-                                <label className="text-[#868686] mb-1.25 font-medium" htmlFor="username">Şifre</label>
-                                <a className="text-[#b1b1b1] text-sm font-medium hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">Şifremi Unuttum</a>
+                                <label className="text-[#868686] mb-1.25 font-medium" htmlFor="username">{translation?.data?.business?.password}</label>
+                                <a className="text-[#b1b1b1] text-sm font-medium hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">{translation?.data?.business?.forget_password}</a>
                             </div>
                             <div>
-                                <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type="password" placeholder="Şifre" required />
+                                <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type="password" placeholder={translation?.data?.business?.password} required />
                             </div>
                         </div>
                         <div className="flex items-center">
                             <input type="checkbox" />
-                            <label className="text-[#868686] ml-1.25 font-medium">Beni Hatırla</label>
+                            <label className="text-[#868686] ml-1.25 font-medium">{translation?.data?.business?.remember_me}</label>
                         </div>
                         {error && (
                             <p className="text-red-500 text-sm font-medium mt-2.5">{error}</p>
                         )}
-                        <button type="submit" disabled={loading} className="bg-[#27C5D2] hover:bg-[#026872] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{loading ? "Giriş Yapılıyor..." : "Giriş Yap"}</button>
+                        <button type="submit" disabled={loading} className="bg-[#27C5D2] hover:bg-[#026872] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{loading ? "Giriş Yapılıyor..." : translation?.data?.business?.login}</button>
                         <p className="text-center my-10 text-sm text-[#868686] font-medium">
                             Hesabınız yok mu? Davetiye kodunuzla
                             <Link to={"/register"} className="block text-[#525252] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">şimdi hesap oluşturun.</Link>
                         </p>
                     </form>
-                    <p className="text-center text-[#868686] text-xs font-medium">Tüm hakları saklıdır. © Port-Foy - 2024</p>
+                    <p className="text-center text-[#868686] text-xs font-medium">{translation?.data?.business?.copyright}</p>
                 </div>
             </div>
             <div className="w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
-                <AppLinks />
+                <AppLinks translation={translation} />
             </div>
         </div>
     )

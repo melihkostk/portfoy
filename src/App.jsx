@@ -87,7 +87,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={loged ? <HomeLogin locale={locale} news={news} loged={loged} setLoged={setLoged} /> : <Home loged={loged} setLoged={setLoged} news={news} />} />
+        <Route path="/" element={token ? <HomeLogin locale={locale} news={news} loged={loged} setLoged={setLoged} /> : <Home loged={loged} locale={locale} setLoged={setLoged} news={news} />} />
         <Route path="/discover" element={<Discover locale={locale} loged={loged} />} />
         <Route path="/pricing" element={<Pricing loged={loged} />} />
         <Route path="/articles" element={<News locale={locale} loged={loged} news={news} />} />

@@ -10,39 +10,46 @@ import { Filter } from "../components/Filter"
 import about from "../assets/about.png"
 import step1 from "../assets/step1.png"
 import step3 from "../assets/step3.png"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { getTranslation } from "../services/translation"
 
-export function Home({ loged , news }) {
+export function Home({ loged , news , locale }) {
 
   const [pricingCate, setPricingCate] = useState("Emlak Firması")
 
+  const [translation , setTranslation] = useState([]);
+
+  useEffect(() => {
+    getTranslation(locale).then(setTranslation);
+  }, [locale])
+
   return (
     <div className='flex flex-col items-center font-sf'>
-      <Header loged={loged} />
+      <Header translation={translation} loged={loged} />
       <div className='w-full max-w-[90%] py-20'>
         <h1 className='text-[35px] text-black font-medium mb-2'>İlanları Filtrele</h1>
-        <Filter />
+        {/*<Filter />*/}
       </div>
       <div className='w-full max-w-[90%] flex flex-col items-center my-30'>
         <div className='w-full flex flex-col items-center mb-10'>
-          <h2 className='text-[32px] text-[#212529] mb-2 font-medium text-center'>Üç Adımda Port-foy’unuzu Yönetin</h2>
-          <p className='max-w-[40%] text-center text-[#212529] max-[992px]:max-w-full'>Port-foy.com sizin için çok kolaylaştırıldı. Sizi bekleyen birkaç adımdan sonra işleriniz artık daha da kolaylaşacak.</p>
+          <h2 className='text-[32px] text-[#212529] mb-2 font-medium text-center'>{translation?.data?.business?.app_steps_section_title}</h2>
+          <p className='max-w-[40%] text-center text-[#212529] max-[992px]:max-w-full'>{translation?.data?.business?.app_steps_section_description}</p>
         </div>
         <div className='flex items-start gap-7.5 justify-between max-w-[80%] max-[992px]:flex-col mb-12.5'>
-          <PortfoyCard img={step1} title="Başvurunuzu Yapın" description="Firmanıza ait mali bilgileri, firma yetkilisi olarak siz kişisel bilgilerinizi girdikten sonra kısa bir onay süreci sizi bekliyor olacak. Onay maili ile birlikte size giriş kodunuz gönderilecek. Dilerseniz tanııtm videomuzda bu adımları izleyerek ilerleyebilirsiniz." />
-          <PortfoyCard img={about} title="Profilinizi Oluşturun" description="Tebrikler Firma başvurunuz onayladı. Port-foy ailesine hoş geldiniz. Şimdi firmanızın profilini oluşturalım. Ekibinizi ve yetkilerini hazırlamayı unutmayın. Ve elbette tüm yetkili olduğunuz gayrimenkullerinizi doğru bilgilerle Port-foy.com’a yüklemeye başlayabilirsiniz." />
-          <PortfoyCard img={step3} title="Portföyünüzü Yönetin" description="Tüm bu kısa adımları tamamladınız. Artık ürünleriniz diğer tüm Port-foy kullanıcıları tarafından görüntülenebilmekte. Size gelen bilgileri ve uyarıları lütfen takip edin. Size gelen teklifleri en kısa zamanda cevap vermeye gayret edin. Ayrıca müşterilerin sizin ürünlerinize verdiği puanlamaları inceleyin. Bu bilgiler size pazarlamanızdaki olası eksikleri ortaya çıkaracaktır." />
+          <PortfoyCard img={step1} title={translation?.data?.business?.app_steps_section_1_title} description={translation?.data?.business?.app_steps_section_1_description} />
+          <PortfoyCard img={about} title={translation?.data?.business?.app_steps_section_2_title} description={translation?.data?.business?.app_steps_section_2_description} />
+          <PortfoyCard img={step3} title={translation?.data?.business?.app_steps_section_3_title} description={translation?.data?.business?.app_steps_section_3_description} />
         </div>
         <div>
-          <Link to={"/application"} className='bg-[#f1f1f1] text-[#4b4b4b] px-5 py-2 text-sm rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer'>FIRMA BASVURUSU</Link>
+          <Link to={"/application"} className='bg-[#f1f1f1] text-[#4b4b4b] px-5 py-2 text-sm uppercase rounded-lg hover:bg-[#c3c3c3] font-semibold transition-colors duration-300 ease-in-out cursor-pointer'>{translation?.data?.business?.company_application}</Link>
         </div>
       </div>
       <div className='w-full bg-[#f7f6fb] flex flex-col items-center py-30'>
         <div className='w-full max-w-[90%]'>
           <div className='flex justify-between items-start mb-12.5 max-[992px]:flex-col'>
             <div>
-              <h2 className='text-[30px] text-black font-medium mb-2'>Port-Foy'ü Keşfet</h2>
-              <p className='text-[15px] opacity-70 text-[#212529] font-medium'>Size daha hızlı ve daha ekonomik çözümler sunan port-foy.com’un size sunduğu kolaylıklara birlikte inceleyelim.</p>
+              <h2 className='text-[30px] text-black font-medium mb-2'>{translation?.data?.business?.app_discover}</h2>
+              <p className='text-[15px] opacity-70 text-[#212529] font-medium'>{translation?.data?.business?.discover_app_section_description}</p>
             </div>
             <div>
               <Link to={"/discover"} className='text-[#818181] text-sm font-medium hover:text-[#27C5D2] transition-colors duration-300 ease-in-out'>Tümünü Gör</Link>
@@ -303,11 +310,11 @@ export function Home({ loged , news }) {
       </div>
       <div className='w-full mt-30 mb-30'>
         <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-          <AppLinks />
+          <AppLinks translation={translation} />
         </div>
       </div>
       <div className='w-full'>
-        <Footer loged={loged} />
+        <Footer translation={translation} loged={loged} />
       </div>
     </div>
   )
