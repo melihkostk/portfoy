@@ -14,19 +14,24 @@ import chain from "../assets/chain.png"
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import messageIcon from "../assets/message.png"
+import { getTranslation } from "../services/translation";
 
-export function ProposalDetail({ loged }) {
-
+export function ProposalDetail({ loged , locale }) {
 
     const { id } = useParams();
 
     const [detail, setDetails] = useState([])
     const [loaded, setLoaded] = useState(false);
 
-
     useEffect(() => {
         showProposal(id).then(setDetails).finally(() => setLoaded(true))
     }, [id])
+
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -39,7 +44,7 @@ export function ProposalDetail({ loged }) {
                     />
                 </div>
             )}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım</span></p>
@@ -102,7 +107,7 @@ export function ProposalDetail({ loged }) {
                     </div>
                     <div className="w-[30%] max-[992px]:w-full">
                         <div className="bg-white shadow-[0_0_80px_#f3f3f3] text-center p-7.5 mb-7.5 rounded-lg">
-                            <p className="font-semibold">Notunuz (Müşteri için)</p>
+                            <p className="font-semibold">{translation?.data?.business?.notes_for_customer}</p>
                             <p className="text-sm italic text-[#212529]">{detail?.notes}</p>
                         </div>
                         {detail?.score  ? <div className="bg-white shadow-[0_0_80px_#f3f3f3] text-center p-7.5 mb-7.5 rounded-lg flex flex-col gap-1">
@@ -117,8 +122,8 @@ export function ProposalDetail({ loged }) {
                                     />
                                 ))}
                             </div>
-                            <p className="text-sm text-[#929292]">{detail?.created_at} tarihinde kaydedildi</p>
-                            <p className="mt-2.5 font-semibold text-sm">Müşteri notu <span className="block italic font-normal">{detail?.reply_notes}</span></p>
+                            <p className="text-sm text-[#929292]">{translation.data.business.reviewed_at.replace(":date" , " ")} {detail?.created_at}</p>
+                            <p className="mt-2.5 font-semibold text-sm">{translation?.data?.business?.customer_notes} <span className="block italic font-normal">{detail?.reply_notes}</span></p>
                             <div className="rounded-lg border border-[#eee] p-2.5 mt-7.5">
                                 {detail?.review?.summary?.questions?.map(item => (
                                     <div key={item.title} className="flex items-center justify-between p-2.5">
@@ -142,19 +147,19 @@ export function ProposalDetail({ loged }) {
                                     <div className="bg-[#f8f8f8] mb-5 rounded-full w-20 h-20 flex items-center justify-center">
                                         <img className="w-8 h-8" src={messageIcon} alt="message icon" />
                                     </div>
-                                    <p className="text-[#979797] text-sm">Henüz değerlendirilmedi</p>
+                                    <p className="text-[#979797] text-sm">{translation?.data?.business?.not_yet_review}</p>
                                 </div>
                             </div>
                         )}
                         <div className="bg-white shadow-[0_0_80px_#f3f3f3] flex flex-col items-center p-7.5 rounded-lg">
-                            <p className="mb-5 text-sm text-[#979797]">Bu teklifi paylaş:</p>
+                            <p className="mb-5 text-sm text-[#979797]">{translation?.data?.business?.share_this_proposal}</p>
                             <button className="bg-[#25d366] mb-2.5 text-white flex items-center gap-1 font-semibold rounded-lg py-2 px-5 text-sm cursor-pointer hover:bg-[#19a74e] transition-colors duration-300 ease-in-out">
                                 <img className="w-5 h-5" src={wp} alt="" />
-                                Whatsapp'ta paylaş
+                                {translation?.data?.business?.share_on_whatsapp}
                             </button>
                             <button className="bg-[#f8f8f8] text-black flex items-center gap-1 font-semibold rounded-lg py-2 px-5 text-sm cursor-pointer block hover:bg-[#cdcdcd] transition-colors duration-300 ease-in-out">
                                 <img className="w-5 h-5" src={chain} alt="" />
-                                Bağlantıyı Kopyala
+                                {translation?.data?.business?.copy_link}
                             </button>
                         </div>
                     </div>
@@ -162,11 +167,11 @@ export function ProposalDetail({ loged }) {
             </div>
             <div className='w-full mt-30 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )
