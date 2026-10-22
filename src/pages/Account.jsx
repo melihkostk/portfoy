@@ -107,10 +107,10 @@ export function Account({ loged , locale, setLocale }) {
                     />
                 </div>
             )}
-            {changePasswordShown && <ChangePasswordPopUp setCurrent={setCurrent} setPassword={setPassword} setConfirm={setConfirm} handlePasswordChange={handlePasswordChange} setChangePassword={setChangePasswordShown} />}
-            {errorShown && <ErrorPopUp setErrorShown={setErrorShown} errorMessage={errorMessage} />}
+            {changePasswordShown && <ChangePasswordPopUp translation={translation} setCurrent={setCurrent} setPassword={setPassword} setConfirm={setConfirm} handlePasswordChange={handlePasswordChange} setChangePassword={setChangePasswordShown} />}
+            {errorShown && <ErrorPopUp translation={translation} setErrorShown={setErrorShown} errorMessage={errorMessage} />}
             {checkShown && <CheckEmailPopUp setConfirmShown={setConfirmShown} setCheckShown={setCheckShown} successMessage={successMessage} />}
-            {confirmShown && <ConfirmPopUp setConfirmShown={setConfirmShown} />}
+            {confirmShown && <ConfirmPopUp translation={translation} setConfirmShown={setConfirmShown} />}
             <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">

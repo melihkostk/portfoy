@@ -302,8 +302,8 @@ export function PropertiesDetail({ loged , locale, setLocale }) {
             <div id="detail" className="w-full max-w-[90%] mt-12.5">
                 <div className="flex max-[992px]:flex-col-reverse max-[992px]:gap-20">
                     <div className="w-[30%] max-[992px]:w-full">
-                        {details?.features?.map(item => (
-                            <div key={item.id} className="mb-7.5">
+                        {details?.features?.map((item , index) => (
+                            <div key={index} className="mb-7.5">
                                 <h2 className="p-5 mb-4 text-xl text-[#212529] font-semibold">{item.title}</h2>
                                 {item?.features?.map((item, index) => (
                                     <FeatureCard index={index} key={item.id} title={item.title} value={item.title !== "Metrekare (m²)" ? item.value : `${item.value.min} - ${item.value.max}`} id={item.id} />
