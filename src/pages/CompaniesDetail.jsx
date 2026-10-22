@@ -73,6 +73,7 @@ export function CompaniesDetail({ loged , locale, setLocale }) {
                                     district={item.district.title}
                                     page="companiesDetail"
                                     propertyType={item.is_under_construction}
+                                    translation={translation}
                                 />
                             ))}
                         </div>

@@ -83,6 +83,7 @@ export function UserProperties({ loged , locale, setLocale }) {
                                     city={item.city.title}
                                     district={item.district.title}
                                     status={item.status}
+                                    translation={translation}
                                 />
                             ))}
                         </div>
