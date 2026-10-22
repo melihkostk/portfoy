@@ -356,7 +356,8 @@ export function EditProperty({ loged, setMessage, setMessageShown , locale, setL
     const [translation , setTranslation] = useState([]);
 
     useEffect(() => {
-        getTranslation(locale).then(setTranslation);
+        setLoaded(false)
+        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
     return (

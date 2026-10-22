@@ -5,6 +5,7 @@ import { LanguageSelect } from "../components/LanguageSelect"
 import { useEffect, useState } from "react"
 import { loginRequest } from "../services/authApi"
 import { getTranslation } from "../services/translation"
+import { ClipLoader } from "react-spinners"
 
 export function Login({ setLoged , locale , setLocale }) {
 
@@ -40,12 +41,24 @@ export function Login({ setLoged , locale , setLocale }) {
 
     const [translation , setTranslation] = useState([]);
 
+    const [loaded, setLoaded] = useState(false);
+
     useEffect(() => {
-        getTranslation(locale).then(setTranslation);
+        setLoaded(false)
+        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
     return (
         <div className="flex flex-col justify-center items-center min-h-screen bg-linear-to-b font-sf from-[#f7f6fb] from-35% to-white to-35%">
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <div className="w-[30%] h-full max-[992px]:w-full max-[992px]:max-w-[95%]">
                 <div className="flex items-center justify-between mb-7.5 py-5">
                     <div className="w-55">

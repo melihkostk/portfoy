@@ -119,7 +119,8 @@ export function Company({ loged, message, messageShown , setMessageShown, locale
     const [translation , setTranslation] = useState([]);
 
     useEffect(() => {
-        getTranslation(locale).then(setTranslation)
+        setLoaded(false)
+        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
     return (

@@ -12,6 +12,7 @@ import step1 from "../assets/step1.png"
 import step3 from "../assets/step3.png"
 import { useEffect, useState } from "react"
 import { getTranslation } from "../services/translation"
+import { ClipLoader } from "react-spinners"
 
 export function Home({ loged , news , locale, setLocale }) {
 
@@ -19,12 +20,24 @@ export function Home({ loged , news , locale, setLocale }) {
 
   const [translation , setTranslation] = useState([]);
 
+  const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
-    getTranslation(locale).then(setTranslation);
+    setLoaded(false)
+    getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
   }, [locale])
 
   return (
     <div className='flex flex-col items-center font-sf'>
+      {!loaded && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+          <ClipLoader
+            size={150}
+            color="#27c5d2"
+            aria-label="Loading Spinner"
+          />
+        </div>
+      )}
       <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
       <div className='w-full max-w-[90%] py-20'>
         <h1 className='text-[35px] text-black font-medium mb-2'>{translation?.data?.business?.filter_properties}</h1>

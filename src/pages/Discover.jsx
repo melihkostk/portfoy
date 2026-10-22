@@ -9,6 +9,7 @@ import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import { useEffect, useState } from "react";
 import { getTranslation } from "../services/translation";
+import { ClipLoader } from "react-spinners"
 
 export function Discover({ loged , locale, setLocale }) {
 
@@ -16,12 +17,24 @@ export function Discover({ loged , locale, setLocale }) {
 
     const [translation , setTranslation] = useState([]);
 
+    const [loaded, setLoaded] = useState(false);
+
     useEffect(() => {
-        getTranslation(locale).then(setTranslation);
+        setLoaded(false)
+        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">

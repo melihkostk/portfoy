@@ -41,7 +41,8 @@ export function UserProperties({ loged , locale, setLocale }) {
     const [translation , setTranslation] = useState([]);
 
     useEffect(() => {
-        getTranslation(locale).then(setTranslation)
+        setLoaded(false)
+        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
     return (

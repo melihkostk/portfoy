@@ -14,17 +14,30 @@ import { AppLinks } from "../components/AppLinks"
 import { LanguageSelect } from "../components/LanguageSelect"
 import { useEffect, useState } from "react"
 import { getTranslation } from "../services/translation"
+import { ClipLoader } from "react-spinners"
 
 export function Application({ locale, setLocale }) {
 
     const [translation , setTranslation] = useState([]);
 
+    const [loaded, setLoaded] = useState(false);
+
     useEffect(() => {
-        getTranslation(locale).then(setTranslation)
+        setLoaded(false)
+        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
     return (
         <div className="w-full flex flex-col items-center justify-center font-sf">
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col">
                     <div className="flex-1 pr-12.5">
