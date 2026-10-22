@@ -11,7 +11,7 @@ import close from "../assets/blue-close.png"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
 import { getTranslation } from "../services/translation"
 
-export function Location({ loged , locale }) {
+export function Location({ loged , locale, setLocale }) {
 
     const [location, setLocation] = useState([])
     const [loaded, setLoaded] = useState(false)
@@ -186,7 +186,7 @@ export function Location({ loged , locale }) {
                     </div>
                 </div>
             </div>}
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Konum & İletişim</span></p>

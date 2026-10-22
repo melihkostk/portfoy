@@ -7,7 +7,7 @@ import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
 import { getTranslation } from "../services/translation"
 
-export function Support({loged , locale}) {
+export function Support({loged , locale, setLocale}) {
 
     const [translation , setTranslation] = useState([]);
 
@@ -17,7 +17,7 @@ export function Support({loged , locale}) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Yardım & Destek</span></p>

@@ -87,50 +87,50 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={token ? <HomeLogin locale={locale} news={news} loged={loged} setLoged={setLoged} /> : <Home loged={loged} locale={locale} setLoged={setLoged} news={news} />} />
-        <Route path="/discover" element={<Discover locale={locale} loged={loged} />} />
-        <Route path="/pricing" element={<Pricing loged={loged} />} />
-        <Route path="/articles" element={<News locale={locale} loged={loged} news={news} />} />
-        <Route path="/corporate" element={<Corporate locale={locale} loged={loged} />} />
-        <Route path="/contacts" element={<Contacts loged={loged} locale={locale} />} />
+        <Route path="/" element={loged ? <HomeLogin locale={locale} setLocale={setLocale} news={news} loged={loged} setLoged={setLoged} /> : <Home loged={loged} locale={locale} setLocale={setLocale} setLoged={setLoged} news={news} />} />
+        <Route path="/discover" element={<Discover locale={locale} setLocale={setLocale} loged={loged} />} />
+        <Route path="/pricing" element={<Pricing loged={loged} locale={locale} setLocale={setLocale} />} />
+        <Route path="/articles" element={<News locale={locale} setLocale={setLocale} loged={loged} news={news} />} />
+        <Route path="/corporate" element={<Corporate locale={locale} setLocale={setLocale} loged={loged} />} />
+        <Route path="/contacts" element={<Contacts loged={loged} locale={locale} setLocale={setLocale} />} />
         <Route path="/login" element={<Login loged={loged} setLoged={setLoged} locale={locale} setLocale={setLocale} />} />
-        <Route path="/register" element={<SignIn />} />
-        <Route path="/application" element={<Application locale={locale} loged={loged} />} />
-        <Route path="/check" element={<Check locale={locale} loged={loged} />} />
-        <Route path="/faqs" element={<Faqs loged={loged} />} />
-        <Route path="/consent" element={<Consent loged={loged} />} />
+        <Route path="/register" element={<SignIn locale={locale} setLocale={setLocale} />} />
+        <Route path="/application" element={<Application locale={locale} setLocale={setLocale} loged={loged} />} />
+        <Route path="/check" element={<Check locale={locale} setLocale={setLocale} loged={loged} />} />
+        <Route path="/faqs" element={<Faqs loged={loged} locale={locale} setLocale={setLocale} />} />
+        <Route path="/consent" element={<Consent loged={loged} locale={locale} setLocale={setLocale} />} />
         <Route path="*" element={<NotFound />}></Route>
         <Route element={<ProtectedRoutes loged={loged} authChecked={authChecked} />}>
-          <Route path="/companies" element={<Companies locale={locale} loged={loged} />} />
-          <Route path="/properties" element={<Properties locale={locale} loged={loged} />} />
-          <Route path="/properties/create" element={<Create loged={loged} locale={locale} />} />
-          <Route path="/profile" element={<Profile locale={locale} loged={loged} />} />
-          <Route path="/account" element={<Account locale={locale} loged={loged} />} />
-          <Route path="/proposals" element={<Proposals locale={locale} loged={loged} />} />
-          <Route path="/notifications" element={<Notifications loged={loged} locale={locale} />} />
-          <Route path="/quick-filters" element={<QuickFilters loged={loged} locale={locale} />} />
-          <Route path="/wishlist" element={<Wishlist locale={locale} loged={loged} />} />
-          <Route path="/offers/:type" element={<Offers locale={locale} loged={loged} />} />
-          <Route path="/auth/properties" element={<UserProperties locale={locale} loged={loged} />} />
-          <Route path="/support" element={<Support locale={locale} loged={loged} />} />
-          <Route path="/company" element={<Company locale={locale} loged={loged} message={message} messageShown={messageShown} setMessageShown={setMessageShown} />} />
-          <Route path="/company/team" element={<Team locale={locale} loged={loged} />} />
-          <Route path="/company/contacts" element={<Location locale={locale} loged={loged} />} />
-          <Route path="/company/customers" element={<Customers locale={locale} loged={loged} />} />
-          <Route path="/company/subscription" element={<Subscription locale={locale} loged={loged} />} />
-          <Route path="/company/settings" element={<Settings locale={locale} loged={loged} />} />
-          <Route path="/company/edit" element={<Edit locale={locale} loged={loged} />} />
-          <Route path="/company/proposals" element={<CompanyProposals locale={locale} loged={loged} />}></Route>
-          <Route path="/company/summary" element={<Summary locale={locale} loged={loged} />}></Route>
-          <Route path="/companies/:id" element={<CompaniesDetail locale={locale} loged={loged} />}></Route>
-          <Route path="/companies/:id/team" element={<CompaniesDetailTeam locale={locale} loged={loged} />}></Route>
-          <Route path="/companies/:id/contacts" element={<CompaniesDetailLocation locale={locale} loged={loged} />}></Route>
-          <Route path="/properties/:id" element={<PropertiesDetail locale={locale} loged={loged} />}></Route>
-          <Route path="/articles/:id" element={<NewsDetail locale={locale} loged={loged} news={news} />}></Route>
-          <Route path="/proposals/:id/details" element={<ProposalDetail locale={locale} loged={loged} />}></Route>
-          <Route path="/offers/:id/detail" element={<OfferDetail locale={locale} loged={loged} />}></Route>
-          <Route path="/properties/:id/edit" element={<EditProperty locale={locale} loged={loged} setMessage={setMessage} setMessageShown={setMessageShown} />}></Route>
-          <Route path="/properties/:id/boost" element={<Boost locale={locale} loged={loged} />}></Route>
+          <Route path="/companies" element={<Companies locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/properties" element={<Properties locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/properties/create" element={<Create loged={loged} locale={locale} setLocale={setLocale} />} />
+          <Route path="/profile" element={<Profile locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/account" element={<Account locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/proposals" element={<Proposals locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/notifications" element={<Notifications loged={loged} locale={locale} setLocale={setLocale} />} />
+          <Route path="/quick-filters" element={<QuickFilters loged={loged} locale={locale} setLocale={setLocale} />} />
+          <Route path="/wishlist" element={<Wishlist locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/offers/:type" element={<Offers locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/auth/properties" element={<UserProperties locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/support" element={<Support locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/company" element={<Company locale={locale} setLocale={setLocale} loged={loged} message={message} messageShown={messageShown} setMessageShown={setMessageShown} />} />
+          <Route path="/company/team" element={<Team locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/company/contacts" element={<Location locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/company/customers" element={<Customers locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/company/subscription" element={<Subscription locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/company/settings" element={<Settings locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/company/edit" element={<Edit locale={locale} setLocale={setLocale} loged={loged} />} />
+          <Route path="/company/proposals" element={<CompanyProposals locale={locale} setLocale={setLocale} loged={loged} />}></Route>
+          <Route path="/company/summary" element={<Summary locale={locale} setLocale={setLocale} loged={loged} />}></Route>
+          <Route path="/companies/:id" element={<CompaniesDetail locale={locale} setLocale={setLocale} loged={loged} />}></Route>
+          <Route path="/companies/:id/team" element={<CompaniesDetailTeam locale={locale} setLocale={setLocale} loged={loged} />}></Route>
+          <Route path="/companies/:id/contacts" element={<CompaniesDetailLocation locale={locale} setLocale={setLocale} loged={loged} />}></Route>
+          <Route path="/properties/:id" element={<PropertiesDetail locale={locale} setLocale={setLocale} loged={loged} />}></Route>
+          <Route path="/articles/:id" element={<NewsDetail locale={locale} setLocale={setLocale} loged={loged} news={news} />}></Route>
+          <Route path="/proposals/:id/details" element={<ProposalDetail locale={locale} setLocale={setLocale} loged={loged} />}></Route>
+          <Route path="/offers/:id/detail" element={<OfferDetail locale={locale} setLocale={setLocale} loged={loged} />}></Route>
+          <Route path="/properties/:id/edit" element={<EditProperty locale={locale} setLocale={setLocale} loged={loged} setMessage={setMessage} setMessageShown={setMessageShown} />}></Route>
+          <Route path="/properties/:id/boost" element={<Boost locale={locale} setLocale={setLocale} loged={loged} />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

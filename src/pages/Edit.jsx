@@ -8,7 +8,7 @@ import { ClipLoader } from "react-spinners"
 import whiteClose from "../assets/close.png"
 import { getTranslation } from "../services/translation"
 
-export function Edit({ loged , locale}) {
+export function Edit({ loged , locale, setLocale}) {
 
     const [name, setName] = useState("");
     const [type, setType] = useState("");
@@ -78,7 +78,7 @@ export function Edit({ loged , locale}) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Firma profilini düzenle</span></p>

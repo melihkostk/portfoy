@@ -19,7 +19,7 @@ import { EditPropertySettings } from "../components/EditPropertySettings";
 import { EditPropertyInfo } from "../components/EditPropertyInfo";
 import { getTranslation } from "../services/translation";
 
-export function EditProperty({ loged, setMessage, setMessageShown , locale }) {
+export function EditProperty({ loged, setMessage, setMessageShown , locale, setLocale }) {
 
     const navigate = useNavigate();
 
@@ -371,7 +371,7 @@ export function EditProperty({ loged, setMessage, setMessageShown , locale }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             {deletePopUp && <div className="fixed top-1/2 left-1/2 overflow-y-auto pb-5 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-end items-center w-full p-4 border-b-[#dee2e6]">
                     <img onClick={() => setDeletePopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />

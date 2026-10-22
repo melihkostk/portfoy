@@ -4,7 +4,7 @@ import { AppLinks } from "../components/AppLinks"
 import { LanguageSelect } from "../components/LanguageSelect"
 import React from "react"
 
-export function SignIn() {
+export function SignIn({ locale, setLocale }) {
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -20,7 +20,7 @@ export function SignIn() {
                             <img className="max-w-full align-middle" src={logo} alt="" />
                         </Link>
                     </div>
-                    <LanguageSelect />
+                    <LanguageSelect setLocale={setLocale} locale={locale} />
                 </div>
                 <div className="w-full bg-white shadow-[0_0_30px_rgb(247_247_247)] p-7.5 rounded-lg">
                     <div className="mt-6.25 mb-7.5">

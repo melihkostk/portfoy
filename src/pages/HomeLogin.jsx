@@ -11,7 +11,7 @@ import { useState, useEffect, useRef } from "react"
 import { ClipLoader } from "react-spinners"
 import { getTranslation } from "../services/translation"
 
-export function HomeLogin({ loged, news, logOut , locale }) {
+export function HomeLogin({ loged, news, logOut , locale, setLocale }) {
 
     const [recentlyProperties, setRecentlyProperties] = useState([])
     const [discountedProperties, setDiscountedProperties] = useState([])
@@ -53,7 +53,7 @@ export function HomeLogin({ loged, news, logOut , locale }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} logOut={logOut} />
+            <Header translation={translation} loged={loged} logOut={logOut} locale={locale} setLocale={setLocale} />
             <div className='w-full max-w-[90%] py-20'>
                 <h1 className='text-[35px] text-[#45443f] font-medium mb-2'>{translation?.data?.business?.filter_properties}</h1>
                 <Filter />
@@ -101,7 +101,7 @@ export function HomeLogin({ loged, news, logOut , locale }) {
                     </div>
                     <div>
                         <div ref={recentlyScrollRef} className="flex overflow-auto py-6.25 scrollbar-none">
-                            {recentlyProperties.map(item => (
+                            {recentlyProperties?.map(item => (
                                 <PropertiesCard
                                     id={item.id}
                                     key={item.id}

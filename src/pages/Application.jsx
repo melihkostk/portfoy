@@ -15,7 +15,7 @@ import { LanguageSelect } from "../components/LanguageSelect"
 import { useEffect, useState } from "react"
 import { getTranslation } from "../services/translation"
 
-export function Application({ locale }) {
+export function Application({ locale, setLocale }) {
 
     const [translation , setTranslation] = useState([]);
 
@@ -29,7 +29,7 @@ export function Application({ locale }) {
                 <div className="flex items-start max-[992px]:flex-col">
                     <div className="flex-1 pr-12.5">
                         <div>
-                            <LanguageSelect />
+                            <LanguageSelect setLocale={setLocale} locale={locale} />
                         </div>
                         <div className="mt-7.5 mb-25 w-55">
                             <Link to={"/"}>

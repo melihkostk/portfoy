@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom"
 import whiteClose from "../assets/close.png"
 import { getTranslation } from "../services/translation"
 
-export function Create({ loged , locale }) {
+export function Create({ loged , locale, setLocale }) {
 
     const navigate = useNavigate();
 
@@ -99,7 +99,7 @@ export function Create({ loged , locale }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             {errorMessageShown && <div className="fixed max-w-1/2 flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-linear-to-r from-[rgb(201,61,61)] to-[rgb(151,5,5)] p-3 text-white">
                 <p>Lütfen tüm alanları doğru bir şekilde doldurun.</p>
                 <img onClick={() => setErrorMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />

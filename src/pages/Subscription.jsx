@@ -9,7 +9,7 @@ import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 import { getTranslation } from "../services/translation"
 
-export function Subscription({ loged , locale }) {
+export function Subscription({ loged , locale, setLocale }) {
 
     const [subscriptions, setSubscriptions] = useState([]);
     const [loaded, setLoaded] = useState(false)
@@ -76,7 +76,7 @@ export function Subscription({ loged , locale }) {
                     </table>
                 </div>
             </div>}
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Abonelik Yönetimi</span></p>

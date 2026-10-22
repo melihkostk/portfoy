@@ -9,7 +9,7 @@ import { TeamCard } from "../components/TeamCard";
 import { ClipLoader } from "react-spinners";
 import { getTranslation } from "../services/translation";
 
-export function CompaniesDetailTeam({ loged , locale }) {
+export function CompaniesDetailTeam({ loged , locale, setLocale }) {
     const { id } = useParams();
 
     const [companyDetailTeam, setCompanyDetailTeam] = useState([]);
@@ -36,7 +36,7 @@ export function CompaniesDetailTeam({ loged , locale }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>

@@ -12,7 +12,7 @@ import { ClipLoader } from "react-spinners"
 import { getCompanyInfo, getCustomerProposals } from "../services/myCompanyApi"
 import { getTranslation } from "../services/translation"
 
-export function Profile({ loged, locale }) {
+export function Profile({ loged, locale, setLocale }) {
 
     const [loaded, setLoaded] = useState(false)
     const [wishlist, setWishlist] = useState([]);
@@ -73,7 +73,7 @@ export function Profile({ loged, locale }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account}</span></p>

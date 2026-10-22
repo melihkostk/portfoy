@@ -24,7 +24,7 @@ import whiteClose from "../assets/close.png"
 import play from "../assets/white-play.png"
 import { getTranslation } from "../services/translation"
 
-export function PropertiesDetail({ loged , locale }) {
+export function PropertiesDetail({ loged , locale, setLocale }) {
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -129,7 +129,7 @@ export function PropertiesDetail({ loged , locale }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} details={details} />
+            <Header translation={translation} loged={loged} details={details} locale={locale} setLocale={setLocale} />
             {offerModelShown && <CreateOfferModel
                 setOfferModalShown={setOfferModalShown}
                 selectedCustomer={selectedCustomer}

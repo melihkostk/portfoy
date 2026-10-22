@@ -11,7 +11,7 @@ import { getContactInfo , sendContactForm } from "../services/contactsApi";
 import { ClipLoader } from "react-spinners";
 import { getTranslation } from "../services/translation";
 
-export function Contacts({ loged , locale}) {
+export function Contacts({ loged , locale, setLocale}) {
 
     const [name, setName] = useState("");
     const [email , setEmail] = useState("")
@@ -56,7 +56,7 @@ export function Contacts({ loged , locale}) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.contacts}</span></p>

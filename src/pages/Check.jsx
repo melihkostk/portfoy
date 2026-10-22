@@ -6,7 +6,7 @@ import t from "../assets/t.png"
 import { useEffect, useState } from "react";
 import { getTranslation } from "../services/translation";
 
-export function Check({ locale }) {
+export function Check({ locale, setLocale }) {
 
     const [translation , setTranslation] = useState([]);
 
@@ -20,7 +20,7 @@ export function Check({ locale }) {
                 <div className="flex items-center max-[992px]:flex-col">
                     <div className="pr-12.5 flex-1">
                         <div>
-                            <LanguageSelect />
+                            <LanguageSelect setLocale={setLocale} locale={locale} />
                         </div>
                         <div className="w-55 mt-7.5 mb-25">
                             <Link to={"/"}>

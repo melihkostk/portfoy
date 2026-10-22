@@ -9,7 +9,7 @@ import close from "../assets/blue-close.png"
 import { PersonelCard } from "../components/PersonalCard"
 import { getTranslation } from "../services/translation"
 
-export function Settings({ loged , locale }) {
+export function Settings({ loged , locale, setLocale }) {
 
     const [companyInfo, setCompanyInfo] = useState([]);
 
@@ -40,7 +40,7 @@ export function Settings({ loged , locale }) {
     return (
         <div className='flex flex-col items-center font-sf'>
             {personalSelectPopUp && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm {">"}</span><span className="text-[#9a9898]"> Firma Tercihleri</span></p>

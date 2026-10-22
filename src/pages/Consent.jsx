@@ -2,10 +2,10 @@ import { Header } from "../components/Header";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 
-export function Consent({loged}) {
+export function Consent({loged, locale, setLocale}) {
     return (
         <div className="w-full flex flex-col items-center justify-center font-sf">
-            <Header loged={loged} />
+            <Header loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Rıza Metni</span></p>

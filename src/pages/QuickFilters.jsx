@@ -11,7 +11,7 @@ import whiteClose from "../assets/close.png"
 import { getCompanyInfo } from "../services/myCompanyApi"
 import { getTranslation } from "../services/translation"
 
-export function QuickFilters({ loged , locale }) {
+export function QuickFilters({ loged , locale, setLocale }) {
 
     const [quickFilters, setQuickFilters] = useState([]);
     const [loaded, setLoaded] = useState(false)
@@ -93,7 +93,7 @@ export function QuickFilters({ loged , locale }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım {">"}</span><span className="text-[#9a9898]"> Hızlı Filtreler</span></p>

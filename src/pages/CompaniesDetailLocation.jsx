@@ -9,7 +9,7 @@ import { LocationCard } from "../components/LocationCard";
 import { ClipLoader } from "react-spinners";
 import { getTranslation } from "../services/translation";
 
-export function CompaniesDetailLocation({ loged , locale }) {
+export function CompaniesDetailLocation({ loged , locale, setLocale }) {
 
     const { id } = useParams();
 
@@ -37,7 +37,7 @@ export function CompaniesDetailLocation({ loged , locale }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>

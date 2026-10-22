@@ -10,7 +10,7 @@ import news1 from "../assets/news1.jpeg"
 import grayCalendar from "../assets/gray-calendar.png"
 import { getTranslation } from "../services/translation";
 
-export function NewsDetail({ loged, news , locale }) {
+export function NewsDetail({ loged, news , locale, setLocale }) {
 
     const { id } = useParams();
 
@@ -39,7 +39,7 @@ export function NewsDetail({ loged, news , locale }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Haberler {">"}</span><span className="text-[#9a9898]"> {article?.title}</span></p>

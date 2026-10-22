@@ -16,7 +16,7 @@ import { createProposal, getDetails } from "../services/propertyDetails"
 import { useNavigate } from "react-router-dom"
 import { getTranslation } from "../services/translation"
 
-export function Company({ loged, message, messageShown , setMessageShown, locale }) {
+export function Company({ loged, message, messageShown , setMessageShown, locale, setLocale }) {
 
     const navigate = useNavigate();
 
@@ -124,7 +124,7 @@ export function Company({ loged, message, messageShown , setMessageShown, locale
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             {offerModelShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {offerModelShown && <CreateOfferModel
                 setOfferModalShown={setOfferModalShown}

@@ -13,7 +13,7 @@ import step3 from "../assets/step3.png"
 import { useEffect, useState } from "react"
 import { getTranslation } from "../services/translation"
 
-export function Home({ loged , news , locale }) {
+export function Home({ loged , news , locale, setLocale }) {
 
   const [pricingCate, setPricingCate] = useState("Emlak Firması")
 
@@ -25,7 +25,7 @@ export function Home({ loged , news , locale }) {
 
   return (
     <div className='flex flex-col items-center font-sf'>
-      <Header translation={translation} loged={loged} />
+      <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
       <div className='w-full max-w-[90%] py-20'>
         <h1 className='text-[35px] text-black font-medium mb-2'>{translation?.data?.business?.filter_properties}</h1>
         {/*<Filter />*/}

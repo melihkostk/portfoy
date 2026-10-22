@@ -22,7 +22,7 @@ import { CreateOfferModel } from "../components/CreateOfferModal"
 import { createProposal, getDetails } from "../services/propertyDetails"
 import { getTranslation } from "../services/translation"
 
-export function Properties({ loged , locale }) {
+export function Properties({ loged , locale, setLocale }) {
 
     const [filterShown, setFilterShown] = useState(true);
 
@@ -312,7 +312,7 @@ export function Properties({ loged , locale }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
             {quickFilterMenu && <div className="fixed top-1/2 max-h-fit left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[70%] w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
