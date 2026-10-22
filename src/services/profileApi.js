@@ -1,8 +1,8 @@
 import api from "./api";
 
-export const getWishlist = async (sort, type, country, city, district , page) => {
+export const getWishlist = async (sort, type, country, city, district, page) => {
     const response = await api.post("/auth/wishlist", {}, {
-        params: { r: sort, type_id: type, country_id: country, city_id: city, district_id: district , page:page},
+        params: { r: sort, type_id: type, country_id: country, city_id: city, district_id: district, page: page },
     });
     return response.data;
 }
@@ -13,8 +13,8 @@ export const getUserProperties = async (page) => {
 }
 
 export const getProposals = async (page) => {
-    const response = await api.get("/auth/proposals" , {
-        params:{page:page}
+    const response = await api.get("/auth/proposals", {
+        params: { page: page }
     });
     return response.data;
 }
@@ -40,25 +40,34 @@ export const showOffer = async (id) => {
     return response.data;
 }
 
-export const replyOffer = async (id , status , note) => {
-    const response = await api.post(`/offers/${id}/reply` , {
-        status:status,
-        note:note
-    } );
+export const replyOffer = async (id, status, note) => {
+    const response = await api.post(`/offers/${id}/reply`, {
+        status: status,
+        note: note
+    });
     return response.data;
 }
 
-export const updateProfile = async (name , phone_code , phone , locale) => {
-    const response = await api.post("/auth/profile/update" , {
-        name:name,
-        phone_code:phone_code,
-        phone:phone,
-        locale:locale
+export const updateProfile = async (name, phone_code, phone, locale) => {
+    const response = await api.post("/auth/profile/update", {
+        name: name,
+        phone_code: phone_code,
+        phone: phone,
+        locale: locale
     });
     return response.data;
 }
 
 export const getPropertyAlerts = async () => {
     const response = await api.post("/auth/properties/alerts");
+    return response.data;
+}
+
+export const changePassword = async (current, password, password_confirm) => {
+    const response = await api.post("/auth/password/update", {
+        current:current,
+        password:password,
+        password_confirm:password_confirm
+    });
     return response.data;
 }

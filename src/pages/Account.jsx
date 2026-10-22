@@ -9,6 +9,11 @@ import { updateProfile } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getTranslation } from "../services/translation"
+import { ChangePasswordPopUp } from "../components/ChangePasswordPopUp"
+import { changePassword } from "../services/profileApi"
+import { ErrorPopUp } from "../components/ErrorPopUp"
+import { CheckEmailPopUp } from "../components/CheckEmailPopUp"
+import { ConfirmPopUp } from "../components/ConfirmPopUp"
 
 export function Account({ loged , locale, setLocale }) {
 
@@ -62,10 +67,40 @@ export function Account({ loged , locale, setLocale }) {
         getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
+    const [current , setCurrent] = useState("");
+    const [password , setPassword] = useState("");
+    const [confirm , setConfirm] = useState("");
+
+    const [changePasswordShown , setChangePasswordShown] = useState(false);
+    const [errorShown , setErrorShown] = useState(false);
+    const [errorMessage , setErrorMessage] = useState("");
+    const [checkShown , setCheckShown] = useState(false);
+    const [successMessage, setSuccessMessage] = useState("");
+
+    function handlePasswordChange(e){
+        e.preventDefault();
+        setLoaded(false)
+        changePassword(current , password , confirm).then(data => {
+            if(data.status === "error"){
+                setChangePasswordShown(false)
+                setErrorShown(true)
+                setErrorMessage(data.message)
+            }
+            else {
+                setChangePasswordShown(false)
+                setCheckShown(true)
+                setSuccessMessage(data.message);
+            }
+        }).finally(() => setLoaded(true))
+    }
+
+    const [confirmShown , setConfirmShown] = useState(false)
+
     return (
         <div className='flex flex-col items-center font-sf'>
+            {(changePasswordShown || errorShown || checkShown || confirmShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                <div className="fixed inset-0 z-60 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}
                         color="#27c5d2"
@@ -73,6 +108,10 @@ export function Account({ loged , locale, setLocale }) {
                     />
                 </div>
             )}
+            {changePasswordShown && <ChangePasswordPopUp setCurrent={setCurrent} setPassword={setPassword} setConfirm={setConfirm} handlePasswordChange={handlePasswordChange} setChangePassword={setChangePasswordShown} />}
+            {errorShown && <ErrorPopUp setErrorShown={setErrorShown} errorMessage={errorMessage} />}
+            {checkShown && <CheckEmailPopUp setConfirmShown={setConfirmShown} setCheckShown={setCheckShown} successMessage={successMessage} />}
+            {confirmShown && <ConfirmPopUp setConfirmShown={setConfirmShown} />}
             <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
@@ -174,7 +213,7 @@ export function Account({ loged , locale, setLocale }) {
                             <div className="mb-4 bg-[#fff3cd] text-[#664d03] p-4 rounded-lg border border-[#ffecb5]">
                                 {translation?.data?.business?.not_yet_password_change}
                             </div>
-                            <button className="bg-[#27C5D2] text-white text-sm py-2 px-5 font-semibold rounded-lg">{translation?.data?.business?.change_password}</button>
+                            <button onClick={() => setChangePasswordShown(true)} className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white text-sm py-2 px-5 font-semibold rounded-lg">{translation?.data?.business?.change_password}</button>
                         </div>
                     </div>
                 </div>
