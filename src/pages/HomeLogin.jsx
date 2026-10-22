@@ -80,6 +80,9 @@ export function HomeLogin({ loged, news, logOut , locale, setLocale }) {
                                     district={item.district.title}
                                     page="homeLogin"
                                     badges={item?.badges?.[0]?.key}
+                                    badgeTitle={item?.badges?.[0]?.title}
+                                    propertyType={item?.property_type}
+                                    translation={translation}
                                 />
                             ))}
                         </div>
@@ -114,6 +117,7 @@ export function HomeLogin({ loged, news, logOut , locale, setLocale }) {
                                     city={item.city.title}
                                     district={item.district.title}
                                     page="homeLogin"
+                                    translation={translation}
                                 />
                             ))}
                         </div>

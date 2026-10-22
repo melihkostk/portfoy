@@ -23,7 +23,7 @@ export function PropertiesCard(props) {
                         {props?.translation?.data?.business?.statusess?.sold}
                     </div>}
                     {props.badges === "discounted" && <div className="bg-[#FFCA64] z-30 uppercase text-black text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
-                        {props.badges}
+                        {props.badgeTitle}
                     </div>}
                 </div>
             </div>
