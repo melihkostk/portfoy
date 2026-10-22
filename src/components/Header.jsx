@@ -1,6 +1,6 @@
 import logo from "../assets/logo.svg"
 import whiteDownArrow from "../assets/white-down-arrow.png"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import person from "../assets/person.png"
 import arrowRight from "../assets/arrow-right.png"
 import plus from "../assets/plus.png"
@@ -33,8 +33,6 @@ export function Header({ loged, details , translation, locale, setLocale }) {
     const [selectedCurrencie, setSelectedCurrencie] = React.useState("")
     const [customerNote, setCustomerNote] = React.useState("")
     const [searchInput , setSearchInput] = React.useState("")
-    const navigate = useNavigate();
-
     React.useEffect(() => {
         getAllNotifications().then(setNotifications)
     }, [])
@@ -50,7 +48,7 @@ export function Header({ loged, details , translation, locale, setLocale }) {
         logOut().then((data => {
             if (data.status === "success") {
                 localStorage.removeItem("user")
-                navigate('/login');
+                window.location.href = '/login';
             }
             else {
                 return;
