@@ -61,7 +61,7 @@ export function Team({ loged , locale, setLocale}) {
 
     function handleAdd(e) {
         e.preventDefault()
-        addInvite(name, email, role, "tr", number, code).then((data) => {
+        addInvite(name, email, role, locale, number, code).then((data) => {
             if (data.status === "error") {
                 setAddShown(false)
                 setErrorPopUp(true)
@@ -101,7 +101,7 @@ export function Team({ loged , locale, setLocale}) {
 
     function handleUpdateInvite(e) {
         e.preventDefault()
-        updateInvite(inviteEditId, inviteEditName, inviteEditEmail, inviteEditRole, "tr", inviteEditNumber, inviteEditCode).then((data) => {
+        updateInvite(inviteEditId, inviteEditName, inviteEditEmail, inviteEditRole, locale, inviteEditNumber, inviteEditCode).then((data) => {
             if (data.status === "error") {
                 setInviteEditShown(false)
                 setErrorPopUp(true)
@@ -137,7 +137,7 @@ export function Team({ loged , locale, setLocale}) {
     function handleEdit(e) {
         setLoaded(false)
         e.preventDefault()
-        updateTeamMember(editId, editName, editEmail, editRole, "tr", editNumber, editCode).then((data) => {
+        updateTeamMember(editId, editName, editEmail, editRole, locale, editNumber, editCode).then((data) => {
             if (data.status === "error") {
                 setEditShown(false)
                 setErrorPopUp(true)

@@ -59,7 +59,7 @@ export function Customers({ loged , locale, setLocale }) {
     function handleCustomerSubmit(e) {
         e.preventDefault();
         if (editId) {
-            editCustomer(editId, name, email, number, code).then((data) => {
+            editCustomer(editId, name, email, number, code, locale).then((data) => {
                 if (data.status === "error") {
                     return;
                 }
@@ -69,7 +69,7 @@ export function Customers({ loged , locale, setLocale }) {
             })
             return;
         }
-        addCustomer(name, email, number, code, "tr", note).then((data => {
+        addCustomer(name, email, number, code, locale, note).then((data => {
             if (data.status === "error") {
                 return;
             }

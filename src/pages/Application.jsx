@@ -212,7 +212,7 @@ export function Application({ locale, setLocale }) {
                 </div>
             </div>
             <div className="w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
-                <AppLinks />
+                <AppLinks translation={translation} />
             </div>
         </div>
     )

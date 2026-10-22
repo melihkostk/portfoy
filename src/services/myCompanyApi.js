@@ -37,13 +37,13 @@ export const filterCustomer = async (q) => {
     return response.data;
 }
 
-export const editCustomer = async (id, name, email, phone, phone_code) => {
+export const editCustomer = async (id, name, email, phone, phone_code, locale) => {
     const response = await api.post(`/auth/company/customers/${id}/update`, {
         name: name,
         email: email,
         phone: phone,
         phone_code: phone_code,
-        locale: "tr"
+        locale: locale
     })
     return response.data;
 }

@@ -34,8 +34,8 @@ export function Wishlist({ loged , locale, setLocale}) {
     const [selectedType, setSelectedType] = useState("");
 
     useEffect(() => {
-        getCompanyTypes().then(setType)
-    }, [])
+        getCompanyTypes(locale).then(setType)
+    }, [locale])
 
     const [countries, setCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState("")

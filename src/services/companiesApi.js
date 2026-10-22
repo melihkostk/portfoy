@@ -20,9 +20,9 @@ export const getCompaniesLocation = async (id) => {
     return response.data.data;
 }
 
-export const getCompanyTypes = async () => {
+export const getCompanyTypes = async (locale) => {
     const response = await api.post("/front/company-types", {
-        locale: "tr",
+        locale: locale,
     });
     return response.data.data;
 }
