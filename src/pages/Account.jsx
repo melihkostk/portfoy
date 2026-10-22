@@ -20,7 +20,6 @@ export function Account({ loged , locale, setLocale }) {
     const [name , setName] = useState("");
     const [code , setCode] = useState("");
     const [phone , setPhone] = useState("");
-    const [updating, setUpdating] = useState(false);
 
     const [info, setInfo] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -56,8 +55,8 @@ export function Account({ loged , locale, setLocale }) {
 
     function handleUpdate(e) {
         e.preventDefault();
-        setUpdating(true);
-        updateProfile(name, code, phone , locale).finally(() => setUpdating(false));
+        setLoaded(false)
+        updateProfile(name, code, phone , locale).finally(() => setLoaded(true));
     }
 
     const [translation , setTranslation] = useState([]);
@@ -204,7 +203,7 @@ export function Account({ loged , locale, setLocale }) {
                                     </div>
                                 </div>
                                 <div className="text-end">
-                                    <button disabled={updating} className="text-white text-base font-semibold bg-[#27C5D2] px-5 rounded-[5px] h-12.5 whitespace-nowrap cursor-pointer hover:bg-[#026872] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-300 ease-in-out" type="submit">{updating ? "Güncelleniyor..." : translation?.data?.business?.update}</button>
+                                    <button className="text-white text-base font-semibold bg-[#27C5D2] px-5 rounded-[5px] h-12.5 whitespace-nowrap cursor-pointer hover:bg-[#026872] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-300 ease-in-out" type="submit">{translation?.data?.business?.update}</button>
                                 </div>
                             </form>
                         </div>
