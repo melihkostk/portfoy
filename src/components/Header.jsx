@@ -88,7 +88,7 @@ export function Header({ loged, details , translation }) {
                         <img className="w-full max-w-full" src={logo} alt="" />
                     </Link>
                 </div>
-                {!loged && <div className="max-[1100px]:hidden">
+                {!loged && <div className="max-[1100px]:hidden grow pl-6.25">
                     <ul className="flex gap-5 pl-5">
                         <li>
                             <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/">{translation?.data?.business?.home}</Link>
@@ -140,7 +140,7 @@ export function Header({ loged, details , translation }) {
                             <div className="flex rounded-l-[5px] border-r px-5 max-[992px]:px-2.5 border-r-[#ffffff38] items-center h-full hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                                 <Link to={"/login"} className="flex items-center">
                                     <img className="w-7 h-7" src={person} alt="" />
-                                    <p className="whitespace-nowrap max-[1400px]:hidden">Giriş Yap</p>
+                                    <p className="whitespace-nowrap max-[1400px]:hidden">{translation?.data?.business?.login}</p>
                                 </Link>
                             </div>
                             <div onClick={() => setRegisterShown(prev => !prev)} className="h-full max-[992px]:hidden rounded-r-[5px] flex px-1.5 items-center justify-center hover:bg-[#048B99] hover:shadow-[0_0_30px_#048B99] transition-[background-color,box-shadow] duration-300 ease-in-out">
@@ -149,7 +149,7 @@ export function Header({ loged, details , translation }) {
                         </div>
                         {registerShown && <div className="absolute w-full bg-[#27C5D2] text-sm font-semibold cursor-pointer max-w-full text-white py-2 px-2.5 mt-0.5 rounded-[5px] flex items-center gap-1 hover:pl-4 transition-all duration-300 ease-in-out">
                             <img className="w-2.5 h-2.5" src={arrowRight} alt="" />
-                            <Link to={"/register"} className="w-full" href="">Kayıt Ol</Link>
+                            <Link to={"/register"} className="w-full" href="">{translation?.data?.business?.register}</Link>
                         </div>}
                     </div>}
                     {!loged &&
@@ -162,7 +162,7 @@ export function Header({ loged, details , translation }) {
                             <div className="flex items-center px-5 h-full rounded-l-[5px] border-r border-r-[#ffffff38] gap-1 hover:bg-[#026872] transition-colors duration-300 ease-in-out">
                                 <Link to={"/application"} className="flex items-center">
                                     <img className="w-5 h-5" src={plus} alt="" />
-                                    <p className="whitespace-nowrap max-[1400px]:hidden">Firma Başvurusu</p>
+                                    <p className="whitespace-nowrap max-[1400px]:hidden">{translation?.data?.business?.company_application}</p>
                                 </Link>
                             </div>
                             <div onClick={() => setApplicationShown(prev => !prev)} className="flex h-full rounded-r-[5px] px-1.5 items-center justify-center hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
@@ -171,7 +171,7 @@ export function Header({ loged, details , translation }) {
                         </div>
                         {applicationShown && <div className="absolute w-full bg-[#048B99] text-sm font-semibold cursor-pointer max-w-full text-white py-2 px-2.5 mt-0.5 rounded-[5px] flex items-center gap-1 hover:pl-4 transition-all duration-300 ease-in-out">
                             <img className="w-2.5 h-2.5" src={arrowRight} alt="" />
-                            <Link to={"/check"}>Başvuru Sorgulama</Link>
+                            <Link to={"/check"}>{translation?.data?.business?.application_check}</Link>
                         </div>}
                     </div>}
                     {loged && <div className="relative">

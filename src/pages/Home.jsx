@@ -27,7 +27,7 @@ export function Home({ loged , news , locale }) {
     <div className='flex flex-col items-center font-sf'>
       <Header translation={translation} loged={loged} />
       <div className='w-full max-w-[90%] py-20'>
-        <h1 className='text-[35px] text-black font-medium mb-2'>İlanları Filtrele</h1>
+        <h1 className='text-[35px] text-black font-medium mb-2'>{translation?.data?.business?.filter_properties}</h1>
         {/*<Filter />*/}
       </div>
       <div className='w-full max-w-[90%] flex flex-col items-center my-30'>
@@ -52,10 +52,10 @@ export function Home({ loged , news , locale }) {
               <p className='text-[15px] opacity-70 text-[#212529] font-medium'>{translation?.data?.business?.discover_app_section_description}</p>
             </div>
             <div>
-              <Link to={"/discover"} className='text-[#818181] text-sm font-medium hover:text-[#27C5D2] transition-colors duration-300 ease-in-out'>Tümünü Gör</Link>
+              <Link to={"/discover"} className='text-[#818181] text-sm font-medium hover:text-[#27C5D2] transition-colors duration-300 ease-in-out'>{translation?.data?.business?.view_all}</Link>
             </div>
           </div>
-          <div className='flex flex-wrap max-[992px]:flex-col'>
+          <div className='flex flex-wrap justify-between max-[992px]:flex-col'>
             <PortfoyText
               title="Sahibi olduğunuz ya da satış yetkisi aldığınız ürünleri gün de kaç kişi inceliyor?"
               description="Herkesin merak ettiği bir konu: Drive linki paylaştığınızda acaba kaç kişi bu linki inceledi ya da kaç firma ürünlerinizi müşterilerine sundu? Ürünlerinizi gören müşterilerin bu konudaki düşünceleri nelerdir? Ürünlerinizin beğenilen ve beğenilmeyen özellikleri nelerdir?Port-foy.com, emlak ürünleri paylaşımı için tasarlanmış yenilikçi bir platformdur. Port-foy.com, emlak sektöründe faaliyet gösteren profesyonellerin işlerini kolaylaştırmak ve geniş kitlelere ulaşmalarını sağlamak amacıyla geliştirilmiştir. Port-foy.com'a yüklediğiniz emlak ürünleri, sistemimize üye olan tüm kullanıcılar tarafından görüntülenebilir.Platformumuz, emlak acentelerinin kendi portföylerini aktif tutarak daha fazla emlak acentesine ulaşmalarını sağlar. Böylece, firma çalışanlarınız sadece belirli bir bölgeyle sınırlı kalmadan geniş bir coğrafi alanda etkili olabilir.Firmalar, sizin ürünlerinizi müşterilere sunduğunda bundan haberdar olabilirsiniz. Müşterilerin ürünlerinize yaptığı yorumları takip edebilir, bu şekilde ürünlerinizin eksiklerini tamamlayabilir ve pazarlama planlarınızı gözden geçirebilirsiniz. "
@@ -98,8 +98,8 @@ export function Home({ loged , news , locale }) {
       <div className='w-full mt-30 flex flex-col items-center mb-30'>
         <div className='w-full max-w-[90%]'>
           <div className='flex flex-col items-center'>
-            <h2 className='text-[2rem] text-center mb-2 font-semibold'>Fiyatlandırma</h2>
-            <p className='text-[#525252] text-center max-w-[45%] font-medium max-[992px]:max-w-full'>Firmanızı tipini seçin, sizin için hazırlanmış özel paketler fırsatından faydalanın. Ücretsiz kullanım dönemini yakalamak için acele edin.</p>
+            <h2 className='text-[2rem] text-center mb-2 font-semibold'>{translation?.data?.business?.pricing}</h2>
+            <p className='text-[#525252] text-center max-w-[45%] font-medium max-[992px]:max-w-full'>{translation?.data?.business?.pricing_section_description}</p>
             <ul className='flex mt-10 border border-[#eee] p-2.5 rounded-lg max-w-full overflow-auto scrollbar-thin scrollbar-thumb-[#27C5D2]'>
               <li>
                 <button onClick={() => setPricingCate("Emlak Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "Emlak Firması" ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
@@ -298,12 +298,12 @@ export function Home({ loged , news , locale }) {
       <div className='w-full bg-[#f7f7fb] py-18.75'>
         <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center'>
           <div className='flex justify-between items-center w-full'>
-            <h2 className='text-[#45443F] text-[32px] font-semibold'>Haberler ve Duyurular</h2>
-            <Link to={"/articles"} className='text-[#B7B9BF] text-xl font-medium hover:text-[#45443f] transition-colors duration-300 ease-in-out' href="https://demo.pigasoft.com/portfoy/public/tr/articles">Tümünü Gör</Link>
+            <h2 className='text-[#45443F] text-[32px] font-semibold'>{translation?.data?.business?.article_and_announcements}</h2>
+            <Link to={"/articles"} className='text-[#B7B9BF] text-xl font-medium hover:text-[#45443f] transition-colors duration-300 ease-in-out' href="https://demo.pigasoft.com/portfoy/public/tr/articles">{translation?.data?.business?.view_all}</Link>
           </div>
           <div className='flex items-start overflow-hidden -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
             {news.map(item => (
-              <NewsCard key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
+              <NewsCard translation={translation} key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
             ))}
           </div>
         </div>

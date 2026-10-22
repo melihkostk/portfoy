@@ -20,8 +20,9 @@ import menu from "../assets/dark-menu.png"
 import { SuccessPopUp } from "../components/SuccessPopup"
 import { CreateOfferModel } from "../components/CreateOfferModal"
 import { createProposal, getDetails } from "../services/propertyDetails"
+import { getTranslation } from "../services/translation"
 
-export function Properties({ loged }) {
+export function Properties({ loged , locale }) {
 
     const [filterShown, setFilterShown] = useState(true);
 
@@ -252,10 +253,16 @@ export function Properties({ loged }) {
         }).finally(() => setLoaded(true))
     }
 
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
     const titleAndSortRow = (
         <div className="flex items-center flex-wrap justify-between">
             <h1 className="text-[25px] text-[#212529] font-medium">
-                {category ? "Fırsat İlanlar" : currentTypeName ? `${currentTypeName} İlanları` : "İlanlar"}
+                {category ? "Fırsat İlanlar" : currentTypeName ? `${currentTypeName} ${translation?.data?.business?.property_category_page_title.replace(":category" , "")}` : translation?.data?.business?.properties}
             </h1>
             <div className="flex items-center gap-5">
                 <div className="flex items-center gap-1.25 max-[992px]:hidden">
@@ -305,7 +312,7 @@ export function Properties({ loged }) {
                     />
                 </div>
             )}
-            <Header loged={loged} />
+            <Header translation={translation} loged={loged} />
             {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
             {quickFilterMenu && <div className="fixed top-1/2 max-h-fit left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[70%] w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
@@ -353,17 +360,17 @@ export function Properties({ loged }) {
             </div>
             <div className={`w-full max-w-[90%] ${filterShown ? "py-7.5" : "py-5"}`}>
                 {filterShown && <div>
-                    <h1 className="text-[35px]">İlanları Filtrele</h1>
-                    <Filter setFilterShown={setFilterShown} searchParams={searchParams} typeId={typeId} />
+                    <h1 className="text-[35px]">{translation?.data?.business?.filter_properties}</h1>
+                    <Filter translation={translation} setFilterShown={setFilterShown} searchParams={searchParams} typeId={typeId} />
                 </div>}
                 {searchParams.toString() && <div className="items-end justify-end p-3.75 flex gap-1">
                     <button onClick={() => setAddQuickFilterMenu(true)} className="px-7.5 py-2.5 text-sm cursor-pointer flex items-start hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out bg-[#f8f8f8] rounded-lg text-[#565656] font-semibold">
                         <img className="w-4 h-4 mr-2.5" src={save} alt="" />
-                        Filtreyi Kaydet
+                        {translation?.data?.business?.save_filter}
                     </button>
                     <button onClick={() => setFilterShown(prev => !prev)} className="px-7.5 py-2.5 text-sm cursor-pointer flex items-start hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out bg-[#f8f8f8] rounded-lg text-[#565656] font-semibold">
                         <img className="w-4 h-4 mr-2.5" src={blind} alt="" />
-                        Filtreyi Gizle
+                        {translation?.data?.business?.hide_property_filter_wrapper}
                     </button>
                 </div>}
             </div>
@@ -372,12 +379,12 @@ export function Properties({ loged }) {
                 <div className="flex">
                     {typeId && <div className="w-80">
                         <div>
-                            <button onClick={() => setQuickFilterMenu(true)} className="text-center w-full bg-[#f8f8f8] rounded-lg py-2.5 mb-5 text-sm cursor-pointer hover:bg-[#27c5d2] hover:text-white transition-colors duration-300 ease-in-out">Hızlı Filtreler</button>
+                            <button onClick={() => setQuickFilterMenu(true)} className="text-center w-full bg-[#f8f8f8] rounded-lg py-2.5 mb-5 text-sm cursor-pointer hover:bg-[#27c5d2] font-semibold hover:text-white transition-colors duration-300 ease-in-out">{translation?.data?.business?.quick_filters}</button>
                         </div>
                         <div>
                             <div className="flex justify-between mb-3.75">
-                                <p className="uppercase text-sm text-[#b4b4b4]">Ilanları Filtrele</p>
-                                <Link className="underline text-sm cursor-pointer text-[#b4b4b4] hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">Temizle</Link>
+                                <p className="uppercase text-sm text-[#b4b4b4]">{translation?.data?.business?.filter_properties}</p>
+                                <Link className="underline text-sm cursor-pointer text-[#b4b4b4] hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">{translation?.data?.business?.clear}</Link>
                             </div>
                             <div className="mb-5">
                                 {options?.data?.map(item => {
@@ -457,7 +464,7 @@ export function Properties({ loged }) {
                                 })}
                             </div>
                             <div>
-                                <button type="button" onClick={applyParamFilters} className="w-full py-2 px-5 bg-[#f1f1f1] uppercase text-sm cursor-pointer text-[#4b4b4b] rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                                <button type="button" onClick={applyParamFilters} className="w-full py-2 px-5 bg-[#f1f1f1] uppercase text-sm cursor-pointer font-semibold text-[#4b4b4b] rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
                             </div>
                         </div>
                     </div>}
@@ -469,7 +476,7 @@ export function Properties({ loged }) {
                         )}
                         {isEmpty ? (
                             <div className="w-full p-3.75 m-3.75 text-start text-[#636464] bg-[#fafafa] rounded-lg">
-                                <p>Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</p>
+                                <p>{translation?.data?.business?.no_records_for_properties}</p>
                             </div>
                         ) : (
                             <div className={`flex ${flexDirection === "flex-col" ? "flex-col" : ""} flex-wrap max-[992px]:flex-col max-[992px]:gap-4 items-start justify-start -mx-3.75 max-[992px]:m-0`}>
@@ -489,6 +496,7 @@ export function Properties({ loged }) {
                                             page="properties"
                                             flexDirection={flexDirection}
                                             handleOfferModal={handleOfferModal}
+                                            translation={translation}
                                         />
                                     ))
                                     : discounted?.data?.map(item => (
@@ -506,6 +514,7 @@ export function Properties({ loged }) {
                                             flexDirection={flexDirection}
                                             badges={item?.badges?.[0]?.title}
                                             handleOfferModal={handleOfferModal}
+                                            translation={translation}
                                         />
                                     ))}
                             </div>
@@ -534,11 +543,11 @@ export function Properties({ loged }) {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )

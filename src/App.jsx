@@ -102,7 +102,7 @@ function App() {
         <Route path="*" element={<NotFound />}></Route>
         <Route element={<ProtectedRoutes loged={loged} authChecked={authChecked} />}>
           <Route path="/companies" element={<Companies locale={locale} loged={loged} />} />
-          <Route path="/properties" element={<Properties loged={loged} />} />
+          <Route path="/properties" element={<Properties locale={locale} loged={loged} />} />
           <Route path="/properties/create" element={<Create loged={loged} locale={locale} />} />
           <Route path="/profile" element={<Profile locale={locale} loged={loged} />} />
           <Route path="/account" element={<Account locale={locale} loged={loged} />} />
