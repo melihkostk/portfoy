@@ -97,7 +97,7 @@ export function QuickFilters({ loged , locale, setLocale }) {
             <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım {">"}</span><span className="text-[#9a9898]"> Hızlı Filtreler</span></p>
+                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.quick_filters}</span></p>
                 </div>
             </div>
             {editMessageShown && <div className="fixed right-4 rounded-lg font-semibold z-50 flex items-center gap-2 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">

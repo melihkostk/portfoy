@@ -59,7 +59,7 @@ export function UserProperties({ loged , locale, setLocale }) {
             <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım {">"}</span><span className="text-[#9a9898]"> İlanlarım</span></p>
+                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.my_properties}</span></p>
                 </div>
             </div>
             <div className="w-full max-w-[90%]">

@@ -443,7 +443,7 @@ export function EditProperty({ loged, setMessage, setMessageShown , locale, setL
             </div>}
             {soldPopUp && <div className="fixed top-1/2 left-1/2 overflow-y-auto pb-5 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
-                    <p className="text-xl text-[#212529] font-semibold">İlan Satıldı</p>
+                    <p className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.property_sold}</p>
                     <img onClick={() => setSoldPopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 {status === "published" ? <div className="p-4">
@@ -498,7 +498,7 @@ export function EditProperty({ loged, setMessage, setMessageShown , locale, setL
             </div>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span>İlanlar {">"} </span><span>{title} {">"} </span><span>Düzenle</span></p>
+                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span>{translation?.data?.business?.properties} {">"} </span><span>{title} {">"} </span><span>{translation?.data?.business?.edit}</span></p>
                 </div>
             </div>
             <div className="w-full max-w-[90%] mb-7.5">

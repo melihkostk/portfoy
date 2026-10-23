@@ -356,7 +356,7 @@ export function Properties({ loged , locale, setLocale }) {
             </div>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İlanlar</span></p>
+                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.properties}</span></p>
                 </div>
             </div>
             <div className={`w-full max-w-[90%] ${filterShown ? "py-7.5" : "py-5"}`}>

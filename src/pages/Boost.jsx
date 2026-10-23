@@ -45,7 +45,7 @@ export function Boost({ loged, locale, setLocale }) {
             <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> İlanlar {">"}</span><span className="text-[#9a9898]">Öne Çıkar</span></p>
+                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.properties} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.boost_property}</span></p>
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
@@ -56,7 +56,7 @@ export function Boost({ loged, locale, setLocale }) {
                     </div>
                     <div className="w-1/2 p-7.5 max-[1100px]:w-full max-[1100px]:p-0">
                         {details.status === "draft" && <div className="bg-[#f9d7da] text-[#842029] border border-[#f5c2c7] p-4 mb-4 rounded-lg">
-                            Sadece yayında olan ilanlarınızı öne çıkarabilirsiniz.
+                            {translation?.data?.business?.only_can_published_property_boost}
                         </div>}
                         <div className="p-7.5 bg-[#f8f8f8] rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.1)]">
                             <div>

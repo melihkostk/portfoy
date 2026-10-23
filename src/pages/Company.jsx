@@ -154,7 +154,7 @@ export function Company({ loged, message, messageShown , setMessageShown, locale
             )}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Portföyüm</span></p>
+                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_portfolio}</span></p>
                 </div>
             </div>
             {messageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-40 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
