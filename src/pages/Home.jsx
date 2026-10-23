@@ -6,19 +6,19 @@ import { PricingCard } from '../components/PricingCard'
 import { AppLinks } from '../components/AppLinks'
 import { Footer } from '../components/Footer'
 import { Link } from "react-router-dom"
-import { Filter } from "../components/Filter"
 import about from "../assets/about.png"
 import step1 from "../assets/step1.png"
 import step3 from "../assets/step3.png"
 import { useEffect, useState } from "react"
 import { getTranslation } from "../services/translation"
 import { ClipLoader } from "react-spinners"
+import { getPackages } from "../services/pricingApi"
 
-export function Home({ loged , news , locale, setLocale }) {
+export function Home({ loged, news, locale, setLocale }) {
 
   const [pricingCate, setPricingCate] = useState("Emlak Firması")
 
-  const [translation , setTranslation] = useState([]);
+  const [translation, setTranslation] = useState([]);
 
   const [loaded, setLoaded] = useState(false);
 
@@ -26,6 +26,12 @@ export function Home({ loged , news , locale, setLocale }) {
     setLoaded(false)
     getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
   }, [locale])
+
+  const [packages, setPackages] = useState([]);
+
+  useEffect(() => {
+    getPackages().then(setPackages);
+  }, [])
 
   return (
     <div className='flex flex-col items-center font-sf'>
@@ -137,174 +143,20 @@ export function Home({ loged , news , locale, setLocale }) {
             </ul>
           </div>
           <div className='flex w-full justify-center flex-wrap overflow-auto scrollbar-thin scrollbar-thumb-[#27C5D2] max-[992px]:flex-nowrap max-[992px]:justify-start max-[992px]:items-start max-[992px]:gap-10 max-[992px]:mt-3.75'>
-            {pricingCate === "Emlak Firması" && (
-              <>
-                <PricingCard
-                  name="XL Emlak Paketi"
-                  price="₺15,00 + KDV"
-                  trail="30"
-                  staff="Sınırsız"
-                  offer="510"
-                  customer="500"
-                  ad="520"
-                  photo="20"
-                  video="20"
-                />
-
-                <PricingCard
-                  name="Standart Emlak Paket"
-                  price="₺450,00 + KDV"
-                  trail="30"
-                  staff="3"
-                  offer="10"
-                  customer="10"
-                  ad="10"
-                  photo="12"
-                  video="1"
-                />
-
-                <PricingCard
-                  name="Medium Emlak Paket"
-                  price="₺650,00 + KDV"
-                  trail="45"
-                  staff="6"
-                  offer="1500"
-                  customer="500"
-                  ad="50"
-                  photo="12"
-                  video="2"
-                />
-
-                <PricingCard
-                  name="Premium Emlak Paket"
-                  price="₺950,00 + KDV"
-                  trail="60"
-                  staff="10"
-                  offer="3000"
-                  customer="1000"
-                  ad="100"
-                  photo="15"
-                  video="5"
-                />
-              </>
-            )}
-            {pricingCate === "İnşaat Firması" && (
-              <>
-                <PricingCard
-                  name="XL İnşaat Paketi"
-                  price="₺500,00 + KDV"
-                  trail="15 "
-                  staff="Sınırsız"
-                  offer="0"
-                  customer="Sınırsız"
-                  ad="Sınırsız "
-                  photo="0"
-                  video="0"
-                />
-
-                <PricingCard
-                  name="XXL"
-                  price="₺8,00 + KDV"
-                  trail="30"
-                  staff="2000"
-                  offer="50"
-                  customer="50"
-                  ad="1500"
-                  photo="85"
-                  video="18"
-                />
-
-                <PricingCard
-                  name="Standart İnşaat Paket"
-                  price="₺1.300,00 + KDV"
-                  trail="30"
-                  staff="3"
-                  offer="10"
-                  customer="10"
-                  ad="10"
-                  photo="10"
-                  video="3"
-                />
-
-                <PricingCard
-                  name="Medium İnşaat Paket"
-                  price="₺1.650,00 + KDV"
-                  trail="45 "
-                  staff="6 "
-                  offer="1500"
-                  customer="500"
-                  ad="50 "
-                  photo="25"
-                  video="3"
-                />
-
-                <PricingCard
-                  name="Premium İnşaat Paket"
-                  price=" ₺1.900,00 + KDV"
-                  trail="60  "
-                  staff="10 "
-                  offer="3000"
-                  customer="1000"
-                  ad="100  "
-                  photo="30 "
-                  video="5"
-                />
-              </>
-            )}
-            {pricingCate === "Emlak & İnşaat Firması" && (
-              <>
-                <PricingCard
-                  name="Medium İnşaat & Emlak Paket"
-                  price="₺1.650,00 + KDV"
-                  trail="45"
-                  staff="6 "
-                  offer="10"
-                  customer="10"
-                  ad="10"
-                  photo="10"
-                  video="3"
-                />
-
-                <PricingCard
-                  name="Premium İnşaat & Emlak Paket"
-                  price=" ₺1.900,00 + KDV"
-                  trail="60  "
-                  staff="10 "
-                  offer="3000"
-                  customer="1000"
-                  ad="100  "
-                  photo="30 "
-                  video="5"
-                />
-              </>
-            )}
-            {pricingCate === "Pazarlama Firması" && (
-              <>
-                <PricingCard
-                  name="Medium Pazarlama Firması Paket"
-                  price="₺1.650,00 + KDV"
-                  trail="45"
-                  staff="6 "
-                  offer="15"
-                  customer="10"
-                  ad="10"
-                  photo="10"
-                  video="3"
-                />
-
-                <PricingCard
-                  name="Premium Pazarlama Firması Paket"
-                  price=" ₺1.900,00 + KDV"
-                  trail="60  "
-                  staff="10 "
-                  offer="3000"
-                  customer="1000"
-                  ad="100  "
-                  photo="30 "
-                  video="5"
-                />
-              </>
-            )}
+            {packages?.data?.[0]?.packages?.map(item => (
+              <PricingCard
+                title={item.title}
+                description={item.description}
+                key={item.id}
+                price={item.price.formatted}
+                time={item.trial_version.time}
+                trialPrice={item.trial_version.price.amount}
+                customerTitle={item.features.customer_and_personal.title}
+                customerFeatures={item.features.customer_and_personal.features}
+                propertyTitle={item.features.property.title}
+                propertyFeatures={item.features.property.features}
+              />
+            ))}
           </div>
         </div>
       </div>
