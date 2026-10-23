@@ -14,12 +14,13 @@ import { changePassword } from "../services/profileApi"
 import { ErrorPopUp } from "../components/ErrorPopUp"
 import { CheckEmailPopUp } from "../components/CheckEmailPopUp"
 import { ConfirmPopUp } from "../components/ConfirmPopUp"
+import whiteClose from "../assets/close.png"
 
-export function Account({ loged , locale, setLocale }) {
+export function Account({ loged, locale, setLocale }) {
 
-    const [name , setName] = useState("");
-    const [code , setCode] = useState("");
-    const [phone , setPhone] = useState("");
+    const [name, setName] = useState("");
+    const [code, setCode] = useState("");
+    const [phone, setPhone] = useState("");
 
     const [info, setInfo] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -41,46 +42,62 @@ export function Account({ loged , locale, setLocale }) {
         }
     }, [])
 
-    const [team , setTeam] = useState([]);
+    const [team, setTeam] = useState([]);
 
     useEffect(() => {
         getTeam().then(setTeam)
     }, [])
 
-    const [sub , setSub] = useState([]);
+    const [sub, setSub] = useState([]);
 
     useEffect(() => {
         getActiveSubscription().then(setSub)
     }, [])
 
+    const [successUpdate, setSuccessUpdate] = useState(false);
+    const [successUpdateMessage, setSucessUpdateMessage] = useState("");
+
+    const [errorUpdate, setErrorUpdate] = useState(false);
+    const [errorUpdateMessage , setErrorUpdateMessage] = useState("");
+
     function handleUpdate(e) {
         e.preventDefault();
         setLoaded(false)
-        updateProfile(name, code, phone , locale).finally(() => setLoaded(true));
+        updateProfile(name, code, phone, locale).then(data => {
+            if (data.status === "error") {
+                setErrorUpdate(true);
+                setErrorUpdateMessage(data.message)
+            }
+            else {
+                setSuccessUpdate(true);
+                setSucessUpdateMessage(data.message)
+
+            }
+        }).finally(() => setLoaded(true));
     }
 
-    const [translation , setTranslation] = useState([]);
+    const [translation, setTranslation] = useState([]);
 
     useEffect(() => {
         setLoaded(false)
         getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
-    const [current , setCurrent] = useState("");
-    const [password , setPassword] = useState("");
-    const [confirm , setConfirm] = useState("");
+    const [current, setCurrent] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirm, setConfirm] = useState("");
 
-    const [changePasswordShown , setChangePasswordShown] = useState(false);
-    const [errorShown , setErrorShown] = useState(false);
-    const [errorMessage , setErrorMessage] = useState("");
-    const [checkShown , setCheckShown] = useState(false);
+    const [changePasswordShown, setChangePasswordShown] = useState(false);
+    const [errorShown, setErrorShown] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [checkShown, setCheckShown] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
 
-    function handlePasswordChange(e){
+    function handlePasswordChange(e) {
         e.preventDefault();
         setLoaded(false)
-        changePassword(current , password , confirm).then(data => {
-            if(data.status === "error"){
+        changePassword(current, password, confirm).then(data => {
+            if (data.status === "error") {
                 setChangePasswordShown(false)
                 setErrorShown(true)
                 setErrorMessage(data.message)
@@ -93,15 +110,15 @@ export function Account({ loged , locale, setLocale }) {
         }).finally(() => setLoaded(true))
     }
 
-    const [confirmShown , setConfirmShown] = useState(false);
+    const [confirmShown, setConfirmShown] = useState(false);
 
-    const [verifyCode , setVerifyCode] = useState("");
+    const [verifyCode, setVerifyCode] = useState("");
 
-    function handleVerifyPassword(e){
+    function handleVerifyPassword(e) {
         e.preventDefault();
         setLoaded(false)
         verfiyPassword(verifyCode).then(data => {
-            if(data.status === "error"){
+            if (data.status === "error") {
                 setErrorShown(true)
                 setErrorMessage(data.message)
             }
@@ -133,6 +150,14 @@ export function Account({ loged , locale, setLocale }) {
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Hesabım {">"}</span><span className="text-[#9a9898]"> Hesap Bilgilerim</span></p>
                 </div>
             </div>
+            {successUpdate && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-40 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{successUpdateMessage}</p>
+                <img onClick={() => setSuccessUpdate(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
+            {errorUpdate && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-40 top-4 bg-[linear-gradient(to_right,rgb(201,61,61),rgb(151,5,5))] p-3 text-white">
+                <p>{errorUpdateMessage}</p>
+                <img onClick={() => setErrorUpdate(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="w-[28%] max-[992px]:w-full">
