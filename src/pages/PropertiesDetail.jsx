@@ -226,8 +226,8 @@ export function PropertiesDetail({ loged , locale, setLocale }) {
                         </div>
                         <div className="flex gap-2.5 items-center overflow-x-auto py-3.75">
                             {details?.galleries?.map(item => (
-                                item.images.length > 0 && (item.title.includes("Kapak Fotoğrafı")
-                                    ? <button onClick={() => setThumbnailType("")} className={`whitespace-nowrap cursor-pointer text-[#4b4b4b] font-semibold text-sm border-2 ${thumbnailType === "" ? "bg-[#eee]" :""} border-[#f1f1f1] py-1 px-2 rounded-lg hover:shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-shadow duration-300 ease-in-out`} key={item.id}>Tümü ({details?.gallery_count})</button>
+                                item.images.length > 0 && (item.title.toLowerCase().includes(translation?.data?.business?.cover_image?.toLowerCase() ?? "")
+                                    ? <button onClick={() => setThumbnailType("")} className={`whitespace-nowrap cursor-pointer text-[#4b4b4b] font-semibold text-sm border-2 ${thumbnailType === "" ? "bg-[#eee]" :""} border-[#f1f1f1] py-1 px-2 rounded-lg hover:shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-shadow duration-300 ease-in-out`} key={item.id}>{translation?.data?.business?.all} ({details?.gallery_count})</button>
                                     : <button onClick={() => setThumbnailType(item.title)} className={`whitespace-nowrap cursor-pointer text-[#4b4b4b] font-semibold text-sm border-2 ${item.title === thumbnailType ? "bg-[#eee]" : ""} border-[#f1f1f1] py-1 px-2 rounded-lg hover:shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-shadow duration-300 ease-in-out`} key={item.id}>{item.title} ({item.images.length})</button>)
                             ))}
                         </div>
