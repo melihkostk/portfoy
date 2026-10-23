@@ -5,7 +5,7 @@ import downArrow from "../assets/down-arrow.png"
 import { useEffect, useState } from "react"
 import { getAllLanguages } from "../services/filterApi"
 
-export function LanguageSelect({ setLocale }) {
+export function LanguageSelect({ setLocale, locale }) {
 
     const [languageShown, setLanguageShown] = useState(false);
 
@@ -15,11 +15,13 @@ export function LanguageSelect({ setLocale }) {
         getAllLanguages().then(setLanguages)
     }, [])
 
+    const currentLanguage = languages?.find(item => item.code === locale);
+
     return (
         <div onMouseLeave={() => setLanguageShown(false)} onMouseEnter={() => setLanguageShown(true)} className="rounded-[5px] relative hover:bg-[#B7B9BF] hover:text-white text-[#202529] transition-colors duration-300 ease-in-out">
             <div className="cursor-pointer flex items-center justify-start gap-2.5 h-12.5 px-5">
-                <img className="w-5 h-5 object-fill rounded-[5px]" src={turkey} alt="" />
-                <p className="font-semibold max-[1400px]:hidden">Türkçe</p>
+                <img className="w-5 h-5 object-fill rounded-[5px]" src={locale === "en" ? en : locale === "ru" ? ru : turkey} alt="" />
+                <p className="font-semibold max-[1400px]:hidden">{currentLanguage?.native}</p>
                 <img className="w-4 h-4" src={downArrow} alt="" />
             </div>
             {languageShown && <ul className="bg-white z-50 shadow-[0_0_30px_rgba(0,0,0,0.1)] rounded-[10px] p-5 w-40 min-w-full absolute">
