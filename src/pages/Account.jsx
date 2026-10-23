@@ -5,7 +5,7 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { Link } from "react-router-dom"
 import { getActiveSubscription, getCompanyInfo, getTeam } from "../services/myCompanyApi"
-import { updateProfile } from "../services/profileApi"
+import { updateProfile, verfiyPassword } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getTranslation } from "../services/translation"
@@ -93,7 +93,23 @@ export function Account({ loged , locale, setLocale }) {
         }).finally(() => setLoaded(true))
     }
 
-    const [confirmShown , setConfirmShown] = useState(false)
+    const [confirmShown , setConfirmShown] = useState(false);
+
+    const [verifyCode , setVerifyCode] = useState("");
+
+    function handleVerifyPassword(e){
+        e.preventDefault();
+        setLoaded(false)
+        verfiyPassword(verifyCode).then(data => {
+            if(data.status === "error"){
+                setErrorShown(true)
+                setErrorMessage(data.message)
+            }
+            else {
+                console.log(data)
+            }
+        }).finally(() => setLoaded(true))
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -110,7 +126,7 @@ export function Account({ loged , locale, setLocale }) {
             {changePasswordShown && <ChangePasswordPopUp translation={translation} setCurrent={setCurrent} setPassword={setPassword} setConfirm={setConfirm} handlePasswordChange={handlePasswordChange} setChangePassword={setChangePasswordShown} />}
             {errorShown && <ErrorPopUp translation={translation} setErrorShown={setErrorShown} errorMessage={errorMessage} />}
             {checkShown && <CheckEmailPopUp setConfirmShown={setConfirmShown} setCheckShown={setCheckShown} successMessage={successMessage} />}
-            {confirmShown && <ConfirmPopUp translation={translation} setConfirmShown={setConfirmShown} />}
+            {confirmShown && <ConfirmPopUp handleVerifyPassword={handleVerifyPassword} translation={translation} setVerifyCode={setVerifyCode} verifyCode={verifyCode} setConfirmShown={setConfirmShown} />}
             <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">

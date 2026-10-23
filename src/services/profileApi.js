@@ -71,3 +71,10 @@ export const changePassword = async (current, password, password_confirm) => {
     });
     return response.data;
 }
+
+export const verfiyPassword = async (code) => {
+    const response = await api.post("/auth/password/update/verify" , {
+        code:code
+    })
+    return response.data;
+}
