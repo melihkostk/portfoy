@@ -57,7 +57,7 @@ export function HomeLogin({ loged, news, logOut , locale, setLocale }) {
             <Header translation={translation} loged={loged} logOut={logOut} locale={locale} setLocale={setLocale} />
             <div className='w-full max-w-[90%] py-20'>
                 <h1 className='text-[35px] text-[#45443f] font-medium mb-2'>{translation?.data?.business?.filter_properties}</h1>
-                <Filter />
+                <Filter translation={translation} />
             </div>
             <div className='w-full max-w-[90%] flex flex-col items-center'>
                 <div className="w-full py-18.75">

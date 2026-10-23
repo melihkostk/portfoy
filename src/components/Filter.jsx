@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets, getAllCurrencies, getAllFilterOptions } from "../services/filterApi"
 import { getAllPropertiesType } from "../services/propertiesApi"
 
-export function Filter({searchParams , typeId}) {
+export function Filter({searchParams , typeId , translation}) {
 
     const [priceFilter, setPriceFilter] = useState(false)
     const [cateFilter, setCateFilter] = useState(false)
@@ -99,11 +99,11 @@ export function Filter({searchParams , typeId}) {
             <div className="flex flex-col gap-2">
                 <ul className='flex mt-10 max-w-full overflow-x-auto scrollbar-thin scrollbar-thumb-[#27C5D2] gap-2.5'>
                     <li>
-                        <button onClick={() => setType("All")} className={`px-7.5 py-2.5 text-sm text-black cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === "All" ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : "opacity-70"}`}>Tümü</button>
+                        <button onClick={() => setType("All")} className={`px-7.5 py-2.5 font-semibold text-sm text-black cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === "All" ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : "opacity-70"}`}>{translation?.data?.business?.all}</button>
                     </li>
                     {propertiesType?.map(item => (
                         <li key={item.id}>
-                            <button onClick={() => setType(item.id)} className={`px-7.5 py-2.5 text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === item.id ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"}`}>{item.title}</button>
+                            <button onClick={() => setType(item.id)} className={`px-7.5 py-2.5 font-semibold text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === item.id ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"}`}>{item.title}</button>
                         </li>
                     ))}
                 </ul>
@@ -111,16 +111,16 @@ export function Filter({searchParams , typeId}) {
                     <form action={"/properties"} method="GET" className={`flex ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col gap-2.5 p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-w-[calc(100%/3)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Kategoriler</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.categories}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setCateFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="font-semibold text-[13px]">Tümü</p>
+                                    <p className="font-semibold text-[13px]">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {cateFilter && <ul className="absolute w-full max-h-75 overflow-y-auto bg-white border z-50 border-[#eee] rounded-lg p-2">
                                     <li className="w-full py-1">
                                         <div className="m-2.5 max-w-full">
-                                            <input className="text-sm rounded-lg w-full py-1.25 px-2.5 placeholder:text-[#838383] bg-[#f8f8f8]" type="text" placeholder="Kategorilerde arayın" />
+                                            <input className="text-sm rounded-lg w-full py-1.25 px-2.5 placeholder:text-[#838383] bg-[#f8f8f8]" type="text" placeholder={translation?.data?.business?.search_in_categories} />
                                         </div>
                                     </li>
                                     {propertiesType?.map(item => (
@@ -133,7 +133,7 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div className="flex-1  pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Satış fiyatı</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
                                     <p className="text-[13px] font-semibold">-</p>
@@ -142,14 +142,14 @@ export function Filter({searchParams , typeId}) {
                                 {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
-                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
                                         </div>
                                         <div>
                                             <div>
-                                                <input name="min_sell_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                                <input name="min_sell_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input name="max_sell_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                                <input name="max_sell_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
@@ -164,20 +164,20 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div className="flex-1 pr-2.5">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Konum</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">Tümü</p>
+                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute w-full bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
-                                                <select value={countryId} placeholder="Ülke Seçin" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="country_id" id="">
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.country}</label>
+                                                <select value={countryId} placeholder="{translation?.data?.business?.choose?.country}" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="country_id" id="">
                                                     <option value="" disabled>
-                                                        Ülke Seçin
+                                                        {translation?.data?.business?.choose?.country}
                                                     </option>
                                                     {countries.data.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -185,10 +185,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.city}</label>
                                                 <select value={cityId} onChange={(e) => setCityId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="city_id" id="">
                                                     <option value="" disabled>
-                                                        İl Seçin
+                                                        {translation?.data?.business?.choose?.city}
                                                     </option>
                                                     {cities.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -196,10 +196,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.district}</label>
                                                 <select value={districtId} onChange={(e) => setDistrictId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="district_id" id="">
                                                     <option value="" disabled>
-                                                        İlçe Seçin
+                                                        {translation?.data?.business?.choose?.district}
                                                     </option>
                                                     {district.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -207,10 +207,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.street}</label>
                                                 <select value={streetId} onChange={(e) => setStreetId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="street_id" id="">
                                                     <option value="" disabled>
-                                                        Mahalle
+                                                        {translation?.data?.business?.choose?.street}
                                                     </option>
                                                     {street.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -223,14 +223,14 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div>
-                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full w-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full w-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
                         </div>
                     </form>)}
                 {type === 27 && (
                     <form action={"/properties"} method="GET" className={`flex max-[992px]:flex-col ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""}  gap-2.5 p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
                                     <p className="text-[13px] font-semibold">-</p>
@@ -239,14 +239,14 @@ export function Filter({searchParams , typeId}) {
                                 {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
-                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
                                         </div>
                                         <div>
                                             <div>
-                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
@@ -261,20 +261,20 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">Tümü</p>
+                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute w-full bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
-                                                <select value={countryId} placeholder="Ülke Seçin" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="country_id" id="">
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.country}</label>
+                                                <select value={countryId} placeholder="{translation?.data?.business?.choose?.country}" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="country_id" id="">
                                                     <option value="" disabled>
-                                                        Ülke Seçin
+                                                        {translation?.data?.business?.choose?.country}
                                                     </option>
                                                     {countries.data.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -282,10 +282,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.city}</label>
                                                 <select value={cityId} onChange={(e) => setCityId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="city_id" id="">
                                                     <option value="" disabled>
-                                                        İl Seçin
+                                                        {translation?.data?.business?.choose?.city}
                                                     </option>
                                                     {cities.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -293,10 +293,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.district}</label>
                                                 <select value={districtId} onChange={(e) => setDistrictId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="district_id" id="">
                                                     <option value="" disabled>
-                                                        İlçe Seçin
+                                                        {translation?.data?.business?.choose?.district}
                                                     </option>
                                                     {district.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -304,10 +304,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.street}</label>
                                                 <select value={streetId} onChange={(e) => setStreetId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="street_id" id="">
                                                     <option value="" disabled>
-                                                        Mahalle
+                                                        {translation?.data?.business?.choose?.street}
                                                     </option>
                                                     {street.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -323,7 +323,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name={findFilterParam("Oda Sayısı")?.id ? `details[${findFilterParam("Oda Sayısı").id}]` : undefined} value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
-                                    <option value="">Tümü</option>
+                                    <option value="">{translation?.data?.business?.all}</option>
                                     {findFilterParam("Oda Sayısı")?.options?.map(item => (
                                         <option key={item.id} value={item.id}>{item.title}</option>
                                     ))}
@@ -334,7 +334,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Cephe</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name={findFilterParam("Cephe")?.id ? `details[${findFilterParam("Cephe").id}]` : undefined} value={facadeId} onChange={(e) => setFacadeId(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
-                                    <option value="">Tümü</option>
+                                    <option value="">{translation?.data?.business?.all}</option>
                                     {findFilterParam("Cephe")?.options?.map((item) => (
                                         <option key={item.id} value={item.id}>
                                             {item.title}
@@ -347,7 +347,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Isıtma sistemi</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name={findFilterParam("Isıtma Sistemi")?.id ? `details[${findFilterParam("Isıtma Sistemi").id}]` : undefined} value={heatingId} onChange={(e) => setHeatingId(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
-                                    <option value="">Tümü</option>
+                                    <option value="">{translation?.data?.business?.all}</option>
                                     {findFilterParam("Isıtma Sistemi")?.options?.map((item) => (
                                         <option key={item.id} value={item.id}>
                                             {item.title}
@@ -357,7 +357,7 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div>
-                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
                         </div>
                     </form>
                 )}
@@ -365,7 +365,7 @@ export function Filter({searchParams , typeId}) {
                     <form action={"/properties"} method="GET" className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
                                     <p className="text-[13px] font-semibold">-</p>
@@ -374,14 +374,14 @@ export function Filter({searchParams , typeId}) {
                                 {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
-                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
                                         </div>
                                         <div>
                                             <div>
-                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
@@ -396,46 +396,46 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">Tümü</p>
+                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute w-full bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.country}</label>
                                                 <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">Ülke Seçin</option>
+                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
                                                     <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
                                                     <option value="">Türkiye</option>
                                                     <option value="">Birleşik Arap Emirlikleri</option>
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.city}</label>
                                                 <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">Ülke Seçin</option>
+                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
                                                     <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
                                                     <option value="">Türkiye</option>
                                                     <option value="">Birleşik Arap Emirlikleri</option>
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.district}</label>
                                                 <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">Ülke Seçin</option>
+                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
                                                     <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
                                                     <option value="">Türkiye</option>
                                                     <option value="">Birleşik Arap Emirlikleri</option>
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.street}</label>
                                                 <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">Ülke Seçin</option>
+                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
                                                     <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
                                                     <option value="">Türkiye</option>
                                                     <option value="">Birleşik Arap Emirlikleri</option>
@@ -467,7 +467,7 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div>
-                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
                         </div>
                     </form>
                 )}
@@ -475,7 +475,7 @@ export function Filter({searchParams , typeId}) {
                     <form action={"/properties"} method="GET" className={`flex max-[992px]:flex-col ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} gap-2.5 p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
                                     <p className="text-[13px] font-semibold">-</p>
@@ -484,14 +484,14 @@ export function Filter({searchParams , typeId}) {
                                 {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
-                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
                                         </div>
                                         <div>
                                             <div>
-                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
@@ -506,20 +506,20 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">Tümü</p>
+                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute w-full bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
-                                                <select value={countryId} placeholder="Ülke Seçin" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="country_id" id="">
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.country}</label>
+                                                <select value={countryId} placeholder="{translation?.data?.business?.choose?.country}" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="country_id" id="">
                                                     <option value="" disabled>
-                                                        Ülke Seçin
+                                                        {translation?.data?.business?.choose?.country}
                                                     </option>
                                                     {countries.data.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -527,10 +527,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.city}</label>
                                                 <select value={cityId} onChange={(e) => setCityId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="city_id" id="">
                                                     <option value="" disabled>
-                                                        İl Seçin
+                                                        {translation?.data?.business?.choose?.city}
                                                     </option>
                                                     {cities.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -538,10 +538,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.district}</label>
                                                 <select value={districtId} onChange={(e) => setDistrictId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="district_id" id="">
                                                     <option value="" disabled>
-                                                        İlçe Seçin
+                                                        {translation?.data?.business?.choose?.district}
                                                     </option>
                                                     {district.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -549,10 +549,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.street}</label>
                                                 <select value={streetId} onChange={(e) => setStreetId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="street_id" id="">
                                                     <option value="" disabled>
-                                                        Mahalle
+                                                        {translation?.data?.business?.choose?.street}
                                                     </option>
                                                     {street.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -590,7 +590,7 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div>
-                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
                         </div>
                     </form>
                 )}
@@ -598,7 +598,7 @@ export function Filter({searchParams , typeId}) {
                     <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75 w-full`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
                                     <p className="text-[13px] font-semibold">-</p>
@@ -607,14 +607,14 @@ export function Filter({searchParams , typeId}) {
                                 {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
-                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
                                         </div>
                                         <div>
                                             <div>
-                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
@@ -629,46 +629,46 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div className="flex-1 pr-2.5">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">Tümü</p>
+                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute w-full bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.country}</label>
                                                 <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">Ülke Seçin</option>
+                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
                                                     <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
                                                     <option value="">Türkiye</option>
                                                     <option value="">Birleşik Arap Emirlikleri</option>
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.city}</label>
                                                 <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">Ülke Seçin</option>
+                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
                                                     <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
                                                     <option value="">Türkiye</option>
                                                     <option value="">Birleşik Arap Emirlikleri</option>
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.district}</label>
                                                 <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">Ülke Seçin</option>
+                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
                                                     <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
                                                     <option value="">Türkiye</option>
                                                     <option value="">Birleşik Arap Emirlikleri</option>
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.street}</label>
                                                 <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">Ülke Seçin</option>
+                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
                                                     <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
                                                     <option value="">Türkiye</option>
                                                     <option value="">Birleşik Arap Emirlikleri</option>
@@ -680,7 +680,7 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div>
-                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
                         </div>
                     </form>
                 )}
@@ -688,7 +688,7 @@ export function Filter({searchParams , typeId}) {
                     <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
                                     <p className="text-[13px] font-semibold">-</p>
@@ -697,14 +697,14 @@ export function Filter({searchParams , typeId}) {
                                 {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
-                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
                                         </div>
                                         <div>
                                             <div>
-                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
@@ -719,20 +719,20 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div className="flex-1 max-w-full pr-2.5">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">Tümü</p>
+                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute w-full bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
-                                                <select value={countryId} placeholder="Ülke Seçin" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="country_id" id="">
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.country}</label>
+                                                <select value={countryId} placeholder="{translation?.data?.business?.choose?.country}" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="country_id" id="">
                                                     <option value="" disabled>
-                                                        Ülke Seçin
+                                                        {translation?.data?.business?.choose?.country}
                                                     </option>
                                                     {countries.data.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -740,10 +740,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.city}</label>
                                                 <select value={cityId} onChange={(e) => setCityId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="city_id" id="">
                                                     <option value="" disabled>
-                                                        İl Seçin
+                                                        {translation?.data?.business?.choose?.city}
                                                     </option>
                                                     {cities.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -751,10 +751,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.district}</label>
                                                 <select value={districtId} onChange={(e) => setDistrictId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="district_id" id="">
                                                     <option value="" disabled>
-                                                        İlçe Seçin
+                                                        {translation?.data?.business?.choose?.district}
                                                     </option>
                                                     {district.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -762,10 +762,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.street}</label>
                                                 <select value={streetId} onChange={(e) => setStreetId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="street_id" id="">
                                                     <option value="" disabled>
-                                                        Mahalle
+                                                        {translation?.data?.business?.choose?.street}
                                                     </option>
                                                     {street.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -796,7 +796,7 @@ export function Filter({searchParams , typeId}) {
                             </button>
                         </div>
                         <div>
-                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
                         </div>
                     </form>
                 )}
@@ -804,7 +804,7 @@ export function Filter({searchParams , typeId}) {
                     <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">satış fiyatı</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
                                     <p className="text-[13px] font-semibold">-</p>
@@ -813,14 +813,14 @@ export function Filter({searchParams , typeId}) {
                                 {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
-                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">Satış Fiyatı</div>
+                                            <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
                                         </div>
                                         <div>
                                             <div>
-                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En az" />
+                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder="En fazla" />
+                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
@@ -835,20 +835,20 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div className="flex-1 max-w-full pr-2.5">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">konum</label>
+                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">Tümü</p>
+                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute w-full bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Ülke Seçin</label>
-                                                <select value={countryId} placeholder="Ülke Seçin" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="country_id" id="">
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.country}</label>
+                                                <select value={countryId} placeholder="{translation?.data?.business?.choose?.country}" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="country_id" id="">
                                                     <option value="" disabled>
-                                                        Ülke Seçin
+                                                        {translation?.data?.business?.choose?.country}
                                                     </option>
                                                     {countries.data.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -856,10 +856,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İl Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.city}</label>
                                                 <select value={cityId} onChange={(e) => setCityId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="city_id" id="">
                                                     <option value="" disabled>
-                                                        İl Seçin
+                                                        {translation?.data?.business?.choose?.city}
                                                     </option>
                                                     {cities.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -867,10 +867,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">İlçe Seçin</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.district}</label>
                                                 <select value={districtId} onChange={(e) => setDistrictId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="district_id" id="">
                                                     <option value="" disabled>
-                                                        İlçe Seçin
+                                                        {translation?.data?.business?.choose?.district}
                                                     </option>
                                                     {district.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -878,10 +878,10 @@ export function Filter({searchParams , typeId}) {
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
-                                                <label className="text-sm text-[#747474]" htmlFor="">Mahalle</label>
+                                                <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.street}</label>
                                                 <select value={streetId} onChange={(e) => setStreetId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="street_id" id="">
                                                     <option value="" disabled>
-                                                        Mahalle
+                                                        {translation?.data?.business?.choose?.street}
                                                     </option>
                                                     {street.map(item => (
                                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -910,7 +910,7 @@ export function Filter({searchParams , typeId}) {
                             </select>
                         </div>
                         <div className="max-[992px]:w-full">
-                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Seçenekleri Uygula</button>
+                            <button className="bg-[#27C5D2] max-[992px]:w-full max-[992px]:rounded-lg text-white h-full py-2 px-5 rounded-r-lg font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
                         </div>
                     </form>
                 )}
