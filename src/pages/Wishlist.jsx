@@ -196,7 +196,7 @@ export function Wishlist({ loged , locale, setLocale}) {
                                         translation={translation}
                                     />
                                 )) : (
-                                    <div className="text-[#636464] bg-[#fafafa] rounded-lg p-3.75 m-3.75 w-full max-h-fit">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
+                                    <div className="text-[#636464] bg-[#fafafa] rounded-lg p-3.75 m-3.75 w-full max-h-fit">{translation?.data?.business?.no_records_for_properties}</div>
                                 )
                             }
                         </div>

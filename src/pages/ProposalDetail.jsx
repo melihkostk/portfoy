@@ -103,6 +103,7 @@ export function ProposalDetail({ loged , locale, setLocale }) {
                                 district={item.district.title}
                                 page="proposalDetail"
                                 detail={detail}
+                                translation={translation}
                             />
                         ))}
                     </div>

@@ -110,20 +110,20 @@ export function QuickFilters({ loged , locale, setLocale }) {
             </div>}
             {editFilterShown && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-fit w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529]">Hızlı Filtre Düzenle</h2>
+                    <h2 className="text-xl text-[#212529]">{translation?.data?.business?.edit_quick_filter}</h2>
                     <img onClick={() => setEditFilterShown(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 <div className="p-4 w-full">
                     <div className="mb-2">
-                        <label className="text-[#212529]" htmlFor="filterName">Filtre Başlığı</label>
+                        <label className="text-[#212529]" htmlFor="filterName">{translation?.data?.business?.filter_title}</label>
                         <input className="block border border-[#d9d9d9] py-1.5 px-3 rounded-lg w-full" type="text" name="filterName" id="filterName" value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
                     </div>
                     <div className="mb-2">
                         <input checked={notify === 1} onChange={(e) => setNotify(e.target.checked ? 1 : 0)} type="checkbox" id="text" name="text" />
-                        <label className="pl-2" htmlFor="text">Filtreye uygun yeni ilan eklendiğinde beni bildir</label>
+                        <label className="pl-2" htmlFor="text">{translation?.data?.business?.send_email_on_compatible_new_property}</label>
                     </div>
                     <div>
-                        <button onClick={handleEdit} className="text-white font-semibold bg-[#27c5d2] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">Kaydet</button>
+                        <button onClick={handleEdit} className="text-white font-semibold bg-[#27c5d2] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
                     </div>
                 </div>
             </div>}

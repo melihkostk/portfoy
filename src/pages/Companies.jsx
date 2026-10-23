@@ -152,7 +152,7 @@ export function Companies({ loged, locale, setLocale }) {
                         />
                     ))
                         : (
-                            <div className="text-[#636464] w-full bg-[#fafafa] h-fit p-3.75 m-3.75 rounded-lg">Hiç ilan bulunamadı. Seçtiğiniz filtre kriterlerini kontrol edin.</div>
+                            <div className="text-[#636464] w-full bg-[#fafafa] h-fit p-3.75 m-3.75 rounded-lg">{translation?.data?.business?.no_records_for_properties}</div>
                         )
                     }
                 </div>

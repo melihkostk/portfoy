@@ -239,7 +239,7 @@ export function Account({ loged, locale, setLocale }) {
                                                     <option value="01">(01)</option>
                                                 </select>
                                             </div>
-                                            <input onChange={(e) => setPhone(e.target.value)} className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" placeholder="Telefon" value={phone}></input>
+                                            <input onChange={(e) => setPhone(e.target.value)} className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" placeholder={translation.data.business.phone} value={phone}></input>
                                         </div>
                                     </div>
                                 </div>

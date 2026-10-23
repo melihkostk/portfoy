@@ -263,7 +263,7 @@ export function Properties({ loged , locale, setLocale }) {
     const titleAndSortRow = (
         <div className="flex items-center flex-wrap justify-between">
             <h1 className="text-[25px] text-[#212529] font-medium">
-                {category ? "Fırsat İlanlar" : currentTypeName ? `${currentTypeName} ${translation?.data?.business?.property_category_page_title.replace(":category" , "")}` : translation?.data?.business?.properties}
+                {category ? translation?.data?.business?.discounted_properties : currentTypeName ? `${currentTypeName} ${translation?.data?.business?.property_category_page_title.replace(":category" , "")}` : translation?.data?.business?.properties}
             </h1>
             <div className="flex items-center gap-5">
                 <div className="flex items-center gap-1.25 max-[992px]:hidden">
@@ -317,7 +317,7 @@ export function Properties({ loged , locale, setLocale }) {
             {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
             {quickFilterMenu && <div className="fixed top-1/2 max-h-fit left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[70%] w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529]">Hızlı Filtreler</h2>
+                    <h2 className="text-xl text-[#212529]">{translation?.data?.business?.quick_filters}</h2>
                     <img onClick={() => setQuickFilterMenu(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 <div className="w-full p-4">
@@ -327,7 +327,7 @@ export function Properties({ loged , locale, setLocale }) {
                             <div>
                                 <button type="button" onClick={() => handleApplyQuickFilter(item)} className="bg-[#f1f1f1] flex items-start gap-1 cursor-pointer py-2 px-5 rounded-lg text-sm text-[#4b4b4b] hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                     <img className="w-3.5 h-3.5" src={menu} alt="" />
-                                    Seçenekleri Uygula
+                                    {translation?.data?.business?.filter_apply}
                                 </button>
                             </div>
                         </div>
@@ -336,21 +336,21 @@ export function Properties({ loged , locale, setLocale }) {
             </div>}
             {addQuickFilterMenu && <div className="fixed top-1/2 max-h-fit left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[70%] w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529]">Filtreyi Kaydet</h2>
+                    <h2 className="text-xl text-[#212529]">{translation?.data?.business?.save_filter}</h2>
                     <img onClick={() => setAddQuickFilterMenu(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 <div className="p-4">
-                    <p className="text-base text-[#212529] mb-4">Filtreleme seçeneklerinizi daha sonra kullanmak üzere kaydedebilirsiniz. Ayrıca isterseniz kaydettiğiniz filtreye uygun yeni ilan eklendiğinde bildirim alabilirsiniz.</p>
+                    <p className="text-base text-[#212529] mb-4">{translation?.data?.business?.save_filter_description}</p>
                     <div className="mb-2">
-                        <label className="text-[#212529]" htmlFor="title">Filtre Başlığı</label>
-                        <input value={filterTitle} onChange={(e) => setFilterTitle(e.target.value)} id="title" name="title" className="block w-full px-3 py-1.5 border border-[#d9d9d9] rounded-lg" type="text" placeholder="Filtre Başlığı" />    
+                        <label className="text-[#212529]" htmlFor="title">{translation?.data?.business?.filter_title}</label>
+                        <input value={filterTitle} onChange={(e) => setFilterTitle(e.target.value)} id="title" name="title" className="block w-full px-3 py-1.5 border border-[#d9d9d9] rounded-lg" type="text" placeholder={translation?.data?.business?.filter_title} />    
                     </div>
                     <div className="mb-2">
                         <input checked={notify === 1} onChange={(e) => setNotify(e.target.checked ? 1 : 0)} id="notify" name="notify" type="checkbox" />
-                        <label className="text-base text-[#212529] ml-2" htmlFor="notify">Filtreye uygun yeni ilan eklendiğinde beni bildir</label>
+                        <label className="text-base text-[#212529] ml-2" htmlFor="notify">{translation?.data?.business?.send_email_on_compatible_new_property}</label>
                     </div>
                     <div>
-                        <button type="button" onClick={handleSaveQuickFilter} className="text-white bg-[#27c5d2] cursor-pointer rounded-lg text-sm py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">Kaydet</button>    
+                        <button type="button" onClick={handleSaveQuickFilter} className="text-white bg-[#27c5d2] cursor-pointer rounded-lg text-sm py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>    
                     </div>                
                 </div>
             </div>}
@@ -416,7 +416,7 @@ export function Properties({ loged , locale, setLocale }) {
                                                                     value={paramValues[param.id] ?? ""}
                                                                     onChange={(e) => handleSelectParam(param.id, e.target.value)}
                                                                 >
-                                                                    <option value="">Seçiniz</option>
+                                                                    <option value="">{translation?.data?.business?.choice}</option>
                                                                     {param.options.map((opt) => (
                                                                         <option key={opt.id} value={opt.id}>
                                                                             {opt.title}
@@ -430,7 +430,7 @@ export function Properties({ loged , locale, setLocale }) {
                                                                     <input
                                                                         type="number"
                                                                         min={param.details?.min ?? undefined}
-                                                                        placeholder="En az"
+                                                                        placeholder={translation?.data?.business?.min}
                                                                         className="border border-[#ced4da] rounded-lg py-1.5 px-3 w-full  min-h-9.5"
                                                                         value={paramValues[param.id]?.min ?? ""}
                                                                         onChange={(e) => handleRangeParam(param.id, "min", e.target.value)}
@@ -439,7 +439,7 @@ export function Properties({ loged , locale, setLocale }) {
                                                                         <input
                                                                             type="number"
                                                                             max={param.details?.max ?? undefined}
-                                                                            placeholder="En fazla"
+                                                                            placeholder={translation?.data?.business?.max}
                                                                             className="border border-[#ced4da] rounded-lg py-1.5 px-3 w-full"
                                                                             value={paramValues[param.id]?.max ?? ""}
                                                                             onChange={(e) => handleRangeParam(param.id, "max", e.target.value)}
