@@ -19,7 +19,7 @@ export function MainSidebar({ setSidebarShown, loged, translation }) {
                     </div>
                 </div>
                 <div className="my-7.5">
-                    <ul className="font-semibold">
+                    {!loged ? <ul className="font-semibold">
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
                             <Link to={"/"}>{translation?.data?.business?.home}</Link>
                         </li>
@@ -41,10 +41,23 @@ export function MainSidebar({ setSidebarShown, loged, translation }) {
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
                             <Link>{translation?.data?.business?.blog}</Link>
                         </li>
-                    </ul>
+                    </ul> : <ul className="font-semibold">
+                        <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
+                            <Link to={"/"}>{translation?.data?.business?.properties}</Link>
+                        </li>
+                        <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
+                            <Link to={"/"}>{translation?.data?.business?.companies}</Link>
+                        </li>
+                        <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
+                            <Link to={"/"}>{translation?.data?.business?.create_property}</Link>
+                        </li>
+                        <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
+                            <Link to={"/"}>{translation?.data?.business?.contacts}</Link>
+                        </li>
+                    </ul>}
                 </div>
                 <div className="my-7.5">
-                    <ul className="font-semibold">
+                    {!loged ? <ul className="font-semibold">
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
                             <Link to={"/register"}>{translation?.data?.business?.register}</Link>
                         </li>
@@ -54,7 +67,20 @@ export function MainSidebar({ setSidebarShown, loged, translation }) {
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
                             <Link to={"/check"}>{translation?.data?.business?.application_check}</Link>
                         </li>
-                    </ul>
+                    </ul> : <ul className="font-semibold">
+                        <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
+                            <Link to={"/"}>{translation?.data?.business?.my_wishlist}</Link>
+                        </li>
+                        <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
+                            <Link to={"/"}>{translation?.data?.business?.my_proposals}</Link>
+                        </li>
+                        <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
+                            <Link to={"/"}>{translation?.data?.business?.dashboard}</Link>
+                        </li>
+                        <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
+                            <Link to={"/"}>{translation?.data?.business?.logout}</Link>
+                        </li>
+                    </ul>}
                 </div>
                 {loged && <div>
                     <div>
