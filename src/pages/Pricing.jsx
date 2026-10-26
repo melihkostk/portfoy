@@ -4,229 +4,83 @@ import { DiscoverCard } from "../components/DiscoverCard"
 import { Questions } from "../components/Questions";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getTranslation } from "../services/translation";
+import { getCompanyTypes } from "../services/companiesApi";
+import { getPackages } from "../services/pricingApi";
 
 export function Pricing({ loged, locale, setLocale }) {
 
-    const [pricingCate, setPricingCate] = useState("Emlak Firması")
+    const [translation, setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
+    const [type, setType] = useState([]);
+
+    useEffect(() => {
+        getCompanyTypes(locale).then(setType)
+    }, [locale])
+
+    const [pricingCate, setPricingCate] = useState(2)
+
+    const [packages, setPackages] = useState([]);
+
+    useEffect(() => {
+        getPackages().then(setPackages)
+    }, [])
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header loged={loged} locale={locale} setLocale={setLocale} />
+            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Fiyatlandırma</span></p>
+                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.pricing}</span></p>
                 </div>
             </div>
             <div className='w-full flex flex-col items-center'>
                 <div className='w-full max-w-[90%]'>
                     <div className='flex flex-col items-center my-15'>
-                        <h2 className='text-[2rem] text-center mb-2 font-semibold'>Fiyatlandırma</h2>
-                        <p className='text-[#525252] text-center max-w-[45%] font-medium max-[992px]:w-full max-[992px]:max-w-full'>Firmanızı tipini seçin, sizin için hazırlanmış özel paketler fırsatından faydalanın. Ücretsiz kullanım dönemini yakalamak için acele edin.</p>
+                        <h2 className='text-[2rem] text-center mb-2 font-semibold'>{translation?.data?.business?.pricing}</h2>
+                        <p className='text-[#525252] text-center max-w-[45%] font-medium max-[992px]:w-full max-[992px]:max-w-full'>{translation?.data?.business?.pricing_section_description}</p>
                         <ul className='flex mt-10 border border-[#eee] p-2.5 rounded-lg scrollbar-thin scrollbar-thumb-[#27C5D2] overflow-auto max-[992px]:max-w-full'>
-                            <li>
-                                <button onClick={() => setPricingCate("Emlak Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "Emlak Firması" ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
-                                    Emlak Firması
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => setPricingCate("İnşaat Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "İnşaat Firması" ? "bg-[#f4f4f4] text-black" : ""}  hover:text-black cursor-pointer`}>
-                                    İnşaat Firması
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => setPricingCate("Emlak & İnşaat Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "Emlak & İnşaat Firması" ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
-                                    Emlak & İnşaat Firması
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => setPricingCate("Pazarlama Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "Pazarlama Firması" ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
-                                    Pazarlama Firması
-                                </button>
-                            </li>
+                            {type?.map(item => (
+                                <li>
+                                    <button onClick={() => setPricingCate(item.id)} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === item.id ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
+                                        {item.title}
+                                    </button>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div className='flex w-full justify-center scrollbar-thin scrollbar-thumb-[#27C5D2] flex-wrap overflow-auto max-[992px]:flex-nowrap max-[992px]:justify-start max-[992px]:items-start max-[992px]:gap-10 max-[992px]:mt-3.75'>
-                        {pricingCate === "Emlak Firması" && (
-                            <>
+                        {packages?.data?.filter(item => item.id == pricingCate).map(item => (
+                            item.packages.map((item, index) => (
                                 <PricingCard
-                                    name="XL Emlak Paketi"
-                                    price="₺15,00 + KDV"
-                                    trail="30"
-                                    staff="Sınırsız"
-                                    offer="510"
-                                    customer="500"
-                                    ad="520"
-                                    photo="20"
-                                    video="20"
+                                    title={item.title}
+                                    description={item.description}
+                                    key={index}
+                                    price={item.price.formatted}
+                                    time={item.trial_version.time}
+                                    trialPrice={item.trial_version.price.amount}
+                                    customerTitle={item.features.customer_and_personal.title}
+                                    customerFeatures={item.features.customer_and_personal.features}
+                                    propertyTitle={item.features.property.title}
+                                    propertyFeatures={item.features.property.features}
+                                    translation={translation}
                                 />
-
-                                <PricingCard
-                                    name="Standart Emlak Paket"
-                                    price="₺450,00 + KDV"
-                                    trail="30"
-                                    staff="3"
-                                    offer="10"
-                                    customer="10"
-                                    ad="10"
-                                    photo="12"
-                                    video="1"
-                                />
-
-                                <PricingCard
-                                    name="Medium Emlak Paket"
-                                    price="₺650,00 + KDV"
-                                    trail="45"
-                                    staff="6"
-                                    offer="1500"
-                                    customer="500"
-                                    ad="50"
-                                    photo="12"
-                                    video="2"
-                                />
-
-                                <PricingCard
-                                    name="Premium Emlak Paket"
-                                    price="₺950,00 + KDV"
-                                    trail="60"
-                                    staff="10"
-                                    offer="3000"
-                                    customer="1000"
-                                    ad="100"
-                                    photo="15"
-                                    video="5"
-                                />
-                            </>
-                        )}
-                        {pricingCate === "İnşaat Firması" && (
-                            <>
-                                <PricingCard
-                                    name="XL İnşaat Paketi"
-                                    price="₺500,00 + KDV"
-                                    trail="15 "
-                                    staff="Sınırsız"
-                                    offer="0"
-                                    customer="Sınırsız"
-                                    ad="Sınırsız "
-                                    photo="0"
-                                    video="0"
-                                />
-
-                                <PricingCard
-                                    name="XXL"
-                                    price="₺8,00 + KDV"
-                                    trail="30"
-                                    staff="2000"
-                                    offer="50"
-                                    customer="50"
-                                    ad="1500"
-                                    photo="85"
-                                    video="18"
-                                />
-
-                                <PricingCard
-                                    name="Standart İnşaat Paket"
-                                    price="₺1.300,00 + KDV"
-                                    trail="30"
-                                    staff="3"
-                                    offer="10"
-                                    customer="10"
-                                    ad="10"
-                                    photo="10"
-                                    video="3"
-                                />
-
-                                <PricingCard
-                                    name="Medium İnşaat Paket"
-                                    price="₺1.650,00 + KDV"
-                                    trail="45 "
-                                    staff="6 "
-                                    offer="1500"
-                                    customer="500"
-                                    ad="50 "
-                                    photo="25"
-                                    video="3"
-                                />
-
-                                <PricingCard
-                                    name="Premium İnşaat Paket"
-                                    price=" ₺1.900,00 + KDV"
-                                    trail="60  "
-                                    staff="10 "
-                                    offer="3000"
-                                    customer="1000"
-                                    ad="100  "
-                                    photo="30 "
-                                    video="5"
-                                />
-                            </>
-                        )}
-                        {pricingCate === "Emlak & İnşaat Firması" && (
-                            <>
-                                <PricingCard
-                                    name="Medium İnşaat & Emlak Paket"
-                                    price="₺1.650,00 + KDV"
-                                    trail="45"
-                                    staff="6 "
-                                    offer="10"
-                                    customer="10"
-                                    ad="10"
-                                    photo="10"
-                                    video="3"
-                                />
-
-                                <PricingCard
-                                    name="Premium İnşaat & Emlak Paket"
-                                    price=" ₺1.900,00 + KDV"
-                                    trail="60  "
-                                    staff="10 "
-                                    offer="3000"
-                                    customer="1000"
-                                    ad="100  "
-                                    photo="30 "
-                                    video="5"
-                                />
-                            </>
-                        )}
-                        {pricingCate === "Pazarlama Firması" && (
-                            <>
-                                <PricingCard
-                                    name="Medium Pazarlama Firması Paket"
-                                    price="₺1.650,00 + KDV"
-                                    trail="45"
-                                    staff="6 "
-                                    offer="15"
-                                    customer="10"
-                                    ad="10"
-                                    photo="10"
-                                    video="3"
-                                />
-
-                                <PricingCard
-                                    name="Premium Pazarlama Firması Paket"
-                                    price=" ₺1.900,00 + KDV"
-                                    trail="60  "
-                                    staff="10 "
-                                    offer="3000"
-                                    customer="1000"
-                                    ad="100  "
-                                    photo="30 "
-                                    video="5"
-                                />
-                            </>
-                        )}
+                            ))
+                        ))}
                     </div>
                 </div>
             </div>
             <div className="w-full flex justify-center">
                 <div className='w-full max-w-[90%]'>
                     <div className="text-center flex flex-col items-center my-15">
-                        <h1 className="text-[#212529] text-[34px] font-medium mb-2.5">Özellikler ve Avantajlar</h1>
+                        <h1 className="text-[#212529] text-[34px] font-medium mb-2.5">{translation?.data?.business?.app_features_and_advantages_section_title}</h1>
                         <p className="text-[#525252] text-base max-w-[45%] font-normal max-[992px]:w-full max-[992px]:max-w-full">
-                            Port-foy.com sizin için çözümler üretiyor.
-                            Gayrimenkullerinizi en uzağa en doğru biçimde iletmek
-                            ayrıca farklı bölgelerdeki firmaların ürünlerine
-                            kolayca ulaşmak artık daha kolay.
+                            {translation?.data?.business?.app_features_and_advantages_section_description}
                         </p>
                     </div>
                     <div>
@@ -292,11 +146,9 @@ export function Pricing({ loged, locale, setLocale }) {
             <div className="w-full flex justify-center">
                 <div className='w-full max-w-[90%]'>
                     <div className="text-center flex flex-col items-center my-15">
-                        <h1 className="text-[34px] text-[#212529] font-semibold mb-2.5">Sıkça Sorulan Sorular</h1>
+                        <h1 className="text-[34px] text-[#212529] font-semibold mb-2.5">{translation?.data?.business?.faqs}</h1>
                         <p className="max-w-[45%] max-[992px]:w-full max-[992px]:max-w-full ">
-                            Port-foy.com kullanımı kolay bir platformdur.
-                            Size istihdam ekonomisi ve hız kazandıracak şekilde planlanmıştır.
-                            Sorularınız için bizlere her türlü platformdan ulaşabileceğinizi bilmenizi isteriz.
+                            {translation?.data?.business?.faqs_section_description}
                         </p>
                     </div>
                     <div>
@@ -311,11 +163,11 @@ export function Pricing({ loged, locale, setLocale }) {
                         <Questions question="Sadece kendi bölgemdeki gayrimenkullere mi erişimim var?" answer="Port-foy.com’um kuruluş amaçlarından birisi de bu. Türkiye’nin neresinde olursanız olun Port-foy.com üyelerinin girmiş olduğu tüm ürünleri görebilirsiniz. Satıcıları ile iletişim kurabilirsiniz. Platform üzerinden teklif verebilirsiniz." />
                         <Questions question="Port-foy.com’a eklediğimiz ürünleri potansiyel müşteriler görebilecek mi?" answer="2025 yılı itibariyle wowiest.com sayfasında ürünleriniz yer alacak. Port-foy.com’daki tüm değişiklikler ve güncellemeler bu sayfada anlık değişecek. wowiest.com üzerinden müşteriler satış fiyatları ile ürünlerinizi görmeye başlayacak. Potansiyel müşteriler temas kurmak istediklerinde doğrudan satıcı ile temas edebilecek.   " />
                     </div>
-                    <div className="flex flex-col justify-center items-center text-center">
-                        <p className="text-lg text-[#212529] font-semibold mb-1">Sizin için yeterli değil mi?</p>
-                        <p className="text-sm text-[#767676] mb-4 font-medium">Her zaman sorularınızı yanıtlamaya hazırız</p>
+                    <div className="flex flex-col justify-center items-center text-center py-12.5">
+                        <p className="text-lg text-[#212529] font-semibold mb-1">{translation?.data?.business?.contacts_card_title}</p>
+                        <p className="text-sm text-[#767676] mb-4 font-medium">{translation?.data?.business?.contacts_card_description}</p>
                         <div>
-                            <p className="text-[#212529] mb-4 font-medium">MÜŞTERI DESTEK HATTI</p>
+                            <p className="text-[#212529] mb-4 font-medium uppercase">{translation?.data?.business?.customer_support_line}</p>
                             <a className="text-[25px] text-black font-bold" href="">0 850 851 44 94</a>
                         </div>
                     </div>
@@ -323,11 +175,11 @@ export function Pricing({ loged, locale, setLocale }) {
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
 
         </div>
