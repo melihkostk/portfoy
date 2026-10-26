@@ -10,6 +10,7 @@ import lock from "../assets/lock.png"
 import phoneIcon from "../assets/phone-placeholder.png"
 import columns from "../assets/columns.png"
 import eye from "../assets/gray-eye.png"
+import { ClipLoader } from "react-spinners"
 
 export function SignIn({ locale, setLocale }) {
     const [name, setName] = React.useState("");
@@ -18,16 +19,28 @@ export function SignIn({ locale, setLocale }) {
     const [code, setCode] = React.useState("");
     const [phone, setPhone] = React.useState("");
 
-    const [translation , setTranslation] = useState([]);
+    const [translation, setTranslation] = useState([]);
+
+    const [loaded , setLoaded] = useState(false);
 
     useEffect(() => {
-        getTranslation(locale).then(setTranslation);
+        setLoaded(false);
+        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true));
     }, [locale])
 
-    const [inputType , setInputType] = useState("password")
+    const [inputType, setInputType] = useState("password")
 
     return (
         <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-20% to-white to-20%">
+            {!loaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <div className="pb-12.5 w-[40%] max-[992px]:w-full max-[992px]:max-w-[95%]">
                 <div className="flex items-center justify-between mb-7.5 pt-12.5">
                     <div className="w-55">
@@ -66,7 +79,7 @@ export function SignIn({ locale, setLocale }) {
                             {inputType === "text" && <img onClick={() => setInputType("password")} className="w-5 h-5 absolute top-11 right-4 cursor-pointer" src={lock} alt="" />}
                         </div>
                         <div className="flex flex-col my-2.5 relative">
-                            <img  className="w-5 h-5 absolute top-11 left-4" src={columns} alt="" />
+                            <img className="w-5 h-5 absolute top-11 left-4" src={columns} alt="" />
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="code">{translation?.data?.business?.invitation_code}</label>
                             <input value={code} onChange={(e) => setCode(e.target.value)} className="w-full pl-12 px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="code" id="code" type="email" placeholder={translation?.data?.business?.invitation_code} required phone-mask />
                         </div>
