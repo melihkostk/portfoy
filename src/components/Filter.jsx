@@ -94,6 +94,8 @@ export function Filter({searchParams , typeId , translation}) {
     const findFilterParam = (title) =>
         filterOptions?.data?.flatMap(group => group.params || [])?.find(param => param.title === title);
 
+    const [searchInput , setSearchInput] = useState("");
+
     return (
         <div>
             <div className="flex flex-col gap-2">
@@ -120,10 +122,10 @@ export function Filter({searchParams , typeId , translation}) {
                                 {cateFilter && <ul className="absolute w-full max-h-75 overflow-y-auto bg-white border z-50 border-[#eee] rounded-lg p-2">
                                     <li className="w-full py-1">
                                         <div className="m-2.5 max-w-full">
-                                            <input className="text-sm rounded-lg w-full py-1.25 px-2.5 placeholder:text-[#838383] bg-[#f8f8f8]" type="text" placeholder={translation?.data?.business?.search_in_categories} />
+                                            <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="text-sm rounded-lg w-full py-1.25 px-2.5 placeholder:text-[#838383] bg-[#f8f8f8]" type="text" placeholder={translation?.data?.business?.search_in_categories} />
                                         </div>
                                     </li>
-                                    {propertiesType?.map(item => (
+                                    {propertiesType?.filter(item => item.title.includes(searchInput)).map(item => (
                                         <li className="w-full py-1" key={item.id}>
                                             <input name={item.id} id={item.id} className="cursor-pointer select-none w-5 h-5" type="checkbox" />
                                             <label htmlFor={item.id} className="text-[#747474] text-sm ml-2 cursor-pointer select-none hover:text-black transition-colors duration-300 ease-in-out">{item.title}</label>
