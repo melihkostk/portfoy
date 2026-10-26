@@ -1,12 +1,10 @@
 import logo from "../assets/logo.svg"
 import close from "../assets/close.png"
 import { Link } from "react-router-dom"
-import whiteFolder from "../assets/folder.png"
 
-
-export function MainSidebar({ setSidebarShown  , loged}) {
+export function MainSidebar({ setSidebarShown  , loged , translation}) {
     return (
-        <div className="p-3.75 bg-white w-full flex pt-30 items-center justify-center min-h-screen fixed overflow-y-auto top-0 bottom-0 left-0 right-0 z-50">
+        <div className="p-3.75 bg-white w-full flex items-start justify-start min-h-screen fixed overflow-y-auto top-0 bottom-0 left-0 right-0 z-50">
             <div className="w-full max-w-[95%]">
                 <div className="flex justify-between items-center">
                     <div className="w-45">
@@ -17,51 +15,48 @@ export function MainSidebar({ setSidebarShown  , loged}) {
                     </div>
                 </div>
                 <div className="my-7.5">
-                    <ul>
+                    <ul className="font-semibold">
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/"}>Anasayfa</Link>
+                            <Link to={"/"}>{translation?.data?.business?.home}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/discover"}>Port-Foy Nedir?</Link>
+                            <Link to={"/discover"}>{translation?.data?.business?.discover}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/pricing"}>Fiyatlandırma</Link>
+                            <Link to={"/pricing"}>{translation?.data?.business?.pricing}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/articles"}>Haberler</Link>
+                            <Link to={"/articles"}>{translation?.data?.business?.articles}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/corporate"}>Kurumsal</Link>
+                            <Link to={"/corporate"}>{translation?.data?.business?.corporate}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/contacts"}>İletişim</Link>
+                            <Link to={"/contacts"}>{translation?.data?.business?.contacts}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link>Blog</Link>
+                            <Link>{translation?.data?.business?.blog}</Link>
                         </li>
                     </ul>
                 </div>
                 <div className="my-7.5">
-                    <ul>
+                    <ul className="font-semibold">
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/register"}>Kayıt Ol</Link>
+                            <Link to={"/register"}>{translation?.data?.business?.register}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/application"}>Firma Başvurusu</Link>
+                            <Link to={"/application"}>{translation?.data?.business?.company_application}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/check"}>Başvuru Sorgulama</Link>
+                            <Link to={"/check"}>{translation?.data?.business?.application_check}</Link>
                         </li>
                     </ul>
                 </div>
                 {loged && <div>
-                    <input className="bg-[#f8f8f8] p-2.5 rounded-lg w-full mb-3.75" type="text" placeholder="İlanlarda Ara" />
-                    <button className="bg-[#27C5D2] px-2.5 rounded-lg w-full flex items-center justify-center mb-2.5 h-7.5">
-                        <img className="w-4 h-4" src={whiteFolder} alt="" />
-                    </button>
-                    <button className="bg-[#27C5D2] px-2.5 rounded-lg w-full flex items-center justify-center mb-2.5 h-7.5 text-white text-xs font-semibold">
-                        Portföyüm
-                    </button>
+                    <input className="bg-[#f8f8f8] p-2.5 rounded-lg w-full mb-3.75" type="text" placeholder={translation?.data?.business?.search_in_properties} />
+                    <Link to={"/company"} className="bg-[#27C5D2] px-2.5 rounded-lg w-full flex items-center justify-center mb-2.5 h-7.5 text-white text-xs font-semibold">
+                        {translation?.data?.business?.my_portfolio}
+                    </Link>
                 </div>}
             </div>
         </div>
