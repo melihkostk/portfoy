@@ -114,7 +114,7 @@ export function Login({ setLoged , locale , setLocale }) {
                     <p className="text-center text-[#868686] text-xs font-medium">{translation?.data?.business?.copyright}</p>
                 </div>
             </div>
-            <div className="w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
+            <div className="w-full mx-auto max-w-[80%] flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
                 <AppLinks translation={translation} />
             </div>
         </div>

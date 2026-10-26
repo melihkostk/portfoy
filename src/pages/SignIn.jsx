@@ -2,7 +2,8 @@ import logo from "../assets/logo.svg"
 import { Link } from "react-router-dom"
 import { AppLinks } from "../components/AppLinks"
 import { LanguageSelect } from "../components/LanguageSelect"
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { getTranslation } from "../services/translation"
 
 export function SignIn({ locale, setLocale }) {
     const [name, setName] = React.useState("");
@@ -10,6 +11,12 @@ export function SignIn({ locale, setLocale }) {
     const [password, setPassword] = React.useState("");
     const [code, setCode] = React.useState("");
     const [phone, setPhone] = React.useState("");
+
+    const [translation , setTranslation] = useState([]);
+
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
 
     return (
         <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-20% to-white to-20%">
@@ -24,41 +31,41 @@ export function SignIn({ locale, setLocale }) {
                 </div>
                 <div className="w-full bg-white shadow-[0_0_30px_rgb(247_247_247)] p-7.5 rounded-lg">
                     <div className="mt-6.25 mb-7.5">
-                        <h1 className="text-lg text-[#686868] uppercase font-semibold mb-2.5">Kayıt Ol</h1>
-                        <p className="text-base text-[#a6a6a6]">Davetiye kodunuzla hesabınızı oluşturun</p>
+                        <h1 className="text-lg text-[#686868] uppercase font-semibold mb-2.5">{translation?.data?.business?.register}</h1>
+                        <p className="text-base text-[#a6a6a6]">{translation?.data?.business?.register_page_description}</p>
                     </div>
                     <form action="">
                         <div className="flex flex-col my-2.5">
-                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="name">Adınız ve Soyadınız</label>
-                            <input value={name} onChange={(e) => setName(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="name" id="name" type="text" placeholder="Adınız ve Soyadınız" required />
+                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="name">{translation?.data?.business?.fullname}</label>
+                            <input value={name} onChange={(e) => setName(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="name" id="name" type="text" placeholder={translation?.data?.business?.fullname} required />
                         </div>
                         <div className="flex flex-col my-2.5">
-                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="email">E-Posta</label>
-                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="email" type="email" placeholder="Adınız ve Soyadınız" required />
+                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="email">{translation?.data?.validation?.attributes?.email}</label>
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="email" type="email" placeholder={translation?.data?.validation?.attributes?.email} required />
                         </div>
                         <div className="flex flex-col my-2.5">
-                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="phone">Telefon</label>
-                            <input value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="phone" id="phone" type="email" placeholder="Adınız ve Soyadınız" required phone-mask />
+                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="phone">{translation?.data?.business?.phone}</label>
+                            <input value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="phone" id="phone" type="email" placeholder={translation?.data?.business?.phone} required phone-mask />
                         </div>
                         <div className="flex flex-col my-2.5">
-                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="password">Şifre</label>
-                            <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type="email" placeholder="Adınız ve Soyadınız" required phone-mask />
+                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="password">{translation?.data?.business?.password}</label>
+                            <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type="email" placeholder={translation?.data?.business?.password} required phone-mask />
                         </div>
                         <div className="flex flex-col my-2.5">
-                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="code">Davetiye Kodu</label>
-                            <input value={code} onChange={(e) => setCode(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="code" id="code" type="email" placeholder="Adınız ve Soyadınız" required phone-mask />
+                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="code">{translation?.data?.business?.invitation_code}</label>
+                            <input value={code} onChange={(e) => setCode(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="code" id="code" type="email" placeholder={translation?.data?.business?.invitation_code} required phone-mask />
                         </div>
-                        <button className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">kayıt ol</button>
+                        <button className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{translation?.data?.business?.register}</button>
                         <p className="text-center my-10 text-sm text-[#868686] font-medium">
-                            Zaten hesabınız var mı ?
-                            <Link className="block text-[#525252] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" to="/login">Giriş Yapın</Link>
+                            {translation?.data?.business?.have_already_login?.split("<a")[0]}
+                            <Link className="block text-[#525252] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" to="/login">{translation?.data?.business?.have_already_login?.match(/<a[^>]*>(.*?)<\/a>/)?.[1]}</Link>
                         </p>
                     </form>
-                    <p className="text-center text-xs text-[#868686] font-medium">Tüm hakları saklıdır. © Port-Foy - 2024</p>
+                    <p className="text-center text-xs text-[#868686] font-medium">{translation?.data?.business?.copyright}</p>
                 </div>
             </div>
             <div className="w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
-                <AppLinks />
+                <AppLinks translation={translation} />
             </div>
         </div>
     )
