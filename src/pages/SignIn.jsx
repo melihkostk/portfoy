@@ -122,7 +122,7 @@ export function SignIn({ locale, setLocale }) {
                     <p className="text-center text-xs text-[#868686] font-medium">{translation?.data?.business?.copyright}</p>
                 </div>
             </div>
-            <div className="w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
+            <div className="w-full mx-auto max-w-[95%] flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
                 <AppLinks translation={translation} />
             </div>
         </div>

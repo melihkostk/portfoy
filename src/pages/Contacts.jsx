@@ -10,12 +10,12 @@ import { useEffect, useState } from "react";
 import { getContactInfo , sendContactForm } from "../services/contactsApi";
 import { ClipLoader } from "react-spinners";
 import { getTranslation } from "../services/translation";
+import { ErrorPopUp } from "../components/ErrorPopUp";
 
 export function Contacts({ loged , locale, setLocale}) {
 
     const [name, setName] = useState("");
     const [email , setEmail] = useState("")
-    const [code, setCode] = useState("")
     const [phone , setPhone] = useState("")
     const [subject , setSubject] = useState("")
     const [message , setMessage] = useState("")
@@ -46,6 +46,21 @@ export function Contacts({ loged , locale, setLocale}) {
         getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
+    const [errorShown , setErrorShown] = useState(false)
+
+    function handleSendContactForm(e) {
+        e.preventDefault();
+        setLoaded(false)
+        sendContactForm(name , email , phone , subject , message , locale).then(data => {
+            if(data.status === "error"){
+                setErrorShown(true)
+            }
+            else {
+                console.log(data)
+            }
+        }).finally(() => setLoaded(true))
+    }
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {!loaded && (
@@ -57,6 +72,7 @@ export function Contacts({ loged , locale, setLocale}) {
                     />
                 </div>
             )}
+            {errorShown && <ErrorPopUp />}
             <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
@@ -118,10 +134,10 @@ export function Contacts({ loged , locale, setLocale}) {
                     </div>
                     <div className="flex-1 border border-[#eee] rounded-lg p-7.5 max-[992px]:w-full">
                         <h2 className="text-[32px] text-[#212529] font-semibold mb-10">{translation?.data?.business?.contact_form}</h2>
-                        <form action={sendContactForm(name , email , phone ,  )}>
+                        <form onSubmit={handleSendContactForm}>
                             <input onChange={(e) => setName(e.target.value)} value={name} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="name" placeholder={translation?.data?.business?.fullname} required />
                             <input onChange={(e) => setEmail(e.target.value)} value={email} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="email" placeholder={translation?.data?.business?.email} required />
-                            <input onChange={(e) => setPhone(e.target.value)} value={code + " " +  phone} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="phone" placeholder={translation?.data?.validation?.attributes?.phone} required />
+                            <input onChange={(e) => setPhone(e.target.value)} value={phone} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="phone" placeholder={translation?.data?.business?.phone} required />
                             <input value={subject} onChange={(e) => setSubject(e.target.value)} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="subject" placeholder={translation?.data?.business?.subject} required />
                             <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" name="message" placeholder={translation?.data?.business?.your_message} required></textarea>
                             <button type="submit" className="text-white text-sm rounded-lg cursor-pointer bg-[#27C5D2] py-2 px-5 font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.submit}</button>
