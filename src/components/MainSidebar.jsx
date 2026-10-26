@@ -1,8 +1,12 @@
 import logo from "../assets/logo.svg"
 import close from "../assets/close.png"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
-export function MainSidebar({ setSidebarShown  , loged , translation}) {
+export function MainSidebar({ setSidebarShown, loged, translation }) {
+
+    const [searchInput , setSearchInput] = useState("");
+
     return (
         <div className="p-3.75 bg-white w-full flex items-start justify-start min-h-screen fixed overflow-y-auto top-0 bottom-0 left-0 right-0 z-50">
             <div className="w-full max-w-[95%]">
@@ -53,7 +57,11 @@ export function MainSidebar({ setSidebarShown  , loged , translation}) {
                     </ul>
                 </div>
                 {loged && <div>
-                    <input className="bg-[#f8f8f8] p-2.5 rounded-lg w-full mb-3.75" type="text" placeholder={translation?.data?.business?.search_in_properties} />
+                    <div>
+                        <form action="/properties" method="GET">
+                            <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} name="q" className="bg-[#f8f8f8] p-2.5 rounded-lg w-full mb-3.75" type="text" placeholder={translation?.data?.business?.search_in_properties} />
+                        </form>
+                    </div>
                     <Link to={"/company"} className="bg-[#27C5D2] px-2.5 rounded-lg w-full flex items-center justify-center mb-2.5 h-7.5 text-white text-xs font-semibold">
                         {translation?.data?.business?.my_portfolio}
                     </Link>
