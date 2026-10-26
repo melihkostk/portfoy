@@ -4,6 +4,12 @@ import { AppLinks } from "../components/AppLinks"
 import { LanguageSelect } from "../components/LanguageSelect"
 import React, { useEffect, useState } from "react"
 import { getTranslation } from "../services/translation"
+import person from "../assets/name-placeholder.png"
+import mail from "../assets/mail.png"
+import lock from "../assets/lock.png"
+import phoneIcon from "../assets/phone-placeholder.png"
+import columns from "../assets/columns.png"
+import eye from "../assets/gray-eye.png"
 
 export function SignIn({ locale, setLocale }) {
     const [name, setName] = React.useState("");
@@ -17,6 +23,8 @@ export function SignIn({ locale, setLocale }) {
     useEffect(() => {
         getTranslation(locale).then(setTranslation);
     }, [locale])
+
+    const [inputType , setInputType] = useState("password")
 
     return (
         <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-20% to-white to-20%">
@@ -35,25 +43,32 @@ export function SignIn({ locale, setLocale }) {
                         <p className="text-base text-[#a6a6a6]">{translation?.data?.business?.register_page_description}</p>
                     </div>
                     <form action="">
-                        <div className="flex flex-col my-2.5">
+                        <div className="flex flex-col my-2.5 relative">
+                            <img className="w-5 h-5 absolute top-11 left-4" src={person} alt="" />
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="name">{translation?.data?.business?.fullname}</label>
-                            <input value={name} onChange={(e) => setName(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="name" id="name" type="text" placeholder={translation?.data?.business?.fullname} required />
+                            <input value={name} onChange={(e) => setName(e.target.value)} className="w-full pl-12 px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="name" id="name" type="text" placeholder={translation?.data?.business?.fullname} required />
                         </div>
-                        <div className="flex flex-col my-2.5">
+                        <div className="flex flex-col my-2.5 relative">
+                            <img className="w-5 h-5 absolute top-11 left-4" src={mail} alt="" />
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="email">{translation?.data?.validation?.attributes?.email}</label>
-                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="email" type="email" placeholder={translation?.data?.validation?.attributes?.email} required />
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full pl-12 px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="email" type="email" placeholder={translation?.data?.validation?.attributes?.email} required />
                         </div>
-                        <div className="flex flex-col my-2.5">
+                        <div className="flex flex-col my-2.5 relative">
+                            <img className="w-5 h-5 absolute top-11 left-4" src={phoneIcon} alt="" />
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="phone">{translation?.data?.business?.phone}</label>
-                            <input value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="phone" id="phone" type="email" placeholder={translation?.data?.business?.phone} required phone-mask />
+                            <input value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full pl-12 px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="phone" id="phone" type="email" placeholder={translation?.data?.business?.phone} required phone-mask />
                         </div>
-                        <div className="flex flex-col my-2.5">
+                        <div className="flex flex-col my-2.5 relative">
+                            <img className="w-5 h-5 absolute top-11 left-4" src={lock} alt="" />
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="password">{translation?.data?.business?.password}</label>
-                            <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type="email" placeholder={translation?.data?.business?.password} required phone-mask />
+                            <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-full pl-12 px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type={inputType} placeholder={translation?.data?.business?.password} required phone-mask />
+                            {inputType === "password" && <img onClick={() => setInputType("text")} className="w-5 h-5 absolute top-11 right-4 cursor-pointer" src={eye} alt="" />}
+                            {inputType === "text" && <img onClick={() => setInputType("password")} className="w-5 h-5 absolute top-11 right-4 cursor-pointer" src={lock} alt="" />}
                         </div>
-                        <div className="flex flex-col my-2.5">
+                        <div className="flex flex-col my-2.5 relative">
+                            <img  className="w-5 h-5 absolute top-11 left-4" src={columns} alt="" />
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="code">{translation?.data?.business?.invitation_code}</label>
-                            <input value={code} onChange={(e) => setCode(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="code" id="code" type="email" placeholder={translation?.data?.business?.invitation_code} required phone-mask />
+                            <input value={code} onChange={(e) => setCode(e.target.value)} className="w-full pl-12 px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="code" id="code" type="email" placeholder={translation?.data?.business?.invitation_code} required phone-mask />
                         </div>
                         <button className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{translation?.data?.business?.register}</button>
                         <p className="text-center my-10 text-sm text-[#868686] font-medium">
