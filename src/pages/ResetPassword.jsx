@@ -7,27 +7,43 @@ import { getTranslation } from "../services/translation"
 import mail from "../assets/mail.png"
 import { resetPassword } from "../services/authApi"
 import { ClipLoader } from "react-spinners"
+import whiteClose from "../assets/close.png"
 
-export function ResetPassword({locale , setLocale}){
+export function ResetPassword({ locale, setLocale }) {
 
-    const [translation , setTranslation] = useState([]);
+    const [translation, setTranslation] = useState([]);
 
-    const [loaded , setLoaded] = useState(false);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         getTranslation(locale).then(setTranslation).finally(() => setLoaded(true));
     }, [locale])
 
-    const [email , setEmail] = useState("");
+    const [email, setEmail] = useState("");
+
+    const [successMessageShown , setSuccessMessageShown] = useState(false)
+    const [successMessage , setSuccessMessage] = useState("");
+
+    const [errorMessageShown , setErrorMessageShown] = useState(false);
+    const [errorMessage , setErrorMessage] = useState(false);
 
 
-    function handleResetPassword(e){
+    function handleResetPassword(e) {
         setLoaded(false)
         e.preventDefault();
-        resetPassword(email , locale).then(data => console.log(data)).finally(() => setLoaded(true))
+        resetPassword(email, locale).then(data => {
+            if (data.status === "error") {
+                setErrorMessageShown(true);
+                setErrorMessage(data.message);
+            }
+            else {
+                setSuccessMessageShown(true)
+                setSuccessMessage(data.message)
+            }
+        }).finally(() => setLoaded(true))
     }
 
-    return(
+    return (
         <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-20% to-white to-20%">
             {!loaded && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
@@ -38,6 +54,14 @@ export function ResetPassword({locale , setLocale}){
                     />
                 </div>
             )}
+            {errorMessageShown && <div className="fixed max-w-1/2 flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-linear-to-r from-[rgb(201,61,61)] to-[rgb(151,5,5)]">
+                <p>{errorMessage}</p>
+                <img onClick={() => setErrorMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
+            {successMessageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{successMessage}</p>
+                <img onClick={() => setSuccessMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
             <div className="pb-12.5 w-[40%] max-[992px]:w-full max-[992px]:max-w-[95%]">
                 <div className="flex items-center justify-between mb-7.5 pt-12.5">
                     <div className="w-55">
