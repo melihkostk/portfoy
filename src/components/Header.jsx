@@ -67,7 +67,7 @@ export function Header({ loged, details , translation, locale, setLocale }) {
 
     return (
         <div className="py-7.5 w-full max-w-[90%]">
-            {sidebarShown && <MainSidebar translation={translation} setSidebarShown={setSidebarShown} loged={loged} />}
+            {sidebarShown && <MainSidebar handleLogOut={handleLogOut} translation={translation} setSidebarShown={setSidebarShown} loged={loged} />}
             {offerModelShown && <CreateOfferModel
                 setOfferModalShown={setOfferModalShown}
                 selectedCustomer={selectedCustomer}

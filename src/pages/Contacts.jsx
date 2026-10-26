@@ -34,7 +34,7 @@ export function Contacts({ loged , locale, setLocale}) {
             const user = JSON.parse(userStr);
             setName(user?.data?.name || "");
             setEmail(user?.data?.email || "");
-            setCode(user?.data?.phone?.code || "");
+            {/*setCode(user?.data?.phone?.code || "");*/}
             setPhone(user?.data?.phone?.number || "")
         }
     }, []);

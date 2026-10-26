@@ -3,13 +3,13 @@ import close from "../assets/close.png"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export function MainSidebar({ setSidebarShown, loged, translation }) {
+export function MainSidebar({ setSidebarShown, loged, translation , handleLogOut }) {
 
     const [searchInput , setSearchInput] = useState("");
 
     return (
-        <div className="p-3.75 bg-white w-full flex items-start justify-start min-h-screen fixed overflow-y-auto top-0 bottom-0 left-0 right-0 z-50">
-            <div className="w-full max-w-[95%]">
+        <div className="p-3.75 bg-white w-full min-h-screen fixed overflow-y-auto top-0 bottom-0 left-0 right-0 z-50">
+            <div className="w-full">
                 <div className="flex justify-between items-center">
                     <div className="w-45">
                         <img className="w-full" src={logo} alt="" />
@@ -43,16 +43,16 @@ export function MainSidebar({ setSidebarShown, loged, translation }) {
                         </li>
                     </ul> : <ul className="font-semibold">
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/"}>{translation?.data?.business?.properties}</Link>
+                            <Link to={"/properties"}>{translation?.data?.business?.properties}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/"}>{translation?.data?.business?.companies}</Link>
+                            <Link to={"/companies"}>{translation?.data?.business?.companies}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/"}>{translation?.data?.business?.create_property}</Link>
+                            <Link to={"/properties/create"}>{translation?.data?.business?.create_property}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/"}>{translation?.data?.business?.contacts}</Link>
+                            <Link to={"/contacts"}>{translation?.data?.business?.contacts}</Link>
                         </li>
                     </ul>}
                 </div>
@@ -69,16 +69,16 @@ export function MainSidebar({ setSidebarShown, loged, translation }) {
                         </li>
                     </ul> : <ul className="font-semibold">
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/"}>{translation?.data?.business?.my_wishlist}</Link>
+                            <Link to={"/wishlist"}>{translation?.data?.business?.my_wishlist}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/"}>{translation?.data?.business?.my_proposals}</Link>
+                            <Link to={"/proposals"}>{translation?.data?.business?.my_proposals}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
                             <Link to={"/"}>{translation?.data?.business?.dashboard}</Link>
                         </li>
                         <li className="py-1.25 text-lg hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <Link to={"/"}>{translation?.data?.business?.logout}</Link>
+                            <button onClick={handleLogOut}>{translation?.data?.business?.logout}</button>
                         </li>
                     </ul>}
                 </div>
