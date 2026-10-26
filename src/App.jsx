@@ -101,6 +101,7 @@ function App() {
         <Route path="/check" element={<Check locale={locale} setLocale={setLocale} loged={loged} />} />
         <Route path="/faqs" element={<Faqs loged={loged} locale={locale} setLocale={setLocale} />} />
         <Route path="/consent" element={<Consent loged={loged} locale={locale} setLocale={setLocale} />} />
+        <Route path="/articles/:id" element={<NewsDetail locale={locale} setLocale={setLocale} loged={loged} news={news} />}></Route>
         <Route path="*" element={<NotFound />}></Route>
         <Route element={<ProtectedRoutes loged={loged} authChecked={authChecked} />}>
           <Route path="/companies" element={<Companies locale={locale} setLocale={setLocale} loged={loged} />} />
@@ -128,7 +129,6 @@ function App() {
           <Route path="/companies/:id/team" element={<CompaniesDetailTeam locale={locale} setLocale={setLocale} loged={loged} />}></Route>
           <Route path="/companies/:id/contacts" element={<CompaniesDetailLocation locale={locale} setLocale={setLocale} loged={loged} />}></Route>
           <Route path="/properties/:id" element={<PropertiesDetail locale={locale} setLocale={setLocale} loged={loged} />}></Route>
-          <Route path="/articles/:id" element={<NewsDetail locale={locale} setLocale={setLocale} loged={loged} news={news} />}></Route>
           <Route path="/proposals/:id/details" element={<ProposalDetail locale={locale} setLocale={setLocale} loged={loged} />}></Route>
           <Route path="/offers/:id/detail" element={<OfferDetail locale={locale} setLocale={setLocale} loged={loged} />}></Route>
           <Route path="/properties/:id/edit" element={<EditProperty locale={locale} setLocale={setLocale} loged={loged} setMessage={setMessage} setMessageShown={setMessageShown} />}></Route>
