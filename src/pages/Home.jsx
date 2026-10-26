@@ -13,10 +13,11 @@ import { useEffect, useState } from "react"
 import { getTranslation } from "../services/translation"
 import { ClipLoader } from "react-spinners"
 import { getPackages } from "../services/pricingApi"
+import { getCompanyTypes } from "../services/companiesApi"
 
 export function Home({ loged, news, locale, setLocale }) {
 
-  const [pricingCate, setPricingCate] = useState("Emlak Firması")
+  const [pricingCate, setPricingCate] = useState(2)
 
   const [translation, setTranslation] = useState([]);
 
@@ -32,6 +33,12 @@ export function Home({ loged, news, locale, setLocale }) {
   useEffect(() => {
     getPackages().then(setPackages);
   }, [])
+
+  const [types, setTypes] = useState([]);
+
+  useEffect(() => {
+    getCompanyTypes(locale).then(setTypes);
+  }, [locale])
 
   return (
     <div className='flex flex-col items-center font-sf'>
@@ -120,42 +127,32 @@ export function Home({ loged, news, locale, setLocale }) {
             <h2 className='text-[2rem] text-center mb-2 font-semibold'>{translation?.data?.business?.pricing}</h2>
             <p className='text-[#525252] text-center max-w-[45%] font-medium max-[992px]:max-w-full'>{translation?.data?.business?.pricing_section_description}</p>
             <ul className='flex mt-10 border border-[#eee] p-2.5 rounded-lg max-w-full overflow-auto scrollbar-thin scrollbar-thumb-[#27C5D2]'>
-              <li>
-                <button onClick={() => setPricingCate("Emlak Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "Emlak Firması" ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
-                  Emlak Firması
-                </button>
-              </li>
-              <li>
-                <button onClick={() => setPricingCate("İnşaat Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "İnşaat Firması" ? "bg-[#f4f4f4] text-black" : ""}  hover:text-black cursor-pointer`}>
-                  İnşaat Firması
-                </button>
-              </li>
-              <li>
-                <button onClick={() => setPricingCate("Emlak & İnşaat Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "Emlak & İnşaat Firması" ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
-                  Emlak & İnşaat Firması
-                </button>
-              </li>
-              <li>
-                <button onClick={() => setPricingCate("Pazarlama Firması")} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === "Pazarlama Firması" ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
-                  Pazarlama Firması
-                </button>
-              </li>
+              {types?.map((item) => (
+                <li key={item.id}>
+                  <button onClick={() => setPricingCate(item.id)} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === item.id ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
+                    {item.title}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
           <div className='flex w-full justify-center flex-wrap overflow-auto scrollbar-thin scrollbar-thumb-[#27C5D2] max-[992px]:flex-nowrap max-[992px]:justify-start max-[992px]:items-start max-[992px]:gap-10 max-[992px]:mt-3.75'>
-            {packages?.data?.[0]?.packages?.map(item => (
-              <PricingCard
-                title={item.title}
-                description={item.description}
-                key={item.id}
-                price={item.price.formatted}
-                time={item.trial_version.time}
-                trialPrice={item.trial_version.price.amount}
-                customerTitle={item.features.customer_and_personal.title}
-                customerFeatures={item.features.customer_and_personal.features}
-                propertyTitle={item.features.property.title}
-                propertyFeatures={item.features.property.features}
-              />
+            {packages?.data?.filter(item => item.id == pricingCate).map(item => (
+              item.packages.map((item,index) => (
+                <PricingCard
+                  title={item.title}
+                  description={item.description}
+                  key={index}
+                  price={item.price.formatted}
+                  time={item.trial_version.time}
+                  trialPrice={item.trial_version.price.amount}
+                  customerTitle={item.features.customer_and_personal.title}
+                  customerFeatures={item.features.customer_and_personal.features}
+                  propertyTitle={item.features.property.title}
+                  propertyFeatures={item.features.property.features}
+                  translation={translation}
+                />
+              ))
             ))}
           </div>
         </div>
