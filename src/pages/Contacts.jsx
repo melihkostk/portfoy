@@ -47,6 +47,7 @@ export function Contacts({ loged , locale, setLocale}) {
     }, [locale])
 
     const [errorShown , setErrorShown] = useState(false)
+    const [errorMessage , setErrorMessage] = useState("");
 
     function handleSendContactForm(e) {
         e.preventDefault();
@@ -54,15 +55,20 @@ export function Contacts({ loged , locale, setLocale}) {
         sendContactForm(name , email , phone , subject , message , locale).then(data => {
             if(data.status === "error"){
                 setErrorShown(true)
+                setErrorMessage(data.message)
             }
             else {
                 console.log(data)
             }
+        }).catch(error => {
+            setErrorShown(true)
+            setErrorMessage(error.response?.data?.message)
         }).finally(() => setLoaded(true))
     }
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {errorShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -72,7 +78,7 @@ export function Contacts({ loged , locale, setLocale}) {
                     />
                 </div>
             )}
-            {errorShown && <ErrorPopUp />}
+            {errorShown && <ErrorPopUp errorMessage={errorMessage} setErrorShown={setErrorShown} translation={translation} />}
             <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">

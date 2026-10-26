@@ -7,5 +7,5 @@ export const getContactInfo = async () => {
 
 export const sendContactForm = async (name , email , phone , subject , message , locale) => {
     const response = await api.post("/contacts/form" , {name:name , email:email , phone:phone , subject:subject , message:message , locale:locale});
-    return response.data.data
+    return response.data
 }

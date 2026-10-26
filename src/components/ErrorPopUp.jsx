@@ -2,11 +2,11 @@ import cross from "../assets/cross.png"
 
 export function ErrorPopUp({setErrorShown , errorMessage , translation}){
     return(
-        <div className="fixed pb-5 top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 h-auto w-[30%] bg-white border border-[#eee] rounded-lg z-60">
+        <div className="fixed pb-5 top-1/2 p-4 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 h-auto w-[30%] bg-white border border-[#eee] rounded-lg z-60">
             <div className="mt-10 mb-2.5">
                 <img src={cross} alt="" />
             </div>
-            <p className="text-xl text-[#545454] font-semibold">
+            <p className="text-xl text-[#545454] font-semibold text-center">
                 {errorMessage}
             </p>
             <div className="mt-5">
