@@ -6,6 +6,9 @@ import { useEffect, useState } from "react"
 import { loginRequest } from "../services/authApi"
 import { getTranslation } from "../services/translation"
 import { ClipLoader } from "react-spinners"
+import lock from "../assets/lock.png"
+import mail from "../assets/mail.png"
+import eye from "../assets/gray-eye.png"
 
 export function Login({ setLoged , locale , setLocale }) {
 
@@ -48,6 +51,8 @@ export function Login({ setLoged , locale , setLocale }) {
         getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
+    const [inputType , setInputType] = useState("password");
+
     return (
         <div className="flex flex-col justify-center items-center min-h-screen bg-linear-to-b font-sf from-[#f7f6fb] from-35% to-white to-35%">
             {!loaded && (
@@ -76,8 +81,9 @@ export function Login({ setLoged , locale , setLocale }) {
                     <form onSubmit={login}>
                         <div className="my-2.5">
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="username">{translation?.data?.business?.email}</label>
-                            <div>
-                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="username" type="email" placeholder={translation?.data?.business?.email} required />
+                             <div className="relative">
+                                <img className="absolute w-5 h-5 top-4.5 left-4" src={mail} alt="" />
+                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 pl-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="username" type="email" placeholder={translation?.data?.business?.email} required />
                             </div>
                         </div>
                         <div className="my-2.5">
@@ -85,8 +91,11 @@ export function Login({ setLoged , locale , setLocale }) {
                                 <label className="text-[#868686] mb-1.25 font-medium" htmlFor="username">{translation?.data?.business?.password}</label>
                                 <a className="text-[#b1b1b1] text-sm font-medium hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">{translation?.data?.business?.forget_password}</a>
                             </div>
-                            <div>
-                                <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type="password" placeholder={translation?.data?.business?.password} required />
+                            <div className="relative">
+                                <img className="absolute w-5 h-5 top-4 left-4" src={lock} alt="" />
+                                <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-5 pl-12 pr-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type={inputType} placeholder={translation?.data?.business?.password} required />
+                                {inputType === "password" && <img onClick={() => setInputType("text")} className="absolute cursor-pointer w-5.5 h-5.5 top-4 right-4" src={eye} alt="" />}
+                                {inputType === "text" && <img onClick={() => setInputType("password")} className="absolute cursor-pointer w-5 h-5 top-4 right-4" src={lock} alt="" />}
                             </div>
                         </div>
                         <div className="flex items-center">
