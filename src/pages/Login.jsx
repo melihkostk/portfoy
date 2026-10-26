@@ -89,7 +89,7 @@ export function Login({ setLoged , locale , setLocale }) {
                         <div className="my-2.5">
                             <div className="flex items-center justify-between">
                                 <label className="text-[#868686] mb-1.25 font-medium" htmlFor="username">{translation?.data?.business?.password}</label>
-                                <a className="text-[#b1b1b1] text-sm font-medium hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">{translation?.data?.business?.forget_password}</a>
+                                <Link to={"/reset-password"} className="text-[#b1b1b1] text-sm font-medium hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">{translation?.data?.business?.forget_password}</Link>
                             </div>
                             <div className="relative">
                                 <img className="absolute w-5 h-5 top-4 left-4" src={lock} alt="" />

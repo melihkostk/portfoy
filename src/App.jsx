@@ -48,6 +48,7 @@ import { EditProperty } from "./pages/EditProperty.jsx";
 import { Boost } from "./pages/Boost.jsx"
 import { NotFound } from "./pages/NotFound.jsx";
 import { ProtectedRoutes } from "./components/ProtectedRoutes.jsx";
+import { ResetPassword } from "./pages/ResetPassword.jsx";
 
 function App() {
 
@@ -95,6 +96,7 @@ function App() {
         <Route path="/contacts" element={<Contacts loged={loged} locale={locale} setLocale={setLocale} />} />
         <Route path="/login" element={<Login loged={loged} setLoged={setLoged} locale={locale} setLocale={setLocale} />} />
         <Route path="/register" element={<SignIn locale={locale} setLocale={setLocale} />} />
+        <Route path="/reset-password" element={<ResetPassword locale={locale} setLocale={setLocale} loged={loged} />} />
         <Route path="/application" element={<Application locale={locale} setLocale={setLocale} loged={loged} />} />
         <Route path="/check" element={<Check locale={locale} setLocale={setLocale} loged={loged} />} />
         <Route path="/faqs" element={<Faqs loged={loged} locale={locale} setLocale={setLocale} />} />
