@@ -183,7 +183,7 @@ export function Customers({ loged , locale, setLocale }) {
                     <div className="hidden max-[991px]:flex border border-[#eee] rounded-lg">
                         <form onSubmit={(e) => {e.preventDefault(); handleFilterCustomer(filterName);}} className="flex items-center relative w-full">
                             <img className="w-4 h-4 absolute left-1" src={graySearch} alt="" />
-                            <input value={filterName} onChange={(e) => setFilterName(e.target.value)} className="text-sm pl-7 rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder="Müşteri adı ile arayın" />
+                            <input value={filterName} onChange={(e) => setFilterName(e.target.value)} className="text-sm pl-7 rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder={translation?.data?.business?.search_in_customers} />
                         </form>
                     </div>
                 </div>

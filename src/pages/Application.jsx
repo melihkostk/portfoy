@@ -122,19 +122,19 @@ export function Application({ locale, setLocale }) {
                                     <div className="flex flex-col gap-3.75">
                                         <div className="flex justify-between border border-[#EDEDED] rounded-lg">
                                             <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
-                                                <p>Ülke Seçin</p>
+                                                <p>{translation?.data?.business?.choose?.country}</p>
                                                 <img className="w-4 h-4" src={downArrow} alt="" />
                                             </div>
                                             <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
-                                                <p>İl Seçin</p>
+                                                <p>{translation?.data?.business?.choose?.city}</p>
                                                 <img className="w-4 h-4" src={downArrow} alt="" />
                                             </div>
                                             <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
-                                                <p>İlçe Seçin</p>
+                                                <p>{translation?.data?.business?.choose?.district}</p>
                                                 <img className="w-4 h-4" src={downArrow} alt="" />
                                             </div>
                                             <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
-                                                <p>Mahalle</p>
+                                                <p>{translation?.data?.business?.choose?.street}</p>
                                                 <img className="w-4 h-4" src={downArrow} alt="" />
                                             </div>
                                         </div>

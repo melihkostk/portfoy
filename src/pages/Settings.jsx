@@ -61,7 +61,7 @@ export function Settings({ loged , locale, setLocale }) {
             </div>
             {personalSelectPopUp && <div className="fixed top-1/2 left-1/2 flex flex-col items-center justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-cente w-full justify-between p-4 border-b border-b-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529] font-semibold">Fiyat Teklifleri için Personel Seçimi</h2>
+                    <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.company_settings?.price_offers.title}</h2>
                     <img onClick={() => setPersonalSelectPopUp(false)} className="cursor-pointer w-6 h-6" src={close} alt="" />
                 </div>
                 <div className="p-4">

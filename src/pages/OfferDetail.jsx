@@ -93,10 +93,10 @@ export function OfferDetail({ loged , locale, setLocale }) {
                         </div>}
                         {details?.data?.status?.key === "reject" && <div className="mt-4 text-[#842029] rounded-lg bg-[#f8d7da] p-4 border border-[#f5c2c7]">
                             <p className="font-semibold text-lg mb-1.25">{details?.data?.status?.message}</p>
-                            <p className="text-base">Bu ilan için tekrar fiyat teklifi oluşturabilirsiniz</p>
+                            <p className="text-base">{translation?.data?.business?.your_offer_price_not_confirmed_description}</p>
                         </div>}
                         {details?.data?.status?.key === "confirm" && <div className="mt-4 rounded-lg bg-[#d1e7dd] p-4 border border-[#badbcc]">
-                            <p className="font-semibold text-lg mb-1.25 text-[#0f5132]">Fiyat Teklifiniz {details?.data?.status?.title}</p>
+                            <p className="font-semibold text-lg mb-1.25 text-[#0f5132]">{translation?.data?.business?.your_offer_price_confirmed_title}</p>
                             <p className="text-[#0f5132] text-base">{details?.data?.status?.message}</p>
                         </div>}
                     </div>

@@ -15,7 +15,7 @@ export function CompanyFilter({ type, setSelectedType, setSelectedPropertyType, 
                 </select>}
                 {page === "wishlist" && <select onChange={(e) => setSelectedPropertyType(e.target.value)} className="bg-white py-2 px-3 border w-full border-[#D9D9D9] rounded-lg" name="type" id="type">
                     <option value="">
-                        Tümü
+                        {translation?.data?.business?.all}
                     </option>
                     {propertyType?.map(item => (
                         <option key={item.id} value={item.id}>

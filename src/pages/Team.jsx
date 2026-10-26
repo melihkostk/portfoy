@@ -336,7 +336,7 @@ export function Team({ loged , locale, setLocale}) {
             </div>}
             {editPermissionShown && <div className="fixed top-1/2 overflow-y-auto left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-full  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529] font-semibold">Yetkileri düzenleyin</h2>
+                    <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.edit_personal_permissions}</h2>
                     <img onClick={() => setEditPermissionShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
                 <div className="w-full p-4 flex flex-col">
@@ -362,7 +362,7 @@ export function Team({ loged , locale, setLocale}) {
                         </div>
                     ))}
                     <div className="self-end">
-                        <button className="bg-[#27c5d2] text-white font-semibold cursor-pointer hover:bg-[#026872] duration-300 ease-in-out rounded-lg py-2 px-5 text-sm">Güncelle</button>
+                        <button className="bg-[#27c5d2] text-white font-semibold cursor-pointer hover:bg-[#026872] duration-300 ease-in-out rounded-lg py-2 px-5 text-sm">{translation?.data?.business?.update}</button>
                     </div>
                 </div>
             </div>}

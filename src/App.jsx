@@ -102,7 +102,7 @@ function App() {
         <Route path="/faqs" element={<Faqs loged={loged} locale={locale} setLocale={setLocale} />} />
         <Route path="/consent" element={<Consent loged={loged} locale={locale} setLocale={setLocale} />} />
         <Route path="/articles/:id" element={<NewsDetail locale={locale} setLocale={setLocale} loged={loged} news={news} />}></Route>
-        <Route path="*" element={<NotFound />}></Route>
+        <Route path="*" element={<NotFound locale={locale} />}></Route>
         <Route element={<ProtectedRoutes loged={loged} authChecked={authChecked} />}>
           <Route path="/companies" element={<Companies locale={locale} setLocale={setLocale} loged={loged} />} />
           <Route path="/properties" element={<Properties locale={locale} setLocale={setLocale} loged={loged} />} />

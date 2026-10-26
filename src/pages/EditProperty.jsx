@@ -483,7 +483,7 @@ export function EditProperty({ loged, setMessage, setMessageShown , locale, setL
             </div>}
             {publishPopUp && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529] font-semibold">İlanı Yayınla</h2>
+                    <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.now_publish}</h2>
                     <img onClick={() => setPublishPopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 <div className="p-4">

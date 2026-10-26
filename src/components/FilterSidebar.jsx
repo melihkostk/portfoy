@@ -88,7 +88,7 @@ export function FilterSidebar({ type, translation , team , currencie , selectedT
                     </div>
                 </div>
                 <div className="mb-5">
-                    <p className="text-sm text-[#878787] mb-2" htmlFor="">İlan Durumu</p>
+                    <p className="text-sm text-[#878787] mb-2" htmlFor="">{translation?.data?.business?.property_status}</p>
                     <div>
                         <div className="flex items-center gap-2.5">
                             <input id="status-all" name="status" type="checkbox" checked={status === ""} onChange={() => setStatus("")} />

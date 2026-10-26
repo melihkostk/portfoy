@@ -79,7 +79,7 @@ export function PropertiesCard(props) {
                         </div>
                     ))}
                 </div>}
-                {props.page === "company" && <button onClick={() => props.handleOfferModal(props.id)} title="İlanı teklif listesine ekle" className="bg-[#e6e6e6] flex items-center gap-2.5 max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                {props.page === "company" && <button onClick={() => props.handleOfferModal(props.id)} title={props?.translation?.data?.business?.add_property_to_proposal_properties} className="bg-[#e6e6e6] flex items-center gap-2.5 max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     <img className="w-4.5 h-4.5" src={addFolder} alt="" />
                     <p className="whitespace-nowrap overflow-hidden truncate">{props.translation?.data?.business?.add_property_to_proposal_properties}</p>
                 </button>}
