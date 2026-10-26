@@ -11,6 +11,8 @@ import phoneIcon from "../assets/phone-placeholder.png"
 import columns from "../assets/columns.png"
 import eye from "../assets/gray-eye.png"
 import { ClipLoader } from "react-spinners"
+import { register } from "../services/authApi"
+import whiteClose from "../assets/close.png"
 
 export function SignIn({ locale, setLocale }) {
     const [name, setName] = React.useState("");
@@ -21,7 +23,7 @@ export function SignIn({ locale, setLocale }) {
 
     const [translation, setTranslation] = useState([]);
 
-    const [loaded , setLoaded] = useState(false);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         setLoaded(false);
@@ -29,6 +31,27 @@ export function SignIn({ locale, setLocale }) {
     }, [locale])
 
     const [inputType, setInputType] = useState("password")
+
+    const [successMessageShown, setSuccessMessageShown] = useState(false)
+    const [successMessage, setSuccessMessage] = useState("");
+
+    const [errorMessageShown, setErrorMessageShown] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(false);
+
+    function handleRegister(e) {
+        e.preventDefault()
+        setLoaded(false)
+        register(email, password, name, code).then(data => {
+            if (data.status === "error") {
+                setErrorMessageShown(true)
+                setErrorMessage(data.message)
+            }
+            else {
+                setSuccessMessageShown(true)
+                setSuccessMessage(data.message)
+            }
+        }).finally(() => setLoaded(true))
+    }
 
     return (
         <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-20% to-white to-20%">
@@ -41,6 +64,10 @@ export function SignIn({ locale, setLocale }) {
                     />
                 </div>
             )}
+            {successMessageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{successMessage}</p>
+                <img onClick={() => setSuccessMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
             <div className="pb-12.5 w-[40%] max-[992px]:w-full max-[992px]:max-w-[95%]">
                 <div className="flex items-center justify-between mb-7.5 pt-12.5">
                     <div className="w-55">
@@ -55,7 +82,10 @@ export function SignIn({ locale, setLocale }) {
                         <h1 className="text-lg text-[#686868] uppercase font-semibold mb-2.5">{translation?.data?.business?.register}</h1>
                         <p className="text-base text-[#a6a6a6]">{translation?.data?.business?.register_page_description}</p>
                     </div>
-                    <form action="">
+                    {errorMessageShown && <div className="bg-[#f8d7da] mt-2 mb-4 p-4 text-[#842029] border border-[#f5c2c7] rounded-lg">
+                        <p>{errorMessage}</p>
+                    </div>}
+                    <form onSubmit={handleRegister}>
                         <div className="flex flex-col my-2.5 relative">
                             <img className="w-5 h-5 absolute top-11 left-4" src={person} alt="" />
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="name">{translation?.data?.business?.fullname}</label>
@@ -69,7 +99,7 @@ export function SignIn({ locale, setLocale }) {
                         <div className="flex flex-col my-2.5 relative">
                             <img className="w-5 h-5 absolute top-11 left-4" src={phoneIcon} alt="" />
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="phone">{translation?.data?.business?.phone}</label>
-                            <input value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full pl-12 px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="phone" id="phone" type="email" placeholder={translation?.data?.business?.phone} required phone-mask />
+                            <input value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full pl-12 px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="phone" id="phone" type="email" placeholder={translation?.data?.business?.phone} phone-mask />
                         </div>
                         <div className="flex flex-col my-2.5 relative">
                             <img className="w-5 h-5 absolute top-11 left-4" src={lock} alt="" />
@@ -81,9 +111,9 @@ export function SignIn({ locale, setLocale }) {
                         <div className="flex flex-col my-2.5 relative">
                             <img className="w-5 h-5 absolute top-11 left-4" src={columns} alt="" />
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="code">{translation?.data?.business?.invitation_code}</label>
-                            <input value={code} onChange={(e) => setCode(e.target.value)} className="w-full pl-12 px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="code" id="code" type="email" placeholder={translation?.data?.business?.invitation_code} required phone-mask />
+                            <input value={code} onChange={(e) => setCode(e.target.value)} className="w-full pl-12 px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="code" id="code" type="text" placeholder={translation?.data?.business?.invitation_code} required phone-mask />
                         </div>
-                        <button className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{translation?.data?.business?.register}</button>
+                        <button type="submit" className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{translation?.data?.business?.register}</button>
                         <p className="text-center my-10 text-sm text-[#868686] font-medium">
                             {translation?.data?.business?.have_already_login?.split("<a")[0]}
                             <Link className="block text-[#525252] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" to="/login">{translation?.data?.business?.have_already_login?.match(/<a[^>]*>(.*?)<\/a>/)?.[1]}</Link>

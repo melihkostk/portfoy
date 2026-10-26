@@ -21,3 +21,13 @@ export const resetPassword = async (email , locale) => {
   });
   return response.data;
 }
+
+export const register = async (email , password , name , invitation_code) => {
+  const response = await api.post("/auth/register" , {
+    email:email,
+    password:password,
+    name:name,
+    invitation_code:invitation_code
+  });
+  return response.data;
+}
