@@ -105,10 +105,9 @@ export function Login({ setLoged , locale , setLocale }) {
                         {error && (
                             <p className="text-red-500 text-sm font-medium mt-2.5">{error}</p>
                         )}
-                        <button type="submit" disabled={loading} className="bg-[#27C5D2] hover:bg-[#026872] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{loading ? "Giriş Yapılıyor..." : translation?.data?.business?.login}</button>
+                        <button type="submit" disabled={loading} className="bg-[#27C5D2] hover:bg-[#026872] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{translation?.data?.business?.login}</button>
                         <p className="text-center my-10 text-sm text-[#868686] font-medium">
-                            Hesabınız yok mu? Davetiye kodunuzla
-                            <Link to={"/register"} className="block text-[#525252] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">şimdi hesap oluşturun.</Link>
+                            <Link className="block text-[#525252] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" to={"/register"}>{translation?.data?.business?.register_description?.replace(/<[^>]*>/g, "")}</Link>
                         </p>
                     </form>
                     <p className="text-center text-[#868686] text-xs font-medium">{translation?.data?.business?.copyright}</p>

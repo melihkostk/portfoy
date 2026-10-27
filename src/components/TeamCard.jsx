@@ -26,8 +26,8 @@ export function TeamCard({ name, translation ,handleGetPermissions , setEditPerm
                         <p className="text-sm">{is_active ? translation?.data?.business?.passive_personal : translation?.data?.business?.reactive_personal}</p>
                     </div>
                 </div>
-                {<div className={`py-1 px-4 text-[#747474] ${role === "Genel Müdür" ? "" : "cursor-pointer hover:text-black transition-colors duration-300 ease-in-out"}`}>
-                    <button disabled={role === "Genel Müdür"} onClick={() => { onEditClick(); setOptionsShown(false) }} className={`${role === "Genel Müdür" ? "opacity-50" : "cursor-pointer"} text-sm flex`}>
+                {<div className={`py-1 px-4 text-[#747474] ${role === translation?.data?.business?.roles?.chairmen ? "" : "cursor-pointer hover:text-black transition-colors duration-300 ease-in-out"}`}>
+                    <button disabled={role === translation?.data?.business?.roles?.chairmen} onClick={() => { onEditClick(); setOptionsShown(false) }} className={`${role === translation?.data?.business?.roles?.chairmen ? "opacity-50" : "cursor-pointer"} text-sm flex`}>
                         <img className="w-5 h-5 mr-2" src={edit} alt="" />
                         <p>{translation?.data?.business?.edit}</p>
                     </button>

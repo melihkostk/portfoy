@@ -81,7 +81,7 @@ export function Company({ loged, message, messageShown , setMessageShown, locale
 
     const [selectedType, setSelectedType] = useState([]);
 
-    const [ınfo, setInfo] = useState([])
+    const [info, setInfo] = useState([])
 
     useEffect(() => {
         getCompanyInfo().then(setInfo)
@@ -163,11 +163,11 @@ export function Company({ loged, message, messageShown , setMessageShown, locale
             </div>}
             <CompanyHeader
                 page="company"
-                name={ınfo?.name}
-                code={ınfo?.code}
-                created_at={ınfo?.created_at}
-                type={ınfo?.type}
-                logo={ınfo?.logo}
+                name={info?.name}
+                code={info?.code}
+                created_at={info?.created_at}
+                type={info?.type}
+                logo={info?.logo}
                 translation={translation}
             />
             <div className="max-w-[90%] w-full pt-12.5">

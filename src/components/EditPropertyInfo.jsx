@@ -120,7 +120,7 @@ export function EditPropertyInfo({
                                     <div key={feature.id} className="w-[25%] px-3 mb-2 flex flex-col max-[992px]:w-full">
                                         <div className="flex justify-between items-center">
                                             <label className="text-[#6c757d]" htmlFor={feature.id}>{feature?.title}</label>
-                                            {feature.input_type === "file" && <a className="text-xs text-[#026872] font-semibold" target="_blank" href={feature?.value[0]?.path}>Dosyaları Görüntüle (1 Dosya)</a>}
+                                            {feature.input_type === "file" && <a className="text-xs text-[#026872] font-semibold" target="_blank" href={feature?.value[0]?.path}>{translation.data.business.view_files_with_count.replace(":count" , "1")}</a>}
                                         </div>
                                         {feature.input_type !== "select"
                                             ? <input id={feature.id} name={feature.id} key={feature.id} value={feature.input_type === "text" || feature.input_type === "number" ? feature?.value : ""} onChange={(e) => handleFeatureChange(groupIndex, feature.id, e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type={feature.input_type} />

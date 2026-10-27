@@ -101,18 +101,22 @@ export function Settings({ loged , locale, setLocale }) {
                             setPersonalSelectPopUp={setPersonalSelectPopUp}
                             preference={preference}
                             team={team}
+                            translation={translation}
                         />
                         <SettingsCard
                             title={translation?.data?.business?.company_settings?.personal_visibility?.title}
                             description={translation?.data?.business?.company_settings?.personal_visibility?.description}
+                            translation={translation}
                         />
                         <SettingsCard
                             title={translation?.data?.business?.company_settings?.pass_price_visibility?.title}
                             description={translation?.data?.business?.company_settings?.pass_price_visibility?.description}
+                            translation={translation}
                         />
                         <SettingsCard
                             title={translation?.data?.business?.company_settings?.properties_commission_rates_visibility?.title}
                             description={translation?.data?.business?.company_settings?.properties_commission_rates_visibility?.title}
+                            translation={translation}
                         />
                     </div>
                 </div>

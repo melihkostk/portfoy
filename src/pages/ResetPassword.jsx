@@ -86,8 +86,7 @@ export function ResetPassword({ locale, setLocale }) {
                             <button type="submit" className="bg-[#27c5d2] text-white rounded-lg text-center w-full py-2 px-5 font-semibold cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.reset_password_email?.web?.reset_my_password}</button>
                         </div>
                         <div className="my-10 flex flex-col items-center font-semibold">
-                            <p className="text-sm text-[#868686]">Şifrenizi hatırlıyor musunuz?</p>
-                            <Link to={"/login"} className="text-sm hover:text-[#27c5d2] transition-colors duration-300 ease-in-out cursor-pointer">Giriş Yapın</Link>
+                            <Link className="text-sm hover:text-[#27c5d2] transition-colors duration-300 ease-in-out cursor-pointer" to={"/login"}>{translation?.data?.business?.remember_password?.replace(/<[^>]*>/g, "")}</Link>
                         </div>
                     </form>
                     <p className="text-center text-xs text-[#868686] font-medium">{translation?.data?.business?.copyright}</p>

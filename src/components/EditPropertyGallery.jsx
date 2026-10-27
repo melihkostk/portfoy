@@ -52,12 +52,12 @@ export function EditPropertyGallery({
                             <h5 className="text-[#676767] text-lg py-1.25">{item.title}</h5>
                         </div>
                         <div className="p-4">
-                            {(item.title.includes("Kapak Fotoğrafı") || item.title.includes("3D Cover Photo") && understand) && <div className="w-full flex items-center justify-between p-4 mb-4 bg-[#fff3cd] rounded-lg border border-[#ffecb5]">
+                            {(item.title.includes(translation?.data?.business?.cover_image) || item.title.includes(translation?.data?.business?.["3d_cover_image"]) && understand) && <div className="w-full flex items-center justify-between p-4 mb-4 bg-[#fff3cd] rounded-lg border border-[#ffecb5]">
                                 <p className="text-[#664d03]">{translation?.data?.business?.gallery_upload_warning_text}</p>
                                 <button onClick={() => setUnderstand(false)} className="bg-[#ffca64] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">{translation?.data?.business?.understand}</button>
                             </div>}
-                            <div className={`${item.title.includes("Kapak Fotoğrafı") ? "h-87.5" : "h-50"} text-center flex items-center justify-center`}>
-                                {!(item.title.includes("Kapak Fotoğrafı") || item.title.includes("3D Cover Photo")) ?
+                            <div className={`${item.title.includes(translation?.data?.business?.cover_image) ? "h-87.5" : "h-50"} text-center flex items-center justify-center`}>
+                                {!(item.title.includes(translation?.data?.business?.cover_image) || item.title.includes(translation?.data?.business?.["3d_cover_image"])) ?
                                     <div className="w-full flex flex-col">
                                         <div className="h-50 text-center p-5 flex w-full items-center justify-center border-2 border-[#eee] border-dashed">
                                             <input onChange={(e) => {
@@ -86,7 +86,7 @@ export function EditPropertyGallery({
                                         </div>
                                     </div>}
                             </div>
-                            {(item?.images[0]?.path?.small && item.title !== "3D Kapak Fotoğrafı") && <div className="h-auto w-[25%] mt-5 bg-linear-to-b from-transparent to-black rounded-lg">
+                            {(item?.images[0]?.path?.small && item.title !== translation?.data?.business?.["3d_cover_image"]) && <div className="h-auto w-[25%] mt-5 bg-linear-to-b from-transparent to-black rounded-lg">
                                 <img src={item?.images[0]?.path?.small} alt={item?.images[0]?.path?.small} />
                                 <div className="p-4 flex flex-col items-end">
                                     <div>

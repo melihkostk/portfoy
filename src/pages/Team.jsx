@@ -55,7 +55,7 @@ export function Team({ loged , locale, setLocale}) {
             }
             getAllInvitations().then(setInvitations)
             setSuccessPopUp(true)
-            setError("Davetiye kodu başarıyla silindi")
+            setError(data.message)
         }).finally(() => setLoaded(true))
     }
 
@@ -111,7 +111,7 @@ export function Team({ loged , locale, setLocale}) {
             getAllInvitations().then(setInvitations)
             setSuccessPopUp(true)
             setInviteEditShown(false)
-            setError("Davetiye kodu başarıyla güncellendi")
+            setError(data.message)
         })
     }
 
@@ -147,11 +147,11 @@ export function Team({ loged , locale, setLocale}) {
             getTeam().then(setTeam).finally(() => setLoaded(true))
             setSuccessPopUp(true)
             setEditShown(false)
-            setError("Personel bilgileri başarıyla güncellendi")
+            setError(data.message)
         }).finally(() => setLoaded(true))
     }
 
-    const [ınfo, setInfo] = useState([])
+    const [info, setInfo] = useState([])
 
     useEffect(() => {
         getCompanyInfo().then(setInfo)
@@ -342,7 +342,7 @@ export function Team({ loged , locale, setLocale}) {
                 <div className="w-full p-4 flex flex-col">
                     <div className="bg-[#eeeeee] rounded-lg p-7.5 mb-5">
                         <p className="text-xl text-[#212529] font-semibold">PİGASOFT</p>
-                        <p className="text-sm text-[#747474] font-semibold">Genel Müdür</p>
+                        <p className="text-sm text-[#747474] font-semibold">{translation?.data?.business?.roles?.chairmen}</p>
                     </div>
                     {permissions.map((item,index) => (
                         <div key={index} className="p-3.75 border border-[#eee] rounded-lg mb-5">
@@ -375,11 +375,11 @@ export function Team({ loged , locale, setLocale}) {
             </div>
             <CompanyHeader
                 page="team"
-                name={ınfo?.name}
-                code={ınfo?.code}
-                created_at={ınfo?.created_at}
-                type={ınfo?.type}
-                logo={ınfo?.logo}
+                name={info?.name}
+                code={info?.code}
+                created_at={info?.created_at}
+                type={info?.type}
+                logo={info?.logo}
                 translation={translation}
             />
             <div className="w-full max-w-[90%] mt-12.5">

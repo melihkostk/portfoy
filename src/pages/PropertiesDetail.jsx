@@ -146,6 +146,7 @@ export function PropertiesDetail({ loged , locale, setLocale }) {
                 handleCreateProposal={handleCreateProposal}
                 setNotify={setNotify}
                 notify={notify}
+                translation={translation}
             />}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">

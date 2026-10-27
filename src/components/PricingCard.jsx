@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import checkIcon from "../assets/check.png"
 
-export function PricingCard({ title,translation, price, time, trialPrice, customerTitle, customerFeatures, propertyTitle, propertyFeatures }) {
+export function PricingCard({ title, translation, price, time, trialPrice, customerTitle, customerFeatures, propertyTitle, propertyFeatures }) {
     return (
         <div className="bg-[#f9f9f9] rounded-lg p-7.5 m-3.75 w-[30%] shrink-0 max-[992px]:w-1/2 max-[992px]:m-0">
             <div>
@@ -14,7 +14,7 @@ export function PricingCard({ title,translation, price, time, trialPrice, custom
                     <span className="text-[#898989] text-base ml-1.25"> / {time}</span>
                 </p>
                 <p className="text-sm text-[#6C757D] font-medium">
-                    Sonraki yenileme {price} + KDV / Aylık
+                    {translation?.data?.business?.next_period_payment_with_year_and_amount.replace(":amount", price)}
                 </p>
             </div>
             <div className="mb-5">
