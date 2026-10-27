@@ -4,7 +4,7 @@ import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
 import { SettingsCard } from "../components/SettingsCard"
-import { getCompanyInfo, getPreference, getTeam, updatePassPriceVisibility } from "../services/myCompanyApi"
+import { getCompanyInfo, getPreference, getTeam, updatePassPriceVisibility, updatePersonalContactVisibility } from "../services/myCompanyApi"
 import close from "../assets/blue-close.png"
 import { PersonelCard } from "../components/PersonalCard"
 import { getTranslation } from "../services/translation"
@@ -53,6 +53,22 @@ export function Settings({ loged, locale, setLocale }) {
     function handlePassVisibility() {
         setLoaded(false)
         updatePassPriceVisibility(passStatus).then(data => {
+            if (data.status === "success") {
+                setSuccessMessage(data.message);
+                setSuccessMessageShown(true)
+            }
+            else {
+                setErrorMessage(data.message);
+                setErrorMessageShown(true)
+            }
+        }).finally(() => setLoaded(true))
+    }
+
+    const [infoStatus, setInfoStatus] = useState(0);
+
+    function handleInfoVisibility() {
+        setLoaded(false)
+        updatePersonalContactVisibility(infoStatus).then(data => {
             if (data.status === "success") {
                 setSuccessMessage(data.message);
                 setSuccessMessageShown(true)
@@ -135,25 +151,27 @@ export function Settings({ loged, locale, setLocale }) {
                             translation={translation}
                         />
                         <SettingsCard
+                            id="info"
                             title={translation?.data?.business?.company_settings?.personal_visibility?.title}
                             description={translation?.data?.business?.company_settings?.personal_visibility?.description}
                             translation={translation}
+                            onChange={setInfoStatus}
                         />
                         <SettingsCard
+                            id="pass"
                             title={translation?.data?.business?.company_settings?.pass_price_visibility?.title}
                             description={translation?.data?.business?.company_settings?.pass_price_visibility?.description}
                             translation={translation}
-                            setPassStatus={setPassStatus}
-                        />
-                        <SettingsCard
-                            title={translation?.data?.business?.company_settings?.properties_commission_rates_visibility?.title}
-                            description={translation?.data?.business?.company_settings?.properties_commission_rates_visibility?.title}
-                            translation={translation}
+                            onChange={setPassStatus}
                         />
                     </div>
                 </div>
                 <div>
-                    <button onClick={handlePassVisibility} className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold text-sm py-2 px-5 rounded-lg">{translation?.data?.business?.save}</button>
+                    <button onClick={() => {
+                        handlePassVisibility();
+                        handleInfoVisibility();
+                    }}
+                    className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold text-sm py-2 px-5 rounded-lg">{translation?.data?.business?.save}</button>
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>

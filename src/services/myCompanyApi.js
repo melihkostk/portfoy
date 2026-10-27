@@ -237,3 +237,10 @@ export const updatePassPriceVisibility = async (status) => {
     });
     return response.data;
 }
+
+export const updatePersonalContactVisibility = async (status) => {
+    const response = await api.post("/auth/company/preferences/personal-contact-visibility/update" , {
+        status:status
+    });
+    return response.data;
+}
