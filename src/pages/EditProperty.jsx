@@ -63,7 +63,19 @@ export function EditProperty({ loged, setMessage, setMessageShown , locale, setL
             setLatitude(data?.map?.latitude);
             setLongitude(data?.map?.longitude);
             setStatus(data?.status)
-            setFeatures(data?.features ?? [])
+            setFeatures((data?.features ?? []).map(group => ({
+                ...group,
+                features: group.features.map(feature =>
+                    feature.input_type === "select"
+                        ? {
+                            ...feature,
+                            value: feature.details?.multiple
+                                ? feature.options?.filter(option => option.selected).map(option => option.id) ?? []
+                                : feature.options?.find(option => option.selected)?.id ?? ""
+                        }
+                        : feature
+                )
+            })))
         }).finally(() => setLoaded(true));
     }, [id])
 
@@ -157,6 +169,8 @@ export function EditProperty({ loged, setMessage, setMessageShown , locale, setL
         updateProperty(id, title, country, city, district, street, sellPrice, passPrice, details).then(data => {
             if (data.status === "success") {
                 navigate("/company")
+                setMessage(data.message);
+                setMessageShown(true)
             }
             else {
                 setErrorMessage(data.message)
