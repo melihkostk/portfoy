@@ -79,6 +79,7 @@ export function Header({ loged, details , translation, locale, setLocale }) {
                 details={details}
                 step={step}
                 setStep={setStep}
+                translation={translation}
             />}
             <div className="flex items-center justify-between">
                 <div className="w-55 max-[992px]:w-30">
