@@ -134,8 +134,8 @@ export const updateTeamMember = async (id, name, email, role, locale, phone, pho
     return response.data;
 }
 
-export const getAllRoles = async () => {
-    const response = await api.post("/front/roles");
+export const getAllRoles = async (locale) => {
+    const response = await api.post(`/front/roles?locale=${locale}`);
     return response.data.data
 }
 

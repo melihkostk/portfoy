@@ -36,8 +36,8 @@ export function Team({ loged , locale, setLocale}) {
     const [roles, setRoles] = useState([]);
 
     useEffect(() => {
-        getAllRoles().then(setRoles)
-    }, [])
+        getAllRoles(locale).then(setRoles)
+    }, [locale])
 
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
