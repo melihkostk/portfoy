@@ -5,7 +5,7 @@ import { UserInvite } from "../components/UserInvite"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getTeam, getAllInvitations, removeInvite, getAllRoles, addInvite, toogleStatus, updateTeamMember, updateInvite, getCompanyInfo, getPermissions } from "../services/myCompanyApi"
+import { getTeam, getAllInvitations, removeInvite, getAllRoles, addInvite, toogleStatus, updateTeamMember, updateInvite, getCompanyInfo, getPermissions, updatePermissions } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
@@ -160,9 +160,11 @@ export function Team({ loged , locale, setLocale}) {
     const [editPermissionShown, setEditPermissionShown] = useState(false)
 
     const [permissions, setPermissions] = useState([])
+    const [permissionEditId, setPermissionEditId] = useState(null)
 
     function handleGetPermissions(id) {
         setLoaded(false)
+        setPermissionEditId(id)
         getPermissions(id).then((data) => {
             setPermissions(data)
         }).finally(() => setLoaded(true))
@@ -181,6 +183,24 @@ export function Team({ loged , locale, setLocale}) {
         setLoaded(false)
         getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
+
+    function handleEditPermission(){
+        setLoaded(false)
+        const enabledKeys = permissions.flatMap(group =>
+            group.permissions.filter(p => p.checked).map(p => p.key)
+        )
+        updatePermissions(permissionEditId, enabledKeys).then((data) => {
+            if (data.status === "error") {
+                setEditPermissionShown(false)
+                setErrorPopUp(true)
+                setError(data.message)
+                return
+            }
+            setSuccessPopUp(true)
+            setEditPermissionShown(false)
+            setError(data.message)
+        }).finally(() => setLoaded(true))
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -362,7 +382,7 @@ export function Team({ loged , locale, setLocale}) {
                         </div>
                     ))}
                     <div className="self-end">
-                        <button className="bg-[#27c5d2] text-white font-semibold cursor-pointer hover:bg-[#026872] duration-300 ease-in-out rounded-lg py-2 px-5 text-sm">{translation?.data?.business?.update}</button>
+                        <button onClick={handleEditPermission} className="bg-[#27c5d2] text-white font-semibold cursor-pointer hover:bg-[#026872] duration-300 ease-in-out rounded-lg py-2 px-5 text-sm">{translation?.data?.business?.update}</button>
                     </div>
                 </div>
             </div>}
