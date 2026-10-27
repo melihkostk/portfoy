@@ -123,7 +123,7 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                                 <textarea value={customerNote} onChange={(e) => setCustomerNote(e.target.value)} className="block w-full py-1.5 px-3 border border-[#d9d9d9] rounded-lg" placeholder={translation?.data?.business?.notes_for_customer} name="note" id="note"></textarea>
                             </div>
                             <div className="flex items-center gap-1">
-                                <input onChange={(e) => {setNotify(e.target.checked); console.log(notify)}} checked={notify} type="checkbox" name="mail" id="mail" />
+                                <input onChange={(e) => {setNotify(e.target.checked)}} checked={notify} type="checkbox" name="mail" id="mail" />
                                 <label htmlFor="mail">{translation?.data?.business?.notify_customer_with_email}</label>
                             </div>
                             <div className="flex justify-between items-center mt-6">

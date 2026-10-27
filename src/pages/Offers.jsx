@@ -54,7 +54,6 @@ export function Offers({ loged , locale, setLocale }) {
 
     const handleReplyOffer = async () => {
         if (!status) return
-        console.log(selectedOfferId)
         await replyOffer(selectedOfferId, status, note)
         closeOfferMenu()
         getReceivedOffers(page).then(setReceivedOffers)
