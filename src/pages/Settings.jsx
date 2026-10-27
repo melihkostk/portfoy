@@ -4,13 +4,14 @@ import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
 import { SettingsCard } from "../components/SettingsCard"
-import { getCompanyInfo, getPreference, getTeam } from "../services/myCompanyApi"
+import { getCompanyInfo, getPreference, getTeam, updatePassPriceVisibility } from "../services/myCompanyApi"
 import close from "../assets/blue-close.png"
 import { PersonelCard } from "../components/PersonalCard"
 import { getTranslation } from "../services/translation"
 import { ClipLoader } from "react-spinners"
+import whiteClose from "../assets/close.png"
 
-export function Settings({ loged , locale, setLocale }) {
+export function Settings({ loged, locale, setLocale }) {
 
     const [companyInfo, setCompanyInfo] = useState([]);
 
@@ -32,7 +33,7 @@ export function Settings({ loged , locale, setLocale }) {
         getPreference().then(setPreference)
     }, [])
 
-    const [translation , setTranslation] = useState([]);
+    const [translation, setTranslation] = useState([]);
 
     const [loaded, setLoaded] = useState(false);
 
@@ -40,6 +41,28 @@ export function Settings({ loged , locale, setLocale }) {
         setLoaded(false)
         getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
+
+    const [passStatus, setPassStatus] = useState(0);
+
+    const [successMessage, setSuccessMessage] = useState("");
+    const [successMessageShown, setSuccessMessageShown] = useState(false);
+
+    const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessageShown, setErrorMessageShown] = useState(false);
+
+    function handlePassVisibility() {
+        setLoaded(false)
+        updatePassPriceVisibility(passStatus).then(data => {
+            if (data.status === "success") {
+                setSuccessMessage(data.message);
+                setSuccessMessageShown(true)
+            }
+            else {
+                setErrorMessage(data.message);
+                setErrorMessageShown(true)
+            }
+        }).finally(() => setLoaded(true))
+    }
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -59,6 +82,14 @@ export function Settings({ loged , locale, setLocale }) {
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_portfolio} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.manage_company}</span></p>
                 </div>
             </div>
+            {successMessageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{successMessage}</p>
+                <img onClick={() => setSuccessMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
+            {errorMessageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(155,0,0),rgb(220,38,38))] p-3 text-white">
+                <p>{errorMessage}</p>
+                <img onClick={() => setErrorMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
             {personalSelectPopUp && <div className="fixed top-1/2 left-1/2 flex flex-col items-center justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-cente w-full justify-between p-4 border-b border-b-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.company_settings?.price_offers.title}</h2>
@@ -112,6 +143,7 @@ export function Settings({ loged , locale, setLocale }) {
                             title={translation?.data?.business?.company_settings?.pass_price_visibility?.title}
                             description={translation?.data?.business?.company_settings?.pass_price_visibility?.description}
                             translation={translation}
+                            setPassStatus={setPassStatus}
                         />
                         <SettingsCard
                             title={translation?.data?.business?.company_settings?.properties_commission_rates_visibility?.title}
@@ -121,7 +153,7 @@ export function Settings({ loged , locale, setLocale }) {
                     </div>
                 </div>
                 <div>
-                    <button className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold text-sm py-2 px-5 rounded-lg">{translation?.data?.business?.save}</button>
+                    <button onClick={handlePassVisibility} className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold text-sm py-2 px-5 rounded-lg">{translation?.data?.business?.save}</button>
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>

@@ -230,3 +230,10 @@ export const updatePermissions  = async (id, permissions) => {
     const response = await api.post(`/auth/company/team/${id}/permissions/update`, { permissions });
     return response.data;
 }
+
+export const updatePassPriceVisibility = async (status) => {
+    const response = await api.post("/auth/company/preferences/property-pass-price-visibility/update" , {
+        status:status
+    });
+    return response.data;
+}
