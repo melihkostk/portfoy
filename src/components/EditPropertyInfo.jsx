@@ -1,5 +1,6 @@
 import { useState } from "react";
 import close from "../assets/blue-close.png";
+import pen from "../assets/pencil.png"
 
 export function EditPropertyInfo({
     detail,
@@ -26,7 +27,8 @@ export function EditPropertyInfo({
     handleUpdateProperty,
     status,
     translation,
-    prices
+    prices,
+    setEditPrice
 }) {
     const [multiSelectTarget, setMultiSelectTarget] = useState(null)
 
@@ -67,13 +69,20 @@ export function EditPropertyInfo({
                                 <input id="max" name="max" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="price-option">{translation?.data?.business?.property_type_prices} ( {prices?.data?.prices?.length} {translation?.data?.business?.property_type_prices_count.replace(":count" , "")} )</label>
-                                <div id="price-option" name="price-option" className="py-1.5 flex gap-1 px-3 border mt-2 w-full rounded-lg border-[#d9d9d9]" type="number">
-                                    {prices?.data?.prices?.map(item => (
-                                        <span key={item.id} className="bg-[#ebebeb] py-1.25 px-2 text-[#727272] text-xs rounded-lg font-semibold">
-                                            {item.price.formatted}
-                                        </span>
-                                    ))}
+                                <label className="text-[#6c757d]" htmlFor="price-option">{translation?.data?.business?.property_type_prices} ( {prices?.data?.prices?.length} {translation?.data?.business?.property_type_prices_count.replace(":count", "")} )</label>
+                                <div id="price-option" name="price-option" className="py-1.5 flex justify-between items-center px-3 border mt-2 w-full rounded-lg border-[#d9d9d9]" type="number">
+                                    <div className="flex gap-1">
+                                        {prices?.data?.prices?.map(item => (
+                                            <span key={item.id} className="bg-[#ebebeb] flex items-center justify-center py-1.25 px-2 text-[#727272] text-xs rounded-lg font-semibold">
+                                                {item.price.formatted}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <div className="justify-self-end">
+                                        <button onClick={() => setEditPrice(true)} className="bg-[#ebebeb] rounded-lg py-1.25 px-2 cursor-pointer hover:bg-[#27c5d2] hover:shadow-[0_0_30px_#27c5d2] transition-[background-color,box-shadow] duration-300 ease-in-out">
+                                            <img className="w-5 h-5" src={pen} alt="" />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>}
                             <div className="flex-1 px-3 mb-2">
@@ -139,7 +148,7 @@ export function EditPropertyInfo({
                                     <div key={feature.id} className="w-[25%] px-3 mb-2 flex flex-col max-[992px]:w-full">
                                         <div className="flex justify-between items-center">
                                             <label className="text-[#6c757d]" htmlFor={feature.id}>{feature?.title}</label>
-                                            {feature.input_type === "file" && <a className="text-xs text-[#026872] font-semibold" target="_blank" href={feature?.value[0]?.path}>{translation.data.business.view_files_with_count.replace(":count" , "1")}</a>}
+                                            {feature.input_type === "file" && <a className="text-xs text-[#026872] font-semibold" target="_blank" href={feature?.value[0]?.path}>{translation.data.business.view_files_with_count.replace(":count", "1")}</a>}
                                         </div>
                                         {feature.input_type !== "select"
                                             ? <input id={feature.id} name={feature.id} key={feature.id} value={feature.input_type === "text" || feature.input_type === "number" ? feature?.value : ""} onChange={(e) => handleFeatureChange(groupIndex, feature.id, e.target.value)} placeholder={feature?.title} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type={feature.input_type} />

@@ -18,8 +18,9 @@ import { EditPropertyMove } from "../components/EditPropertyMove";
 import { EditPropertySettings } from "../components/EditPropertySettings";
 import { EditPropertyInfo } from "../components/EditPropertyInfo";
 import { getTranslation } from "../services/translation";
+import deleteIcon from "../assets/gray-trash.png"
 
-export function EditProperty({ loged, setMessage, setMessageShown , locale, setLocale }) {
+export function EditProperty({ loged, setMessage, setMessageShown, locale, setLocale }) {
 
     const navigate = useNavigate();
 
@@ -367,22 +368,24 @@ export function EditProperty({ loged, setMessage, setMessageShown , locale, setL
         }).finally(() => setLoaded(true))
     }
 
-    const [translation , setTranslation] = useState([]);
+    const [translation, setTranslation] = useState([]);
 
     useEffect(() => {
         setLoaded(false)
         getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
-    const [prices , setPrices] = useState([]);
+    const [prices, setPrices] = useState([]);
 
     useEffect(() => {
         getPrices(id).then(setPrices)
     }, [id])
 
+    const [editPrice, setEditPrice] = useState(false)
+
     return (
         <div className='flex flex-col items-center font-sf'>
-            {(deletePopUp || copyPopUp || toggleMenu || soldPopUp || publishPopUp || soldToDraft || deleteVideoPopUp || uploadVideoShown || offerMenuShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
+            {(deletePopUp || copyPopUp || toggleMenu || editPrice || soldPopUp || publishPopUp || soldToDraft || deleteVideoPopUp || uploadVideoShown || offerMenuShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -516,6 +519,36 @@ export function EditProperty({ loged, setMessage, setMessageShown , locale, setL
                     </div>
                 </div>
             </div>}
+            {editPrice && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
+                <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
+                    <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.edit_property_project_prices}</h2>
+                    <img onClick={() => setEditPrice(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
+                </div>
+                <div className="p-4 w-full">
+                    <div className="rounded-lg border border-[#e8e8e8] p-3.75">
+                        {prices?.data?.prices?.map(item => (
+                            <div className="mb-5 flex justify-between border border-[#d9d9d9] rounded-lg" key={item.id}>
+                                <div className="bg-[#e2e2e2] text-[#727272] text-sm font-semibold flex items-center justify-center w-12.5">
+                                    {item.price?.code}
+                                </div>
+                                <div className="flex-1 px-3 py-1.5">
+                                    <input className="w-full" value={item.price?.number} type="number" name="" id="" />
+                                </div>
+                                <div className="bg-[#e2e2e2] text-[#727272] text-sm font-semibold flex items-center justify-center w-9.5">
+                                    <button>
+                                        <img className="w-6 h-6" src={deleteIcon} alt="" />
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                        <div>
+                            <button className="bg-[#f1f1f1] text-[#4b4b4b] font-semibold rounded-lg mt-2 py-2 px-5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                {translation?.data?.business?.add_new_price}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span>{translation?.data?.business?.properties} {">"} </span><span>{title} {">"} </span><span>{translation?.data?.business?.edit}</span></p>
@@ -614,6 +647,7 @@ export function EditProperty({ loged, setMessage, setMessageShown , locale, setL
                 status={status}
                 translation={translation}
                 prices={prices}
+                setEditPrice={setEditPrice}
             />}
             {editType === "settings" && <EditPropertySettings
                 detail={detail}
