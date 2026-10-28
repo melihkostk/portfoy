@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { cloneProperty, deleteGalery, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, getPrices, updateCover, updateDraftStatus, updateProperty, updateSoldStatus, uploadGallery, uploadVideo } from "../services/propertiesApi";
+import { cloneProperty, deleteGalery, deletePrice, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, getPrices, updateCover, updateDraftStatus, updateProperty, updateSoldStatus, uploadGallery, uploadVideo } from "../services/propertiesApi";
 import { replyOffer } from "../services/profileApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
@@ -383,6 +383,12 @@ export function EditProperty({ loged, setMessage, setMessageShown, locale, setLo
 
     const [editPrice, setEditPrice] = useState(false)
 
+    function handleDeletePrice(priceId){
+        deletePrice(id , priceId).then(() => {
+            getPrices(id).then(setPrices)
+        });
+    }
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {(deletePopUp || copyPopUp || toggleMenu || editPrice || soldPopUp || publishPopUp || soldToDraft || deleteVideoPopUp || uploadVideoShown || offerMenuShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -534,8 +540,9 @@ export function EditProperty({ loged, setMessage, setMessageShown, locale, setLo
                                 <div className="flex-1 px-3 py-1.5">
                                     <input className="w-full" value={item.price?.number} type="number" name="" id="" />
                                 </div>
-                                <div className="bg-[#e2e2e2] text-[#727272] text-sm font-semibold flex items-center justify-center w-9.5">
-                                    <button>
+                                <div className="bg-[#e2e2e2] text-[#727272] text-sm font-semibold flex items-center justify-center rounded-r-lg w-9.5 hover:bg-[#ff2020] transition-colors duration-300 ease-in-out">
+                                    <button onClick={() => handleDeletePrice(item.id)}
+                                    className="w-full h-full flex items-center justify-center cursor-pointer">
                                         <img className="w-6 h-6" src={deleteIcon} alt="" />
                                     </button>
                                 </div>

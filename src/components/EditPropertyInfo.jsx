@@ -28,7 +28,7 @@ export function EditPropertyInfo({
     status,
     translation,
     prices,
-    setEditPrice
+    setEditPrice,
 }) {
     const [multiSelectTarget, setMultiSelectTarget] = useState(null)
 

@@ -182,3 +182,8 @@ export const getPrices = async (id) => {
   const response = await api.get(`/properties/${id}/project/prices`);
   return response.data;
 }
+
+export const deletePrice = async (propertyId , priceId) => {
+  const response = await api.post(`/properties/${propertyId}/project/prices/${priceId}/delete`);
+  return response.data;
+}
