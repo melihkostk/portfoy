@@ -18,7 +18,7 @@ export function SettingsCard({ title, description, setPersonalSelectPopUp, prefe
                         {translation?.data?.business?.per_by_personal}
                     </option>}
                 </select>
-                {infoStatus === 2 && <button onClick={() => setInfoPopUp(true)} className="text-sm text-[#4b4b4b] cursor-pointer py-2 px-5 font-semibold bg-[#f1f1f1] rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Personelleri Görüntüle</button>}
+                {infoStatus === 2 && <button onClick={() => setInfoPopUp(true)} className="text-sm text-[#4b4b4b] cursor-pointer py-2 px-5 font-semibold bg-[#f1f1f1] rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.view_personals}</button>}
                 </div>
             : <div className="flex items-center justify-center gap-7.5">
                 <div className="flex">

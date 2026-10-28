@@ -148,11 +148,12 @@ export function Settings({ loged, locale, setLocale }) {
                                 role={item.roles[0].title}
                                 preference={preference}
                                 page="info"
+                                translation={translation}
                             />
                         ))}
                     </div>
                     <div className="mt-2">
-                        <button className="bg-[#27c5d2] cursor-pointer font-semibold text-sm w-full text-white rounded-lg py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">Kaydet</button>
+                        <button className="bg-[#27c5d2] cursor-pointer font-semibold text-sm w-full text-white rounded-lg py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
                     </div>
                 </div>
             </div>}

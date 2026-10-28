@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { getDetails } from "../services/propertyDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { cloneProperty, deleteGalery, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, updateCover, updateDraftStatus, updateProperty, updateSoldStatus, uploadGallery, uploadVideo } from "../services/propertiesApi";
+import { cloneProperty, deleteGalery, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, getPrices, updateCover, updateDraftStatus, updateProperty, updateSoldStatus, uploadGallery, uploadVideo } from "../services/propertiesApi";
 import { replyOffer } from "../services/profileApi";
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
@@ -374,6 +374,12 @@ export function EditProperty({ loged, setMessage, setMessageShown , locale, setL
         getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
+    const [prices , setPrices] = useState([]);
+
+    useEffect(() => {
+        getPrices(id).then(setPrices)
+    }, [id])
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {(deletePopUp || copyPopUp || toggleMenu || soldPopUp || publishPopUp || soldToDraft || deleteVideoPopUp || uploadVideoShown || offerMenuShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -607,6 +613,7 @@ export function EditProperty({ loged, setMessage, setMessageShown , locale, setL
                 handleUpdateProperty={handleUpdateProperty}
                 status={status}
                 translation={translation}
+                prices={prices}
             />}
             {editType === "settings" && <EditPropertySettings
                 detail={detail}

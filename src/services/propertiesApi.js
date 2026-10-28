@@ -177,3 +177,8 @@ export const uploadGallery = async (id, file, category_id) => {
   });
   return response.data;
 }
+
+export const getPrices = async (id) => {
+  const response = await api.get(`/properties/${id}/project/prices`);
+  return response.data;
+}

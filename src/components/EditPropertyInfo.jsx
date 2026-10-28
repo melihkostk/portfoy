@@ -25,7 +25,8 @@ export function EditPropertyInfo({
     handleFeatureChange,
     handleUpdateProperty,
     status,
-    translation
+    translation,
+    prices
 }) {
     const [multiSelectTarget, setMultiSelectTarget] = useState(null)
 
@@ -66,8 +67,14 @@ export function EditPropertyInfo({
                                 <input id="max" name="max" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="price-option">{translation?.data?.business?.property_type_prices} ( 1 {translation?.data?.business?.property_type_prices_count.replace(":count" , "")} )</label>
-                                <input id="price-option" name="price-option" className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
+                                <label className="text-[#6c757d]" htmlFor="price-option">{translation?.data?.business?.property_type_prices} ( {prices?.data?.prices?.length} {translation?.data?.business?.property_type_prices_count.replace(":count" , "")} )</label>
+                                <div id="price-option" name="price-option" className="py-1.5 flex gap-1 px-3 border mt-2 w-full rounded-lg border-[#d9d9d9]" type="number">
+                                    {prices?.data?.prices?.map(item => (
+                                        <span key={item.id} className="bg-[#ebebeb] py-1.25 px-2 text-[#727272] text-xs rounded-lg font-semibold">
+                                            {item.price.formatted}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>}
                             <div className="flex-1 px-3 mb-2">
                                 <label className="text-[#6c757d]" htmlFor="currency">{translation?.data?.business?.currency}</label>
