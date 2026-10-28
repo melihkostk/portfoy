@@ -166,7 +166,13 @@ export function Team({ loged , locale, setLocale}) {
         setLoaded(false)
         setPermissionEditId(id)
         getPermissions(id).then((data) => {
-            setPermissions(data)
+            setPermissions(data.map(group => ({
+                ...group,
+                permissions: group.permissions.map(p => ({
+                    ...p,
+                    checked: p.checked === true || p.checked === 1 || p.checked === "1"
+                }))
+            })))
         }).finally(() => setLoaded(true))
     }
 
@@ -186,10 +192,13 @@ export function Team({ loged , locale, setLocale}) {
 
     function handleEditPermission(){
         setLoaded(false)
-        const enabledKeys = permissions.flatMap(group =>
-            group.permissions.filter(p => p.checked).map(p => p.key)
+        const permissionValues = {}
+        permissions.forEach(group =>
+            group.permissions.forEach(p => {
+                if (p.checked) permissionValues[p.key] = "1"
+            })
         )
-        updatePermissions(permissionEditId, enabledKeys).then((data) => {
+        updatePermissions(permissionEditId, permissionValues).then((data) => {
             if (data.status === "error") {
                 setEditPermissionShown(false)
                 setErrorPopUp(true)

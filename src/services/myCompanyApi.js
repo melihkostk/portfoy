@@ -227,7 +227,7 @@ export const updateCompanyProfile = async (company_name, tax_number, licence_num
 }
 
 export const updatePermissions  = async (id, permissions) => {
-    const response = await api.post(`/auth/company/team/${id}/permissions/update`, { permissions });
+    const response = await api.post(`/auth/company/team/${id}/permissions/update`, permissions);
     return response.data;
 }
 
