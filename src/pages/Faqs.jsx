@@ -2,24 +2,31 @@ import { Header } from "../components/Header"
 import { Questions } from "../components/Questions"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
+import { useEffect, useState } from "react"
+import { getTranslation } from "../services/translation"
 
 export function Faqs({loged, locale, setLocale}) {
+
+    const [translation , setTranslation] = useState([]);
+    
+    useEffect(() => {
+        getTranslation(locale).then(setTranslation);
+    }, [locale])
+
     return (
         <div className="w-full flex flex-col items-center font-sf">
-            <Header loged={loged} locale={locale} setLocale={setLocale} />
+            <Header loged={loged} locale={locale} translation={translation} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Sıkça Sorulan Sorular</span></p>
+                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.faqs_section_header}</span></p>
                 </div>
             </div>
-            <div className="w-full flex items-center justify-center py-30 max-[992px]:py-7.5">
+            <div className="w-full flex items-center justify-center py-15 max-[992px]:py-7.5">
                 <div className="w-full max-w-[90%]">
                     <div className="text-center flex flex-col items-center mb-15">
-                        <h1 className="text-[34px] text-[#212529] font-medium mb-2.5">Sıkça Sorulan Sorular</h1>
+                        <h1 className="text-[34px] text-[#212529] font-medium mb-2.5">{translation?.data?.business?.faqs_section_header}</h1>
                         <p className="text-[#525252] max-w-[40%] max-[992px]:max-w-full">
-                            Port-foy.com kullanımı kolay bir platformdur.
-                            Size istihdam ekonomisi ve hız kazandıracak şekilde planlanmıştır.
-                            Sorularınız için bizlere her türlü platformdan ulaşabileceğinizi bilmenizi isteriz.
+                           {translation?.data?.business?.faqs_section_description}
                         </p>
                     </div>
                     <div>
@@ -38,11 +45,11 @@ export function Faqs({loged, locale, setLocale}) {
             </div>
             <div className='w-full mt-30 mb-30 max-[992px]:my-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
+                    <AppLinks translation={translation} />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer translation={translation} loged={loged} />
             </div>
         </div>
     )

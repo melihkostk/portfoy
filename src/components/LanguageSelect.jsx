@@ -17,6 +17,16 @@ export function LanguageSelect({ setLocale, locale }) {
 
     const currentLanguage = languages?.find(item => item.code === locale);
 
+    function handleSelectLanguage(item) {
+        setLocale(item.code);
+
+        const stored = JSON.parse(localStorage.getItem("user") || "null");
+        if (stored?.data) {
+            stored.data.locale = { key: item.code, title: item.native };
+            localStorage.setItem("user", JSON.stringify(stored));
+        }
+    }
+
     return (
         <div onMouseLeave={() => setLanguageShown(false)} onMouseEnter={() => setLanguageShown(true)} className="rounded-[5px] relative hover:bg-[#B7B9BF] hover:text-white text-[#202529] transition-colors duration-300 ease-in-out">
             <div className="cursor-pointer flex items-center justify-start gap-2.5 h-12.5 px-5">
@@ -26,7 +36,7 @@ export function LanguageSelect({ setLocale, locale }) {
             </div>
             {languageShown && <ul className="bg-white z-50 shadow-[0_0_30px_rgba(0,0,0,0.1)] rounded-[10px] p-5 w-40 min-w-full absolute">
                 {languages?.map(item => (
-                    <li key={item.code} onClick={() => setLocale(item?.code)} className=" text-[#212529] flex items-center gap-2.5 pt-2 hover:text-[#27C5D2] transition-colors duration-300 ease-in-out cursor-pointer">
+                    <li key={item.code} onClick={() => handleSelectLanguage(item)} className=" text-[#212529] flex items-center gap-2.5 pt-2 hover:text-[#27C5D2] transition-colors duration-300 ease-in-out cursor-pointer">
                         <img className="w-5 h-5 object-fill rounded-[5px]" src={item.code === "tr" ? turkey : item.code === "en" ? en : ru} alt="" />
                         <p className="font-semibold text-sm">{item?.native}</p>
                     </li>

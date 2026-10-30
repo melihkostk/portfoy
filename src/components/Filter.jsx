@@ -111,7 +111,7 @@ export function Filter({searchParams , typeId , translation}) {
                 </ul>
                 {type === "All" && (
                     <form action={"/properties"} method="GET" className={`flex ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col gap-2.5 p-3.75`}>
-                        <input type="hidden" name="type_id" value={type} />
+                        <input type="hidden" name="type_id" value={type === "All" ? "" : type} />
                         <div className="flex-1 max-w-w-[calc(100%/3)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.categories}</label>
                             <div className="relative">
