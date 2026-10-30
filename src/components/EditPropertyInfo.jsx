@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import close from "../assets/blue-close.png";
 import pen from "../assets/pencil.png"
-import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi";
+import { getAllCities, getAllCountries, getAllCurrencies, getAllDistricts, getAllStreets } from "../services/filterApi";
 
 export function EditPropertyInfo({
     detail,
@@ -64,6 +64,12 @@ export function EditPropertyInfo({
         getAllStreets(district).then(setStreets);
     }, [district])
 
+    const [currencies , setCurrencies] = useState([]);
+
+    useEffect(() => {
+        getAllCurrencies().then(setCurrencies);
+    }, [])
+
     return (
         <div className="w-full max-w-[90%]">
             <div className="w-full mb-7.5">
@@ -112,7 +118,13 @@ export function EditPropertyInfo({
                             </div>}
                             <div className="flex-1 px-3 mb-2">
                                 <label className="text-[#6c757d]" htmlFor="currency">{translation?.data?.business?.currency}</label>
-                                <input id="currency" name="currency" value={currency} onChange={(e) => setCurrency(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <select value={currency} onChange={(e) => setCurrency(e.target.value)} id="currency" name="currency" className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" >
+                                    {currencies?.map(item => (
+                                        <option value={item.id} key={item.id}>
+                                            {item.title}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                         </div>
                         <div className="flex max-[992px]:flex-col">

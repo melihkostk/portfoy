@@ -55,7 +55,7 @@ export function EditProperty({ loged, setMessage, setMessageShown, locale, setLo
             setNo(data?.no)
             setPassPrice(data?.prices?.secondary?.number)
             setSellPrice(data?.prices?.primary?.number)
-            setCurrency(data?.currency?.title)
+            setCurrency(data?.currency?.id)
             setCountry(data?.country?.id)
             setCity(data?.city?.id)
             setDistrict(data?.district?.id)
