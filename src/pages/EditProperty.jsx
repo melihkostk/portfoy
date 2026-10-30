@@ -160,6 +160,7 @@ export function EditProperty({ loged, setMessage, setMessageShown, locale, setLo
 
     function handleUpdateProperty() {
         setLoaded(false)
+        setError([])
         const details = {};
         features.forEach(group => {
             group.features.forEach(feature => {
@@ -176,6 +177,7 @@ export function EditProperty({ loged, setMessage, setMessageShown, locale, setLo
             else {
                 setErrorMessage(data.message)
                 setErrorMessageShown(true)
+                setError(data)
             }
         }).finally(() => setLoaded(true))
     }
@@ -605,7 +607,7 @@ export function EditProperty({ loged, setMessage, setMessageShown, locale, setLo
                 </div>
             </div>
             {error.length !== 0 && <div className="w-full max-w-[90%] bg-[#f8d7da] p-4 rounded-lg mt-2 mb-4 border border-[#f5c2c7]">
-                {error?.data?.map((item, index) => {
+                {Object.values(error?.data ?? {}).map((item, index) => {
                     const messages = typeof item === "string" ? [item] : Object.values(item).flat();
                     return (
                         <div className="w-full" key={index}>
