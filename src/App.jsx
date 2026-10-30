@@ -74,7 +74,14 @@ function App() {
     }
   }, []);
 
-  const [locale , setLocale] = useState("en");
+  const [locale , setLocale] = useState(() => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      return user?.data?.locale?.key || "en";
+    } catch {
+      return "en";
+    }
+  });
 
   const [news, setNews] = useState([])
 
