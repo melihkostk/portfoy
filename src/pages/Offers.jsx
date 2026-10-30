@@ -8,13 +8,13 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
-import { SuccessPopUp } from "../components/SuccessPopup"
+import whiteClose from "../assets/close.png"
 import close from "../assets/blue-close.png"
 import defaultCompany from "../assets/default-company.png"
 import { getCompanyInfo } from "../services/myCompanyApi"
-import {getTranslation} from "../services/translation"
+import { getTranslation } from "../services/translation"
 
-export function Offers({ loged , locale, setLocale }) {
+export function Offers({ loged, locale, setLocale }) {
 
     const { type } = useParams();
 
@@ -42,9 +42,6 @@ export function Offers({ loged , locale, setLocale }) {
     const [status, setStatus] = useState("");
     const [note, setNote] = useState("");
 
-    const [error, setError] = useState("");
-    const [successPopUp, setSuccessPopUp] = useState(false);
-
     const closeOfferMenu = () => {
         setOfferMenuShown(false)
         setSelectedOfferId(null)
@@ -52,14 +49,26 @@ export function Offers({ loged , locale, setLocale }) {
         setNote("")
     }
 
-    const handleReplyOffer = async () => {
-        if (!status) return
-        await replyOffer(selectedOfferId, status, note)
-        closeOfferMenu()
-        getReceivedOffers(page).then(setReceivedOffers)
-        setError(status === "confirm" ? "Teklif kabul edildi" : "Teklif reddedildi")
-        setSuccessPopUp(true)
+    const [errorMessage , setErrorMessage] = useState("");
+    const [errorMessageShown , setErrorMessageShown] = useState(false)
+
+    const [successMessage , setSuccessMessage] = useState("");
+    const [successMessageShown , setSuccessMessageShown] = useState(false);
+
+    function handleReplyOffer() {
+        setLoaded(false)
+        replyOffer(selectedOfferId, status, note).then(data => {
+            if (data.status === "error") {
+                setErrorMessage(data.message);
+                setErrorMessageShown(true)
+            }
+            else {
+                setSuccessMessage(data.message);
+                setErrorMessageShown(true)
+            }
+        }).finally(() => setLoaded(true))
     }
+
     const [info, setInfo] = useState([]);
 
     useEffect(() => {
@@ -76,7 +85,7 @@ export function Offers({ loged , locale, setLocale }) {
         }
     }, [])
 
-    const [translation , setTranslation] = useState([]);
+    const [translation, setTranslation] = useState([]);
 
     useEffect(() => {
         setLoaded(false)
@@ -85,7 +94,6 @@ export function Offers({ loged , locale, setLocale }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
             {offerMenuShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {!loaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
@@ -96,6 +104,14 @@ export function Offers({ loged , locale, setLocale }) {
                     />
                 </div>
             )}
+            {errorMessageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(155,0,0),rgb(220,38,38))] p-3 text-white">
+                <p>{errorMessage}</p>
+                <img onClick={() => setErrorMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
+            {successMessageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{successMessage}</p>
+                <img onClick={() => setSuccessMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
             <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
