@@ -30,6 +30,7 @@ export function EditPropertyInfo({
     translation,
     prices,
     setEditPrice,
+    errorMessage
 }) {
     const [multiSelectTarget, setMultiSelectTarget] = useState(null)
 
@@ -79,28 +80,28 @@ export function EditPropertyInfo({
                     </div>
                     <div className="p-4">
                         <div className="px-3 mb-2">
-                            <label className="text-[#6c757d]" htmlFor="title">{translation?.data?.business?.title}</label>
+                            <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.title.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="title">{translation?.data?.business?.title}</label>
                             <input id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
                         </div>
                         <div className="flex max-[992px]:flex-col">
                             {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="pass">{translation?.data?.business?.pass_price} <span className="text-sm">({currency})</span></label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.pass_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="pass">{translation?.data?.business?.pass_price} <span className="text-sm">({currency})</span></label>
                                 <input id="pass" name="pass" value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="sell">{translation?.data?.business?.sell_price} <span className="text-sm">({currency})</span></label>
-                                <input id="sell" value={sellPrice} name="sell" className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.sell_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="sell">{translation?.data?.business?.sell_price} <span className="text-sm">({currency})</span></label>
+                                <input id="sell" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} name="sell" className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="min">{translation?.data?.business?.min_price} <span className="text-sm">({currency})</span></label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.min_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="min">{translation?.data?.business?.min_price} <span className="text-sm">({currency})</span></label>
                                 <input id="min" name="min" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="max">{translation?.data?.business?.max_price} <span className="text-sm">({currency})</span></label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.max_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="max">{translation?.data?.business?.max_price} <span className="text-sm">({currency})</span></label>
                                 <input id="max" name="max" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="price-option">{translation?.data?.business?.property_type_prices} ( {prices?.data?.prices?.length} {translation?.data?.business?.property_type_prices_count.replace(":count", "")} )</label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.property_type_prices.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="price-option">{translation?.data?.business?.property_type_prices} ( {prices?.data?.prices?.length} {translation?.data?.business?.property_type_prices_count.replace(":count", "")} )</label>
                                 <div id="price-option" name="price-option" className="py-1.5 flex justify-between items-center px-3 border mt-2 w-full rounded-lg border-[#d9d9d9]" type="number">
                                     <div className="flex gap-1">
                                         {prices?.data?.prices?.map(item => (
@@ -117,7 +118,7 @@ export function EditPropertyInfo({
                                 </div>
                             </div>}
                             <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="currency">{translation?.data?.business?.currency}</label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.currency.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="currency">{translation?.data?.business?.currency}</label>
                                 <select value={currency} onChange={(e) => setCurrency(e.target.value)} id="currency" name="currency" className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" >
                                     {currencies?.map(item => (
                                         <option value={item.id} key={item.id}>
@@ -129,7 +130,7 @@ export function EditPropertyInfo({
                         </div>
                         <div className="flex max-[992px]:flex-col">
                             <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="country">{translation?.data?.business?.choose?.country}</label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.choose?.country.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="country">{translation?.data?.business?.choose?.country}</label>
                                 <select className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" id="country" name="country" value={country} onChange={(e) => setCountry(e.target.value)}>
                                     {countries?.data?.map(item => (
                                         <option value={item.id} key={item.id}>{item.title}</option>
@@ -137,7 +138,7 @@ export function EditPropertyInfo({
                                 </select>
                             </div>
                             <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="city">{translation?.data?.business?.choose?.city}</label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.choose?.city.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="city">{translation?.data?.business?.choose?.city}</label>
                                 <select className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" id="country" name="country" value={city} onChange={(e) => setCity(e.target.value)}>
                                     {cities.map(item => (
                                         <option value={item.id} key={item.id}>{item.title}</option>
@@ -145,7 +146,7 @@ export function EditPropertyInfo({
                                 </select>
                             </div>
                             <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="district">{translation?.data?.business?.choose?.district}</label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.choose?.district.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="district">{translation?.data?.business?.choose?.district}</label>
                                 <select id="district" name="district" value={district} onChange={(e) => setDistrict(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]">
                                     {districts?.map(item => (
                                         <option value={item.id} key={item.id}>{item.title}</option>
@@ -153,7 +154,7 @@ export function EditPropertyInfo({
                                 </select>
                             </div>
                             <div className="flex-1 px-3 mb-2">
-                                <label className="text-[#6c757d]" htmlFor="street">{translation?.data?.business?.choose?.street}</label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.choose?.street.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="street">{translation?.data?.business?.choose?.street}</label>
                                 <select id="street" name="street" value={street} onChange={(e) => setStreet(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text">
                                     {streets.map(item => (
                                         <option value={item.id} key={item.id}>{item.title}</option>
@@ -200,7 +201,7 @@ export function EditPropertyInfo({
                                 {item.features?.map(feature => (
                                     <div key={feature.id} className="w-[25%] px-3 mb-2 flex flex-col max-[992px]:w-full">
                                         <div className="flex justify-between items-center">
-                                            <label className="text-[#6c757d]" htmlFor={feature.id}>{feature?.title}</label>
+                                            <label className={`${errorMessage.toLowerCase().includes(feature?.title.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor={feature.id}>{feature?.title}</label>
                                             {feature.input_type === "file" && <a className="text-xs text-[#026872] font-semibold" target="_blank" href={feature?.value[0]?.path}>{translation.data.business.view_files_with_count.replace(":count", "1")}</a>}
                                         </div>
                                         {feature.input_type !== "select"

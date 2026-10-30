@@ -655,6 +655,7 @@ export function EditProperty({ loged, setMessage, setMessageShown, locale, setLo
                 translation={translation}
                 prices={prices}
                 setEditPrice={setEditPrice}
+                errorMessage={errorMessage}
             />}
             {editType === "settings" && <EditPropertySettings
                 detail={detail}
@@ -665,8 +666,9 @@ export function EditProperty({ loged, setMessage, setMessageShown, locale, setLo
                 setDeletePopUp={setDeletePopUp}
                 setSoldPopUp={setSoldPopUp}
                 translation={translation}
+                errorMessage={errorMessage}
             />}
-            {editType === "move" && <EditPropertyMove transactions={transactions} />}
+            {editType === "move" && <EditPropertyMove transactions={transactions} errorMessage={errorMessage} />}
             {editType === "offers" && <EditPropertyOffers
                 offerMenuShown={offerMenuShown}
                 closeOfferMenu={closeOfferMenu}
@@ -685,6 +687,7 @@ export function EditProperty({ loged, setMessage, setMessageShown, locale, setLo
                 proposals={proposals}
                 externalProposals={externalProposals}
                 translation={translation}
+                errorMessage={errorMessage}
             />}
             {editType === "galery" && <EditPropertyGallery
                 detail={detail}
@@ -708,6 +711,7 @@ export function EditProperty({ loged, setMessage, setMessageShown, locale, setLo
                 setCoverImg={setCoverImg}
                 handleAddLocalVideo={handleAddLocalVideo}
                 translation={translation}
+                errorMessage={errorMessage}
             />}
             <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
