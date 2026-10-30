@@ -140,7 +140,7 @@ export function EditPropertyOffers({
                             </tr>
                         </thead>
                         <tbody>
-                            {proposals.data.map(item => (
+                            {proposals?.data?.map(item => (
                                 <ProposalCard
                                     score={item.score}
                                     created_at={item.created_at}

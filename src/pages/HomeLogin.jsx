@@ -140,7 +140,7 @@ export function HomeLogin({ loged, news, logOut , locale, setLocale }) {
                         <Link to={"/articles"} className='text-[#B7B9BF] text-xl font-medium hover:text-[#45443f] transition-colors duration-300 ease-in-out' href="https://demo.pigasoft.com/portfoy/public/tr/articles">{translation?.data?.business?.view_all}</Link>
                     </div>
                     <div className='flex items-start overflow-hidden -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
-                        {news.map(item => (
+                        {news?.slice(0,4)?.map(item => (
                             <NewsCard translation={translation} key={item.id} title={item.title} cover={item.cover} created={item.created_at} id={item.id} />
                         ))}
                     </div>
