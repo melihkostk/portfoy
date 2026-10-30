@@ -22,7 +22,7 @@ export function FilterSidebar({ type, translation , team , currencie , selectedT
                 </div>
                 <div>
                     <ul className="my-7.5">
-                        {type.map(item => (
+                        {type?.map(item => (
                             <div key={item.id} className="flex justify-between items-center mb-1.25">
                                 <div className="flex items-center gap-2">
                                     <input id={`type-${item.id}`} name="type" type="checkbox" checked={selectedType.includes(item.id)} onChange={() => toggleType(item.id)} />

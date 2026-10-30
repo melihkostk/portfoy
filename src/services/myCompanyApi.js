@@ -216,9 +216,9 @@ export const updateCompanyProfile = async (company_name, tax_number, licence_num
     formData.append("phone_code", phone_code);
     if (licence_file) formData.append("licence_file", licence_file);
     if (tax_plate) formData.append("tax_plate", tax_plate);
-    formData.append("trade_name", trade_name);
-    formData.append("tax_office", tax_office);
-    formData.append("address", address);
+    formData.append("billing_trade_name", trade_name);
+    formData.append("billing_tax_office", tax_office);
+    formData.append("billing_company_address", address);
 
     const response = await api.post("/auth/company/profile/update", formData, {
         headers: { "Content-Type": undefined }

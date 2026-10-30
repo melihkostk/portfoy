@@ -31,6 +31,9 @@ export function Edit({ loged , locale, setLocale}) {
     const [error, setError] = useState("");
     const [errorShown, setErrorShown] = useState(false);
 
+    const [success , setSuccess] = useState("");
+    const [successShown , setSuccessShown] = useState(false);
+
     useEffect(() => {
         getCompanyProfile().then((data) => {
             setProfile(data)
@@ -51,6 +54,8 @@ export function Edit({ loged , locale, setLocale}) {
         setLoaded(false)
         updateCompanyProfile(name, taxNumber, centralNumber, email, phone, code, licenceFile, taxPlate , tradeName , taxOffice , address).then(data => {
             if (data.status === "success") {
+                setSuccess(data.message);
+                setSuccessShown(true)
                 getCompanyProfile().then((data) => {
                     setProfile(data)
                 })
@@ -98,6 +103,10 @@ export function Edit({ loged , locale, setLocale}) {
             {errorShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(155,0,0),rgb(220,38,38))] p-3 text-white">
                 <p>{error}</p>
                 <img onClick={() => setErrorShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
+            {successShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{success}</p>
+                <img onClick={() => setSuccessShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
             </div>}
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
