@@ -49,11 +49,13 @@ export function Offers({ loged, locale, setLocale }) {
         setNote("")
     }
 
-    const [errorMessage , setErrorMessage] = useState("");
-    const [errorMessageShown , setErrorMessageShown] = useState(false)
+    const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessageShown, setErrorMessageShown] = useState(false)
 
-    const [successMessage , setSuccessMessage] = useState("");
-    const [successMessageShown , setSuccessMessageShown] = useState(false);
+    const [successMessage, setSuccessMessage] = useState("");
+    const [setSuccessMessageShown] = useState(false);
+
+    const [replied, setReplied] = useState(false);
 
     function handleReplyOffer() {
         setLoaded(false)
@@ -64,9 +66,9 @@ export function Offers({ loged, locale, setLocale }) {
             }
             else {
                 setSuccessMessage(data.message);
-                setErrorMessageShown(true)
+                setSuccessMessageShown(true)
             }
-        }).finally(() => setLoaded(true))
+        }).finally(() => {setLoaded(true); setReplied(true)})
     }
 
     const [info, setInfo] = useState([]);
@@ -107,10 +109,6 @@ export function Offers({ loged, locale, setLocale }) {
             {errorMessageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(155,0,0),rgb(220,38,38))] p-3 text-white">
                 <p>{errorMessage}</p>
                 <img onClick={() => setErrorMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
-            </div>}
-            {successMessageShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
-                <p>{successMessage}</p>
-                <img onClick={() => setSuccessMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
             </div>}
             <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
@@ -162,7 +160,7 @@ export function Offers({ loged, locale, setLocale }) {
                                     </div>
                                 </div>
                             </div>
-                            {offerInfo?.data?.status?.key === "waiting" && <div className="p-3.75 bg-[#f9f9f9] rounded-lg">
+                            {(offerInfo?.data?.status?.key === "waiting" && !replied) && <div className="p-3.75 bg-[#f9f9f9] rounded-lg">
                                 <h2 className="text-xl text-[#212529] mb-5 font-semibold">{translation?.data?.business?.your_reply_for_offer}</h2>
                                 <div className="mb-5 flex justify-start gap-2.5">
                                     <button onClick={() => setStatus("confirm")} className={`text-sm ${status === "confirm" ? "bg-[#4e4e4e] text-white" : "bg-[#e7e7e7]"} p-2.5 flex-1 rounded-lg cursor-pointer`}>{translation?.data?.business?.confirm_price_offer}</button>
@@ -173,6 +171,11 @@ export function Offers({ loged, locale, setLocale }) {
                                     <textarea value={note} onChange={(e) => setNote(e.target.value)} className="bg-white px-3 py-1.5 block w-full border border-[#d9d9d9] rounded-lg min-h-[calc(1.5em+0.75rem+2px)]" type="text" id="note" name="note" />
                                 </div>
                                 <button disabled={!status} onClick={handleReplyOffer} className="w-full text-white text-sm font-semibold cursor-pointer hover:bg-[#157347] transition-colors duration-300 ease-in-out bg-[#198754] py-2 px-5 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#198754]">{translation?.data?.business?.save}</button>
+                            </div>}
+                            {replied && <div className="bg-[#f9f9f9] p-3.75 rounded-lg">
+                                <div className="bg-[#d1e7dd] text-[#0f5132] p-4 rounded-lg border border-[#badbcc]">
+                                    {successMessage}
+                                </div>
                             </div>}
                         </>
                     )}
