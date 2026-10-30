@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import close from "../assets/blue-close.png";
 import pen from "../assets/pencil.png"
+import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi";
 
 export function EditPropertyInfo({
     detail,
@@ -38,6 +39,30 @@ export function EditPropertyInfo({
         handleFeatureChange(multiSelectTarget.groupIndex, multiSelectTarget.id, next)
         setMultiSelectTarget(prev => ({ ...prev, value: next }))
     }
+
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        getAllCountries().then(setCountries);
+    }, [])
+
+    const [cities, setCities] = useState([]);
+
+    useEffect(() => {
+        getAllCities(country).then(setCities)
+    }, [country])
+
+    const [districts , setDistricts] = useState([]);
+
+    useEffect(() => {
+        getAllDistricts(city).then(setDistricts);
+    }, [city])
+
+    const [streets , setStreets] = useState([]);
+
+    useEffect(() => {
+        getAllStreets(district).then(setStreets);
+    }, [district])
 
     return (
         <div className="w-full max-w-[90%]">
@@ -93,19 +118,35 @@ export function EditPropertyInfo({
                         <div className="flex max-[992px]:flex-col">
                             <div className="flex-1 px-3 mb-2">
                                 <label className="text-[#6c757d]" htmlFor="country">{translation?.data?.business?.choose?.country}</label>
-                                <input id="country" name="country" value={country} onChange={(e) => setCountry(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <select className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" id="country" name="country" value={country} onChange={(e) => setCountry(e.target.value)}>
+                                    {countries?.data?.map(item => (
+                                        <option value={item.id} key={item.id}>{item.title}</option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="flex-1 px-3 mb-2">
                                 <label className="text-[#6c757d]" htmlFor="city">{translation?.data?.business?.choose?.city}</label>
-                                <input id="city" name="city" value={city} onChange={(e) => setCity(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <select className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" id="country" name="country" value={city} onChange={(e) => setCity(e.target.value)}>
+                                    {cities.map(item => (
+                                        <option value={item.id} key={item.id}>{item.title}</option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="flex-1 px-3 mb-2">
                                 <label className="text-[#6c757d]" htmlFor="district">{translation?.data?.business?.choose?.district}</label>
-                                <input id="district" name="district" value={district} onChange={(e) => setDistrict(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <select id="district" name="district" value={district} onChange={(e) => setDistrict(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]">
+                                    {districts?.map(item => (
+                                        <option value={item.id} key={item.id}>{item.title}</option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="flex-1 px-3 mb-2">
                                 <label className="text-[#6c757d]" htmlFor="street">{translation?.data?.business?.choose?.street}</label>
-                                <input id="street" name="street" value={street} onChange={(e) => setStreet(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text" />
+                                <select id="street" name="street" value={street} onChange={(e) => setStreet(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="text">
+                                    {streets.map(item => (
+                                        <option value={item.id} key={item.id}>{item.title}</option>
+                                    ))}
+                                </select>
                             </div>
                         </div>
                     </div>

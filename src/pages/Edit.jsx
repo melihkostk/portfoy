@@ -40,6 +40,7 @@ export function Edit({ loged , locale, setLocale}) {
             setCentralNumber(data?.data?.profile?.licance_number)
             setEmail(data?.data?.profile?.email)
             setPhone(data?.data?.profile?.phone?.number)
+            setCode(data?.data?.profile?.phone?.code)
             setTradeName(data?.data?.profile?.billing?.trade_name)
             setTaxOffice(data?.data?.profile?.billing?.tax_office)
             setAddress(data?.data?.profile?.billing?.address)
