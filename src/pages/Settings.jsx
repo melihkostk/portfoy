@@ -31,6 +31,7 @@ export function Settings({ loged, locale, setLocale }) {
     const [infoStatus, setInfoStatus] = useState(null);
     const [passStatus , setPassStatus] = useState(null);
     const [selected , setSelected] = useState([]);
+    const [personalVisibilities, setPersonalVisibilities] = useState([]);
 
 
     useEffect(() => {
@@ -39,6 +40,7 @@ export function Settings({ loged, locale, setLocale }) {
             setInfoStatus(data?.data?.personal_contacts_visibilities?.status)
             setPassStatus(data?.data?.pass_price_visibility)
             setSelected(data?.data?.price_offer_users)
+            setPersonalVisibilities(data?.data?.personal_contacts_visibilities?.personals || [])
         })
     }, [])
 
@@ -73,7 +75,7 @@ export function Settings({ loged, locale, setLocale }) {
     }
     function handleInfoVisibility() {
         setLoaded(false)
-        updatePersonalContactVisibility(infoStatus).then(data => {
+        updatePersonalContactVisibility(infoStatus, infoStatus === 2 ? personalVisibilities : undefined).then(data => {
             if (data.status === "success") {
                 setSuccessMessage(data.message);
                 setSuccessMessageShown(true)
@@ -156,7 +158,7 @@ export function Settings({ loged, locale, setLocale }) {
                         ))}
                     </div>
                     <div className="mt-2">
-                        <button onClick={handleSavePriceOfferUsers} className="bg-[#27c5d2] cursor-pointer font-semibold text-sm w-full text-white rounded-lg py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
+                        <button onClick={() => {handleSavePriceOfferUsers(); setInfoPopUp(false)}} className="bg-[#27c5d2] cursor-pointer font-semibold text-sm w-full text-white rounded-lg py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
                     </div>
                 </div>
             </div>}
@@ -177,11 +179,13 @@ export function Settings({ loged, locale, setLocale }) {
                                 preference={preference}
                                 page="info"
                                 translation={translation}
+                                statuses={personalVisibilities}
+                                setStatuses={setPersonalVisibilities}
                             />
                         ))}
                     </div>
                     <div className="mt-2">
-                        <button className="bg-[#27c5d2] cursor-pointer font-semibold text-sm w-full text-white rounded-lg py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
+                        <button onClick={() => { handleInfoVisibility(); setInfoPopUp(false); }} className="bg-[#27c5d2] cursor-pointer font-semibold text-sm w-full text-white rounded-lg py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
                     </div>
                 </div>
             </div>}

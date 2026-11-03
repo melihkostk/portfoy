@@ -238,9 +238,10 @@ export const updatePassPriceVisibility = async (status) => {
     return response.data;
 }
 
-export const updatePersonalContactVisibility = async (status) => {
+export const updatePersonalContactVisibility = async (status , personals) => {
     const response = await api.post("/auth/company/preferences/personal-contact-visibility/update" , {
-        status:status
+        status:status,
+        personals:personals
     });
     return response.data;
 }

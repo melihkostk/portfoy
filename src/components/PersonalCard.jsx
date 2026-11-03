@@ -1,6 +1,6 @@
-export function PersonelCard({ name, avatar, role, selected, id, page , translation , setSelected }) {
+export function PersonelCard({ name, avatar, role, selected, id, page , translation , setSelected , statuses , setStatuses }) {
     return (
-        <div onClick={() => setSelected(prev => (prev?.includes(id) ? prev.filter(item => item !== id) : [...(prev || []), id]))} className={`${page === "select" ? (selected?.includes(id) ? "border-[#27c5d2]" : "border-b border-[#ddd]") : "border-[#ddd]"} flex justify-between items-center p-3.75 grow border rounded-lg gap-2.5 m-1.25 ${page === "select" ? "w-[48%]" : "w-full"} cursor-pointer`}>
+        <div onClick={() => page === "select" && setSelected(prev => (prev?.includes(id) ? prev.filter(item => item !== id) : [...(prev || []), id]))} className={`${page === "select" ? (selected?.includes(id) ? "border-[#27c5d2]" : "border-b border-[#ddd]") : "border-[#ddd]"} flex justify-between select-none items-center p-3.75 grow border rounded-lg gap-2.5 m-1.25 ${page === "select" ? "w-[48%]" : "w-full"} cursor-pointer`}>
             <div className="flex items-center gap-2.5">
                 <div className="w-12.5 h-12.5">
                 <img className="w-full h-full object-cover rounded-full" src={avatar} alt=""></img>
@@ -11,7 +11,12 @@ export function PersonelCard({ name, avatar, role, selected, id, page , translat
                 </div>
             </div>
             {page === "info" && <div className="justify-self-end">
-                <select className="border border-[#d9d9d9] rounded-lg bg-white py-1.5 px-3  text-[#212529]">
+                <select
+                    value={statuses?.includes(id) ? 1 : 0}
+                    onClick={(e) => e.stopPropagation()}
+                    onChange={(e) => setStatuses(prev => (Number(e.target.value) === 1 ? [...(prev || []), id] : (prev || []).filter(item => item !== id)))}
+                    className="border border-[#d9d9d9] rounded-lg bg-white py-1.5 px-3  text-[#212529]"
+                >
                     <option value={1}>
                         {translation?.data?.business?.everyone_can_see}
                     </option>
