@@ -8,7 +8,7 @@ import { useAppContext } from "../context/AppContext";
 
 export function Check() {
 
-    const { locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     return (
         <div className="w-full flex flex-col items-center justify-center font-sf">

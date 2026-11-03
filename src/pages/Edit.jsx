@@ -10,7 +10,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Edit() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     const [name, setName] = useState("");
     const [type, setType] = useState("");

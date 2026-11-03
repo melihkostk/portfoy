@@ -12,7 +12,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function CompanyProposals() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     const [searchParams] = useSearchParams();
     const customer_id = searchParams.get("customer");

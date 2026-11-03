@@ -12,7 +12,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Create() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     const navigate = useNavigate();
 

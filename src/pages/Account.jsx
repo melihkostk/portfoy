@@ -18,7 +18,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Account() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { locale, translation, translationLoaded } = useAppContext();
 
     const [name, setName] = useState("");
     const [code, setCode] = useState("");

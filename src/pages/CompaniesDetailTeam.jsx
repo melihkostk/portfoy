@@ -10,7 +10,7 @@ import { ClipLoader } from "react-spinners";
 import { useAppContext } from "../context/AppContext";
 
 export function CompaniesDetailTeam() {
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     const { id } = useParams();
 

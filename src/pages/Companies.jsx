@@ -12,7 +12,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Companies() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { locale, translation, translationLoaded } = useAppContext();
 
     const [companies, setCompanies] = useState([]);
 

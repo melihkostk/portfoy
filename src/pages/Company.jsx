@@ -18,7 +18,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Company({ message, messageShown , setMessageShown }) {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     const navigate = useNavigate();
 

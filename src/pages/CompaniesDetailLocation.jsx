@@ -11,7 +11,7 @@ import { useAppContext } from "../context/AppContext";
 
 export function CompaniesDetailLocation() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     const { id } = useParams();
 

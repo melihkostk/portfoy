@@ -1,10 +1,8 @@
 ﻿import { Header } from "../components/Header";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
-import { useAppContext } from "../context/AppContext";
 
 export function Consent() {
-    const { loged, locale, setLocale } = useAppContext();
     return (
         <div className="w-full flex flex-col items-center justify-center font-sf">
             <Header />
