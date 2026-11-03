@@ -86,7 +86,7 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                                 <button onClick={() => {setOfferModalShown(false); setStep(1)}} className="text-sm text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.cancel}</button>
                             </div>
                         </div>
-                        <div className="flex">
+                        {details ? <div className="flex">
                             <div className="w-[25%] pr-3">
                                 <img className="rounded-lg object-cover" src={defaultProperty} alt="cover" />
                             </div>
@@ -107,9 +107,11 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> : <div className="bg-[#fff3cd] text-[#664d03] border border-[#ffecb5] rounded-lg p-4">
+                            {translation?.data?.business?.not_added_yet_properties_to_proposal}
+                        </div>}
                         <div className="mt-6 justify-self-end">
-                            <button onClick={() => setStep(prev => prev + 1)} className="uppercase text-sm text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                            <button disabled={!details} onClick={() => setStep(prev => prev + 1)} className="uppercase text-sm text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                 {translation?.data?.business?.next}
                             </button>
                         </div>
@@ -127,7 +129,7 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                                 <label htmlFor="mail">{translation?.data?.business?.notify_customer_with_email}</label>
                             </div>
                             <div className="flex justify-between items-center mt-6">
-                                <button className="text-[#545454] text-sm cursor-pointer hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">{translation?.data?.business?.back_to_selected_properties}</button>
+                                <button onClick={() => setStep(2)} className="text-[#545454] text-sm cursor-pointer hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">{translation?.data?.business?.back_to_selected_properties}</button>
                                 <button onClick={handleCreateProposal} className="uppercase bg-[#f1f1f1] text-[#4b4b4b] cursor-pointer py-2 px-5 rounded-lg text-sm hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save_proposal}</button>
                             </div>
                         </div>
