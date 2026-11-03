@@ -1,6 +1,6 @@
-export function PersonelCard({ name, avatar, role, preference, id, page , translation }) {
+export function PersonelCard({ name, avatar, role, selected, id, page , translation , setSelected }) {
     return (
-        <div className={`${page === "select" ? (preference.data.price_offer_users.includes(id) ? "border-[#27c5d2]" : "border-b border-[#ddd]") : "border-[#ddd]"} flex justify-between items-center p-3.75 grow border rounded-lg gap-2.5 m-1.25 ${page === "select" ? "w-[48%]" : "w-full"} cursor-pointer`}>
+        <div onClick={() => setSelected(prev => (prev?.includes(id) ? prev.filter(item => item !== id) : [...(prev || []), id]))} className={`${page === "select" ? (selected?.includes(id) ? "border-[#27c5d2]" : "border-b border-[#ddd]") : "border-[#ddd]"} flex justify-between items-center p-3.75 grow border rounded-lg gap-2.5 m-1.25 ${page === "select" ? "w-[48%]" : "w-full"} cursor-pointer`}>
             <div className="flex items-center gap-2.5">
                 <div className="w-12.5 h-12.5">
                 <img className="w-full h-full object-cover rounded-full" src={avatar} alt=""></img>

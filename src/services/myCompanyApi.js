@@ -244,3 +244,8 @@ export const updatePersonalContactVisibility = async (status) => {
     });
     return response.data;
 }
+
+export const updatePriceOfferNotify = async (personals) => {
+    const response = await api.post("/auth/company/preferences/price-offer-users/update", { personals });
+    return response.data;
+}

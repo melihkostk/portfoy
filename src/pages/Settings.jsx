@@ -4,7 +4,7 @@ import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
 import { SettingsCard } from "../components/SettingsCard"
-import { getCompanyInfo, getPreference, getTeam, updatePassPriceVisibility, updatePersonalContactVisibility } from "../services/myCompanyApi"
+import { getCompanyInfo, getPreference, getTeam, updatePassPriceVisibility, updatePersonalContactVisibility, updatePriceOfferNotify } from "../services/myCompanyApi"
 import close from "../assets/blue-close.png"
 import { PersonelCard } from "../components/PersonalCard"
 import { getTranslation } from "../services/translation"
@@ -30,6 +30,7 @@ export function Settings({ loged, locale, setLocale }) {
     const [preference, setPreference] = useState([]);
     const [infoStatus, setInfoStatus] = useState(null);
     const [passStatus , setPassStatus] = useState(null);
+    const [selected , setSelected] = useState([]);
 
 
     useEffect(() => {
@@ -37,6 +38,7 @@ export function Settings({ loged, locale, setLocale }) {
             setPreference(data);
             setInfoStatus(data?.data?.personal_contacts_visibilities?.status)
             setPassStatus(data?.data?.pass_price_visibility)
+            setSelected(data?.data?.price_offer_users)
         })
     }, [])
 
@@ -75,6 +77,27 @@ export function Settings({ loged, locale, setLocale }) {
             if (data.status === "success") {
                 setSuccessMessage(data.message);
                 setSuccessMessageShown(true)
+            }
+            else {
+                setErrorMessage(data.message);
+                setErrorMessageShown(true)
+            }
+        }).finally(() => setLoaded(true))
+    }
+
+    function handleSavePriceOfferUsers() {
+        setLoaded(false)
+        const personals = {};
+        team?.personals?.forEach(item => {
+            personals[item.id] = selected?.includes(item.id) ? 1 : 0;
+        });
+
+        updatePriceOfferNotify(personals).then(data => {
+            if (data.status === "success") {
+                setSuccessMessage(data.message);
+                setSuccessMessageShown(true)
+                setPersonalSelectPopUp(false)
+                getPreference().then(setPreference)
             }
             else {
                 setErrorMessage(data.message);
@@ -127,11 +150,13 @@ export function Settings({ loged, locale, setLocale }) {
                                 role={item.roles[0].title}
                                 preference={preference}
                                 page="select"
+                                selected={selected}
+                                setSelected={setSelected}
                             />
                         ))}
                     </div>
                     <div className="mt-2">
-                        <button className="bg-[#27c5d2] cursor-pointer font-semibold text-sm w-full text-white rounded-lg py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
+                        <button onClick={handleSavePriceOfferUsers} className="bg-[#27c5d2] cursor-pointer font-semibold text-sm w-full text-white rounded-lg py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
                     </div>
                 </div>
             </div>}
