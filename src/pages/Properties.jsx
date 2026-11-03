@@ -1,4 +1,4 @@
-import { Filter } from "../components/Filter"
+﻿import { Filter } from "../components/Filter"
 import { Header } from "../components/Header"
 import grid from "../assets/grid.png"
 import flex from "../assets/flex.png"
@@ -298,7 +298,6 @@ export function Properties() {
                 handleCreateProposal={handleCreateProposal}
                 notify={offerNotify}
                 setNotify={setOfferNotify}
-                translation={translation}
             />}
             {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
@@ -309,7 +308,7 @@ export function Properties() {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
             {quickFilterMenu && <div className="fixed top-1/2 max-h-fit left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[70%] w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
@@ -358,7 +357,7 @@ export function Properties() {
             <div className={`w-full max-w-[90%] ${filterShown ? "py-7.5" : "py-5"}`}>
                 {filterShown && <div>
                     <h1 className="text-[35px]">{translation?.data?.business?.filter_properties}</h1>
-                    <Filter translation={translation} setFilterShown={setFilterShown} searchParams={searchParams} typeId={typeId} />
+                    <Filter setFilterShown={setFilterShown} searchParams={searchParams} typeId={typeId} />
                 </div>}
                 {searchParams.toString() && <div className="items-end justify-end p-3.75 flex gap-1">
                     <button onClick={() => setAddQuickFilterMenu(true)} className="px-7.5 py-2.5 text-sm cursor-pointer flex items-start hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out bg-[#f8f8f8] rounded-lg text-[#565656] font-semibold">
@@ -493,7 +492,6 @@ export function Properties() {
                                             page="properties"
                                             flexDirection={flexDirection}
                                             handleOfferModal={handleOfferModal}
-                                            translation={translation}
                                         />
                                     ))
                                     : discounted?.data?.map(item => (
@@ -511,7 +509,6 @@ export function Properties() {
                                             flexDirection={flexDirection}
                                             badges={item?.badges?.[0]?.title}
                                             handleOfferModal={handleOfferModal}
-                                            translation={translation}
                                         />
                                     ))}
                             </div>
@@ -540,11 +537,11 @@ export function Properties() {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

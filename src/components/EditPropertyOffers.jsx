@@ -3,6 +3,7 @@ import defaultCompany from "../assets/default-company.png"
 import close from "../assets/blue-close.png"
 import { OfferCard } from "./OfferCard"
 import { ProposalCard } from "./ProposalCard";
+import { useAppContext } from "../context/AppContext";
 
 export function EditPropertyOffers({
     offerMenuShown,
@@ -20,10 +21,9 @@ export function EditPropertyOffers({
     setSelectedOfferId,
     setLoaded,
     proposals,
-    externalProposals,
-    translation
-    
+    externalProposals
 }) {
+    const { translation } = useAppContext();
     return (
         <div className="w-full max-w-[90%]">
             {offerMenuShown && <div className="fixed overflow-y-scroll scrollbar-none top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 w-[25%] max-h-[95%] bg-white border border-[#eee] rounded-lg z-50">
@@ -116,7 +116,6 @@ export function EditPropertyOffers({
                                     setOfferInfo={setOfferInfo}
                                     setSelectedOfferId={setSelectedOfferId}
                                     setLoaded={setLoaded}
-                                    translation={translation}
                                 />
                             ))}
                         </tbody>
@@ -151,7 +150,6 @@ export function EditPropertyOffers({
                                     key={item.id}
                                     code={item.code}
                                     id={item.id}
-                                    translation={translation}
                                 />
                             ))}
                         </tbody>

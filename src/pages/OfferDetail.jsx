@@ -1,4 +1,4 @@
-import { Header } from "../components/Header"
+﻿import { Header } from "../components/Header"
 import { Sidebar } from "../components/Sidebar"
 import bgImage from "../assets/default-property.jpg";
 import { Link, useParams } from "react-router-dom";
@@ -33,7 +33,7 @@ export function OfferDetail() {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account} {">"}</span> <span className="text-[#9a9898]"> {translation?.data?.business?.my_offers} {">"}</span> <span className="text-[#9a9898]"> {details?.data?.property?.title}</span></p>
@@ -42,7 +42,7 @@ export function OfferDetail() {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
                     <div className="w-[28%] max-[992px]:w-full">
-                        <Sidebar translation={translation} />
+                        <Sidebar />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <h2 className="mb-5 text-[#212529] text-[25px]">{translation?.data?.business?.offer_details}</h2>
@@ -99,11 +99,11 @@ export function OfferDetail() {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

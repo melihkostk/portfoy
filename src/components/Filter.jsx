@@ -2,8 +2,10 @@ import downArrow from "../assets/down-arrow.png"
 import { useEffect, useState } from "react"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets, getAllCurrencies, getAllFilterOptions } from "../services/filterApi"
 import { getAllPropertiesType } from "../services/propertiesApi"
+import { useAppContext } from "../context/AppContext"
 
-export function Filter({searchParams , typeId , translation}) {
+export function Filter({searchParams , typeId}) {
+    const { translation } = useAppContext();
 
     const [priceFilter, setPriceFilter] = useState(false)
     const [cateFilter, setCateFilter] = useState(false)

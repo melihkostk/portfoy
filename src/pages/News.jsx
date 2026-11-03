@@ -1,4 +1,4 @@
-import { Header } from "../components/Header";
+﻿import { Header } from "../components/Header";
 import { NewsCard } from "../components/NewsCard";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
@@ -20,7 +20,7 @@ export function News({ news }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.articles}</span></p>
@@ -29,17 +29,17 @@ export function News({ news }) {
             <div className="w-full max-w-[90%]">
                 <div className="flex flex-wrap -mx-5">
                     {news.map(item => (
-                        <NewsCard translation={translation} key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
+                        <NewsCard key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
                     ))}
                 </div>
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

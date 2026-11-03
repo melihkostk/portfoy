@@ -1,6 +1,8 @@
 import { PropertySettingsCard } from "./PropertySettingsCard"
+import { useAppContext } from "../context/AppContext"
 
-export function EditPropertySettings({ detail, navigate, id, setToogleMenu, setCopyPopUp, setDeletePopUp, setSoldPopUp , translation }) {
+export function EditPropertySettings({ detail, navigate, id, setToogleMenu, setCopyPopUp, setDeletePopUp, setSoldPopUp }) {
+    const { translation } = useAppContext();
     return (
         <div className="w-full max-w-[90%]">
             <div className="w-full mb-7.5">

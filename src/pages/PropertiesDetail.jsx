@@ -1,4 +1,4 @@
-import { Header } from "../components/Header"
+﻿import { Header } from "../components/Header"
 import heart from "../assets/heart.png"
 import folder from "../assets/gray-folder.png"
 import defaultImg from "../assets/default-property.jpg"
@@ -125,7 +125,7 @@ export function PropertiesDetail() {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} details={details} locale={locale} setLocale={setLocale} />
+            <Header details={details} />
             {offerModelShown && <CreateOfferModel
                 setOfferModalShown={setOfferModalShown}
                 selectedCustomer={selectedCustomer}
@@ -141,7 +141,6 @@ export function PropertiesDetail() {
                 handleCreateProposal={handleCreateProposal}
                 setNotify={setNotify}
                 notify={notify}
-                translation={translation}
             />}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
@@ -337,11 +336,11 @@ export function PropertiesDetail() {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

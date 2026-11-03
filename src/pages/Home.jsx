@@ -1,4 +1,4 @@
-import { Header } from "../components/Header"
+﻿import { Header } from "../components/Header"
 import { NewsCard } from '../components/NewsCard'
 import { PortfoyCard } from "../components/PortfoyCard"
 import { PortfoyText } from "../components/PortfoyText"
@@ -44,7 +44,7 @@ export function Home({ news }) {
           />
         </div>
       )}
-      <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+      <Header />
       <div className='w-full max-w-[90%] py-20'>
         <h1 className='text-[35px] text-black font-medium mb-2'>{translation?.data?.business?.filter_properties}</h1>
         {/*<Filter />*/}
@@ -143,7 +143,6 @@ export function Home({ news }) {
                   customerFeatures={item.features.customer_and_personal.features}
                   propertyTitle={item.features.property.title}
                   propertyFeatures={item.features.property.features}
-                  translation={translation}
                 />
               ))
             ))}
@@ -158,18 +157,18 @@ export function Home({ news }) {
           </div>
           <div className='flex items-start overflow-hidden -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
             {news.slice(0,4).map(item => (
-              <NewsCard translation={translation} key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
+              <NewsCard key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
             ))}
           </div>
         </div>
       </div>
       <div className='w-full mt-30 mb-30'>
         <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-          <AppLinks translation={translation} />
+          <AppLinks />
         </div>
       </div>
       <div className='w-full'>
-        <Footer translation={translation} loged={loged} />
+        <Footer />
       </div>
     </div>
   )

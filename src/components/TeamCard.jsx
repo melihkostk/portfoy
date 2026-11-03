@@ -6,8 +6,10 @@ import { useState } from "react"
 import removePerson from "../assets/person-off.png"
 import edit from "../assets/edit.png"
 import list from "../assets/list.png"
+import { useAppContext } from "../context/AppContext"
 
-export function TeamCard({ name, translation ,handleGetPermissions , setEditPermissionShown, role, email, avatar, phone, code, page, id, is_active, handleToggleStatus, onEditClick }) {
+export function TeamCard({ name, handleGetPermissions , setEditPermissionShown, role, email, avatar, phone, code, page, id, is_active, handleToggleStatus, onEditClick }) {
+    const { translation } = useAppContext();
 
     const [optionsShown, setOptionsShown] = useState(false);
 

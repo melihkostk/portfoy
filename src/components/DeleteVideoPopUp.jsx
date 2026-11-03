@@ -1,7 +1,9 @@
 import close from "../assets/blue-close.png"
 import trash from "../assets/trash.png"
+import { useAppContext } from "../context/AppContext"
 
-export function DeleteVideoPopUp({setDeleteVideoPopUp , onClick , translation}){
+export function DeleteVideoPopUp({setDeleteVideoPopUp , onClick}){
+    const { translation } = useAppContext();
     return(
         <div className="fixed top-1/2 left-1/2 overflow-y-auto flex p-4 max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[30%] bg-white border border-[#eee] rounded-lg z-50">
             <div className="self-end">

@@ -4,8 +4,10 @@ import ru from "../assets/ru.svg"
 import downArrow from "../assets/down-arrow.png"
 import { useEffect, useState } from "react"
 import { getAllLanguages } from "../services/filterApi"
+import { useAppContext } from "../context/AppContext"
 
-export function LanguageSelect({ setLocale, locale }) {
+export function LanguageSelect() {
+    const { setLocale, locale } = useAppContext();
 
     const [languageShown, setLanguageShown] = useState(false);
 

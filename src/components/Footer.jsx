@@ -4,8 +4,10 @@ import x from "../assets/x.png"
 import facebook from "../assets/facebook.png"
 import instagram from "../assets/instagram.png"
 import { Link } from "react-router-dom"
+import { useAppContext } from "../context/AppContext"
 
-export function Footer({loged , translation}) {
+export function Footer() {
+    const { loged, translation } = useAppContext();
 
     return (
         <div className="w-full">

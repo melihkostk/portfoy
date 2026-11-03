@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { getSubsFeatures } from "../services/myCompanyApi";
 import check from "../assets/check.png"
+import { useAppContext } from "../context/AppContext"
 
-export function SubscriptionCard({ packageName, translation ,finish_at, readable, is_active, is_trial }) {
+export function SubscriptionCard({ packageName, finish_at, readable, is_active, is_trial }) {
+    const { translation } = useAppContext();
 
     const [optionsShown, setOptionsShown] = useState(false);
     const [customerOptions, setCustomerOptions] = useState([]);

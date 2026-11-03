@@ -9,18 +9,20 @@ import defaultProperty from "../assets/default-property.jpg"
 import personal from "../assets/personal.png"
 import trash from "../assets/gray-trash.png"
 import addFolder from "../assets/add-folder.png"
+import { useAppContext } from "../context/AppContext"
 
 export function PropertiesCard(props) {
+    const { translation } = useAppContext();
     return (
         <div className={`flex select-none ${props.page === "wishlist" || props.page === "myProperties" || props.page === "homeLogin" || props.page === "proposalDetail" || props.page === "companiesDetail" ? "bg-white shadow-[0_0_30px_rgb(246,246,246)]" : "bg-[#FAFAFA]"} items-start ${props.page === "proposalDetail" ? "w-full m-0 p-7.5" : ""} shrink-0 max-[992px]:w-full max-[992px]:m-0 ${props.flexDirection === "flex-col" ? "w-full" : ""}  max-[992px]:flex-col p-3.75 m-3.75 rounded-[10px] ${props.page === "wishlist" ? "w-[calc(50%-30px)]" : "w-[calc(33%-30px)]"} ${props.page === "myProperties" ? "w-full" : ""}`}>
             <div className={`w-[50%] ${props.page === "company" ? "aspect-square" : ""} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} max-[992px]:w-full max-[992px]:mb-3.75 ${props.page === "myProperties" ? "aspect-video" : "aspect-square"}`}>
                 <div className="relative h-full">
                     <img className={`rounded-[10px] ${props.page === "company" ? "aspect-square h-1/2" : "h-full"} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} h-full  object-cover max-[992px]:aspect-video`} src={defaultProperty} alt="" />
                     {props.status == "draft" && <div className="bg-[#FFCA64] z-50 uppercase text-black text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
-                        {props?.translation?.data?.business?.statusess?.draft}
+                        {translation?.data?.business?.statusess?.draft}
                     </div>}
                     {props.status == "sold" && <div className="bg-[#27c5d2] z-50 uppercase text-white text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
-                        {props?.translation?.data?.business?.statusess?.sold}
+                        {translation?.data?.business?.statusess?.sold}
                     </div>}
                     {props.badges === "discounted" && <div className="bg-[#FFCA64] z-30 uppercase text-black text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
                         {props.badgeTitle}
@@ -40,7 +42,7 @@ export function PropertiesCard(props) {
                     </li>
                     <li className="flex items-center gap-1">
                         <img className="w-5 h-5" src={building} alt="" />
-                        <span>{props?.propertyType === "ready" ? props?.translation?.data?.business?.building_statusess?.ready : props?.translation?.data?.business?.building_statusess?.under_construction}</span>
+                        <span>{props?.propertyType === "ready" ? translation?.data?.business?.building_statusess?.ready : translation?.data?.business?.building_statusess?.under_construction}</span>
                     </li>
                     <li className="flex items-center gap-1">
                         <img className="w-5 h-5" src={menu} alt="" />
@@ -53,7 +55,7 @@ export function PropertiesCard(props) {
                 </ul>
                 <p>
                     <span className={`${props.page==="proposalDetail" ? "text-sm" : "text-[11px]"} text-[#B7BFB9] font-medium block py-1.25`}>
-                        {props?.translation?.data?.business?.sell_price}
+                        {translation?.data?.business?.sell_price}
                     </span>
                     <span className={`${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" || props.page === "wishlist" || props.page === "proposalDetail" ? "text-2xl" : "text-lg"} text-[#FFCA64] font-semibold wrap-break-word`}>
                         {props.price}
@@ -79,17 +81,17 @@ export function PropertiesCard(props) {
                         </div>
                     ))}
                 </div>}
-                {props.page === "company" && <button onClick={() => props.handleOfferModal(props.id)} title={props?.translation?.data?.business?.add_property_to_proposal_properties} className="bg-[#e6e6e6] flex items-center gap-2.5 max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                {props.page === "company" && <button onClick={() => props.handleOfferModal(props.id)} title={translation?.data?.business?.add_property_to_proposal_properties} className="bg-[#e6e6e6] flex items-center gap-2.5 max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     <img className="w-4.5 h-4.5" src={addFolder} alt="" />
-                    <p className="whitespace-nowrap overflow-hidden truncate">{props.translation?.data?.business?.add_property_to_proposal_properties}</p>
+                    <p className="whitespace-nowrap overflow-hidden truncate">{translation?.data?.business?.add_property_to_proposal_properties}</p>
                 </button>}
-                {props.page === "properties" && <button onClick={() => props.handleOfferModal(props.id)} title={props?.translation?.data?.business?.add_property_to_proposal_properties} className="bg-[#e6e6e6] flex items-center gap-2.5 max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
+                {props.page === "properties" && <button onClick={() => props.handleOfferModal(props.id)} title={translation?.data?.business?.add_property_to_proposal_properties} className="bg-[#e6e6e6] flex items-center gap-2.5 max-w-full whitespace-nowrap overflow-hidden truncate py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     <img src={addFolder} alt="" />
-                    <p className="whitespace-nowrap overflow-hidden truncate">{props.translation?.data?.business?.add_property_to_proposal_properties}</p>
+                    <p className="whitespace-nowrap overflow-hidden truncate">{translation?.data?.business?.add_property_to_proposal_properties}</p>
                 </button>}
                 {props.page === "wishlist" && <button onClick={() => props.handleToggleWishlist(props.id)} className="bg-white border gap-1.25 max-w-full whitespace-nowrap overflow-hidden truncate border-[#eee] py-1.25 px-2.5 text-sm text-[#545454] mt-2.5 flex items-center font-semibold cursor-pointer rounded-sm hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out">
                     <img className="w-5 h-5" src={trash} alt="" />
-                    {props.translation?.data?.business?.property_remove_from_wishlist}
+                    {translation?.data?.business?.property_remove_from_wishlist}
                 </button>}
             </div>
         </div>

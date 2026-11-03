@@ -1,4 +1,4 @@
-import { Header } from "../components/Header"
+﻿import { Header } from "../components/Header"
 import { CompanyHeader } from "../components/CompanyHeader"
 import { FilterSidebar } from "../components/FilterSidebar"
 import { PropertiesCard } from "../components/PropertiesCard"
@@ -120,7 +120,7 @@ export function Company({ message, messageShown , setMessageShown }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             {offerModelShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {offerModelShown && <CreateOfferModel
                 setOfferModalShown={setOfferModalShown}
@@ -137,7 +137,6 @@ export function Company({ message, messageShown , setMessageShown }) {
                 handleCreateProposal={handleCreateProposal}
                 notify={notify}
                 setNotify={setNotify}
-                translation={translation}
             />}
             {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
@@ -164,7 +163,6 @@ export function Company({ message, messageShown , setMessageShown }) {
                 created_at={info?.created_at}
                 type={info?.type}
                 logo={info?.logo}
-                translation={translation}
             />
             <div className="max-w-[90%] w-full pt-12.5">
                 <div className="flex max-[992px]:flex-col">
@@ -195,7 +193,6 @@ export function Company({ message, messageShown , setMessageShown }) {
                             setStatus={setStatus}
                             selectedType={selectedType}
                             setSelectedType={setSelectedType}
-                            translation={translation}
                         />
                     </div>
                     <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-col">
@@ -215,7 +212,6 @@ export function Company({ message, messageShown , setMessageShown }) {
                                     created_by={item.creator}
                                     status={item.status}
                                     handleOfferModal={handleOfferModal}
-                                    translation={translation}
                                     propertyType={item.property_type}
                                 />
                             )) : (
@@ -236,11 +232,11 @@ export function Company({ message, messageShown , setMessageShown }) {
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

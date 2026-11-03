@@ -7,6 +7,7 @@ import whiteChain from "../assets/white-chain.png"
 import chain from "../assets/chain.png"
 import plus from "../assets/gray-plus.png"
 import { UploadVideoPopup } from "./UploadVideoPopUp";
+import { useAppContext } from "../context/AppContext";
 
 export function EditPropertyGallery({
     detail,
@@ -28,9 +29,9 @@ export function EditPropertyGallery({
     setVideo,
     coverImg,
     setCoverImg,
-    handleAddLocalVideo,
-    translation
+    handleAddLocalVideo
 }) {
+    const { translation } = useAppContext();
     return (
         <div className="w-full max-w-[90%]">
             {uploadVideoShown && <UploadVideoPopup
@@ -43,7 +44,6 @@ export function EditPropertyGallery({
                 coverImg={coverImg}
                 setCoverImg={setCoverImg}
                 handleAddLocalVideo={handleAddLocalVideo}
-                translation={translation}
             />}
             <div className="w-full mb-7.5">
                 {detail?.galleries?.map(item => (

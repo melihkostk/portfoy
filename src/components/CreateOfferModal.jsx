@@ -3,8 +3,10 @@ import blackClose from "../assets/black-close.svg"
 import { getAllCustomers } from "../services/myCompanyApi";
 import { getAllCurrencies } from "../services/filterApi";
 import defaultProperty from "../assets/default-property.jpg";
+import { useAppContext } from "../context/AppContext";
 
-export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,handleCreateProposal , translation , step, setStep, customerNote, setCustomerNote, details, selectedCustomer, setSelectedCurrencie, selectedCurrencie, setSelectedCustomer }) {
+export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,handleCreateProposal , step, setStep, customerNote, setCustomerNote, details, selectedCustomer, setSelectedCurrencie, selectedCurrencie, setSelectedCustomer }) {
+    const { translation } = useAppContext();
 
     const [customers, setCustomer] = useState([])
 

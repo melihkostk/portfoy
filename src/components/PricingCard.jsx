@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 import checkIcon from "../assets/check.png"
+import { useAppContext } from "../context/AppContext"
 
-export function PricingCard({ title, translation, price, time, trialPrice, customerTitle, customerFeatures, propertyTitle, propertyFeatures }) {
+export function PricingCard({ title, price, time, trialPrice, customerTitle, customerFeatures, propertyTitle, propertyFeatures }) {
+    const { translation } = useAppContext();
     return (
         <div className="bg-[#f9f9f9] rounded-lg p-7.5 m-3.75 w-[30%] shrink-0 max-[992px]:w-1/2 max-[992px]:m-0">
             <div>

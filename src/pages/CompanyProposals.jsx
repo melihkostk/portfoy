@@ -1,4 +1,4 @@
-import { AppLinks } from "../components/AppLinks"
+﻿import { AppLinks } from "../components/AppLinks"
 import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
@@ -41,7 +41,7 @@ export function CompanyProposals() {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_portfolio} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.proposals}</span></p>
@@ -54,7 +54,6 @@ export function CompanyProposals() {
                 created_at={proposals?.data?.created_at}
                 type={proposals?.data?.type}
                 logo={proposals?.data?.logo}
-                translation={translation}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center mb-5 flex-wrap">
@@ -87,7 +86,6 @@ export function CompanyProposals() {
                                     statusKey={item.status.key}
                                     count={item.property_count}
                                     index={index}
-                                    translation={translation}
 
                                 />
                             ))}
@@ -105,7 +103,6 @@ export function CompanyProposals() {
                                         statusKey={item.status.key}
                                         count={item.property_count}
                                         index={index}
-                                        translation={translation}
                                     />
                                 ))
                             }
@@ -115,11 +112,11 @@ export function CompanyProposals() {
             </div>
             <div className='w-full mt-40 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

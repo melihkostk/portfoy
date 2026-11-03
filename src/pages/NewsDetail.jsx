@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+﻿import { useParams } from "react-router-dom"
 import { Header } from "../components/Header"
 import { useEffect, useState } from "react";
 import { showArticle } from "../services/articlesApi";
@@ -35,7 +35,7 @@ export function NewsDetail({ news }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.articles} {">"}</span><span className="text-[#9a9898]"> {article?.title}</span></p>
@@ -73,11 +73,11 @@ export function NewsDetail({ news }) {
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

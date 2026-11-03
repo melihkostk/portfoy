@@ -1,4 +1,7 @@
-export function SettingsCard({ title, description, setPersonalSelectPopUp, preference, team, translation, onChange , infoStatus , setInfoPopUp }) {
+import { useAppContext } from "../context/AppContext"
+
+export function SettingsCard({ title, description, setPersonalSelectPopUp, preference, team, onChange , infoStatus , setInfoPopUp }) {
+    const { translation } = useAppContext();
     return (
         <div className="flex justify-between items-center max-[992px]:flex-col max-[992px]:items-start max-[992px]:gap-7.5 p-7.5 my-3.75 rounded-lg bg-[#f8f8f8]">
             <div>

@@ -1,4 +1,7 @@
-export function ScoreCard({ translation }) {
+import { useAppContext } from "../context/AppContext"
+
+export function ScoreCard() {
+    const { translation } = useAppContext();
     return (
         <div className="flex flex-col items-center justify-center border border-[#eee] rounded-lg w-80 h-85 max-[992px]:w-full">
             <div>

@@ -1,4 +1,7 @@
-export function UserInvite({ code, name, role, created_at, expiry_at, handleDelete, id, onEditClick , translation }) {
+import { useAppContext } from "../context/AppContext"
+
+export function UserInvite({ code, name, role, created_at, expiry_at, handleDelete, id, onEditClick }) {
+    const { translation } = useAppContext();
 
     return (
         <tr>

@@ -1,4 +1,4 @@
-import { CompanyCard } from "../components/CompanyCard"
+﻿import { CompanyCard } from "../components/CompanyCard"
 import { CompanyFilter } from "../components/CompanyFilter"
 import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks"
@@ -95,7 +95,7 @@ export function Companies() {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.companies}</span></p>
@@ -128,7 +128,6 @@ export function Companies() {
                         filterCompany={handleFilterCompany}
                         q={q}
                         setQ={setQ}
-                        translation={translation}
                     />
                 </div>
             </div>
@@ -143,7 +142,6 @@ export function Companies() {
                             location={item?.locations}
                             logo={item?.logo}
                             badges={item.badges}
-                            translation={translation}
                         />
                     ))
                         : (
@@ -165,11 +163,11 @@ export function Companies() {
             </div>
             <div className='w-full mt-40 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} translation={translation} />
+                <Footer />
             </div>
         </div>
     )

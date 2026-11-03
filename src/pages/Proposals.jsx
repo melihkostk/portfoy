@@ -1,4 +1,4 @@
-import { Header } from "../components/Header"
+﻿import { Header } from "../components/Header"
 import { Sidebar } from "../components/Sidebar"
 import { ProposalCard } from "../components/ProposalCard"
 import { AppLinks } from "../components/AppLinks"
@@ -51,7 +51,7 @@ export function Proposals() {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.my_proposals}</span></p>
@@ -60,7 +60,7 @@ export function Proposals() {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="w-[28%] max-[992px]:w-full">
-                        <Sidebar translation={translation} page="proposals" info={info} user={user} />
+                        <Sidebar page="proposals" info={info} user={user} />
                     </div>
                     <div className="w-[72%]  max-[992px]:w-full pl-7.5  max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] mb-2">{translation?.data?.business?.proposals_to_customers}</h2>
@@ -88,7 +88,6 @@ export function Proposals() {
                                             statusKey={item.status.key}
                                             created_at={item.created_at}
                                             index={index}
-                                            translation={translation}
                                         />
                                     ))}
                                 </tbody>
@@ -110,11 +109,11 @@ export function Proposals() {
             </div>
             <div className='w-full mt-30 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

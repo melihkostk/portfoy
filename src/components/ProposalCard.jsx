@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 import eye from "../assets/eye.png"
+import { useAppContext } from "../context/AppContext"
 
-export function ProposalCard({code , name , status , statusKey , score , created_at , index , id , page , translation}) {
+export function ProposalCard({code , name , status , statusKey , score , created_at , index , id , page}) {
+    const { translation } = useAppContext();
     return (
         <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
             {page !== "external" && <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{code}</td>}

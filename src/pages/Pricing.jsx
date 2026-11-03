@@ -1,4 +1,4 @@
-import { Header } from "../components/Header";
+﻿import { Header } from "../components/Header";
 import { PricingCard } from "../components/PricingCard";
 import { DiscoverCard } from "../components/DiscoverCard"
 import { Questions } from "../components/Questions";
@@ -29,7 +29,7 @@ export function Pricing() {
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.pricing}</span></p>
@@ -64,7 +64,6 @@ export function Pricing() {
                                     customerFeatures={item.features.customer_and_personal.features}
                                     propertyTitle={item.features.property.title}
                                     propertyFeatures={item.features.property.features}
-                                    translation={translation}
                                 />
                             ))
                         ))}
@@ -171,11 +170,11 @@ export function Pricing() {
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
 
         </div>

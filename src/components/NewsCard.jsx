@@ -1,8 +1,10 @@
 import news1 from "../assets/news1.jpeg"
 import { Link } from "react-router-dom"
 import grayCalendar from "../assets/gray-calendar.png"
+import { useAppContext } from "../context/AppContext"
 
-export function NewsCard({ title, created, id, page , translation }) {
+export function NewsCard({ title, created, id, page }) {
+    const { translation } = useAppContext();
     return (
         <div className={`bg-white w-[calc(25%-40px)] ${page === "detail" ? "w-full m-0 p-0" : "m-5 p-7.5"} shrink-0 rounded-[10px] shadow-[0_0_30px_rgb(246_246_246)] max-[992px]:w-full max-[992px]:m-0`}>
             <div>

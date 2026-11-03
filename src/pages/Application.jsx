@@ -1,4 +1,4 @@
-import logo from "../assets/logo.svg"
+﻿import logo from "../assets/logo.svg"
 import video from "../assets/video-cover.png"
 import play from "../assets/play.png"
 import person from "../assets/gray-person.png"
@@ -34,7 +34,7 @@ export function Application() {
                 <div className="flex items-start max-[992px]:flex-col">
                     <div className="flex-1 pr-12.5">
                         <div>
-                            <LanguageSelect setLocale={setLocale} locale={locale} />
+                            <LanguageSelect />
                         </div>
                         <div className="mt-7.5 mb-25 w-55">
                             <Link to={"/"}>
@@ -204,7 +204,7 @@ export function Application() {
                 </div>
             </div>
             <div className="w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
-                <AppLinks translation={translation} />
+                <AppLinks />
             </div>
         </div>
     )

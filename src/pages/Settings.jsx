@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+﻿import { useEffect, useState } from "react"
 import { AppLinks } from "../components/AppLinks"
 import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
@@ -116,7 +116,7 @@ export function Settings() {
                 </div>
             )}
             {(personalSelectPopUp || infoPopUp) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_portfolio} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.manage_company}</span></p>
@@ -172,7 +172,6 @@ export function Settings() {
                                 role={item.roles[0].title}
                                 preference={preference}
                                 page="info"
-                                translation={translation}
                                 statuses={personalVisibilities}
                                 setStatuses={setPersonalVisibilities}
                             />
@@ -190,7 +189,6 @@ export function Settings() {
                 created_at={companyInfo?.created_at}
                 type={companyInfo?.type}
                 logo={companyInfo?.logo}
-                translation={translation}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
@@ -202,13 +200,11 @@ export function Settings() {
                             setPersonalSelectPopUp={setPersonalSelectPopUp}
                             preference={preference}
                             team={team}
-                            translation={translation}
                         />
                         <SettingsCard
                             id="info"
                             title={translation?.data?.business?.company_settings?.personal_visibility?.title}
                             description={translation?.data?.business?.company_settings?.personal_visibility?.description}
-                            translation={translation}
                             onChange={setInfoStatus}
                             infoStatus={infoStatus}
                             setInfoPopUp={setInfoPopUp}
@@ -217,7 +213,6 @@ export function Settings() {
                             id="pass"
                             title={translation?.data?.business?.company_settings?.pass_price_visibility?.title}
                             description={translation?.data?.business?.company_settings?.pass_price_visibility?.description}
-                            translation={translation}
                             onChange={setPassStatus}
                             infoStatus={passStatus}
                         />
@@ -233,11 +228,11 @@ export function Settings() {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

@@ -16,8 +16,10 @@ import { CreateOfferModel } from "./CreateOfferModal"
 import { getAllNotifications } from "../services/notificationsApi"
 import { logOut } from "../services/authApi"
 import sea from "../assets/sea.png"
+import { useAppContext } from "../context/AppContext"
 
-export function Header({ loged, details , translation, locale, setLocale }) {
+export function Header({ details }) {
+    const { loged, translation } = useAppContext();
 
     const [registerShown, setRegisterShown] = React.useState(false);
     const [applicationShown, setApplicationShown] = React.useState(false);
@@ -67,7 +69,7 @@ export function Header({ loged, details , translation, locale, setLocale }) {
 
     return (
         <div className="py-7.5 w-full max-w-[90%]">
-            {sidebarShown && <MainSidebar handleLogOut={handleLogOut} translation={translation} setSidebarShown={setSidebarShown} loged={loged} />}
+            {sidebarShown && <MainSidebar handleLogOut={handleLogOut} setSidebarShown={setSidebarShown} />}
             {offerModelShown && <CreateOfferModel
                 setOfferModalShown={setOfferModalShown}
                 selectedCustomer={selectedCustomer}
@@ -79,7 +81,6 @@ export function Header({ loged, details , translation, locale, setLocale }) {
                 details={details}
                 step={step}
                 setStep={setStep}
-                translation={translation}
             />}
             <div className="flex items-center justify-between">
                 <div className="w-55 max-[992px]:w-30">
@@ -133,7 +134,7 @@ export function Header({ loged, details , translation, locale, setLocale }) {
                     <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] pl-10 h-12.5 px-2 rounded-[5px] text-sm w-full" type="text" placeholder={translation?.data?.business?.search_in_properties} />
                 </form>}
                 <div className="flex items-center justify-between gap-2.5">
-                    <LanguageSelect setLocale={setLocale} locale={locale} />
+                    <LanguageSelect />
                     {!loged && <div className="relative">
                         <div className="bg-[#27C5D2] cursor-pointer h-12.5 rounded-[5px] text-white font-semibold flex items-center">
                             <div className="flex rounded-l-[5px] border-r px-5 max-[992px]:px-2.5 border-r-[#ffffff38] items-center h-full hover:bg-[#048B99] transition-colors duration-300 ease-in-out">

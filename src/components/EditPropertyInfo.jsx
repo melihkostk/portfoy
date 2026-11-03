@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import close from "../assets/blue-close.png";
 import pen from "../assets/pencil.png"
 import { getAllCities, getAllCountries, getAllCurrencies, getAllDistricts, getAllStreets } from "../services/filterApi";
+import { useAppContext } from "../context/AppContext";
 
 export function EditPropertyInfo({
     detail,
@@ -27,11 +28,11 @@ export function EditPropertyInfo({
     handleFeatureChange,
     handleUpdateProperty,
     status,
-    translation,
     prices,
     setEditPrice,
     errorMessage
 }) {
+    const { translation } = useAppContext();
     const [multiSelectTarget, setMultiSelectTarget] = useState(null)
 
     function toggleMultiSelectOption(optionId) {

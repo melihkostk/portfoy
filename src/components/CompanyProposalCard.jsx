@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useAppContext } from "../context/AppContext";
 
-export function CompanyProposalCard({name, translation , statusKey , index , code , personal , created_at , score , status , count , id}){
+export function CompanyProposalCard({name, statusKey , index , code , personal , created_at , score , status , count , id}){
+    const { translation } = useAppContext();
      return (
         <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
             <td className="py-3 px-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-[30ch] truncate">{code} ({count} {translation?.data?.business?.property})</td>

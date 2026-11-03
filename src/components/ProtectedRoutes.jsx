@@ -1,6 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom"
+import { useAppContext } from "../context/AppContext"
 
-export function ProtectedRoutes({ loged, authChecked }) {
+export function ProtectedRoutes() {
+    const { loged, authChecked } = useAppContext();
     if (!authChecked) {
         return null;
     }

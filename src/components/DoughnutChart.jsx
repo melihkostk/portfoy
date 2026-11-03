@@ -1,9 +1,11 @@
 import { Doughnut } from "react-chartjs-2"
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"
+import { useAppContext } from "../context/AppContext"
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-export function DoughnutChart({ types = []  , translation}) {
+export function DoughnutChart({ types = [] }) {
+    const { translation } = useAppContext();
 
     return (
         <div className="bg-white p-7.5 rounded-lg w-[31%] max-[992px]:w-full">

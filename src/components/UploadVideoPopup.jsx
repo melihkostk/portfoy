@@ -1,6 +1,8 @@
 import close from "../assets/blue-close.png"
+import { useAppContext } from "../context/AppContext"
 
-export function UploadVideoPopup({translation, setUploadVideoShown, handleAddOutsourceVideo, handleAddLocalVideo, videoType, setVideoType, setVideo, setCoverImg }) {
+export function UploadVideoPopup({setUploadVideoShown, handleAddOutsourceVideo, handleAddLocalVideo, videoType, setVideoType, setVideo, setCoverImg }) {
+    const { translation } = useAppContext();
 
     return (
         <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">

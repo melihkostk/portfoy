@@ -1,7 +1,9 @@
 import pencil from "../assets/pencil.png"
 import bin from "../assets/bin.png"
+import { useAppContext } from "../context/AppContext"
 
-export function FilterCard({title , created_at , notify , handleDelete , id , handleEditClick , index , translation}) {
+export function FilterCard({title , created_at , notify , handleDelete , id , handleEditClick , index}) {
+    const { translation } = useAppContext();
     return (
         <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : "bg-white"}`}>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{title}</td>

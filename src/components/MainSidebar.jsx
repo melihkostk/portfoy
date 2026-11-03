@@ -2,8 +2,10 @@ import logo from "../assets/logo.svg"
 import close from "../assets/close.png"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { useAppContext } from "../context/AppContext"
 
-export function MainSidebar({ setSidebarShown, loged, translation , handleLogOut }) {
+export function MainSidebar({ setSidebarShown, handleLogOut }) {
+    const { loged, translation } = useAppContext();
 
     const [searchInput , setSearchInput] = useState("");
 

@@ -1,6 +1,8 @@
 import close from "../assets/blue-close.png"
+import { useAppContext } from "../context/AppContext"
 
-export function ConfirmPopUp({setConfirmShown , translation , setVerifyCode , verifyCode , handleVerifyPassword}) {
+export function ConfirmPopUp({setConfirmShown , setVerifyCode , verifyCode , handleVerifyPassword}) {
+    const { translation } = useAppContext();
     return (
         <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 h-auto w-[30%] bg-white border border-[#eee] rounded-lg z-50">
             <div className="p-4 flex justify-between w-full border-b border-b-[#dee2e6]">

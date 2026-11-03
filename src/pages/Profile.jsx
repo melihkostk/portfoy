@@ -1,4 +1,4 @@
-import { AppLinks } from "../components/AppLinks"
+﻿import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
 import { ProfileCard } from "../components/ProfileCard"
@@ -68,7 +68,7 @@ export function Profile() {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account}</span></p>
@@ -77,7 +77,7 @@ export function Profile() {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="w-[28%] max-[992px]:w-full">
-                        <Sidebar translation={translation} info={info} user={user} />
+                        <Sidebar info={info} user={user} />
                     </div>
                     <div className="w-[72%] pl-7.5 max-[992px]:w-full max-[992px]:pl-0">
                         <div className="flex max-[992px]:flex-wrap justify-between -ml-3.75 -mr-3.75">
@@ -98,11 +98,11 @@ export function Profile() {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

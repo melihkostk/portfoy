@@ -2,8 +2,10 @@ import pp from "../assets/pp.svg"
 import arrow from "../assets/black-arrow-right.png"
 import { Link } from "react-router-dom"
 import React from "react"
+import { useAppContext } from "../context/AppContext"
 
-export function Sidebar({page , type , info , user , translation}) {
+export function Sidebar({page , type , info , user}) {
+    const { translation } = useAppContext();
     const [subMenu, setSubMenu] = React.useState(false)
     return (
         <div>

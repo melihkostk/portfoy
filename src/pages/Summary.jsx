@@ -58,7 +58,7 @@ export function Summary() {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_portfolio} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.company_summary}</span></p>
@@ -71,12 +71,11 @@ export function Summary() {
                 created_at={counts?.data?.created_at}
                 type={counts?.data?.type}
                 logo={counts?.data?.logo}
-                translation={translation}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex items-center max-[992px]:flex-col">
                     <div className="max-[992px]:w-full">
-                        <ScoreCard translation={translation} />
+                        <ScoreCard />
                     </div>
                     <div className="flex pl-2.5 max-[992px]:pl-0 w-full max-[992px]:justify-between flex-wrap">
                         {counts?.data?.summary?.counts?.map(item => (
@@ -88,9 +87,9 @@ export function Summary() {
             <div className="w-full py-7.5 my-7.5 bg-[#F7F6FB] flex items-center justify-center">
                 <div className="w-full max-w-[90%]">
                     <div className="flex justify-between max-[992px]:flex-col">
-                        <DoughnutChart translation={translation} types={counts?.data?.summary?.graphs?.types} />
-                        <BarChart translation={translation} review={counts?.data?.summary?.graphs?.review} />
-                        <LineChart translation={translation} visits={counts?.data?.summary?.graphs?.visits} />
+                        <DoughnutChart types={counts?.data?.summary?.graphs?.types} />
+                        <BarChart review={counts?.data?.summary?.graphs?.review} />
+                        <LineChart visits={counts?.data?.summary?.graphs?.visits} />
                     </div>
                 </div>
             </div>
@@ -222,11 +221,11 @@ export function Summary() {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

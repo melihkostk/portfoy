@@ -1,8 +1,10 @@
 import mobileImage from "../assets/mobile.png"
 import googlePlay from "../assets/google-play.png"
 import appStore from "../assets/app-store.png"
+import { useAppContext } from "../context/AppContext"
 
-export function AppLinks({translation}) {
+export function AppLinks() {
+    const { translation } = useAppContext();
     return (
         <div className="flex items-center w-full justify-between max-[992px]:p-7.5 max-[992px]:items-start max-[992px]:justify-start  px-15 h-37.5 max-[992px]:flex-col max-[992px]:h-auto">
             <div className="w-[25%] max-[992px]:hidden">

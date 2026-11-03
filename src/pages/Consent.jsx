@@ -1,4 +1,4 @@
-import { Header } from "../components/Header";
+﻿import { Header } from "../components/Header";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import { useAppContext } from "../context/AppContext";
@@ -7,7 +7,7 @@ export function Consent() {
     const { loged, locale, setLocale } = useAppContext();
     return (
         <div className="w-full flex flex-col items-center justify-center font-sf">
-            <Header loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Rıza Metni</span></p>
@@ -109,7 +109,7 @@ export function Consent() {
                 </div>
             </div>
             <div className='w-full'>
-                <Footer loged={loged} />
+                <Footer />
             </div>
         </div>
     )

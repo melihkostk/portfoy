@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+﻿import { useParams } from "react-router-dom"
 import { AppLinks } from "../components/AppLinks"
 import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
@@ -33,7 +33,7 @@ export function CompaniesDetail() {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.companies} {">"}</span> <span className="text-[#9a9898]"> {companyDetailProperties?.name}</span></p>
@@ -47,7 +47,6 @@ export function CompaniesDetail() {
                 type={companyDetailProperties?.type}
                 badges={companyDetailProperties?.badges?.[0]?.title}
                 logo={companyDetailProperties?.logo}
-                translation={translation}
 
             />
             <div className="max-w-[90%] w-full pt-12.5">
@@ -68,7 +67,6 @@ export function CompaniesDetail() {
                                     district={item.district.title}
                                     page="companiesDetail"
                                     propertyType={item.is_under_construction}
-                                    translation={translation}
                                 />
                             ))}
                         </div>
@@ -79,11 +77,11 @@ export function CompaniesDetail() {
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
 import pencil from "../assets/pencil.png"
 import darkMenu from "../assets/dark-menu.png"
+import { useAppContext } from "../context/AppContext"
 
-export function CustomerCard({name, translation , index , email , phoneCode, phoneNumber, locale , created_at , note , proposals , id , onEditClick}){
+export function CustomerCard({name, index , email , phoneCode, phoneNumber, locale , created_at , note , proposals , id , onEditClick}){
+    const { translation } = useAppContext();
     return(
         <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{name}</td>

@@ -1,4 +1,7 @@
-export function PersonelCard({ name, avatar, role, selected, id, page , translation , setSelected , statuses , setStatuses }) {
+import { useAppContext } from "../context/AppContext"
+
+export function PersonelCard({ name, avatar, role, selected, id, page , setSelected , statuses , setStatuses }) {
+    const { translation } = useAppContext();
     return (
         <div onClick={() => page === "select" && setSelected(prev => (prev?.includes(id) ? prev.filter(item => item !== id) : [...(prev || []), id]))} className={`${page === "select" ? (selected?.includes(id) ? "border-[#27c5d2]" : "border-b border-[#ddd]") : "border-[#ddd]"} flex justify-between select-none items-center p-3.75 grow border rounded-lg gap-2.5 m-1.25 ${page === "select" ? "w-[48%]" : "w-full"} cursor-pointer`}>
             <div className="flex items-center gap-2.5">

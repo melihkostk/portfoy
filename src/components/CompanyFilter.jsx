@@ -1,4 +1,7 @@
-export function CompanyFilter({ type, setSelectedType, setSelectedPropertyType, selectedPropertyType, propertyType , page, countries, selectedCountry, selectedCity, q, setQ, selectedType, selectedDistrict, setSelectedCountry, cities, setSelectedCity, district, setSelectedDistrict, streets, setSelectedStreet, filterCompany , translation }) {
+import { useAppContext } from "../context/AppContext"
+
+export function CompanyFilter({ type, setSelectedType, setSelectedPropertyType, selectedPropertyType, propertyType , page, countries, selectedCountry, selectedCity, q, setQ, selectedType, selectedDistrict, setSelectedCountry, cities, setSelectedCity, district, setSelectedDistrict, streets, setSelectedStreet, filterCompany }) {
+    const { translation } = useAppContext();
     return (
         <div className={`flex justify-between ${page === "wishlist" ? "mt-0 p-3.75" : "mt-7.5 p-7.5"} max-[992px]:flex-col max-[992px]:items-start items-end bg-[#f8f8f8] rounded-lg gap-5`}>
             <div className="flex flex-col grow max-[992px]:w-full">

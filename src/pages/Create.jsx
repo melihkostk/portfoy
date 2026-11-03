@@ -1,4 +1,4 @@
-import { CreateButton } from "../components/CreateButton"
+﻿import { CreateButton } from "../components/CreateButton"
 import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
@@ -95,7 +95,7 @@ export function Create() {
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             {errorMessageShown && <div className="fixed max-w-1/2 flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-linear-to-r from-[rgb(201,61,61)] to-[rgb(151,5,5)] p-3 text-white">
                 <p>{translation?.data?.business?.please_fill_fields}</p>
                 <img onClick={() => setErrorMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
@@ -237,11 +237,11 @@ export function Create() {
             </div>
             <div className='w-full mt-30 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

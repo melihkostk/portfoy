@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { showOffer } from "../services/profileApi";
 import eye from "../assets/eye.png"
+import { useAppContext } from "../context/AppContext"
 
-export function OfferCard({ title, translation ,  name , page , price, offered_price, status, statusKey, created_at, setLoaded , id, type , index , setOfferMenuShown , setOfferInfo , setSelectedOfferId }) {
+export function OfferCard({ title,  name , page , price, offered_price, status, statusKey, created_at, setLoaded , id, type , index , setOfferMenuShown , setOfferInfo , setSelectedOfferId }) {
+    const { translation } = useAppContext();
 
     const handleShowOffer = () => {
         setOfferMenuShown(true)

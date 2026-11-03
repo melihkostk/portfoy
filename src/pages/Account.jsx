@@ -1,4 +1,4 @@
-import { Header } from "../components/Header"
+﻿import { Header } from "../components/Header"
 import { Sidebar } from "../components/Sidebar"
 import pg from "../assets/pg.jpg"
 import { AppLinks } from "../components/AppLinks"
@@ -135,11 +135,11 @@ export function Account() {
                     />
                 </div>
             )}
-            {changePasswordShown && <ChangePasswordPopUp translation={translation} setCurrent={setCurrent} setPassword={setPassword} setConfirm={setConfirm} handlePasswordChange={handlePasswordChange} setChangePassword={setChangePasswordShown} />}
-            {errorShown && <ErrorPopUp translation={translation} setErrorShown={setErrorShown} errorMessage={errorMessage} />}
+            {changePasswordShown && <ChangePasswordPopUp setCurrent={setCurrent} setPassword={setPassword} setConfirm={setConfirm} handlePasswordChange={handlePasswordChange} setChangePassword={setChangePasswordShown} />}
+            {errorShown && <ErrorPopUp setErrorShown={setErrorShown} errorMessage={errorMessage} />}
             {checkShown && <CheckEmailPopUp setConfirmShown={setConfirmShown} setCheckShown={setCheckShown} successMessage={successMessage} />}
-            {confirmShown && <ConfirmPopUp handleVerifyPassword={handleVerifyPassword} translation={translation} setVerifyCode={setVerifyCode} verifyCode={verifyCode} setConfirmShown={setConfirmShown} />}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            {confirmShown && <ConfirmPopUp handleVerifyPassword={handleVerifyPassword} setVerifyCode={setVerifyCode} verifyCode={verifyCode} setConfirmShown={setConfirmShown} />}
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.my_account_info}</span></p>
@@ -156,7 +156,7 @@ export function Account() {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="w-[28%] max-[992px]:w-full">
-                        <Sidebar translation={translation} page="account" info={info} user={user} />
+                        <Sidebar page="account" info={info} user={user} />
                     </div>
                     <div className="pl-7.5 w-[72%] max-[992px]:w-full max-[992px]:pl-0">
                         <h2 className="text-[#212529] text-[25px] mb-5 font-semibold">{translation?.data?.business?.my_company_info}</h2>
@@ -255,11 +255,11 @@ export function Account() {
             </div>
             <div className='w-full mt-30 mb-10 max-[992px]:mb-7.5 max-[992px]:mt-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

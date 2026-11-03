@@ -1,9 +1,12 @@
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend } from "chart.js"
 
+import { useAppContext } from "../context/AppContext"
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend)
 
-export function LineChart({ visits = {} , translation}) {
+export function LineChart({ visits = {} }) {
+    const { translation } = useAppContext();
     return (
         <div className="bg-white p-7.5 rounded-lg w-[31%] max-[992px]:w-full">
             <div className="bg-[#f7f6fb] w-full rounded-lg mb-7.5 text-center">

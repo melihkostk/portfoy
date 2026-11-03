@@ -1,4 +1,4 @@
-import { Sidebar } from "../components/Sidebar"
+﻿import { Sidebar } from "../components/Sidebar"
 import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
@@ -89,7 +89,7 @@ export function QuickFilters() {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.quick_filters}</span></p>
@@ -125,7 +125,7 @@ export function QuickFilters() {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
                     <div className="w-[28%] max-[992px]:w-full sticky top-0">
-                        <Sidebar translation={translation} page="quickFilters" user={user} info={info} />
+                        <Sidebar page="quickFilters" user={user} info={info} />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] font-medium mb-2">{translation?.data?.business?.quick_filters}</h2>
@@ -150,7 +150,6 @@ export function QuickFilters() {
                                             handleDelete={handleDelete}
                                             handleEditClick={handleEditClick}
                                             index={index}
-                                            translation={translation}
                                         />
                                     ))}
                                 </tbody>
@@ -161,11 +160,11 @@ export function QuickFilters() {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

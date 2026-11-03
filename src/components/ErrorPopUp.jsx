@@ -1,6 +1,8 @@
 import cross from "../assets/cross.png"
+import { useAppContext } from "../context/AppContext"
 
-export function ErrorPopUp({setErrorShown , errorMessage , translation}){
+export function ErrorPopUp({setErrorShown , errorMessage}){
+    const { translation } = useAppContext();
     return(
         <div className="fixed pb-5 top-1/2 p-4 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 h-auto w-[30%] bg-white border border-[#eee] rounded-lg z-60">
             <div className="mt-10 mb-2.5">

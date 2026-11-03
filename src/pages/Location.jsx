@@ -1,4 +1,4 @@
-import { Header } from "../components/Header"
+﻿import { Header } from "../components/Header"
 import { CompanyHeader } from "../components/CompanyHeader"
 import { LocationCard } from "../components/LocationCard"
 import { AppLinks } from "../components/AppLinks"
@@ -182,7 +182,7 @@ export function Location() {
                     </div>
                 </div>
             </div>}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_portfolio} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.company_contacts}</span></p>
@@ -195,7 +195,6 @@ export function Location() {
                 created_at={location?.data?.created_at}
                 type={location?.data?.type}
                 logo={location?.data?.logo}
-                translation={translation}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center max-[992px]:flex-col max-[992px]:items-start">
@@ -218,7 +217,6 @@ export function Location() {
                                 handleDeleteLocation={handleDeleteLocation}
                                 setUpdateMapShown={setUpdateMapShown}
                                 onEditClick={() => handleEditClick(item)}
-                                translation={translation}
                             />
                         ))}
                     </div>
@@ -334,11 +332,11 @@ export function Location() {
             </div>}
             <div className='w-full mt-40 mb-30'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

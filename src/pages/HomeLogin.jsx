@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+﻿import { Link } from "react-router-dom"
 import { Filter } from "../components/Filter"
 import { Header } from "../components/Header"
 import { PropertiesCard } from "../components/PropertiesCard"
@@ -49,10 +49,10 @@ export function HomeLogin({ news, logOut }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} logOut={logOut} locale={locale} setLocale={setLocale} />
+            <Header logOut={logOut} />
             <div className='w-full max-w-[90%] py-20'>
                 <h1 className='text-[35px] text-[#45443f] font-medium mb-2'>{translation?.data?.business?.filter_properties}</h1>
-                <Filter translation={translation} />
+                <Filter />
             </div>
             <div className='w-full max-w-[90%] flex flex-col items-center'>
                 <div className="w-full py-18.75">
@@ -77,7 +77,6 @@ export function HomeLogin({ news, logOut }) {
                                     badges={item?.badges?.[0]?.key}
                                     badgeTitle={item?.badges?.[0]?.title}
                                     propertyType={item?.property_type}
-                                    translation={translation}
                                 />
                             ))}
                         </div>
@@ -112,7 +111,6 @@ export function HomeLogin({ news, logOut }) {
                                     city={item.city.title}
                                     district={item.district.title}
                                     page="homeLogin"
-                                    translation={translation}
                                 />
                             ))}
                         </div>
@@ -136,18 +134,18 @@ export function HomeLogin({ news, logOut }) {
                     </div>
                     <div className='flex items-start overflow-hidden -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
                         {news?.slice(0,4)?.map(item => (
-                            <NewsCard translation={translation} key={item.id} title={item.title} cover={item.cover} created={item.created_at} id={item.id} />
+                            <NewsCard key={item.id} title={item.title} cover={item.cover} created={item.created_at} id={item.id} />
                         ))}
                     </div>
                 </div>
             </div>
             <div className='w-full mt-30 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

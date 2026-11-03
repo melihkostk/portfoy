@@ -1,4 +1,4 @@
-import logo from "../assets/logo.svg"
+﻿import logo from "../assets/logo.svg"
 import { AppLinks } from "../components/AppLinks"
 import { Link, useNavigate  } from "react-router-dom"
 import { LanguageSelect } from "../components/LanguageSelect"
@@ -64,7 +64,7 @@ export function Login() {
                             <img className="max-w-full align-middle" src={logo} alt="" />
                         </Link>
                     </div>
-                    <LanguageSelect setLocale={setLocale} locale={locale} />
+                    <LanguageSelect />
                 </div>
                 <div className="w-full bg-white shadow-[0_0_30px_rgb(247_247_247)] p-7.5 rounded-lg">
                     <div className="mt-6.25 mb-7.5">
@@ -107,7 +107,7 @@ export function Login() {
                 </div>
             </div>
             <div className="w-full mx-auto max-w-[80%] flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
-                <AppLinks translation={translation} />
+                <AppLinks />
             </div>
         </div>
     )

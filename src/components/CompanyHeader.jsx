@@ -10,8 +10,10 @@ import pp from "../assets/default-company.png"
 import phone from "../assets/white-phone.png"
 import mail from "../assets/white-mail.png"
 import badge from "../assets/badge.png"
+import { useAppContext } from "../context/AppContext"
 
-export function CompanyHeader({ page, id, name, created_at, type, badges, code , translation }) {
+export function CompanyHeader({ page, id, name, created_at, type, badges, code }) {
+    const { translation } = useAppContext();
 
     return (
         <div style={{ backgroundImage: `url(${bgImage})` }} className="w-full bg-cover bg-center pt-7.5 flex justify-center">

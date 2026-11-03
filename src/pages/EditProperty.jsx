@@ -1,4 +1,4 @@
-import { Header } from "../components/Header"
+﻿import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import { useEffect, useState } from "react";
@@ -398,7 +398,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             {deletePopUp && <div className="fixed top-1/2 left-1/2 overflow-y-auto pb-5 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-end items-center w-full p-4 border-b-[#dee2e6]">
                     <img onClick={() => setDeletePopUp(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
@@ -417,7 +417,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                     </div>
                 </div>
             </div>}
-            {deleteVideoPopUp && <DeleteVideoPopUp translation={translation} setDeleteVideoPopUp={setDeleteVideoPopUp} onClick={deleteTarget === "media" ? handleDeleteGalery : handleDeleteVideo} />}
+            {deleteVideoPopUp && <DeleteVideoPopUp setDeleteVideoPopUp={setDeleteVideoPopUp} onClick={deleteTarget === "media" ? handleDeleteGalery : handleDeleteVideo} />}
             {copyPopUp && <form onSubmit={handleClone} className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-auto w-[27%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex justify-between items-center w-full p-4 border-b border-b-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.clone_property}</h2>
@@ -649,7 +649,6 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 handleFeatureChange={handleFeatureChange}
                 handleUpdateProperty={handleUpdateProperty}
                 status={status}
-                translation={translation}
                 prices={prices}
                 setEditPrice={setEditPrice}
                 errorMessage={errorMessage}
@@ -662,7 +661,6 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 setCopyPopUp={setCopyPopUp}
                 setDeletePopUp={setDeletePopUp}
                 setSoldPopUp={setSoldPopUp}
-                translation={translation}
                 errorMessage={errorMessage}
             />}
             {editType === "move" && <EditPropertyMove transactions={transactions} errorMessage={errorMessage} />}
@@ -683,7 +681,6 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 setLoaded={setLoaded}
                 proposals={proposals}
                 externalProposals={externalProposals}
-                translation={translation}
                 errorMessage={errorMessage}
             />}
             {editType === "galery" && <EditPropertyGallery
@@ -707,16 +704,15 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 coverImg={coverImg}
                 setCoverImg={setCoverImg}
                 handleAddLocalVideo={handleAddLocalVideo}
-                translation={translation}
                 errorMessage={errorMessage}
             />}
             <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div >
     )

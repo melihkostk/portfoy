@@ -1,4 +1,4 @@
-import { LanguageSelect } from "../components/LanguageSelect";
+﻿import { LanguageSelect } from "../components/LanguageSelect";
 import { Link } from "react-router-dom";
 import { AppLinks } from "../components/AppLinks";
 import logo from "../assets/logo.svg"
@@ -25,7 +25,7 @@ export function Check() {
                 <div className="flex items-center max-[992px]:flex-col">
                     <div className="pr-12.5 flex-1">
                         <div>
-                            <LanguageSelect setLocale={setLocale} locale={locale} />
+                            <LanguageSelect />
                         </div>
                         <div className="w-55 mt-7.5 mb-25">
                             <Link to={"/"}>
@@ -78,7 +78,7 @@ export function Check() {
                 </div>
             </div>
             <div className="w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb] mt-40 mb-15">
-                <AppLinks translation={translation} />
+                <AppLinks />
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import { Header } from "../components/Header"
+﻿import { Header } from "../components/Header"
 import { Sidebar } from "../components/Sidebar"
 import { Footer } from "../components/Footer"
 import { AppLinks } from "../components/AppLinks"
@@ -126,7 +126,7 @@ export function Wishlist() {
                     />
                 </div>
             )}
-            <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
+            <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.my_wishlist}</span></p>
@@ -139,7 +139,7 @@ export function Wishlist() {
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
                     <div className="w-[28%] max-[992px]:w-full sticky top-0">
-                        <Sidebar translation={translation} page="wishlist" user={user} info={info} />
+                        <Sidebar page="wishlist" user={user} info={info} />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <div className="flex justify-between items-center mb-5 flex-wrap">
@@ -170,7 +170,6 @@ export function Wishlist() {
                                 propertyType={propertyType}
                                 selectedPropertyType={selectedPropertyType}
                                 setSelectedPropertyType={setSelectedPropertyType}
-                                translation={translation}
                             />
                         </div>
                         <div className="flex flex-wrap justify-between -mx-3.75 mt-7.5">
@@ -188,7 +187,6 @@ export function Wishlist() {
                                         city={item.city.title}
                                         district={item.district.title}
                                         handleToggleWishlist={handleToggleWishlist}
-                                        translation={translation}
                                     />
                                 )) : (
                                     <div className="text-[#636464] bg-[#fafafa] rounded-lg p-3.75 m-3.75 w-full max-h-fit">{translation?.data?.business?.no_records_for_properties}</div>
@@ -211,11 +209,11 @@ export function Wishlist() {
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks translation={translation} />
+                    <AppLinks />
                 </div>
             </div>
             <div className='w-full'>
-                <Footer translation={translation} loged={loged} />
+                <Footer />
             </div>
         </div>
     )

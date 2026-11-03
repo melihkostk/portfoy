@@ -1,4 +1,4 @@
-import "./App.css";
+﻿import "./App.css";
 import { Discover } from "./pages/Discover";
 import { Home } from './pages/Home';
 import { News } from './pages/News';
@@ -52,7 +52,7 @@ import { ResetPassword } from "./pages/ResetPassword.jsx";
 import { AppProvider, useAppContext } from "./context/AppContext.jsx";
 
 function AppRoutes() {
-  const { loged, authChecked, locale } = useAppContext();
+  const { loged, locale } = useAppContext();
 
   const [news, setNews] = useState([])
 
@@ -81,7 +81,7 @@ function AppRoutes() {
         <Route path="/consent" element={<Consent />} />
         <Route path="/articles/:id" element={<NewsDetail news={news} />}></Route>
         <Route path="*" element={<NotFound />}></Route>
-        <Route element={<ProtectedRoutes loged={loged} authChecked={authChecked} />}>
+        <Route element={<ProtectedRoutes />}>
           <Route path="/companies" element={<Companies />} />
           <Route path="/properties" element={<Properties />} />
           <Route path="/properties/create" element={<Create />} />
