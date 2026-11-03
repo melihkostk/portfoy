@@ -7,7 +7,7 @@ import { useAppContext } from "../context/AppContext";
 
 export function News({ news }) {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     return (
         <div className='flex flex-col items-center font-sf'>

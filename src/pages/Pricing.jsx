@@ -11,7 +11,7 @@ import { useAppContext } from "../context/AppContext";
 
 export function Pricing() {
 
-    const { loged, locale, setLocale, translation } = useAppContext();
+    const { locale, translation } = useAppContext();
 
     const [type, setType] = useState([]);
 

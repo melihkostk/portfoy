@@ -14,7 +14,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Team() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { locale, translation, translationLoaded } = useAppContext();
 
     const [team, setTeam] = useState([]);
     const [loaded, setLoaded] = useState(false)

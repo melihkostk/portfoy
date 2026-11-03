@@ -17,7 +17,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Home({ news }) {
 
-  const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+  const { locale, translation, translationLoaded } = useAppContext();
 
   const [pricingCate, setPricingCate] = useState(2)
 

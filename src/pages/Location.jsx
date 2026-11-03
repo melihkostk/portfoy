@@ -13,7 +13,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Location() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     const [location, setLocation] = useState([])
     const [loaded, setLoaded] = useState(false)

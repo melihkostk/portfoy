@@ -12,7 +12,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Proposals() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const {translation, translationLoaded } = useAppContext();
 
     const [usersProposal, setUsersProposals] = useState([]);
     const [loaded, setLoaded] = useState(false)

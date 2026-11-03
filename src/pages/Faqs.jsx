@@ -6,7 +6,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Faqs() {
 
-    const { loged, locale, setLocale, translation } = useAppContext();
+    const { translation } = useAppContext();
 
     return (
         <div className="w-full flex flex-col items-center font-sf">

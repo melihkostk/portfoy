@@ -15,7 +15,7 @@ import { useAppContext } from "../context/AppContext";
 
 export function Discover() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { locale, translation, translationLoaded } = useAppContext();
 
     const [pricingCate, setPricingCate] = useState(2)
 

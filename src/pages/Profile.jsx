@@ -14,7 +14,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Profile() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     const [loaded, setLoaded] = useState(false)
     const [wishlist, setWishlist] = useState([]);

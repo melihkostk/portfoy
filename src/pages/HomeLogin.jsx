@@ -13,7 +13,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function HomeLogin({ news, logOut }) {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     const [recentlyProperties, setRecentlyProperties] = useState([])
     const [discountedProperties, setDiscountedProperties] = useState([])

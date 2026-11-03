@@ -17,7 +17,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Wishlist() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const {locale, translation, translationLoaded } = useAppContext();
 
     const [page, setPage] = useState(1)
 

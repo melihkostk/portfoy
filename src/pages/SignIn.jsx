@@ -15,7 +15,7 @@ import whiteClose from "../assets/close.png"
 import { useAppContext } from "../context/AppContext"
 
 export function SignIn() {
-    const { locale, setLocale, translation, translationLoaded } = useAppContext();
+    const {translation, translationLoaded } = useAppContext();
 
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");

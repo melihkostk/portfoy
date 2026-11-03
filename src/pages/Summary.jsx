@@ -15,7 +15,7 @@ import { useAppContext } from "../context/AppContext";
 
 export function Summary() {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     const [counts, setCounts] = useState([]);
     const [loaded, setLoaded] = useState(false)

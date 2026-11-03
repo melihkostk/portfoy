@@ -22,7 +22,7 @@ import deleteIcon from "../assets/gray-trash.png"
 
 export function EditProperty({ setMessage, setMessageShown }) {
 
-    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     const navigate = useNavigate();
 

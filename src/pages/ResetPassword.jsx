@@ -11,7 +11,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function ResetPassword() {
 
-    const { locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { locale, translation, translationLoaded } = useAppContext();
 
     const [loaded, setLoaded] = useState(true);
 

@@ -12,7 +12,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Login() {
 
-    const { setLoged, locale, setLocale, translation, translationLoaded } = useAppContext();
+    const { setLoged, locale, translation, translationLoaded } = useAppContext();
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
