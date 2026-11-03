@@ -28,9 +28,16 @@ export function Settings({ loged, locale, setLocale }) {
     }, [])
 
     const [preference, setPreference] = useState([]);
+    const [infoStatus, setInfoStatus] = useState(null);
+    const [passStatus , setPassStatus] = useState(null);
+
 
     useEffect(() => {
-        getPreference().then(setPreference)
+        getPreference().then((data) => {
+            setPreference(data);
+            setInfoStatus(data?.data?.personal_contacts_visibilities?.status)
+            setPassStatus(data?.data?.pass_price_visibility)
+        })
     }, [])
 
     const [translation, setTranslation] = useState([]);
@@ -42,7 +49,6 @@ export function Settings({ loged, locale, setLocale }) {
         getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
     }, [locale])
 
-    const [passStatus, setPassStatus] = useState(0);
 
     const [successMessage, setSuccessMessage] = useState("");
     const [successMessageShown, setSuccessMessageShown] = useState(false);
@@ -63,9 +69,6 @@ export function Settings({ loged, locale, setLocale }) {
             }
         }).finally(() => setLoaded(true))
     }
-
-    const [infoStatus, setInfoStatus] = useState(0);
-
     function handleInfoVisibility() {
         setLoaded(false)
         updatePersonalContactVisibility(infoStatus).then(data => {
@@ -128,7 +131,7 @@ export function Settings({ loged, locale, setLocale }) {
                         ))}
                     </div>
                     <div className="mt-2">
-                        <button className="bg-[#27c5d2] cursor-pointer font-semibold text-sm w-full text-white rounded-lg py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">Kaydet</button>
+                        <button className="bg-[#27c5d2] cursor-pointer font-semibold text-sm w-full text-white rounded-lg py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
                     </div>
                 </div>
             </div>}
@@ -193,6 +196,7 @@ export function Settings({ loged, locale, setLocale }) {
                             description={translation?.data?.business?.company_settings?.pass_price_visibility?.description}
                             translation={translation}
                             onChange={setPassStatus}
+                            infoStatus={passStatus}
                         />
                     </div>
                 </div>

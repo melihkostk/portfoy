@@ -7,8 +7,8 @@ export function SettingsCard({ title, description, setPersonalSelectPopUp, prefe
             </div>
             <div>
                 {title !== translation.data?.business?.company_settings?.price_offers?.title ? <div className="flex items-center gap-2">
-                    <select onChange={(e) => onChange(Number(e.target.value))} className="border border-[#d9d9d9] rounded-lg bg-white py-1.5 px-3" name="" id="">
-                    <option value={1} selected>
+                    <select value={infoStatus ?? undefined} onChange={(e) => onChange(Number(e.target.value))} className="border border-[#d9d9d9] rounded-lg bg-white py-1.5 px-3" name="" id="">
+                    <option value={1}>
                         {translation?.data?.business?.everyone_can_see}
                     </option>
                     <option value={0}>
