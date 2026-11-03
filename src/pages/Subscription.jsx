@@ -7,9 +7,11 @@ import { useEffect, useState } from "react"
 import { getCompanyInfo, getSubscriptions, getSubsUsage } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function Subscription({ loged , locale, setLocale }) {
+export function Subscription() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [subscriptions, setSubscriptions] = useState([]);
     const [loaded, setLoaded] = useState(false)
@@ -32,17 +34,10 @@ export function Subscription({ loged , locale, setLocale }) {
         getCompanyInfo().then(setCompanyInfo)
     }, [])
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
             {tableShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

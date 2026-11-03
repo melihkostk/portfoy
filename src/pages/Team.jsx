@@ -10,9 +10,11 @@ import { ClipLoader } from "react-spinners"
 import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
 import { SuccessPopUp } from "../components/SuccessPopup"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function Team({ loged , locale, setLocale}) {
+export function Team() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [team, setTeam] = useState([]);
     const [loaded, setLoaded] = useState(false)
@@ -183,13 +185,6 @@ export function Team({ loged , locale, setLocale}) {
         }))
     }
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     function handleEditPermission(){
         setLoaded(false)
         const permissionValues = {}
@@ -214,7 +209,7 @@ export function Team({ loged , locale, setLocale}) {
     return (
         <div className='flex flex-col items-center font-sf'>
             {(errorPopUp || addShown || editShown || inviteEditShown || editPermissionShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

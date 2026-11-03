@@ -9,9 +9,11 @@ import { getRecentlyProperties } from "../services/propertiesApi"
 import { getDiscountedProperties } from "../services/propertiesApi"
 import { useState, useEffect, useRef } from "react"
 import { ClipLoader } from "react-spinners"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function HomeLogin({ loged, news, logOut , locale, setLocale }) {
+export function HomeLogin({ news, logOut }) {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [recentlyProperties, setRecentlyProperties] = useState([])
     const [discountedProperties, setDiscountedProperties] = useState([])
@@ -36,16 +38,9 @@ export function HomeLogin({ loged, news, logOut , locale, setLocale }) {
         el.scrollTo({ left: (maxScroll / (dotCount - 1)) * index, behavior: "smooth" })
     }
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

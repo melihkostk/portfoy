@@ -7,9 +7,11 @@ import { getCompaniesTeam } from "../services/companiesApi";
 import { CompanyHeader } from "../components/CompanyHeader";
 import { TeamCard } from "../components/TeamCard";
 import { ClipLoader } from "react-spinners";
-import { getTranslation } from "../services/translation";
+import { useAppContext } from "../context/AppContext";
 
-export function CompaniesDetailTeam({ loged , locale, setLocale }) {
+export function CompaniesDetailTeam() {
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
+
     const { id } = useParams();
 
     const [companyDetailTeam, setCompanyDetailTeam] = useState([]);
@@ -19,16 +21,9 @@ export function CompaniesDetailTeam({ loged , locale, setLocale }) {
         getCompaniesTeam(id).then(setCompanyDetailTeam).finally(() => setLoaded(true))
     }, [id])
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

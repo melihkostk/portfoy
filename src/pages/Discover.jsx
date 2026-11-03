@@ -8,23 +8,16 @@ import { PricingCard } from "../components/PricingCard";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import { useEffect, useState } from "react";
-import { getTranslation } from "../services/translation";
 import { ClipLoader } from "react-spinners"
 import { getCompanyTypes } from "../services/companiesApi";
 import { getPackages } from "../services/pricingApi";
+import { useAppContext } from "../context/AppContext";
 
-export function Discover({ loged, locale, setLocale }) {
+export function Discover() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [pricingCate, setPricingCate] = useState(2)
-
-    const [translation, setTranslation] = useState([]);
-
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
 
     const [type, setType] = useState([]);
 
@@ -40,7 +33,7 @@ export function Discover({ loged, locale, setLocale }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {!translationLoaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

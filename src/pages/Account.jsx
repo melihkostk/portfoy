@@ -8,15 +8,17 @@ import { getActiveSubscription, getCompanyInfo, getTeam } from "../services/myCo
 import { updateProfile, verfiyPassword } from "../services/profileApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
-import { getTranslation } from "../services/translation"
 import { ChangePasswordPopUp } from "../components/ChangePasswordPopUp"
 import { changePassword } from "../services/profileApi"
 import { ErrorPopUp } from "../components/ErrorPopUp"
 import { CheckEmailPopUp } from "../components/CheckEmailPopUp"
 import { ConfirmPopUp } from "../components/ConfirmPopUp"
 import whiteClose from "../assets/close.png"
+import { useAppContext } from "../context/AppContext"
 
-export function Account({ loged, locale, setLocale }) {
+export function Account() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [name, setName] = useState("");
     const [code, setCode] = useState("");
@@ -76,13 +78,6 @@ export function Account({ loged, locale, setLocale }) {
         }).finally(() => setLoaded(true));
     }
 
-    const [translation, setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     const [current, setCurrent] = useState("");
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
@@ -131,7 +126,7 @@ export function Account({ loged, locale, setLocale }) {
     return (
         <div className='flex flex-col items-center font-sf'>
             {(changePasswordShown || errorShown || checkShown || confirmShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-60 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

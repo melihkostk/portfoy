@@ -9,9 +9,11 @@ import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 import whiteClose from "../assets/close.png"
 import { getCompanyInfo } from "../services/myCompanyApi"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function QuickFilters({ loged , locale, setLocale }) {
+export function QuickFilters() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [quickFilters, setQuickFilters] = useState([]);
     const [loaded, setLoaded] = useState(false)
@@ -75,17 +77,10 @@ export function QuickFilters({ loged , locale, setLocale }) {
         }
     }, [])
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
             {editFilterShown && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

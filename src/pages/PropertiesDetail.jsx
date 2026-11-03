@@ -22,9 +22,11 @@ import graph from "../assets/increase-graph.png"
 import pen from "../assets/pen.png"
 import whiteClose from "../assets/close.png"
 import play from "../assets/white-play.png"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function PropertiesDetail({ loged , locale, setLocale }) {
+export function PropertiesDetail() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -111,17 +113,10 @@ export function PropertiesDetail({ loged , locale, setLocale }) {
 
     const [thumbnailType , setThumbnailType] = useState("");
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
             {(offerShown || errorMessageShown || offerModelShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

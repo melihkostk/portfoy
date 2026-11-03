@@ -8,9 +8,11 @@ import { addCustomer, editCustomer, filterCustomer, getAllCustomers, getAllLangu
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function Customers({ loged , locale, setLocale }) {
+export function Customers() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [customers, setCustomers] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -88,17 +90,10 @@ export function Customers({ loged , locale, setLocale }) {
         })).finally(() => setLoaded(true))
     }
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
             {customerMenu && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

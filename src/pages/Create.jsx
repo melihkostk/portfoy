@@ -8,9 +8,11 @@ import { ClipLoader } from "react-spinners"
 import { getAllCities, getAllCountries, getAllCurrencies, getAllDistricts, getAllStreets } from "../services/filterApi"
 import { useNavigate } from "react-router-dom"
 import whiteClose from "../assets/close.png"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function Create({ loged , locale, setLocale }) {
+export function Create() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const navigate = useNavigate();
 
@@ -91,13 +93,6 @@ export function Create({ loged , locale, setLocale }) {
         }).finally(() => setLoaded(true))
     }
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header translation={translation} loged={loged} locale={locale} setLocale={setLocale} />
@@ -105,7 +100,7 @@ export function Create({ loged , locale, setLocale }) {
                 <p>{translation?.data?.business?.please_fill_fields}</p>
                 <img onClick={() => setErrorMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
             </div>}
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

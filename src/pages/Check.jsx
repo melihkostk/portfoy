@@ -3,24 +3,16 @@ import { Link } from "react-router-dom";
 import { AppLinks } from "../components/AppLinks";
 import logo from "../assets/logo.svg"
 import t from "../assets/t.png"
-import { useEffect, useState } from "react";
-import { getTranslation } from "../services/translation";
 import { ClipLoader } from "react-spinners"
+import { useAppContext } from "../context/AppContext";
 
-export function Check({ locale, setLocale }) {
+export function Check() {
 
-    const [translation , setTranslation] = useState([]);
-
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
+    const { locale, setLocale, translation, translationLoaded } = useAppContext();
 
     return (
         <div className="w-full flex flex-col items-center justify-center font-sf">
-            {!loaded && (
+            {!translationLoaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

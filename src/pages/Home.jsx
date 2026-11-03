@@ -10,23 +10,16 @@ import about from "../assets/about.png"
 import step1 from "../assets/step1.png"
 import step3 from "../assets/step3.png"
 import { useEffect, useState } from "react"
-import { getTranslation } from "../services/translation"
 import { ClipLoader } from "react-spinners"
 import { getPackages } from "../services/pricingApi"
 import { getCompanyTypes } from "../services/companiesApi"
+import { useAppContext } from "../context/AppContext"
 
-export function Home({ loged, news, locale, setLocale }) {
+export function Home({ news }) {
+
+  const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
   const [pricingCate, setPricingCate] = useState(2)
-
-  const [translation, setTranslation] = useState([]);
-
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    setLoaded(false)
-    getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-  }, [locale])
 
   const [packages, setPackages] = useState([]);
 
@@ -42,7 +35,7 @@ export function Home({ loged, news, locale, setLocale }) {
 
   return (
     <div className='flex flex-col items-center font-sf'>
-      {!loaded && (
+      {!translationLoaded && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
           <ClipLoader
             size={150}

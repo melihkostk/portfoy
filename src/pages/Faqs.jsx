@@ -2,16 +2,11 @@ import { Header } from "../components/Header"
 import { Questions } from "../components/Questions"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
-import { useEffect, useState } from "react"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function Faqs({loged, locale, setLocale}) {
+export function Faqs() {
 
-    const [translation , setTranslation] = useState([]);
-    
-    useEffect(() => {
-        getTranslation(locale).then(setTranslation);
-    }, [locale])
+    const { loged, locale, setLocale, translation } = useAppContext();
 
     return (
         <div className="w-full flex flex-col items-center font-sf">

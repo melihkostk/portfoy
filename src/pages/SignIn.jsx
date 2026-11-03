@@ -2,8 +2,7 @@ import logo from "../assets/logo.svg"
 import { Link } from "react-router-dom"
 import { AppLinks } from "../components/AppLinks"
 import { LanguageSelect } from "../components/LanguageSelect"
-import React, { useEffect, useState } from "react"
-import { getTranslation } from "../services/translation"
+import React, { useState } from "react"
 import person from "../assets/name-placeholder.png"
 import mail from "../assets/mail.png"
 import lock from "../assets/lock.png"
@@ -13,22 +12,18 @@ import eye from "../assets/gray-eye.png"
 import { ClipLoader } from "react-spinners"
 import { register } from "../services/authApi"
 import whiteClose from "../assets/close.png"
+import { useAppContext } from "../context/AppContext"
 
-export function SignIn({ locale, setLocale }) {
+export function SignIn() {
+    const { locale, setLocale, translation, translationLoaded } = useAppContext();
+
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [code, setCode] = React.useState("");
     const [phone, setPhone] = React.useState("");
 
-    const [translation, setTranslation] = useState([]);
-
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-        setLoaded(false);
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true));
-    }, [locale])
+    const [loaded, setLoaded] = useState(true);
 
     const [inputType, setInputType] = useState("password")
 
@@ -55,7 +50,7 @@ export function SignIn({ locale, setLocale }) {
 
     return (
         <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-20% to-white to-20%">
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

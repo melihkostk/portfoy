@@ -9,9 +9,11 @@ import { ClipLoader } from "react-spinners"
 import location from "../assets/gray-location.png"
 import building from "../assets/building.png"
 import calendar from "../assets/calendar.png"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function Boost({ loged, locale, setLocale }) {
+export function Boost() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const { id } = useParams();
 
@@ -24,16 +26,9 @@ export function Boost({ loged, locale, setLocale }) {
 
     const [day, setDay] = useState(7);
 
-    const [translation, setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

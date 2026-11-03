@@ -1,15 +1,10 @@
 import { Link } from "react-router-dom"
 import logo from "../assets/logo.svg"
-import { useEffect, useState } from "react"
-import { getTranslation } from "../services/translation";
+import { useAppContext } from "../context/AppContext";
 
-export function NotFound({locale}) {
+export function NotFound() {
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        getTranslation(locale).then(setTranslation);
-    }, [locale])
+    const { translation } = useAppContext();
 
     return (
         <div className="flex items-center justify-center h-screen font-sf">

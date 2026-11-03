@@ -5,17 +5,13 @@ import { Questions } from "../components/Questions";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import { useEffect, useState } from "react";
-import { getTranslation } from "../services/translation";
 import { getCompanyTypes } from "../services/companiesApi";
 import { getPackages } from "../services/pricingApi";
+import { useAppContext } from "../context/AppContext";
 
-export function Pricing({ loged, locale, setLocale }) {
+export function Pricing() {
 
-    const [translation, setTranslation] = useState([]);
-
-    useEffect(() => {
-        getTranslation(locale).then(setTranslation);
-    }, [locale])
+    const { loged, locale, setLocale, translation } = useAppContext();
 
     const [type, setType] = useState([]);
 

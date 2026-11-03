@@ -7,9 +7,11 @@ import { getCompaniesProperties } from "../services/companiesApi"
 import { useEffect, useState } from "react"
 import { PropertiesCard } from "../components/PropertiesCard"
 import { ClipLoader } from "react-spinners"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function CompaniesDetail({ loged , locale, setLocale }) {
+export function CompaniesDetail() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const { id } = useParams();
 
@@ -20,16 +22,9 @@ export function CompaniesDetail({ loged , locale, setLocale }) {
         getCompaniesProperties(id).then(setCompanyDetailProperties).finally(() => setLoaded(true))
     }, [id])
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

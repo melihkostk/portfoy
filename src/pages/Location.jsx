@@ -9,9 +9,11 @@ import { addLocation, deleteAddress, getLocation, updateLocation } from "../serv
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function Location({ loged , locale, setLocale }) {
+export function Location() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [location, setLocation] = useState([])
     const [loaded, setLoaded] = useState(false)
@@ -146,17 +148,10 @@ export function Location({ loged , locale, setLocale }) {
         })
     }
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
             {(locationMenu || updateMapShown || editShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}
@@ -165,9 +160,9 @@ export function Location({ loged , locale, setLocale }) {
                     />
                 </div>
             )}
-            {updateMapShown && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[90%] w-1/2 bg-white border border-[#eee] rounded-lg z-50">
+            {updateMapShown && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[85%] w-1/2 bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529]">{translation?.data?.business?.edit_map_location}</h2>
+                    <h2 className="text-xl font-semibold text-[#212529]">{translation?.data?.business?.edit_map_location}</h2>
                     <img onClick={() => setUpdateMapShown(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 <div className="w-full h-full p-4">
@@ -183,7 +178,7 @@ export function Location({ loged , locale, setLocale }) {
                         />
                     </div>
                     <div className="justify-self-end mt-4">
-                        <button className="bg-[#27c5d2] text-white text-sm py-2 px-5 rounded-lg">{translation?.data?.business?.save}</button>
+                        <button className="bg-[#27c5d2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold text-sm py-2 px-5 rounded-lg">{translation?.data?.business?.save}</button>
                     </div>
                 </div>
             </div>}

@@ -8,9 +8,11 @@ import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
 import { getCompanyInfo } from "../services/myCompanyApi"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function Proposals({ loged, locale, setLocale }) {
+export function Proposals() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [usersProposal, setUsersProposals] = useState([]);
     const [loaded, setLoaded] = useState(false)
@@ -38,18 +40,9 @@ export function Proposals({ loged, locale, setLocale }) {
         }
     }, [])
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
-
-
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

@@ -2,24 +2,16 @@ import { Header } from "../components/Header";
 import { NewsCard } from "../components/NewsCard";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
-import { useEffect, useState } from "react";
-import { getTranslation } from "../services/translation";
 import { ClipLoader } from "react-spinners"
+import { useAppContext } from "../context/AppContext";
 
-export function News({ loged , news , locale, setLocale}) {
+export function News({ news }) {
 
-    const [translation , setTranslation] = useState([]);
-
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {!translationLoaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

@@ -8,9 +8,11 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { useSearchParams } from "react-router-dom"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function CompanyProposals({ loged , locale, setLocale }) {
+export function CompanyProposals() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [searchParams] = useSearchParams();
     const customer_id = searchParams.get("customer");
@@ -28,16 +30,9 @@ export function CompanyProposals({ loged , locale, setLocale }) {
         getCustomerProposals(customer_id).then(setCustomerPropoals)
     }, [customer_id])
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

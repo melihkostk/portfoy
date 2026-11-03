@@ -6,24 +6,16 @@ import { Footer } from "../components/Footer";
 import mission from "../assets/mission.png"
 import vision from "../assets/vision.png"
 import about from "../assets/about.png"
-import { useEffect, useState } from "react";
-import { getTranslation } from "../services/translation";
 import { ClipLoader } from "react-spinners"
+import { useAppContext } from "../context/AppContext";
 
-export function Corporate({loged , locale, setLocale}) {
+export function Corporate() {
 
-    const [translation , setTranslation] = useState([]);
-
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {!translationLoaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

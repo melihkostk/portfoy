@@ -20,9 +20,11 @@ import menu from "../assets/dark-menu.png"
 import { SuccessPopUp } from "../components/SuccessPopup"
 import { CreateOfferModel } from "../components/CreateOfferModal"
 import { createProposal, getDetails } from "../services/propertyDetails"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function Properties({ loged , locale, setLocale }) {
+export function Properties() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [filterShown, setFilterShown] = useState(true);
 
@@ -253,13 +255,6 @@ export function Properties({ loged , locale, setLocale }) {
         }).finally(() => setLoaded(true))
     }
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     const titleAndSortRow = (
         <div className="flex items-center flex-wrap justify-between">
             <h1 className="text-[25px] text-[#212529] font-medium">
@@ -305,7 +300,7 @@ export function Properties({ loged , locale, setLocale }) {
                 setNotify={setOfferNotify}
                 translation={translation}
             />}
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

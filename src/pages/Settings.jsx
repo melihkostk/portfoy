@@ -7,11 +7,13 @@ import { SettingsCard } from "../components/SettingsCard"
 import { getCompanyInfo, getPreference, getTeam, updatePassPriceVisibility, updatePersonalContactVisibility, updatePriceOfferNotify } from "../services/myCompanyApi"
 import close from "../assets/blue-close.png"
 import { PersonelCard } from "../components/PersonalCard"
-import { getTranslation } from "../services/translation"
 import { ClipLoader } from "react-spinners"
 import whiteClose from "../assets/close.png"
+import { useAppContext } from "../context/AppContext"
 
-export function Settings({ loged, locale, setLocale }) {
+export function Settings() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [companyInfo, setCompanyInfo] = useState([]);
 
@@ -44,15 +46,7 @@ export function Settings({ loged, locale, setLocale }) {
         })
     }, [])
 
-    const [translation, setTranslation] = useState([]);
-
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
+    const [loaded, setLoaded] = useState(true);
 
     const [successMessage, setSuccessMessage] = useState("");
     const [successMessageShown, setSuccessMessageShown] = useState(false);
@@ -112,7 +106,7 @@ export function Settings({ loged, locale, setLocale }) {
 
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

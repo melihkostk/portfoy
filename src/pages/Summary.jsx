@@ -11,9 +11,11 @@ import { DoughnutChart } from "../components/DoughnutChart";
 import { LineChart } from "../components/LineChart";
 import { SummaryCard } from "../components/SummaryCard";
 import { ClipLoader } from "react-spinners";
-import { getTranslation } from "../services/translation";
+import { useAppContext } from "../context/AppContext";
 
-export function Summary({ loged , locale, setLocale }) {
+export function Summary() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [counts, setCounts] = useState([]);
     const [loaded, setLoaded] = useState(false)
@@ -45,16 +47,9 @@ export function Summary({ loged , locale, setLocale }) {
     const [created , setCreated] = useState(true)
     const [updated , setUpdated] = useState(true)
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

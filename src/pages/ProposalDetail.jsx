@@ -14,9 +14,11 @@ import chain from "../assets/chain.png"
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import messageIcon from "../assets/message.png"
-import { getTranslation } from "../services/translation";
+import { useAppContext } from "../context/AppContext";
 
-export function ProposalDetail({ loged , locale, setLocale }) {
+export function ProposalDetail() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const { id } = useParams();
 
@@ -27,16 +29,9 @@ export function ProposalDetail({ loged , locale, setLocale }) {
         showProposal(id).then(setDetails).finally(() => setLoaded(true))
     }, [id])
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

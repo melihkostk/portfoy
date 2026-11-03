@@ -10,9 +10,11 @@ import { getPropertyAlerts, getUserProperties, getWishlist } from "../services/p
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getCompanyInfo, getCustomerProposals } from "../services/myCompanyApi"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function Profile({ loged, locale, setLocale }) {
+export function Profile() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [loaded, setLoaded] = useState(false)
     const [wishlist, setWishlist] = useState([]);
@@ -55,17 +57,9 @@ export function Profile({ loged, locale, setLocale }) {
         getPropertyAlerts().then(setAlerts);
     }, [])
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
-
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

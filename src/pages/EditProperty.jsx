@@ -17,10 +17,12 @@ import { EditPropertyOffers } from "../components/EditPropertyOffers";
 import { EditPropertyMove } from "../components/EditPropertyMove";
 import { EditPropertySettings } from "../components/EditPropertySettings";
 import { EditPropertyInfo } from "../components/EditPropertyInfo";
-import { getTranslation } from "../services/translation";
+import { useAppContext } from "../context/AppContext";
 import deleteIcon from "../assets/gray-trash.png"
 
-export function EditProperty({ loged, setMessage, setMessageShown, locale, setLocale }) {
+export function EditProperty({ setMessage, setMessageShown }) {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const navigate = useNavigate();
 
@@ -370,13 +372,6 @@ export function EditProperty({ loged, setMessage, setMessageShown, locale, setLo
         }).finally(() => setLoaded(true))
     }
 
-    const [translation, setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     const [prices, setPrices] = useState([]);
 
     useEffect(() => {
@@ -394,7 +389,7 @@ export function EditProperty({ loged, setMessage, setMessageShown, locale, setLo
     return (
         <div className='flex flex-col items-center font-sf'>
             {(deletePopUp || copyPopUp || toggleMenu || editPrice || soldPopUp || publishPopUp || soldToDraft || deleteVideoPopUp || uploadVideoShown || offerMenuShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}

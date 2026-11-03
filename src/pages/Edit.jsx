@@ -6,9 +6,11 @@ import { Header } from "../components/Header"
 import { getCompanyProfile, updateCompanyProfile } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import whiteClose from "../assets/close.png"
-import { getTranslation } from "../services/translation"
+import { useAppContext } from "../context/AppContext"
 
-export function Edit({ loged , locale, setLocale}) {
+export function Edit() {
+
+    const { loged, locale, setLocale, translation, translationLoaded } = useAppContext();
 
     const [name, setName] = useState("");
     const [type, setType] = useState("");
@@ -67,16 +69,9 @@ export function Edit({ loged , locale, setLocale}) {
         }).finally(() => setLoaded(true))
     }
 
-    const [translation , setTranslation] = useState([]);
-
-    useEffect(() => {
-        setLoaded(false)
-        getTranslation(locale).then(setTranslation).finally(() => setLoaded(true))
-    }, [locale])
-
     return (
         <div className='flex flex-col items-center font-sf'>
-            {!loaded && (
+            {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}
