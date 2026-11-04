@@ -62,6 +62,7 @@ export function Company({ message, messageShown , setMessageShown }) {
     const [selectedCity, setSelectedCity] = useState("");
 
     useEffect(() => {
+        if(!selectedCountry) return;
         getAllCities(selectedCountry).then(setCities)
     }, [selectedCountry])
 
@@ -69,6 +70,7 @@ export function Company({ message, messageShown , setMessageShown }) {
     const [selectedDistrict, setSelectedDistrict] = useState("")
 
     useEffect(() => {
+        if(!selectedCity) return;
         getAllDistricts(selectedCity).then(setDistricts)
     }, [selectedCity])
 

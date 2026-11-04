@@ -38,6 +38,7 @@ export function Create() {
     const [cities, setCities] = useState([]);
 
     useEffect(() => {
+        if(!selectedCountry) return;
         getAllCities(selectedCountry).then(setCities);
     }, [selectedCountry])
 
@@ -46,6 +47,7 @@ export function Create() {
     const [district, setDistrict] = useState([]);
 
     useEffect(() => {
+        if(!selectedCity) return;
         getAllDistricts(selectedCity).then(setDistrict)
     }, [selectedCity])
 
@@ -54,6 +56,7 @@ export function Create() {
     const [streets, setStreets] = useState([]);
 
     useEffect(() => {
+        if(!selectedDistrict) return;
         getAllStreets(selectedDistrict).then(setStreets)
     }, [selectedDistrict])
 
