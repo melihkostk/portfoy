@@ -13,22 +13,20 @@ import badge from "../assets/badge.png"
 import { useAppContext } from "../context/AppContext"
 import img from "../assets/img.png"
 import { updateLogo } from "../services/myCompanyApi"
-import { useState } from "react"
 
-export function CompanyHeader({ page, id, name, created_at, type, badges, code }) {
+export function CompanyHeader({ page, id, name, created_at, type, badges, code, setLoaded }) {
     const { translation } = useAppContext();
 
-    const [logo, setLogo] = useState(null)
-
-    function handleLogoUpdate() {
+    function handleLogoUpdate(logo) {
+        setLoaded(false)
         updateLogo(logo).then(data => {
-            if(data.status === "error"){
+            if (data.status === "error") {
                 console.log("error")
             }
             else {
                 console.log("success")
             }
-        })
+        }).finally(() => setLoaded(true))
     }
 
     return (
@@ -38,15 +36,14 @@ export function CompanyHeader({ page, id, name, created_at, type, badges, code }
                     <div className="flex items-center gap-3.75">
                         <div className="w-20 h-20 bg-white rounded-full relative">
                             <img className="w-full h-full object-contain rounded-full" src={pp} alt="" />
-                            {page !== "companyDetail" && <div className="absolute border border-[#f7f7f7] cursor-pointer flex items-center justify-center w-7.5 h-7.5 rounded-full bg-white bottom-0 left-[70%] shadow-[0_0_30px_rgba(0,0,0,0.1)]">
+                            {page !== "companyDetail" && <div className="absolute border border-[#f7f7f7] cursor-pointer flex items-center justify-center w-7.5 h-7.5 rounded-full bg-white bottom-0 left-[70%] shadow-[0_0_30px_rgba(0,0,0,0.1)] hover:shadow-[0_0_30px_#FFFFFF80] transition-shadow duration-300 ease-in-out">
                                 <label className="flex items-center justify-center cursor-pointer" htmlFor="cover">
                                     <img className="w-5 h-5" src={img} alt="" />
                                 </label>
                                 <input onChange={(e) => {
                                     const logo = e.target.files?.[0]
-                                    setLogo(logo)
                                     handleLogoUpdate(logo)
-                                }} className="hidden" id="cover" name="cover" type="file" />
+                                }} className="hidden" id="cover" name="cover" type="file" accept="image/*" />
                             </div>}
                         </div>
                         <div className="max-w-full">

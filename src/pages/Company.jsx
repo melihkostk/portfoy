@@ -165,6 +165,8 @@ export function Company({ message, messageShown , setMessageShown }) {
                 created_at={info?.created_at}
                 type={info?.type}
                 logo={info?.logo}
+                setLoaded={setLoaded}
+                loaded={loaded}
             />
             <div className="max-w-[90%] w-full pt-12.5">
                 <div className="flex max-[992px]:flex-col">
