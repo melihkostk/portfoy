@@ -13,7 +13,7 @@ import { Notification } from "./Notification"
 import whiteMenu from "../assets/white-menu.png"
 import { MainSidebar } from "./MainSidebar"
 import { CreateOfferModel } from "./CreateOfferModal"
-import { getAllNotifications } from "../services/notificationsApi"
+import { getAllNotifications, markAsRead } from "../services/notificationsApi"
 import { logOut } from "../services/authApi"
 import sea from "../assets/sea.png"
 import { useAppContext } from "../context/AppContext"
@@ -36,6 +36,7 @@ export function Header({ details }) {
     const [selectedCurrencie, setSelectedCurrencie] = React.useState("")
     const [customerNote, setCustomerNote] = React.useState("")
     const [searchInput , setSearchInput] = React.useState("")
+
     React.useEffect(() => {
         getAllNotifications().then(setNotifications)
     }, [])
@@ -67,6 +68,10 @@ export function Header({ details }) {
     const visibleNotifications = showUnreadOnly
         ? notifications?.data?.notifications?.filter(item => item.is_read === 0)
         : notifications?.data?.notifications
+
+    function handleMarkAsRead(id){
+        markAsRead(id);
+    }
 
     return (
         <div className="py-7.5 w-full max-w-[90%]">
@@ -200,7 +205,7 @@ export function Header({ details }) {
                                 </div>}
                                 <div>
                                     {visibleNotifications?.map(item => (
-                                        <Notification key={item.id} id={item.id} content={item.content} time={item.time_diff} is_read={item.is_read} />
+                                        <Notification handleMarkAsRead={handleMarkAsRead} key={item.id} id={item.id} content={item.content} time={item.time_diff} is_read={item.is_read} />
                                     ))}
                                 </div>
                             </div>

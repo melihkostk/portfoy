@@ -1,8 +1,8 @@
 import noti from "../assets/notification.png"
 
-export function Notification({content , time , is_read}) {
+export function Notification({content , time , is_read , handleMarkAsRead , id}) {
     return (
-        <div className="flex pb-2.5 my-2.5 border-b border-b-[#eee] cursor-pointer">
+        <div onClick={() => handleMarkAsRead(id)} className="flex pb-2.5 my-2.5 border-b border-b-[#eee] cursor-pointer">
             <div className="w-10 h-10 bg-[#f8f8f8] rounded-full flex items-center justify-center">
                 <img className="w-7 h-7" src={noti} alt="" />
             </div>
