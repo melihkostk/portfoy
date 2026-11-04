@@ -8,7 +8,7 @@ import edit from "../assets/edit.png"
 import list from "../assets/list.png"
 import { useAppContext } from "../context/AppContext"
 
-export function TeamCard({ name, handleGetPermissions , setEditPermissionShown, role, email, avatar, phone, code, page, id, is_active, handleToggleStatus, onEditClick }) {
+export function TeamCard({ name, roleKey , handleGetPermissions , setEditPermissionShown, role, email, avatar, phone, code, page, id, is_active, handleToggleStatus, onEditClick }) {
     const { translation } = useAppContext();
 
     const [optionsShown, setOptionsShown] = useState(false);
@@ -21,7 +21,7 @@ export function TeamCard({ name, handleGetPermissions , setEditPermissionShown, 
             {!is_active && page === "companyTeam" && <div className="absolute bg-[#ffca64] top-6 left-5 text-[#212529] uppercase text-xs rounded-lg py-1.25 px-2 font-semibold">
                 {translation?.data?.business?.statusess?.passive}
             </div>}
-            {optionsShown && <div className="absolute bg-white rounded-lg border top-[10%] right-0 border-[#f8f8f8] py-2 shadow-[0_0_30px_rgba(0,0,0,0.1)] z-50">
+            {optionsShown && <div className="absolute bg-white rounded-lg border top-[12%] right-0 border-[#f8f8f8] py-2 shadow-[0_0_30px_rgba(0,0,0,0.1)] z-50">
                 <div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
                     <div className="flex" onClick={() => handleToggleStatus(id)}>
                         <img className="w-5 h-5 mr-2" src={removePerson} alt="" />
@@ -29,7 +29,7 @@ export function TeamCard({ name, handleGetPermissions , setEditPermissionShown, 
                     </div>
                 </div>
                 {<div className={`py-1 px-4 text-[#747474] ${role === translation?.data?.business?.roles?.chairmen ? "" : "cursor-pointer hover:text-black transition-colors duration-300 ease-in-out"}`}>
-                    <button disabled={role === translation?.data?.business?.roles?.chairmen} onClick={() => { onEditClick(); setOptionsShown(false) }} className={`${role === translation?.data?.business?.roles?.chairmen ? "opacity-50" : "cursor-pointer"} text-sm flex`}>
+                    <button disabled={roleKey === "chairmen"} onClick={() => { onEditClick(); setOptionsShown(false) }} className={`${roleKey === "chairmen" ? "opacity-50" : "cursor-pointer"} text-sm flex`}>
                         <img className="w-5 h-5 mr-2" src={edit} alt="" />
                         <p>{translation?.data?.business?.edit}</p>
                     </button>

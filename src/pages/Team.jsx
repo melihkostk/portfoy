@@ -419,6 +419,7 @@ export function Team() {
                             id={item.id}
                             name={item.name}
                             role={item.roles[0].title}
+                            roleKey={item.roles[0].key}
                             email={item.contacts.email}
                             phone={item.contacts.phone.number}
                             code={item.contacts.phone.code}
