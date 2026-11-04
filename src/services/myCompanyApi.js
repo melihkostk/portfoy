@@ -206,7 +206,7 @@ export const getPreference = async () => {
     return response.data;
 }
 
-export const updateCompanyProfile = async (company_name, tax_number, licence_number, email, phone, phone_code, licence_file, tax_plate , trade_name , tax_office , address) => {
+export const updateCompanyProfile = async (company_name, tax_number, licence_number, email, phone, phone_code, licence_file, tax_plate, trade_name, tax_office, address) => {
     const formData = new FormData();
     formData.append("company_name", company_name);
     formData.append("tax_number", tax_number);
@@ -226,27 +226,36 @@ export const updateCompanyProfile = async (company_name, tax_number, licence_num
     return response.data;
 }
 
-export const updatePermissions  = async (id, permissions) => {
+export const updatePermissions = async (id, permissions) => {
     const response = await api.post(`/auth/company/team/${id}/permissions/update`, permissions);
     return response.data;
 }
 
 export const updatePassPriceVisibility = async (status) => {
-    const response = await api.post("/auth/company/preferences/property-pass-price-visibility/update" , {
-        status:status
+    const response = await api.post("/auth/company/preferences/property-pass-price-visibility/update", {
+        status: status
     });
     return response.data;
 }
 
-export const updatePersonalContactVisibility = async (status , personals) => {
-    const response = await api.post("/auth/company/preferences/personal-contact-visibility/update" , {
-        status:status,
-        personals:personals
+export const updatePersonalContactVisibility = async (status, personals) => {
+    const response = await api.post("/auth/company/preferences/personal-contact-visibility/update", {
+        status: status,
+        personals: personals
     });
     return response.data;
 }
 
 export const updatePriceOfferNotify = async (personals) => {
     const response = await api.post("/auth/company/preferences/price-offer-users/update", { personals });
+    return response.data;
+}
+
+export const updateLogo = async (logo) => {
+    const formData = new FormData();
+    formData.append("logo", logo)
+    const response = await api.post("/auth/company/profile/logo/update", formData, {
+        headers: { "Content-Type": undefined }
+    });
     return response.data;
 }

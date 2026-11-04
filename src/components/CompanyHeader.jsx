@@ -11,17 +11,43 @@ import phone from "../assets/white-phone.png"
 import mail from "../assets/white-mail.png"
 import badge from "../assets/badge.png"
 import { useAppContext } from "../context/AppContext"
+import img from "../assets/img.png"
+import { updateLogo } from "../services/myCompanyApi"
+import { useState } from "react"
 
 export function CompanyHeader({ page, id, name, created_at, type, badges, code }) {
     const { translation } = useAppContext();
+
+    const [logo, setLogo] = useState(null)
+
+    function handleLogoUpdate() {
+        updateLogo(logo).then(data => {
+            if(data.status === "error"){
+                console.log("error")
+            }
+            else {
+                console.log("success")
+            }
+        })
+    }
 
     return (
         <div style={{ backgroundImage: `url(${bgImage})` }} className="w-full bg-cover bg-center pt-7.5 flex justify-center">
             <div className="w-full max-w-[90%]">
                 <div className="flex justify-between items-start h-[20vh]">
                     <div className="flex items-center gap-3.75">
-                        <div className="w-20 h-20 bg-white rounded-full">
+                        <div className="w-20 h-20 bg-white rounded-full relative">
                             <img className="w-full h-full object-contain rounded-full" src={pp} alt="" />
+                            {page !== "companyDetail" && <div className="absolute border border-[#f7f7f7] cursor-pointer flex items-center justify-center w-7.5 h-7.5 rounded-full bg-white bottom-0 left-[70%] shadow-[0_0_30px_rgba(0,0,0,0.1)]">
+                                <label className="flex items-center justify-center cursor-pointer" htmlFor="cover">
+                                    <img className="w-5 h-5" src={img} alt="" />
+                                </label>
+                                <input onChange={(e) => {
+                                    const logo = e.target.files?.[0]
+                                    setLogo(logo)
+                                    handleLogoUpdate(logo)
+                                }} className="hidden" id="cover" name="cover" type="file" />
+                            </div>}
                         </div>
                         <div className="max-w-full">
                             <p className="text-white font-semibold text-xl mb-2">{name}</p>
@@ -103,19 +129,19 @@ export function CompanyHeader({ page, id, name, created_at, type, badges, code }
                         )}
                     </ul>
                     {page !== "companyDetail" && <div className="flex items-center gap-2.5 -mt-12 max-[1233px]:hidden">
-                        <Link to={"/company/subscription"} className={`py-2 px-4 bg-white ${page === "subscription" ? "opacity-100" : "opacity-70" } text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
+                        <Link to={"/company/subscription"} className={`py-2 px-4 bg-white ${page === "subscription" ? "opacity-100" : "opacity-70"} text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
                             <img className="w-4 h-4" src={box} alt="" />
                             {translation?.data?.business?.manage_subscription}
                         </Link>
-                        <Link to={"/company/summary"} className={`py-2 px-4 bg-white ${page === "summary" ? "opacity-100" : "opacity-70" } text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
+                        <Link to={"/company/summary"} className={`py-2 px-4 bg-white ${page === "summary" ? "opacity-100" : "opacity-70"} text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
                             <img className="w-4 h-4" src={graph} alt="" />
                             {translation?.data?.business?.company_summary}
                         </Link>
-                        <Link to={"/company/edit"} className={`py-2 px-4 bg-white ${page === "edit" ? "opacity-100" : "opacity-70" } text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
+                        <Link to={"/company/edit"} className={`py-2 px-4 bg-white ${page === "edit" ? "opacity-100" : "opacity-70"} text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
                             <img className="w-5 h-5" src={pen} alt="" />
                             {translation?.data?.business?.company_edit}
                         </Link>
-                        <Link to={"/company/settings"} className={`py-2 px-4 bg-white ${page === "settings" ? "opacity-100" : "opacity-70" } text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
+                        <Link to={"/company/settings"} className={`py-2 px-4 bg-white ${page === "settings" ? "opacity-100" : "opacity-70"} text-black font-medium uppercase flex items-center gap-2 text-sm rounded-lg cursor-pointer hover:shadow-[0_0_30px_#FFFFFF80] hover:opacity-100 transition-[box-shadow,opacity] duration-300 ease-in-out`}>
                             <img className="w-4 h-4" src={settingsIcon} alt="" />
                             {translation?.data?.business?.manage_company}
                         </Link>
