@@ -257,7 +257,7 @@ export function Properties() {
 
     const titleAndSortRow = (
         <div className="flex items-center flex-wrap justify-between">
-            <h1 className="text-[25px] text-[#212529] font-medium">
+            <h1 className="text-[25px] text-[#212529] font-semibold">
                 {category ? translation?.data?.business?.discounted_properties : currentTypeName ? `${currentTypeName} ${translation?.data?.business?.property_category_page_title.replace(":category" , "")}` : translation?.data?.business?.properties}
             </h1>
             <div className="flex items-center gap-5">

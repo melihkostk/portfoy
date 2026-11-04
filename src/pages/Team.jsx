@@ -407,7 +407,7 @@ export function Team() {
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex items-center justify-between">
-                    <h2 className="text-[#212529] text-[32px] mb-5">{translation?.data?.business?.company_team}</h2>
+                    <h2 className="text-[#212529] font-semibold text-[32px] mb-5">{translation?.data?.business?.company_team}</h2>
                     <div onClick={() => setAddShown(true)} className="bg-[#f1f1f1] text-[#4b4b4b] text-sm rounded-lg py-2 px-5 font-semibold cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                         {translation?.data?.business?.user_invitation_code}
                     </div>

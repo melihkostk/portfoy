@@ -143,7 +143,7 @@ export function Wishlist() {
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <div className="flex justify-between items-center mb-5 flex-wrap">
-                            <h2 className="text-[32px] text-[#212529] font-medium mb-2">{translation?.data?.business?.my_wishlist}</h2>
+                            <h2 className="text-[32px] text-[#212529] font-semibold mb-2">{translation?.data?.business?.my_wishlist}</h2>
                             <select value={selectedSort} onChange={(e) => setSelectedSort(e.target.value)} className="border border-[#D9D9D9] rounded-lg py-1.5 px-3 text-[#212529]" name="" id="">
                                 {sort?.map(item => (
                                     <option className="hover:bg-[#27c5d2]" key={item.key} value={item.key}>{item.title}</option>

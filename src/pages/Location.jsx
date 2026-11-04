@@ -198,7 +198,7 @@ export function Location() {
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center max-[992px]:flex-col max-[992px]:items-start">
-                    <h2 className="text-[#212529] text-[32px]">{translation?.data?.business?.company_contacts}</h2>
+                    <h2 className="text-[#212529] font-semibold text-[32px]">{translation?.data?.business?.company_contacts}</h2>
                     <div onClick={() => setLocationMenu(true)} className="text-[#4b4b4b] bg-[#f1f1f1] text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">{translation?.data?.business?.create_address}</div>
                 </div>
             </div>

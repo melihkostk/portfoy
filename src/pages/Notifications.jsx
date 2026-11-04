@@ -63,7 +63,7 @@ export function Notifications() {
                         <Sidebar page="notifications" user={user} info={info} />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
-                        <h2 className="text-[32px] text-[#212529] mb-2">{translation?.data?.business?.notifications}</h2>
+                        <h2 className="text-[32px] text-[#212529] font-semibold mb-2">{translation?.data?.business?.notifications}</h2>
                         <div>
                             {notifications?.data?.notifications.map(item => (
                                 <Notification key={item.id} id={item.id} content={item.content} time={item.time_diff} />

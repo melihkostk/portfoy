@@ -192,7 +192,7 @@ export function Settings() {
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
-                    <p className="text-[32px] mb-10">{translation?.data?.business?.manage_company}</p>
+                    <h2 className="text-[32px] font-semibold mb-10">{translation?.data?.business?.manage_company}</h2>
                     <div>
                         <SettingsCard
                             title={translation?.data?.business?.company_settings?.price_offers?.title}

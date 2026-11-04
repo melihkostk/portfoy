@@ -56,7 +56,7 @@ export function NewsDetail({ news }) {
                     </div>
                     <div className="w-[78%] pl-12.5 max-[992px]:pl-0">
                         <div>
-                            <h1 className="text-[25px] text-[#212529]">{article.title}</h1>
+                            <h1 className="text-[25px] text-[#212529] font-semibold">{article.title}</h1>
                             <div className="flex items-center gap-2 mb-4">
                                 <img className="w-4 h-4" src={grayCalendar} alt="" />
                                 <p className="text-[#848484] text-sm font-medium">{article.created_at}</p>

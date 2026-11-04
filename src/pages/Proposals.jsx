@@ -63,7 +63,7 @@ export function Proposals() {
                         <Sidebar page="proposals" info={info} user={user} />
                     </div>
                     <div className="w-[72%]  max-[992px]:w-full pl-7.5  max-[992px]:pl-0">
-                        <h2 className="text-[32px] text-[#212529] mb-2">{translation?.data?.business?.proposals_to_customers}</h2>
+                        <h2 className="text-[32px] text-[#212529] font-semibold mb-2">{translation?.data?.business?.proposals_to_customers}</h2>
                         <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
                             <table className="w-full">
                                 <thead>

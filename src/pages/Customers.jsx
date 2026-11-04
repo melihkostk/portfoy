@@ -165,7 +165,7 @@ export function Customers() {
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex flex-col mb-5">
                     <div className="flex justify-between items-center mb-5 flex-wrap">
-                        <h2 className="text-[#212529] text-[32px]">{translation?.data?.business?.customers}</h2>
+                        <h2 className="text-[#212529] text-[32px] font-semibold">{translation?.data?.business?.customers}</h2>
                         <div className="flex items-center gap-2.5">
                             <form onSubmit={(e) => { e.preventDefault(); handleFilterCustomer(filterName); }} className="flex max-[992px]:hidden items-center relative max-[992px]:w-full">
                                 <img className="w-4 h-4 absolute left-1" src={graySearch} alt="" />

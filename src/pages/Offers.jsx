@@ -182,7 +182,7 @@ export function Offers() {
                         <Sidebar type={type} info={info} user={user} />
                     </div>
                     <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
-                        <h2 className="text-[32px] text-[#212529] font-medium mb-2">{type === "received" ? translation?.data?.business?.offers_as_received : translation?.data?.business?.offers_as_sent}</h2>
+                        <h2 className="text-[32px] text-[#212529] font-semibold mb-2">{type === "received" ? translation?.data?.business?.offers_as_received : translation?.data?.business?.offers_as_sent}</h2>
                         {type === "received" && <div className="p-4 mb-4 bg-[#fff3cd] rounded-lg border border-[#ffecb5]">
                             <p className="text-[#664d03]">{translation?.data?.business?.my_property_price_offers_warning}</p>
                         </div>}

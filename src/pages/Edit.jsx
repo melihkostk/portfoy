@@ -105,7 +105,7 @@ export function Edit() {
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
                     <div className="p-12.5 max-[992px]:p-7.5 bg-[#fbfbfb] rounded-lg">
-                        <h2 className="text-[32px] text-[#212529]">{translation?.data?.business?.company_info}</h2>
+                        <h2 className="text-[32px] text-[#212529] font-semibold">{translation?.data?.business?.company_info}</h2>
                         <div className="flex flex-wrap justify-between max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0 ">
                                 <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.company_name}</label>
@@ -136,7 +136,7 @@ export function Edit() {
                         </div>
                     </div>
                     <div className="p-12.5 max-[992px]:p-7.5">
-                        <h2 className="text-[32px] text-[#212529]">{translation?.data?.business?.contact_info}</h2>
+                        <h2 className="text-[32px] text-[#212529] font-semibold">{translation?.data?.business?.contact_info}</h2>
                         <div className="flex flex-wrap justify-between max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.email}</label>
@@ -161,7 +161,7 @@ export function Edit() {
                         </div>
                     </div>
                     <div className="p-12.5 max-[992px]:p-7.5 bg-[#fbfbfb]">
-                        <h2 className="text-[32px] text-[#212529]">{translation?.data?.business?.billing_info}</h2>
+                        <h2 className="text-[32px] text-[#212529] font-semibold">{translation?.data?.business?.billing_info}</h2>
                         <div className="flex max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.trade_name}</label>

@@ -7,7 +7,7 @@ export function VideoCard(){
                 <img className="w-full object-cover rounded-lg aspect-video" src={video} alt="" />
             </div>
             <div>
-                <p className="line-clamp-2 overflow-hidden">Test video başlığı</p>
+                <p className="line-clamp-2 overflow-hidden font-semibold">Test video başlığı</p>
             </div>
         </div>
     )

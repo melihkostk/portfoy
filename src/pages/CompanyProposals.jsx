@@ -57,7 +57,7 @@ export function CompanyProposals() {
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center mb-5 flex-wrap">
-                    <h2 className="text-[#212529] text-[32px]">{translation?.data?.business?.proposals}</h2>
+                    <h2 className="text-[#212529] font-semibold text-[32px]">{translation?.data?.business?.proposals}</h2>
                 </div>
                 <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
                     <table className="w-full">

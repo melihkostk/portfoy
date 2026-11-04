@@ -30,7 +30,7 @@ export function Support() {
             </div>
             <div className="w-full bg-[linear-gradient(70deg,#27C5D2,#048B99)] flex items-center justify-center py-10 mb-10">
                 <div className="flex flex-col items-center justify-center w-full max-w-[90%]">
-                    <h2 className="text-white text-[32px] font-medium">{translation?.data?.business?.how_we_can_help_you}</h2>
+                    <h2 className="text-white text-[32px] font-semibold">{translation?.data?.business?.how_we_can_help_you}</h2>
                     <div className="w-[60%] relative mb-2.5 bg-[#FFFFFF33] shadow-[0_0_120px_#FFFFFF80]">
                         <input className="w-full border border-white bg-transparent text-white rounded-lg p-2.5 placeholder:text-white" type="text" placeholder={translation?.data?.business?.search_on_faqs_and_videos} name="q"></input>
                         <button className="w-9 h-9 bg-[#FFFFFF4D] rounded-lg absolute right-1.5 top-1.5 flex items-center justify-center">
@@ -53,8 +53,8 @@ export function Support() {
             <div className="w-full max-w-350 mb-5">
                 <div>
                     <div>
-                        <h2 className="text-[32px] text-[#212529] mb-2">{translation?.data?.business?.videos}</h2>
-                        <p className="mb-4 text-[#212529]">{translation?.data?.business?.support_videos_description}</p>
+                        <h2 className="text-[32px] text-[#212529] mb-2 font-semibold">{translation?.data?.business?.videos}</h2>
+                        <p className="mb-4 text-[#212529] font-semibold">{translation?.data?.business?.support_videos_description}</p>
                     </div>
                     <div className="flex -mx-3.75">
                         <VideoCard />
@@ -66,7 +66,7 @@ export function Support() {
             </div>
             <div className="w-full max-w-350">
                 <div className="flex flex-col items-center justify-center w-full">
-                    <h2 className="text-[32px] text-[#212529] mb-2">{translation?.data?.business?.faqs_section_header}</h2>
+                    <h2 className="text-[32px] font-semibold text-[#212529] mb-2">{translation?.data?.business?.faqs_section_header}</h2>
                     <div className="w-full">
                         <Questions question="Port-foy.com’a üye olabilmem için firma sahibi olmam gerekli mi?" answer="Platforma üye olmak için vergi levhası sahibi olmanız gerekmektedir. Eğer freelancer çalışan iseniz üye firmanın bünyesinde çalışabilirsiniz. Vergi levhasız başvurular kabul edilmeyecektir." />
                         <Questions question="Port-foy.com’a kimler üye olabilir?" answer="Üyelik için öncelikle vergi levhası gerekmekte. Sadece Emlak firmaları, İnşaat firmaları ve pazarlama firmaları platforma üye olabilir. Araba kiralama firmaları, Seyahat acentaları ve benzeri firmalar üye olamazlar." />

@@ -50,7 +50,7 @@ export function CompaniesDetailLocation() {
 
             />
             <div className="max-w-[90%] w-full pt-12.5">
-                <h2 className="mb-2 text-[#212529] text-[32px]">{translation?.data?.business?.company_contacts}</h2>
+                <h2 className="mb-2 text-[#212529] text-[32px] font-semibold">{translation?.data?.business?.company_contacts}</h2>
                 <div className="flex items-start w-full justify-between max-[992px]:flex-col">
                     <div className="w-1/2 sticky top-3 pr-7.5 max-[992px]:static max-[992px]:w-full">
                         <div className="flex flex-col mt-7.5">

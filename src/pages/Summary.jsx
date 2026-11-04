@@ -95,7 +95,7 @@ export function Summary() {
             </div>
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="mb-7.5 flex items-center justify-between flex-wrap">
-                    <h2 className="text-[25px] text-[#212529]">{translation?.data?.business?.properties}</h2>
+                    <h2 className="text-[25px] text-[#212529] font-semibold">{translation?.data?.business?.properties}</h2>
                     <div className="relative">
                         <div className="bg-[#f1f1f1] cursor-pointer select-none hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out text-sm text-[#4b4b4b] rounded-lg py-2 px-5 font-semibold" onClick={() => setViewOptions(prev => !prev)}>
                             {translation?.data?.business?.view_options}

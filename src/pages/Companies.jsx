@@ -104,7 +104,7 @@ export function Companies() {
             <div className="w-full max-w-[90%]">
                 <div>
                     <div>
-                        <h2 className="text-[32px] mb-2 font-medium">{translation?.data?.business?.companies_page_section_title}</h2>
+                        <h2 className="text-[32px] mb-2 font-semibold">{translation?.data?.business?.companies_page_section_title}</h2>
                         <p className="text-sm text-[#9A9A9A]">
                             {translation?.data?.business?.companies_page_section_description}
                         </p>
