@@ -63,17 +63,17 @@ export function ProposalDetail() {
                         <div>
                             <ul className="flex items-center gap-1.5">
                                 <li className="w-7.5 h-7.5 bg-[#eee] rounded-lg flex items-center justify-center hover:bg-[#27c5d2] transition-colors duration-300 ease-in-out">
-                                    <a href={`tel:${detail?.customer?.phone}`}>
+                                    <a aria-label="phone" href={`tel:${detail?.customer?.phone}`}>
                                         <img className="w-5 h-5" src={phone} alt="" />
                                     </a>
                                 </li>
                                 <li className="w-7.5 h-7.5 bg-[#eee] rounded-lg flex items-center justify-center hover:bg-[#27c5d2] transition-colors duration-300 ease-in-out">
-                                    <a href={detail?.customer?.email}>
+                                    <a aria-label="mail" href={`mailto:${detail?.customer?.email}`}>
                                         <img className="w-5 h-5" src={email} alt="" />
                                     </a>
                                 </li>
                                 <li className="w-7.5 h-7.5 bg-[#eee] rounded-lg flex items-center justify-center hover:bg-[#27c5d2] transition-colors duration-300 ease-in-out">
-                                    <a href={`tel:${detail?.customer?.phone}`}>
+                                    <a aria-label="customer" href={`tel:${detail?.customer?.phone}`}>
                                         <img className="w-6 h-6" src={pp} alt="" />
                                     </a>
                                 </li>
@@ -149,11 +149,11 @@ export function ProposalDetail() {
                         )}
                         <div className="bg-white shadow-[0_0_80px_#f3f3f3] flex flex-col items-center p-7.5 rounded-lg">
                             <p className="mb-5 text-sm text-[#979797]">{translation?.data?.business?.share_this_proposal}</p>
-                            <button className="bg-[#25d366] mb-2.5 text-white flex items-center gap-1 font-semibold rounded-lg py-2 px-5 text-sm cursor-pointer hover:bg-[#19a74e] transition-colors duration-300 ease-in-out">
+                            <a aria-label="whatsapp" href="https://web.whatsapp.com/" target="_blank" className="bg-[#25d366] mb-2.5 text-white flex items-center gap-1 font-semibold rounded-lg py-2 px-5 text-sm cursor-pointer hover:bg-[#19a74e] transition-colors duration-300 ease-in-out">
                                 <img className="w-5 h-5" src={wp} alt="" />
                                 {translation?.data?.business?.share_on_whatsapp}
-                            </button>
-                            <button className="bg-[#f8f8f8] text-black flex items-center gap-1 font-semibold rounded-lg py-2 px-5 text-sm cursor-pointer block hover:bg-[#cdcdcd] transition-colors duration-300 ease-in-out">
+                            </a>
+                            <button aria-label="copy-url" className="bg-[#f8f8f8] text-black flex items-center gap-1 font-semibold rounded-lg py-2 px-5 text-sm cursor-pointer hover:bg-[#cdcdcd] transition-colors duration-300 ease-in-out">
                                 <img className="w-5 h-5" src={chain} alt="" />
                                 {translation?.data?.business?.copy_link}
                             </button>
