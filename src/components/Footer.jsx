@@ -18,18 +18,26 @@ export function Footer() {
                         {translation?.data?.business?.footer_text}
                     </p>
                     <ul className="flex">
-                        <a className="bg-[#bfb9bf] mr-2.5 w-10 h-10 rounded-lg flex items-center justify-center hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(39,197,210,0.5)]" href="https://www.linkedin.com/company/port-foy-com">
-                            <img className="w-5 h-5" src={linkedIn} alt="" />
-                        </a>
-                        <a className="bg-[#bfb9bf] mr-2.5 w-10 h-10 rounded-lg flex items-center justify-center hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(39,197,210,0.5)]" href="https://x.com/PortFoycom">
-                            <img className="w-5 h-5" src={x} alt="" />
-                        </a>
-                        <a className="bg-[#bfb9bf] mr-2.5 w-10 h-10 rounded-lg flex items-center justify-center hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(39,197,210,0.5)]" href="https://www.facebook.com/people/Port-Foycom/61566855802447/">
-                            <img className="w-5 h-5" src={facebook} alt="" />
-                        </a>
-                        <a className="bg-[#bfb9bf] mr-2.5 w-10 h-10 rounded-lg flex items-center justify-center hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(39,197,210,0.5)]" href="https://www.instagram.com/portfoycom/">
-                            <img className="w-5 h-5" src={instagram} alt="" />
-                        </a>
+                        <li>
+                            <a aria-label="linkedIn" className="bg-[#bfb9bf] mr-2.5 w-10 h-10 rounded-lg flex items-center justify-center hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(39,197,210,0.5)]" href="https://www.linkedin.com/company/port-foy-com">
+                                <img className="w-5 h-5" src={linkedIn} alt="linkedIn" />
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="x" className="bg-[#bfb9bf] mr-2.5 w-10 h-10 rounded-lg flex items-center justify-center hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(39,197,210,0.5)]" href="https://x.com/PortFoycom">
+                                <img className="w-5 h-5" src={x} alt="x" />
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="facebook" className="bg-[#bfb9bf] mr-2.5 w-10 h-10 rounded-lg flex items-center justify-center hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(39,197,210,0.5)]" href="https://www.facebook.com/people/Port-Foycom/61566855802447/">
+                                <img className="w-5 h-5" src={facebook} alt="facebook" />
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="instagram" className="bg-[#bfb9bf] mr-2.5 w-10 h-10 rounded-lg flex items-center justify-center hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(39,197,210,0.5)]" href="https://www.instagram.com/portfoycom/">
+                                <img className="w-5 h-5" src={instagram} alt="instagram" />
+                            </a>
+                        </li>
                     </ul>
                     <div className="flex flex-col mt-5">
                         <a className="mb-2.5 text-base opacity-50 text-black hover:opacity-100 transition-opacity duration-300 ease-in-out" href="https://demo.pigasoft.com/portfoy/public/tel: 0 850 851 44 94">
