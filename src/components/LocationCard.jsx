@@ -11,15 +11,15 @@ export function LocationCard({address , translation , location , country , city 
                 {address}
             </p>
             {page !== "companyLocation" && <div className="flex items-center gap-1 flex-wrap">
-                <button onClick={onEditClick} className="bg-[#f1f1f1] whitespace-nowrap py-2 px-5 rounded-lg flex items-center gap-1 cursor-pointer text-sm text-[#4b4b4b] font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                <button aria-label="edit" onClick={onEditClick} className="bg-[#f1f1f1] whitespace-nowrap py-2 px-5 rounded-lg flex items-center gap-1 cursor-pointer text-sm text-[#4b4b4b] font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                     <img className="w-4 h-4" src={pencil} alt="" />
                     {translation?.data?.business?.edit}
                 </button>
-                <button onClick={() => setUpdateMapShown(true)} className="bg-[#f1f1f1] whitespace-nowrap py-2 px-5 rounded-lg flex items-center gap-1 cursor-pointer text-sm text-[#4b4b4b] font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                <button aria-label="edit-map" onClick={() => setUpdateMapShown(true)} className="bg-[#f1f1f1] whitespace-nowrap py-2 px-5 rounded-lg flex items-center gap-1 cursor-pointer text-sm text-[#4b4b4b] font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                     <img className="w-5 h-5" src={locationIcon} alt="" />
                     {translation?.data?.business?.edit_map_location}
                 </button>
-                <button onClick={() => handleDeleteLocation(id)} className="bg-[#f1f1f1] whitespace-nowrap py-2 px-5 rounded-lg flex items-center gap-1 cursor-pointer text-sm text-[#4b4b4b] font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                <button aria-label="delete" onClick={() => handleDeleteLocation(id)} className="bg-[#f1f1f1] whitespace-nowrap py-2 px-5 rounded-lg flex items-center gap-1 cursor-pointer text-sm text-[#4b4b4b] font-semibold hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                     <img className="w-5 h-5" src={deleteIcon} alt="" />
                     {translation?.data?.business?.delete}
                 </button>
