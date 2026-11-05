@@ -76,10 +76,10 @@ export function Profile() {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
-                    <div className="w-[28%] max-[992px]:w-full">
+                    <div className="w-[22%] max-[992px]:w-full">
                         <Sidebar info={info} user={user} />
                     </div>
-                    <div className="w-[72%] pl-7.5 max-[992px]:w-full max-[992px]:pl-0">
+                    <div className="w-[78%] pl-7.5 max-[992px]:w-full max-[992px]:pl-0">
                         <div className="flex max-[992px]:flex-wrap justify-between -ml-3.75 -mr-3.75">
                             <ProfileCard title={translation?.data?.business?.property} link="auth/properties" img={menu} number={properties?.pagination?.total} />
                             <ProfileCard title={translation?.data?.business?.favorite_property} link="wishlist" img={heart} number={wishlist?.data?.length} />
@@ -88,7 +88,7 @@ export function Profile() {
                         </div>
                         <div className="mt-7.5">
                             <h2 className="mb-5 text-[25px] text-[#212529] font-semibold">{translation?.data?.business?.outdated_properties}</h2>
-                            {alerts?.data?.length === 0 && <div className="bg-[#fff3cd] border border-[#ffecb5] text-[#664d03] p-4 rounded-lg max-[992px]:mb-4">
+                            {alerts?.data?.length === 0 && <div className="bg-[#fff3cd] border border-[#ffecb5] font-medium text-[#664d03] p-4 rounded-lg max-[992px]:mb-4">
                                 {translation?.data?.business?.no_records}
                             </div>}
                         </div>

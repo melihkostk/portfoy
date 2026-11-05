@@ -136,10 +136,10 @@ export function Wishlist() {
             </div>}
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
-                    <div className="w-[28%] max-[992px]:w-full sticky top-0">
+                    <div className="w-[22%] max-[992px]:w-full sticky top-0">
                         <Sidebar page="wishlist" user={user} info={info} />
                     </div>
-                    <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
+                    <div className="w-[78%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <div className="flex justify-between items-center mb-5 flex-wrap">
                             <h2 className="text-[32px] text-[#212529] font-semibold mb-2">{translation?.data?.business?.my_wishlist}</h2>
                             <select value={selectedSort} onChange={(e) => setSelectedSort(e.target.value)} className="border border-[#D9D9D9] rounded-lg py-1.5 px-3 text-[#212529]" name="" id="">

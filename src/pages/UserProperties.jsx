@@ -59,10 +59,10 @@ export function UserProperties() {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
-                    <div className="w-[28%] max-[992px]:w-full sticky top-0">
+                    <div className="w-[22%] max-[992px]:w-full sticky top-0">
                         <Sidebar page="properties" info={info} user={user} />
                     </div>
-                    <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
+                    <div className="w-[78%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] font-medium mb-2">{translation?.data?.business?.my_properties}</h2>
                         <div>
                             {userProperties?.data?.map(item => (

@@ -59,10 +59,10 @@ export function Proposals() {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
-                    <div className="w-[28%] max-[992px]:w-full">
+                    <div className="w-[22%] max-[992px]:w-full">
                         <Sidebar page="proposals" info={info} user={user} />
                     </div>
-                    <div className="w-[72%]  max-[992px]:w-full pl-7.5  max-[992px]:pl-0">
+                    <div className="w-[78%]  max-[992px]:w-full pl-7.5  max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] font-semibold mb-2">{translation?.data?.business?.proposals_to_customers}</h2>
                         <div className="overflow-auto scrollbar-thumb-[#27C5D2]">
                             <table className="w-full">

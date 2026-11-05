@@ -155,10 +155,10 @@ export function Account() {
             </div>}
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse">
-                    <div className="w-[28%] max-[992px]:w-full">
+                    <div className="w-[22%] max-[992px]:w-full">
                         <Sidebar page="account" info={info} user={user} />
                     </div>
-                    <div className="pl-7.5 w-[72%] max-[992px]:w-full max-[992px]:pl-0">
+                    <div className="pl-7.5 w-[78%] max-[992px]:w-full max-[992px]:pl-0">
                         <h2 className="text-[#212529] text-[25px] mb-5 font-semibold">{translation?.data?.business?.my_company_info}</h2>
                         <div className="flex p-7.5 border border-[#eee] rounded-lg mb-10 max-[992px]:flex-col max-[992px]:gap-5">
                             <div className="flex w-1/2 max-[992px]:flex-col max-[992px]:w-full">
@@ -167,7 +167,7 @@ export function Account() {
                                 </div>
                                 <div>
                                     <h1 className="text-xl text-[#212529] font-semibold mb-2.5">{info?.name}</h1>
-                                    <ul className="text-sm text-[#909090]">
+                                    <ul className="text-sm text-[#909090] font-medium">
                                         <li>
                                             {translation?.data?.business?.created_at}
                                             {" " + info?.created_at}
@@ -191,17 +191,17 @@ export function Account() {
                             </div>
                             <div className="flex items-center w-1/2 max-[992px]:w-full">
                                 <div>
-                                    <h3 className="text-xl text-[#212529] mb-2 font-medium">{translation?.data?.business?.subscription_info}</h3>
+                                    <h3 className="text-xl text-[#212529] mb-2 font-semibold">{translation?.data?.business?.subscription_info}</h3>
                                     <div>
                                         <div className="flex items-center max-[992px]:flex-col max-[992px]:items-start justify-between">
-                                            <p className="text-[25px] max-[992px]:text-lg text-[#212529] font-semibold w-[70%] max-[992px]:w-full">
+                                            <p className="text-[25px] max-[992px]:text-lg text-[#212529] font-bold w-[70%] max-[992px]:w-full">
                                                 {sub?.package?.title}
                                             </p>
                                             {sub?.subscription?.is_trial && <p className="w-[20%] bg-[#f8f8f8] py-1.25 px-2 rounded-lg text-sm text-center max-[992px]:max-w-fit max-[992px]:whitespace-nowrap">
                                                 {translation?.data?.business?.trial_version}
                                             </p>}
                                         </div>
-                                        <p className="text-sm text-[#a1a1a1]">
+                                        <p className="text-sm text-[#a1a1a1] font-medium">
                                             {translation?.data?.business?.expired_at}
                                             {" " + sub?.subscription?.finish_at?.date}
                                         </p>
@@ -214,20 +214,20 @@ export function Account() {
                             <form onSubmit={handleUpdate}>
                                 <div className="flex mb-2.5">
                                     <div className="pr-3 w-1/2">
-                                        <label htmlFor="name">{translation?.data?.business?.name}</label>
-                                        <input id="name" name="name" onChange={(e) => setName(e.target.value)} className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" value={name} />
+                                        <label className="font-medium text-[#212529]" htmlFor="name">{translation?.data?.business?.name}</label>
+                                        <input id="name" name="name" onChange={(e) => setName(e.target.value)} className="block border font-medium border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" value={name} />
                                     </div>
                                     <div className="pl-3 w-1/2">
-                                        <label htmlFor="email">{translation?.data?.validation?.attributes?.email}</label>
-                                        <input id="email" name="email" disabled className="block border border-[#D9D9D9] bg-[#e9ecef] w-full rounded-lg py-1.5 px-3" type="mail" value={user?.data?.email} />
+                                        <label className="font-medium text-[#212529]" htmlFor="email">{translation?.data?.validation?.attributes?.email}</label>
+                                        <input id="email" name="email" disabled className="block border font-medium border-[#D9D9D9] bg-[#e9ecef] w-full rounded-lg py-1.5 px-3" type="mail" value={user?.data?.email} />
                                     </div>
                                 </div>
                                 <div>
                                     <div className="w-1/2 pr-3 max-[992px]:w-full max-[992px]:mb-2.5 max-[992px]:pr-0">
-                                        <label htmlFor="phone">{translation?.data?.business?.phone}</label>
+                                        <label className="font-medium text-[#212529]" htmlFor="phone">{translation?.data?.business?.phone}</label>
                                         <div className="flex items-center gap-3.75">
                                             <div>
-                                                <select onChange={(e) => setCode(e.target.value)} value={code} className="border border-[#D9D9D9] rounded-lg text-base py-1.5 px-3" name="phone" id="phone">
+                                                <select onChange={(e) => setCode(e.target.value)} value={code} className="border font-medium border-[#D9D9D9] rounded-lg text-base py-1.5 px-3" name="phone" id="phone">
                                                     <option value="357">(357)</option>
                                                     <option value="90">(90)</option>
                                                     <option value="971">(971)</option>

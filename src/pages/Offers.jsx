@@ -178,10 +178,10 @@ export function Offers() {
             </div>}
             <div className="w-full max-w-[90%]">
                 <div className="flex items-start max-[992px]:flex-col-reverse max-[992px]:gap-5">
-                    <div className="w-[28%] max-[992px]:w-full sticky top-0">
+                    <div className="w-[22%] max-[992px]:w-full sticky top-0">
                         <Sidebar type={type} info={info} user={user} />
                     </div>
-                    <div className="w-[72%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
+                    <div className="w-[78%] max-[992px]:w-full pl-7.5 max-[992px]:pl-0">
                         <h2 className="text-[32px] text-[#212529] font-semibold mb-2">{type === "received" ? translation?.data?.business?.offers_as_received : translation?.data?.business?.offers_as_sent}</h2>
                         {type === "received" && <div className="p-4 mb-4 bg-[#fff3cd] rounded-lg border border-[#ffecb5]">
                             <p className="text-[#664d03]">{translation?.data?.business?.my_property_price_offers_warning}</p>
