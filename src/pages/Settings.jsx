@@ -31,8 +31,8 @@ export function Settings() {
 
     const [preference, setPreference] = useState([]);
     const [infoStatus, setInfoStatus] = useState(null);
-    const [passStatus , setPassStatus] = useState(null);
-    const [selected , setSelected] = useState([]);
+    const [passStatus, setPassStatus] = useState(null);
+    const [selected, setSelected] = useState([]);
     const [personalVisibilities, setPersonalVisibilities] = useState([]);
 
 
@@ -152,7 +152,7 @@ export function Settings() {
                         ))}
                     </div>
                     <div className="mt-2">
-                        <button onClick={() => {handleSavePriceOfferUsers(); setInfoPopUp(false)}} className="bg-[#27c5d2] cursor-pointer font-semibold text-sm w-full text-white rounded-lg py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
+                        <button onClick={() => { handleSavePriceOfferUsers(); setInfoPopUp(false) }} className="bg-[#27c5d2] cursor-pointer font-semibold text-sm w-full text-white rounded-lg py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
                     </div>
                 </div>
             </div>}
@@ -227,9 +227,7 @@ export function Settings() {
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
-                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
-                </div>
+                <AppLinks />
             </div>
             <div className='w-full'>
                 <Footer />

@@ -11,7 +11,7 @@ export function NewsCard({ title, created, id, page }) {
                 <img className="align-middle aspect-square object-cover max-w-full w-full rounded-[10px]" src={news1} alt={title} />
             </div>
             <div>
-                <Link to={`/articles/${id}`} className="mt-5 mb-2.5 text-[22px] line-clamp-3 min-h-25">{title}</Link>
+                <Link to={`/articles/${id}`} className="mt-5 mb-2.5 text-[22px] line-clamp-3 min-h-25 font-semibold">{title}</Link>
                 <div className="flex items-center gap-2 mb-4">
                     <img className="w-4 h-4" src={grayCalendar} alt="" />
                     <p className="text-[#b7b9bf] text-base font-medium">

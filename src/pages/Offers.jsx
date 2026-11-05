@@ -70,7 +70,7 @@ export function Offers() {
                 setSuccessMessage(data.message);
                 setSuccessMessageShown(true)
             }
-        }).finally(() => {setLoaded(true); setReplied(true)})
+        }).finally(() => { setLoaded(true); setReplied(true) })
     }
 
     const [info, setInfo] = useState([]);
@@ -253,9 +253,7 @@ export function Offers() {
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
-                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
-                </div>
+                <AppLinks />
             </div>
             <div className='w-full'>
                 <Footer />

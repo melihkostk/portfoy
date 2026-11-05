@@ -17,7 +17,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function Wishlist() {
 
-    const {locale, translation, translationLoaded } = useAppContext();
+    const { locale, translation, translationLoaded } = useAppContext();
 
     const [page, setPage] = useState(1)
 
@@ -208,9 +208,7 @@ export function Wishlist() {
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
-                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
-                </div>
+                <AppLinks />
             </div>
             <div className='w-full'>
                 <Footer />

@@ -33,8 +33,8 @@ export function Edit() {
     const [error, setError] = useState("");
     const [errorShown, setErrorShown] = useState(false);
 
-    const [success , setSuccess] = useState("");
-    const [successShown , setSuccessShown] = useState(false);
+    const [success, setSuccess] = useState("");
+    const [successShown, setSuccessShown] = useState(false);
 
     useEffect(() => {
         getCompanyProfile().then((data) => {
@@ -54,7 +54,7 @@ export function Edit() {
 
     function handleUpdate() {
         setLoaded(false)
-        updateCompanyProfile(name, taxNumber, centralNumber, email, phone, code, licenceFile, taxPlate , tradeName , taxOffice , address).then(data => {
+        updateCompanyProfile(name, taxNumber, centralNumber, email, phone, code, licenceFile, taxPlate, tradeName, taxOffice, address).then(data => {
             if (data.status === "success") {
                 setSuccess(data.message);
                 setSuccessShown(true)
@@ -181,9 +181,7 @@ export function Edit() {
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
-                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
-                </div>
+                <AppLinks />
             </div>
             <div className='w-full'>
                 <Footer />

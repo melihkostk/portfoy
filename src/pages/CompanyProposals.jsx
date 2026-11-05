@@ -73,7 +73,7 @@ export function CompanyProposals() {
                             </tr>
                         </thead>
                         <tbody>
-                            {!customer_id && proposals?.data?.proposals?.map((item , index) => (
+                            {!customer_id && proposals?.data?.proposals?.map((item, index) => (
                                 <CompanyProposalCard
                                     id={item.id}
                                     key={item.id}
@@ -90,7 +90,7 @@ export function CompanyProposals() {
                                 />
                             ))}
                             {customer_id &&
-                                customerProposals?.proposals?.map((item , index)=> (
+                                customerProposals?.proposals?.map((item, index) => (
                                     <CompanyProposalCard
                                         id={item.id}
                                         key={item.id}
@@ -111,9 +111,7 @@ export function CompanyProposals() {
                 </div>
             </div>
             <div className='w-full mt-40 mb-30'>
-                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
-                </div>
+                <AppLinks />
             </div>
             <div className='w-full'>
                 <Footer />

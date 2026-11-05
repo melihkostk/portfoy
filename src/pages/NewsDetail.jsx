@@ -17,7 +17,7 @@ export function NewsDetail({ news }) {
     const { id } = useParams();
 
     const [article, setArticle] = useState([])
-    const [loaded , setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         setLoaded(false)
@@ -50,7 +50,7 @@ export function NewsDetail({ news }) {
                 <div className="flex items-start max-[992px]:flex-col-reverse">
                     <div className="flex flex-col bg-white gap-7.5 w-[22%] max-[992px]:w-full max-[992px]:mt-7.5 border border-[#eee] rounded-lg p-3.75">
                         <div className="bg-[#eaeaea] text-[#808080] text-center py-2.5 rounded-lg">{translation?.data?.business?.other_articles}</div>
-                        {news.filter(item => item.id != id).slice(0,3).map(item => (
+                        {news.filter(item => item.id != id).slice(0, 3).map(item => (
                             <NewsCard page="detail" key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
                         ))}
                     </div>
@@ -72,9 +72,7 @@ export function NewsDetail({ news }) {
                 </div>
             </div>
             <div className='w-full mt-30 mb-30'>
-                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
-                </div>
+                <AppLinks />
             </div>
             <div className='w-full'>
                 <Footer />

@@ -60,7 +60,7 @@ export function Account() {
     const [successUpdateMessage, setSucessUpdateMessage] = useState("");
 
     const [errorUpdate, setErrorUpdate] = useState(false);
-    const [errorUpdateMessage , setErrorUpdateMessage] = useState("");
+    const [errorUpdateMessage, setErrorUpdateMessage] = useState("");
 
     function handleUpdate(e) {
         e.preventDefault();
@@ -254,9 +254,7 @@ export function Account() {
                 </div>
             </div>
             <div className='w-full mt-30 mb-10 max-[992px]:mb-7.5 max-[992px]:mt-7.5'>
-                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
-                </div>
+                <AppLinks />
             </div>
             <div className='w-full'>
                 <Footer />

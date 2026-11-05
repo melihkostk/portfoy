@@ -131,7 +131,7 @@ export function Home({ news }) {
           </div>
           <div className='flex w-full justify-center flex-wrap overflow-auto scrollbar-thin scrollbar-thumb-[#27C5D2] max-[992px]:flex-nowrap max-[992px]:justify-start max-[992px]:items-start max-[992px]:gap-10 max-[992px]:mt-3.75'>
             {packages?.data?.filter(item => item.id == pricingCate).map(item => (
-              item.packages.map((item,index) => (
+              item.packages.map((item, index) => (
                 <PricingCard
                   title={item.title}
                   description={item.description}
@@ -156,16 +156,14 @@ export function Home({ news }) {
             <Link to={"/articles"} className='text-[#B7B9BF] text-xl font-medium hover:text-[#45443f] transition-colors duration-300 ease-in-out' href="https://demo.pigasoft.com/portfoy/public/tr/articles">{translation?.data?.business?.view_all}</Link>
           </div>
           <div className='flex items-start overflow-hidden -mx-5 max-[992px]:flex-col max-[992px]:m-0'>
-            {news.slice(0,4).map(item => (
+            {news.slice(0, 4).map(item => (
               <NewsCard key={item.id} title={item.title} cover={item.cover} body={item.body} created={item.created_at} id={item.id} />
             ))}
           </div>
         </div>
       </div>
       <div className='w-full mt-30 mb-30'>
-        <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-          <AppLinks />
-        </div>
+        <AppLinks />
       </div>
       <div className='w-full'>
         <Footer />

@@ -39,9 +39,9 @@ export function Corporate() {
                 <div className="flex flex-col items-center w-full max-w-[70%] max-[992px]:max-w-full max-[992px]:p-0 max-[992px]:mt-5  max-[992px]:mb-5 max-[992px]:shadow-none bg-white -mt-20 mb-30 mx-auto rounded-lg p-12.5 shadow-[0_0_50px_rgba(0,0,0,0.1)]">
                     <h1 className="mb-7.5 text-[25px] text-[#212529] font-medium text-center">{translation?.data?.business?.corporate_page_section_header_title}</h1>
                     <div className="text-center mb-7.5 text-sm text-[#212529] opacity-70 max-w-[70%] font-medium">
-                       {translation?.data?.business?.corporate_page_section_header_descriptions.map((item , index) => (
+                        {translation?.data?.business?.corporate_page_section_header_descriptions.map((item, index) => (
                             <p key={index} className="mb-7.5">{item}</p>
-                       ))}
+                        ))}
                     </div>
                     <div className="w-full flex items-center justify-center gap-5 mt-8">
                         <a className="bg-[#f8f8f8] text-sm text-black py-2 px-5 rounded-lg font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out hover:shadow-[0_0_50px_10px_rgba(39,197,210,0.5)]" href={`#${translation?.data?.business?.about_us}`}>{translation?.data?.business?.about_us}</a>
@@ -78,9 +78,7 @@ export function Corporate() {
                 />
             </div>
             <div className='w-full mt-30 mb-30 max-[992px]:mt-7.5'>
-                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
-                </div>
+                <AppLinks />
             </div>
             <div className='w-full'>
                 <Footer />

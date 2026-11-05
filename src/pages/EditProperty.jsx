@@ -381,8 +381,8 @@ export function EditProperty({ setMessage, setMessageShown }) {
 
     const [editPrice, setEditPrice] = useState(false)
 
-    function handleDeletePrice(priceId){
-        deletePrice(id , priceId).then(() => {
+    function handleDeletePrice(priceId) {
+        deletePrice(id, priceId).then(() => {
             getPrices(id).then(setPrices)
         });
     }
@@ -540,7 +540,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                                 </div>
                                 <div className="bg-[#e2e2e2] text-[#727272] text-sm font-semibold flex items-center justify-center rounded-r-lg w-9.5 hover:bg-[#ff2020] transition-colors duration-300 ease-in-out">
                                     <button onClick={() => handleDeletePrice(item.id)}
-                                    className="w-full h-full flex items-center justify-center cursor-pointer">
+                                        className="w-full h-full flex items-center justify-center cursor-pointer">
                                         <img className="w-6 h-6" src={deleteIcon} alt="" />
                                     </button>
                                 </div>
@@ -708,9 +708,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 errorMessage={errorMessage}
             />}
             <div className='w-full mt-40 mb-30 max-[992px]:mt-10'>
-                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
-                </div>
+                <AppLinks />
             </div>
             <div className='w-full'>
                 <Footer />

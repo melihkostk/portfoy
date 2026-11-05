@@ -82,9 +82,7 @@ export function Support() {
                 </div>
             </div>
             <div className='w-full mt-30 mb-30'>
-                <div className='w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
-                </div>
+                <AppLinks />
             </div>
             <div className='w-full'>
                 <Footer />

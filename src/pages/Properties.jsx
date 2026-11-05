@@ -154,13 +154,13 @@ export function Properties() {
     const isEmpty = loaded && currentList?.length === 0;
 
     const [quickFilterMenu, setQuickFilterMenu] = useState(false)
-    const [quickFilters , setQuickFilters] = useState([]);
+    const [quickFilters, setQuickFilters] = useState([]);
 
     useEffect(() => {
         getQuickFilters().then(setQuickFilters)
     }, [])
 
-    const [addQuickFilterMenu , setAddQuickFilterMenu] = useState(false)
+    const [addQuickFilterMenu, setAddQuickFilterMenu] = useState(false)
 
     const handleApplyQuickFilter = (item) => {
         let filterDetails = item.filter_details;
@@ -193,8 +193,8 @@ export function Properties() {
         navigate(`/properties?${params.toString()}`);
     };
 
-    const [filterTitle , setFilterTitle] = useState("");
-    const [notify , setNotify] = useState(0)
+    const [filterTitle, setFilterTitle] = useState("");
+    const [notify, setNotify] = useState(0)
 
     const buildQuickFilterDetails = () => {
         const filterDetails = {};
@@ -213,7 +213,7 @@ export function Properties() {
         return filterDetails;
     };
 
-    const [error , setError] = useState("");
+    const [error, setError] = useState("");
     const [successPopUp, setSuccessPopUp] = useState(false);
 
     const handleSaveQuickFilter = async () => {
@@ -258,7 +258,7 @@ export function Properties() {
     const titleAndSortRow = (
         <div className="flex items-center flex-wrap justify-between">
             <h1 className="text-[25px] text-[#212529] font-semibold">
-                {category ? translation?.data?.business?.discounted_properties : currentTypeName ? `${currentTypeName} ${translation?.data?.business?.property_category_page_title.replace(":category" , "")}` : translation?.data?.business?.properties}
+                {category ? translation?.data?.business?.discounted_properties : currentTypeName ? `${currentTypeName} ${translation?.data?.business?.property_category_page_title.replace(":category", "")}` : translation?.data?.business?.properties}
             </h1>
             <div className="flex items-center gap-5">
                 <div className="flex items-center gap-1.25 max-[992px]:hidden">
@@ -338,15 +338,15 @@ export function Properties() {
                     <p className="text-base text-[#212529] mb-4">{translation?.data?.business?.save_filter_description}</p>
                     <div className="mb-2">
                         <label className="text-[#212529]" htmlFor="title">{translation?.data?.business?.filter_title}</label>
-                        <input value={filterTitle} onChange={(e) => setFilterTitle(e.target.value)} id="title" name="title" className="block w-full px-3 py-1.5 border border-[#d9d9d9] rounded-lg" type="text" placeholder={translation?.data?.business?.filter_title} />    
+                        <input value={filterTitle} onChange={(e) => setFilterTitle(e.target.value)} id="title" name="title" className="block w-full px-3 py-1.5 border border-[#d9d9d9] rounded-lg" type="text" placeholder={translation?.data?.business?.filter_title} />
                     </div>
                     <div className="mb-2">
                         <input checked={notify === 1} onChange={(e) => setNotify(e.target.checked ? 1 : 0)} id="notify" name="notify" type="checkbox" />
                         <label className="text-base text-[#212529] ml-2" htmlFor="notify">{translation?.data?.business?.send_email_on_compatible_new_property}</label>
                     </div>
                     <div>
-                        <button type="button" onClick={handleSaveQuickFilter} className="text-white bg-[#27c5d2] cursor-pointer rounded-lg text-sm py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>    
-                    </div>                
+                        <button type="button" onClick={handleSaveQuickFilter} className="text-white bg-[#27c5d2] cursor-pointer rounded-lg text-sm py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
+                    </div>
                 </div>
             </div>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
@@ -536,9 +536,7 @@ export function Properties() {
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5'>
-                <div className='w-full mx-auto max-w-[90%] flex flex-col items-center justify-center bg-[#f7f6fb]'>
-                    <AppLinks />
-                </div>
+                <AppLinks />
             </div>
             <div className='w-full'>
                 <Footer />
