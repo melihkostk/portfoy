@@ -215,7 +215,7 @@ export function PropertiesDetail() {
                                     </div>)
                                 ))}
                             </div>
-                            <a href={defaultImg} className="w-[calc(100%-160px)] max-[992px]:w-full pl-5 max-[992px]:pl-0">
+                            <a aria-label="cover" href={defaultImg} className="w-[calc(100%-160px)] max-[992px]:w-full pl-5 max-[992px]:pl-0">
                                 <img className="w-full h-full object-cover rounded-lg" src={defaultImg} alt="" />
                             </a>
                         </div>
@@ -264,13 +264,13 @@ export function PropertiesDetail() {
                             )}
                         </div>
                         {!details.is_owner_company ? (<div className="flex gap-2.5 flex-wrap">
-                            <button onClick={() => handleToogle(id)} className={` ${details.in_wishlist ? "bg-[#27c5d2]" : "bg-[#f1f1f1]"} w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out`}>
+                            <button aria-label="toogle" onClick={() => handleToogle(id)} className={` ${details.in_wishlist ? "bg-[#27c5d2]" : "bg-[#f1f1f1]"} w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out`}>
                                 <img className="w-5 h-5" src={details.in_wishlist ? heart : grayHeart} alt="" />
                             </button>
-                            <button onClick={() => setOfferShown(true)} className="uppercase font-semibold text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 text-sm rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                            <button aria-label="offer" onClick={() => setOfferShown(true)} className="uppercase font-semibold text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 text-sm rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                 {translation?.data?.business?.create_price_offer}
                             </button>
-                            <button onClick={() => setOfferModalShown(true)} className="bg-[#f1f1f1] w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                            <button aria-label="proposal" onClick={() => setOfferModalShown(true)} className="bg-[#f1f1f1] w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                 <img className="w-5 h-5" src={folder} alt="" />
                             </button>
                         </div>) : (
