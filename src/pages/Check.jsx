@@ -28,7 +28,7 @@ export function Check() {
                             <LanguageSelect />
                         </div>
                         <div className="w-55 mt-7.5 mb-25">
-                            <Link to={"/"}>
+                            <Link aria-label="home" to={"/"}>
                                 <img className="max-w-full" src={logo} alt="" />
                             </Link>
                         </div>
@@ -71,7 +71,7 @@ export function Check() {
                                 </div>
                             </div>
                             <div>
-                                <button type="submit" className="bg-[#27C5D2] max-[992px]:w-full text-white font-medium w-1/2 py-3 rounded-lg hover:bg-[#026872] hover:shadow-[0_0_30px_#27C5D2] transition-[background-color,box-shadow] duration-300 ease-in-out cursor-pointer">{translation?.data?.business?.application_check}</button>
+                                <button aria-label="submit" type="submit" className="bg-[#27C5D2] max-[992px]:w-full text-white font-medium w-1/2 py-3 rounded-lg hover:bg-[#026872] hover:shadow-[0_0_30px_#27C5D2] transition-[background-color,box-shadow] duration-300 ease-in-out cursor-pointer">{translation?.data?.business?.application_check}</button>
                             </div>
                         </div>
                     </div>
