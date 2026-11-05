@@ -38,11 +38,11 @@ export function Pricing() {
             <div className='w-full flex flex-col items-center'>
                 <div className='w-full max-w-[90%]'>
                     <div className='flex flex-col items-center my-15'>
-                        <h2 className='text-[2rem] text-center mb-2 font-semibold'>{translation?.data?.business?.pricing}</h2>
+                        <h1 className='text-[2rem] text-center mb-2 font-semibold'>{translation?.data?.business?.pricing}</h1>
                         <p className='text-[#525252] text-center max-w-[45%] font-medium max-[992px]:w-full max-[992px]:max-w-full'>{translation?.data?.business?.pricing_section_description}</p>
                         <ul className='flex mt-10 border border-[#eee] p-2.5 rounded-lg scrollbar-thin scrollbar-thumb-[#27C5D2] overflow-auto max-[992px]:max-w-full'>
                             {type?.map(item => (
-                                <li>
+                                <li key={item.id}>
                                     <button onClick={() => setPricingCate(item.id)} className={`px-4 py-2 whitespace-nowrap text-[#3e3e3e] font-medium rounded-lg ${pricingCate === item.id ? "bg-[#f4f4f4] text-black" : ""} hover:text-black cursor-pointer`}>
                                         {item.title}
                                     </button>
@@ -73,7 +73,7 @@ export function Pricing() {
             <div className="w-full flex justify-center">
                 <div className='w-full max-w-[90%]'>
                     <div className="text-center flex flex-col items-center my-15">
-                        <h1 className="text-[#212529] text-[34px] font-medium mb-2.5">{translation?.data?.business?.app_features_and_advantages_section_title}</h1>
+                        <h2 className="text-[#212529] text-[34px] font-medium mb-2.5">{translation?.data?.business?.app_features_and_advantages_section_title}</h2>
                         <p className="text-[#525252] text-base max-w-[45%] font-normal max-[992px]:w-full max-[992px]:max-w-full">
                             {translation?.data?.business?.app_features_and_advantages_section_description}
                         </p>
@@ -141,7 +141,7 @@ export function Pricing() {
             <div className="w-full flex justify-center">
                 <div className='w-full max-w-[90%]'>
                     <div className="text-center flex flex-col items-center my-15">
-                        <h1 className="text-[34px] text-[#212529] font-semibold mb-2.5">{translation?.data?.business?.faqs}</h1>
+                        <h3 className="text-[34px] text-[#212529] font-semibold mb-2.5">{translation?.data?.business?.faqs}</h3>
                         <p className="max-w-[45%] max-[992px]:w-full max-[992px]:max-w-full ">
                             {translation?.data?.business?.faqs_section_description}
                         </p>

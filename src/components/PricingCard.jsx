@@ -22,8 +22,8 @@ export function PricingCard({ title, price, time, trialPrice, customerTitle, cus
             <div className="mb-5">
                 <p className="text-xs text-[#999999] mb-2.5 font-medium uppercase">{customerTitle}</p>
                 <ul>
-                    {customerFeatures?.map(item => (
-                        <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
+                    {customerFeatures?.map((item , index) => (
+                        <li key={index} className="text-base text-[#212529] my-0.5 font-medium flex items-center">
                             <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
                             <p>{item}</p>
                         </li>
@@ -33,8 +33,8 @@ export function PricingCard({ title, price, time, trialPrice, customerTitle, cus
             <div className="mb-5">
                 <p className="text-xs text-[#999999] mb-2.5 font-medium uppercase">{propertyTitle}</p>
                 <ul>
-                    {propertyFeatures?.map(item => (
-                        <li className="text-base text-[#212529] my-0.5 font-medium flex items-center">
+                    {propertyFeatures?.map((item , index) => (
+                        <li key={index} className="text-base text-[#212529] my-0.5 font-medium flex items-center">
                             <img className="w-5 h-5 mr-2.5" src={checkIcon} alt="" />
                             <p>{item}</p>
                         </li>
