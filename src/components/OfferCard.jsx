@@ -14,7 +14,7 @@ export function OfferCard({ title,  name , page , price, offered_price, status, 
     }
 
     return (
-        <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
+        <tr className={`font-medium text-[#212529] ${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
             {page !== "edit" ? <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">
                 {title}
             </td> : <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">
