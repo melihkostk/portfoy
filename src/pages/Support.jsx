@@ -33,7 +33,7 @@ export function Support() {
                     <h2 className="text-white text-[32px] font-semibold">{translation?.data?.business?.how_we_can_help_you}</h2>
                     <div className="w-[60%] relative mb-2.5 bg-[#FFFFFF33] shadow-[0_0_120px_#FFFFFF80]">
                         <input className="w-full border border-white bg-transparent text-white rounded-lg p-2.5 placeholder:text-white" type="text" placeholder={translation?.data?.business?.search_on_faqs_and_videos} name="q"></input>
-                        <button className="w-9 h-9 bg-[#FFFFFF4D] rounded-lg absolute right-1.5 top-1.5 flex items-center justify-center">
+                        <button aria-label="search" className="w-9 h-9 bg-[#FFFFFF4D] rounded-lg absolute right-1.5 top-1.5 flex items-center justify-center">
                             <img className="w-6 h-6" src={search} alt="" />
                         </button>
                     </div>

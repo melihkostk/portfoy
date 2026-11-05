@@ -60,7 +60,7 @@ export function Login() {
             <div className="w-[30%] h-full max-[992px]:w-full max-[992px]:max-w-[95%]">
                 <div className="flex items-center justify-between mb-7.5 py-5">
                     <div className="w-55">
-                        <Link to={"/"}>
+                        <Link aria-label="home" to={"/"}>
                             <img className="max-w-full align-middle" src={logo} alt="" />
                         </Link>
                     </div>
@@ -73,15 +73,15 @@ export function Login() {
                     </div>
                     <form onSubmit={login}>
                         <div className="my-2.5">
-                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="username">{translation?.data?.business?.email}</label>
+                            <label className="text-[#868686] mb-1.25 font-medium" htmlFor="email">{translation?.data?.business?.email}</label>
                              <div className="relative">
                                 <img className="absolute w-5 h-5 top-4.5 left-4" src={mail} alt="" />
-                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 pl-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="username" type="email" placeholder={translation?.data?.business?.email} required />
+                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 pl-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="email" type="email" placeholder={translation?.data?.business?.email} required />
                             </div>
                         </div>
                         <div className="my-2.5">
                             <div className="flex items-center justify-between">
-                                <label className="text-[#868686] mb-1.25 font-medium" htmlFor="username">{translation?.data?.business?.password}</label>
+                                <label className="text-[#868686] mb-1.25 font-medium" htmlFor="password">{translation?.data?.business?.password}</label>
                                 <Link to={"/reset-password"} className="text-[#b1b1b1] text-sm font-medium hover:text-[#27C5D2] transition-colors duration-300 ease-in-out">{translation?.data?.business?.forget_password}</Link>
                             </div>
                             <div className="relative">
@@ -92,13 +92,13 @@ export function Login() {
                             </div>
                         </div>
                         <div className="flex items-center">
-                            <input type="checkbox" />
-                            <label className="text-[#868686] ml-1.25 font-medium">{translation?.data?.business?.remember_me}</label>
+                            <input id="remember" name="remember" type="checkbox" />
+                            <label htmlFor="remember" className="text-[#868686] ml-1.25 font-medium">{translation?.data?.business?.remember_me}</label>
                         </div>
                         {error && (
                             <p className="text-red-500 text-sm font-medium mt-2.5">{error}</p>
                         )}
-                        <button type="submit" disabled={loading} className="bg-[#27C5D2] hover:bg-[#026872] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{translation?.data?.business?.login}</button>
+                        <button aria-label="submit" type="submit" disabled={loading} className="bg-[#27C5D2] hover:bg-[#026872] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{translation?.data?.business?.login}</button>
                         <p className="text-center my-10 text-sm text-[#868686] font-medium">
                             <Link className="block text-[#525252] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" to={"/register"}>{translation?.data?.business?.register_description?.replace(/<[^>]*>/g, "")}</Link>
                         </p>
