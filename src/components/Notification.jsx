@@ -1,9 +1,16 @@
 import noti from "../assets/notification.png"
 import clock from "../assets/clock.png"
+import { Link } from "react-router-dom"
 
-export function Notification({ content, time, is_read, handleMarkAsRead, id }) {
+export function Notification({ content, time, is_read, handleMarkAsRead, id, type, details }) {
     return (
-        <div onClick={() => handleMarkAsRead(id)} className="flex pb-2.5 my-2.5 border-b border-b-[#eee] cursor-pointer">
+        <Link to={
+            type === "property_edit"
+                ? `/properties/${details?.property_id}/edit`
+                : type === "offer_details"
+                    ? `/offers/${details?.offer_id}/detail`
+                    : "#"
+        } onClick={() => handleMarkAsRead(id)} className="flex pb-2.5 my-2.5 border-b border-b-[#eee] cursor-pointer">
             <div className="w-10 h-10 bg-[#f8f8f8] rounded-full flex items-center justify-center">
                 <img className="w-7 h-7" src={noti} alt="" />
             </div>
@@ -18,6 +25,6 @@ export function Notification({ content, time, is_read, handleMarkAsRead, id }) {
                     </p>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }

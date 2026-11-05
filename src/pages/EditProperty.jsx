@@ -51,6 +51,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
     const [offerMenuShown, setOfferMenuShown] = useState(false)
 
     useEffect(() => {
+        setLoaded(false);
         getDetails(id).then(data => {
             setDetail(data)
             setTitle(data?.title)

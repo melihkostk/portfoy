@@ -35,7 +35,7 @@ export function Header({ details }) {
     const [selectedCustomer, setSelectedCustomer] = React.useState("")
     const [selectedCurrencie, setSelectedCurrencie] = React.useState("")
     const [customerNote, setCustomerNote] = React.useState("")
-    const [searchInput , setSearchInput] = React.useState("")
+    const [searchInput, setSearchInput] = React.useState("")
 
     React.useEffect(() => {
         getAllNotifications().then(setNotifications)
@@ -61,7 +61,7 @@ export function Header({ details }) {
         ))
     }
 
-    function handleClick(){
+    function handleClick() {
         setShowUnreadOnly(prev => !prev)
     }
 
@@ -69,7 +69,7 @@ export function Header({ details }) {
         ? notifications?.data?.notifications?.filter(item => item.is_read === 0)
         : notifications?.data?.notifications
 
-    function handleMarkAsRead(id){
+    function handleMarkAsRead(id) {
         markAsRead(id);
     }
 
@@ -197,7 +197,7 @@ export function Header({ details }) {
                                 </button>
                             </div>
                             <div className="p-3.75 max-h-[50vh] overflow-auto bg-white mb-5">
-                                {notifications?.data?.notifications?.filter(item => item.is_read === 0) > 0 ? <div className="bg-[#eeeeee] p-2.5 rounded-lg flex items-center gap-2 mb-5 ">
+                                {notifications?.data?.notifications?.filter(item => item.is_read === 0)?.length > 0 ? <div className="bg-[#eeeeee] p-2.5 rounded-lg flex items-center gap-2 mb-5 ">
                                     <input checked={showUnreadOnly} onChange={handleClick} className="w-5 h-5" type="checkbox" id="unread" name="unread" />
                                     <label className="text-sm text-[#212529] cursor-pointer select-none" htmlFor="unread">Sadece okunmamışları göster</label>
                                 </div> : <div className="flex items-center justify-center py-7.5">
@@ -205,7 +205,16 @@ export function Header({ details }) {
                                 </div>}
                                 <div>
                                     {visibleNotifications?.map(item => (
-                                        <Notification handleMarkAsRead={handleMarkAsRead} key={item.id} id={item.id} content={item.content} time={item.time_diff} is_read={item.is_read} />
+                                        <Notification
+                                            handleMarkAsRead={handleMarkAsRead}
+                                            key={item.id}
+                                            id={item.id}
+                                            content={item.content}
+                                            time={item.time_diff}
+                                            is_read={item.is_read} 
+                                            type={item.type}
+                                            details={item.details}    
+                                        />
                                     ))}
                                 </div>
                             </div>
