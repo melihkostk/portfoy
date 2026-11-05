@@ -56,10 +56,10 @@ export function Discover() {
                         <div>
                             <p className="text-sm text-[#212529] opacity-70 mb-2.5 font-medium">{translation?.data?.business?.download_app_free_now}</p>
                             <div className="flex gap-2.5">
-                                <a className="hover:opacity-70 transition-opacity duration-300 ease-in-out" href="https://apps.apple.com/tr/app/port-foy/id6745571274">
+                                <a aria-label="google-play" className="hover:opacity-70 transition-opacity duration-300 ease-in-out" href="https://apps.apple.com/tr/app/port-foy/id6745571274">
                                     <img src={googlePlay} alt="" />
                                 </a>
-                                <a className="hover:opacity-70 transition-opacity duration-300 ease-in-out" href="https://play.google.com/store/apps/details?id=com.pigasoft.portfoy&hl=tr">
+                                <a aria-label="app-store" className="hover:opacity-70 transition-opacity duration-300 ease-in-out" href="https://play.google.com/store/apps/details?id=com.pigasoft.portfoy&hl=tr">
                                     <img src={appStore} alt="" />
                                 </a>
                             </div>
@@ -72,7 +72,7 @@ export function Discover() {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="text-center flex flex-col items-center my-15">
-                    <h1 className="mb-2.5 text-[34px] text-[#212529] font-semibold">{translation?.data?.business?.discover_portfoy}</h1>
+                    <h2 className="mb-2.5 text-[34px] text-[#212529] font-semibold">{translation?.data?.business?.discover_portfoy}</h2>
                     <p className="text-base text-[#525252] font-medium max-w-[45%] max-[992px]:w-full max-[992px]:max-w-full">
                         {translation?.data?.business?.discover_app_section_description}
                     </p>
