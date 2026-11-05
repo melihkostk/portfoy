@@ -118,16 +118,16 @@ export function Contacts() {
                         <div className="mt-10">
                             <p className="text-sm uppercase mb-2.5 text-[#212529] opacity-60 font-medium">{translation?.data?.business?.follow_on_social_media}</p>
                             <div className="flex">
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5 hover:bg-[#eee] transition-colors duration-300 ease-in-out" href={contactInfo?.socials?.linkedin}>
+                                <a aria-label="linked" className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5 hover:bg-[#eee] transition-colors duration-300 ease-in-out" href={contactInfo?.socials?.linkedin}>
                                     <img className="w-7 h-7" src={grayLinkedIn} alt="" />
                                 </a>
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5 hover:bg-[#eee] transition-colors duration-300 ease-in-out" href={contactInfo?.socials?.x}>
+                                <a aria-label="x" className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5 hover:bg-[#eee] transition-colors duration-300 ease-in-out" href={contactInfo?.socials?.x}>
                                     <img className="w-7 h-7" src={grayX} alt="" />
                                 </a>
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5 hover:bg-[#eee] transition-colors duration-300 ease-in-out" href={contactInfo?.socials?.facebook}>
+                                <a aria-label="facebook" className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5 hover:bg-[#eee] transition-colors duration-300 ease-in-out" href={contactInfo?.socials?.facebook}>
                                     <img className="w-7 h-7" src={grayFacebook} alt="" />
                                 </a>
-                                <a className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5 hover:bg-[#eee] transition-colors duration-300 ease-in-out" href={contactInfo?.socials?.instagram}>
+                                <a aria-label="insta" className="border border-[#eee] rounded-lg w-12.5 h-12.5 flex items-center justify-center mr-2.5 hover:bg-[#eee] transition-colors duration-300 ease-in-out" href={contactInfo?.socials?.instagram}>
                                     <img className="w-7 h-7" src={grayInsta} alt="" />
                                 </a>
                             </div>

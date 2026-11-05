@@ -139,8 +139,8 @@ export function Create() {
                         <div>
                             <div className="flex justify-start flex-wrap items-start max-[992px]:flex-col">
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
-                                    <label className="text-sm text-[#212529] opacity-50" htmlFor="">{translation?.data?.business?.choose?.country}</label>
-                                    <select required value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <label className="text-sm text-[#212529] opacity-50" htmlFor="country">{translation?.data?.business?.choose?.country}</label>
+                                    <select id="country" name="country" required value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">{translation?.data?.business?.choose?.country}</option>
                                         {countries?.data?.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -148,8 +148,8 @@ export function Create() {
                                     </select>
                                 </div>
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
-                                    <label className="text-sm text-[#212529] opacity-50" htmlFor="">{translation?.data?.business?.choose?.city}</label>
-                                    <select required value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <label className="text-sm text-[#212529] opacity-50" htmlFor="city">{translation?.data?.business?.choose?.city}</label>
+                                    <select id="city" name="city" required value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">{translation?.data?.business?.choose?.city}</option>
                                         {cities.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -157,8 +157,8 @@ export function Create() {
                                     </select>
                                 </div>
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
-                                    <label className="text-sm text-[#212529] opacity-50" htmlFor="">{translation?.data?.business?.choose?.district}</label>
-                                    <select required value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <label className="text-sm text-[#212529] opacity-50" htmlFor="district">{translation?.data?.business?.choose?.district}</label>
+                                    <select id="district" name="district" required value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">{translation?.data?.business?.choose?.district}</option>
                                         {district.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -166,8 +166,8 @@ export function Create() {
                                     </select>
                                 </div>
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
-                                    <label className="text-sm text-[#212529] opacity-50" htmlFor="">{translation?.data?.business?.choose?.street}</label>
-                                    <select required value={selectedStreet} onChange={(e) => setSelectedStreet(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <label className="text-sm text-[#212529] opacity-50" htmlFor="street">{translation?.data?.business?.choose?.street}</label>
+                                    <select id="street" name="street" required value={selectedStreet} onChange={(e) => setSelectedStreet(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">{translation?.data?.business?.choose?.street}</option>
                                         {streets.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -176,8 +176,8 @@ export function Create() {
                                 </div>
                             </div>
                             <div className="px-2.5 max-[992px]:w-full max-[992px]:px-0">
-                                <label className="text-sm text-[#212529] opacity-50" htmlFor="">{translation?.data?.business?.address}</label>
-                                <input required value={address} onChange={(e) => setAddress(e.target.value)} className="p-2.5 rounded-lg border border-[#e8e8e8] block w-full" type="text" placeholder={translation?.data?.business?.address} />
+                                <label className="text-sm text-[#212529] opacity-50" htmlFor="address">{translation?.data?.business?.address}</label>
+                                <input id="address" name="address" required value={address} onChange={(e) => setAddress(e.target.value)} className="p-2.5 rounded-lg border border-[#e8e8e8] block w-full" type="text" placeholder={translation?.data?.business?.address} />
                             </div>
                         </div>
                     </div>
@@ -205,28 +205,28 @@ export function Create() {
                         <div className="w-full mb-12.5">
                             {pricingType === "PASS" && <div>
                                 <div className="mb-5">
-                                    <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">{translation?.data?.business?.pass_price}</label>
-                                    <input required value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.pass_price} />
+                                    <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="pass">{translation?.data?.business?.pass_price}</label>
+                                    <input id="pass" name="pass" required value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.pass_price} />
                                 </div>
                                 <div className="mb-5">
-                                    <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">{translation?.data?.business?.sell_price}</label>
-                                    <input required value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.sell_price} />
+                                    <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="sell">{translation?.data?.business?.sell_price}</label>
+                                    <input id="sell" name="sell" required value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.sell_price} />
                                 </div>
                             </div>}
                             {pricingType === "COMISSION" && <div>
                                 <div>
                                     <div className="mb-5">
-                                        <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">{translation?.data?.business?.sell_price}</label>
-                                        <input required value={commutionSellPrice} onChange={(e) => setCommutionSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder={translation?.data?.business?.sell_price} />
+                                        <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="commution">{translation?.data?.business?.sell_price}</label>
+                                        <input id="commution" name="commution" required value={commutionSellPrice} onChange={(e) => setCommutionSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder={translation?.data?.business?.sell_price} />
                                     </div>
                                     <div className="flex gap-3.75">
                                         <div className="mb-5 flex-1">
-                                            <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">{translation?.data?.business?.buyer_commission_rate}</label>
-                                            <input required value={buyerCommutionRate} onChange={(e) => setBuyerCommutionRate(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.buyer_commission_rate} />
+                                            <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="buyer">{translation?.data?.business?.buyer_commission_rate}</label>
+                                            <input id="buyer" name="buyer" required value={buyerCommutionRate} onChange={(e) => setBuyerCommutionRate(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.buyer_commission_rate} />
                                         </div>
                                         <div className="mb-5 flex-1">
-                                            <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="">{translation?.data?.business?.seller_commission_rate}</label>
-                                            <input required value={sellerCommutionRate} onChange={(e) => setSellerCommutionRate(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.seller_commission_rate} />
+                                            <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="seller">{translation?.data?.business?.seller_commission_rate}</label>
+                                            <input id="seller" name="seller" required value={sellerCommutionRate} onChange={(e) => setSellerCommutionRate(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.seller_commission_rate} />
                                         </div>
                                     </div>
                                 </div>
@@ -234,7 +234,7 @@ export function Create() {
                         </div>
                     </div>
                     <div className="flex justify-center">
-                        <button type="submit" className="h-12.5 bg-[#27C5D2] px-5 cursor-pointer rounded-[5px] text-white whitespace-nowrap hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.create_property}</button>
+                        <button aria-label="submit" type="submit" className="h-12.5 bg-[#27C5D2] px-5 cursor-pointer rounded-[5px] text-white whitespace-nowrap hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.create_property}</button>
                     </div>
                 </form>
             </div>
