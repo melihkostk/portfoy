@@ -82,10 +82,10 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                         <div className="flex items-center justify-between p-3.75 mb-5 rounded-lg bg-[#f8f8f8]">
                             <div>
                                 <p className="text-xs text-[#212529] opacity-70 font-medium">{translation?.data?.business?.selected_customer_for_proposal}</p>
-                                <p className="text-lg">{selectedCustomer}</p>
+                                <p className="text-lg">{customers?.data?.customers?.find(item => item.id == selectedCustomer)?.name}</p>
                             </div>
                             <div>
-                                <button onClick={() => {setOfferModalShown(false); setStep(1)}} className="text-sm text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.cancel}</button>
+                                <button onClick={() => {setOfferModalShown(false); setStep(1), setSelectedCustomer("")}} className="text-sm text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.cancel}</button>
                             </div>
                         </div>
                         {details ? <div className="flex">

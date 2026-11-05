@@ -47,27 +47,17 @@ export function Filter({searchParams , typeId}) {
     }, [])
 
     useEffect(() => {
-        if (!countryId) {
-            setCities([]);
-            return;
-        }
-
+        if (!countryId) return;
         getAllCities(countryId).then(setCities);
     }, [countryId]);
 
     useEffect(() => {
-        if (!cityId) {
-            setDistrict([]);
-            return;
-        }
+        if (!cityId) return;
         getAllDistricts(cityId).then(setDistrict);
     }, [cityId])
 
     useEffect(() => {
-        if (!districtId) {
-            setStreet([]);
-            return;
-        }
+        if (!districtId) return;
         getAllStreets(districtId).then(setStreet)
     }, [districtId])
 

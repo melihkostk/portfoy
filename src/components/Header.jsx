@@ -18,6 +18,7 @@ import { logOut } from "../services/authApi"
 import sea from "../assets/sea.png"
 import { useAppContext } from "../context/AppContext"
 import bell from "../assets/bell.png"
+import { getAllCustomers } from "../services/myCompanyApi"
 
 export function Header({ details }) {
     const { loged, translation } = useAppContext();
@@ -29,7 +30,6 @@ export function Header({ details }) {
     const [sidebarShown, setSidebarShown] = React.useState(false)
     const [offerModelShown, setOfferModalShown] = React.useState(false)
     const [notifications, setNotifications] = React.useState([])
-    const [number, setNumber] = useState(0);
     const [showUnreadOnly, setShowUnreadOnly] = React.useState(false)
     const [step, setStep] = React.useState(1)
     const [selectedCustomer, setSelectedCustomer] = React.useState("")
@@ -66,6 +66,12 @@ export function Header({ details }) {
     function handleMarkAsRead(id) {
         markAsRead(id);
     }
+
+    const [customers, setCustomer] = useState([])
+
+    React.useEffect(() => {
+        getAllCustomers().then(setCustomer)
+    }, [])
 
     return (
         <div className="py-7.5 w-full max-w-[90%]">
@@ -205,9 +211,9 @@ export function Header({ details }) {
                                             id={item.id}
                                             content={item.content}
                                             time={item.time_diff}
-                                            is_read={item.is_read} 
+                                            is_read={item.is_read}
                                             type={item.type}
-                                            details={item.details}    
+                                            details={item.details}
                                         />
                                     ))}
                                 </div>
@@ -221,7 +227,7 @@ export function Header({ details }) {
                     </div>}
                     {loged && <button onClick={() => setOfferModalShown(prev => !prev)} className={`w-12.5 max-[1100px]:hidden ${selectedCustomer ? "w-30 gap-2" : ""} h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out`}>
                         <img className="w-4 h-4" src={folder} alt="" />
-                        {selectedCustomer && <p className="text-white font-semibold whitespace-nowrap overflow-hidden text-ellipsis">{selectedCustomer}</p>}
+                        {selectedCustomer && <p className="text-white font-semibold whitespace-nowrap overflow-hidden text-ellipsis">{customers?.data?.customers?.find(item => item.id == selectedCustomer)?.name}</p>}
                     </button>}
                     {loged && <Link to={"/company"} className="h-12.5 px-5 max-[1100px]:hidden text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                         <img className="object-cover w-5 h-5" src={shop} alt="" />

@@ -86,19 +86,19 @@ export function EditPropertyInfo({
                         </div>
                         <div className="flex max-[992px]:flex-col">
                             {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.pass_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="pass">{translation?.data?.business?.pass_price} <span className="text-sm">({currency})</span></label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.pass_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="pass">{translation?.data?.business?.pass_price} <span className="text-sm">({currencies.find(item => item.id === currency)?.title})</span></label>
                                 <input id="pass" name="pass" value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {!detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.sell_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="sell">{translation?.data?.business?.sell_price} <span className="text-sm">({currency})</span></label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.sell_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="sell">{translation?.data?.business?.sell_price} <span className="text-sm">({currencies.find(item => item.id === currency)?.title})</span></label>
                                 <input id="sell" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} name="sell" className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.min_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="min">{translation?.data?.business?.min_price} <span className="text-sm">({currency})</span></label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.min_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="min">{translation?.data?.business?.min_price} <span className="text-sm">({currencies.find(item => item.id === currency)?.title})</span></label>
                                 <input id="min" name="min" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
-                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.max_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="max">{translation?.data?.business?.max_price} <span className="text-sm">({currency})</span></label>
+                                <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.max_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="max">{translation?.data?.business?.max_price} <span className="text-sm">({currencies.find(item => item.id === currency)?.title})</span></label>
                                 <input id="max" name="max" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9]" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
