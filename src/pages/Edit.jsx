@@ -108,30 +108,30 @@ export function Edit() {
                         <h2 className="text-[32px] text-[#212529] font-semibold">{translation?.data?.business?.company_info}</h2>
                         <div className="flex flex-wrap justify-between max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0 ">
-                                <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.company_name}</label>
-                                <input value={name} onChange={(e) => setName(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg bg-white" type="text" placeholder={translation?.data?.business?.company_name} />
+                                <label className="text-[#212529]" htmlFor="name">{translation?.data?.business?.company_name}</label>
+                                <input id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg bg-white" type="text" placeholder={translation?.data?.business?.company_name} />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
-                                <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.company_type}</label>
-                                <input disabled value={type} onChange={(e) => setType(e.target.value)} className="px-3 bg-[#eee] py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.company_type} />
+                                <label className="text-[#212529]" htmlFor="type">{translation?.data?.business?.company_type}</label>
+                                <input id="type" name="type" disabled value={type} onChange={(e) => setType(e.target.value)} className="px-3 bg-[#eee] py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.company_type} />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
-                                <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.tax_plate}</label>
-                                <input onChange={(e) => setTaxPlate(e.target.files[0])} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg bg-white" type="file" placeholder={translation?.data?.business?.tax_plate} />
+                                <label className="text-[#212529]" htmlFor="tax-plate">{translation?.data?.business?.tax_plate}</label>
+                                <input id="tax-plate" name="tax-plate" onChange={(e) => setTaxPlate(e.target.files[0])} className="px-3 py-1.5 border border-[#D9D9D9] rounded-lg bg-white" type="file" placeholder={translation?.data?.business?.tax_plate} />
                                 <a className="text-sm text-[#7f7f7f] mt-1.25 hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">{translation?.data?.business?.view_file}</a>
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
-                                <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.tax_number}</label>
-                                <input value={taxNumber} onChange={(e) => setTaxNumber(e.target.value)} className="px-3 py-1.5 border bg-white border-[#D9D9D9] rounded-lg" type="number" placeholder={translation?.data?.business?.tax_number} />
+                                <label className="text-[#212529]" htmlFor="taxNumber">{translation?.data?.business?.tax_number}</label>
+                                <input id="taxNumber" name="taxNumber" value={taxNumber} onChange={(e) => setTaxNumber(e.target.value)} className="px-3 py-1.5 border bg-white border-[#D9D9D9] rounded-lg" type="number" placeholder={translation?.data?.business?.tax_number} />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
-                                <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.licence_file}</label>
-                                <input onChange={(e) => setLicenceFile(e.target.files[0])} className="px-3 py-1.5 border border-[#D9D9D9] bg-white rounded-lg" type="file" placeholder={translation?.data?.business?.licence_file} />
+                                <label className="text-[#212529]" htmlFor="licenceFile">{translation?.data?.business?.licence_file}</label>
+                                <input id="licenceFile" name="licenceFile" onChange={(e) => setLicenceFile(e.target.files[0])} className="px-3 py-1.5 border border-[#D9D9D9] bg-white rounded-lg" type="file" placeholder={translation?.data?.business?.licence_file} />
                                 <a className="text-sm text-[#7f7f7f] mt-1.25 hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">{translation?.data?.business?.view_file}</a>
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
-                                <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.licence_number}</label>
-                                <input value={centralNumber} onChange={(e) => setCentralNumber(e.target.value)} className="px-3 py-1.5 border bg-white border-[#D9D9D9] rounded-lg" type="number" placeholder={translation?.data?.business?.licence_number} />
+                                <label className="text-[#212529]" htmlFor="centralNumber">{translation?.data?.business?.licence_number}</label>
+                                <input id="centralNumber" name="centralNumber" value={centralNumber} onChange={(e) => setCentralNumber(e.target.value)} className="px-3 py-1.5 border bg-white border-[#D9D9D9] rounded-lg" type="number" placeholder={translation?.data?.business?.licence_number} />
                             </div>
                         </div>
                     </div>
@@ -139,24 +139,24 @@ export function Edit() {
                         <h2 className="text-[32px] text-[#212529] font-semibold">{translation?.data?.business?.contact_info}</h2>
                         <div className="flex flex-wrap justify-between max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
-                                <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.email}</label>
-                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.email} />
+                                <label className="text-[#212529]" htmlFor="email">{translation?.data?.business?.email}</label>
+                                <input id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.email} />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
-                                <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.phone}</label>
+                                <label className="text-[#212529]" htmlFor="phone">{translation?.data?.business?.phone}</label>
                                 <div className="flex gap-3.75">
-                                    <select value={code} onChange={(e) => setCode(e.target.value)} className="py-1.5 bg-white pl-3 pr-9 border border-[#d9d9d9] rounded-lg" name="" id="">
+                                    <select id="phone" name="phone" value={code} onChange={(e) => setCode(e.target.value)} className="py-1.5 bg-white pl-3 pr-9 border border-[#d9d9d9] rounded-lg" name="" id="">
                                         <option value="357">(357)</option>
                                         <option value="90">(90)</option>
                                         <option value="971">(971)</option>
                                         <option value="01">(01)</option>
                                     </select>
-                                    <input value={phone} onChange={(e) => setPhone(e.target.value)} className="px-3 bg-white py-1.5 w-full border border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.phone} />
+                                    <input id="phone" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="px-3 bg-white py-1.5 w-full border border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.phone} />
                                 </div>
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
-                                <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.website}</label>
-                                <input value={website} onChange={(e) => setWebsite(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="email" placeholder={translation?.data?.business?.website} />
+                                <label className="text-[#212529]" htmlFor="website">{translation?.data?.business?.website}</label>
+                                <input id="website" name="website" value={website} onChange={(e) => setWebsite(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="email" placeholder={translation?.data?.business?.website} />
                             </div>
                         </div>
                     </div>
@@ -164,20 +164,20 @@ export function Edit() {
                         <h2 className="text-[32px] text-[#212529] font-semibold">{translation?.data?.business?.billing_info}</h2>
                         <div className="flex max-[992px]:flex-col">
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
-                                <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.trade_name}</label>
-                                <input value={tradeName} onChange={(e) => setTradeName(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.trade_name} />
+                                <label className="text-[#212529]" htmlFor="tradeName">{translation?.data?.business?.trade_name}</label>
+                                <input id="tradeName" name="tradeName" value={tradeName} onChange={(e) => setTradeName(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.trade_name} />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
-                                <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.tax_office}</label>
-                                <input value={taxOffice} onChange={(e) => setTaxOffice(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.tax_office} />
+                                <label className="text-[#212529]" htmlFor="taxOffice">{translation?.data?.business?.tax_office}</label>
+                                <input id="taxOffice" name="taxOffice" value={taxOffice} onChange={(e) => setTaxOffice(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.tax_office} />
                             </div>
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
-                                <label className="text-[#212529]" htmlFor="">{translation?.data?.business?.company_address}</label>
-                                <input value={address} onChange={(e) => setAddress(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.company_address} />
+                                <label className="text-[#212529]" htmlFor="address">{translation?.data?.business?.company_address}</label>
+                                <input id="address" name="address" value={address} onChange={(e) => setAddress(e.target.value)} className="px-3 bg-white py-1.5 border border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.company_address} />
                             </div>
                         </div>
                     </div>
-                    <button onClick={handleUpdate} className="bg-[#198754] hover:bg-[#157347] transition-colors duration-300 ease-in-out cursor-pointer mt-7.5 text-white rounded-lg py-2 px-5 ml-12.5">{translation?.data?.business?.save}</button>
+                    <button aria-label="update" onClick={handleUpdate} className="bg-[#198754] hover:bg-[#157347] transition-colors duration-300 ease-in-out cursor-pointer mt-7.5 text-white rounded-lg py-2 px-5 ml-12.5">{translation?.data?.business?.save}</button>
                 </div>
             </div>
             <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
