@@ -51,7 +51,6 @@ export function Wishlist() {
 
     useEffect(() => {
         if (!selectedCountry) {
-            setCities([]);
             return;
         }
         getAllCities(selectedCountry).then(setCities)
@@ -62,7 +61,6 @@ export function Wishlist() {
 
     useEffect(() => {
         if (!selectedCity) {
-            setDistrict([]);
             return
         }
         getAllDistricts(selectedCity).then(setDistrict)
@@ -72,7 +70,7 @@ export function Wishlist() {
     useEffect(() => {
         setLoaded(false)
         getWishlist(selectedSort, selectedType, selectedCountry, selectedCity, selectedDistrict, page).then(setWishlist).finally(() => setLoaded(true))
-    }, [selectedSort])
+    }, [selectedSort , selectedType, selectedCountry, selectedCity, selectedDistrict, page])
 
     const [propertyType, setPropertyType] = useState([]);
     const [selectedPropertyType, setSelectedPropertyType] = useState("");

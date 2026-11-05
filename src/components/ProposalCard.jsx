@@ -5,7 +5,7 @@ import { useAppContext } from "../context/AppContext"
 export function ProposalCard({code , name , status , statusKey , score , created_at , index , id , page}) {
     const { translation } = useAppContext();
     return (
-        <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
+        <tr className={`text-[#212529] font-medium ${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
             {page !== "external" && <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{code}</td>}
             <td className="py-3 px-2">{name}</td>
             <td className="py-3 px-2 text-[#6c757d] text-sm whitespace-nowrap">{score == 0 ? translation?.data?.business?.not_yet_review : score}</td>

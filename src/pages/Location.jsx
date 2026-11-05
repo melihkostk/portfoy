@@ -43,27 +43,17 @@ export function Location() {
     }, [])
 
     useEffect(() => {
-        if (!countryId) {
-            setCities([]);
-            return;
-        }
-
+        if (!countryId) return;
         getAllCities(countryId).then(setCities);
     }, [countryId]);
 
     useEffect(() => {
-        if (!cityId) {
-            setDistrict([]);
-            return;
-        }
+        if (!cityId) return;
         getAllDistricts(cityId).then(setDistrict);
     }, [cityId])
 
     useEffect(() => {
-        if (!districtId) {
-            setStreet([]);
-            return;
-        }
+        if (!districtId) return;
         getAllStreets(districtId).then(setStreet)
     }, [districtId])
 
@@ -105,25 +95,18 @@ export function Location() {
 
     useEffect(() => {
         if (!editCountryId) {
-            setEditCities([]);
             return;
         }
         getAllCities(editCountryId).then(setEditCities);
     }, [editCountryId]);
 
     useEffect(() => {
-        if (!editCityId) {
-            setEditDistrict([]);
-            return;
-        }
+        if (!editCityId) return;
         getAllDistricts(editCityId).then(setEditDistrict);
     }, [editCityId])
 
     useEffect(() => {
-        if (!editDistrictId) {
-            setEditStreet([]);
-            return;
-        }
+        if (!editDistrictId) return;
         getAllStreets(editDistrictId).then(setEditStreet);
     }, [editDistrictId])
 

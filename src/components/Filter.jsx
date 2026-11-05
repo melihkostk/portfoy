@@ -97,7 +97,7 @@ export function Filter({searchParams , typeId}) {
                     </li>
                     {propertiesType?.map(item => (
                         <li key={item.id}>
-                            <button onClick={() => setType(item.id)} className={`px-7.5 py-2.5 font-semibold text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === item.id ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"}`}>{item.title}</button>
+                            <button onClick={() => setType(item.id)} className={`px-7.5 py-2.5 font-medium text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === item.id ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"}`}>{item.title}</button>
                         </li>
                     ))}
                 </ul>

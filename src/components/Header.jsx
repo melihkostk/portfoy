@@ -231,14 +231,14 @@ export function Header({ details }) {
                     </button>}
                     {loged && <Link to={"/company"} className="h-12.5 px-5 max-[1100px]:hidden text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                         <img className="object-cover w-5 h-5" src={shop} alt="" />
-                        <span className="max-[1400px]:hidden">{translation?.data?.business?.my_portfolio}</span>
+                        <span className="max-[1400px]:hidden font-medium">{translation?.data?.business?.my_portfolio}</span>
                     </Link>}
                     {loged && <div className="relative">
                         <div className="flex">
                             <div className="h-12.5 border-r border-r-[#ffffff38]">
                                 <Link to={"/profile"} className="flex items-center justify-center h-full px-5 max-[1100px]:px-2.5 rounded-l-[5px] max-[1100px]:rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                                     <img className="object-cover w-7 h-7" src={person} alt="" />
-                                    <p className="text-white max-[1400px]:hidden">{translation?.data?.business?.my_account}</p>
+                                    <p className="text-white font-medium max-[1400px]:hidden">{translation?.data?.business?.my_account}</p>
                                 </Link>
                             </div>
                             <div onClick={() => setAccountShown(prev => !prev)} className="flex max-[1100px]:hidden items-center justify-center bg-[#27C5D2] rounded-r-[5px] w-7.5 cursor-pointer hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
@@ -252,27 +252,27 @@ export function Header({ details }) {
                             </div>
                             <div>
                                 <ul>
-                                    <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
+                                    <li className="flex items-center font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
                                         <Link to={"/wishlist"} className="text-white text-sm">{translation?.data?.business?.my_wishlist}</Link>
                                     </li>
-                                    <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
+                                    <li className="flex items-center font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
                                         <Link to={"/offers/send"} className="text-white text-sm truncate">
                                             {translation?.data?.business?.my_proposals}
                                         </Link>
                                     </li>
-                                    <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
+                                    <li className="flex items-center font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
                                         <Link to={"/support"} className="text-white text-sm">
                                             {translation?.data?.business?.support}
                                         </Link>
                                     </li>
-                                    <li className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
+                                    <li className="flex items-center font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
                                         <Link className="text-white text-sm">{translation?.data?.business?.dashboard}</Link>
                                     </li>
-                                    <li onClick={handleLogOut} className="flex items-center py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
+                                    <li onClick={handleLogOut} className="flex items-center font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
                                         <span className="text-white text-sm">
                                             {translation?.data?.business?.logout}
