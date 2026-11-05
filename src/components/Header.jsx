@@ -41,12 +41,6 @@ export function Header({ details }) {
         getAllNotifications().then(setNotifications)
     }, [])
 
-    React.useEffect(() => {
-        const userData = localStorage.getItem("user");
-        if (!userData) return;
-        const user = JSON.parse(userData);
-        setNumber(user?.data?.unread_notifications_count ?? 0);
-    }, [])
 
     function handleLogOut() {
         logOut().then((data => {
@@ -185,12 +179,12 @@ export function Header({ details }) {
                             <img className="w-6 h-6" src={notification} alt="" />
                         </button>
                         <div className="absolute -top-1 -right-1 text-[10px] text-[#858585] bg-[#FFCA64] rounded-full w-5 h-5 flex items-center justify-center font-extrabold">
-                            {number}
+                            {notifications?.data?.unread_notifications_count}
                         </div>
                         {notShown && <div className="absolute z-50 w-75 rounded-lg bg-white right-0 shadow-[0_0_30px_rgba(0,0,0,0.1)] pb-3.75">
                             <div className="bg-[#27C5D2] p-7.5 rounded-t-lg">
                                 <p className="text-white text-sm mb-5">
-                                    Okunmamış {number} Bildirim
+                                    Okunmamış {notifications?.data?.unread_notifications_count} Bildirim
                                 </p>
                                 <button className="bg-white text-xs rounded-lg py-2.5 px-5 font-medium cursor-pointer whitespace-nowrap hover:bg-[#ffca64] transition-colors duration-300 ease-in-out">
                                     Tümünü Okundu Olarak İşaretle
