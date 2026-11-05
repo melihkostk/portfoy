@@ -25,18 +25,18 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                 <div>
                     <ul className="my-7.5">
                         {type?.map(item => (
-                            <div key={item.id} className="flex justify-between items-center mb-1.25">
+                            <li key={item.id} className="flex justify-between items-center mb-1.25">
                                 <div className="flex items-center gap-2">
                                     <input id={`type-${item.id}`} name="type" type="checkbox" checked={selectedType.includes(item.id)} onChange={() => toggleType(item.id)} />
                                     <label className={`text-[13px] ${selectedType.includes(item.id) ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor={`type-${item.id}`}>{item.title}</label>
                                 </div>
-                            </div>
+                            </li>
                         ))}
                     </ul>
                 </div>
                 <div className="mb-5">
-                    <p className="text-sm text-[#878787] mb-2" htmlFor="">{translation?.data?.business?.choose?.personal}</p>
-                    <select value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)} className="block w-full border border-[#d9d9d9] rounded-lg py-1.5 pl-3 pr-9">
+                    <label className="text-sm font-medium text-[#878787] mb-2" htmlFor="personal">{translation?.data?.business?.choose?.personal}</label>
+                    <select id="personal" name="personal" value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)} className="block w-full mt-2 border border-[#d9d9d9] rounded-lg py-1.5 pl-3 pr-9">
                         <option value={""}>{translation?.data?.business?.all}</option>
                         {team?.personals?.map(item => (
                             <option value={item.id} key={item.id}>{item.name}</option>
@@ -44,13 +44,13 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                     </select>
                 </div>
                 <div className="mb-5">
-                    <p className="text-sm text-[#878787] mb-2" htmlFor="">{translation?.data?.business?.sell_price}</p>
-                    <div className="flex gap-1">
+                    <label className="text-sm font-medium text-[#878787] mb-2" htmlFor="price">{translation?.data?.business?.sell_price}</label>
+                    <div className="flex gap-1 mt-2">
                         <input value={minSell} onChange={(e) => setMinSell(e.target.value)} type="number" placeholder={translation?.data?.business?.min} min={0} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
                         <input value={maxSell} onChange={(e) => setMaxSell(e.target.value)} type="number" placeholder={translation?.data?.business?.max} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
                     </div>
                     <div className="mt-2">
-                        <select value={selectedCurrencie} onChange={(e) => setSelectedCurrencie(e.target.value)} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
+                        <select id="price" name="price" value={selectedCurrencie} onChange={(e) => setSelectedCurrencie(e.target.value)} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
                             {currencie.map(item => (
                                 <option value={item.id} key={item.id}>({item.code}) {item.title}</option>
                             ))}
@@ -58,7 +58,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                     </div>
                 </div>
                 <div className="mb-5">
-                    <p className="text-sm text-[#878787] mb-2" htmlFor="">{translation?.data?.business?.location}</p>
+                    <p className="text-sm text-[#878787] font-medium mb-2" htmlFor="">{translation?.data?.business?.location}</p>
                     <div>
                         <div className="mb-2">
                             <label className="text-[13px] text-[#212529] font-semibold" htmlFor="country">{translation?.data?.business?.choose?.country}</label>
@@ -92,15 +92,15 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                 <div className="mb-5">
                     <p className="text-sm text-[#878787] mb-2" htmlFor="">{translation?.data?.business?.property_status}</p>
                     <div>
-                        <div className="flex items-center gap-2.5">
+                        <div className="flex items-center gap-2.5 mb-1.25">
                             <input id="status-all" name="status" type="checkbox" checked={status === ""} onChange={() => setStatus("")} />
                             <label className={`text-[13px] ${status === "" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-all">{translation?.data?.business?.all}</label>
                         </div>
-                        <div className="flex items-center gap-2.5">
+                        <div className="flex items-center gap-2.5 mb-1.25">
                             <input id="status-published" name="status" type="checkbox" checked={status === "published"} onChange={() => setStatus("published")} />
                             <label htmlFor="status-published" className={`text-[13px] ${status === "published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`}>{translation?.data?.business?.only_published_properties}</label>
                         </div>
-                        <div className="flex items-center gap-2.5">
+                        <div className="flex items-center gap-2.5 mb-1.25">
                             <input id="status-not_published" name="status" type="checkbox" checked={status === "not_published"} onChange={() => setStatus("not_published")} />
                             <label htmlFor="status-not_published" className={`text-[13px] ${status === "not_published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`}>{translation?.data?.business?.only_not_published_properties}</label>
                         </div>

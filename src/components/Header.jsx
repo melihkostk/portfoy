@@ -90,7 +90,7 @@ export function Header({ details }) {
             />}
             <div className="flex items-center justify-between">
                 <div className="w-55 max-[992px]:w-30">
-                    <Link to={"/"}>
+                    <Link aria-label="home" to={"/"}>
                         <img className="w-full max-w-full" src={logo} alt="" />
                     </Link>
                 </div>
@@ -181,7 +181,7 @@ export function Header({ details }) {
                         </div>}
                     </div>}
                     {loged && <div className="relative">
-                        <button onClick={() => setNotShown(prev => !prev)} className="w-12.5 h-12.5 bg-[#f8f8f8] rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out">
+                        <button aria-label="notification" onClick={() => setNotShown(prev => !prev)} className="w-12.5 h-12.5 bg-[#f8f8f8] rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out">
                             <img className="w-6 h-6" src={notification} alt="" />
                         </button>
                         <div className="absolute -top-1 -right-1 text-[10px] text-[#858585] bg-[#FFCA64] rounded-full w-5 h-5 flex items-center justify-center font-extrabold">
@@ -225,7 +225,7 @@ export function Header({ details }) {
                             </div>
                         </div>}
                     </div>}
-                    {loged && <button onClick={() => setOfferModalShown(prev => !prev)} className={`w-12.5 max-[1100px]:hidden ${selectedCustomer ? "w-30 gap-2" : ""} h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out`}>
+                    {loged && <button aria-label="offer" onClick={() => setOfferModalShown(prev => !prev)} className={`w-12.5 max-[1100px]:hidden ${selectedCustomer ? "w-30 gap-2" : ""} h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out`}>
                         <img className="w-4 h-4" src={folder} alt="" />
                         {selectedCustomer && <p className="text-white font-semibold whitespace-nowrap overflow-hidden text-ellipsis">{customers?.data?.customers?.find(item => item.id == selectedCustomer)?.name}</p>}
                     </button>}

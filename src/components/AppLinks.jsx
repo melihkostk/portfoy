@@ -16,10 +16,10 @@ export function AppLinks() {
                     <p className="text-base text-[#212529] font-normal">{translation?.data?.business?.download_app_description}</p>
                 </div>
                 <div className="flex items-center gap-2.5 w-[25%] max-[992px]:w-full">
-                    <a className="max-[992px]:mt-5" href="https://play.google.com/store/apps/details?id=com.pigasoft.portfoy&hl=tr">
+                    <a aria-label="googlePlay" className="max-[992px]:mt-5" href="https://play.google.com/store/apps/details?id=com.pigasoft.portfoy&hl=tr">
                         <img className="hover:opacity-70 transition-opacity duration-300 ease-in-out" src={googlePlay} alt="" />
                     </a>
-                    <a className="max-[992px]:mt-5" href="https://apps.apple.com/tr/app/port-foy/id6745571274">
+                    <a aria-label="appStore" className="max-[992px]:mt-5" href="https://apps.apple.com/tr/app/port-foy/id6745571274">
                         <img className="hover:opacity-70 transition-opacity duration-300 ease-in-out" src={appStore} alt="" />
                     </a>
                 </div>
