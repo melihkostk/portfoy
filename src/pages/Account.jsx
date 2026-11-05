@@ -214,27 +214,27 @@ export function Account() {
                             <form onSubmit={handleUpdate}>
                                 <div className="flex mb-2.5">
                                     <div className="pr-3 w-1/2">
-                                        <label htmlFor="">{translation?.data?.business?.name}</label>
-                                        <input onChange={(e) => setName(e.target.value)} className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" value={name} />
+                                        <label htmlFor="name">{translation?.data?.business?.name}</label>
+                                        <input id="name" name="name" onChange={(e) => setName(e.target.value)} className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" value={name} />
                                     </div>
                                     <div className="pl-3 w-1/2">
-                                        <label htmlFor="">{translation?.data?.validation?.attributes?.email}</label>
-                                        <input disabled className="block border border-[#D9D9D9] bg-[#e9ecef] w-full rounded-lg py-1.5 px-3" type="mail" value={user?.data?.email} />
+                                        <label htmlFor="email">{translation?.data?.validation?.attributes?.email}</label>
+                                        <input id="email" name="email" disabled className="block border border-[#D9D9D9] bg-[#e9ecef] w-full rounded-lg py-1.5 px-3" type="mail" value={user?.data?.email} />
                                     </div>
                                 </div>
                                 <div>
                                     <div className="w-1/2 pr-3 max-[992px]:w-full max-[992px]:mb-2.5 max-[992px]:pr-0">
-                                        <label htmlFor="">{translation?.data?.business?.phone}</label>
+                                        <label htmlFor="phone">{translation?.data?.business?.phone}</label>
                                         <div className="flex items-center gap-3.75">
                                             <div>
-                                                <select onChange={(e) => setCode(e.target.value)} value={code} className="border border-[#D9D9D9] rounded-lg text-base py-1.5 px-3" name="" id="">
+                                                <select onChange={(e) => setCode(e.target.value)} value={code} className="border border-[#D9D9D9] rounded-lg text-base py-1.5 px-3" name="phone" id="phone">
                                                     <option value="357">(357)</option>
                                                     <option value="90">(90)</option>
                                                     <option value="971">(971)</option>
                                                     <option value="01">(01)</option>
                                                 </select>
                                             </div>
-                                            <input onChange={(e) => setPhone(e.target.value)} className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" placeholder={translation?.data?.business?.phone} value={phone}></input>
+                                            <input name="phone" id="phone" onChange={(e) => setPhone(e.target.value)} className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" placeholder={translation?.data?.business?.phone} value={phone}></input>
                                         </div>
                                     </div>
                                 </div>
