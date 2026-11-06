@@ -84,7 +84,7 @@ export function ProposalDetail() {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex max-[992px]:flex-col">
-                    <div className="pr-12.5 w-[70%] max-[992px]:w-full">
+                    <div className="pr-12.5 w-[78%] max-[992px]:w-full">
                         {detail?.properties?.map(item => (
                             <PropertiesCard
                                 id={item.id}
@@ -101,12 +101,12 @@ export function ProposalDetail() {
                             />
                         ))}
                     </div>
-                    <div className="w-[30%] max-[992px]:w-full">
+                    <div className="w-[22%] max-[992px]:w-full">
                         <div className="bg-white shadow-[0_0_80px_#f3f3f3] text-center p-7.5 mb-7.5 rounded-lg">
                             <p className="font-semibold">{translation?.data?.business?.notes_for_customer}</p>
                             <p className="text-sm italic text-[#212529]">{detail?.notes}</p>
                         </div>
-                        {detail?.score  ? <div className="bg-white shadow-[0_0_80px_#f3f3f3] text-center p-7.5 mb-7.5 rounded-lg flex flex-col gap-1">
+                        {detail?.score ? <div className="bg-white shadow-[0_0_80px_#f3f3f3] text-center p-7.5 mb-7.5 rounded-lg flex flex-col gap-1">
                             <p className="text-[35px] text-[#212529] font-semibold">{detail?.score} <span className="text-[25px] font-normal text-[#999]">/ 5</span></p>
                             <div className="flex items-center gap-1 justify-center">
                                 {[...Array(5)].map((_, i) => (
@@ -118,12 +118,12 @@ export function ProposalDetail() {
                                     />
                                 ))}
                             </div>
-                            <p className="text-sm text-[#929292]">{translation.data.business.reviewed_at.replace(":date" , " ")} {detail?.created_at}</p>
+                            <p className="text-sm font-medium text-[#929292]">{translation.data.business.reviewed_at.replace(":date", " ")} {detail?.created_at}</p>
                             <p className="mt-2.5 font-semibold text-sm">{translation?.data?.business?.customer_notes} <span className="block italic font-normal">{detail?.reply_notes}</span></p>
                             <div className="rounded-lg border border-[#eee] p-2.5 mt-7.5">
-                                {detail?.review?.summary?.questions?.map(item => (
-                                    <div key={item.title} className="flex items-center justify-between p-2.5">
-                                        <p className="text-[#212529]">{item.title}</p>
+                                {detail?.review?.summary?.questions?.map((item, index) => (
+                                    <div key={item.title} className={`rounded-lg ${index % 2 === 0 ? "" : "bg-[#f6f6f6]"} flex items-center justify-between p-2.5`}>
+                                        <p className="text-[#212529] font-medium">{item.title}</p>
                                         <div className="flex items-center gap-0.5 justify-center">
                                             {[...Array(5)].map((_, i) => (
                                                 <img
@@ -148,15 +148,17 @@ export function ProposalDetail() {
                             </div>
                         )}
                         <div className="bg-white shadow-[0_0_80px_#f3f3f3] flex flex-col items-center p-7.5 rounded-lg">
-                            <p className="mb-5 text-sm text-[#979797]">{translation?.data?.business?.share_this_proposal}</p>
-                            <a aria-label="whatsapp" href="https://web.whatsapp.com/" target="_blank" className="bg-[#25d366] mb-2.5 text-white flex items-center gap-1 font-semibold rounded-lg py-2 px-5 text-sm cursor-pointer hover:bg-[#19a74e] transition-colors duration-300 ease-in-out">
-                                <img className="w-5 h-5" src={wp} alt="" />
-                                {translation?.data?.business?.share_on_whatsapp}
-                            </a>
-                            <button aria-label="copy-url" className="bg-[#f8f8f8] text-black flex items-center gap-1 font-semibold rounded-lg py-2 px-5 text-sm cursor-pointer hover:bg-[#cdcdcd] transition-colors duration-300 ease-in-out">
-                                <img className="w-5 h-5" src={chain} alt="" />
-                                {translation?.data?.business?.copy_link}
-                            </button>
+                            <p className="mb-5 text-sm font-medium text-[#979797]">{translation?.data?.business?.share_this_proposal}</p>
+                            <div className="flex items-center gap-1">
+                                <a aria-label="whatsapp" href="https://web.whatsapp.com/" target="_blank" className="bg-[#25d366] text-white flex items-center gap-1 font-semibold rounded-lg py-2 px-5 text-sm cursor-pointer hover:bg-[#19a74e] transition-colors duration-300 ease-in-out">
+                                    <img className="w-5 h-5" src={wp} alt="" />
+                                    {translation?.data?.business?.share_on_whatsapp}
+                                </a>
+                                <button aria-label="copy-url" className="bg-[#f8f8f8] text-black flex items-center gap-1 font-semibold rounded-lg py-2 px-5 text-sm cursor-pointer hover:bg-[#cdcdcd] transition-colors duration-300 ease-in-out">
+                                    <img className="w-5 h-5" src={chain} alt="" />
+                                    {translation?.data?.business?.copy_link}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

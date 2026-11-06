@@ -30,7 +30,7 @@ export function PropertiesCard(props) {
                 </div>
             </div>
             <div className={`pl-5 w-[50%] max-[992px]:w-full max-[992px]:pl-0`}>
-                <Link to={`/properties/${props.id}`} className={`min-h-12.5 ${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" || props.page === "wishlist" || props.page === "proposalDetail" ? "text-2xl" : "text-base"} text-black hover:text-[#FFCA64] transition-colors duration-300 ease-in-out`}>{props.title}</Link>
+                <Link to={`/properties/${props.id}`} className={`min-h-12.5 font-medium ${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" || props.page === "wishlist" || props.page === "proposalDetail" ? "text-2xl" : "text-base"} text-black hover:text-[#FFCA64] transition-colors duration-300 ease-in-out`}>{props.title}</Link>
                 <ul className="text-[11px] text-[#B7BFB9] font-semibold flex flex-wrap gap-2.5 my-2.5">
                     <li className="w-full flex items-center gap-1">
                         <img className="w-5 h-5" src={location} alt="" />
@@ -63,7 +63,7 @@ export function PropertiesCard(props) {
                 </p>
                 {(props.page === "proposalDetail" && props.detail.score > 0) && <div className="p-3.75 mt-2.5 bg-white rounded-lg">
                     {props.detail?.review?.properties?.[`review_${props.id}`]?.map((item) => (
-                        <div className="mb-7.5 flex flex-wrap" key={item.index}>
+                        <div className="mb-7.5 flex flex-wrap justify-between items-center" key={item.index}>
                             <div className="whitespace-wrap">
                                 <p className="text-[15px] text-[#212529] font-semibold">{item.title}</p>
                                 <p className="text-xs text-[#828282] font-semibold">{item.description}</p>

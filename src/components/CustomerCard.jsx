@@ -6,7 +6,7 @@ import { useAppContext } from "../context/AppContext"
 export function CustomerCard({name, index , email , phoneCode, phoneNumber, locale , created_at , note , proposals , id , onEditClick}){
     const { translation } = useAppContext();
     return(
-        <tr className={`${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
+        <tr className={`font-medium ${index % 2 === 1 ? "bg-[#f8f8f8]" : ""}`}>
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{name}</td>
             <td className="py-3 px-2 text-[#212529] text-base whitespace-nowrap">{email}</td>
             <td className="py-3 px-2 text-[#212529] text-base whitespace-nowrap">
