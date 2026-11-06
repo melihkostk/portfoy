@@ -120,8 +120,8 @@ export function Create() {
             <div className="w-full max-w-[90%] flex items-center justify-center">
                 <form onSubmit={handleAdd} className="w-[50%] max-[992px]:w-full">
                     <div className="mb-12.5">
-                        <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-medium">{translation?.data?.business?.basic_info}</p>
-                        <input required value={title} onChange={(e) => setTitle(e.target.value)} className="p-3.75 rounded-lg border border-[#ededed] w-full" type="text" placeholder={translation?.data?.business?.property_title} />
+                        <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-bold">{translation?.data?.business?.basic_info}</p>
+                        <input required value={title} onChange={(e) => setTitle(e.target.value)} className="p-3.75 font-medium rounded-lg border border-[#ededed] w-full" type="text" placeholder={translation?.data?.business?.property_title} />
                         <div className="flex overflow-x-auto justify-between scrollbar-none mt-7.5">
                             {propertyType.map(item => (
                                 <CreateButton
@@ -135,12 +135,12 @@ export function Create() {
                         </div>
                     </div>
                     <div className="mb-12.5">
-                        <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-medium">{translation?.data?.business?.location_info}</p>
+                        <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-bold">{translation?.data?.business?.location_info}</p>
                         <div>
                             <div className="flex justify-start flex-wrap items-start max-[992px]:flex-col">
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
-                                    <label className="text-sm text-[#212529] opacity-50" htmlFor="country">{translation?.data?.business?.choose?.country}</label>
-                                    <select id="country" name="country" required value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <label className="text-sm font-medium text-[#212529] opacity-50" htmlFor="country">{translation?.data?.business?.choose?.country}</label>
+                                    <select id="country" name="country" required value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="p-2.5 border font-medium border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">{translation?.data?.business?.choose?.country}</option>
                                         {countries?.data?.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -148,8 +148,8 @@ export function Create() {
                                     </select>
                                 </div>
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
-                                    <label className="text-sm text-[#212529] opacity-50" htmlFor="city">{translation?.data?.business?.choose?.city}</label>
-                                    <select id="city" name="city" required value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <label className="text-sm font-medium text-[#212529] opacity-50" htmlFor="city">{translation?.data?.business?.choose?.city}</label>
+                                    <select id="city" name="city" required value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="p-2.5 border font-medium border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">{translation?.data?.business?.choose?.city}</option>
                                         {cities.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -157,8 +157,8 @@ export function Create() {
                                     </select>
                                 </div>
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
-                                    <label className="text-sm text-[#212529] opacity-50" htmlFor="district">{translation?.data?.business?.choose?.district}</label>
-                                    <select id="district" name="district" required value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <label className="text-sm font-medium text-[#212529] opacity-50" htmlFor="district">{translation?.data?.business?.choose?.district}</label>
+                                    <select id="district" name="district" required value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="p-2.5 font-medium border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">{translation?.data?.business?.choose?.district}</option>
                                         {district.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -166,8 +166,8 @@ export function Create() {
                                     </select>
                                 </div>
                                 <div className="flex flex-col max-[992px]:m-0 m-2.5 flex-1 max-w-full max-[992px]:w-full">
-                                    <label className="text-sm text-[#212529] opacity-50" htmlFor="street">{translation?.data?.business?.choose?.street}</label>
-                                    <select id="street" name="street" required value={selectedStreet} onChange={(e) => setSelectedStreet(e.target.value)} className="p-2.5 border border-[#e8e8e8] rounded-lg w-full">
+                                    <label className="text-sm font-medium text-[#212529] opacity-50" htmlFor="street">{translation?.data?.business?.choose?.street}</label>
+                                    <select id="street" name="street" required value={selectedStreet} onChange={(e) => setSelectedStreet(e.target.value)} className="p-2.5 font-medium border border-[#e8e8e8] rounded-lg w-full">
                                         <option value="">{translation?.data?.business?.choose?.street}</option>
                                         {streets.map(item => (
                                             <option key={item.id} value={item.id}>{item.title}</option>
@@ -176,28 +176,28 @@ export function Create() {
                                 </div>
                             </div>
                             <div className="px-2.5 max-[992px]:w-full max-[992px]:px-0">
-                                <label className="text-sm text-[#212529] opacity-50" htmlFor="address">{translation?.data?.business?.address}</label>
-                                <input id="address" name="address" required value={address} onChange={(e) => setAddress(e.target.value)} className="p-2.5 rounded-lg border border-[#e8e8e8] block w-full" type="text" placeholder={translation?.data?.business?.address} />
+                                <label className="text-sm font-medium text-[#212529] opacity-50" htmlFor="address">{translation?.data?.business?.address}</label>
+                                <input id="address" name="address" required value={address} onChange={(e) => setAddress(e.target.value)} className="p-2.5 rounded-lg font-medium border border-[#e8e8e8] block w-full" type="text" placeholder={translation?.data?.business?.address} />
                             </div>
                         </div>
                     </div>
                     <div className="flex flex-col items-center">
-                        <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-medium">{translation?.data?.business?.pricing_info}</p>
+                        <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-bold">{translation?.data?.business?.pricing_info}</p>
                         <div>
                             <div className="flex flex-col items-center">
-                                <p className="mb-1.25 text-sm text-[#212529] text-center opacity-50">{translation?.data?.business?.choose_pricing_type_info_text}</p>
+                                <p className="mb-1.25 text-sm font-medium text-[#212529] text-center opacity-50">{translation?.data?.business?.choose_pricing_type_info_text}</p>
                                 <div>
                                     <button onClick={() => setPricingType("PASS")} className={`${pricingType === "PASS" ? "bg-[#e2e2e2] rounded-lg" : "bg-[#f8f8f8]"} text-center text-sm font-semibold py-2.5 px-7.5 mb-7.5 hover:bg-[#e2e2e2] transition-colors duration-300 ease-in-out cursor-pointer`}>{translation?.data?.business?.pricing_type?.pass}</button>
                                     {(selectedType === 27 || selectedType === 21) && <button onClick={() => setPricingType("COMISSION")} className={`${pricingType === "COMISSION" ? "bg-[#e2e2e2] rounded-lg" : "bg-[#f8f8f8]"} text-center text-sm font-semibold py-2.5 px-7.5 cursor-pointer mb-7.5 hover:bg-[#e2e2e2] transition-colors duration-300 ease-in-out`}>{translation?.data?.business?.pricing_type?.commission}</button>}
                                 </div>
                             </div>
                             <div className="flex flex-col items-center">
-                                <p className="mb-1.25 text-sm text-[#212529] opacity-50 text-center">
+                                <p className="mb-1.25 text-sm text-[#212529] font-medium opacity-50 text-center">
                                     {translation?.data?.business?.choose_currency_info_text}
                                 </p>
                                 <div className="flex items-center mb-7.5">
                                     {currencies.map(item => (
-                                        <button key={item.id} onClick={() => setSelectedCurrencie(item.id)} className={`text-sm text-[#212529] cursor-pointer font-semibold py-2.5 px-7.5 hover:bg-[#e2e2e2] transition-colors duration-300 ease-in-out ${item.id === selectedCurrencie ? "bg-[#e2e2e2] rounded-lg" : "bg-[#f8f8f8]"}`}>{item.code}</button>
+                                        <button key={item.id} onClick={() => setSelectedCurrencie(item.id)} className={`text-sm text-[#212529] cursor-pointer rounded-lg font-semibold py-2.5 px-7.5 hover:bg-[#e2e2e2] transition-colors duration-300 ease-in-out ${item.id === selectedCurrencie ? "bg-[#e2e2e2]" : "bg-[#f8f8f8]"}`}>{item.code}</button>
                                     ))}
                                 </div>
                             </div>
@@ -205,12 +205,12 @@ export function Create() {
                         <div className="w-full mb-12.5">
                             {pricingType === "PASS" && <div>
                                 <div className="mb-5">
-                                    <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="pass">{translation?.data?.business?.pass_price}</label>
-                                    <input id="pass" name="pass" required value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.pass_price} />
+                                    <label className="text-sm font-medium text-[#212529] opacity-50 mb-2" htmlFor="pass">{translation?.data?.business?.pass_price}</label>
+                                    <input id="pass" name="pass" required value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="block font-medium rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.pass_price} />
                                 </div>
                                 <div className="mb-5">
-                                    <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="sell">{translation?.data?.business?.sell_price}</label>
-                                    <input id="sell" name="sell" required value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.sell_price} />
+                                    <label className="text-sm font-medium text-[#212529] opacity-50 mb-2" htmlFor="sell">{translation?.data?.business?.sell_price}</label>
+                                    <input id="sell" name="sell" required value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="block font-medium rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.sell_price} />
                                 </div>
                             </div>}
                             {pricingType === "COMISSION" && <div>
@@ -234,7 +234,7 @@ export function Create() {
                         </div>
                     </div>
                     <div className="flex justify-center">
-                        <button aria-label="submit" type="submit" className="h-12.5 bg-[#27C5D2] px-5 cursor-pointer rounded-[5px] text-white whitespace-nowrap hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.create_property}</button>
+                        <button aria-label="submit" type="submit" className="h-12.5 bg-[#27C5D2] px-5 font-semibold cursor-pointer rounded-[5px] text-white whitespace-nowrap hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.create_property}</button>
                     </div>
                 </form>
             </div>
