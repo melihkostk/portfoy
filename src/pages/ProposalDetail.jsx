@@ -49,8 +49,8 @@ export function ProposalDetail() {
             <div className="w-full max-w-[90%]">
                 <div className="w-full bg-[#f8f8f8] py-7.5 px-3.75 mb-7.5 rounded-lg flex justify-between items-center max-[992px]:flex-col">
                     <div className="max-[992px]:w-full max-[992px]:text-center max-[992px]:mb-5">
-                        <p className="text-[#6d6d6d] text-[25px] max-[992px]:text-base font-semibold">{detail?.code}</p>
-                        <p className="text-sm text-[#989898]">{detail?.created_text}</p>
+                        <p className="text-[#6d6d6d] text-[25px] max-[992px]:text-base font-bold">{detail?.code}</p>
+                        <p className="text-sm text-[#989898] font-medium">{detail?.created_text}</p>
                     </div>
                     <div className="py-3.75 px-7.5 border max-[992px]:w-full max-[992px]:flex-wrap max-[992px]:justify-between border-[#eaeaea] rounded-lg flex items-center gap-5">
                         <div className="w-12.5 h-12.5  max-[992px]:hidden">
@@ -84,7 +84,7 @@ export function ProposalDetail() {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex max-[992px]:flex-col">
-                    <div className="pr-12.5 w-[78%] max-[992px]:w-full">
+                    <div className="pr-12.5 w-[78%] max-[992px]:pr-0 max-[992px]:w-full">
                         {detail?.properties?.map(item => (
                             <PropertiesCard
                                 id={item.id}
@@ -122,7 +122,7 @@ export function ProposalDetail() {
                             <p className="mt-2.5 font-semibold text-sm">{translation?.data?.business?.customer_notes} <span className="block italic font-normal">{detail?.reply_notes}</span></p>
                             <div className="rounded-lg border border-[#eee] p-2.5 mt-7.5">
                                 {detail?.review?.summary?.questions?.map((item, index) => (
-                                    <div key={item.title} className={`rounded-lg ${index % 2 === 0 ? "" : "bg-[#f6f6f6]"} flex items-center justify-between p-2.5`}>
+                                    <div key={item.title} className={`rounded-lg ${index % 2 === 0 ? "" : "bg-[#f6f6f6]"} flex items-center flex-wrap justify-between p-2.5`}>
                                         <p className="text-[#212529] font-medium">{item.title}</p>
                                         <div className="flex items-center gap-0.5 justify-center">
                                             {[...Array(5)].map((_, i) => (
