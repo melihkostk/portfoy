@@ -9,10 +9,11 @@ import { getCompanyTypes } from "../services/companiesApi";
 import { getPackages } from "../services/pricingApi";
 import { useAppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 export function Pricing() {
 
-    const { locale, translation } = useAppContext();
+    const { locale, translation , translationLoaded } = useAppContext();
 
     const [type, setType] = useState([]);
 
@@ -31,6 +32,15 @@ export function Pricing() {
     return (
         <div className='flex flex-col items-center font-sf'>
             <Header />
+            {(!translationLoaded) && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
                 <div className="w-full max-w-[90%] flex items-center gap-2">
                     <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
