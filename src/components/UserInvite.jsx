@@ -4,7 +4,7 @@ export function UserInvite({ code, name, role, created_at, expiry_at, handleDele
     const { translation } = useAppContext();
 
     return (
-        <tr>
+        <tr className="font-medium">
             <td className="py-3 px-2 overflow-hidden text-ellipsis whitespace-nowrap max-w-[30ch] truncate">{code}</td>
             <td className="py-3 px-2">{name}</td>
             <td className="py-3 px-2 text-[#212529] text-base whitespace-nowrap">{role}</td>

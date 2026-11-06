@@ -1,5 +1,5 @@
 ﻿import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Header } from "../components/Header";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
@@ -34,8 +34,14 @@ export function CompaniesDetailTeam() {
             )}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.companies} {">"}</span> <span className="text-[#9a9898]"> {companyDetailTeam?.name} {">"}</span> <span className="text-[#9a9898]"> {translation?.data?.business?.team}</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out" to={"/"}>{translation?.data?.business?.home}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link to={"/companies"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.companies}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link to={`/companies/${id}`} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{companyDetailTeam?.name}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-[#9a9898] text-sm font-semibold">{translation?.data?.business?.team}</Link>
                 </div>
             </div>
             <CompanyHeader

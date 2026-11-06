@@ -5,7 +5,7 @@ import { Footer } from "../components/Footer"
 import { OfferCard } from "../components/OfferCard"
 import { getReceivedOffers, getSendedOffers, replyOffer } from "../services/profileApi"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
 import whiteClose from "../assets/close.png"
@@ -107,8 +107,12 @@ export function Offers() {
             </div>}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.my_offers}</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link to={"/profile"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.my_account}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-[#9a9898] text-sm font-semibold">{translation?.data?.business?.my_offers}</Link>
                 </div>
             </div>
             {offerMenuShown && <div className="fixed overflow-y-scroll scrollbar-none top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 w-[25%] max-h-[95%] bg-white border border-[#eee] rounded-lg z-50">

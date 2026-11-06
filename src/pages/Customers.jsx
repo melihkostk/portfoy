@@ -9,6 +9,7 @@ import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 import { useAppContext } from "../context/AppContext"
+import { Link } from "react-router-dom"
 
 export function Customers() {
 
@@ -104,8 +105,12 @@ export function Customers() {
             )}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_portfolio} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.customers}</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link to={"/company"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.my_portfolio}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-sm text-[#9A9898] font-semibold">{translation?.data?.business?.customers}</Link>
                 </div>
             </div>
             {customerMenu && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[35%] bg-white border border-[#eee] rounded-lg z-50">

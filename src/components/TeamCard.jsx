@@ -44,7 +44,7 @@ export function TeamCard({ name, roleKey , handleGetPermissions , setEditPermiss
             </div>
             <div className="text-center">
                 <h2 className="text-xl text-[#212529] font-medium mb-5">{name}</h2>
-                <ul className="text-sm text-[#7e7e7e] mb-7.5">
+                <ul className="text-sm text-[#7e7e7e] mb-7.5 font-medium">
                     <li>{role}</li>
                 </ul>
                 {page !== "companiesDetail" && <div className="flex flex-col items-center">

@@ -1,7 +1,7 @@
 ﻿import { ClipLoader } from "react-spinners"
 import { Header } from "../components/Header"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { showProposal } from "../services/proposalApi";
 import phone from "../assets/ph.png"
 import email from "../assets/email.png"
@@ -42,8 +42,12 @@ export function ProposalDetail() {
             )}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.proposals} {">"}</span> <span className="text-[#9a9898]"> {detail?.code}</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link to={"/proposals"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.proposals}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-[#9a9898] text-sm font-semibold">{detail?.code}</Link>
                 </div>
             </div>
             <div className="w-full max-w-[90%]">

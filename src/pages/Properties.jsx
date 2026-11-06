@@ -350,8 +350,10 @@ export function Properties() {
                 </div>
             </div>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.properties}</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-[#9a9898] text-sm font-semibold">{translation?.data?.business?.properties}</Link>
                 </div>
             </div>
             <div className={`w-full max-w-[90%] ${filterShown ? "py-7.5" : "py-5"}`}>

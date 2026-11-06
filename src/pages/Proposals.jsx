@@ -9,6 +9,7 @@ import { ClipLoader } from "react-spinners"
 import { Pagination } from "../components/Pagination"
 import { getCompanyInfo } from "../services/myCompanyApi"
 import { useAppContext } from "../context/AppContext"
+import { Link } from "react-router-dom"
 
 export function Proposals() {
 
@@ -53,8 +54,12 @@ export function Proposals() {
             )}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_account} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.my_proposals}</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link to={"/profile"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.my_account}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-[#9a9898] text-sm font-semibold">{translation?.data?.business?.my_proposals}</Link>
                 </div>
             </div>
             <div className="w-full max-w-[90%]">

@@ -11,6 +11,7 @@ import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
 import { SuccessPopUp } from "../components/SuccessPopup"
 import { useAppContext } from "../context/AppContext"
+import { Link } from "react-router-dom"
 
 export function Team() {
 
@@ -393,8 +394,12 @@ export function Team() {
             {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.my_portfolio} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.team}</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link to={"/company"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.my_portfolio}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-[#9a9898] text-sm font-semibold">{translation?.data?.business?.team}</Link>
                 </div>
             </div>
             <CompanyHeader

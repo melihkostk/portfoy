@@ -4,7 +4,7 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { getDetails } from "../services/propertyDetails"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import location from "../assets/gray-location.png"
 import building from "../assets/building.png"
@@ -39,15 +39,21 @@ export function Boost() {
             )}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.properties} {">"}</span><span className="text-[#9a9898]"> {translation?.data?.business?.boost_property}</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link to={"/properties"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.properties}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out" to={`/properties/${id}`}>{details?.title}</Link>
+                    <p>{">"}</p>
+                    <Link className="text-[#9a9898] text-sm font-semibold">{translation?.data?.business?.boost_property}</Link>
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex justify-between items-center gap-12.5 max-[1100px]:flex-col">
                     <div className="w-1/2 max-[1100px]:w-full">
                         <h1 className="text-[35px] max-w-[80%] font-semibold mb-7.5 max-[1100px]:max-w-full">{translation?.data?.business?.boost_page?.title}</h1>
-                        <p className="text-[#808080]">{translation?.data?.business?.boost_page?.description}</p>
+                        <p className="text-[#808080] font-medium">{translation?.data?.business?.boost_page?.description}</p>
                     </div>
                     <div className="w-1/2 p-7.5 max-[1100px]:w-full max-[1100px]:p-0">
                         {details.status === "draft" && <div className="bg-[#f9d7da] text-[#842029] border border-[#f5c2c7] p-4 mb-4 rounded-lg">

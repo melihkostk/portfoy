@@ -3,7 +3,7 @@ import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import { useEffect, useState } from "react";
 import { getDetails } from "../services/propertyDetails";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { cloneProperty, deleteGalery, deletePrice, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, getPrices, updateCover, updateDraftStatus, updateProperty, updateSoldStatus, uploadGallery, uploadVideo } from "../services/propertiesApi";
 import { replyOffer } from "../services/profileApi";
@@ -555,8 +555,14 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 </div>
             </div>}
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span>{translation?.data?.business?.properties} {">"} </span><span>{title} {">"} </span><span>{translation?.data?.business?.edit}</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link to={"/properties"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.properties}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link to={`/properties/${id}`} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{title}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-sm text-[#9a9898] font-semibold">{translation?.data?.business?.edit}</Link>
                 </div>
             </div>
             <div className="w-full max-w-[90%] mb-7.5">

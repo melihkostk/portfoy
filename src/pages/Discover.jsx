@@ -12,6 +12,7 @@ import { ClipLoader } from "react-spinners"
 import { getCompanyTypes } from "../services/companiesApi";
 import { getPackages } from "../services/pricingApi";
 import { useAppContext } from "../context/AppContext";
+import { Link } from "react-router-dom";
 
 export function Discover() {
 
@@ -44,8 +45,10 @@ export function Discover() {
             )}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.discover}</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-sm text-[#9a9898] font-medium">{translation?.data?.business?.discover}</Link>
                 </div>
             </div>
             <div className="w-full max-w-[90%]">

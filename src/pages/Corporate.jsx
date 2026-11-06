@@ -8,6 +8,7 @@ import vision from "../assets/vision.png"
 import about from "../assets/about.png"
 import { ClipLoader } from "react-spinners"
 import { useAppContext } from "../context/AppContext";
+import { Link } from "react-router-dom";
 
 export function Corporate() {
 
@@ -26,8 +27,10 @@ export function Corporate() {
             )}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.corporate}</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-sm text-[#9a9898] font-medium">{translation?.data?.business?.corporate}</Link>
                 </div>
             </div>
             <div className="w-full max-w-[90%] max-[992px]:max-w-full">

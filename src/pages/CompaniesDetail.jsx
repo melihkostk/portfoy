@@ -1,4 +1,4 @@
-﻿import { useParams } from "react-router-dom"
+﻿import { Link, useParams } from "react-router-dom"
 import { AppLinks } from "../components/AppLinks"
 import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
@@ -35,8 +35,12 @@ export function CompaniesDetail() {
             )}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.companies} {">"}</span> <span className="text-[#9a9898]"> {companyDetailProperties?.name}</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out" to={"/"}>{translation?.data?.business?.home}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link to={"/companies"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.companies}</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-[#9a9898] text-sm font-semibold">{companyDetailProperties?.name}</Link>
                 </div>
             </div>
              <CompanyHeader

@@ -1,14 +1,17 @@
 ﻿import { Header } from "../components/Header";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
+import { Link } from "react-router-dom";
 
 export function Consent() {
     return (
         <div className="w-full flex flex-col items-center justify-center font-sf">
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-[90%]">
-                    <p className="text-sm text-[#636363] font-medium">Anasayfa {">"} <span className="text-[#9a9898]"> Rıza Metni</span></p>
+                <div className="w-full max-w-[90%] flex items-center gap-2">
+                    <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">Anasayfa</Link>
+                    <p className="text-sm text-[#636363] font-medium">{">"}</p>
+                    <Link className="text-sm text-[#9a9898] font-semibold">Rıza Metni</Link>
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
