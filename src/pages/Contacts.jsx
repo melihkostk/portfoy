@@ -75,7 +75,7 @@ export function Contacts() {
             )}
             {errorShown && <ErrorPopUp errorMessage={errorMessage} setErrorShown={setErrorShown} />}
             <Header />
-            <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
+            <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-7.5">
                 <div className="w-full max-w-[90%]">
                     <p className="text-sm text-[#636363] font-medium">{translation?.data?.business?.home} {">"} <span className="text-[#9a9898]"> {translation?.data?.business?.contacts}</span></p>
                 </div>
@@ -136,11 +136,11 @@ export function Contacts() {
                     <div className="flex-1 border border-[#eee] rounded-lg p-7.5 max-[992px]:w-full">
                         <h2 className="text-[32px] text-[#212529] font-semibold mb-10">{translation?.data?.business?.contact_form}</h2>
                         <form onSubmit={handleSendContactForm}>
-                            <input onChange={(e) => setName(e.target.value)} value={name} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="name" placeholder={translation?.data?.business?.fullname} required />
-                            <input onChange={(e) => setEmail(e.target.value)} value={email} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="email" placeholder={translation?.data?.business?.email} required />
-                            <input onChange={(e) => setPhone(e.target.value)} value={phone} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="phone" placeholder={translation?.data?.business?.phone} required />
-                            <input value={subject} onChange={(e) => setSubject(e.target.value)} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="subject" placeholder={translation?.data?.business?.subject} required />
-                            <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="w-full font-semibold block bg-[#00000005] p-3.75 mb-2.5" name="message" placeholder={translation?.data?.business?.your_message} required></textarea>
+                            <input onChange={(e) => setName(e.target.value)} value={name} className="w-full rounded-lg font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="name" placeholder={translation?.data?.business?.fullname} required />
+                            <input onChange={(e) => setEmail(e.target.value)} value={email} className="w-full rounded-lg font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="email" placeholder={translation?.data?.business?.email} required />
+                            <input onChange={(e) => setPhone(e.target.value)} value={phone} className="w-full rounded-lg font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="phone" placeholder={translation?.data?.business?.phone} required />
+                            <input value={subject} onChange={(e) => setSubject(e.target.value)} className="w-full rounded-lg font-semibold block bg-[#00000005] p-3.75 mb-2.5" type="text" name="subject" placeholder={translation?.data?.business?.subject} required />
+                            <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="w-full rounded-lg font-semibold block bg-[#00000005] p-3.75 mb-2.5" name="message" placeholder={translation?.data?.business?.your_message} required></textarea>
                             <button type="submit" className="text-white text-sm rounded-lg cursor-pointer bg-[#27C5D2] py-2 px-5 font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.submit}</button>
                         </form>
                     </div>

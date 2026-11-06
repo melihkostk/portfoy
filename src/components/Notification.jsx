@@ -20,7 +20,7 @@ export function Notification({ content, time, is_read, handleMarkAsRead, id, typ
                 </p>
                 <div className="flex items-end opacity-50 gap-1">
                     <img className="w-4 h-4" src={clock} alt="" />
-                    <p className="text-xs text-black font-semibold">
+                    <p className="text-xs text-black font-medium">
                         {time}
                     </p>
                 </div>

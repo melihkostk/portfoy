@@ -137,7 +137,7 @@ export function Header({ details }) {
                 </div>}
                 {loged && <form action="/properties" method="GET" className="px-7.5 flex items-center relative max-[1100px]:hidden grow">
                     <img className="absolute left-10 w-5 h-5" src={sea} alt="" />
-                    <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] pl-10 h-12.5 px-2 rounded-[5px] text-sm w-full" type="text" placeholder={translation?.data?.business?.search_in_properties} />
+                    <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] text-base font-medium pl-10 h-12.5 px-2 rounded-[5px] text-sm w-full" type="text" placeholder={translation?.data?.business?.search_in_properties} />
                 </form>}
                 <div className="flex items-center justify-between gap-2.5">
                     <LanguageSelect />
@@ -187,9 +187,9 @@ export function Header({ details }) {
                         <div className="absolute -top-1 -right-1 text-[10px] text-[#858585] bg-[#FFCA64] rounded-full w-5 h-5 flex items-center justify-center font-extrabold">
                             {notifications?.data?.unread_notifications_count}
                         </div>
-                        {notShown && <div className="absolute z-50 w-75 rounded-lg bg-white right-0 shadow-[0_0_30px_rgba(0,0,0,0.1)] pb-3.75">
+                        {notShown && <div className="absolute z-50 w-87.5 rounded-lg bg-white right-0 shadow-[0_0_30px_rgba(0,0,0,0.1)] pb-3.75">
                             <div className="bg-[#27C5D2] p-7.5 rounded-t-lg">
-                                <p className="text-white text-sm mb-5">
+                                <p className="text-white text-sm mb-5 font-medium">
                                     Okunmamış {notifications?.data?.unread_notifications_count} Bildirim
                                 </p>
                                 <button className="bg-white text-xs rounded-lg py-2.5 px-5 font-medium cursor-pointer whitespace-nowrap hover:bg-[#ffca64] transition-colors duration-300 ease-in-out">
@@ -199,7 +199,7 @@ export function Header({ details }) {
                             <div className="p-3.75 max-h-[50vh] overflow-auto bg-white mb-5">
                                 {notifications?.data?.notifications?.filter(item => item.is_read === 0)?.length > 0 ? <div className="bg-[#eeeeee] p-2.5 rounded-lg flex items-center gap-2 mb-5 ">
                                     <input checked={showUnreadOnly} onChange={handleClick} className="w-5 h-5" type="checkbox" id="unread" name="unread" />
-                                    <label className="text-sm text-[#212529] cursor-pointer select-none" htmlFor="unread">Sadece okunmamışları göster</label>
+                                    <label className="text-sm text-[#212529] cursor-pointer select-non font-medium" htmlFor="unread">Sadece okunmamışları göster</label>
                                 </div> : <div className="flex items-center justify-center py-7.5">
                                     <img className="opacity-30 w-15 h-15" src={bell} alt="" />
                                 </div>}
