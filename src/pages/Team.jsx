@@ -372,7 +372,7 @@ export function Team() {
                         <p className="text-xl text-[#212529] font-semibold">{permissionName}</p>
                         <p className="text-sm text-[#747474] font-semibold">{permissonRole}</p>
                     </div>
-                    {permissions.map((item,index) => (
+                    {permissions.filter(item => (item.title !== "Panel Yetkileri" && item.title !== "Dashboard permissions" && item.title !== "Полномочия панели")).map((item,index) => (
                         <div key={index} className="p-3.75 border border-[#eee] rounded-lg mb-5">
                             <p className="p-3.75 mb-4 rounded-lg bg-[#eeeeee] text-[#212529] font-semibold">{item.title}</p>
                             <div>
