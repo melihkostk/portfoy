@@ -25,18 +25,18 @@ export function TeamCard({ name, whatsapp ,roleKey , setPermissionName , setPerm
                 <div className="py-1 px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
                     <div className="flex" onClick={() => handleToggleStatus(id)}>
                         <img className="w-5 h-5 mr-2" src={removePerson} alt="" />
-                        <p className="text-sm">{is_active ? translation?.data?.business?.passive_personal : translation?.data?.business?.reactive_personal}</p>
+                        <p className="text-sm font-medium">{is_active ? translation?.data?.business?.passive_personal : translation?.data?.business?.reactive_personal}</p>
                     </div>
                 </div>
                 {<div className={`py-1 px-4 text-[#747474] ${role === translation?.data?.business?.roles?.chairmen ? "" : "cursor-pointer hover:text-black transition-colors duration-300 ease-in-out"}`}>
                     <button disabled={roleKey === "chairmen"} onClick={() => { onEditClick(); setOptionsShown(false) }} className={`${roleKey === "chairmen" ? "opacity-50" : "cursor-pointer"} text-sm flex`}>
                         <img className="w-5 h-5 mr-2" src={edit} alt="" />
-                        <p>{translation?.data?.business?.edit}</p>
+                        <p className="text-sm font-medium">{translation?.data?.business?.edit}</p>
                     </button>
                 </div>}
                 <div onClick={() => { setEditPermissionShown(true); setOptionsShown(false); handleGetPermissions(id); setPermissionName(name); setPermissionRole(role) }} className="py-1 flex px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
                     <img className="w-5 h-5 mr-2" src={list} alt="" />
-                    <p className="text-sm">{translation?.data?.business?.edit_personal_permissions}</p>
+                    <p className="text-sm font-medium">{translation?.data?.business?.edit_personal_permissions}</p>
                 </div>
             </div>}
             <div className="text-center">

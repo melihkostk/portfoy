@@ -241,15 +241,15 @@ export function Team() {
                 <div className="w-full p-4">
                     <form onSubmit={handleAdd} className="w-full">
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="name">{translation?.data?.business?.personal_fullname}</label>
-                            <input value={name} onChange={(e) => setName(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="name" placeholder={translation?.data?.business?.personal_fullname} required />
+                            <label className="text-[#212529] font-medium" htmlFor="name">{translation?.data?.business?.personal_fullname}</label>
+                            <input value={name} onChange={(e) => setName(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="name" placeholder={translation?.data?.business?.personal_fullname} required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="name">{translation?.data?.business?.email}</label>
-                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="email" name="mail" id="mail" placeholder={translation?.data?.business?.email} required />
+                            <label className="text-[#212529] font-medium" htmlFor="name">{translation?.data?.business?.email}</label>
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="email" name="mail" id="mail" placeholder={translation?.data?.business?.email} required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="phone">{translation?.data?.business?.phone}</label>
+                            <label className="text-[#212529] font-medium" htmlFor="phone">{translation?.data?.business?.phone}</label>
                             <div className="flex gap-3.75">
                                 <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" value={code} onChange={(e) => setCode(e.target.value)} name="" id="">
                                     <option value="90">(90)</option>
@@ -258,11 +258,11 @@ export function Team() {
                                     <option value="357">(357)</option>
                                     <option value="01">(01)</option>
                                 </select>
-                                <input value={number} onChange={(e) => setNumber(e.target.value)} className="border py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="phone" placeholder={translation?.data?.business?.phone} required />
+                                <input value={number} onChange={(e) => setNumber(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="phone" placeholder={translation?.data?.business?.phone} required />
                             </div>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="role">{translation?.data?.business?.role}</label>
+                            <label className="text-[#212529] font-medium" htmlFor="role">{translation?.data?.business?.role}</label>
                             <select value={role} onChange={(e) => setRole(e.target.value)} required className="border py-1.5 px-3 rounded-lg border-[#d9d9d9] cursor-pointer" name="role" id="role">
                                 {roles.map(item => (
                                     <option value={item.key} key={item.key}>{item.title}</option>
@@ -270,7 +270,7 @@ export function Team() {
                             </select>
                         </div>
                         <div>
-                            <p className="text-[#6c757d]">{translation?.data?.business?.notify_with_email_description}</p>
+                            <p className="text-[#6c757d] font-medium">{translation?.data?.business?.notify_with_email_description}</p>
                         </div>
                         <div className="flex justify-end mt-4">
                             <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">{translation?.data?.business?.save}</button>
@@ -286,29 +286,29 @@ export function Team() {
                 <div className="w-full p-4">
                     <form onSubmit={handleEdit} className="w-full">
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="editName">{translation?.data?.business?.personal_fullname}</label>
-                            <input value={editName} onChange={(e) => setEditName(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="editName" placeholder={translation?.data?.business?.personal_fullname} required />
+                            <label className="text-[#212529] font-medium" htmlFor="editName">{translation?.data?.business?.personal_fullname}</label>
+                            <input value={editName} onChange={(e) => setEditName(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="editName" placeholder={translation?.data?.business?.personal_fullname} required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="editMail">{translation?.data?.business?.email}</label>
-                            <input value={editEmail} onChange={(e) => setEditEmail(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="email" name="mail" id="editMail" placeholder={translation?.data?.business?.email} required />
+                            <label className="text-[#212529] font-medium" htmlFor="editMail">{translation?.data?.business?.email}</label>
+                            <input disabled value={editEmail} onChange={(e) => setEditEmail(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg bg-[#e9ecef] border-[#d9d9d9]" type="email" name="mail" id="editMail" placeholder={translation?.data?.business?.email} required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="editPhone">{translation?.data?.business?.phone}</label>
+                            <label className="text-[#212529] font-medium" htmlFor="editPhone">{translation?.data?.business?.phone}</label>
                             <div className="flex gap-3.75">
-                                <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" value={editCode} onChange={(e) => setEditCode(e.target.value)} name="" id="">
+                                <select className="border py-1.5 px-3 rounded-lg text-[#212529] font-medium border-[#d9d9d9]" value={editCode} onChange={(e) => setEditCode(e.target.value)} name="" id="">
                                     <option value="90">(90)</option>
                                     <option value="357">(357)</option>
                                     <option value="971">(971)</option>
                                     <option value="357">(357)</option>
                                     <option value="01">(01)</option>
                                 </select>
-                                <input value={editNumber} onChange={(e) => setEditNumber(e.target.value)} className="border py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="editPhone" placeholder={translation?.data?.business?.phone} required />
+                                <input value={editNumber} onChange={(e) => setEditNumber(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="editPhone" placeholder={translation?.data?.business?.phone} required />
                             </div>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="editRole">{translation?.data?.business?.role}</label>
-                            <select value={editRole} onChange={(e) => setEditRole(e.target.value)} required className="border py-1.5 px-3 rounded-lg border-[#d9d9d9] cursor-pointer" name="role" id="editRole">
+                            <label className="text-[#212529] font-medium" htmlFor="editRole">{translation?.data?.business?.role}</label>
+                            <select value={editRole} onChange={(e) => setEditRole(e.target.value)} required className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] cursor-pointer" name="role" id="editRole">
                                 {roles.map(item => (
                                     <option value={item.key} key={item.key}>{item.title}</option>
                                 ))}
@@ -328,15 +328,15 @@ export function Team() {
                 <div className="w-full p-4">
                     <form onSubmit={handleUpdateInvite} className="w-full">
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="inviteEditName">{translation?.data?.business?.personal_fullname}</label>
-                            <input value={inviteEditName} onChange={(e) => setInviteEditName(e.target.value)} className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="inviteEditName" placeholder={translation?.data?.business?.personal_fullname} required />
+                            <label className="text-[#212529] font-medium" htmlFor="inviteEditName">{translation?.data?.business?.personal_fullname}</label>
+                            <input value={inviteEditName} onChange={(e) => setInviteEditName(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="inviteEditName" placeholder={translation?.data?.business?.personal_fullname} required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="inviteEditMail">{translation?.data?.business?.email}</label>
-                            <input value={inviteEditEmail} disabled className="border py-1.5 px-3 rounded-lg border-[#d9d9d9] bg-[#f1f1f1] cursor-not-allowed text-[#6c757d]" type="email" name="mail" id="inviteEditMail" placeholder={translation?.data?.business?.email} />
+                            <label className="text-[#212529] font-medium" htmlFor="inviteEditMail">{translation?.data?.business?.email}</label>
+                            <input value={inviteEditEmail} disabled className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] bg-[#f1f1f1] cursor-not-allowed text-[#6c757d]" type="email" name="mail" id="inviteEditMail" placeholder={translation?.data?.business?.email} />
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="inviteEditPhone">{translation?.data?.business?.phone}</label>
+                            <label className="text-[#212529] font-medium" htmlFor="inviteEditPhone">{translation?.data?.business?.phone}</label>
                             <div className="flex gap-3.75">
                                 <select className="border py-1.5 px-3 rounded-lg border-[#d9d9d9]" value={inviteEditCode} onChange={(e) => setInviteEditCode(e.target.value)} name="" id="">
                                     <option value="90">(90)</option>
@@ -345,12 +345,12 @@ export function Team() {
                                     <option value="357">(357)</option>
                                     <option value="01">(01)</option>
                                 </select>
-                                <input value={inviteEditNumber} onChange={(e) => setInviteEditNumber(e.target.value)} className="border py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="inviteEditPhone" placeholder={translation?.data?.business?.phone} required />
+                                <input value={inviteEditNumber} onChange={(e) => setInviteEditNumber(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="inviteEditPhone" placeholder={translation?.data?.business?.phone} required />
                             </div>
                         </div>
                         <div className="flex flex-col w-full mb-2">
-                            <label htmlFor="inviteEditRole">{translation?.data?.business?.role}</label>
-                            <select value={inviteEditRole} onChange={(e) => setInviteEditRole(e.target.value)} required className="border py-1.5 px-3 rounded-lg border-[#d9d9d9] cursor-pointer" name="role" id="inviteEditRole">
+                            <label className="text-[#212529] font-medium" htmlFor="inviteEditRole">{translation?.data?.business?.role}</label>
+                            <select value={inviteEditRole} onChange={(e) => setInviteEditRole(e.target.value)} required className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] cursor-pointer" name="role" id="inviteEditRole">
                                 {roles.map(item => (
                                     <option value={item.key} key={item.key}>{item.title}</option>
                                 ))}
