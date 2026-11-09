@@ -11,6 +11,7 @@ import whiteClose from "../assets/close.png"
 import { getCompanyInfo } from "../services/myCompanyApi"
 import { useAppContext } from "../context/AppContext"
 import { Link } from "react-router-dom"
+import check from "../assets/white-check.png"
 
 export function QuickFilters() {
 
@@ -110,17 +111,22 @@ export function QuickFilters() {
             </div>}
             {editFilterShown && <div className="fixed top-1/2 left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-fit w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529]">{translation?.data?.business?.edit_quick_filter}</h2>
+                    <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.edit_quick_filter}</h2>
                     <img onClick={() => setEditFilterShown(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 <div className="p-4 w-full">
                     <div className="mb-2">
-                        <label className="text-[#212529]" htmlFor="filterName">{translation?.data?.business?.filter_title}</label>
-                        <input className="block border border-[#d9d9d9] py-1.5 px-3 rounded-lg w-full" type="text" name="filterName" id="filterName" value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
+                        <label className="text-[#212529] font-medium" htmlFor="filterName">{translation?.data?.business?.filter_title}</label>
+                        <input className="block border font-medium border-[#d9d9d9] py-1.5 px-3 rounded-lg w-full" type="text" name="filterName" id="filterName" value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
                     </div>
                     <div className="mb-2">
-                        <input checked={notify === 1} onChange={(e) => setNotify(e.target.checked ? 1 : 0)} type="checkbox" id="text" name="text" />
-                        <label className="pl-2" htmlFor="text">{translation?.data?.business?.send_email_on_compatible_new_property}</label>
+                        <input className="hidden" checked={notify === 1} onChange={(e) => setNotify(e.target.checked ? 1 : 0)} type="checkbox" id="text" name="text" />
+                        <label className="flex items-center text-[#212529] font-medium gap-2.5 select-none cursor-pointer" htmlFor="text">
+                            <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${notify ? "bg-[#27c5d2]" : ""}`}>
+                                <img className="w-2.5 h-2.5" src={check} alt="" />
+                            </div>
+                            {translation?.data?.business?.send_email_on_compatible_new_property}
+                        </label>
                     </div>
                     <div>
                         <button onClick={handleEdit} className="text-white font-semibold bg-[#27c5d2] text-sm py-2 px-5 rounded-lg cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
