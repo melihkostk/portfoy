@@ -8,7 +8,7 @@ import edit from "../assets/edit.png"
 import list from "../assets/list.png"
 import { useAppContext } from "../context/AppContext"
 
-export function TeamCard({ name, roleKey , handleGetPermissions , setEditPermissionShown, role, email, avatar, phone, code, page, id, is_active, handleToggleStatus, onEditClick }) {
+export function TeamCard({ name, roleKey , setPermissionName , setPermissionRole , handleGetPermissions , setEditPermissionShown, role, email, avatar, phone, code, page, id, is_active, handleToggleStatus, onEditClick }) {
     const { translation } = useAppContext();
 
     const [optionsShown, setOptionsShown] = useState(false);
@@ -34,7 +34,7 @@ export function TeamCard({ name, roleKey , handleGetPermissions , setEditPermiss
                         <p>{translation?.data?.business?.edit}</p>
                     </button>
                 </div>}
-                <div onClick={() => { setEditPermissionShown(true); setOptionsShown(false); handleGetPermissions(id) }} className="py-1 flex px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
+                <div onClick={() => { setEditPermissionShown(true); setOptionsShown(false); handleGetPermissions(id); setPermissionName(name); setPermissionRole(role) }} className="py-1 flex px-4 text-[#747474] cursor-pointer hover:text-black transition-colors duration-300 ease-in-out">
                     <img className="w-5 h-5 mr-2" src={list} alt="" />
                     <p className="text-sm">{translation?.data?.business?.edit_personal_permissions}</p>
                 </div>

@@ -207,6 +207,9 @@ export function Team() {
         }).finally(() => setLoaded(true))
     }
 
+    const [permissionName , setPermissionName] = useState("");
+    const [permissonRole , setPermissionRole] = useState("");
+
     return (
         <div className='flex flex-col items-center font-sf'>
             {(errorPopUp || addShown || editShown || inviteEditShown || editPermissionShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
@@ -366,8 +369,8 @@ export function Team() {
                 </div>
                 <div className="w-full p-4 flex flex-col">
                     <div className="bg-[#eeeeee] rounded-lg p-7.5 mb-5">
-                        <p className="text-xl text-[#212529] font-semibold">PİGASOFT</p>
-                        <p className="text-sm text-[#747474] font-semibold">{translation?.data?.business?.roles?.chairmen}</p>
+                        <p className="text-xl text-[#212529] font-semibold">{permissionName}</p>
+                        <p className="text-sm text-[#747474] font-semibold">{permissonRole}</p>
                     </div>
                     {permissions.map((item,index) => (
                         <div key={index} className="p-3.75 border border-[#eee] rounded-lg mb-5">
@@ -435,6 +438,8 @@ export function Team() {
                             onEditClick={() => handleEditClick(item)}
                             setEditPermissionShown={setEditPermissionShown}
                             handleGetPermissions={handleGetPermissions}
+                            setPermissionName={setPermissionName}
+                            setPermissionRole={setPermissionRole}
                         />
                     ))}
                 </div>
