@@ -50,6 +50,7 @@ import { NotFound } from "./pages/NotFound.jsx";
 import { ProtectedRoutes } from "./components/ProtectedRoutes.jsx";
 import { ResetPassword } from "./pages/ResetPassword.jsx";
 import { AppProvider, useAppContext } from "./context/AppContext.jsx";
+import { Blogs } from "./pages/Blogs.jsx";
 
 function AppRoutes() {
   const { loged, locale } = useAppContext();
@@ -81,6 +82,7 @@ function AppRoutes() {
         <Route path="/consent" element={<Consent />} />
         <Route path="/articles/:id" element={<NewsDetail news={news} />}></Route>
         <Route path="*" element={<NotFound />}></Route>
+        <Route path="/blog" element={<Blogs />}></Route>
         <Route element={<ProtectedRoutes />}>
           <Route path="/companies" element={<Companies />} />
           <Route path="/properties" element={<Properties />} />

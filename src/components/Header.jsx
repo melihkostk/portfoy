@@ -116,7 +116,7 @@ export function Header({ details }) {
                             <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/contacts">{translation?.data?.business?.contacts}</Link>
                         </li>
                         <li>
-                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" href="">{translation?.data?.business?.blog}</Link>
+                            <Link className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold" to="/blog">{translation?.data?.business?.blog}</Link>
                         </li>
                     </ul>
                 </div>}
