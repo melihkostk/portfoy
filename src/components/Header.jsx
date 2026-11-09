@@ -128,7 +128,7 @@ export function Header({ details }) {
                             <Link to={"/companies"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">{translation?.data?.business?.companies}</Link>
                         </li>
                         <li>
-                            <Link to={"/properties/create"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">{translation?.data?.business?.create_property}</Link>
+                            <Link to={"/properties/create"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">+ {translation?.data?.business?.create_property}</Link>
                         </li>
                         <li>
                             <Link to={"/contacts"} className="text-black hover:text-[#27C5D2] transition-colors duration-300 ease-in-out font-semibold">{translation?.data?.business?.contacts}</Link>
@@ -137,7 +137,7 @@ export function Header({ details }) {
                 </div>}
                 {loged && <form action="/properties" method="GET" className="px-7.5 flex items-center relative max-[1100px]:hidden grow">
                     <img className="absolute left-10 w-5 h-5" src={sea} alt="" />
-                    <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] text-base font-medium pl-10 h-12.5 px-2 rounded-[5px] w-full" type="text" placeholder={translation?.data?.business?.search_in_properties} />
+                    <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] w-[calc(100%-50px)] text-base font-medium pl-10 h-12.5 px-2 rounded-[5px]" type="text" placeholder={translation?.data?.business?.search_in_properties} />
                 </form>}
                 <div className="flex items-center justify-between gap-2.5">
                     <LanguageSelect />
@@ -229,14 +229,14 @@ export function Header({ details }) {
                         <img className="w-4 h-4" src={folder} alt="" />
                         {selectedCustomer && <p className="text-white font-semibold whitespace-nowrap overflow-hidden text-ellipsis">{customers?.data?.customers?.find(item => item.id == selectedCustomer)?.name}</p>}
                     </button>}
-                    {loged && <Link to={"/company"} className="h-12.5 px-5 max-[1100px]:hidden text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                    {loged && <Link to={"/company"} className="h-12.5 px-5 max-[1100px]:hidden whitespace-nowrap  text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                         <img className="object-cover w-5 h-5" src={shop} alt="" />
                         <span className="max-[1400px]:hidden font-medium">{translation?.data?.business?.my_portfolio}</span>
                     </Link>}
                     {loged && <div className="relative">
                         <div className="flex">
                             <div className="h-12.5 border-r border-r-[#ffffff38]">
-                                <Link to={"/profile"} className="flex items-center justify-center h-full px-5 max-[1100px]:px-2.5 rounded-l-[5px] max-[1100px]:rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                                <Link to={"/profile"} className="flex items-center justify-center whitespace-nowrap h-full px-5 max-[1100px]:px-2.5 rounded-l-[5px] max-[1100px]:rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
                                     <img className="object-cover w-7 h-7" src={person} alt="" />
                                     <p className="text-white font-medium max-[1400px]:hidden">{translation?.data?.business?.my_account}</p>
                                 </Link>

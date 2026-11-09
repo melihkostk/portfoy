@@ -217,7 +217,7 @@ export function Discover() {
                                     key={index}
                                     price={item.price.formatted}
                                     time={item.trial_version.time}
-                                    trialPrice={item.trial_version.price.amount}
+                                    trialPrice={item.trial_version.price.formatted}
                                     customerTitle={item.features.customer_and_personal.title}
                                     customerFeatures={item.features.customer_and_personal.features}
                                     propertyTitle={item.features.property.title}
