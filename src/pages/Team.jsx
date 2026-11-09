@@ -433,6 +433,7 @@ export function Team() {
                             code={item.contacts.phone.code}
                             is_active={item.is_active}
                             avatar={item.avatar}
+                            whatsapp={item.contacts.whatsapp}
                             page="companyTeam"
                             handleToggleStatus={handleToggleStatus}
                             onEditClick={() => handleEditClick(item)}

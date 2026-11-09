@@ -8,7 +8,7 @@ import edit from "../assets/edit.png"
 import list from "../assets/list.png"
 import { useAppContext } from "../context/AppContext"
 
-export function TeamCard({ name, roleKey , setPermissionName , setPermissionRole , handleGetPermissions , setEditPermissionShown, role, email, avatar, phone, code, page, id, is_active, handleToggleStatus, onEditClick }) {
+export function TeamCard({ name, whatsapp ,roleKey , setPermissionName , setPermissionRole , handleGetPermissions , setEditPermissionShown, role, email, avatar, phone, code, page, id, is_active, handleToggleStatus, onEditClick }) {
     const { translation } = useAppContext();
 
     const [optionsShown, setOptionsShown] = useState(false);
@@ -51,19 +51,19 @@ export function TeamCard({ name, roleKey , setPermissionName , setPermissionRole
                     <p className="uppercase text-[13px] text-[#bbbbbb] font-semibold">{translation?.data?.business?.contact_info}</p>
                     {phone && <div className="flex items-center gap-2">
                         <img className="w-4 h-4" src={grayPhone} alt="" />
-                        <a className="text-xs text-black opacity-50 font-semibold py-0.5 my-1.25 whitespace-nowrap overflow-hidden text-ellipsis hover:opacity-100 transition-opacity duration-300 ease-in-out" href="tel:(543) 431 56 38">
+                        <a className="text-xs text-black opacity-50 font-semibold py-0.5 my-1.25 whitespace-nowrap overflow-hidden text-ellipsis hover:opacity-100 transition-opacity duration-300 ease-in-out" href={`tel:${phone}`}>
                             {code} {phone}
                         </a>
                     </div>}
                     {phone && <div className="flex items-center gap-2">
                         <img className="w-4 h-4" src={wp} alt="" />
-                        <a className="text-xs text-black opacity-50 font-semibold py-0.5 my-1.25 whitespace-nowrap overflow-hidden text-ellipsis hover:opacity-100 transition-opacity duration-300 ease-in-out" href="https://wa.me/905434315638">
+                        <a target="_blank" className="text-xs text-black opacity-50 font-semibold py-0.5 my-1.25 whitespace-nowrap overflow-hidden text-ellipsis hover:opacity-100 transition-opacity duration-300 ease-in-out" href={whatsapp}>
                             {translation?.data?.business?.write_on_whatsapp}
                         </a>
                     </div>}
                     <div className="flex items-center gap-2">
                         <img className="w-4 h-4" src={grayMail} alt="" />
-                        <a className="text-xs text-black opacity-50 font-semibold py-0.5 my-1.25 whitespace-nowrap overflow-hidden text-ellipsis hover:opacity-100 transition-opacity duration-300 ease-in-out" href="mailto:bborukk@gmail.com">
+                        <a className="text-xs text-black opacity-50 font-semibold py-0.5 my-1.25 whitespace-nowrap overflow-hidden text-ellipsis hover:opacity-100 transition-opacity duration-300 ease-in-out" href={`mailto:${email}`}>
                             {email}
                         </a>
                     </div>
