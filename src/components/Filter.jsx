@@ -119,8 +119,11 @@ export function Filter({searchParams , typeId}) {
                                     </li>
                                     {propertiesType?.filter(item => item.title.includes(searchInput)).map(item => (
                                         <li className="w-full py-1" key={item.id}>
-                                            <input name={item.id} id={item.id} className="cursor-pointer select-none w-5 h-5" type="checkbox" />
-                                            <label htmlFor={item.id} className="text-[#747474] text-sm ml-2 cursor-pointer select-none hover:text-black transition-colors duration-300 ease-in-out">{item.title}</label>
+                                            <input name={item.id} id={item.id} className="cursor-pointer hidden select-none w-5 h-5" type="checkbox" />
+                                            <label htmlFor={item.id} className="text-[#747474] flex items-center gap-2.5 text-sm ml-2 cursor-pointer font-medium select-none hover:text-black transition-colors duration-300 ease-in-out">
+                                                <div className="w-5 h-5 rounded-sm border border-[#d9d9d9]"></div>
+                                                {item.title}
+                                            </label>
                                         </li>
                                     ))}
                                 </ul>}
