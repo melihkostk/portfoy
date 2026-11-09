@@ -19,6 +19,7 @@ import sea from "../assets/sea.png"
 import { useAppContext } from "../context/AppContext"
 import bell from "../assets/bell.png"
 import { getAllCustomers } from "../services/myCompanyApi"
+import check from "../assets/white-check.png"
 
 export function Header({ details }) {
     const { loged, translation } = useAppContext();
@@ -197,9 +198,14 @@ export function Header({ details }) {
                                 </button>
                             </div>
                             <div className="p-3.75 max-h-[50vh] overflow-auto bg-white mb-5">
-                                {notifications?.data?.notifications?.filter(item => item.is_read === 0)?.length > 0 ? <div className="bg-[#eeeeee] p-2.5 rounded-lg flex items-center gap-2 mb-5 ">
-                                    <input checked={showUnreadOnly} onChange={handleClick} className="w-5 h-5" type="checkbox" id="unread" name="unread" />
-                                    <label className="text-sm text-[#212529] cursor-pointer select-non font-medium" htmlFor="unread">Sadece okunmamışları göster</label>
+                                {notifications?.data?.notifications?.filter(item => item.is_read === 0)?.length > 0 ? <div className={`${showUnreadOnly ? "bg-[#dddddd]" : "bg-[#eeeeee]"} p-2.5 rounded-lg flex items-center gap-2 mb-5`}>
+                                    <input checked={showUnreadOnly} onChange={handleClick} className="w-5 h-5 hidden" type="checkbox" id="unread" name="unread" />
+                                    <label className="flex items-center gap-2.5 text-sm text-[#212529] cursor-pointer select-none font-medium" htmlFor="unread">
+                                        <div className={`w-5 h-5 flex items-center justify-center rounded-sm ${showUnreadOnly ? "bg-[#27c5d2]" : "bg-[#d1d1d1]" }`}>
+                                            {showUnreadOnly && <img className="w-3 h-3" src={check} alt="" />}
+                                        </div>
+                                        Sadece okunmamışları göster
+                                    </label>
                                 </div> : <div className="flex items-center justify-center py-7.5">
                                     <img className="opacity-30 w-15 h-15" src={bell} alt="" />
                                 </div>}
