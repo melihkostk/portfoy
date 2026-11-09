@@ -14,10 +14,14 @@ import { AppLinks } from "../components/AppLinks"
 import { LanguageSelect } from "../components/LanguageSelect"
 import { ClipLoader } from "react-spinners"
 import { useAppContext } from "../context/AppContext"
+import { useState } from "react"
+import check from "../assets/white-check.png"
 
 export function Application() {
 
     const { translation, translationLoaded } = useAppContext();
+
+    const [read , setRead] = useState(false);
 
     return (
         <div className="w-full flex flex-col items-center justify-center font-sf">
@@ -83,7 +87,7 @@ export function Application() {
                         </div>
                         <div>
                             <form action="">
-                                <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">{translation?.data?.business?.personal_info}</h3>
+                                <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-bold">{translation?.data?.business?.personal_info}</h3>
                                 <div className="mb-12.5 flex flex-col flex-wrap gap-3.75">
                                     <div className="flex flex-col mx-2.5">
                                         <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="name">{translation?.data?.business?.fullname}</label>
@@ -110,7 +114,7 @@ export function Application() {
                                     </div>
                                 </div>
                                 <div className="mb-12.5">
-                                    <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">{translation?.data?.business?.location_info}</h3>
+                                    <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-bold">{translation?.data?.business?.location_info}</h3>
                                     <div className="flex flex-col gap-3.75">
                                         <div className="flex justify-between border border-[#EDEDED] rounded-lg">
                                             <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
@@ -140,7 +144,7 @@ export function Application() {
                                     </div>
                                 </div>
                                 <div className="mb-12.5">
-                                    <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">{translation?.data?.business?.company_info}</h3>
+                                    <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-bold">{translation?.data?.business?.company_info}</h3>
                                     <div className="flex flex-wrap gap-3.75 items-start max-[992px]:flex-col">
                                         <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="company-name">{translation?.data?.business?.company_title}</label>
@@ -187,10 +191,13 @@ export function Application() {
                                     </div>
                                 </div>
                                 <div className="mb-12.5">
-                                    <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-medium">{translation?.data?.business?.legal_responsibilities}</h3>
+                                    <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-bold">{translation?.data?.business?.legal_responsibilities}</h3>
                                     <div className="flex items-center gap-1.25">
-                                        <input id="read" name="readt" className="cursor-pointer w-5 h-5" type="checkbox" required />
-                                        <label className="text-sm text-[#868686] font-medium select-none" htmlFor="read">
+                                        <input checked={read} onChange={(e) => setRead(e.target.checked)} id="read" name="readt" className="hidden" type="checkbox" required />
+                                        <label className="text-sm flex items-center gap-2.5 text-[#868686] cursor-pointer font-medium select-none" htmlFor="read">
+                                            <div className={`w-5 h-5 flex items-center justify-center rounded-sm border border-[#d9d9d9] ${read ? "bg-[#27c5d2]" : "" }`}>
+                                                <img className="w-3 h-3" src={check} alt="" />
+                                            </div>
                                             {translation?.data?.business?.registration_page_legal_responsibilities_label?.replace(/<[^>]+>/g, "")}
                                         </label>
                                     </div>
