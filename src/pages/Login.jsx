@@ -9,6 +9,7 @@ import lock from "../assets/lock.png"
 import mail from "../assets/mail.png"
 import eye from "../assets/gray-eye.png"
 import { useAppContext } from "../context/AppContext"
+import check from "../assets/white-check.png"
 
 export function Login() {
 
@@ -45,6 +46,8 @@ export function Login() {
     }
 
     const [inputType , setInputType] = useState("password");
+
+    const [remember , setRemember] = useState(false);
 
     return (
         <div className="flex flex-col justify-center items-center min-h-screen bg-linear-to-b font-sf from-[#f7f6fb] from-35% to-white to-35%">
@@ -92,8 +95,13 @@ export function Login() {
                             </div>
                         </div>
                         <div className="flex items-center">
-                            <input id="remember" name="remember" type="checkbox" />
-                            <label htmlFor="remember" className="text-[#868686] ml-1.25 font-medium">{translation?.data?.business?.remember_me}</label>
+                            <input checked={remember} onChange={(e) => setRemember(e.target.checked)} className="hidden" id="remember" name="remember" type="checkbox" />
+                            <label htmlFor="remember" className="text-[#868686] select-none cursor-pointer ml-1.25 font-medium flex items-center gap-2">
+                                <div className={`flex items-center justify-center w-5 h-5 border border-[#d9d9d9] rounded-sm ${remember ? "bg-[#27c5d2]" : "" }`}>
+                                    <img className="w-2.5 h-2.5" src={check} alt="" />
+                                </div>
+                                {translation?.data?.business?.remember_me}
+                            </label>
                         </div>
                         {error && (
                             <p className="text-red-500 text-sm font-medium mt-2.5">{error}</p>
