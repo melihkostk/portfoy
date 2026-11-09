@@ -21,6 +21,7 @@ import { SuccessPopUp } from "../components/SuccessPopup"
 import { CreateOfferModel } from "../components/CreateOfferModal"
 import { createProposal, getDetails } from "../services/propertyDetails"
 import { useAppContext } from "../context/AppContext"
+import check from "../assets/white-check.png"
 
 export function Properties() {
 
@@ -331,21 +332,26 @@ export function Properties() {
             </div>}
             {addQuickFilterMenu && <div className="fixed top-1/2 max-h-fit left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[70%] w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
-                    <h2 className="text-xl text-[#212529]">{translation?.data?.business?.save_filter}</h2>
+                    <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.save_filter}</h2>
                     <img onClick={() => setAddQuickFilterMenu(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 <div className="p-4">
-                    <p className="text-base text-[#212529] mb-4">{translation?.data?.business?.save_filter_description}</p>
+                    <p className="text-base text-[#212529] font-medium mb-4">{translation?.data?.business?.save_filter_description}</p>
                     <div className="mb-2">
-                        <label className="text-[#212529]" htmlFor="title">{translation?.data?.business?.filter_title}</label>
-                        <input value={filterTitle} onChange={(e) => setFilterTitle(e.target.value)} id="title" name="title" className="block w-full px-3 py-1.5 border border-[#d9d9d9] rounded-lg" type="text" placeholder={translation?.data?.business?.filter_title} />
+                        <label className="text-[#212529] font-medium" htmlFor="title">{translation?.data?.business?.filter_title}</label>
+                        <input value={filterTitle} onChange={(e) => setFilterTitle(e.target.value)} id="title" name="title" className="block font-medium w-full px-3 py-1.5 border border-[#d9d9d9] rounded-lg" type="text" placeholder={translation?.data?.business?.filter_title} />
                     </div>
                     <div className="mb-2">
-                        <input checked={notify === 1} onChange={(e) => setNotify(e.target.checked ? 1 : 0)} id="notify" name="notify" type="checkbox" />
-                        <label className="text-base text-[#212529] ml-2" htmlFor="notify">{translation?.data?.business?.send_email_on_compatible_new_property}</label>
+                        <input className="hidden" checked={notify === 1} onChange={(e) => setNotify(e.target.checked ? 1 : 0)} id="notify" name="notify" type="checkbox" />
+                        <label className="text-base font-medium select-none flex items-center gap-2.5 text-[#212529]" htmlFor="notify">
+                            <div className={`w-3.75 h-3.75 flex items-center justify-center rounded-sm border border-[#d9d9d9] ${notify ? "bg-[#27c5d2]" : ""}`}>
+                                <img className="w-2.5 h-2.5" src={check} alt="" />
+                            </div>
+                            {translation?.data?.business?.send_email_on_compatible_new_property}
+                        </label>
                     </div>
                     <div>
-                        <button type="button" onClick={handleSaveQuickFilter} className="text-white bg-[#27c5d2] cursor-pointer rounded-lg text-sm py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
+                        <button type="button" onClick={handleSaveQuickFilter} className="text-white font-semibold bg-[#27c5d2] cursor-pointer rounded-lg text-sm py-2 px-5 hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save}</button>
                     </div>
                 </div>
             </div>}
