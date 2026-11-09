@@ -119,7 +119,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                         <div className="flex items-center gap-2.5 mb-1.25">
                             <input className="hidden" id="status-not_published" name="status" type="checkbox" checked={status === "not_published"} onChange={() => setStatus("not_published")} />
                             <label htmlFor="status-not_published" className={`flex items-center gap-2.5 text-[13px] ${status === "not_published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`}>
-                                <div className={`flex items-center justify-center w-3.75 h-3.75 rounded-sm border ${status === "not_published" ? "bg-[#27c5d2] border-[#27c5d2]" : "border-[#D9D9D9]"}`}>
+                                <div className={`flex items-center justify-center w-3.75 h-3.75 rounded-sm border border-[#D9D9D9] ${status === "not_published" ? "bg-[#27c5d2]" : ""}`}>
                                     <img className="w-2.5 h-2.5" src={check} alt="" />
                                 </div>
                                 {translation?.data?.business?.only_not_published_properties}
@@ -128,7 +128,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                         <div className="flex items-center gap-2.5">
                             <input className="hidden" id="status-sold" name="status" type="checkbox" checked={status === "sold"} onChange={() => setStatus("sold")} />
                             <label htmlFor="status-sold" className={`flex items-center gap-2.5 text-[13px] ${status === "sold" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`}>
-                                <div className={`flex items-center justify-center w-3.75 h-3.75 rounded-sm border ${status === "sold" ? "bg-[#27c5d2] border-[#27c5d2]" : "border-[#D9D9D9]"}`}>
+                                <div className={`flex items-center justify-center w-3.75 h-3.75 rounded-sm border border-[#D9D9D9] ${status === "sold" ? "bg-[#27c5d2]" : ""}`}>
                                     <img className="w-2.5 h-2.5" src={check} alt="" />
                                 </div>
                                 {translation?.data?.business?.only_sold_properties}

@@ -19,6 +19,7 @@ import { EditPropertySettings } from "../components/EditPropertySettings";
 import { EditPropertyInfo } from "../components/EditPropertyInfo";
 import { useAppContext } from "../context/AppContext";
 import deleteIcon from "../assets/gray-trash.png"
+import check from "../assets/white-check.png"
 
 export function EditProperty({ setMessage, setMessageShown }) {
 
@@ -426,14 +427,19 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 </div>
                 <div className="p-4 w-full">
                     <div className="mb-4">
-                        <label className="text-[#212529]" htmlFor="title">{translation?.data?.business?.title}</label>
-                        <input required value={copyTitle} onChange={(e) => setCopyTitle(e.target.value)} className="block px-3 py-1.5 w-full mt-2 rounded-lg border border-[#d9d9d9]" id="title" name="title" type="text" placeholder={translation?.data?.business?.title} />
+                        <label className="text-[#212529] font-medium" htmlFor="title">{translation?.data?.business?.title}</label>
+                        <input required value={copyTitle} onChange={(e) => setCopyTitle(e.target.value)} className="block font-medium px-3 py-1.5 w-full mt-2 rounded-lg border border-[#d9d9d9]" id="title" name="title" type="text" placeholder={translation?.data?.business?.title} />
                     </div>
                     <div>
                         <p className="text-[#6c757d] mb-4">{translation?.data?.business?.choices}</p>
                         <div className="flex items-center gap-2">
-                            <input id="transfer" name="transfer" type="checkbox" />
-                            <label checked={cloneImage === 1} onChange={(e) => setCloneImage(e.target.checked ? 1 : 0)} className="select-none" htmlFor="transfer">{translation?.data?.business?.clone_images_with_property}</label>
+                            <input checked={cloneImage === 1} onChange={(e) => setCloneImage(e.target.checked ? 1 : 0)} className="hidden" id="transfer" name="transfer" type="checkbox" />
+                            <label className="select-none cursor-pointer flex items-center gap-2.5" htmlFor="transfer">
+                                <div className={`w-3.75 h-3.75 flex items-center justify-center rounded-sm border border-[#d9d9d9] ${cloneImage === 1 ? "bg-[#27c5d2]" : "" }`}>
+                                    <img className="w-2.5 h-2.5" src={check} alt="" />
+                                </div>
+                                {translation?.data?.business?.clone_images_with_property}
+                            </label>
                         </div>
                     </div>
                     <div className="flex justify-end gap-2 mt-6">
