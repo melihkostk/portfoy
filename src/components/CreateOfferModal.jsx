@@ -4,6 +4,7 @@ import { getAllCustomers } from "../services/myCompanyApi";
 import { getAllCurrencies } from "../services/filterApi";
 import defaultProperty from "../assets/default-property.jpg";
 import { useAppContext } from "../context/AppContext";
+import check from "../assets/white-check.png"
 
 export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,handleCreateProposal , step, setStep, customerNote, setCustomerNote, details, selectedCustomer, setSelectedCurrencie, selectedCurrencie, setSelectedCustomer }) {
     const { translation } = useAppContext();
@@ -123,16 +124,21 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                     <div>
                         <div>
                             <div className="mb-2">
-                                <label className="mb-2" htmlFor="note">{translation?.data?.business?.notes_for_customer}</label>
+                                <label className="mb-2 text-[#212529] font-medium" htmlFor="note">{translation?.data?.business?.notes_for_customer}</label>
                                 <textarea value={customerNote} onChange={(e) => setCustomerNote(e.target.value)} className="block w-full py-1.5 px-3 border border-[#d9d9d9] rounded-lg" placeholder={translation?.data?.business?.notes_for_customer} name="note" id="note"></textarea>
                             </div>
                             <div className="flex items-center gap-1">
-                                <input onChange={(e) => {setNotify(e.target.checked)}} checked={notify} type="checkbox" name="mail" id="mail" />
-                                <label htmlFor="mail">{translation?.data?.business?.notify_customer_with_email}</label>
+                                <input className="hidden" onChange={(e) => {setNotify(e.target.checked)}} checked={notify} type="checkbox" name="mail" id="mail" />
+                                <label className="text-[#212529] cursor-pointer flex items-center select-none gap-2.5 font-medium" htmlFor="mail">
+                                    <div className={`flex items-center justify-center w-3.75 h-3.75 border border-[#D9D9D9] rounded-sm ${notify ? "bg-[#27c5d2]" : "" }`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.notify_customer_with_email}
+                                </label>
                             </div>
                             <div className="flex justify-between items-center mt-6">
-                                <button onClick={() => setStep(2)} className="text-[#545454] text-sm cursor-pointer hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">{translation?.data?.business?.back_to_selected_properties}</button>
-                                <button onClick={handleCreateProposal} className="uppercase bg-[#f1f1f1] text-[#4b4b4b] cursor-pointer py-2 px-5 rounded-lg text-sm hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save_proposal}</button>
+                                <button onClick={() => setStep(2)} className="text-[#545454] font-medium text-sm cursor-pointer hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">{translation?.data?.business?.back_to_selected_properties}</button>
+                                <button onClick={handleCreateProposal} className="uppercase font-semibold bg-[#f1f1f1] text-[#4b4b4b] cursor-pointer py-2 px-5 rounded-lg text-sm hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.save_proposal}</button>
                             </div>
                         </div>
                     </div>)}
