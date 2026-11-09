@@ -3,6 +3,7 @@ import close from "../assets/blue-close.png";
 import pen from "../assets/pencil.png"
 import { getAllCities, getAllCountries, getAllCurrencies, getAllDistricts, getAllStreets } from "../services/filterApi";
 import { useAppContext } from "../context/AppContext";
+import check from "../assets/white-check.png"
 
 export function EditPropertyInfo({
     detail,
@@ -235,9 +236,12 @@ export function EditPropertyInfo({
                     </div>
                     <div className="w-full p-4 overflow-y-auto flex flex-wrap">
                         {multiSelectTarget.options.map(option => (
-                            <label key={option.id} className="flex items-start w-[calc(33%-10px)] gap-2 m-1.25 cursor-pointer select-none">
-                                <input type="checkbox" checked={Array.isArray(multiSelectTarget.value) && multiSelectTarget.value.includes(option.id)} onChange={() => toggleMultiSelectOption(option.id)} />
-                                <span className="text-[#212529] font-semibold">{option.title}</span>
+                            <label key={option.id} className="flex items-start w-[calc(33%-10px)] m-1.25 cursor-pointer select-none">
+                                <input className="hidden" type="checkbox" checked={Array.isArray(multiSelectTarget.value) && multiSelectTarget.value.includes(option.id)} onChange={() => toggleMultiSelectOption(option.id)} />
+                                <div className={`flex items-center justify-center w-3.75 h-3.75 border border-[#d9d9d9] rounded-sm ${multiSelectTarget.value.includes(option.id) ? "bg-[#27c5d2]" : ""}`}>
+                                    <img className="w-2.5 h-2.5" src={check} alt="" />
+                                </div>
+                                <span className="text-[#212529] font-semibold pl-2.5">{option.title}</span>
                             </label>
                         ))}
                     </div>
