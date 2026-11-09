@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { useAppContext } from "../context/AppContext"
+import check from "../assets/white-check.png"
 
 export function FilterSidebar({ type, team , currencie , selectedTeam , setSelectedTeam , handleFilter ,selectedCurrencie , setSelectedCurrencie , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict , minSell ,  setMinSell , maxSell , setMaxSell , status , setStatus , selectedType , setSelectedType}) {
     const { translation } = useAppContext();
@@ -27,8 +28,13 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                         {type?.map(item => (
                             <li key={item.id} className="flex justify-between items-center mb-1.25">
                                 <div className="flex items-center gap-2">
-                                    <input id={`type-${item.id}`} name="type" type="checkbox" checked={selectedType.includes(item.id)} onChange={() => toggleType(item.id)} />
-                                    <label className={`text-[13px] ${selectedType.includes(item.id) ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor={`type-${item.id}`}>{item.title}</label>
+                                    <input className="hidden" id={`type-${item.id}`} name="type" type="checkbox" checked={selectedType.includes(item.id)} onChange={() => toggleType(item.id)} />
+                                    <label className={`flex items-center gap-2.5 text-[13px] ${selectedType.includes(item.id) ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`} htmlFor={`type-${item.id}`}>
+                                        <div className={`w-3.75 flex items-center justify-center h-3.75 rounded-sm border ${selectedType.includes(item.id) ? "bg-[#27c5d2] border-[#D9D9D9]" : "border-[#D9D9D9]"}`}>
+                                            <img className="w-2.5 h-2.5" src={check} alt="" />
+                                        </div>
+                                        {item.title}
+                                    </label>
                                 </div>
                             </li>
                         ))}
@@ -93,20 +99,40 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                     <p className="text-sm text-[#878787] font-medium mb-2" htmlFor="">{translation?.data?.business?.property_status}</p>
                     <div>
                         <div className="flex items-center gap-2.5 mb-1.25">
-                            <input id="status-all" name="status" type="checkbox" checked={status === ""} onChange={() => setStatus("")} />
-                            <label className={`text-[13px] ${status === "" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`} htmlFor="status-all">{translation?.data?.business?.all}</label>
+                            <input className="hidden" id="status-all" name="status" type="checkbox" checked={status === ""} onChange={() => setStatus("")} />
+                            <label className={`flex items-center gap-2.5 text-[13px] ${status === "" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`} htmlFor="status-all">
+                                <div className={`flex items-center justify-center w-3.75 h-3.75 rounded-sm border ${status === "" ? "bg-[#27c5d2] border-[#D9D9D9]" : "border-[#D9D9D9]"}`}>
+                                    <img className="w-2.5 h-2.5" src={check} alt="" />
+                                </div>
+                                {translation?.data?.business?.all}
+                            </label>
                         </div>
                         <div className="flex items-center gap-2.5 mb-1.25">
-                            <input id="status-published" name="status" type="checkbox" checked={status === "published"} onChange={() => setStatus("published")} />
-                            <label htmlFor="status-published" className={`text-[13px] ${status === "published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`}>{translation?.data?.business?.only_published_properties}</label>
+                            <input className="hidden" id="status-published" name="status" type="checkbox" checked={status === "published"} onChange={() => setStatus("published")} />
+                            <label htmlFor="status-published" className={`flex items-center gap-2.5 text-[13px] ${status === "published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`}>
+                                <div className={`flex items-center justify-center w-3.75 h-3.75 rounded-sm border ${status === "published" ? "bg-[#27c5d2] border-[#D9D9D9]" : "border-[#D9D9D9]"}`}>
+                                    <img className="w-2.5 h-2.5" src={check} alt="" />
+                                </div>
+                                {translation?.data?.business?.only_published_properties}
+                            </label>
                         </div>
                         <div className="flex items-center gap-2.5 mb-1.25">
-                            <input id="status-not_published" name="status" type="checkbox" checked={status === "not_published"} onChange={() => setStatus("not_published")} />
-                            <label htmlFor="status-not_published" className={`text-[13px] ${status === "not_published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`}>{translation?.data?.business?.only_not_published_properties}</label>
+                            <input className="hidden" id="status-not_published" name="status" type="checkbox" checked={status === "not_published"} onChange={() => setStatus("not_published")} />
+                            <label htmlFor="status-not_published" className={`flex items-center gap-2.5 text-[13px] ${status === "not_published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`}>
+                                <div className={`flex items-center justify-center w-3.75 h-3.75 rounded-sm border ${status === "not_published" ? "bg-[#27c5d2] border-[#27c5d2]" : "border-[#D9D9D9]"}`}>
+                                    <img className="w-2.5 h-2.5" src={check} alt="" />
+                                </div>
+                                {translation?.data?.business?.only_not_published_properties}
+                            </label>
                         </div>
                         <div className="flex items-center gap-2.5">
-                            <input id="status-sold" name="status" type="checkbox" checked={status === "sold"} onChange={() => setStatus("sold")} />
-                            <label htmlFor="status-sold" className={`text-[13px] ${status === "sold" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold`}>{translation?.data?.business?.only_sold_properties}</label>
+                            <input className="hidden" id="status-sold" name="status" type="checkbox" checked={status === "sold"} onChange={() => setStatus("sold")} />
+                            <label htmlFor="status-sold" className={`flex items-center gap-2.5 text-[13px] ${status === "sold" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`}>
+                                <div className={`flex items-center justify-center w-3.75 h-3.75 rounded-sm border ${status === "sold" ? "bg-[#27c5d2] border-[#27c5d2]" : "border-[#D9D9D9]"}`}>
+                                    <img className="w-2.5 h-2.5" src={check} alt="" />
+                                </div>
+                                {translation?.data?.business?.only_sold_properties}
+                            </label>
                         </div>
                     </div>
                 </div>
