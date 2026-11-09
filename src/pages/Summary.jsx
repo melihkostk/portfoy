@@ -13,6 +13,7 @@ import { SummaryCard } from "../components/SummaryCard";
 import { ClipLoader } from "react-spinners";
 import { useAppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
+import check from "../assets/white-check.png"
 
 export function Summary() {
 
@@ -107,60 +108,130 @@ export function Summary() {
                         </div>
                         {viewOptions && <div className="bg-white absolute rounded-b-lg w-full shadow-[0_0_30px_rgba(0,0,0,0.1)]">
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex items-center gap-2.5">
-                                <input checked={id} onChange={(e) => setID(e.target.checked)} id="id" name="id" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${id ? "text-[#27c5d2]" : ""}`} htmlFor="id">#</label>
+                                <input className="hidden" checked={id} onChange={(e) => setID(e.target.checked)} id="id" name="id" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${id ? "text-[#27c5d2]" : ""}`} htmlFor="id">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${id ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    #
+                                </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
-                                <input checked={number} onChange={(e) => setNumber(e.target.checked)} id="number" name="number" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${number ? "text-[#27c5d2]" : ""}`} htmlFor="number">{translation?.data?.business?.property_no.replace(":" , "")}</label>
+                                <input className="hidden" checked={number} onChange={(e) => setNumber(e.target.checked)} id="number" name="number" type="checkbox" />
+                                <label className={`text-sm cursor-pointer flex items-center gap-2.5 flex-1 font-semibold select-none ${number ? "text-[#27c5d2]" : ""}`} htmlFor="number">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${number ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.property_no.replace(":" , "")}
+                                </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
-                                <input checked={user} onChange={(e) => setUser(e.target.checked)} id="user" name="user" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${user ? "text-[#27c5d2]" : ""}`} htmlFor="user">{translation?.data?.business?.created_by}</label>
+                                <input className="hidden" checked={user} onChange={(e) => setUser(e.target.checked)} id="user" name="user" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${user ? "text-[#27c5d2]" : ""}`} htmlFor="user">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${user ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.created_by}
+                                </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
-                                <input checked={status} onChange={(e) => setStatus(e.target.checked)} id="status" name="status" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${status ? "text-[#27c5d2]" : ""}`} htmlFor="status">{translation?.data?.business?.status}</label>
+                                <input className="hidden" checked={status} onChange={(e) => setStatus(e.target.checked)} id="status" name="status" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${status ? "text-[#27c5d2]" : ""}`} htmlFor="status">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${status ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.status}
+                                </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
-                                <input checked={title} onChange={(e) => setTitle(e.target.checked)} id="title" name="title" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${title ? "text-[#27c5d2]" : ""}`} htmlFor="title">{translation?.data?.business?.title}</label>
+                                <input className="hidden" checked={title} onChange={(e) => setTitle(e.target.checked)} id="title" name="title" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${title ? "text-[#27c5d2]" : ""}`} htmlFor="title">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${title ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.title}
+                                </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
-                                <input checked={cate} onChange={(e) => setCate(e.target.checked)} id="category" name="category" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${cate ? "text-[#27c5d2]" : ""}`} htmlFor="category">{translation?.data?.business?.property_type}</label>
+                                <input className="hidden" checked={cate} onChange={(e) => setCate(e.target.checked)} id="category" name="category" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${cate ? "text-[#27c5d2]" : ""}`} htmlFor="category">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${cate ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.property_type}
+                                </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
-                                <input checked={location} onChange={(e) => setLocation(e.target.checked)} id="location" name="location" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${location ? "text-[#27c5d2]" : ""}`} htmlFor="location">{translation?.data?.business?.location}</label>
+                                <input className="hidden" checked={location} onChange={(e) => setLocation(e.target.checked)} id="location" name="location" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${location ? "text-[#27c5d2]" : ""}`} htmlFor="location">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${location ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.location}
+                                </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
-                                <input checked={price} onChange={(e) => setPrice(e.target.checked)} id="price" name="price" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${price ? "text-[#27c5d2]" : ""}`} htmlFor="price">{translation?.data?.business?.sell_price}</label>
+                                <input className="hidden" checked={price} onChange={(e) => setPrice(e.target.checked)} id="price" name="price" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${price ? "text-[#27c5d2]" : ""}`} htmlFor="price">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${price ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.sell_price}
+                                </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
-                                <input checked={view} onChange={(e) => setView(e.target.checked)} id="view" name="view" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${view ? "text-[#27c5d2]" : ""}`} htmlFor="view">{translation?.data?.business?.visits}</label>
+                                <input className="hidden" checked={view} onChange={(e) => setView(e.target.checked)} id="view" name="view" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${view ? "text-[#27c5d2]" : ""}`} htmlFor="view">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${view ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.visits}
+                                </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
-                                <input checked={fav} onChange={(e) => setFav(e.target.checked)} id="fav" name="fav" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${fav ? "text-[#27c5d2]" : ""}`} htmlFor="fav">{translation?.data?.business?.favorite}</label>
+                                <input className="hidden" checked={fav} onChange={(e) => setFav(e.target.checked)} id="fav" name="fav" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${fav ? "text-[#27c5d2]" : ""}`} htmlFor="fav">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${fav ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.favorite}
+                                </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
-                                <input checked={offer} onChange={(e) => setOffer(e.target.checked)} id="offer" name="offer" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${offer ? "text-[#27c5d2]" : ""}`} htmlFor="offer">{translation?.data?.business?.proposals}</label>
+                                <input className="hidden" checked={offer} onChange={(e) => setOffer(e.target.checked)} id="offer" name="offer" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${offer ? "text-[#27c5d2]" : ""}`} htmlFor="offer">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${offer ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.proposals}
+                                </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
-                                <input checked={score} onChange={(e) => setScore(e.target.checked)} id="score" name="score" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${score ? "text-[#27c5d2]" : ""}`} htmlFor="score">{translation?.data?.business?.review}</label>
+                                <input className="hidden" checked={score} onChange={(e) => setScore(e.target.checked)} id="score" name="score" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${score ? "text-[#27c5d2]" : ""}`} htmlFor="score">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${score ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.review}
+                                </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 flex mt-1 items-center gap-2.5">
-                                <input checked={created} onChange={(e) => setCreated(e.target.checked)} id="created_at" name="created_at" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${created ? "text-[#27c5d2]" : ""}`} htmlFor="created_at">{translation?.data?.business?.created_at}</label>
+                                <input className="hidden" checked={created} onChange={(e) => setCreated(e.target.checked)} id="created_at" name="created_at" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${created ? "text-[#27c5d2]" : ""}`} htmlFor="created_at">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${created ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.created_at}
+                                </label>
                             </div>
                             <div className="px-2.5 py-1.25 flex items-center gap-2.5 mt-1">
-                                <input checked={updated} onChange={(e) => setUpdated(e.target.checked)} id="updated_at" name="updated_at" type="checkbox" />
-                                <label className={`text-sm cursor-pointer flex-1 font-semibold select-none ${updated ? "text-[#27c5d2]" : ""}`} htmlFor="updated_at">{translation?.data?.business?.updated_at}</label>
+                                <input className="hidden" checked={updated} onChange={(e) => setUpdated(e.target.checked)} id="updated_at" name="updated_at" type="checkbox" />
+                                <label className={`text-sm flex items-center gap-2.5 cursor-pointer flex-1 font-semibold select-none ${updated ? "text-[#27c5d2]" : ""}`} htmlFor="updated_at">
+                                    <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${updated ? "bg-[#27c5d2]" : ""}`}>
+                                        <img className="w-2.5 h-2.5" src={check} alt="" />
+                                    </div>
+                                    {translation?.data?.business?.updated_at}
+                                </label>
                             </div>
                         </div>}
                     </div>

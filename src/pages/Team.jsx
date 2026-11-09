@@ -333,7 +333,7 @@ export function Team() {
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="inviteEditMail">{translation?.data?.business?.email}</label>
-                            <input value={inviteEditEmail} disabled className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] bg-[#f1f1f1] cursor-not-allowed text-[#6c757d]" type="email" name="mail" id="inviteEditMail" placeholder={translation?.data?.business?.email} />
+                            <input value={inviteEditEmail} disabled className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] bg-[#f1f1f1] cursor-not-allowed text-[#6c757d]" type="email" name="mail" id="inviteEditMail" placeholder={translation?.data?.business?.email} />
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="inviteEditPhone">{translation?.data?.business?.phone}</label>
