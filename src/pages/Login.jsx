@@ -60,7 +60,7 @@ export function Login() {
                     />
                 </div>
             )}
-            <div className="w-[30%] h-full max-[992px]:w-full max-[992px]:max-w-[95%]">
+            <div className="flex flex-col justify-center w-[30%] min-h-screen max-[992px]:w-full max-[992px]:max-w-[95%]">
                 <div className="flex items-center justify-between mb-7.5 py-5">
                     <div className="w-55">
                         <Link aria-label="home" to={"/"}>
@@ -114,7 +114,7 @@ export function Login() {
                     <p className="text-center text-[#868686] text-xs font-medium">{translation?.data?.business?.copyright}</p>
                 </div>
             </div>
-            <div className="w-full mx-auto max-w-[80%] flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
+            <div className='w-full mt-20 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <AppLinks />
             </div>
         </div>
