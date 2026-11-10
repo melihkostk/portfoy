@@ -49,7 +49,7 @@ export function SignIn() {
     }
 
     return (
-        <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-20% to-white to-20%">
+        <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-[50vh] to-white to-[50vh]">
             {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -63,7 +63,7 @@ export function SignIn() {
                 <p>{successMessage}</p>
                 <img onClick={() => setSuccessMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
             </div>}
-            <div className="pb-12.5 w-[40%] max-[992px]:w-full max-[992px]:max-w-[95%]">
+            <div className="pb-12.5 w-[32%] min-h-screen max-[992px]:w-full max-[992px]:max-w-[95%]">
                 <div className="flex items-center justify-between mb-7.5 pt-12.5">
                     <div className="w-55">
                         <Link aria-label="home" to={"/"}>
@@ -74,8 +74,8 @@ export function SignIn() {
                 </div>
                 <div className="w-full bg-white shadow-[0_0_30px_rgb(247_247_247)] p-7.5 rounded-lg">
                     <div className="mt-6.25 mb-7.5">
-                        <h1 className="text-lg text-[#686868] uppercase font-semibold mb-2.5">{translation?.data?.business?.register}</h1>
-                        <p className="text-base text-[#a6a6a6]">{translation?.data?.business?.register_page_description}</p>
+                        <h1 className="text-lg text-[#686868] uppercase font-bold mb-2.5">{translation?.data?.business?.register}</h1>
+                        <p className="text-base text-[#a6a6a6] font-medium">{translation?.data?.business?.register_page_description}</p>
                     </div>
                     {errorMessageShown && <div className="bg-[#f8d7da] mt-2 mb-4 p-4 text-[#842029] border border-[#f5c2c7] rounded-lg">
                         <p>{errorMessage}</p>
@@ -117,7 +117,7 @@ export function SignIn() {
                     <p className="text-center text-xs text-[#868686] font-medium">{translation?.data?.business?.copyright}</p>
                 </div>
             </div>
-            <div className="w-full mx-auto max-w-[95%] flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
+            <div className='w-full mt-20 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <AppLinks />
             </div>
         </div>
