@@ -14,8 +14,9 @@ import { ClipLoader } from "react-spinners"
 import { getPackages } from "../services/pricingApi"
 import { getCompanyTypes } from "../services/companiesApi"
 import { useAppContext } from "../context/AppContext"
+import { getArticles } from "../services/articlesApi"
 
-export function Home({ news }) {
+export function Home() {
 
   const { locale, translation, translationLoaded } = useAppContext();
 
@@ -31,6 +32,12 @@ export function Home({ news }) {
 
   useEffect(() => {
     getCompanyTypes(locale).then(setTypes);
+  }, [locale])
+
+  const [news, setNews] = useState([])
+
+  useEffect(() => {
+    getArticles(locale).then(setNews)
   }, [locale])
 
   return (

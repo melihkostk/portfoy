@@ -33,8 +33,6 @@ import { Settings } from "./pages/Settings";
 import { Edit } from "./pages/Edit";
 import { useState } from "react";
 import { HomeLogin } from "./pages/HomeLogin";
-import { useEffect } from "react";
-import { getArticles } from "./services/articlesApi.js";
 import { CompanyProposals } from "./pages/CompanyProposals.jsx";
 import { Summary } from "./pages/Summary.jsx";
 import { CompaniesDetail } from "./pages/CompaniesDetail.jsx";
@@ -54,24 +52,18 @@ import { Blogs } from "./pages/Blogs.jsx";
 import { BlogDetail } from "./pages/BlogDetail.jsx";
 
 function AppRoutes() {
-  const { loged, locale } = useAppContext();
-
-  const [news, setNews] = useState([])
-
-  useEffect(() => {
-    getArticles(locale).then(setNews)
-  }, [locale])
-
+  
+  const { loged } = useAppContext();
   const [message, setMessage] = useState("");
   const [messageShown, setMessageShown] = useState(false);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={loged ? <HomeLogin news={news} /> : <Home news={news} />} />
+        <Route path="/" element={loged ? <HomeLogin /> : <Home />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/articles" element={<News news={news} />} />
+        <Route path="/articles" element={<News />} />
         <Route path="/corporate" element={<Corporate />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/login" element={<Login />} />
@@ -81,7 +73,7 @@ function AppRoutes() {
         <Route path="/check" element={<Check />} />
         <Route path="/faqs" element={<Faqs />} />
         <Route path="/consent" element={<Consent />} />
-        <Route path="/articles/:id" element={<NewsDetail news={news} />}></Route>
+        <Route path="/articles/:id" element={<NewsDetail />}></Route>
         <Route path="*" element={<NotFound />}></Route>
         <Route path="/blog" element={<Blogs />}></Route>
         <Route path="/blog/:name" element={<BlogDetail />}></Route>

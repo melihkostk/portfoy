@@ -10,10 +10,11 @@ import { getDiscountedProperties } from "../services/propertiesApi"
 import { useState, useEffect, useRef } from "react"
 import { ClipLoader } from "react-spinners"
 import { useAppContext } from "../context/AppContext"
+import { getArticles } from "../services/articlesApi"
 
-export function HomeLogin({ news, logOut }) {
+export function HomeLogin({ logOut }) {
 
-    const { translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded , locale } = useAppContext();
 
     const [recentlyProperties, setRecentlyProperties] = useState([])
     const [discountedProperties, setDiscountedProperties] = useState([])
@@ -37,6 +38,12 @@ export function HomeLogin({ news, logOut }) {
         const maxScroll = el.scrollWidth - el.clientWidth + 1100
         el.scrollTo({ left: (maxScroll / (dotCount - 1)) * index, behavior: "smooth" })
     }
+
+    const [news, setNews] = useState([])
+
+    useEffect(() => {
+        getArticles(locale).then(setNews)
+    }, [locale])
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -83,6 +90,7 @@ export function HomeLogin({ news, logOut }) {
                         <div className="flex justify-center py-7.5 w-full gap-2.5 max-[992px]:hidden">
                             {[0, 1, 2, 3].map(index => (
                                 <button
+                                    aria-label="page"
                                     key={index}
                                     onClick={() => scrollToDot(discountedScrollRef, index, 4)}
                                     className="bg-[#c2c2c2] w-3 h-3 rounded-full cursor-pointer focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"
@@ -117,6 +125,7 @@ export function HomeLogin({ news, logOut }) {
                         <div className="flex justify-center py-7.5 w-full gap-2.5 max-[992px]:hidden">
                             {[0, 1, 2, 3].map(index => (
                                 <button
+                                    aria-label="page"
                                     key={index}
                                     onClick={() => scrollToDot(recentlyScrollRef, index, 4)}
                                     className="bg-[#c2c2c2] w-3 h-3 rounded-full cursor-pointer focus:bg-[#27C5D2] focus:w-15 focus:rounded-[5px] transition-all duration-300 ease-in-out"

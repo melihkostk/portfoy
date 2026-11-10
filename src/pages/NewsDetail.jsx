@@ -1,7 +1,7 @@
 ﻿import { Link, useParams } from "react-router-dom"
 import { Header } from "../components/Header"
 import { useEffect, useState } from "react";
-import { showArticle } from "../services/articlesApi";
+import { getArticles, showArticle } from "../services/articlesApi";
 import { NewsCard } from "../components/NewsCard";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
@@ -10,9 +10,9 @@ import news1 from "../assets/news1.jpeg"
 import grayCalendar from "../assets/gray-calendar.png"
 import { useAppContext } from "../context/AppContext";
 
-export function NewsDetail({ news }) {
+export function NewsDetail() {
 
-    const { translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded , locale} = useAppContext();
 
     const { id } = useParams();
 
@@ -23,6 +23,12 @@ export function NewsDetail({ news }) {
         setLoaded(false)
         showArticle(id).then(setArticle).finally(() => setLoaded(true))
     }, [id])
+
+    const [news, setNews] = useState([])
+
+    useEffect(() => {
+        getArticles(locale).then(setNews)
+    }, [locale])
 
     return (
         <div className='flex flex-col items-center font-sf'>

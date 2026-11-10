@@ -5,10 +5,18 @@ import { Footer } from "../components/Footer";
 import { ClipLoader } from "react-spinners"
 import { useAppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getArticles } from "../services/articlesApi";
 
-export function News({ news }) {
+export function News() {
 
-    const { translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded , locale } = useAppContext();
+
+    const [news, setNews] = useState([])
+    
+      useEffect(() => {
+        getArticles(locale).then(setNews)
+      }, [locale])
 
     return (
         <div className='flex flex-col items-center font-sf'>
