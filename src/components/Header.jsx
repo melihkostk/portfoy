@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import person from "../assets/person.png"
 import arrowRight from "../assets/arrow-right.png"
 import plus from "../assets/plus.png"
-import React, { useState } from "react"
+import{ useState , useEffect } from "react"
 import notification from "../assets/notification.png"
 import folder from "../assets/folder.png"
 import shop from "../assets/shop.png"
@@ -24,21 +24,21 @@ import check from "../assets/white-check.png"
 export function Header({ details }) {
     const { loged, translation } = useAppContext();
 
-    const [registerShown, setRegisterShown] = React.useState(false);
-    const [applicationShown, setApplicationShown] = React.useState(false);
-    const [notShown, setNotShown] = React.useState(false)
-    const [accountShown, setAccountShown] = React.useState(false)
-    const [sidebarShown, setSidebarShown] = React.useState(false)
-    const [offerModelShown, setOfferModalShown] = React.useState(false)
-    const [notifications, setNotifications] = React.useState([])
-    const [showUnreadOnly, setShowUnreadOnly] = React.useState(false)
-    const [step, setStep] = React.useState(1)
-    const [selectedCustomer, setSelectedCustomer] = React.useState("")
-    const [selectedCurrencie, setSelectedCurrencie] = React.useState("")
-    const [customerNote, setCustomerNote] = React.useState("")
-    const [searchInput, setSearchInput] = React.useState("")
+    const [registerShown, setRegisterShown] = useState(false);
+    const [applicationShown, setApplicationShown] = useState(false);
+    const [notShown, setNotShown] = useState(false)
+    const [accountShown, setAccountShown] = useState(false)
+    const [sidebarShown, setSidebarShown] = useState(false)
+    const [offerModelShown, setOfferModalShown] = useState(false)
+    const [notifications, setNotifications] = useState([])
+    const [showUnreadOnly, setShowUnreadOnly] = useState(false)
+    const [step, setStep] = useState(1)
+    const [selectedCustomer, setSelectedCustomer] =useState("")
+    const [selectedCurrencie, setSelectedCurrencie] = useState("")
+    const [customerNote, setCustomerNote] = useState("")
+    const [searchInput, setSearchInput] = useState("")
 
-    React.useEffect(() => {
+    useEffect(() => {
         getAllNotifications().then(setNotifications)
     }, [])
 
@@ -70,7 +70,7 @@ export function Header({ details }) {
 
     const [customers, setCustomer] = useState([])
 
-    React.useEffect(() => {
+    useEffect(() => {
         getAllCustomers().then(setCustomer)
     }, [])
 
