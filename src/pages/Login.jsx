@@ -50,7 +50,7 @@ export function Login() {
     const [remember , setRemember] = useState(false);
 
     return (
-        <div className="flex flex-col justify-center items-center min-h-screen bg-linear-to-b font-sf from-[#f7f6fb] from-35% to-white to-35%">
+        <div className="flex flex-col justify-center items-center min-h-screen bg-linear-to-b font-sf from-[#f7f6fb] from-[50vh] to-white to-[50vh]">
             {!translationLoaded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader

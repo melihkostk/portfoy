@@ -40,7 +40,7 @@ export function ResetPassword() {
     }
 
     return (
-        <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-20% to-white to-20%">
+        <div className="flex font-sf flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#f7f6fb] from-[50vh] to-white to-[50vh]">
             {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
@@ -58,7 +58,7 @@ export function ResetPassword() {
                 <p>{successMessage}</p>
                 <img onClick={() => setSuccessMessageShown(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
             </div>}
-            <div className="pb-12.5 w-[40%] max-[992px]:w-full max-[992px]:max-w-[95%]">
+            <div className="pb-12.5 w-[28%] min-h-screen flex flex-col justify-center max-[992px]:w-full max-[992px]:max-w-[95%]">
                 <div className="flex items-center justify-between mb-7.5 pt-12.5">
                     <div className="w-55">
                         <Link aria-label="home" to={"/"}>
@@ -79,7 +79,7 @@ export function ResetPassword() {
                             <input required value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 pl-12 pr-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" type="email" placeholder={translation?.data?.validation?.attributes?.email} />
                         </div>
                         <div className="mt-5 mb-2">
-                            <button type="submit" className="bg-[#27c5d2] text-white rounded-lg text-center w-full py-2 px-5 font-semibold cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.reset_password_email?.web?.reset_my_password}</button>
+                            <button type="submit" className="bg-[#27c5d2] uppercase text-white rounded-lg text-center w-full py-2 px-5 font-semibold cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.reset_password_email?.web?.reset_my_password}</button>
                         </div>
                         <div className="my-10 flex flex-col items-center font-semibold">
                             <Link className="text-sm hover:text-[#27c5d2] transition-colors duration-300 ease-in-out cursor-pointer" to={"/login"}>{translation?.data?.business?.remember_password?.replace(/<[^>]*>/g, "")}</Link>
@@ -88,7 +88,7 @@ export function ResetPassword() {
                     <p className="text-center text-xs text-[#868686] font-medium">{translation?.data?.business?.copyright}</p>
                 </div>
             </div>
-            <div className="w-full mx-auto max-w-350 flex flex-col items-center justify-center bg-[#f7f6fb] mt-30 mb-15">
+            <div className='w-full mt-20 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
                 <AppLinks />
             </div>
         </div>
