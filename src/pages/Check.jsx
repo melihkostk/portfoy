@@ -69,7 +69,7 @@ export function Check() {
                                 <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="application">{translation?.data?.business?.application_code_or_your_email}</label>
                                 <div className="flex items-center relative">
                                     <img className="absolute w-4.5 h-4.5 left-3" src={t} alt="" />
-                                    <input type="text" name="application" id="application" className="border border-[#EDEDED] rounded-lg w-full h-10 pl-10 font-medium" placeholder={translation?.data?.business?.application_code_or_your_email} required />
+                                    <input type="text" name="application" id="application" className="border border-[#EDEDED] rounded-lg w-full h-10 pl-10 font-medium focus:outline-none" placeholder={translation?.data?.business?.application_code_or_your_email} required />
                                 </div>
                             </div>
                             <div>

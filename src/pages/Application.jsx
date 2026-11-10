@@ -147,7 +147,7 @@ export function Application() {
                                         <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="name">{translation?.data?.business?.fullname}</label>
                                         <div className="relative flex items-center ">
                                             <img className="w-7 h-7 absolute bottom-2 left-2" src={person} alt="" />
-                                            <input id="name" name="name" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.fullname} required />
+                                            <input id="name" name="name" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium focus:outline-none" type="text" placeholder={translation?.data?.business?.fullname} required />
                                         </div>
                                     </div>
                                     <div className="flex max-[992px]:flex-col max-[992px]:gap-3.75">
@@ -155,14 +155,14 @@ export function Application() {
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="phone">{translation?.data?.business?.your_phone}</label>
                                             <div className="relative flex items-center ">
                                                 <img className="w-6 h-6 absolute bottom-2 left-2" src={phone} alt="" />
-                                                <input id="phone" name="phone" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.your_phone} required />
+                                                <input id="phone" name="phone" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium focus:outline-none" type="text" placeholder={translation?.data?.business?.your_phone} required />
                                             </div>
                                         </div>
                                         <div className="flex flex-col mx-2.5 flex-1">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="mail">{translation?.data?.business?.your_email}</label>
                                             <div className="relative flex items-center ">
                                                 <img className="w-5 h-5 absolute bottom-2.5 left-2" src={mail} alt="" />
-                                                <input id="mail" name="mail" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.your_email} required />
+                                                <input id="mail" name="mail" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium focus:outline-none" type="text" placeholder={translation?.data?.business?.your_email} required />
                                             </div>
                                         </div>
                                     </div>
@@ -200,7 +200,7 @@ export function Application() {
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="adress">{translation?.data?.business?.full_address}</label>
                                             <div className="relative flex items-center ">
                                                 <img className="w-6 h-6 absolute bottom-2 left-2" src={location} alt="" />
-                                                <input id="adress" name="adress" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.full_address} />
+                                                <input id="adress" name="adress" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium focus:outline-none" type="text" placeholder={translation?.data?.business?.full_address} />
                                             </div>
                                         </div>
                                     </div>
@@ -212,7 +212,7 @@ export function Application() {
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="company-name">{translation?.data?.business?.company_title}</label>
                                             <div className="relative flex items-center ">
                                                 <img className="w-7 h-7 absolute bottom-2 left-2" src={person} alt="" />
-                                                <input id="company-name" name="company-name" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.company_title} required />
+                                                <input id="company-name" name="company-name" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium focus:outline-none" type="text" placeholder={translation?.data?.business?.company_title} required />
                                             </div>
                                         </div>
                                         <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
@@ -224,35 +224,35 @@ export function Application() {
                                             </div>
                                             <div className="relative flex items-center ">
                                                 <img className="w-4 h-4 absolute top-3.5 left-2" src={menu} alt="" />
-                                                <input id="area" name="area" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.activity_area} required />
+                                                <input id="area" name="area" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium focus:outline-none" type="text" placeholder={translation?.data?.business?.activity_area} required />
                                             </div>
                                         </div>
                                         <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="tax">{translation?.data?.business?.tax_plate_file}</label>
                                             <div className="relative flex items-center">
                                                 <img className="w-5 h-5 absolute top-2.5 left-2" src={pdf} alt="" />
-                                                <input id="tax" name="tax" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.choose?.file} required />
+                                                <input id="tax" name="tax" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium focus:outline-none" type="text" placeholder={translation?.data?.business?.choose?.file} required />
                                             </div>
                                         </div>
                                         <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="number">{translation?.data?.business?.tax_number}</label>
                                             <div className="relative flex items-center">
                                                 <img className="w-5 h-5 absolute top-2.5 left-2" src={file} alt="" />
-                                                <input id="number" name="number" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.tax_number} required />
+                                                <input id="number" name="number" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium focus:outline-none" type="text" placeholder={translation?.data?.business?.tax_number} required />
                                             </div>
                                         </div>
                                         <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="licence">{translation?.data?.business?.licence_file}</label>
                                             <div className="relative flex items-center">
                                                 <img className="w-5 h-5 absolute top-2.5 left-2" src={pdf} alt="" />
-                                                <input id="licence" name="licence" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.choose?.file} required />
+                                                <input id="licence" name="licence" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium focus:outline-none" type="text" placeholder={translation?.data?.business?.choose?.file} required />
                                             </div>
                                         </div>
                                         <div className="flex flex-col w-[28%] mx-2.5 max-[992px]:w-full">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="licence-number">{translation?.data?.business?.licence_number}</label>
                                             <div className="relative flex items-center">
                                                 <img className="w-5 h-5 absolute top-2.5 left-2" src={file} alt="" />
-                                                <input id="licence-number" name="licence-number" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium" type="text" placeholder={translation?.data?.business?.licence_number} required />
+                                                <input id="licence-number" name="licence-number" className="border border-[#EDEDED] rounded-lg h-10 w-full pl-10 font-medium focus:outline-none" type="text" placeholder={translation?.data?.business?.licence_number} required />
                                             </div>
                                         </div>
                                     </div>

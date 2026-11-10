@@ -428,7 +428,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 <div className="p-4 w-full">
                     <div className="mb-4">
                         <label className="text-[#212529] font-medium" htmlFor="title">{translation?.data?.business?.title}</label>
-                        <input required value={copyTitle} onChange={(e) => setCopyTitle(e.target.value)} className="block font-medium px-3 py-1.5 w-full mt-2 rounded-lg border border-[#d9d9d9]" id="title" name="title" type="text" placeholder={translation?.data?.business?.title} />
+                        <input required value={copyTitle} onChange={(e) => setCopyTitle(e.target.value)} className="block font-medium px-3 py-1.5 w-full mt-2 rounded-lg border border-[#d9d9d9] focus:outline-none" id="title" name="title" type="text" placeholder={translation?.data?.business?.title} />
                     </div>
                     <div>
                         <p className="text-[#6c757d] mb-4">{translation?.data?.business?.choices}</p>
@@ -542,7 +542,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                                     {item.price?.code}
                                 </div>
                                 <div className="flex-1 px-3 py-1.5">
-                                    <input className="w-full" value={item.price?.number} type="number" name="" id="" />
+                                    <input className="w-full focus:outline-none" value={item.price?.number} type="number" name="" id="" />
                                 </div>
                                 <div className="bg-[#e2e2e2] text-[#727272] text-sm font-semibold flex items-center justify-center rounded-r-lg w-9.5 hover:bg-[#ff2020] transition-colors duration-300 ease-in-out">
                                     <button onClick={() => handleDeletePrice(item.id)}

@@ -78,7 +78,7 @@ export function CompanyFilter({ type, setSelectedType, setSelectedPropertyType, 
             </div>
             {page !== "wishlist" && <div className="grow max-[992px]:w-full">
                 <label htmlFor="q">{translation?.data?.business?.search_in_companies}</label>
-                <input value={q} onChange={(e) => setQ(e.target.value)} className="bg-white py-2 px-3 border w-full border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.search_in_companies} name="q" id="q" />
+                <input value={q} onChange={(e) => setQ(e.target.value)} className="bg-white focus:outline-none py-2 px-3 border w-full border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.search_in_companies} name="q" id="q" />
             </div>}
             <div className="grow max-[992px]:w-full">
                 <button onClick={() => filterCompany(page === "wishlist" ? selectedPropertyType : selectedType, selectedCountry, selectedCity, selectedDistrict, q)} className="w-full bg-[#27C5D2] max-[992px]:w-full text-white text-sm py-2 px-5 cursor-pointer whitespace-nowrap rounded-lg hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>

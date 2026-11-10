@@ -189,7 +189,7 @@ export function PropertiesDetail() {
                             <form onSubmit={handlePriceOffer}>
                                 <div>
                                     <label htmlFor="price">{translation?.data?.business?.your_offer_price}</label>
-                                    <input value={price} onChange={(e) => setPrice(e.target.value)} required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="number" placeholder="" name="price" id="price" min={1} />
+                                    <input value={price} onChange={(e) => setPrice(e.target.value)} required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3 focus:outline-none" type="number" placeholder="" name="price" id="price" min={1} />
                                 </div>
                                 <div>
                                     <label htmlFor="note">{translation?.data?.business?.notes}</label>

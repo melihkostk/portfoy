@@ -15,7 +15,7 @@ export function ConfirmPopUp({setConfirmShown , setVerifyCode , verifyCode , han
                 </div>
                 <div className="flex flex-col mb-2">
                     <label htmlFor="">{translation?.data?.business?.verify_code}</label>
-                    <input minlength="6" maxlength="6" required value={verifyCode} onChange={(e) => setVerifyCode(e.target.value)} className="py-1.5 px-3 rounded-lg border border-[#d9d9d9]" type="text" placeholder={translation?.data?.business?.verify_code} />
+                    <input minlength="6" maxlength="6" required value={verifyCode} onChange={(e) => setVerifyCode(e.target.value)} className="py-1.5 px-3 rounded-lg border border-[#d9d9d9] focus:outline-none" type="text" placeholder={translation?.data?.business?.verify_code} />
                 </div>
                 <div className="justify-self-end">
                     <button type="submit" className="text-white cursor-pointer text-sm bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.update}</button>

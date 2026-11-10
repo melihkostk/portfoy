@@ -76,7 +76,7 @@ export function ResetPassword() {
                         <div className="flex flex-col relative">
                             <img className="absolute w-5 h-5 top-11 left-4" src={mail} alt="" />
                             <label className="mb-1.25 text-base text-[#868686] font-semibold">{translation?.data?.validation?.attributes?.email}</label>
-                            <input required value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 pl-12 pr-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" type="email" placeholder={translation?.data?.validation?.attributes?.email} />
+                            <input required value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 pl-12 pr-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium focus:outline-none" type="email" placeholder={translation?.data?.validation?.attributes?.email} />
                         </div>
                         <div className="mt-5 mb-2">
                             <button type="submit" className="bg-[#27c5d2] uppercase text-white rounded-lg text-center w-full py-2 px-5 font-semibold cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.reset_password_email?.web?.reset_my_password}</button>

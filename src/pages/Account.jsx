@@ -219,7 +219,7 @@ export function Account() {
                                 <div className="flex mb-2.5">
                                     <div className="pr-3 w-1/2">
                                         <label className="font-medium text-[#212529]" htmlFor="name">{translation?.data?.business?.name}</label>
-                                        <input id="name" name="name" onChange={(e) => setName(e.target.value)} className="block border font-medium border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" value={name} />
+                                        <input id="name" name="name" onChange={(e) => setName(e.target.value)} className="block border font-medium border-[#D9D9D9] w-full rounded-lg py-1.5 px-3 focus:outline-none" type="text" value={name} />
                                     </div>
                                     <div className="pl-3 w-1/2">
                                         <label className="font-medium text-[#212529]" htmlFor="email">{translation?.data?.validation?.attributes?.email}</label>
@@ -238,7 +238,7 @@ export function Account() {
                                                     <option value="01">(01)</option>
                                                 </select>
                                             </div>
-                                            <input name="phone" id="phone" onChange={(e) => setPhone(e.target.value)} className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3" type="text" placeholder={translation?.data?.business?.phone} value={phone}></input>
+                                            <input name="phone" id="phone" onChange={(e) => setPhone(e.target.value)} className="block border border-[#D9D9D9] w-full rounded-lg py-1.5 px-3 focus:outline-none" type="text" placeholder={translation?.data?.business?.phone} value={phone}></input>
                                         </div>
                                     </div>
                                 </div>

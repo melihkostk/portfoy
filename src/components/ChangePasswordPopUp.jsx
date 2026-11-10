@@ -12,15 +12,15 @@ export function ChangePasswordPopUp({setChangePassword , handlePasswordChange , 
             <form onSubmit={handlePasswordChange} className="p-4 w-full">
                 <div className="flex flex-col mb-2">
                     <label className="font-semibold" htmlFor="">{translation?.data?.business?.current_password}</label>
-                    <input onChange={(e) => setCurrent(e.target.value)} required className="border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="password" placeholder={translation?.data?.business?.current_password} />
+                    <input onChange={(e) => setCurrent(e.target.value)} required className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 focus:outline-none" type="password" placeholder={translation?.data?.business?.current_password} />
                 </div>
                 <div className="flex flex-col mb-2">
                     <label className="font-semibold" htmlFor="">{translation?.data?.business?.new_password}</label>
-                    <input onChange={(e) => setPassword(e.target.value)} required className="border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="password" placeholder={translation?.data?.business?.new_password} />
+                    <input onChange={(e) => setPassword(e.target.value)} required className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 focus:outline-none" type="password" placeholder={translation?.data?.business?.new_password} />
                 </div>
                 <div className="flex flex-col mb-2">
                     <label className="font-semibold" htmlFor="">{translation?.data?.business?.new_password_confirm}</label>
-                    <input onChange={(e) => setConfirm(e.target.value)} required className="border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="password" placeholder={translation?.data?.business?.new_password_confirm} />
+                    <input onChange={(e) => setConfirm(e.target.value)} required className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 focus:outline-none" type="password" placeholder={translation?.data?.business?.new_password_confirm} />
                 </div>
                 <div className="justify-self-end">
                     <button type="submit" className="py-2 px-5 rounded-lg bg-[#27c5d2] text-white font-semibold text-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.update}</button>

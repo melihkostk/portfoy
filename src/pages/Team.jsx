@@ -242,11 +242,11 @@ export function Team() {
                     <form onSubmit={handleAdd} className="w-full">
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="name">{translation?.data?.business?.personal_fullname}</label>
-                            <input value={name} onChange={(e) => setName(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="name" placeholder={translation?.data?.business?.personal_fullname} required />
+                            <input value={name} onChange={(e) => setName(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] focus:outline-none" type="text" name="name" id="name" placeholder={translation?.data?.business?.personal_fullname} required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="name">{translation?.data?.business?.email}</label>
-                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="email" name="mail" id="mail" placeholder={translation?.data?.business?.email} required />
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] focus:outline-none" type="email" name="mail" id="mail" placeholder={translation?.data?.business?.email} required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="phone">{translation?.data?.business?.phone}</label>
@@ -258,7 +258,7 @@ export function Team() {
                                     <option value="357">(357)</option>
                                     <option value="01">(01)</option>
                                 </select>
-                                <input value={number} onChange={(e) => setNumber(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="phone" placeholder={translation?.data?.business?.phone} required />
+                                <input value={number} onChange={(e) => setNumber(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg w-full border-[#d9d9d9] focus:outline-none" type="tel" name="phone" id="phone" placeholder={translation?.data?.business?.phone} required />
                             </div>
                         </div>
                         <div className="flex flex-col w-full mb-2">
@@ -287,11 +287,11 @@ export function Team() {
                     <form onSubmit={handleEdit} className="w-full">
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="editName">{translation?.data?.business?.personal_fullname}</label>
-                            <input value={editName} onChange={(e) => setEditName(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="editName" placeholder={translation?.data?.business?.personal_fullname} required />
+                            <input value={editName} onChange={(e) => setEditName(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] focus:outline-none" type="text" name="name" id="editName" placeholder={translation?.data?.business?.personal_fullname} required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="editMail">{translation?.data?.business?.email}</label>
-                            <input disabled value={editEmail} onChange={(e) => setEditEmail(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg bg-[#e9ecef] border-[#d9d9d9]" type="email" name="mail" id="editMail" placeholder={translation?.data?.business?.email} required />
+                            <input disabled value={editEmail} onChange={(e) => setEditEmail(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg bg-[#e9ecef] border-[#d9d9d9] focus:outline-none" type="email" name="mail" id="editMail" placeholder={translation?.data?.business?.email} required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="editPhone">{translation?.data?.business?.phone}</label>
@@ -303,7 +303,7 @@ export function Team() {
                                     <option value="357">(357)</option>
                                     <option value="01">(01)</option>
                                 </select>
-                                <input value={editNumber} onChange={(e) => setEditNumber(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="editPhone" placeholder={translation?.data?.business?.phone} required />
+                                <input value={editNumber} onChange={(e) => setEditNumber(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg w-full border-[#d9d9d9] focus:outline-none" type="tel" name="phone" id="editPhone" placeholder={translation?.data?.business?.phone} required />
                             </div>
                         </div>
                         <div className="flex flex-col w-full mb-2">
@@ -329,11 +329,11 @@ export function Team() {
                     <form onSubmit={handleUpdateInvite} className="w-full">
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="inviteEditName">{translation?.data?.business?.personal_fullname}</label>
-                            <input value={inviteEditName} onChange={(e) => setInviteEditName(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" name="name" id="inviteEditName" placeholder={translation?.data?.business?.personal_fullname} required />
+                            <input value={inviteEditName} onChange={(e) => setInviteEditName(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] focus:outline-none" type="text" name="name" id="inviteEditName" placeholder={translation?.data?.business?.personal_fullname} required />
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="inviteEditMail">{translation?.data?.business?.email}</label>
-                            <input value={inviteEditEmail} disabled className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] bg-[#f1f1f1] cursor-not-allowed text-[#6c757d]" type="email" name="mail" id="inviteEditMail" placeholder={translation?.data?.business?.email} />
+                            <input value={inviteEditEmail} disabled className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] bg-[#f1f1f1] cursor-not-allowed text-[#6c757d] focus:outline-none" type="email" name="mail" id="inviteEditMail" placeholder={translation?.data?.business?.email} />
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="inviteEditPhone">{translation?.data?.business?.phone}</label>
@@ -345,7 +345,7 @@ export function Team() {
                                     <option value="357">(357)</option>
                                     <option value="01">(01)</option>
                                 </select>
-                                <input value={inviteEditNumber} onChange={(e) => setInviteEditNumber(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg w-full border-[#d9d9d9]" type="tel" name="phone" id="inviteEditPhone" placeholder={translation?.data?.business?.phone} required />
+                                <input value={inviteEditNumber} onChange={(e) => setInviteEditNumber(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg w-full border-[#d9d9d9] focus:outline-none" type="tel" name="phone" id="inviteEditPhone" placeholder={translation?.data?.business?.phone} required />
                             </div>
                         </div>
                         <div className="flex flex-col w-full mb-2">

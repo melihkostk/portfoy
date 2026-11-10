@@ -125,7 +125,7 @@ export function Create() {
                 <form onSubmit={handleAdd} className="w-[50%] max-[992px]:w-full">
                     <div className="mb-12.5">
                         <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-bold">{translation?.data?.business?.basic_info}</p>
-                        <input required value={title} onChange={(e) => setTitle(e.target.value)} className="p-3.75 font-medium rounded-lg border border-[#ededed] w-full" type="text" placeholder={translation?.data?.business?.property_title} />
+                        <input required value={title} onChange={(e) => setTitle(e.target.value)} className="p-3.75 focus:outline-none font-medium rounded-lg border border-[#ededed] w-full" type="text" placeholder={translation?.data?.business?.property_title} />
                         <div className="flex overflow-x-auto justify-between scrollbar-none mt-7.5">
                             {propertyType.map(item => (
                                 <CreateButton
@@ -181,7 +181,7 @@ export function Create() {
                             </div>
                             <div className="px-2.5 max-[992px]:w-full max-[992px]:px-0">
                                 <label className="text-sm font-medium text-[#212529] opacity-50" htmlFor="address">{translation?.data?.business?.address}</label>
-                                <input id="address" name="address" required value={address} onChange={(e) => setAddress(e.target.value)} className="p-2.5 rounded-lg font-medium border border-[#e8e8e8] block w-full" type="text" placeholder={translation?.data?.business?.address} />
+                                <input id="address" name="address" required value={address} onChange={(e) => setAddress(e.target.value)} className="p-2.5 rounded-lg focus:outline-none font-medium border border-[#e8e8e8] block w-full" type="text" placeholder={translation?.data?.business?.address} />
                             </div>
                         </div>
                     </div>
@@ -210,27 +210,27 @@ export function Create() {
                             {pricingType === "PASS" && <div>
                                 <div className="mb-5">
                                     <label className="text-sm font-medium text-[#212529] opacity-50 mb-2" htmlFor="pass">{translation?.data?.business?.pass_price}</label>
-                                    <input id="pass" name="pass" required value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="block font-medium rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.pass_price} />
+                                    <input id="pass" name="pass" required value={passPrice} onChange={(e) => setPassPrice(e.target.value)} className="block focus:outline-none font-medium rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.pass_price} />
                                 </div>
                                 <div className="mb-5">
                                     <label className="text-sm font-medium text-[#212529] opacity-50 mb-2" htmlFor="sell">{translation?.data?.business?.sell_price}</label>
-                                    <input id="sell" name="sell" required value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="block font-medium rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.sell_price} />
+                                    <input id="sell" name="sell" required value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="block focus:outline-none font-medium rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.sell_price} />
                                 </div>
                             </div>}
                             {pricingType === "COMISSION" && <div>
                                 <div>
                                     <div className="mb-5">
                                         <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="commution">{translation?.data?.business?.sell_price}</label>
-                                        <input id="commution" name="commution" required value={commutionSellPrice} onChange={(e) => setCommutionSellPrice(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder={translation?.data?.business?.sell_price} />
+                                        <input id="commution" name="commution" required value={commutionSellPrice} onChange={(e) => setCommutionSellPrice(e.target.value)} className="block focus:outline-none rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="text" placeholder={translation?.data?.business?.sell_price} />
                                     </div>
                                     <div className="flex gap-3.75">
                                         <div className="mb-5 flex-1">
                                             <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="buyer">{translation?.data?.business?.buyer_commission_rate}</label>
-                                            <input id="buyer" name="buyer" required value={buyerCommutionRate} onChange={(e) => setBuyerCommutionRate(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.buyer_commission_rate} />
+                                            <input id="buyer" name="buyer" required value={buyerCommutionRate} onChange={(e) => setBuyerCommutionRate(e.target.value)} className="block focus:outline-none rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.buyer_commission_rate} />
                                         </div>
                                         <div className="mb-5 flex-1">
                                             <label className="text-sm text-[#212529] opacity-50 mb-2" htmlFor="seller">{translation?.data?.business?.seller_commission_rate}</label>
-                                            <input id="seller" name="seller" required value={sellerCommutionRate} onChange={(e) => setSellerCommutionRate(e.target.value)} className="block rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.seller_commission_rate} />
+                                            <input id="seller" name="seller" required value={sellerCommutionRate} onChange={(e) => setSellerCommutionRate(e.target.value)} className="block focus:outline-none rounded-lg p-2.5 border border-[#e8e8e8] w-full" type="number" placeholder={translation?.data?.business?.seller_commission_rate} />
                                         </div>
                                     </div>
                                 </div>

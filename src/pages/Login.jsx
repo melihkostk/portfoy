@@ -79,7 +79,7 @@ export function Login() {
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="email">{translation?.data?.business?.email}</label>
                              <div className="relative">
                                 <img className="absolute w-5 h-5 top-4.5 left-4" src={mail} alt="" />
-                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-5 pl-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="email" type="email" placeholder={translation?.data?.business?.email} required />
+                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full focus:outline-none px-5 pl-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="email" type="email" placeholder={translation?.data?.business?.email} required />
                             </div>
                         </div>
                         <div className="my-2.5">
@@ -89,7 +89,7 @@ export function Login() {
                             </div>
                             <div className="relative">
                                 <img className="absolute w-5 h-5 top-4 left-4" src={lock} alt="" />
-                                <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-5 pl-12 pr-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type={inputType} placeholder={translation?.data?.business?.password} required />
+                                <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-full focus:outline-none px-5 pl-12 pr-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="password" id="password" type={inputType} placeholder={translation?.data?.business?.password} required />
                                 {inputType === "password" && <img onClick={() => setInputType("text")} className="absolute cursor-pointer w-5.5 h-5.5 top-4 right-4" src={eye} alt="" />}
                                 {inputType === "text" && <img onClick={() => setInputType("password")} className="absolute cursor-pointer w-5 h-5 top-4 right-4" src={lock} alt="" />}
                             </div>

@@ -35,7 +35,7 @@ export function Support() {
                 <div className="flex flex-col items-center justify-center w-full max-w-[90%]">
                     <h2 className="text-white text-[32px] font-semibold">{translation?.data?.business?.how_we_can_help_you}</h2>
                     <div className="w-[60%] relative mb-2.5 bg-[#FFFFFF33] shadow-[0_0_120px_#FFFFFF80]">
-                        <input className="w-full border border-white bg-transparent text-white rounded-lg p-2.5 placeholder:text-white" type="text" placeholder={translation?.data?.business?.search_on_faqs_and_videos} name="q"></input>
+                        <input className="w-full border border-white bg-transparent text-white rounded-lg p-2.5 placeholder:text-white focus:outline-none" type="text" placeholder={translation?.data?.business?.search_on_faqs_and_videos} name="q"></input>
                         <button aria-label="search" className="w-9 h-9 bg-[#FFFFFF4D] rounded-lg absolute right-1.5 top-1.5 flex items-center justify-center">
                             <img className="w-6 h-6" src={search} alt="" />
                         </button>

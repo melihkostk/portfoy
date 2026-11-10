@@ -339,7 +339,7 @@ export function Properties() {
                     <p className="text-base text-[#212529] font-medium mb-4">{translation?.data?.business?.save_filter_description}</p>
                     <div className="mb-2">
                         <label className="text-[#212529] font-medium" htmlFor="title">{translation?.data?.business?.filter_title}</label>
-                        <input value={filterTitle} onChange={(e) => setFilterTitle(e.target.value)} id="title" name="title" className="block font-medium w-full px-3 py-1.5 border border-[#d9d9d9] rounded-lg" type="text" placeholder={translation?.data?.business?.filter_title} />
+                        <input value={filterTitle} onChange={(e) => setFilterTitle(e.target.value)} id="title" name="title" className="block font-medium w-full px-3 py-1.5 border border-[#d9d9d9] rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.filter_title} />
                     </div>
                     <div className="mb-2">
                         <input className="hidden" checked={notify === 1} onChange={(e) => setNotify(e.target.checked ? 1 : 0)} id="notify" name="notify" type="checkbox" />
@@ -434,7 +434,7 @@ export function Properties() {
                                                                         type="number"
                                                                         min={param.details?.min ?? undefined}
                                                                         placeholder={translation?.data?.business?.min}
-                                                                        className="border border-[#ced4da] rounded-lg py-1.5 px-3 w-full  min-h-9.5"
+                                                                        className="border border-[#ced4da] rounded-lg py-1.5 px-3 w-full  min-h-9.5 focus:outline-none"
                                                                         value={paramValues[param.id]?.min ?? ""}
                                                                         onChange={(e) => handleRangeParam(param.id, "min", e.target.value)}
                                                                     />
@@ -443,7 +443,7 @@ export function Properties() {
                                                                             type="number"
                                                                             max={param.details?.max ?? undefined}
                                                                             placeholder={translation?.data?.business?.max}
-                                                                            className="border border-[#ced4da] rounded-lg py-1.5 px-3 w-full"
+                                                                            className="border border-[#ced4da] rounded-lg py-1.5 px-3 w-full focus:outline-none"
                                                                             value={paramValues[param.id]?.max ?? ""}
                                                                             onChange={(e) => handleRangeParam(param.id, "max", e.target.value)}
                                                                         />
@@ -454,7 +454,7 @@ export function Properties() {
                                                             {param.input_type === "text" && (
                                                                 <input
                                                                     type="text"
-                                                                    className="border border-[#ced4da] rounded-lg py-1.5 px-3 min-h-9.5"
+                                                                    className="border border-[#ced4da] rounded-lg py-1.5 px-3 min-h-9.5 focus:outline-none"
                                                                     value={paramValues[param.id] ?? ""}
                                                                     onChange={(e) => handleTextParam(param.id, e.target.value)}
                                                                 />

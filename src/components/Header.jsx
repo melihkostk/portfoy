@@ -138,7 +138,7 @@ export function Header({ details }) {
                 </div>}
                 {loged && <form action="/properties" method="GET" className="px-7.5 flex items-center relative max-[1100px]:hidden grow">
                     <img className="absolute left-10 w-5 h-5" src={sea} alt="" />
-                    <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] w-[calc(100%-50px)] text-base font-medium pl-10 h-12.5 px-2 rounded-[5px]" type="text" placeholder={translation?.data?.business?.search_in_properties} />
+                    <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] focus:outline-none w-[calc(100%-50px)] text-base font-medium pl-10 h-12.5 px-2 rounded-[5px]" type="text" placeholder={translation?.data?.business?.search_in_properties} />
                 </form>}
                 <div className="flex items-center justify-between gap-2.5">
                     <LanguageSelect />

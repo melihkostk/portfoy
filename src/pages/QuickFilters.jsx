@@ -117,7 +117,7 @@ export function QuickFilters() {
                 <div className="p-4 w-full">
                     <div className="mb-2">
                         <label className="text-[#212529] font-medium" htmlFor="filterName">{translation?.data?.business?.filter_title}</label>
-                        <input className="block border font-medium border-[#d9d9d9] py-1.5 px-3 rounded-lg w-full" type="text" name="filterName" id="filterName" value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
+                        <input className="block border font-medium border-[#d9d9d9] py-1.5 px-3 rounded-lg w-full focus:outline-none" type="text" name="filterName" id="filterName" value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
                     </div>
                     <div className="mb-2">
                         <input className="hidden" checked={notify === 1} onChange={(e) => setNotify(e.target.checked ? 1 : 0)} type="checkbox" id="text" name="text" />

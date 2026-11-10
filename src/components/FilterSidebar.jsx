@@ -52,8 +52,8 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                 <div className="mb-5">
                     <label className="text-sm font-medium text-[#878787] mb-2" htmlFor="price">{translation?.data?.business?.sell_price}</label>
                     <div className="flex gap-1 mt-2">
-                        <input value={minSell} onChange={(e) => setMinSell(e.target.value)} type="number" placeholder={translation?.data?.business?.min} min={0} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
-                        <input value={maxSell} onChange={(e) => setMaxSell(e.target.value)} type="number" placeholder={translation?.data?.business?.max} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
+                        <input value={minSell} onChange={(e) => setMinSell(e.target.value)} type="number" placeholder={translation?.data?.business?.min} min={0} className="border focus:outline-none border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
+                        <input value={maxSell} onChange={(e) => setMaxSell(e.target.value)} type="number" placeholder={translation?.data?.business?.max} className="border focus:outline-none border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
                     </div>
                     <div className="mt-2">
                         <select id="price" name="price" value={selectedCurrencie} onChange={(e) => setSelectedCurrencie(e.target.value)} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">

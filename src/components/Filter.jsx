@@ -114,7 +114,7 @@ export function Filter({searchParams , typeId}) {
                                 {cateFilter && <ul className="absolute w-full max-h-75 overflow-y-auto bg-white border z-50 border-[#eee] rounded-lg p-2">
                                     <li className="w-full py-1">
                                         <div className="m-2.5 max-w-full">
-                                            <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="text-sm rounded-lg w-full py-1.25 px-2.5 placeholder:text-[#838383] bg-[#f8f8f8]" type="text" placeholder={translation?.data?.business?.search_in_categories} />
+                                            <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="text-sm rounded-lg w-full py-1.25 px-2.5 placeholder:text-[#838383] bg-[#f8f8f8] focus:outline-none" type="text" placeholder={translation?.data?.business?.search_in_categories} />
                                         </div>
                                     </li>
                                     {propertiesType?.filter(item => item.title.includes(searchInput)).map(item => (
@@ -143,10 +143,10 @@ export function Filter({searchParams , typeId}) {
                                         </div>
                                         <div>
                                             <div>
-                                                <input name="min_sell_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
+                                                <input name="min_sell_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input name="max_sell_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
+                                                <input name="max_sell_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
@@ -240,10 +240,10 @@ export function Filter({searchParams , typeId}) {
                                         </div>
                                         <div>
                                             <div>
-                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
+                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
+                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
@@ -375,10 +375,10 @@ export function Filter({searchParams , typeId}) {
                                         </div>
                                         <div>
                                             <div>
-                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
+                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
+                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
@@ -485,10 +485,10 @@ export function Filter({searchParams , typeId}) {
                                         </div>
                                         <div>
                                             <div>
-                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
+                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
+                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
@@ -575,15 +575,15 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
                             <div type="button" className="flex justify-between cursor-pointer w-full">
-                                <input name="min_area" value={minArea} onChange={(e) => setMinArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="min" />
-                                <input name="max_area" value={maxArea} onChange={(e) => setMaxArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="max" />
+                                <input name="min_area" value={minArea} onChange={(e) => setMinArea(e.target.value)} className="text-sm flex-1 focus:outline-none" type="number" placeholder="min" />
+                                <input name="max_area" value={maxArea} onChange={(e) => setMaxArea(e.target.value)} className="text-sm flex-1 focus:outline-none" type="number" placeholder="max" />
                             </div>
                         </div>
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">bina yaşı</label>
                             <div type="button" className="flex justify-between cursor-pointer flex-1">
-                                <input name="min_building_age" min={0} value={minBuildingAge} onChange={(e) => setMinBuildingAge(e.target.value)} className="text-sm flex-1" type="number" placeholder="min" />
-                                <input name="max_building_age" value={maxBuildingAge} onChange={(e) => setMaxBuildingAge(e.target.value)} className="text-sm flex-1" type="number" placeholder="max" />
+                                <input name="min_building_age" min={0} value={minBuildingAge} onChange={(e) => setMinBuildingAge(e.target.value)} className="text-sm flex-1 focus:outline-none" type="number" placeholder="min" />
+                                <input name="max_building_age" value={maxBuildingAge} onChange={(e) => setMaxBuildingAge(e.target.value)} className="text-sm flex-1 focus:outline-none" type="number" placeholder="max" />
                             </div>
                         </div>
                         <div>
@@ -608,10 +608,10 @@ export function Filter({searchParams , typeId}) {
                                         </div>
                                         <div>
                                             <div>
-                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
+                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
+                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
@@ -698,10 +698,10 @@ export function Filter({searchParams , typeId}) {
                                         </div>
                                         <div>
                                             <div>
-                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
+                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
+                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
@@ -788,8 +788,8 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
                             <button type="button" className="flex justify-between cursor-pointer w-full">
-                                <input name="min_area" value={minArea} onChange={(e) => setMinArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="min" />
-                                <input name="max_area" value={maxArea} onChange={(e) => setMaxArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="max" />
+                                <input name="min_area" value={minArea} onChange={(e) => setMinArea(e.target.value)} className="text-sm flex-1 focus:outline-none" type="number" placeholder="min" />
+                                <input name="max_area" value={maxArea} onChange={(e) => setMaxArea(e.target.value)} className="text-sm flex-1 focus:outline-none" type="number" placeholder="max" />
                             </button>
                         </div>
                         <div>
@@ -814,10 +814,10 @@ export function Filter({searchParams , typeId}) {
                                         </div>
                                         <div>
                                             <div>
-                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.min} />
+                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg" type="text" placeholder={translation?.data?.business?.max} />
+                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
@@ -893,8 +893,8 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">MetreKare</label>
                             <button type="button" className="flex justify-between cursor-pointer w-full">
-                                <input name="min_area" value={minArea} onChange={(e) => setMinArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="min" />
-                                <input name="max_area" value={maxArea} onChange={(e) => setMaxArea(e.target.value)} className="text-sm flex-1" type="number" placeholder="max" />
+                                <input name="min_area" value={minArea} onChange={(e) => setMinArea(e.target.value)} className="text-sm flex-1 focus:outline-none" type="number" placeholder="min" />
+                                <input name="max_area" value={maxArea} onChange={(e) => setMaxArea(e.target.value)} className="text-sm flex-1 focus:outline-none" type="number" placeholder="max" />
                             </button>
                         </div>
                         <div className="flex-1 max-w-full pr-2.5">

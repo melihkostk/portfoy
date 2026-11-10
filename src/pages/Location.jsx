@@ -150,7 +150,7 @@ export function Location() {
                     <img onClick={() => setUpdateMapShown(false)} className="cursor-pointer w-5 h-5" src={close} alt="" />
                 </div>
                 <div className="w-full h-full p-4">
-                    <input className="w-full py-1.5 px-3 border mb-2 border-[#D9D9D9] rounded-lg" type="text" id="location" name="location" />
+                    <input className="w-full py-1.5 px-3 border mb-2 border-[#D9D9D9] rounded-lg focus:outline-none" type="text" id="location" name="location" />
                     <div className="w-full h-[80%]">
                         <iframe
                             src={`https://www.google.com/maps?q&z=15&output=embed`}
@@ -265,7 +265,7 @@ export function Location() {
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="adres">{translation?.data?.business?.address}</label>
-                            <input value={address} onChange={(e) => setAddress(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" placeholder="Adres" name="adres" id="adres" required />
+                            <input value={address} onChange={(e) => setAddress(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] focus:outline-none" type="text" placeholder="Adres" name="adres" id="adres" required />
                         </div>
                         <div className="flex justify-end mt-4">
                             <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">{translation?.data?.business?.save}</button>
@@ -314,7 +314,7 @@ export function Location() {
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="editAdres">{translation?.data?.business?.address}</label>
-                            <input required value={editAddress} onChange={(e) => setEditAddress(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9]" type="text" placeholder="Adres" name="adres" id="editAdres" />
+                            <input required value={editAddress} onChange={(e) => setEditAddress(e.target.value)} className="border text-[#212529] font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] focus:outline-none" type="text" placeholder="Adres" name="adres" id="editAdres" />
                         </div>
                         <div className="flex justify-end mt-4">
                             <button className="text-sm text-white cursor-pointer bg-[#27c5d2] py-2 px-5 rounded-lg font-semibold hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">{translation?.data?.business?.save}</button>

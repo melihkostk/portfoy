@@ -31,7 +31,7 @@ export function UploadVideoPopup({setUploadVideoShown, handleAddOutsourceVideo, 
                     </form> : <form key="outsource" onSubmit={handleAddOutsourceVideo}>
                         <div className="flex flex-col">
                             <label className="text-[#212529] mb-2 font-semibold" htmlFor="">{translation?.data?.business?.youtube_link}</label>
-                            <input required onChange={(e) => setVideo(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 rounded-lg" type="text" placeholder={translation?.data?.business?.youtube_link} />
+                            <input required onChange={(e) => setVideo(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.youtube_link} />
                         </div>
                         <div className="mt-2 text-[#6c757d] text-sm bg-[#e2e3e5] p-4 border border-[#d3d6d8] rounded-lg">
                             <p>{translation?.data?.business?.youtube_link_info}</p>
