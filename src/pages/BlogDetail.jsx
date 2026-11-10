@@ -32,11 +32,11 @@ export function BlogDetail() {
                     </ul>
                 </div>
             </div>
-            <div className="w-full max-w-[90%] flex">
-                <div className="w-[75%]">
+            <div className="w-full max-w-[90%] flex items-start max-[992px]:flex-col">
+                <div className="w-[75%] max-[992px]:w-full">
                     <div className="my-7.5">
                         <h1 className="mb-2 text-[40px] text-[#212529] font-semibold">Ev Satın Alırken Dikkat Edilmesi Gerekenler Nelerdir?</h1>
-                        <p className="text-sm text-[#646464] mb-4 font-medium">23 Ekim 2024 tarihinde yayımlandı</p>
+                        <p className="text-sm text-[#646464] mb-4 font-semibold">23 Ekim 2024 tarihinde yayımlandı</p>
                     </div>
                     <div>
                         <p className="text-[#212529] font-medium mb-4">
@@ -73,8 +73,8 @@ export function BlogDetail() {
                         </ul>
                     </div>
                 </div>
-                <div className="pl-7.5 w-[25%]">
-                    <div className="p-3.75 rounded-lg bg-white shadow-[0_0_30px_#ececec] sticky top-2.5">
+                <div className="pl-7.5 w-[25%] max-[992px]:w-full max-[992px]:pl-0 max-[992px]:mt-7.5">
+                    <div className="p-3.75 rounded-lg bg-white shadow-[0_0_30px_#ececec] sticky top-2.5 max-[992px]:shadow-none max-[992px]:border border-[#eee]">
                         <div className="bg-[#f8f8f8] rounded-lg p-3.75 text-[#a1a1a1] font-semibold mb-4">
                             Benzer Makaleler
                         </div>
@@ -91,10 +91,10 @@ export function BlogDetail() {
                     </div>
                 </div>
             </div>
-            <div className="w-full mt-30 mb-15">
+            <div className="w-full mt-30 mb-15 max-[992px]:my-7.5">
                 <AppLinks />
             </div>
-            <div className="w-full mt-22.5">
+            <div className="w-full mt-22.5 max-[992px]:mt-7.5">
                 <Footer />
             </div>
         </div>
