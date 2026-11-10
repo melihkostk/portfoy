@@ -19,7 +19,7 @@ export function DiscoverAccordion({ question , answer }) {
                 </div>
             </div>
             <div className={`px-5 py-4 select-none ${accordionOpen ? "block" : "hidden"}`}>
-                <p className="text-[#212529]">{answer}</p>
+                <p className="text-[#212529] font-medium">{answer}</p>
             </div>
         </div>
     )

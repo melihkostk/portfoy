@@ -87,10 +87,10 @@ export function Discover() {
                             }
                             @keyframes wide {
                                 0%{
-                                    transform:scale(1.1)
+                                    transform:scale(1)
                                 }
                                 100%{
-                                    transform:scale(1)
+                                    transform:scale(1.3)
                                 }
                             
                             }
@@ -98,7 +98,7 @@ export function Discover() {
                         <div className="absolute bottom-20 left-0 bg-white py-2 px-3 rounded-lg text-sm text-[#212529] font-semibold animate-[floatCustomer_2s_ease-in-out_infinite_alternate]">
                             + {translation?.data?.business?.create_customer}
                         </div>
-                        <div className="bg-[#27c5d2] text-white rounded-lg text-sm font-semibold py-2 px-3 absolute top-[30%] left-0 animate-[wide_2s_ease-in-out_infinite_alternate]">
+                        <div className="bg-[#27c5d2] text-white rounded-lg text-sm font-semibold py-2 px-3 absolute top-[30%] left-0 animate-[wide_3s_ease-in-out_infinite_alternate]">
                             + {translation?.data?.business?.create_property}
                         </div>
                     </div>
@@ -173,11 +173,9 @@ export function Discover() {
             <div className="w-full bg-[#F7F6FB] flex items-center justify-center py-30">
                 <div className="w-full max-w-[90%]">
                     <div className="text-center flex flex-col items-center mb-15">
-                        <h1 className="text-[34px] text-[#212529] font-medium mb-2.5">Sıkça Sorulan Sorular</h1>
+                        <h1 className="text-[34px] text-[#212529] font-medium mb-2.5">{translation?.data?.business?.faqs_section_header}</h1>
                         <p className="text-[#525252] max-w-[40%] max-[992px]:w-full max-[992px]:max-w-full">
-                            Port-foy.com kullanımı kolay bir platformdur.
-                            Size istihdam ekonomisi ve hız kazandıracak şekilde planlanmıştır.
-                            Sorularınız için bizlere her türlü platformdan ulaşabileceğinizi bilmenizi isteriz.
+                            {translation?.data?.business?.faqs_section_description}
                         </p>
                     </div>
                     <div>
@@ -258,11 +256,11 @@ export function Discover() {
                         ))}
                     </div>
                     <div className="flex flex-col justify-center items-center text-center py-12.5">
-                        <p className="text-lg text-[#212529] font-semibold mb-1">Sizin için yeterli değil mi?</p>
-                        <p className="text-sm text-[#767676] mb-4 font-medium">Her zaman sorularınızı yanıtlamaya hazırız</p>
-                        <div>
-                            <p className="text-[#212529] mb-4 font-medium">MÜŞTERI DESTEK HATTI</p>
-                            <a className="text-[25px] text-black font-bold hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">0 850 851 44 94</a>
+                        <p className="text-lg text-[#212529] font-bold mb-1">{translation?.data?.business?.contacts_card_title}</p>
+                        <p className="text-sm text-[#767676] mb-4 font-semibold">{translation?.data?.business?.contacts_card_description}</p>
+                        <div className="mt-7.5">
+                            <p className="text-[#212529] mb-4 uppercase font-medium">{translation?.data?.business?.customer_support_line}</p>
+                            <a className="text-[25px] text-black font-extrabold hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="tel:+08508514494">0 850 851 44 94</a>
                         </div>
                     </div>
                 </div>
