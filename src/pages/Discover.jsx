@@ -51,24 +51,25 @@ export function Discover() {
                     <Link className="text-sm text-[#9a9898] font-medium">{translation?.data?.business?.discover}</Link>
                 </div>
             </div>
-            <div className="w-full max-w-[90%]">
-                <div className="flex items-center">
-                    <div className="flex-1">
-                        <h1 className="text-[#212529] text-[40px] font-bold leading-[1.2] mb-5">{translation?.data?.business?.discover_page_section_title}</h1>
-                        <p className="text-sm text-[#818181] font-medium mb-12.5">{translation?.data?.business?.discover_page_section_description}</p>
+            <div className="w-full h-[calc(100vh-150px)] max-[992px]:max-w-[90%] max-[992px]:h-auto">
+                <div className="flex h-full items-center">
+                    <div className="w-1/2 pr-25 pl-25 pb-12.5 flex flex-col items-start justify-center h-full max-[992px]:w-full max-[992px]:p-0">
+                        <h1 className="text-[#212529] text-[40px] font-extrabold leading-[1.2] mb-5">{translation?.data?.business?.discover_page_section_title}</h1>
+                        <p className="text-sm max-w-[70%] text-[#818181] font-medium mb-12.5">{translation?.data?.business?.discover_page_section_description}</p>
                         <div>
                             <p className="text-sm text-[#212529] opacity-70 mb-2.5 font-medium">{translation?.data?.business?.download_app_free_now}</p>
                             <div className="flex gap-2.5">
-                                <a aria-label="google-play" className="hover:opacity-70 transition-opacity duration-300 ease-in-out" href="https://apps.apple.com/tr/app/port-foy/id6745571274">
-                                    <img src={googlePlay} alt="" />
+                                <a aria-label="google-play" className="hover:opacity-70 w-40 transition-opacity duration-300 ease-in-out" href="https://apps.apple.com/tr/app/port-foy/id6745571274">
+                                    <img className="w-full" src={googlePlay} alt="" />
                                 </a>
-                                <a aria-label="app-store" className="hover:opacity-70 transition-opacity duration-300 ease-in-out" href="https://play.google.com/store/apps/details?id=com.pigasoft.portfoy&hl=tr">
-                                    <img src={appStore} alt="" />
+                                <a aria-label="app-store" className="hover:opacity-70 w-40 transition-opacity duration-300 ease-in-out" href="https://play.google.com/store/apps/details?id=com.pigasoft.portfoy&hl=tr">
+                                    <img className="w-full" src={appStore} alt="" />
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div className="flex-1 max-[992px]:hidden">
+                    <div className="w-1/2 pb-12.5 flex flex-col items-start justify-center h-full relative max-[992px]:hidden">
+                        <div className="bg-[linear-gradient(45deg,#27c5d2,#00a4c5)] h-[90%] rounded-bl-[80px] w-[70%] -z-10 absolute top-0 right-0"></div>
                         <img className="w-full max-w-full" src={frame} alt="" />
                     </div>
                 </div>

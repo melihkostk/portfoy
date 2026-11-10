@@ -108,7 +108,7 @@ export function SignIn() {
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="code">{translation?.data?.business?.invitation_code}</label>
                             <input value={code} onChange={(e) => setCode(e.target.value)} className="w-full pl-12 px-5 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="code" id="code" type="text" placeholder={translation?.data?.business?.invitation_code} required phone-mask />
                         </div>
-                        <button aria-label="submit" type="submit" className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{translation?.data?.business?.register}</button>
+                        <button aria-label="submit" type="submit" className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-bold uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{translation?.data?.business?.register}</button>
                         <p className="text-center my-10 text-sm text-[#868686] font-medium">
                             {translation?.data?.business?.have_already_login?.split("<a")[0]}
                             <Link className="block text-[#525252] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" to="/login">{translation?.data?.business?.have_already_login?.match(/<a[^>]*>(.*?)<\/a>/)?.[1]}</Link>
