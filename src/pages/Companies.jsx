@@ -49,7 +49,6 @@ export function Companies() {
 
     useEffect(() => {
         if (!selectedCountry) {
-            setCities([]);
             return;
         }
         getAllCities(selectedCountry).then(setCities)
@@ -60,7 +59,6 @@ export function Companies() {
 
     useEffect(() => {
         if (!selectedCity) {
-            setDistrict([]);
             return
         }
         getAllDistricts(selectedCity).then(setDistrict)
@@ -72,7 +70,6 @@ export function Companies() {
 
     useEffect(() => {
         if (!selectedDistrict) {
-            setStreets([])
             return
         }
         getAllStreets(selectedDistrict).then(setStreets)

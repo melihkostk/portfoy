@@ -105,10 +105,10 @@ export function Filter({searchParams , typeId}) {
                     <form action={"/properties"} method="GET" className={`flex ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col gap-2.5 p-3.75`}>
                         <input type="hidden" name="type_id" value={type === "All" ? "" : type} />
                         <div className="flex-1 max-w-w-[calc(100%/3)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.categories}</label>
+                            <label className="uppercase tracking-[0.3px] text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.categories}</label>
                             <div className="relative">
-                                <button type="button" onClick={() => setCateFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="font-semibold text-[13px]">{translation?.data?.business?.all}</p>
+                                <button type="button" onClick={() => setCateFilter(prev => !prev)} className="flex justify-between px-1.5 cursor-pointer w-full">
+                                    <p className="font-semibold text-base">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {cateFilter && <ul className="absolute w-full max-h-75 overflow-y-auto bg-white border z-50 border-[#eee] rounded-lg p-2">
@@ -133,7 +133,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">-</p>
+                                    <p className="text-base font-semibold">-</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
@@ -163,8 +163,8 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
-                                <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
+                                <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between px-1.5 cursor-pointer w-full">
+                                    <p className="text-base font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute w-full bg-white">
@@ -230,7 +230,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">-</p>
+                                    <p className="text-base font-semibold">-</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
@@ -261,7 +261,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
+                                    <p className="text-base font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute w-full bg-white">
@@ -319,7 +319,7 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                             <div className="flex justify-between cursor-pointer w-full">
-                                <select name={findFilterParam("Oda Sayısı")?.id ? `details[${findFilterParam("Oda Sayısı").id}]` : undefined} value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
+                                <select name={findFilterParam("Oda Sayısı")?.id ? `details[${findFilterParam("Oda Sayısı").id}]` : undefined} value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-base w-full cursor-pointer">
                                     <option value="">{translation?.data?.business?.all}</option>
                                     {findFilterParam("Oda Sayısı")?.options?.map(item => (
                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -330,7 +330,7 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Cephe</label>
                             <div className="flex justify-between cursor-pointer w-full">
-                                <select name={findFilterParam("Cephe")?.id ? `details[${findFilterParam("Cephe").id}]` : undefined} value={facadeId} onChange={(e) => setFacadeId(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
+                                <select name={findFilterParam("Cephe")?.id ? `details[${findFilterParam("Cephe").id}]` : undefined} value={facadeId} onChange={(e) => setFacadeId(e.target.value)} className="font-semibold text-vase w-full cursor-pointer">
                                     <option value="">{translation?.data?.business?.all}</option>
                                     {findFilterParam("Cephe")?.options?.map((item) => (
                                         <option key={item.id} value={item.id}>
@@ -343,7 +343,7 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Isıtma sistemi</label>
                             <div className="flex justify-between cursor-pointer w-full">
-                                <select name={findFilterParam("Isıtma Sistemi")?.id ? `details[${findFilterParam("Isıtma Sistemi").id}]` : undefined} value={heatingId} onChange={(e) => setHeatingId(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
+                                <select name={findFilterParam("Isıtma Sistemi")?.id ? `details[${findFilterParam("Isıtma Sistemi").id}]` : undefined} value={heatingId} onChange={(e) => setHeatingId(e.target.value)} className="font-semibold text-base w-full cursor-pointer">
                                     <option value="">{translation?.data?.business?.all}</option>
                                     {findFilterParam("Isıtma Sistemi")?.options?.map((item) => (
                                         <option key={item.id} value={item.id}>

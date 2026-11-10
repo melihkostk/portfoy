@@ -27,7 +27,7 @@ export function Blogs() {
             </div>
             <div className="w-full max-w-[90%] px-3">
                 <h1 className="text-[#212529] text-5xl font-medium mb-2">{translation?.data?.business?.blog}</h1>
-                <div className="flex -ml-3.75 -mr-3.75 flex-wrap">
+                <div className="flex -ml-3.75 -mr-3.75 flex-wrap max-[992px]:flex-col">
                     <BlogCard
                         title="Emlak Vergisi Nedir Ne Zaman ve Nasıl Ödenir"
                         time="19 Kasım 2024"
