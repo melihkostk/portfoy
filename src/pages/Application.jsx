@@ -8,7 +8,6 @@ import location from "../assets/location.png"
 import menu from "../assets/menu.png"
 import pdf from "../assets/pdf.png"
 import file from "../assets/file.png"
-import downArrow from "../assets/down-arrow.png"
 import { Link } from "react-router-dom"
 import { AppLinks } from "../components/AppLinks"
 import { LanguageSelect } from "../components/LanguageSelect"
@@ -18,20 +17,51 @@ import { useEffect, useState } from "react"
 import check from "../assets/white-check.png"
 import close from "../assets/blue-close.png"
 import { getCompanyTypes } from "../services/companiesApi"
+import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
 
 export function Application() {
 
-    const { translation, translationLoaded , locale } = useAppContext();
+    const { translation, translationLoaded, locale } = useAppContext();
 
     const [read, setRead] = useState(false);
 
     const [areaShown, setAreaShown] = useState(false);
 
-    const [types , setTypes] = useState([]);
+    const [types, setTypes] = useState([]);
 
     useEffect(() => {
         getCompanyTypes(locale).then(setTypes)
+    }, [locale])
+
+    const [countries, setCountries] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState("");
+
+    useEffect(() => {
+        getAllCountries().then(setCountries);
     }, [])
+
+    const [cities, setCities] = useState([]);
+    const [selectedCity, setSelectedCity] = useState("");
+
+    useEffect(() => {
+        if (!selectedCountry) return;
+        getAllCities(selectedCountry).then(setCities)
+    }, [selectedCountry])
+
+    const [districts, setDistricts] = useState([]);
+    const [selectedDistrict, setSelectedDistrict] = useState("");
+
+    useEffect(() => {
+        if (!selectedCity) return;
+        getAllDistricts(selectedCity).then(setDistricts)
+    }, [selectedCity])
+
+    const [streets, setStreets] = useState([]);
+
+    useEffect(() => {
+        if (!selectedDistrict) return;
+        getAllStreets(selectedDistrict).then(setStreets)
+    }, [selectedDistrict])
 
     return (
         <div className="w-full flex flex-col items-center justify-center font-sf">
@@ -51,8 +81,8 @@ export function Application() {
                     <img onClick={() => setAreaShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
                 </div>
                 <div className="p-4 w-full">
-                    {types.map((item , index) => (
-                        <div className={`${index !== types.length-1 ? "mb-2.5" : ""} text-xl text-[#4a4a4a] cursor-pointer font-semibold p-3.75 border border-[#eee] rounded-lg`} key={item.id}>
+                    {types.map((item, index) => (
+                        <div className={`${index !== types.length - 1 ? "mb-2.5" : ""} text-xl text-[#4a4a4a] cursor-pointer font-semibold p-3.75 border border-[#eee] rounded-lg`} key={item.id}>
                             {item.title}
                         </div>
                     ))}
@@ -141,22 +171,30 @@ export function Application() {
                                     <h3 className="text-sm mb-3.75 uppercase text-[#C9C9C9] font-bold">{translation?.data?.business?.location_info}</h3>
                                     <div className="flex flex-col gap-3.75">
                                         <div className="flex justify-between border border-[#EDEDED] rounded-lg">
-                                            <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
-                                                <p>{translation?.data?.business?.choose?.country}</p>
-                                                <img className="w-4 h-4" src={downArrow} alt="" />
-                                            </div>
-                                            <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
-                                                <p>{translation?.data?.business?.choose?.city}</p>
-                                                <img className="w-4 h-4" src={downArrow} alt="" />
-                                            </div>
-                                            <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
-                                                <p>{translation?.data?.business?.choose?.district}</p>
-                                                <img className="w-4 h-4" src={downArrow} alt="" />
-                                            </div>
-                                            <div className="py-1.5 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
-                                                <p>{translation?.data?.business?.choose?.street}</p>
-                                                <img className="w-4 h-4" src={downArrow} alt="" />
-                                            </div>
+                                            <select value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="py-1.5 max-w-full min-w-0 w-0 flex-1 h-10 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
+                                                <option value="">{translation?.data?.business?.choose?.country}</option>
+                                                {countries?.data?.map(item => (
+                                                    <option value={item.id} key={item.id}>{item.title}</option>
+                                                ))}
+                                            </select>
+                                            <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="py-1.5 max-w-full min-w-0 w-0 flex-1 h-10 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
+                                                <option value="">{translation?.data?.business?.choose?.city}</option>
+                                                {cities?.map(item => (
+                                                    <option value={item.id} key={item.id}>{item.title}</option>
+                                                ))}
+                                            </select>
+                                            <select value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="py-1.5 max-w-full min-w-0 w-0 flex-1 h-10 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
+                                                <option value="">{translation?.data?.business?.choose?.district}</option>
+                                                {districts?.map(item => (
+                                                    <option value={item.id} key={item.id}>{item.title}</option>
+                                                ))}
+                                            </select>
+                                            <select className="py-1.5 flex-1 max-w-full min-w-0 w-0 h-10 pl-3 pr-9 text-[#B4B4B4] font-medium flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
+                                                <option value="">{translation?.data?.business?.choose?.street}</option>
+                                                {streets?.map(item => (
+                                                    <option value={item.id} key={item.id}>{item.title}</option>
+                                                ))}
+                                            </select>
                                         </div>
                                         <div className="flex flex-col">
                                             <label className="text-sm text-[#868686] font-medium mb-2" htmlFor="adress">{translation?.data?.business?.full_address}</label>
