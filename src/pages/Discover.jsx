@@ -44,7 +44,7 @@ export function Discover() {
                 </div>
             )}
             <Header />
-            <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
+            <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%] flex items-center gap-2">
                     <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
                     <p className="text-sm text-[#636363] font-medium">{">"}</p>
@@ -71,6 +71,36 @@ export function Discover() {
                     <div className="w-1/2 pb-12.5 flex flex-col items-start justify-center h-full relative max-[992px]:hidden">
                         <div className="bg-[linear-gradient(45deg,#27c5d2,#00a4c5)] h-[90%] rounded-bl-[80px] w-[70%] -z-10 absolute top-0 right-0"></div>
                         <img className="w-full max-w-full" src={frame} alt="" />
+                        <div className="absolute top-12.5 right-62.5 bg-white py-2 px-3 rounded-lg text-sm shadow-[0_0_50px_rgba(0,0,0,0.2)] animate-[floatCustomer_3s_ease-in-out_infinite_alternate] text-[#212529] font-semibold">
+                            + {translation?.data?.business?.create_proposal}
+                        </div>
+                        <style>{`
+                            @keyframes floatCustomer {
+                                0% {
+                                    transform: translateX(0);
+                                    box-shadow: -50px 20px 50px rgba(0, 0, 0, 0.2);
+                                }
+                                100% {
+                                    transform: translateX(-50%);
+                                    box-shadow: 50px 20px 50px rgba(0, 0, 0, 0.2);
+                                }
+                            }
+                            @keyframes wide {
+                                0%{
+                                    transform:scale(1.1)
+                                }
+                                100%{
+                                    transform:scale(1)
+                                }
+                            
+                            }
+                        `}</style>
+                        <div className="absolute bottom-20 left-0 bg-white py-2 px-3 rounded-lg text-sm text-[#212529] font-semibold animate-[floatCustomer_2s_ease-in-out_infinite_alternate]">
+                            + {translation?.data?.business?.create_customer}
+                        </div>
+                        <div className="bg-[#27c5d2] text-white rounded-lg text-sm font-semibold py-2 px-3 absolute top-[30%] left-0 animate-[wide_2s_ease-in-out_infinite_alternate]">
+                            + {translation?.data?.business?.create_property}
+                        </div>
                     </div>
                 </div>
             </div>
