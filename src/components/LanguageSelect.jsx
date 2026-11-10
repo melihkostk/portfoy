@@ -30,7 +30,7 @@ export function LanguageSelect() {
     }
 
     return (
-        <div onMouseLeave={() => setLanguageShown(false)} onMouseEnter={() => setLanguageShown(true)} className="rounded-[5px] relative hover:bg-[#B7B9BF] max-w-fit hover:text-white text-[#202529] transition-colors duration-300 ease-in-out">
+        <div onMouseLeave={() => setLanguageShown(false)} onMouseEnter={() => setLanguageShown(true)} className="rounded-[5px] relative hover:bg-[#B7B9BF] max-w-fit bg-white hover:text-white text-[#202529] transition-colors duration-300 ease-in-out">
             <div className="cursor-pointer flex items-center justify-start gap-2.5 h-12.5 px-5">
                 <img className="w-5 h-5 object-fill rounded-[5px]" src={locale === "en" ? en : locale === "ru" ? ru : turkey} alt="" />
                 <p className="font-semibold max-[1400px]:hidden">{currentLanguage?.native}</p>

@@ -4,13 +4,23 @@ import { useAppContext } from "../context/AppContext";
 import { BlogCard } from "../components/BlogCard";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
+import { ClipLoader } from "react-spinners";
 
 export function Blogs() {
 
-    const { translation } = useAppContext();
+    const { translation , translationLoaded } = useAppContext();
 
     return (
         <div className="flex flex-col items-center font-sf">
+            {!translationLoaded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                    <ClipLoader
+                        size={150}
+                        color="#27c5d2"
+                        aria-label="Loading Spinner"
+                    />
+                </div>
+            )}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center mb-7.5">
                 <ul className="py-2.5 w-full max-w-[90%] flex items-center gap-2">
