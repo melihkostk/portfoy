@@ -3,7 +3,7 @@ import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
 import { CompanyProposalCard } from "../components/CompanyProposalCard"
-import { getCompanyProposals, getCustomerProposals } from "../services/myCompanyApi"
+import { getCompanyProposals, getCustomerProposals, getCompanyProfile } from "../services/myCompanyApi"
 import { useEffect } from "react"
 import { useState } from "react"
 import { ClipLoader } from "react-spinners"
@@ -22,6 +22,12 @@ export function CompanyProposals() {
 
     useEffect(() => {
         getCompanyProposals().then(setProposals).finally(() => setLoaded(true))
+    }, [])
+
+    const [info, setInfo] = useState([])
+
+    useEffect(() => {
+        getCompanyProfile().then(setInfo)
     }, [])
 
     const [customerProposals, setCustomerPropoals] = useState([]);
@@ -53,11 +59,16 @@ export function CompanyProposals() {
             </div>
             <CompanyHeader
                 page="proposals"
-                name={proposals?.data?.name}
-                code={proposals?.data?.code}
-                created_at={proposals?.data?.created_at}
-                type={proposals?.data?.type}
-                logo={proposals?.data?.logo}
+                name={info?.data?.name}
+                code={info?.data?.code}
+                created_at={info?.data?.created_at}
+                type={info?.data?.type}
+                logo={info?.data?.logo}
+                email={info?.data?.profile.email}
+                phoneNumber={info?.data?.profile?.phone.number}
+                phoneCode={info?.data?.profile?.phone.code}
+                setLoaded={setLoaded}
+                loaded={loaded}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center mb-5 flex-wrap">

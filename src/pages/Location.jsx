@@ -5,7 +5,7 @@ import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect } from "react"
 import { useState } from "react"
-import { addLocation, deleteAddress, getLocation, updateLocation } from "../services/myCompanyApi"
+import { addLocation, deleteAddress, getLocation, updateLocation, getCompanyProfile } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets } from "../services/filterApi"
@@ -22,6 +22,12 @@ export function Location() {
 
     useEffect(() => {
         getLocation().then(setLocation).finally(() => setLoaded(true))
+    }, [])
+
+    const [info, setInfo] = useState([])
+
+    useEffect(() => {
+        getCompanyProfile().then(setInfo)
     }, [])
 
     const [countries, setCountries] = useState([])
@@ -178,11 +184,16 @@ export function Location() {
             </div>
             <CompanyHeader
                 page="location"
-                name={location?.data?.name}
-                code={location?.data?.code}
-                created_at={location?.data?.created_at}
-                type={location?.data?.type}
-                logo={location?.data?.logo}
+                name={info?.data?.name}
+                code={info?.data?.code}
+                created_at={info?.data?.created_at}
+                type={info?.data?.type}
+                logo={info?.data?.logo}
+                email={info?.data?.profile.email}
+                phoneNumber={info?.data?.profile?.phone.number}
+                phoneCode={info?.data?.profile?.phone.code}
+                setLoaded={setLoaded}
+                loaded={loaded}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex justify-between items-center max-[992px]:flex-col max-[992px]:items-start">

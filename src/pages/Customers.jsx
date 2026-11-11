@@ -4,7 +4,7 @@ import graySearch from "../assets/gray-search.png"
 import { CustomerCard } from "../components/CustomerCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
-import { addCustomer, editCustomer, filterCustomer, getAllCustomers, getAllLanguages } from "../services/myCompanyApi"
+import { addCustomer, editCustomer, filterCustomer, getAllCustomers, getAllLanguages, getCompanyProfile } from "../services/myCompanyApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
@@ -23,6 +23,12 @@ export function Customers() {
 
     useEffect(() => {
         getAllCustomers().then(setCustomers).finally(() => setLoaded(true))
+    }, [])
+
+    const [info, setInfo] = useState([])
+
+    useEffect(() => {
+        getCompanyProfile().then(setInfo)
     }, [])
 
     const [customerMenu, setCustomerMenu] = useState(false)
@@ -161,11 +167,16 @@ export function Customers() {
             </div>}
             <CompanyHeader
                 page="customers"
-                name={customers?.data?.name}
-                code={customers?.data?.code}
-                created_at={customers?.data?.created_at}
-                type={customers?.data?.type}
-                logo={customers?.data?.logo}
+                name={info?.data?.name}
+                code={info?.data?.code}
+                created_at={info?.data?.created_at}
+                type={info?.data?.type}
+                logo={info?.data?.logo}
+                email={info?.data?.profile.email}
+                phoneNumber={info?.data?.profile?.phone.number}
+                phoneCode={info?.data?.profile?.phone.code}
+                setLoaded={setLoaded}
+                loaded={loaded}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex flex-col mb-5">

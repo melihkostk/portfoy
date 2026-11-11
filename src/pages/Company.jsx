@@ -4,7 +4,7 @@ import { FilterSidebar } from "../components/FilterSidebar"
 import { PropertiesCard } from "../components/PropertiesCard"
 import { Footer } from "../components/Footer"
 import { AppLinks } from "../components/AppLinks"
-import { getCompanyInfo, getCompanyProperties, getTeam } from "../services/myCompanyApi"
+import { getCompanyProperties, getTeam , getCompanyProfile } from "../services/myCompanyApi"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getAllPropertiesType } from "../services/propertiesApi"
@@ -88,7 +88,7 @@ export function Company({ message, messageShown, setMessageShown }) {
     const [info, setInfo] = useState([])
 
     useEffect(() => {
-        getCompanyInfo().then(setInfo)
+        getCompanyProfile().then(setInfo)
     }, [])
 
     const [offerModelShown, setOfferModalShown] = useState(false)
@@ -162,11 +162,14 @@ export function Company({ message, messageShown, setMessageShown }) {
             </div>}
             <CompanyHeader
                 page="company"
-                name={info?.name}
-                code={info?.code}
-                created_at={info?.created_at}
-                type={info?.type}
-                logo={info?.logo}
+                name={info?.data?.name}
+                code={info?.data?.code}
+                created_at={info?.data?.created_at}
+                type={info?.data?.type}
+                logo={info?.data?.logo}
+                email={info?.data?.profile.email}
+                phoneNumber={info?.data?.profile?.phone.number}
+                phoneCode={info?.data?.profile?.phone.code}
                 setLoaded={setLoaded}
                 loaded={loaded}
             />

@@ -4,6 +4,7 @@ import { CountCard } from "../components/CountCard"
 import { Header } from "../components/Header"
 import { ScoreCard } from "../components/ScoreCard"
 import { getCount, getSummaryProperties } from "../services/summaryApi";
+import { getCompanyProfile } from "../services/myCompanyApi";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import { BarChart } from "../components/BarChart";
@@ -24,6 +25,12 @@ export function Summary() {
 
     useEffect(() => {
         getCount().then(setCounts).finally(() => setLoaded(true))
+    }, [])
+
+    const [info, setInfo] = useState([])
+
+    useEffect(() => {
+        getCompanyProfile().then(setInfo)
     }, [])
 
     const [summaryProperties, setSummaryProperties] = useState([]);
@@ -72,11 +79,16 @@ export function Summary() {
             </div>
             <CompanyHeader
                 page="summary"
-                name={counts?.data?.name}
-                code={counts?.data?.code}
-                created_at={counts?.data?.created_at}
-                type={counts?.data?.type}
-                logo={counts?.data?.logo}
+                name={info?.data?.name}
+                code={info?.data?.code}
+                created_at={info?.data?.created_at}
+                type={info?.data?.type}
+                logo={info?.data?.logo}
+                email={info?.data?.profile.email}
+                phoneNumber={info?.data?.profile?.phone.number}
+                phoneCode={info?.data?.profile?.phone.code}
+                setLoaded={setLoaded}
+                loaded={loaded}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex items-center max-[992px]:flex-col">

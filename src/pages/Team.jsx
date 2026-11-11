@@ -5,7 +5,7 @@ import { UserInvite } from "../components/UserInvite"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getTeam, getAllInvitations, removeInvite, getAllRoles, addInvite, toogleStatus, updateTeamMember, updateInvite, getCompanyInfo, getPermissions, updatePermissions } from "../services/myCompanyApi"
+import { getTeam, getAllInvitations, removeInvite, getAllRoles, addInvite, toogleStatus, updateTeamMember, updateInvite, getCompanyProfile, getPermissions, updatePermissions } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
@@ -159,7 +159,7 @@ export function Team() {
     const [info, setInfo] = useState([])
 
     useEffect(() => {
-        getCompanyInfo().then(setInfo)
+        getCompanyProfile().then(setInfo)
     }, [])
 
     const [editPermissionShown, setEditPermissionShown] = useState(false)
@@ -420,11 +420,16 @@ export function Team() {
             </div>
             <CompanyHeader
                 page="team"
-                name={info?.name}
-                code={info?.code}
-                created_at={info?.created_at}
-                type={info?.type}
-                logo={info?.logo}
+                name={info?.data?.name}
+                code={info?.data?.code}
+                created_at={info?.data?.created_at}
+                type={info?.data?.type}
+                logo={info?.data?.logo}
+                email={info?.data?.profile.email}
+                phoneNumber={info?.data?.profile?.phone.number}
+                phoneCode={info?.data?.profile?.phone.code}
+                setLoaded={setLoaded}
+                loaded={loaded}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex items-center justify-between">

@@ -4,7 +4,7 @@ import { SubscriptionCard } from "../components/SubscriptionCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
-import { getCompanyInfo, getSubscriptions, getSubsUsage } from "../services/myCompanyApi"
+import { getCompanyProfile, getSubscriptions, getSubsUsage } from "../services/myCompanyApi"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
 import { useAppContext } from "../context/AppContext"
@@ -29,10 +29,10 @@ export function Subscription() {
         getSubsUsage().then(setSubsUsage)
     }, [])
 
-    const [companyInfo, setCompanyInfo] = useState([]);
+    const [info, setInfo] = useState([]);
 
     useEffect(() => {
-        getCompanyInfo().then(setCompanyInfo)
+        getCompanyProfile().then(setInfo)
     }, [])
 
     return (
@@ -85,11 +85,16 @@ export function Subscription() {
             </div>
             <CompanyHeader
                 page="subscription"
-                name={companyInfo?.name}
-                code={companyInfo?.code}
-                created_at={companyInfo?.created_at}
-                type={companyInfo?.type}
-                logo={companyInfo?.logo}
+                name={info?.data?.name}
+                code={info?.data?.code}
+                created_at={info?.data?.created_at}
+                type={info?.data?.type}
+                logo={info?.data?.logo}
+                email={info?.data?.profile.email}
+                phoneNumber={info?.data?.profile?.phone.number}
+                phoneCode={info?.data?.profile?.phone.code}
+                setLoaded={setLoaded}
+                loaded={loaded}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>

@@ -98,6 +98,11 @@ export function Edit() {
                 created_at={profile?.data?.created_at}
                 type={profile?.data?.type}
                 logo={profile?.data?.logo}
+                email={profile?.data?.profile.email}
+                phoneNumber={profile?.data?.profile?.phone.number}
+                phoneCode={profile?.data?.profile?.phone.code}
+                setLoaded={setLoaded}
+                loaded={loaded}
             />
             {errorShown && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(155,0,0),rgb(220,38,38))] p-3 text-white">
                 <p>{error}</p>

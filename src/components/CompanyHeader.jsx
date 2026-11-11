@@ -14,7 +14,7 @@ import { useAppContext } from "../context/AppContext"
 import img from "../assets/img.png"
 import { updateLogo } from "../services/myCompanyApi"
 
-export function CompanyHeader({ page, id, name, created_at, type, badges, code, setLoaded }) {
+export function CompanyHeader({ page, id, name, created_at, type, badges, code, setLoaded , email , phoneCode , phoneNumber }) {
     const { translation } = useAppContext();
 
     function handleLogoUpdate(logo) {
@@ -68,11 +68,11 @@ export function CompanyHeader({ page, id, name, created_at, type, badges, code, 
                         <ul className="flex items-center text-white text-sm gap-5 max-[1005px]:hidden">
                             <li className="opacity-80 cursor-pointer flex items-center hover:opacity-100 transition-opacity duration-300 ease-in-out">
                                 <img className="w-5 h-5 mr-1" src={phone} alt="" />
-                                <p>90 (553) 300 68 25</p>
+                                <p>{phoneCode} {phoneNumber}</p>
                             </li>
                             <li className="opacity-80 cursor-pointer flex items-center hover:opacity-100 transition-opacity duration-300 ease-in-out">
                                 <img className="w-4 h-4 mr-2" src={mail} alt="" />
-                                <p>loos.katya@yandex.ru</p>
+                                <p>{email}</p>
                             </li>
                         </ul>
                     </div>

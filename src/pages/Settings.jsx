@@ -4,7 +4,7 @@ import { CompanyHeader } from "../components/CompanyHeader"
 import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
 import { SettingsCard } from "../components/SettingsCard"
-import { getCompanyInfo, getPreference, getTeam, updatePassPriceVisibility, updatePersonalContactVisibility, updatePriceOfferNotify } from "../services/myCompanyApi"
+import { getCompanyProfile, getPreference, getTeam, updatePassPriceVisibility, updatePersonalContactVisibility, updatePriceOfferNotify } from "../services/myCompanyApi"
 import close from "../assets/blue-close.png"
 import { PersonelCard } from "../components/PersonalCard"
 import { ClipLoader } from "react-spinners"
@@ -16,10 +16,10 @@ export function Settings() {
 
     const { translation, translationLoaded } = useAppContext();
 
-    const [companyInfo, setCompanyInfo] = useState([]);
+    const [info, setInfo] = useState([]);
 
     useEffect(() => {
-        getCompanyInfo().then(setCompanyInfo)
+        getCompanyProfile().then(setInfo)
     }, [])
 
     const [personalSelectPopUp, setPersonalSelectPopUp] = useState(false);
@@ -189,11 +189,16 @@ export function Settings() {
             </div>}
             <CompanyHeader
                 page="settings"
-                name={companyInfo?.name}
-                code={companyInfo?.code}
-                created_at={companyInfo?.created_at}
-                type={companyInfo?.type}
-                logo={companyInfo?.logo}
+                name={info?.data?.name}
+                code={info?.data?.code}
+                created_at={info?.data?.created_at}
+                type={info?.data?.type}
+                logo={info?.data?.logo}
+                email={info?.data?.profile.email}
+                phoneNumber={info?.data?.profile?.phone.number}
+                phoneCode={info?.data?.profile?.phone.code}
+                setLoaded={setLoaded}
+                loaded={loaded}
             />
             <div className="w-full max-w-[90%] mt-12.5">
                 <div>
