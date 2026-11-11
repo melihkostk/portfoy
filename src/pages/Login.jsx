@@ -18,13 +18,13 @@ export function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
-    const [loading, setLoading] = useState(false)
+    const [loaded, setLoaded] = useState(true)
     const navigate = useNavigate ();
 
     function login(e) {
         e.preventDefault();
         setError("");
-        setLoading(true);
+        setLoaded(false);
 
         loginRequest(email, password, locale)
             .then((data) => {
@@ -41,7 +41,7 @@ export function Login() {
                 setError("Giriş yapılırken bir hata oluştu. Lütfen tekrar deneyin.");
             })
             .finally(() => {
-                setLoading(false);
+                setLoaded(true);
             });
     }
 
@@ -51,7 +51,7 @@ export function Login() {
 
     return (
         <div className="flex flex-col justify-center items-center min-h-screen bg-linear-to-b font-sf from-[#f7f6fb] from-[50vh] to-white to-[50vh]">
-            {!translationLoaded && (
+            {(!translationLoaded || !loaded) && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
                     <ClipLoader
                         size={150}
@@ -74,6 +74,9 @@ export function Login() {
                         <h1 className="text-lg text-[#686868] uppercase font-semibold mb-2.5">{translation?.data?.business?.login}</h1>
                         <p className="text-base text-[#a6a6a6]">{translation?.data?.business?.login_description}</p> 
                     </div>
+                    {error && <div className="text-[#842029] bg-[#f8d7da] border border-[#f5c2c7] p-4 rounded-lg mt-2 mb-4 font-medium">
+                        {error}
+                    </div>}
                     <form onSubmit={login}>
                         <div className="my-2.5">
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="email">{translation?.data?.business?.email}</label>
@@ -103,10 +106,8 @@ export function Login() {
                                 {translation?.data?.business?.remember_me}
                             </label>
                         </div>
-                        {error && (
-                            <p className="text-red-500 text-sm font-medium mt-2.5">{error}</p>
-                        )}
-                        <button aria-label="submit" type="submit" disabled={loading} className="bg-[#27C5D2] hover:bg-[#026872] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{translation?.data?.business?.login}</button>
+
+                        <button aria-label="submit" type="submit" className="bg-[#27C5D2] hover:bg-[#026872] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-300 ease-in-out cursor-pointer text-white font-medium uppercase w-full py-2 px-5 text-sm rounded-lg mt-5 mb-2">{translation?.data?.business?.login}</button>
                         <p className="text-center my-10 text-sm text-[#868686] font-medium">
                             <Link className="block text-[#525252] hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" to={"/register"}>{translation?.data?.business?.register_description?.replace(/<[^>]*>/g, "")}</Link>
                         </p>
