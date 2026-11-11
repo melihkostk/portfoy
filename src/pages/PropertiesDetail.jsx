@@ -176,8 +176,8 @@ export function PropertiesDetail() {
                         <img className="object-cover rounded-lg h-full" src={defaultImg} alt="cover" />
                     </div>
                     <div className="w-1/2 p-12.5 max-[992px]:w-full max-[992px]:p-3.75">
-                        <h1 className="text-[#212529] text-[25px] mb-2">{details?.title}</h1>
-                        <p className="text-sm text-[#6c757d]">{details?.no}</p>
+                        <h1 className="text-[#212529] text-[25px] font-semibold mb-2">{details?.title}</h1>
+                        <p className="text-sm text-[#6c757d] font-medium">{details?.no}</p>
                         <div className="my-7.5">
                             <p className="text-sm text-[#212529] opacity-70">{translation?.data?.business?.sell_price}</p>
                             <p className="text-lg text-[#212529] font-semibold mb-4">{details?.prices?.primary?.formatted}</p>
@@ -188,12 +188,12 @@ export function PropertiesDetail() {
                         <div>
                             <form onSubmit={handlePriceOffer}>
                                 <div>
-                                    <label htmlFor="price">{translation?.data?.business?.your_offer_price}</label>
+                                    <label className="text-[#212529] text-base font-medium" htmlFor="price">{translation?.data?.business?.your_offer_price.replace("(:currency)" , `(${details?.prices?.primary?.code})`)}</label>
                                     <input value={price} onChange={(e) => setPrice(e.target.value)} required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3 focus:outline-none" type="number" placeholder="" name="price" id="price" min={1} />
                                 </div>
                                 <div>
-                                    <label htmlFor="note">{translation?.data?.business?.notes}</label>
-                                    <textarea value={note} onChange={(e) => setNote(e.target.value)} required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3" type="text" placeholder="" name="note" id="note" />
+                                    <label className="text-[#212529] text-base font-medium" htmlFor="note">{translation?.data?.business?.notes}</label>
+                                    <textarea value={note} onChange={(e) => setNote(e.target.value)} required className="w-full border border-[#d9d9d9] focus-visible:outline-none rounded-lg py-1.5 px-3" type="text" placeholder="" name="note" id="note" />
                                 </div>
                                 <div>
                                     <button className="bg-[#27c5d2] text-white rounded-sm h-12.5 px-5 font-semibold cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out" type="submit">{translation?.data?.business?.submit}</button>

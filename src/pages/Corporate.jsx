@@ -47,9 +47,9 @@ export function Corporate() {
                         ))}
                     </div>
                     <div className="w-full flex items-center justify-center gap-5 mt-8">
-                        <a className="bg-[#f8f8f8] text-sm text-black py-2 px-5 rounded-lg font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out hover:shadow-[0_0_50px_10px_rgba(39,197,210,0.5)]" href={`#${translation?.data?.business?.about_us}`}>{translation?.data?.business?.about_us}</a>
-                        <a className="bg-[#f8f8f8] text-sm text-black py-2 px-5 rounded-lg font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out hover:shadow-[0_0_50px_10px_rgba(39,197,210,0.5)]" href={`#${translation?.data?.business?.mission}`}>{translation?.data?.business?.mission}</a>
-                        <a className="bg-[#f8f8f8] text-sm text-black py-2 px-5 rounded-lg font-semibold hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out hover:shadow-[0_0_50px_10px_rgba(39,197,210,0.5)]" href={`#${translation?.data?.business?.vision}`}>{translation?.data?.business?.vision}</a>
+                        <a className="bg-[#f8f8f8] text-sm text-black py-2 px-5 rounded-lg font-semibold hover:bg-[#27C5D2] hover:text-white transition-[colors , shadow] duration-300 ease-in-out hover:shadow-[0_0_50px_10px_rgba(39,197,210,0.5)]" href={`#${translation?.data?.business?.about_us}`}>{translation?.data?.business?.about_us}</a>
+                        <a className="bg-[#f8f8f8] text-sm text-black py-2 px-5 rounded-lg font-semibold hover:bg-[#27C5D2] hover:text-white transition-[colors , shadow] duration-300 ease-in-out hover:shadow-[0_0_50px_10px_rgba(39,197,210,0.5)]" href={`#${translation?.data?.business?.mission}`}>{translation?.data?.business?.mission}</a>
+                        <a className="bg-[#f8f8f8] text-sm text-black py-2 px-5 rounded-lg font-semibold hover:bg-[#27C5D2] hover:text-white transition-[colors , shadow] duration-300 ease-in-out hover:shadow-[0_0_50px_10px_rgba(39,197,210,0.5)]" href={`#${translation?.data?.business?.vision}`}>{translation?.data?.business?.vision}</a>
                     </div>
                 </div>
             </div>
