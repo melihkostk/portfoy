@@ -12,6 +12,8 @@ import close from "../assets/blue-close.png"
 import { SuccessPopUp } from "../components/SuccessPopup"
 import { useAppContext } from "../context/AppContext"
 import { Link } from "react-router-dom"
+import question from "../assets/question-mark.png"
+import { AuthTable } from "../components/AuthTable"
 
 export function Team() {
 
@@ -186,7 +188,7 @@ export function Team() {
         }))
     }
 
-    function handleEditPermission(){
+    function handleEditPermission() {
         setLoaded(false)
         const permissionValues = {}
         permissions.forEach(group =>
@@ -207,11 +209,14 @@ export function Team() {
         }).finally(() => setLoaded(true))
     }
 
-    const [permissionName , setPermissionName] = useState("");
-    const [permissonRole , setPermissionRole] = useState("");
+    const [permissionName, setPermissionName] = useState("");
+    const [permissonRole, setPermissionRole] = useState("");
+
+    const [tableShown , setTableShown] = useState(false);
 
     return (
         <div className='flex flex-col items-center font-sf'>
+            {tableShown && <AuthTable setTableShown={setTableShown} roles={roles} />}
             {(errorPopUp || addShown || editShown || inviteEditShown || editPermissionShown) && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"></div>}
             {(!loaded || !translationLoaded) && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center bg-white/50 backdrop-blur-sm">
@@ -233,7 +238,7 @@ export function Team() {
                     {error}
                 </div>
             </div>}
-            {addShown && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
+            {addShown && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[25%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.user_invitation_code}</h2>
                     <img onClick={() => setAddShown(false)} className="w-6 h-6 cursor-pointer" src={close} alt="" />
@@ -242,11 +247,11 @@ export function Team() {
                     <form onSubmit={handleAdd} className="w-full">
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="name">{translation?.data?.business?.personal_fullname}</label>
-                            <input value={name} onChange={(e) => setName(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] focus:outline-none" type="text" name="name" id="name" placeholder={translation?.data?.business?.personal_fullname} required />
+                            <input value={name} onChange={(e) => setName(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] focus:outline-none" type="text" name="name" id="name" placeholder={translation?.data?.business?.personal_fullname} />
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="name">{translation?.data?.business?.email}</label>
-                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] focus:outline-none" type="email" name="mail" id="mail" placeholder={translation?.data?.business?.email} required />
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg border-[#d9d9d9] focus:outline-none" type="email" name="mail" id="mail" placeholder={translation?.data?.business?.email} />
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="phone">{translation?.data?.business?.phone}</label>
@@ -258,16 +263,21 @@ export function Team() {
                                     <option value="357">(357)</option>
                                     <option value="01">(01)</option>
                                 </select>
-                                <input value={number} onChange={(e) => setNumber(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg w-full border-[#d9d9d9] focus:outline-none" type="tel" name="phone" id="phone" placeholder={translation?.data?.business?.phone} required />
+                                <input value={number} onChange={(e) => setNumber(e.target.value)} className="border font-medium py-1.5 px-3 rounded-lg w-full border-[#d9d9d9] focus:outline-none" type="tel" name="phone" id="phone" placeholder={translation?.data?.business?.phone} />
                             </div>
                         </div>
                         <div className="flex flex-col w-full mb-2">
                             <label className="text-[#212529] font-medium" htmlFor="role">{translation?.data?.business?.role}</label>
-                            <select value={role} onChange={(e) => setRole(e.target.value)} required className="border py-1.5 px-3 rounded-lg border-[#d9d9d9] cursor-pointer" name="role" id="role">
-                                {roles.map(item => (
-                                    <option value={item.key} key={item.key}>{item.title}</option>
-                                ))}
-                            </select>
+                            <div className="flex gap-1">
+                                <select value={role} onChange={(e) => setRole(e.target.value)} required className="border w-full py-1.5 px-3 rounded-lg border-[#d9d9d9] cursor-pointer" name="role" id="role">
+                                    {roles.map(item => (
+                                        <option value={item.key} key={item.key}>{item.title}</option>
+                                    ))}
+                                </select>
+                                <button type="button" onClick={() => {setAddShown(false); setTableShown(true)}} className="py-2 px-5 rounded-lg bg-[#F1F1F1] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                    <img src={question} alt="" />
+                                </button>
+                            </div>
                         </div>
                         <div>
                             <p className="text-[#6c757d] font-medium">{translation?.data?.business?.notify_with_email_description}</p>
@@ -277,7 +287,7 @@ export function Team() {
                         </div>
                     </form>
                 </div>
-            </div>}
+            </div >}
             {editShown && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.edit_personal}</h2>
@@ -319,7 +329,8 @@ export function Team() {
                         </div>
                     </form>
                 </div>
-            </div>}
+            </div>
+            }
             {inviteEditShown && <div className="fixed top-1/2 left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.edit_user_invitation_code}</h2>
@@ -361,7 +372,8 @@ export function Team() {
                         </div>
                     </form>
                 </div>
-            </div>}
+            </div>
+            }
             {editPermissionShown && <div className="fixed top-1/2 overflow-y-auto left-1/2 flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-full  w-[35%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="p-4 flex justify-between w-full items-center border-b border-[#dee2e6]">
                     <h2 className="text-xl text-[#212529] font-semibold">{translation?.data?.business?.edit_personal_permissions}</h2>
@@ -372,7 +384,7 @@ export function Team() {
                         <p className="text-xl text-[#212529] font-semibold">{permissionName}</p>
                         <p className="text-sm text-[#747474] font-semibold">{permissonRole}</p>
                     </div>
-                    {permissions.filter(item => (item.title !== "Panel Yetkileri" && item.title !== "Dashboard permissions" && item.title !== "Полномочия панели")).map((item,index) => (
+                    {permissions.filter(item => (item.title !== "Panel Yetkileri" && item.title !== "Dashboard permissions" && item.title !== "Полномочия панели")).map((item, index) => (
                         <div key={index} className="p-3.75 border border-[#eee] rounded-lg mb-5">
                             <p className="p-3.75 mb-4 rounded-lg bg-[#eeeeee] text-[#212529] font-semibold">{item.title}</p>
                             <div>
@@ -385,7 +397,7 @@ export function Team() {
                                         </label>
                                         <label className="text-[#212529] text-base font-medium">{item.title}</label>
                                     </div>
-                            ))}
+                                ))}
                             </div>
                         </div>
                     ))}
@@ -393,7 +405,8 @@ export function Team() {
                         <button onClick={handleEditPermission} className="bg-[#27c5d2] text-white font-semibold cursor-pointer hover:bg-[#026872] duration-300 ease-in-out rounded-lg py-2 px-5 text-sm">{translation?.data?.business?.update}</button>
                     </div>
                 </div>
-            </div>}
+            </div>
+            }
             {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
@@ -481,6 +494,6 @@ export function Team() {
             <div className='w-full'>
                 <Footer />
             </div>
-        </div>
+        </div >
     )
 }
