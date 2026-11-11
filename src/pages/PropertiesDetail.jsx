@@ -235,20 +235,20 @@ export function PropertiesDetail() {
                         {(details.status === "draft" || details.status === "sold") && <div className="text-[#664d03] bg-[#fff3cd] border border-[#ffecb5] p-4 mb-4 rounded-lg">
                             {translation?.data?.business?.property_not_publish_warning_text}
                         </div>}
-                        <p className="text-sm text-[#888888] mb-2.5">{details.no}</p>
+                        <p className="text-sm text-[#888888] mb-2.5 font-medium">{details.no}</p>
                         <h1 className="text-[25px] text-[#212529] mb-3.75 font-semibold">{details.title}</h1>
                         <ul className="flex flex-wrap gap-5">
                             <li className="flex items-center">
                                 <img className="w-5 h-5 mr-1.25" src={location} alt="" />
-                                <p className="text-[#c2c2c2] text-sm">{details?.city?.title} / {details?.district?.title} / {details?.street?.title}</p>
+                                <p className="text-[#c2c2c2] text-sm font-medium">{details?.city?.title} / {details?.district?.title} / {details?.street?.title}</p>
                             </li>
                             <li className="flex items-center">
                                 <img className="w-5 h-5 mr-1.25" src={building} alt="" />
-                                {details?.property_type === "ready" ? <p className="text-[#c2c2c2] text-sm">{translation?.data?.business?.building_statusess.ready}</p> : <p className="text-[#c2c2c2] text-sm">{translation?.data?.business?.building_statusess.under_construction}</p>}
+                                {details?.property_type === "ready" ? <p className="text-[#c2c2c2] text-sm font-medium">{translation?.data?.business?.building_statusess.ready}</p> : <p className="text-[#c2c2c2] text-sm font-medium">{translation?.data?.business?.building_statusess.under_construction}</p>}
                             </li>
                             <li className="flex items-center">
                                 <img className="w-5 h-5 mr-1.25" src={calendar} alt="" />
-                                <p className="text-[#c2c2c2] text-sm">{details.updated_at}</p>
+                                <p className="text-[#c2c2c2] font-medium text-sm">{details.updated_at}</p>
                             </li>
                         </ul>
                         <Link to={`/companies/${details?.company?.id}`} className="flex items-center gap-5 bg-[#f2f2f2] p-3.75 w-fit rounded-lg my-7.5 max-[992px]:w-full">

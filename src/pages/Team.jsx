@@ -9,11 +9,11 @@ import { getTeam, getAllInvitations, removeInvite, getAllRoles, addInvite, toogl
 import { ClipLoader } from "react-spinners"
 import mark from "../assets/mark.png"
 import close from "../assets/blue-close.png"
-import { SuccessPopUp } from "../components/SuccessPopup"
 import { useAppContext } from "../context/AppContext"
 import { Link } from "react-router-dom"
 import question from "../assets/question-mark.png"
 import { AuthTable } from "../components/AuthTable"
+import whiteClose from "../assets/close.png"
 
 export function Team() {
 
@@ -212,7 +212,7 @@ export function Team() {
     const [permissionName, setPermissionName] = useState("");
     const [permissonRole, setPermissionRole] = useState("");
 
-    const [tableShown , setTableShown] = useState(false);
+    const [tableShown, setTableShown] = useState(false);
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -274,7 +274,7 @@ export function Team() {
                                         <option value={item.key} key={item.key}>{item.title}</option>
                                     ))}
                                 </select>
-                                <button type="button" onClick={() => {setAddShown(false); setTableShown(true)}} className="py-2 px-5 rounded-lg bg-[#F1F1F1] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                <button type="button" onClick={() => { setAddShown(false); setTableShown(true) }} className="py-2 px-5 rounded-lg bg-[#F1F1F1] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                     <img src={question} alt="" />
                                 </button>
                             </div>
@@ -407,7 +407,10 @@ export function Team() {
                 </div>
             </div>
             }
-            {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
+            {successPopUp && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{error}</p>
+                <img onClick={() => setErrorPopUp(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5">
                 <div className="w-full max-w-[90%] flex items-center gap-2">

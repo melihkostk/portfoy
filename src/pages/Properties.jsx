@@ -17,11 +17,11 @@ import { getAllFilterOptions } from "../services/filterApi"
 import close from "../assets/blue-close.png"
 import { createQuickFilter, getQuickFilters } from "../services/quickFiltersApi"
 import menu from "../assets/dark-menu.png"
-import { SuccessPopUp } from "../components/SuccessPopup"
 import { CreateOfferModel } from "../components/CreateOfferModal"
 import { createProposal, getDetails } from "../services/propertyDetails"
 import { useAppContext } from "../context/AppContext"
 import check from "../assets/white-check.png"
+import whiteClose from "../assets/close.png"
 
 export function Properties() {
 
@@ -217,14 +217,17 @@ export function Properties() {
     const [error, setError] = useState("");
     const [successPopUp, setSuccessPopUp] = useState(false);
 
-    const handleSaveQuickFilter = async () => {
-        await createQuickFilter(filterTitle, notify, buildQuickFilterDetails());
-        setAddQuickFilterMenu(false);
-        setFilterTitle("");
-        setNotify(0);
-        getQuickFilters().then(setQuickFilters);
-        setSuccessPopUp(true);
-        setError("Filtre başarıyla kaydedildi");
+    function handleSaveQuickFilter() {
+        createQuickFilter(filterTitle, notify, buildQuickFilterDetails()).then(data => {
+            if (data.status === "success") {
+                setAddQuickFilterMenu(false);
+                setFilterTitle("");
+                setNotify(0);
+                getQuickFilters().then(setQuickFilters);
+            }
+            setSuccessPopUp(true);
+            setError(data.message);
+        });
     };
 
     const [offerModelShown, setOfferModalShown] = useState(false)
@@ -310,7 +313,10 @@ export function Properties() {
                 </div>
             )}
             <Header />
-            {successPopUp && <SuccessPopUp error={error} setSuccessPopUp={setSuccessPopUp} />}
+            {successPopUp && <div className="fixed flex items-center gap-2 right-4 rounded-lg font-semibold z-50 top-4 bg-[linear-gradient(to_right,rgb(0,176,155),rgb(150,201,61))] p-3 text-white">
+                <p>{error}</p>
+                <img onClick={() => setSuccessPopUp(false)} className="w-5 h-5 cursor-pointer" src={whiteClose} alt="" />
+            </div>}
             {quickFilterMenu && <div className="fixed top-1/2 max-h-fit left-1/2 overflow-y-auto flex max-[992px]:w-full flex-col items-start justify-start -translate-x-1/2 -translate-y-1/2 h-[70%] w-[30%] bg-white border border-[#eee] rounded-lg z-50">
                 <div className="flex items-center justify-between w-full p-4 border-b border-b-[#dee2e6]">
                     <h2 className="text-xl text-[#212529]">{translation?.data?.business?.quick_filters}</h2>
