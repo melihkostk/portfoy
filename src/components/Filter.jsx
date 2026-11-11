@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { getAllCities, getAllCountries, getAllDistricts, getAllStreets, getAllCurrencies, getAllFilterOptions } from "../services/filterApi"
 import { getAllPropertiesType } from "../services/propertiesApi"
 import { useAppContext } from "../context/AppContext"
+import check from "../assets/white-check.png"
 
 export function Filter({searchParams , typeId}) {
     const { translation } = useAppContext();
@@ -87,6 +88,7 @@ export function Filter({searchParams , typeId}) {
         filterOptions?.data?.flatMap(group => group.params || [])?.find(param => param.title === title);
 
     const [searchInput , setSearchInput] = useState("");
+    const [selectedCategoryId, setSelectedCategoryId] = useState("");
 
     return (
         <div>
@@ -109,7 +111,7 @@ export function Filter({searchParams , typeId}) {
                 </ul>
                 {type === "All" && (
                     <form action={"/properties"} method="GET" className={`flex ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col gap-2.5 p-3.75`}>
-                        <input type="hidden" name="type_id" value={type === "All" ? "" : type} />
+                        <input type="hidden" name="type_id" value={selectedCategoryId} />
                         <div className="flex-1 max-w-w-[calc(100%/3)] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase tracking-[0.3px] text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.categories}</label>
                             <div className="relative">
@@ -125,10 +127,12 @@ export function Filter({searchParams , typeId}) {
                                     </li>
                                     {propertiesType?.filter(item => item.title.includes(searchInput)).map(item => (
                                         <li className="w-full py-1" key={item.id}>
-                                            <input name={item.id} id={item.id} className="cursor-pointer hidden select-none w-5 h-5" type="checkbox" />
-                                            <label htmlFor={item.id} className="text-[#747474] flex items-center gap-2.5 text-sm ml-2 cursor-pointer font-medium select-none hover:text-black transition-colors duration-300 ease-in-out">
-                                                <div className="w-5 h-5 rounded-sm border border-[#d9d9d9]"></div>
-                                                {item.title}
+                                            <input checked={selectedCategoryId === item.id} onChange={() => { console.log("checkbox onChange fired", item.id); setSelectedCategoryId(item.id) }} name={`category-${item.id}`} id={`category-${item.id}`} className="peer cursor-pointer hidden select-none w-5 h-5" type="checkbox" />
+                                            <label htmlFor={`category-${item.id}`} className="text-[#747474] flex items-center gap-2.5 text-sm ml-2 cursor-pointer font-medium select-none hover:text-black transition-colors duration-300 ease-in-out">
+                                                <div className={`w-5 h-5 flex items-center justify-center rounded-sm border border-[#d9d9d9] ${selectedCategoryId === item.id ? "bg-[#27c5d2] text-[#27c5d2]" : ""}`}>
+                                                    <img className="w-3 h-3" src={check} alt="" />
+                                                </div>
+                                                <p className={`${selectedCategoryId === item.id ? "text-[#27c5d2]" : ""}`}>{item.title}</p>
                                             </label>
                                         </li>
                                     ))}
