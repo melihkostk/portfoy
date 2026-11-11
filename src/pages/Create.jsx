@@ -38,7 +38,7 @@ export function Create() {
     const [cities, setCities] = useState([]);
 
     useEffect(() => {
-        if(!selectedCountry) return;
+        if (!selectedCountry) return;
         getAllCities(selectedCountry).then(setCities);
     }, [selectedCountry])
 
@@ -47,7 +47,7 @@ export function Create() {
     const [district, setDistrict] = useState([]);
 
     useEffect(() => {
-        if(!selectedCity) return;
+        if (!selectedCity) return;
         getAllDistricts(selectedCity).then(setDistrict)
     }, [selectedCity])
 
@@ -56,7 +56,7 @@ export function Create() {
     const [streets, setStreets] = useState([]);
 
     useEffect(() => {
-        if(!selectedDistrict) return;
+        if (!selectedDistrict) return;
         getAllStreets(selectedDistrict).then(setStreets)
     }, [selectedDistrict])
 
@@ -83,7 +83,7 @@ export function Create() {
 
     const [errorMessageShown, setErrorMessageShown] = useState(false)
 
-    const [underConstruction , setUnderConstruction] = useState("");
+    const [underConstruction, setUnderConstruction] = useState("");
 
     function handleAdd(e) {
         e.preventDefault()
@@ -97,6 +97,8 @@ export function Create() {
             }
         }).finally(() => setLoaded(true))
     }
+
+    const [selectedProject, setSelectedProject] = useState("");
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -141,7 +143,7 @@ export function Create() {
                             ))}
                         </div>
                         {selectedType === 29 && <div className="mt-5">
-                            <select className="w-full bg-[#f8f8f8] p-2.5 rounded-lg text-[#818181] font-medium" name="" id="">
+                            <select value={selectedProject} onChange={(e) => setSelectedProject(e.target.value)} className="w-full bg-[#f8f8f8] p-2.5 rounded-lg focus-visible:outline-none text-[#818181] font-medium" name="" id="">
                                 <option value="">{translation?.data?.business?.choose?.any}</option>
                                 {propertyType?.find(item => item.id === 29)?.childrens?.map(item => (
                                     <option key={item.id} value={item.id}>{item.title}</option>
@@ -196,16 +198,39 @@ export function Create() {
                             </div>
                         </div>
                     </div>
+                    {(selectedProject && selectedType == 29) && <div className="p-3.75 rounded-lg border border-[#ddd] mb-12.5">
+                        <div className="bg-[#dddddd] text-[#5c5c5c] text-sm font-semibold text-center py-2.5 px-3.75 rounded-lg mb-5">
+                            <p className="uppercase">Proje bilgileri</p>
+                        </div>
+                        <div className="flex gap-2.5">
+                            <div className="flex-1">
+                                <label className="text-sm text-[#212529] opacity-50 font-medium" htmlFor="">Metrekare (m²)</label>
+                                <div className="flex gap-2.5">
+                                    <input className="py-1.5 px-3 rounded-lg flex-1 font-medium border border-[#d9d9d9]" type="text" placeholder="min" />
+                                    <input className="py-1.5 px-3 rounded-lg flex-1 font-medium border border-[#d9d9d9]" type="text" placeholder="max" />
+                                </div>
+                            </div>
+                            <div className="flex flex-col flex-1">
+                                <label className="text-sm text-[#212529] opacity-50 font-medium" htmlFor="">Oda Sayısı</label>
+                                <select className="py-1.5 px-3 rounded-lg flex-1 border border-[#d9d9d9]" name="" id="">
+                                    <option value="">Oda Sayısı</option>
+                                    {propertyType?.find(item => item.id === 29)?.childrens?.find(child => child.id === Number(selectedProject))?.presetFeatures?.find(item => item.id === 1)?.options?.map(item => (
+                                        <option key={item.id} value={item.id}>{item.title}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                    </div>}
                     <div className="flex flex-col items-center">
                         <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-bold">{translation?.data?.business?.pricing_info}</p>
                         <div>
-                            <div className="flex flex-col items-center">
+                            {selectedType != 29 && <div className="flex flex-col items-center">
                                 <p className="mb-1.25 text-sm font-medium text-[#212529] text-center opacity-50">{translation?.data?.business?.choose_pricing_type_info_text}</p>
                                 <div>
                                     <button onClick={() => setPricingType("PASS")} className={`${pricingType === "PASS" ? "bg-[#e2e2e2] rounded-lg" : "bg-[#f8f8f8]"} text-center text-sm font-semibold py-2.5 px-7.5 mb-7.5 hover:bg-[#e2e2e2] transition-colors duration-300 ease-in-out cursor-pointer`}>{translation?.data?.business?.pricing_type?.pass}</button>
                                     {(selectedType === 27 || selectedType === 21) && <button onClick={() => setPricingType("COMISSION")} className={`${pricingType === "COMISSION" ? "bg-[#e2e2e2] rounded-lg" : "bg-[#f8f8f8]"} text-center text-sm font-semibold py-2.5 px-7.5 cursor-pointer mb-7.5 hover:bg-[#e2e2e2] transition-colors duration-300 ease-in-out`}>{translation?.data?.business?.pricing_type?.commission}</button>}
                                 </div>
-                            </div>
+                            </div>}
                             <div className="flex flex-col items-center">
                                 <p className="mb-1.25 text-sm text-[#212529] font-medium opacity-50 text-center">
                                     {translation?.data?.business?.choose_currency_info_text}
@@ -217,7 +242,7 @@ export function Create() {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full mb-12.5">
+                        {!selectedProject && <div className="w-full mb-12.5">
                             {pricingType === "PASS" && <div>
                                 <div className="mb-5">
                                     <label className="text-sm font-medium text-[#212529] opacity-50 mb-2" htmlFor="pass">{translation?.data?.business?.pass_price}</label>
@@ -246,7 +271,22 @@ export function Create() {
                                     </div>
                                 </div>
                             </div>}
-                        </div>
+                        </div>}
+                        {(selectedProject && selectedType == 29) && <div className="p-3.75 border border-[#e8e8e8] mb-12.5 w-full rounded-lg">
+                            <div className="text-center mb-5">
+                                <p className="uppercase text-sm text-[#212529] opacity-60 font-bold">Fiyat seçeneklerini ekleyin</p>
+                            </div>
+                            <div className="p-4 mb-4 rounded-lg bg-[#fff3cd] border border-[#ffecb5] text-center text-[#664d03] font-medium">
+                                Daire fiyatlarını girerken, aynı fiyat aralığındaki daireleri tek bir giriş altında tanımlayabilirsiniz.
+                            </div>
+                            <div className="flex mb-5">
+                                <div className="bg-[#e2e2e2] text-[#737373] text-xs font-bold w-12.5 rounded-l-lg flex items-center justify-center">{currencies.find(item => item.id == selectedCurrencie).code}</div>
+                                <input className="w-full py-1.5 px-3 rounded-r-lg border font-medium border-[#d9d9d9]" type="number" placeholder="Fiyat Seçeneği" />
+                            </div>
+                            <div className="mt-2 flex justify-center">
+                                <button className="bg-[#f1f1f1] py-2 px-5 rounded-lg text-[#4b4b4b] font-bold text-sm cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">Yeni Fiyat Ekle</button>
+                            </div>
+                        </div>}
                     </div>
                     <div className="flex justify-center">
                         <button aria-label="submit" type="submit" className="h-12.5 bg-[#27C5D2] px-5 font-semibold cursor-pointer rounded-[5px] text-white whitespace-nowrap hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.create_property}</button>
