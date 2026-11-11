@@ -140,6 +140,14 @@ export function Create() {
                                 />
                             ))}
                         </div>
+                        {selectedType === 29 && <div className="mt-5">
+                            <select className="w-full bg-[#f8f8f8] p-2.5 rounded-lg text-[#818181] font-medium" name="" id="">
+                                <option value="">{translation?.data?.business?.choose?.any}</option>
+                                {propertyType?.find(item => item.id === 29)?.childrens?.map(item => (
+                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                ))}
+                            </select>
+                        </div>}
                     </div>
                     <div className="mb-12.5">
                         <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-bold">{translation?.data?.business?.location_info}</p>
