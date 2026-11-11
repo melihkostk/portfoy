@@ -364,7 +364,7 @@ export function Properties() {
             </div>
             <div className={`w-full max-w-[90%] ${filterShown ? "py-7.5" : "py-5"}`}>
                 {filterShown && <div>
-                    <h1 className="text-[35px]">{translation?.data?.business?.filter_properties}</h1>
+                    <h1 className="text-[35px] font-semibold">{translation?.data?.business?.filter_properties}</h1>
                     <Filter setFilterShown={setFilterShown} searchParams={searchParams} typeId={typeId} />
                 </div>}
                 {searchParams.toString() && <div className="items-end justify-end p-3.75 flex gap-1">
@@ -398,7 +398,7 @@ export function Properties() {
                                             <button
                                                 type="button"
                                                 onClick={() => toggleGroup(item.title)}
-                                                className="flex items-center justify-between w-full uppercase py-2.5 cursor-pointer"
+                                                className="flex items-center font-medium justify-between w-full uppercase py-2.5 cursor-pointer"
                                             >
                                                 <h2>{item.title}</h2>
                                                 <img

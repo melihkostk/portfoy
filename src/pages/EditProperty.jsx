@@ -48,6 +48,8 @@ export function EditProperty({ setMessage, setMessageShown }) {
     const [detail, setDetail] = useState([])
     const [loaded, setLoaded] = useState(false);
     const [features, setFeatures] = useState([]);
+    const [minPrice , setMinPrice] = useState("");
+    const [maxPrice , setMaxPrice] = useState("");
 
     const [offerMenuShown, setOfferMenuShown] = useState(false)
 
@@ -58,6 +60,8 @@ export function EditProperty({ setMessage, setMessageShown }) {
             setTitle(data?.title)
             setNo(data?.no)
             setPassPrice(data?.prices?.secondary?.number)
+            setMinPrice(data?.prices?.primary?.number)
+            setMaxPrice(data?.prices?.secondary?.number)
             setSellPrice(data?.prices?.primary?.number)
             setCurrency(data?.currency?.id)
             setCountry(data?.country?.id)
@@ -172,7 +176,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
             });
         });
 
-        updateProperty(id, title, country, city, district, street, sellPrice, passPrice, details).then(data => {
+        updateProperty(id, title, country, city, district, street, sellPrice, passPrice, minPrice, maxPrice, details).then(data => {
             if (data.status === "success") {
                 navigate("/company")
                 setMessage(data.message);
@@ -614,7 +618,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                     </div>
                 </div>
             </div>
-            {error.length !== 0 && <div className="w-full max-w-[90%] bg-[#f8d7da] p-4 rounded-lg mt-2 mb-4 border border-[#f5c2c7]">
+            {(error.length !== 0 && error) && <div className="w-full max-w-[90%] bg-[#f8d7da] p-4 rounded-lg mt-2 mb-4 border border-[#f5c2c7]">
                 {Object.values(error?.data ?? {}).map((item, index) => {
                     const messages = typeof item === "string" ? [item] : Object.values(item).flat();
                     return (
@@ -665,6 +669,10 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 prices={prices}
                 setEditPrice={setEditPrice}
                 errorMessage={errorMessage}
+                minPrice={minPrice}
+                maxPrice={maxPrice}
+                setMinPrice={setMinPrice}
+                setMaxPrice={setMaxPrice}
             />}
             {editType === "settings" && <EditPropertySettings
                 detail={detail}

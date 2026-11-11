@@ -279,11 +279,11 @@ export function PropertiesDetail() {
                             </button>
                         </div>) : (
                             <div className="flex gap-2.5 flex-wrap">
-                                <Link to={`/properties/${id}/edit`} className="bg-[#f1f1f1] rounded-lg flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                <Link to={`/properties/${id}/edit`} className="bg-[#f1f1f1] rounded-lg font-medium flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                     <img className="w-5 h-5" src={pen} alt="" />
                                     <span>{translation?.data?.business?.property_edit}</span>
                                 </Link>
-                                <button onClick={() => navigate(`/properties/${id}/boost`)} className="bg-[#ffca64] rounded-lg flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">
+                                <button onClick={() => navigate(`/properties/${id}/boost`)} className="bg-[#ffca64] font-medium rounded-lg flex items-center gap-1 text-sm py-2 px-5 tracking-[1px] cursor-pointer hover:bg-[#ffca2c] transition-colors duration-300 ease-in-out">
                                     <img className="w-4 h-4" src={graph} alt="" />
                                     {translation?.data?.business?.boost_property}
                                 </button>

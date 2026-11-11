@@ -31,7 +31,11 @@ export function EditPropertyInfo({
     status,
     prices,
     setEditPrice,
-    errorMessage
+    errorMessage,
+    maxPrice,
+    minPrice,
+    setMinPrice,
+    setMaxPrice
 }) {
     const { translation } = useAppContext();
     const [multiSelectTarget, setMultiSelectTarget] = useState(null)
@@ -52,18 +56,21 @@ export function EditPropertyInfo({
     const [cities, setCities] = useState([]);
 
     useEffect(() => {
+        if(!country) return;
         getAllCities(country).then(setCities)
     }, [country])
 
     const [districts , setDistricts] = useState([]);
 
     useEffect(() => {
+        if(!city) return;
         getAllDistricts(city).then(setDistricts);
     }, [city])
 
     const [streets , setStreets] = useState([]);
 
     useEffect(() => {
+        if(!district) return;
         getAllStreets(district).then(setStreets);
     }, [district])
 
@@ -96,11 +103,11 @@ export function EditPropertyInfo({
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
                                 <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.min_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="min">{translation?.data?.business?.min_price} <span className="text-sm">({currencies.find(item => item.id === currency)?.title})</span></label>
-                                <input id="min" name="min" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9] focus:outline-none" type="number" />
+                                <input id="min" name="min" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9] focus:outline-none" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
                                 <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.max_price.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="max">{translation?.data?.business?.max_price} <span className="text-sm">({currencies.find(item => item.id === currency)?.title})</span></label>
-                                <input id="max" name="max" value={sellPrice} onChange={(e) => setSellPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9] focus:outline-none" type="number" />
+                                <input id="max" name="max" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="py-1.5 px-3 border mt-2 block w-full rounded-lg border-[#d9d9d9] focus:outline-none" type="number" />
                             </div>}
                             {detail.hasPriceRange && <div className="flex-1 px-3 mb-2">
                                 <label className={`${errorMessage.toLowerCase().includes(translation?.data?.business?.property_type_prices.toLowerCase()) ? "text-red-500 font-semibold" : "text-[#6c757d]"}`} htmlFor="price-option">{translation?.data?.business?.property_type_prices} ( {prices?.data?.prices?.length} {translation?.data?.business?.property_type_prices_count.replace(":count", "")} )</label>
