@@ -159,7 +159,7 @@ export function Location() {
                     <input className="w-full py-1.5 px-3 border mb-2 border-[#D9D9D9] rounded-lg focus:outline-none" type="text" id="location" name="location" />
                     <div className="w-full h-[80%]">
                         <iframe
-                            src={`https://www.google.com/maps?q&z=15&output=embed`}
+                            src={`https://www.google.com/maps?q=${location?.data?.locations?.[0]?.map?.latitude},${location?.data?.locations?.[0]?.map?.longitude}&z=15&output=embed`}
                             className="w-full h-full border-0 rounded-lg"
                             allowFullScreen
                             loading="lazy"
@@ -221,7 +221,7 @@ export function Location() {
                     </div>
                     <div className="w-1/2 max-[992px]:w-full">
                         <iframe
-                            src={`https://www.google.com/maps?q=${location?.locations?.map?.latitude},${location?.locations?.map?.longitude}&z=15&output=embed`}
+                            src={`https://www.google.com/maps?q=${location?.data?.locations?.[0]?.map?.latitude},${location?.data?.locations?.[0]?.map?.longitude}&z=15&output=embed`}
                             className="w-full h-[calc(100vh-100px)] border-0 rounded-lg"
                             allowFullScreen
                             loading="lazy"
