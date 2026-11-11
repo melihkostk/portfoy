@@ -83,10 +83,12 @@ export function Create() {
 
     const [errorMessageShown, setErrorMessageShown] = useState(false)
 
+    const [underConstruction , setUnderConstruction] = useState("");
+
     function handleAdd(e) {
         e.preventDefault()
         setLoaded(false)
-        createProperty(selectedType, title, 1, selectedCountry, selectedCity, selectedDistrict, selectedStreet, selectedCurrencie, sellPrice, passPrice, pricingType).then(data => {
+        createProperty(selectedType, title, underConstruction, selectedCountry, selectedCity, selectedDistrict, selectedStreet, selectedCurrencie, sellPrice, passPrice, pricingType).then(data => {
             if (data.status === "success") {
                 navigate(`/properties/${data?.data?.property?.id}/edit`)
             }
@@ -134,6 +136,7 @@ export function Create() {
                                     id={item.id}
                                     selectedType={selectedType}
                                     setSelectedType={setSelectedType}
+                                    setUnderConstruction={setUnderConstruction}
                                 />
                             ))}
                         </div>
