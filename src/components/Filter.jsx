@@ -96,9 +96,15 @@ export function Filter({searchParams , typeId}) {
                         <button onClick={() => setType("All")} className={`px-7.5 py-2.5 font-semibold text-sm text-black cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === "All" ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : "opacity-70"}`}>{translation?.data?.business?.all}</button>
                     </li>
                     {propertiesType?.map(item => (
-                        <li key={item.id}>
-                            <button onClick={() => setType(item.id)} className={`px-7.5 py-2.5 font-medium text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === item.id ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"}`}>{item.title}</button>
-                        </li>
+                        (item.title !== "Projects" && item.title !== "Projeler" && item.title !== "Новостройки") ? (
+                            <li key={item.id}>
+                                <button onClick={() => setType(item.id)} className={`px-7.5 py-2.5 font-medium text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === item.id ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"}`}>{item.title}</button>
+                            </li>
+                        ) : item.childrens?.map(child => (
+                            <li key={child.id}>
+                                <button onClick={() => setType(child.id)} className={`px-7.5 py-2.5 font-medium text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === child.id ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"}`}>{child.title}</button>
+                            </li>
+                        ))
                     ))}
                 </ul>
                 {type === "All" && (
@@ -358,7 +364,7 @@ export function Filter({searchParams , typeId}) {
                         </div>
                     </form>
                 )}
-                {type === "Project" && (
+                {type === 35 && (
                     <form action={"/properties"} method="GET" className="flex max-[992px]:flex-col gap-2.5 p-3.75">
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
@@ -381,10 +387,10 @@ export function Filter({searchParams , typeId}) {
                                                 <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
-                                                <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
-                                                    <option selected value="">TRY</option>
-                                                    <option value="">USD</option>
-                                                    <option value="">EUR</option>
+                                                <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
+                                                    {currencies.map(item => (
+                                                        <option key={item.id} value={item.id}>{item.code}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                         </div>
@@ -404,38 +410,46 @@ export function Filter({searchParams , typeId}) {
                                         <div>
                                             <div className="flex flex-col">
                                                 <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.country}</label>
-                                                <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
-                                                    <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                    <option value="">Türkiye</option>
-                                                    <option value="">Birleşik Arap Emirlikleri</option>
+                                                <select value={countryId} placeholder="{translation?.data?.business?.choose?.country}" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="country_id" id="">
+                                                    <option value="" disabled>
+                                                        {translation?.data?.business?.choose?.country}
+                                                    </option>
+                                                    {countries.data.map(item => (
+                                                        <option key={item.id} value={item.id}>{item.title}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
                                                 <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.city}</label>
-                                                <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
-                                                    <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                    <option value="">Türkiye</option>
-                                                    <option value="">Birleşik Arap Emirlikleri</option>
+                                                <select value={cityId} onChange={(e) => setCityId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="city_id" id="">
+                                                    <option value="" disabled>
+                                                        {translation?.data?.business?.choose?.city}
+                                                    </option>
+                                                    {cities.map(item => (
+                                                        <option key={item.id} value={item.id}>{item.title}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
                                                 <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.district}</label>
-                                                <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
-                                                    <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                    <option value="">Türkiye</option>
-                                                    <option value="">Birleşik Arap Emirlikleri</option>
+                                                <select value={districtId} onChange={(e) => setDistrictId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="district_id" id="">
+                                                    <option value="" disabled>
+                                                        {translation?.data?.business?.choose?.district}
+                                                    </option>
+                                                    {district.map(item => (
+                                                        <option key={item.id} value={item.id}>{item.title}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
                                                 <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.street}</label>
-                                                <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
-                                                    <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                    <option value="">Türkiye</option>
-                                                    <option value="">Birleşik Arap Emirlikleri</option>
+                                                <select value={streetId} onChange={(e) => setStreetId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="street_id" id="">
+                                                    <option value="" disabled>
+                                                        {translation?.data?.business?.choose?.street}
+                                                    </option>
+                                                    {street.map(item => (
+                                                        <option key={item.id} value={item.id}>{item.title}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                         </div>
@@ -446,13 +460,11 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                             <div className="flex justify-between cursor-pointer w-full">
-                                <select className="font-semibold text-[13px] w-full cursor-pointer">
-                                    <option disabled selected value="">Oda Sayısı</option>
-                                    <option value="">1+0</option>
-                                    <option value="">1+0 Bahçeli Daire</option>
-                                    <option value="">1+1</option>
-                                    <option value="">1+1 Dublex</option>
-                                    <option value="">1+1 Bahçeli Dublex</option>
+                                <select name={findFilterParam("Oda Sayısı")?.id ? `details[${findFilterParam("Oda Sayısı").id}]` : undefined} value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-base w-full cursor-pointer">
+                                    <option value="">{translation?.data?.business?.all}</option>
+                                    {findFilterParam("Oda Sayısı")?.options?.map(item => (
+                                        <option key={item.id} value={item.id}>{item.title}</option>
+                                    ))}
                                 </select>
                             </div>
                         </div>
@@ -591,7 +603,7 @@ export function Filter({searchParams , typeId}) {
                         </div>
                     </form>
                 )}
-                {type === "Project Villa" && (
+                {type === 34 && (
                     <form action={"/properties"} method="GET" className={`flex gap-2.5 ${searchParams?.toString() ? "bg-[#f8f8f8]" : ""} max-[992px]:flex-col p-3.75 w-full`}>
                         <input type="hidden" name="type_id" value={type} />
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
@@ -614,10 +626,10 @@ export function Filter({searchParams , typeId}) {
                                                 <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
-                                                <select className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" name="" id="">
-                                                    <option selected value="">TRY</option>
-                                                    <option value="">USD</option>
-                                                    <option value="">EUR</option>
+                                                <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
+                                                    {currencies.map(item => (
+                                                        <option key={item.id} value={item.id}>{item.code}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                         </div>
@@ -637,38 +649,46 @@ export function Filter({searchParams , typeId}) {
                                         <div>
                                             <div className="flex flex-col">
                                                 <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.country}</label>
-                                                <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
-                                                    <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                    <option value="">Türkiye</option>
-                                                    <option value="">Birleşik Arap Emirlikleri</option>
+                                               <select value={countryId} placeholder="{translation?.data?.business?.choose?.country}" onChange={(e) => setCountryId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="country_id" id="">
+                                                    <option value="" disabled>
+                                                        {translation?.data?.business?.choose?.country}
+                                                    </option>
+                                                    {countries.data.map(item => (
+                                                        <option key={item.id} value={item.id}>{item.title}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
                                                 <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.city}</label>
-                                                <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
-                                                    <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                    <option value="">Türkiye</option>
-                                                    <option value="">Birleşik Arap Emirlikleri</option>
+                                                <select value={cityId} onChange={(e) => setCityId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="city_id" id="">
+                                                    <option value="" disabled>
+                                                        {translation?.data?.business?.choose?.city}
+                                                    </option>
+                                                    {cities.map(item => (
+                                                        <option key={item.id} value={item.id}>{item.title}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
                                                 <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.district}</label>
-                                                <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
-                                                    <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                    <option value="">Türkiye</option>
-                                                    <option value="">Birleşik Arap Emirlikleri</option>
+                                                <select value={districtId} onChange={(e) => setDistrictId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="district_id" id="">
+                                                    <option value="" disabled>
+                                                        {translation?.data?.business?.choose?.district}
+                                                    </option>
+                                                    {district.map(item => (
+                                                        <option key={item.id} value={item.id}>{item.title}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                             <div className="flex flex-col">
                                                 <label className="text-sm text-[#747474]" htmlFor="">{translation?.data?.business?.choose?.street}</label>
-                                                <select className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="" id="">
-                                                    <option selected value="">{translation?.data?.business?.choose?.country}</option>
-                                                    <option value="">Kuzey Kıbrıs Türk Cumhuriyeti</option>
-                                                    <option value="">Türkiye</option>
-                                                    <option value="">Birleşik Arap Emirlikleri</option>
+                                                <select value={streetId} onChange={(e) => setStreetId(e.target.value)} className="py-1.5 pl-3 pr-9 border border-[#d9d9d9] rounded" name="street_id" id="">
+                                                    <option value="" disabled>
+                                                        {translation?.data?.business?.choose?.street}
+                                                    </option>
+                                                    {street.map(item => (
+                                                        <option key={item.id} value={item.id}>{item.title}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                         </div>
