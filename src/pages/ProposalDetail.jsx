@@ -42,7 +42,7 @@ export function ProposalDetail() {
             )}
             <Header />
             <div className="w-full bg-[#f8f8f8] flex justify-center py-2.5 mb-4">
-                <div className="w-full max-w-[90%] flex items-center gap-2">
+                <div className="w-full max-w-[90%] flex items-center gap-2 flex-wrap">
                     <Link to={"/"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.home}</Link>
                     <p className="text-sm text-[#636363] font-medium">{">"}</p>
                     <Link to={"/proposals"} className="text-sm text-[#636363] font-medium hover:text-black transition-colors duration-300 ease-in-out">{translation?.data?.business?.proposals}</Link>

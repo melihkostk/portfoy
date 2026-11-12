@@ -25,7 +25,7 @@ export function CustomerCard({name, index , email , phoneCode, phoneNumber, loca
                 <button aria-label="edit" type="button" onClick={onEditClick} className="bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                     <img className="w-5 h-5 min-w-5 min-h-5" src={pencil} alt="edit" />
                 </button>
-                <Link to={`/company/proposals?customer=${id}`} className="bg-[#f1f1f1] py-2 px-5 flex items-center gap-1 rounded-lg whitespace-nowrap text-sm text-[#4b4b4b] font-semibold cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                <Link to={proposals > 0  && `/company/proposals?customer=${id}`} className="bg-[#f1f1f1] py-2 px-5 flex items-center gap-1 rounded-lg whitespace-nowrap text-sm text-[#4b4b4b] font-semibold cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                     {proposals > 0 ?  <img alt="menu" className="w-4 h-4" src={darkMenu}></img> : ""}
                     {proposals > 0 ?  `${proposals} ${translation?.data?.business?.proposals}` : translation?.data?.business?.no_proposals}
                 </Link>
