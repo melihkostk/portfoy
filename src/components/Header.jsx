@@ -39,9 +39,10 @@ export function Header({ details }) {
     const [searchInput, setSearchInput] = useState("")
 
     useEffect(() => {
-        getAllNotifications().then(setNotifications)
-    }, [])
-
+        if(loged){
+            getAllNotifications().then(setNotifications)
+        }
+    }, [loged])
 
     function handleLogOut() {
         logOut().then((data => {
@@ -71,8 +72,10 @@ export function Header({ details }) {
     const [customers, setCustomer] = useState([])
 
     useEffect(() => {
-        getAllCustomers().then(setCustomer)
-    }, [])
+        if(loged){
+            getAllCustomers().then(setCustomer)
+        }
+    }, [loged])
 
     return (
         <div className="py-7.5 w-full max-w-[90%]">
