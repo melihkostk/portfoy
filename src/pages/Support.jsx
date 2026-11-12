@@ -119,7 +119,7 @@ export function Support() {
                                         {item.slug}
                                     </p>
                                     <div className="mt-1.25">
-                                        <Link className="uppercase text-black mt-1.25 font-semibold hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">{translation?.data?.business?.read_more}</Link>
+                                        <Link to={`/articles/${item.id}`} className="uppercase text-black mt-1.25 font-semibold hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">{translation?.data?.business?.read_more}</Link>
                                     </div>
                                 </div>
                             ))
