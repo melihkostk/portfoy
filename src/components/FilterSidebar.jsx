@@ -26,7 +26,8 @@ export function FilterSidebar({ type, companyProperties, team, currencie, select
                 <div>
                     <ul className="my-7.5">
                         {type?.map(item => (
-                            <li key={item.id} className="flex justify-between items-center mb-1.25">
+
+                            item.id !== 29 ? <li key={item.id} className="flex justify-between items-center mb-1.25">
                                 <div className="flex items-center gap-2 select-none">
                                     <input className="hidden" id={`type-${item.id}`} name="type" type="checkbox" checked={selectedType.includes(item.id)} onChange={() => toggleType(item.id)} />
                                     <label className={`flex items-center gap-2.5 text-[13px] ${selectedType.includes(item.id) ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`} htmlFor={`type-${item.id}`}>
@@ -37,7 +38,20 @@ export function FilterSidebar({ type, companyProperties, team, currencie, select
                                     </label>
                                 </div>
                                 <span className="text-base text-[#212529] font-medium">{companyProperties.data?.properties?.filter(property => property.type.id === item.id).length}</span>
-                            </li>
+                            </li> : item.childrens.map(children => (
+                                <li key={children.id} className="flex justify-between items-center mb-1.25">
+                                    <div className="flex items-center gap-2 select-none">
+                                        <input className="hidden" id={`type-${children.id}`} name="type" type="checkbox" checked={selectedType.includes(children.id)} onChange={() => toggleType(children.id)} />
+                                        <label className={`flex items-center gap-2.5 text-[13px] ${selectedType.includes(children.id) ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`} htmlFor={`type-${children.id}`}>
+                                            <div className={`w-3.75 flex items-center justify-center h-3.75 rounded-sm border ${selectedType.includes(children.id) ? "bg-[#27c5d2] border-[#D9D9D9]" : "border-[#D9D9D9]"}`}>
+                                                <img className="w-2.5 h-2.5" src={check} alt="" />
+                                            </div>
+                                            {children.title}
+                                        </label>
+                                    </div>
+                                    <span className="text-base text-[#212529] font-medium">{companyProperties.data?.properties?.filter(property => property.type.id === children.id).length}</span>
+                                </li>
+                            ))
                         ))}
                     </ul>
                 </div>
