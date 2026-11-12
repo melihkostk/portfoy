@@ -26,7 +26,7 @@ import { useAppContext } from "../context/AppContext"
 
 export function PropertiesDetail() {
 
-    const {translation, translationLoaded } = useAppContext();
+    const { translation, translationLoaded } = useAppContext();
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -34,7 +34,7 @@ export function PropertiesDetail() {
     const [details, setDetails] = useState([]);
     const [loaded, setLoaded] = useState(false)
 
-    const [photo , setPhoto] = useState("");
+    const [photo, setPhoto] = useState("");
 
     useEffect(() => {
         getDetails(id).then(data => {
@@ -111,7 +111,7 @@ export function PropertiesDetail() {
         }).finally(() => setLoaded(true))
     }
 
-    const [thumbnailType , setThumbnailType] = useState("");
+    const [thumbnailType, setThumbnailType] = useState("");
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -188,7 +188,7 @@ export function PropertiesDetail() {
                         <div>
                             <form onSubmit={handlePriceOffer}>
                                 <div>
-                                    <label className="text-[#212529] text-base font-medium" htmlFor="price">{translation?.data?.business?.your_offer_price.replace("(:currency)" , `(${details?.prices?.primary?.code})`)}</label>
+                                    <label className="text-[#212529] text-base font-medium" htmlFor="price">{translation?.data?.business?.your_offer_price.replace("(:currency)", `(${details?.prices?.primary?.code})`)}</label>
                                     <input value={price} onChange={(e) => setPrice(e.target.value)} required className="w-full border border-[#d9d9d9] rounded-lg py-1.5 px-3 focus:outline-none" type="number" placeholder="" name="price" id="price" min={1} />
                                 </div>
                                 <div>
@@ -226,7 +226,7 @@ export function PropertiesDetail() {
                         <div className="flex gap-2.5 items-center overflow-x-auto py-3.75">
                             {details?.galleries?.map(item => (
                                 item.images.length > 0 && (item.title.toLowerCase().includes(translation?.data?.business?.cover_image?.toLowerCase() ?? "")
-                                    ? <button onClick={() => setThumbnailType("")} className={`whitespace-nowrap cursor-pointer text-[#4b4b4b] font-semibold text-sm border-2 ${thumbnailType === "" ? "bg-[#eee]" :""} border-[#f1f1f1] py-1 px-2 rounded-lg hover:shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-shadow duration-300 ease-in-out`} key={item.id}>{translation?.data?.business?.all} ({details?.gallery_count})</button>
+                                    ? <button onClick={() => setThumbnailType("")} className={`whitespace-nowrap cursor-pointer text-[#4b4b4b] font-semibold text-sm border-2 ${thumbnailType === "" ? "bg-[#eee]" : ""} border-[#f1f1f1] py-1 px-2 rounded-lg hover:shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-shadow duration-300 ease-in-out`} key={item.id}>{translation?.data?.business?.all} ({details?.gallery_count})</button>
                                     : <button onClick={() => setThumbnailType(item.title)} className={`whitespace-nowrap cursor-pointer text-[#4b4b4b] font-semibold text-sm border-2 ${item.title === thumbnailType ? "bg-[#eee]" : ""} border-[#f1f1f1] py-1 px-2 rounded-lg hover:shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-shadow duration-300 ease-in-out`} key={item.id}>{item.title} ({item.images.length})</button>)
                             ))}
                         </div>
@@ -257,7 +257,7 @@ export function PropertiesDetail() {
                             </div>
                             <div>
                                 <p className="mb-1.25 font-bold">{details?.company?.title}</p>
-                                <p className="text-xs font-semibold">{translation?.data?.business?.created_at_for_company.replace(":time" , "1 yıl önce")}</p>
+                                <p className="text-xs font-semibold">{translation?.data?.business?.created_at_for_company.replace(":time", "1 yıl önce")}</p>
                             </div>
                         </Link>
                         <div className="mb-4">
@@ -301,11 +301,17 @@ export function PropertiesDetail() {
             <div id="detail" className="w-full max-w-[90%] mt-12.5">
                 <div className="flex max-[992px]:flex-col-reverse max-[992px]:gap-20">
                     <div className="w-[30%] max-[992px]:w-full">
-                        {details?.features?.map((item , index) => (
+                        {details?.features?.map((item, index) => (
                             <div key={index} className="mb-7.5">
                                 <h2 className="p-5 mb-4 text-xl text-[#212529] font-semibold">{item.title}</h2>
                                 {item?.features?.map((item, index) => (
-                                    <FeatureCard index={index} key={item.id} title={item.title} value={item.title !== "Metrekare (m²)" ? item.value : `${item.value.min} - ${item.value.max}`} id={item.id} />
+                                    <FeatureCard index={index} key={item.id} title={item.title} value={
+                                        item.value[0]?.mimetype === "application/pdf"
+                                            ? "Var"
+                                            : item.title !== "Metrekare (m²)"
+                                                ? item.value
+                                                : `${item.value.min} - ${item.value.max}`
+                                    } id={item.id} />
                                 ))}
                             </div>
                         ))}
