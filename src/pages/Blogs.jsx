@@ -63,7 +63,7 @@ export function Blogs() {
                     </div>
                 </div>
             </div>
-            <div className="w-full mt-30 mb-20">
+            <div className="w-full mt-30 mb-20 max-[992px]:my-7.5">
                 <AppLinks />
             </div>
             <div className="w-full mt-17.5">

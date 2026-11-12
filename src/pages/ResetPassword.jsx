@@ -88,7 +88,7 @@ export function ResetPassword() {
                     <p className="text-center text-xs text-[#868686] font-medium">{translation?.data?.business?.copyright}</p>
                 </div>
             </div>
-            <div className='w-full mt-20 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
+            <div className='w-full mt-20 mb-30 max-[992px]:my-7.5'>
                 <AppLinks />
             </div>
         </div>

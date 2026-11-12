@@ -190,7 +190,7 @@ export function Edit() {
                     <button aria-label="update" onClick={handleUpdate} className="bg-[#198754] hover:bg-[#157347] transition-colors duration-300 ease-in-out cursor-pointer mt-7.5 text-white rounded-lg py-2 px-5 ml-12.5">{translation?.data?.business?.save}</button>
                 </div>
             </div>
-            <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
+            <div className='w-full mt-40 mb-30 max-[992px]:my-7.5'>
                 <AppLinks />
             </div>
             <div className='w-full'>

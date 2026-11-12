@@ -79,7 +79,7 @@ export function CompaniesDetail() {
                     <div className="text-[#636464] w-full bg-[#fafafa] h-fit p-3.75 rounded-lg">Henüz bir ilan yok.</div>
                 )}
             </div>
-            <div className='w-full mt-30 mb-30'>
+            <div className='w-full mt-30 mb-30 max-[992px]:my-7.5'>
                 <AppLinks />
             </div>
             <div className='w-full'>

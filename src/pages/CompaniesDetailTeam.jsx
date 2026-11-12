@@ -72,7 +72,7 @@ export function CompaniesDetailTeam() {
                     ))}
                 </div>
             </div>
-            <div className='w-full mt-30 mb-30'>
+            <div className='w-full mt-30 mb-30 max-[992px]:my-7.5'>
                 <AppLinks />
             </div>
             <div className='w-full'>

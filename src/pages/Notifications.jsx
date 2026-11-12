@@ -88,7 +88,7 @@ export function Notifications() {
                     />
                 </div>
             </div>
-            <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
+            <div className='w-full mt-40 mb-30 max-[992px]:my-7.5'>
                 <AppLinks />
             </div>
             <div className='w-full'>

@@ -55,13 +55,13 @@ export function Support() {
                         </button>
                     </form>
                     <div className="flex items-center gap-5">
-                        <a className="text-white text-sm opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                        <a href={`/support?q=${translation?.data?.business?.company_application}`} className="text-white text-sm opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
                             #{translation?.data?.business?.company_application}
                         </a>
-                        <a className="text-white text-sm opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                        <a href={`/support?q=${translation?.data?.business?.company_subscription}`} className="text-white text-sm opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
                             #{translation?.data?.business?.company_subscription}
                         </a>
-                        <a className="text-white text-sm opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                        <a href={`/support?q=${translation?.data?.business?.properties}`} className="text-white text-sm opacity-70 cursor-pointer hover:opacity-100 transition-opacity duration-300 ease-in-out">
                             #{translation?.data?.business?.properties}
                         </a>
                     </div>

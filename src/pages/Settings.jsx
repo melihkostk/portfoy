@@ -236,7 +236,7 @@ export function Settings() {
                         className="bg-[#27C5D2] hover:bg-[#026872] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold text-sm py-2 px-5 rounded-lg">{translation?.data?.business?.save}</button>
                 </div>
             </div>
-            <div className='w-full mt-40 mb-30 max-[992px]:mt-7.5 max-[992px]:mb-7.5'>
+            <div className='w-full mt-40 mb-30 max-[992px]:my-7.5'>
                 <AppLinks />
             </div>
             <div className='w-full'>

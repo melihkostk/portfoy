@@ -80,7 +80,7 @@ export function Corporate() {
                     p={translation.data?.business?.corporate_page_vision_section_descriptions}
                 />
             </div>
-            <div className='w-full mt-30 mb-30 max-[992px]:mt-7.5'>
+            <div className='w-full mt-30 mb-30 max-[992px]:my-7.5'>
                 <AppLinks />
             </div>
             <div className='w-full'>
