@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useAppContext } from "../context/AppContext"
 import check from "../assets/white-check.png"
 
-export function FilterSidebar({ type, team , currencie , selectedTeam , setSelectedTeam , handleFilter ,selectedCurrencie , setSelectedCurrencie , countries , selectedCountry , setSelectedCountry , cities , selectedCity , setSelectedCity , districts , selectedDistrict , setSelectedDistrict , minSell ,  setMinSell , maxSell , setMaxSell , status , setStatus , selectedType , setSelectedType}) {
+export function FilterSidebar({ type, companyProperties, team, currencie, selectedTeam, setSelectedTeam, handleFilter, selectedCurrencie, setSelectedCurrencie, countries, selectedCountry, setSelectedCountry, cities, selectedCity, setSelectedCity, districts, selectedDistrict, setSelectedDistrict, minSell, setMinSell, maxSell, setMaxSell, status, setStatus, selectedType, setSelectedType }) {
     const { translation } = useAppContext();
 
     function toggleType(id) {
@@ -36,6 +36,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                                         {item.title}
                                     </label>
                                 </div>
+                                <span className="text-base text-[#212529] font-medium">{companyProperties.data?.properties?.filter(property => property.type.id === item.id).length}</span>
                             </li>
                         ))}
                     </ul>
@@ -136,7 +137,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                         </div>
                     </div>
                 </div>
-                <button type="button" onClick={() => handleFilter(selectedCountry , selectedCity , selectedDistrict , selectedTeam , minSell , maxSell , selectedCurrencie , status , selectedType)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] font-semibold text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
+                <button type="button" onClick={() => handleFilter(selectedCountry, selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status, selectedType)} className="uppercase w-full rounded-lg bg-[#f1f1f1] text-[#4b4b4b] font-semibold text-sm py-2 px-5 sticky bottom-7.5 cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
 
             </form>
 

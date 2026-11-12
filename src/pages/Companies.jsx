@@ -153,7 +153,7 @@ export function Companies() {
             </div>
             <div className="w-full max-w-[90%]">
                 <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-start">
-                    <p className="text-[#6C757D] w-full max-[992px]:mb-4 max-[992px]:mt-4 max-[992px]:text-center">
+                    <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4 max-[992px]:text-center">
                         {companies?.pagination?.pagination_text}
                     </p>
                     <Pagination

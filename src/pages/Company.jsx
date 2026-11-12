@@ -202,6 +202,7 @@ export function Company({ message, messageShown, setMessageShown }) {
                             setStatus={setStatus}
                             selectedType={selectedType}
                             setSelectedType={setSelectedType}
+                            companyProperties={companyProperties}
                         />
                     </div>
                     <div className="w-[77%] max-[992px]:w-full max-[992px]:pl-0 pl-7.5 flex flex-col">
