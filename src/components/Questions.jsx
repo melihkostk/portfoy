@@ -19,7 +19,7 @@ export function Questions({question , answer}) {
                 </div>
             </div>
             </div>
-            <div className={`px-5 py-4 select-none ${accordionOpen ? "block" : "hidden"}`}>
+            <div className={`px-5 py-4 select-none font-medium ${accordionOpen ? "block" : "hidden"}`}>
                 <p className="text-[#212529]">{answer}</p>
             </div>
         </div>
