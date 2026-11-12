@@ -15,7 +15,7 @@ export function AppLinks() {
                     <p className="text-[30px] text-[#212529] font-semibold">{translation?.data?.business?.download_app_title}</p>
                     <p className="text-base text-[#212529] font-medium">{translation?.data?.business?.download_app_description}</p>
                 </div>
-                <div className="flex items-center gap-2.5 w-[25%] max-[992px]:w-full">
+                <div className="flex items-center flex-wrap gap-2.5 w-[25%] max-[992px]:w-full">
                     <a aria-label="googlePlay" className="max-[992px]:mt-5" href="https://play.google.com/store/apps/details?id=com.pigasoft.portfoy&hl=tr">
                         <img className="hover:opacity-70 transition-opacity duration-300 ease-in-out max-w-45" src={googlePlay} alt="" />
                     </a>

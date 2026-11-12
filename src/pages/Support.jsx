@@ -48,7 +48,7 @@ export function Support() {
             <div className="w-full bg-[linear-gradient(70deg,#27C5D2,#048B99)] flex items-center justify-center py-10 mb-10">
                 <div className="flex flex-col items-center justify-center w-full max-w-[90%]">
                     <h2 className="text-white text-[32px] font-semibold">{translation?.data?.business?.how_we_can_help_you}</h2>
-                    <form action={"/support"} method="GET" className="w-[60%] relative mb-2.5 bg-[#FFFFFF33] shadow-[0_0_120px_#FFFFFF80]">
+                    <form action={"/support"} method="GET" className="w-[60%] max-[992px]:w-full relative mb-2.5 bg-[#FFFFFF33] shadow-[0_0_120px_#FFFFFF80]">
                         <input className="w-full border border-white bg-transparent text-white rounded-lg p-2.5 placeholder:text-white focus:outline-none" type="text" placeholder={translation?.data?.business?.search_on_faqs_and_videos} name="q"></input>
                         <button aria-label="search" className="w-9 h-9 bg-[#FFFFFF4D] rounded-lg absolute cursor-pointer right-1.5 top-1.5 flex items-center justify-center">
                             <img className="w-6 h-6" src={search} alt="" />
@@ -75,7 +75,7 @@ export function Support() {
                                 <h2 className="text-[32px] text-[#212529] mb-2 font-semibold">{translation?.data?.business?.videos}</h2>
                                 <p className="mb-4 text-[#212529] font-semibold">{translation?.data?.business?.support_videos_description}</p>
                             </div>
-                            <div className="flex -mx-3.75">
+                            <div className="flex justify-between -mx-3.75 flex-wrap">
                                 <VideoCard />
                                 <VideoCard />
                                 <VideoCard />
@@ -102,8 +102,8 @@ export function Support() {
                     </div>
                 </>
                 :
-                <div className="w-1/2">
-                    <div className="flex items-center justify-between mb-7.5">
+                <div className="w-1/2 max-[992px]:w-full max-[992px]:max-w-[90%]">
+                    <div className="flex items-center justify-between mb-7.5  flex-wrap-reverse">
                         <h2 className="text-[#212529] text-[32px] font-semibold">{translation?.data?.business?.support_title_with_q.replace(":q", q)}</h2>
                         <a className="text-black text-base font-medium opacity-70 hover:text-[#27c5d2] hover:opacity-100 transition-[colors , opacity] duration-300 ease-in-out" href="/support">{translation?.data?.business?.back_to_support}</a>
                     </div>
@@ -131,7 +131,7 @@ export function Support() {
                     </div>
                 </div>
             }
-            <div className='w-full mt-30 mb-30'>
+            <div className='w-full mt-30 mb-30 max-[992px]:my-7.5'>
                 <AppLinks />
             </div>
             <div className='w-full'>

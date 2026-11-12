@@ -96,7 +96,7 @@ export function Footer() {
                     </ul>
                 </div>
             </div>}
-            <div className="w-full bg-[#27C5D2] flex justify-center py-3.75 mt-20">
+            <div className="w-full bg-[#27C5D2] flex justify-center py-3.75 mt-20 max-[992px]:mt-7.5">
                 <div className="w-full max-w-[90%] flex justify-between px-3 max-[992px]:flex-col max-[992px]:gap-3.75 items-center">
                     {loged && <p className="text-white font-medium text-center">
                         {translation?.data?.business?.customer_support_line}

@@ -2,7 +2,7 @@ import video from "../assets/video.jpg"
 
 export function VideoCard(){
     return(
-        <a href="https://demo.pigasoft.com/portfoy/public/storage/videos/file-example-mp4-640-3mg.mp4" target="_blank" className="m-3.75 rounded-lg p-3.75 shadow-[0_0_30px_#0000001A] cursor-pointer transition-all duration-300 ease-in-out hover:scale-110 hover:text-[#27C5D2]">
+        <a href="https://demo.pigasoft.com/portfoy/public/storage/videos/file-example-mp4-640-3mg.mp4" target="_blank" className="m-3.7 shrink-0 w-[calc(25%-30px)] max-[992px]:w-[calc(50%-20px)] rounded-lg p-3.75 shadow-[0_0_30px_#0000001A] cursor-pointer transition-all duration-300 ease-in-out hover:scale-110 hover:text-[#27C5D2]">
             <div className="mb-5">
                 <img className="w-full object-cover rounded-lg aspect-video" src={video} alt="" />
             </div>
