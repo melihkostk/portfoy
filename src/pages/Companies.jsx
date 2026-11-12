@@ -104,9 +104,9 @@ export function Companies() {
             </div>
             <div className="w-full max-w-[90%]">
                 <div>
-                    <div>
+                    <div className="w-1/2 max-[992px]:w-full">
                         <h2 className="text-[32px] mb-2 font-semibold">{translation?.data?.business?.companies_page_section_title}</h2>
-                        <p className="text-sm text-[#9A9A9A]">
+                        <p className="text-sm text-[#9A9A9A] font-medium">
                             {translation?.data?.business?.companies_page_section_description}
                         </p>
                     </div>
@@ -152,8 +152,8 @@ export function Companies() {
                 </div>
             </div>
             <div className="w-full max-w-[90%]">
-                <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-center">
-                    <p className="text-[#6C757D] max-[992px]:mb-4 max-[992px]:mt-4">
+                <div className="flex items-center justify-between w-full max-[992px]:flex-col max-[992px]:items-start">
+                    <p className="text-[#6C757D] w-full max-[992px]:mb-4 max-[992px]:mt-4 max-[992px]:text-center">
                         {companies?.pagination?.pagination_text}
                     </p>
                     <Pagination

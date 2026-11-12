@@ -75,7 +75,7 @@ export function Support() {
                                 <h2 className="text-[32px] text-[#212529] mb-2 font-semibold">{translation?.data?.business?.videos}</h2>
                                 <p className="mb-4 text-[#212529] font-semibold">{translation?.data?.business?.support_videos_description}</p>
                             </div>
-                            <div className="flex justify-between -mx-3.75 flex-wrap">
+                            <div className="flex justify-between -mx-3.75 flex-wrap mb-5">
                                 <VideoCard />
                                 <VideoCard />
                                 <VideoCard />

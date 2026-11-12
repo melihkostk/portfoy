@@ -16,7 +16,7 @@ export function CompanyCard({ name, type, location, id, badges }) {
                 </Link>
                 <div className="flex items-center justify-center gap-2.5">
                     {badges.length > 0 && <img className="w-5 h-6" src={badge} title={badges?.[0]?.title} alt={badges?.[0]?.title} />}
-                    <p className="text-sm my-3.75 text-[#686868]">
+                    <p className="text-sm my-3.75 font-medium text-[#686868]">
                         {type}
                     </p>
                 </div>
@@ -28,7 +28,7 @@ export function CompanyCard({ name, type, location, id, badges }) {
                     ))}
                 </ul>
             </div>
-            <Link to={`/companies/${id}`} className="text-center mt-7.5 text-[#626262] text-sm font-medium bg-[#e8e8e8] hover:text-white hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out w-full py-2.5 rounded-lg uppercase" href="">{translation?.data?.business?.show_company_profile}</Link>
+            <Link to={`/companies/${id}`} className="text-center mt-7.5 text-[#626262] text-sm font-semibold bg-[#e8e8e8] hover:text-white hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out w-full py-2.5 rounded-lg uppercase" href="">{translation?.data?.business?.show_company_profile}</Link>
         </div>
     )
 }

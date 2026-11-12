@@ -20,14 +20,14 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
             </div>
             <form action="">
                 <div className="flex justify-between items-center mb-3.75">
-                    <p className="uppercase text-[#b4b4b4] text-sm">{translation?.data?.business?.filter_properties}</p>
-                    <a className="text-[#b4b4b4] text-sm underline hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">{translation?.data?.business?.clear}</a>
+                    <p className="uppercase text-[#b4b4b4] font-semibold text-sm">{translation?.data?.business?.filter_properties}</p>
+                    <a className="text-[#b4b4b4] font-medium text-sm underline hover:text-[#27C5D2] transition-colors duration-300 ease-in-out" href="">{translation?.data?.business?.clear}</a>
                 </div>
                 <div>
                     <ul className="my-7.5">
                         {type?.map(item => (
                             <li key={item.id} className="flex justify-between items-center mb-1.25">
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-2 select-none">
                                     <input className="hidden" id={`type-${item.id}`} name="type" type="checkbox" checked={selectedType.includes(item.id)} onChange={() => toggleType(item.id)} />
                                     <label className={`flex items-center gap-2.5 text-[13px] ${selectedType.includes(item.id) ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`} htmlFor={`type-${item.id}`}>
                                         <div className={`w-3.75 flex items-center justify-center h-3.75 rounded-sm border ${selectedType.includes(item.id) ? "bg-[#27c5d2] border-[#D9D9D9]" : "border-[#D9D9D9]"}`}>
@@ -42,7 +42,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                 </div>
                 <div className="mb-5">
                     <label className="text-sm font-medium text-[#878787] mb-2" htmlFor="personal">{translation?.data?.business?.choose?.personal}</label>
-                    <select id="personal" name="personal" value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)} className="block w-full mt-2 border border-[#d9d9d9] rounded-lg py-1.5 pl-3 pr-9">
+                    <select id="personal" name="personal" value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)} className="block w-full font-medium mt-2 border border-[#d9d9d9] rounded-lg py-1.5 pl-3 pr-9">
                         <option value={""}>{translation?.data?.business?.all}</option>
                         {team?.personals?.map(item => (
                             <option value={item.id} key={item.id}>{item.name}</option>
@@ -52,11 +52,11 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                 <div className="mb-5">
                     <label className="text-sm font-medium text-[#878787] mb-2" htmlFor="price">{translation?.data?.business?.sell_price}</label>
                     <div className="flex gap-1 mt-2">
-                        <input value={minSell} onChange={(e) => setMinSell(e.target.value)} type="number" placeholder={translation?.data?.business?.min} min={0} className="border focus:outline-none border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
-                        <input value={maxSell} onChange={(e) => setMaxSell(e.target.value)} type="number" placeholder={translation?.data?.business?.max} className="border focus:outline-none border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
+                        <input value={minSell} onChange={(e) => setMinSell(e.target.value)} type="number" placeholder={translation?.data?.business?.min} min={0} className="border font-medium focus:outline-none border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
+                        <input value={maxSell} onChange={(e) => setMaxSell(e.target.value)} type="number" placeholder={translation?.data?.business?.max} className="border font-medium focus:outline-none border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full" />
                     </div>
                     <div className="mt-2">
-                        <select id="price" name="price" value={selectedCurrencie} onChange={(e) => setSelectedCurrencie(e.target.value)} className="border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
+                        <select id="price" name="price" value={selectedCurrencie} onChange={(e) => setSelectedCurrencie(e.target.value)} className="border font-medium border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
                             {currencie.map(item => (
                                 <option value={item.id} key={item.id}>({item.code}) {item.title}</option>
                             ))}
@@ -68,7 +68,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                     <div>
                         <div className="mb-2">
                             <label className="text-[13px] text-[#212529] font-semibold" htmlFor="country">{translation?.data?.business?.choose?.country}</label>
-                            <select name="country" id="country" value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="block border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
+                            <select name="country" id="country" value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="block border font-medium border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
                                 <option value="">{translation?.data?.business?.choose?.country}</option>
                                 {countries?.data?.map(item => (
                                     <option key={item.id} value={item.id}>{item.title}</option>
@@ -77,7 +77,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                         </div>
                         <div className="mb-2">
                             <label htmlFor="city" className="text-[13px] text-[#212529] font-semibold">{translation?.data?.business?.choose?.city}</label>
-                            <select id="city" name="city" value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="block border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
+                            <select id="city" name="city" value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="block border font-medium border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
                                 <option value="">{translation?.data?.business?.choose?.city}</option>
                                 {cities.map(item => (
                                     <option key={item.id} value={item.id}>{item.title}</option>
@@ -86,7 +86,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                         </div>
                         <div className="mb-2">
                             <label htmlFor="district" className="text-[13px] text-[#212529] font-semibold">{translation?.data?.business?.choose?.district}</label>
-                            <select id="district" name="district" value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="block border border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
+                            <select id="district" name="district" value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)} className="block border font-medium border-[#d9d9d9] rounded-lg py-1.5 px-3 w-full">
                                 <option value="">{translation?.data?.business?.choose?.district}</option>
                                 {districts.map(item => (
                                     <option key={item.id} value={item.id}>{item.title}</option>
@@ -98,7 +98,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                 <div className="mb-5">
                     <p className="text-sm text-[#878787] font-medium mb-2" htmlFor="">{translation?.data?.business?.property_status}</p>
                     <div>
-                        <div className="flex items-center gap-2.5 mb-1.25">
+                        <div className="flex items-center gap-2.5 mb-1.25 select-none">
                             <input className="hidden" id="status-all" name="status" type="checkbox" checked={status === ""} onChange={() => setStatus("")} />
                             <label className={`flex items-center gap-2.5 text-[13px] ${status === "" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`} htmlFor="status-all">
                                 <div className={`flex items-center justify-center w-3.75 h-3.75 rounded-sm border ${status === "" ? "bg-[#27c5d2] border-[#D9D9D9]" : "border-[#D9D9D9]"}`}>
@@ -107,7 +107,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                                 {translation?.data?.business?.all}
                             </label>
                         </div>
-                        <div className="flex items-center gap-2.5 mb-1.25">
+                        <div className="flex items-center gap-2.5 mb-1.25 select-none">
                             <input className="hidden" id="status-published" name="status" type="checkbox" checked={status === "published"} onChange={() => setStatus("published")} />
                             <label htmlFor="status-published" className={`flex items-center gap-2.5 text-[13px] ${status === "published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`}>
                                 <div className={`flex items-center justify-center w-3.75 h-3.75 rounded-sm border ${status === "published" ? "bg-[#27c5d2] border-[#D9D9D9]" : "border-[#D9D9D9]"}`}>
@@ -116,7 +116,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                                 {translation?.data?.business?.only_published_properties}
                             </label>
                         </div>
-                        <div className="flex items-center gap-2.5 mb-1.25">
+                        <div className="flex items-center gap-2.5 mb-1.25 select-none">
                             <input className="hidden" id="status-not_published" name="status" type="checkbox" checked={status === "not_published"} onChange={() => setStatus("not_published")} />
                             <label htmlFor="status-not_published" className={`flex items-center gap-2.5 text-[13px] ${status === "not_published" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`}>
                                 <div className={`flex items-center justify-center w-3.75 h-3.75 rounded-sm border border-[#D9D9D9] ${status === "not_published" ? "bg-[#27c5d2]" : ""}`}>
@@ -125,7 +125,7 @@ export function FilterSidebar({ type, team , currencie , selectedTeam , setSelec
                                 {translation?.data?.business?.only_not_published_properties}
                             </label>
                         </div>
-                        <div className="flex items-center gap-2.5">
+                        <div className="flex items-center gap-2.5 select-none">
                             <input className="hidden" id="status-sold" name="status" type="checkbox" checked={status === "sold"} onChange={() => setStatus("sold")} />
                             <label htmlFor="status-sold" className={`flex items-center gap-2.5 text-[13px] ${status === "sold" ? "text-[#27c5d2]" : "text-[#212529]"} font-semibold transition-colors duration-300 ease-in-out cursor-pointer`}>
                                 <div className={`flex items-center justify-center w-3.75 h-3.75 rounded-sm border border-[#D9D9D9] ${status === "sold" ? "bg-[#27c5d2]" : ""}`}>

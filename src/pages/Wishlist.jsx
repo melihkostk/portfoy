@@ -70,7 +70,7 @@ export function Wishlist() {
 
     useEffect(() => {
         setLoaded(false)
-        getWishlist(selectedSort, selectedType, selectedCountry, selectedCity, selectedDistrict, page).then(setWishlist).finally(() => setLoaded(true))
+        getWishlist(selectedSort, selectedType, selectedCountry, selectedCity, selectedDistrict, page).then(setWishlist).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [selectedSort , selectedType, selectedCountry, selectedCity, selectedDistrict, page])
 
     const [propertyType, setPropertyType] = useState([]);

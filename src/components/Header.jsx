@@ -260,7 +260,7 @@ export function Header({ details }) {
                                 <p className="text-white text-xs font-medium">Sistem Admin</p>
                             </div>
                             <div>
-                                <ul>
+                                <ul className="select-none">
                                     <li className="flex items-center font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
                                         <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
                                         <Link to={"/wishlist"} className="text-white text-sm">{translation?.data?.business?.my_wishlist}</Link>
