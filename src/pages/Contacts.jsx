@@ -26,7 +26,7 @@ export function Contacts() {
     const [loaded , setLoaded] = useState(false);
 
      useEffect(() => {
-        getContactInfo().then(setContactInfo).finally(() => setLoaded(true))
+        getContactInfo().then(setContactInfo).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     useEffect(() => {

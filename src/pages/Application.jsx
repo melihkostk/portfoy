@@ -30,14 +30,14 @@ export function Application() {
     const [types, setTypes] = useState([]);
 
     useEffect(() => {
-        getCompanyTypes(locale).then(setTypes)
+        getCompanyTypes(locale).then(setTypes).catch((error) => console.log(error))
     }, [locale])
 
     const [countries, setCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState("");
 
     useEffect(() => {
-        getAllCountries().then(setCountries);
+        getAllCountries().then(setCountries).catch((error) => console.log(error));
     }, [])
 
     const [cities, setCities] = useState([]);
@@ -45,7 +45,7 @@ export function Application() {
 
     useEffect(() => {
         if (!selectedCountry) return;
-        getAllCities(selectedCountry).then(setCities)
+        getAllCities(selectedCountry).then(setCities).catch((error) => console.log(error))
     }, [selectedCountry])
 
     const [districts, setDistricts] = useState([]);
@@ -53,14 +53,14 @@ export function Application() {
 
     useEffect(() => {
         if (!selectedCity) return;
-        getAllDistricts(selectedCity).then(setDistricts)
+        getAllDistricts(selectedCity).then(setDistricts).catch((error) => console.log(error))
     }, [selectedCity])
 
     const [streets, setStreets] = useState([]);
 
     useEffect(() => {
         if (!selectedDistrict) return;
-        getAllStreets(selectedDistrict).then(setStreets)
+        getAllStreets(selectedDistrict).then(setStreets).catch((error) => console.log(error))
     }, [selectedDistrict])
 
     return (

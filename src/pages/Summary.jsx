@@ -24,19 +24,19 @@ export function Summary() {
     const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
-        getCount().then(setCounts).finally(() => setLoaded(true))
+        getCount().then(setCounts).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [info, setInfo] = useState([])
 
     useEffect(() => {
-        getCompanyProfile().then(setInfo)
+        getCompanyProfile().then(setInfo).catch((error) => console.log(error))
     }, [])
 
     const [summaryProperties, setSummaryProperties] = useState([]);
 
     useEffect(() => {
-        getSummaryProperties().then(setSummaryProperties)
+        getSummaryProperties().then(setSummaryProperties).catch((error) => console.log(error))
     }, [])
 
     const [viewOptions, setViewOptions] = useState(false)

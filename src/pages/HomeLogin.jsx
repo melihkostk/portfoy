@@ -25,11 +25,11 @@ export function HomeLogin({ logOut }) {
     const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
-        getRecentlyProperties().then(setRecentlyProperties).finally(() => setLoaded(true))
+        getRecentlyProperties().then(setRecentlyProperties).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     useEffect(() => {
-        getDiscountedProperties().then(setDiscountedProperties)
+        getDiscountedProperties().then(setDiscountedProperties).catch((error) => console.log(error))
     }, [])
 
     function scrollToDot(ref, index, dotCount) {
@@ -42,7 +42,7 @@ export function HomeLogin({ logOut }) {
     const [news, setNews] = useState([])
 
     useEffect(() => {
-        getArticles(locale).then(setNews)
+        getArticles(locale).then(setNews).catch((error) => console.log(error))
     }, [locale])
 
     return (

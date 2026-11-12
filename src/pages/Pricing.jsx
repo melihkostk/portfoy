@@ -18,7 +18,7 @@ export function Pricing() {
     const [type, setType] = useState([]);
 
     useEffect(() => {
-        getCompanyTypes(locale).then(setType)
+        getCompanyTypes(locale).then(setType).catch((error) => console.log(error))
     }, [locale])
 
     const [pricingCate, setPricingCate] = useState(2)
@@ -26,7 +26,7 @@ export function Pricing() {
     const [packages, setPackages] = useState([]);
 
     useEffect(() => {
-        getPackages().then(setPackages)
+        getPackages().then(setPackages).catch((error) => console.log(error))
     }, [])
 
     return (

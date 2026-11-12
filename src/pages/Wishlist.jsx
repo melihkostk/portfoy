@@ -28,7 +28,7 @@ export function Wishlist() {
     const [sort, setSort] = useState([]);
 
     useEffect(() => {
-        getSortingOptions().then(setSort)
+        getSortingOptions().then(setSort).catch((error) => console.log(error))
     }, [])
 
     const [selectedSort, setSelectedSort] = useState("");
@@ -37,14 +37,14 @@ export function Wishlist() {
     const [selectedType, setSelectedType] = useState("");
 
     useEffect(() => {
-        getCompanyTypes(locale).then(setType)
+        getCompanyTypes(locale).then(setType).catch((error) => console.log(error))
     }, [locale])
 
     const [countries, setCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState("")
 
     useEffect(() => {
-        getAllCountries().then(setCountries)
+        getAllCountries().then(setCountries).catch((error) => console.log(error))
     }, [])
 
     const [cities, setCities] = useState([]);
@@ -54,7 +54,7 @@ export function Wishlist() {
         if (!selectedCountry) {
             return;
         }
-        getAllCities(selectedCountry).then(setCities)
+        getAllCities(selectedCountry).then(setCities).catch((error) => console.log(error))
     }, [selectedCountry])
 
     const [district, setDistrict] = useState([]);
@@ -64,7 +64,7 @@ export function Wishlist() {
         if (!selectedCity) {
             return
         }
-        getAllDistricts(selectedCity).then(setDistrict)
+        getAllDistricts(selectedCity).then(setDistrict).catch((error) => console.log(error))
 
     }, [selectedCity])
 
@@ -77,7 +77,7 @@ export function Wishlist() {
     const [selectedPropertyType, setSelectedPropertyType] = useState("");
 
     useEffect(() => {
-        getAllPropertiesType().then(setPropertyType)
+        getAllPropertiesType().then(setPropertyType).catch((error) => console.log(error))
     }, [])
 
     const [toogleMessageShown, setToogleMessageShown] = useState(false)
@@ -90,18 +90,20 @@ export function Wishlist() {
             }
             setLoaded(false)
             getWishlist(selectedSort, selectedType, selectedCountry, selectedCity, selectedDistrict).then(setWishlist).finally(() => { setLoaded(true); setToogleMessage(data.message); setToogleMessageShown(true) })
-        })
+        }).catch((error) => console.log(error))
     }
 
     function handleFilterWishlist(selectedPropertyType, country, city, district) {
         setLoaded(false)
-        getWishlist(selectedSort, selectedPropertyType, country, city, district).then(setWishlist).finally(() => setLoaded(true))
+        getWishlist(selectedSort, selectedPropertyType, country, city, district).then(setWishlist)
+        .catch((error) => console.log(error))
+        .finally(() => setLoaded(true))
     }
 
     const [info, setInfo] = useState([]);
 
     useEffect(() => {
-        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+        getCompanyInfo().then(setInfo).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [user, setUser] = useState([]);

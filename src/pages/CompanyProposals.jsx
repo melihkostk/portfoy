@@ -21,19 +21,19 @@ export function CompanyProposals() {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        getCompanyProposals().then(setProposals).finally(() => setLoaded(true))
+        getCompanyProposals().then(setProposals).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [info, setInfo] = useState([])
 
     useEffect(() => {
-        getCompanyProfile().then(setInfo)
+        getCompanyProfile().then(setInfo).catch((error) => console.log(error))
     }, [])
 
     const [customerProposals, setCustomerPropoals] = useState([]);
 
     useEffect(() => {
-        getCustomerProposals(customer_id).then(setCustomerPropoals)
+        getCustomerProposals(customer_id).then(setCustomerPropoals).catch((error) => console.log(error))
     }, [customer_id])
 
     return (

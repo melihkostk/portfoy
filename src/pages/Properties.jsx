@@ -120,7 +120,7 @@ export function Properties() {
     const [sortingOptions, setSortingOptions] = useState([]);
 
     useEffect(() => {
-        getSortingOptions().then(setSortingOptions)
+        getSortingOptions().then(setSortingOptions).catch((error) => console.log(error))
     }, []);
 
     const [discounted, setDiscounted] = useState([])
@@ -128,13 +128,13 @@ export function Properties() {
     useEffect(() => {
         if (!category) return;
 
-        getDiscountedProperties(page).then(setDiscounted);
+        getDiscountedProperties(page).then(setDiscounted).catch((error) => console.log(error));
     }, [category, page, filter]);
 
     const [options, setOptions] = useState([]);
 
     useEffect(() => {
-        getAllFilterOptions(typeId).then(setOptions)
+        getAllFilterOptions(typeId).then(setOptions).catch((error) => console.log(error))
     }, [typeId])
 
     const [openGroups, setOpenGroups] = useState({});
@@ -146,7 +146,7 @@ export function Properties() {
     const [propertiesTypes, setPropertiesTypes] = useState([]);
 
     useEffect(() => {
-        getAllPropertiesType().then(setPropertiesTypes)
+        getAllPropertiesType().then(setPropertiesTypes).catch((error) => console.log(error))
     }, []);
 
     const currentTypeName = propertiesTypes?.find(item => item.id === Number(typeId))?.title;
@@ -158,7 +158,7 @@ export function Properties() {
     const [quickFilters, setQuickFilters] = useState([]);
 
     useEffect(() => {
-        getQuickFilters().then(setQuickFilters)
+        getQuickFilters().then(setQuickFilters).catch((error) => console.log(error))
     }, [])
 
     const [addQuickFilterMenu, setAddQuickFilterMenu] = useState(false)
@@ -227,7 +227,7 @@ export function Properties() {
             }
             setSuccessPopUp(true);
             setError(data.message);
-        });
+        }).catch((error) => console.log(error));
     };
 
     const [offerModelShown, setOfferModalShown] = useState(false)
@@ -247,7 +247,7 @@ export function Properties() {
             setOfferPropertyId(id)
             setOfferStep(1)
             setOfferModalShown(true)
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     function handleCreateProposal() {
@@ -256,7 +256,7 @@ export function Properties() {
         const properties = { [offerPropertyId]: { price: Number(offerDetails?.prices?.primary?.number), title: offerDetails?.title } }
         createProposal(customerNote, offerNotify, offerCurrencie, selectedCustomer, properties).then(() => {
             navigate("/company/proposals", { replace: true })
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     const titleAndSortRow = (

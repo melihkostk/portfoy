@@ -21,13 +21,13 @@ export function NewsDetail() {
 
     useEffect(() => {
         setLoaded(false)
-        showArticle(id).then(setArticle).finally(() => setLoaded(true))
+        showArticle(id).then(setArticle).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [id])
 
     const [news, setNews] = useState([])
 
     useEffect(() => {
-        getArticles(locale).then(setNews)
+        getArticles(locale).then(setNews).catch((error) => console.log(error))
     }, [locale])
 
     return (

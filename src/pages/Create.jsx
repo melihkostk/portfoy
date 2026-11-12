@@ -22,7 +22,7 @@ export function Create() {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        getAllPropertiesType().then(setPropertyType).finally(() => setLoaded(true))
+        getAllPropertiesType().then(setPropertyType).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [selectedType, setSelectedType] = useState("");
@@ -30,7 +30,7 @@ export function Create() {
     const [countries, setCountries] = useState([]);
 
     useEffect(() => {
-        getAllCountries().then(setCountries);
+        getAllCountries().then(setCountries).catch((error) => console.log(error));
     }, [])
 
     const [selectedCountry, setSelectedCountry] = useState("");
@@ -39,7 +39,7 @@ export function Create() {
 
     useEffect(() => {
         if (!selectedCountry) return;
-        getAllCities(selectedCountry).then(setCities);
+        getAllCities(selectedCountry).then(setCities).catch((error) => console.log(error));
     }, [selectedCountry])
 
     const [selectedCity, setSelectedCity] = useState("");
@@ -48,7 +48,7 @@ export function Create() {
 
     useEffect(() => {
         if (!selectedCity) return;
-        getAllDistricts(selectedCity).then(setDistrict)
+        getAllDistricts(selectedCity).then(setDistrict).catch((error) => console.log(error))
     }, [selectedCity])
 
     const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -57,7 +57,7 @@ export function Create() {
 
     useEffect(() => {
         if (!selectedDistrict) return;
-        getAllStreets(selectedDistrict).then(setStreets)
+        getAllStreets(selectedDistrict).then(setStreets).catch((error) => console.log(error))
     }, [selectedDistrict])
 
     const [selectedStreet, setSelectedStreet] = useState("");
@@ -67,7 +67,7 @@ export function Create() {
     const [currencies, setCurrencies] = useState([]);
 
     useEffect(() => {
-        getAllCurrencies().then(setCurrencies);
+        getAllCurrencies().then(setCurrencies).catch((error) => console.log(error));
     }, [])
 
     const [selectedCurrencie, setSelectedCurrencie] = useState(1);
@@ -95,7 +95,7 @@ export function Create() {
             else {
                 setErrorMessageShown(true)
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     const [selectedProject, setSelectedProject] = useState("");

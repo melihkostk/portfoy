@@ -85,7 +85,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                         : feature
                 )
             })))
-        }).finally(() => setLoaded(true));
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true));
     }, [id])
 
     function handleFeatureChange(groupIndex, featureId, newValue) {
@@ -106,7 +106,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 navigate("/company")
                 setMessage(data.message)
             }
-        }).finally(() => setMessageShown(true))
+        }).catch((error) => console.log(error)).finally(() => setMessageShown(true))
     }
 
     const [deletePopUp, setDeletePopUp] = useState(false)
@@ -124,7 +124,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 navigate(`/properties/${data?.data?.id}/edit`)
                 setMessage(data.message)
             }
-        }).finally(() => { setLoaded(true); setMessageShown(true) });
+        }).catch((error) => console.log(error)).finally(() => { setLoaded(true); setMessageShown(true) });
     }
 
     const [error, setError] = useState([]);
@@ -142,7 +142,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 setError(data);
                 setToogleMenu(false);
             }
-        }).finally(() => { setLoaded(true); setMessageShown(true) });
+        }).catch((error) => console.log(error)).finally(() => { setLoaded(true); setMessageShown(true) });
     }
 
     const [toggleMenu, setToogleMenu] = useState(false);
@@ -159,7 +159,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 navigate("/company")
                 setMessage(data.message)
             }
-        }).finally(() => { setLoaded(true); setMessageShown(true) });
+        }).catch((error) => console.log(error)).finally(() => { setLoaded(true); setMessageShown(true) });
     }
 
     const [publishPopUp, setPublishPopUp] = useState(false);
@@ -187,31 +187,31 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 setErrorMessageShown(true)
                 setError(data)
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     const [externalProposals, setExternalProposals] = useState([]);
 
     useEffect(() => {
-        getExternalProposals(id).then(setExternalProposals);
+        getExternalProposals(id).then(setExternalProposals).catch((error) => console.log(error));
     }, [id])
 
     const [offers, setOffers] = useState([]);
 
     useEffect(() => {
-        getAllOffers(id).then(setOffers);
+        getAllOffers(id).then(setOffers).catch((error) => console.log(error));
     }, [id])
 
     const [proposals, setProposals] = useState([]);
 
     useEffect(() => {
-        getAllProposals(id).then(setProposals)
+        getAllProposals(id).then(setProposals).catch((error) => console.log(error))
     }, [id])
 
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
-        getAllTransactions(id).then(setTransactions);
+        getAllTransactions(id).then(setTransactions).catch((error) => console.log(error));
     }, [id])
 
     const [deleteVideoPopUp, setDeleteVideoPopUp] = useState(false);
@@ -233,7 +233,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                     setDetail(data)
                 })
             }
-        }).finally(() => { setDeleteVideoPopUp(false); setLoaded(true) });
+        }).catch((error) => console.log(error)).finally(() => { setDeleteVideoPopUp(false); setLoaded(true) });
     }
 
     const [errorMessage, setErrorMessage] = useState("");
@@ -271,7 +271,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                     setDetail(data);
                 })
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     function handleAddLocalVideo(e) {
@@ -291,7 +291,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                     setDetail(data);
                 })
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     const [mediaID, setMediaID] = useState("");
@@ -310,7 +310,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                     setDetail(data)
                 })
             }
-        }).finally(() => { setDeleteVideoPopUp(false); setLoaded(true) });
+        }).catch((error) => console.log(error)).finally(() => { setDeleteVideoPopUp(false); setLoaded(true) });
     }
 
     const [coverFile, setCoverFile] = useState(null);
@@ -329,7 +329,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                     setDetail(data)
                 })
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     function handleUploadGallery(file, categoryId) {
@@ -346,7 +346,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                     setDetail(data)
                 })
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     const [offerInfo, setOfferInfo] = useState([]);
@@ -375,21 +375,21 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 setSuccessMessageShown(true)
                 getAllOffers(id).then(setOffers)
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     const [prices, setPrices] = useState([]);
 
     useEffect(() => {
-        getPrices(id).then(setPrices)
+        getPrices(id).then(setPrices).catch((error) => console.log(error))
     }, [id])
 
     const [editPrice, setEditPrice] = useState(false)
 
     function handleDeletePrice(priceId) {
         deletePrice(id, priceId).then(() => {
-            getPrices(id).then(setPrices)
-        });
+            getPrices(id).then(setPrices).catch((error) => console.log(error))
+        }).catch((error) => console.log(error));
     }
 
     return (

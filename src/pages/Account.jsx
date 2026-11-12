@@ -47,13 +47,13 @@ export function Account() {
     const [team, setTeam] = useState([]);
 
     useEffect(() => {
-        getTeam().then(setTeam)
+        getTeam().then(setTeam).catch((error) => console.log(error))
     }, [])
 
     const [sub, setSub] = useState([]);
 
     useEffect(() => {
-        getActiveSubscription().then(setSub)
+        getActiveSubscription().then(setSub).catch((error) => console.log(error))
     }, [])
 
     const [successUpdate, setSuccessUpdate] = useState(false);
@@ -75,7 +75,7 @@ export function Account() {
                 setSucessUpdateMessage(data.message)
 
             }
-        }).finally(() => setLoaded(true));
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true));
     }
 
     const [current, setCurrent] = useState("");
@@ -102,7 +102,7 @@ export function Account() {
                 setCheckShown(true)
                 setSuccessMessage(data.message);
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     const [confirmShown, setConfirmShown] = useState(false);
@@ -120,7 +120,7 @@ export function Account() {
             else {
                 console.log(data)
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     return (

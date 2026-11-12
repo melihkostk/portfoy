@@ -22,13 +22,13 @@ export function Notifications() {
 
     useEffect(() => {
         setLoaded(false)
-        getAllNotifications(page).then(setNotifications).finally(() => setLoaded(true))
+        getAllNotifications(page).then(setNotifications).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [page])
 
     const [info, setInfo] = useState([]);
 
     useEffect(() => {
-        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+        getCompanyInfo().then(setInfo).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [user, setUser] = useState([]);

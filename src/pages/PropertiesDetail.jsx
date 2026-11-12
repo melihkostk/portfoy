@@ -40,7 +40,7 @@ export function PropertiesDetail() {
         getDetails(id).then(data => {
             setDetails(data)
             setPhoto(data?.cover)
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [id])
 
     const [offerShown, setOfferShown] = useState(false)
@@ -58,7 +58,7 @@ export function PropertiesDetail() {
                 return
             }
             getDetails(id).then(setDetails).finally(() => { setLoaded(true); setToogleMessage(data.message); setToogleMessageShown(true) })
-        }))
+        })).catch((error) => console.log(error))
     }
 
     const [detailType, setDetailType] = useState("map");
@@ -79,7 +79,7 @@ export function PropertiesDetail() {
                 setToogleMessage(data.message)
                 setToogleMessageShown(true)
             }
-        }).finally(() => { setLoaded(true) })
+        }).catch((error) => console.log(error)).finally(() => { setLoaded(true) })
     }
 
     const [price, setPrice] = useState("");
@@ -108,7 +108,7 @@ export function PropertiesDetail() {
                 setToogleMessageShown(true)
                 setToogleMessage(data.message)
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     const [thumbnailType, setThumbnailType] = useState("");

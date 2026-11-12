@@ -34,7 +34,7 @@ export function QuickFilters() {
             }
             setLoaded(false)
             getQuickFilters().then(setQuickFilters).finally(() => { setLoaded(true); setDeleteMessageShown(true); setDeleteMessage(data.message) })
-        })
+        }).catch((error) => console.log(error))
     }
 
     const [editFilterShown, setEditFilterShown] = useState(false);
@@ -60,7 +60,7 @@ export function QuickFilters() {
             setEditFilterShown(false)
             setLoaded(false)
             getQuickFilters().then(setQuickFilters).finally(() => { setLoaded(true); setEditMessageShown(true); setEditMessage(data.message) })
-        }))
+        })).catch((error) => console.log(error))
     }
 
      const [info, setInfo] = useState([]);

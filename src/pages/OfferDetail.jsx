@@ -19,7 +19,7 @@ export function OfferDetail() {
     const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
-        showOffer(id).then(setDetails).finally(() => setLoaded(true))
+        showOffer(id).then(setDetails).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [id])
 
     return (

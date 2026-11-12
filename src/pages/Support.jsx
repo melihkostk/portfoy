@@ -22,7 +22,7 @@ export function Support() {
 
     useEffect(() => {
         if (q) {
-            getArticles(locale).then(setNews);
+            getArticles(locale).then(setNews).catch((error) => console.log(error));
         }
     }, [q, locale])
 

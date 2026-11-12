@@ -18,7 +18,7 @@ export function Subscription() {
     const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
-        getSubscriptions().then(setSubscriptions).finally(() => setLoaded(true))
+        getSubscriptions().then(setSubscriptions).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [tableShown, setTableShown] = useState(false);
@@ -26,13 +26,13 @@ export function Subscription() {
     const [subsUsage, setSubsUsage] = useState([]);
 
     useEffect(() => {
-        getSubsUsage().then(setSubsUsage)
+        getSubsUsage().then(setSubsUsage).catch((error) => console.log(error))
     }, [])
 
     const [info, setInfo] = useState([]);
 
     useEffect(() => {
-        getCompanyProfile().then(setInfo)
+        getCompanyProfile().then(setInfo).catch((error) => console.log(error))
     }, [])
 
     return (

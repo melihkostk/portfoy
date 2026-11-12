@@ -18,7 +18,7 @@ export function CompaniesDetailTeam() {
     const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
-        getCompaniesTeam(id).then(setCompanyDetailTeam).finally(() => setLoaded(true))
+        getCompaniesTeam(id).then(setCompanyDetailTeam).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [id])
 
     return (

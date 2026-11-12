@@ -26,7 +26,7 @@ export function ProposalDetail() {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        showProposal(id).then(setDetails).finally(() => setLoaded(true))
+        showProposal(id).then(setDetails).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [id])
 
     return (

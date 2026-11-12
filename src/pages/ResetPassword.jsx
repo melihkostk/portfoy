@@ -36,7 +36,7 @@ export function ResetPassword() {
                 setSuccessMessageShown(true)
                 setSuccessMessage(data.message)
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     return (

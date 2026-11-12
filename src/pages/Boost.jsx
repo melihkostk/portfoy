@@ -21,7 +21,7 @@ export function Boost() {
     const [details, setDetails] = useState([])
 
     useEffect(() => {
-        getDetails(id).then(setDetails).finally(() => setLoaded(true))
+        getDetails(id).then(setDetails).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [id])
 
     const [day, setDay] = useState(7);

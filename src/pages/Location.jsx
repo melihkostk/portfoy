@@ -21,7 +21,7 @@ export function Location() {
     const [locationMenu, setLocationMenu] = useState(false)
 
     useEffect(() => {
-        getLocation().then(setLocation).finally(() => setLoaded(true))
+        getLocation().then(setLocation).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [info, setInfo] = useState([])
@@ -46,22 +46,22 @@ export function Location() {
 
 
     useEffect(() => {
-        getAllCountries().then(setCountries)
+        getAllCountries().then(setCountries).catch((error) => console.log(error))
     }, [])
 
     useEffect(() => {
         if (!countryId) return;
-        getAllCities(countryId).then(setCities);
+        getAllCities(countryId).then(setCities).catch((error) => console.log(error));
     }, [countryId]);
 
     useEffect(() => {
         if (!cityId) return;
-        getAllDistricts(cityId).then(setDistrict);
+        getAllDistricts(cityId).then(setDistrict).catch((error) => console.log(error));
     }, [cityId])
 
     useEffect(() => {
         if (!districtId) return;
-        getAllStreets(districtId).then(setStreet)
+        getAllStreets(districtId).then(setStreet).catch((error) => console.log(error))
     }, [districtId])
 
     function handleAddLocation(e) {
@@ -71,9 +71,9 @@ export function Location() {
             if (data.status === "error") {
                 return
             }
-            getLocation().then(setLocation).finally(() => setLoaded(true))
+            getLocation().then(setLocation).catch((error) => console.log(error)).finally(() => setLoaded(true))
             setLocationMenu(false)
-        }))
+        })).catch((error) => console.log(error))
     }
 
     function handleDeleteLocation(id) {
@@ -82,8 +82,8 @@ export function Location() {
                 return
             }
             setLoaded(false)
-            getLocation().then(setLocation).finally(() => setLoaded(true))
-        })
+            getLocation().then(setLocation).catch((error) => console.log(error)).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error))
     }
 
     const [updateMapShown, setUpdateMapShown] = useState(false)
@@ -104,17 +104,17 @@ export function Location() {
         if (!editCountryId) {
             return;
         }
-        getAllCities(editCountryId).then(setEditCities);
+        getAllCities(editCountryId).then(setEditCities).catch((error) => console.log(error));
     }, [editCountryId]);
 
     useEffect(() => {
         if (!editCityId) return;
-        getAllDistricts(editCityId).then(setEditDistrict);
+        getAllDistricts(editCityId).then(setEditDistrict).catch((error) => console.log(error));
     }, [editCityId])
 
     useEffect(() => {
         if (!editDistrictId) return;
-        getAllStreets(editDistrictId).then(setEditStreet);
+        getAllStreets(editDistrictId).then(setEditStreet).catch((error) => console.log(error));
     }, [editDistrictId])
 
     function handleEditClick(item) {
@@ -135,7 +135,7 @@ export function Location() {
             }
             getLocation().then(setLocation)
             setEditShown(false)
-        })
+        }).catch((error) => console.log(error))
     }
 
     return (

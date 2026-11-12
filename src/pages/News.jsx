@@ -15,7 +15,7 @@ export function News() {
     const [news, setNews] = useState([])
     
       useEffect(() => {
-        getArticles(locale).then(setNews)
+        getArticles(locale).then(setNews).catch((error) => console.log(error))
       }, [locale])
 
     return (

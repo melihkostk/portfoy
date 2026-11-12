@@ -22,13 +22,13 @@ export function UserProperties() {
 
     useEffect(() => {
         setLoaded(false)
-        getUserProperties(page).then(setUserProperties).finally(() => setLoaded(true))
+        getUserProperties(page).then(setUserProperties).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [page])
 
     const [info, setInfo] = useState([]);
    
     useEffect(() => {
-        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+        getCompanyInfo().then(setInfo).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [user, setUser] = useState([]);

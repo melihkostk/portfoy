@@ -44,7 +44,7 @@ export function Settings() {
             setPassStatus(data?.data?.pass_price_visibility)
             setSelected(data?.data?.price_offer_users)
             setPersonalVisibilities(data?.data?.personal_contacts_visibilities?.personals || [])
-        })
+        }).catch((error) => console.log(error))
     }, [])
 
     const [loaded, setLoaded] = useState(true);
@@ -66,7 +66,7 @@ export function Settings() {
                 setErrorMessage(data.message);
                 setErrorMessageShown(true)
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
     function handleInfoVisibility() {
         setLoaded(false)
@@ -79,7 +79,7 @@ export function Settings() {
                 setErrorMessage(data.message);
                 setErrorMessageShown(true)
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     function handleSavePriceOfferUsers() {
@@ -100,7 +100,7 @@ export function Settings() {
                 setErrorMessage(data.message);
                 setErrorMessageShown(true)
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     const [infoPopUp, setInfoPopUp] = useState(false);

@@ -21,25 +21,25 @@ export function Profile() {
     const [wishlist, setWishlist] = useState([]);
 
     useEffect(() => {
-        getWishlist().then(setWishlist).finally(() => setLoaded(true))
+        getWishlist().then(setWishlist).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [properties, setProperties] = useState([]);
 
     useEffect(() => {
-        getUserProperties().then(setProperties)
+        getUserProperties().then(setProperties).catch((error) => console.log(error))
     }, [])
 
     const [proposals, setProposals] = useState([]);
 
     useEffect(() => {
-        getCustomerProposals().then(setProposals)
+        getCustomerProposals().then(setProposals).catch((error) => console.log(error))
     }, [])
 
     const [info, setInfo] = useState([]);
 
     useEffect(() => {
-        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+        getCompanyInfo().then(setInfo).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [user, setUser] = useState([]);
@@ -55,7 +55,7 @@ export function Profile() {
     const [alerts, setAlerts] = useState([]);
 
     useEffect(() => {
-        getPropertyAlerts().then(setAlerts);
+        getPropertyAlerts().then(setAlerts).catch((error) => console.log(error));
     }, [])
 
     return (

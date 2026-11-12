@@ -27,6 +27,7 @@ export function Companies() {
         setLoaded(false)
         filterCompany(appliedFilters.type, appliedFilters.country, appliedFilters.city, appliedFilters.district, appliedFilters.q, page)
             .then(setCompanies)
+            .catch((error) => console.log(error))
             .finally(() => setLoaded(true))
     }, [appliedFilters, page])
 
@@ -34,14 +35,14 @@ export function Companies() {
     const [selectedType, setSelectedType] = useState("");
 
     useEffect(() => {
-        getCompanyTypes(locale).then(setType)
+        getCompanyTypes(locale).then(setType).catch((error) => console.log(error))
     }, [locale])
 
     const [countries, setCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState("")
 
     useEffect(() => {
-        getAllCountries().then(setCountries)
+        getAllCountries().then(setCountries).catch((error) => console.log(error))
     }, [])
 
     const [cities, setCities] = useState([]);
@@ -51,7 +52,7 @@ export function Companies() {
         if (!selectedCountry) {
             return;
         }
-        getAllCities(selectedCountry).then(setCities)
+        getAllCities(selectedCountry).then(setCities).catch((error) => console.log(error))
     }, [selectedCountry])
 
     const [district, setDistrict] = useState([]);
@@ -61,7 +62,7 @@ export function Companies() {
         if (!selectedCity) {
             return
         }
-        getAllDistricts(selectedCity).then(setDistrict)
+        getAllDistricts(selectedCity).then(setDistrict).catch((error) => console.log(error))
 
     }, [selectedCity])
 
@@ -72,7 +73,7 @@ export function Companies() {
         if (!selectedDistrict) {
             return
         }
-        getAllStreets(selectedDistrict).then(setStreets)
+        getAllStreets(selectedDistrict).then(setStreets).catch((error) => console.log(error))
     }, [selectedDistrict])
 
     const handleFilterCompany = (type, country, city, district, q) => {

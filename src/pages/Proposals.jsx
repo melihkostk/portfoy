@@ -22,13 +22,13 @@ export function Proposals() {
 
     useEffect(() => {
         setLoaded(false)
-        getProposals(page).then(setUsersProposals).finally(() => setLoaded(true))
+        getProposals(page).then(setUsersProposals).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [page])
 
     const [info, setInfo] = useState([]);
 
     useEffect(() => {
-        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+        getCompanyInfo().then(setInfo).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [user, setUser] = useState([]);

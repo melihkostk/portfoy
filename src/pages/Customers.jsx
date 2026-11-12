@@ -22,13 +22,13 @@ export function Customers() {
     const [result, setResult] = useState(null)
 
     useEffect(() => {
-        getAllCustomers().then(setCustomers).finally(() => setLoaded(true))
+        getAllCustomers().then(setCustomers).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [info, setInfo] = useState([])
 
     useEffect(() => {
-        getCompanyProfile().then(setInfo)
+        getCompanyProfile().then(setInfo).catch((error) => console.log(error))
     }, [])
 
     const [customerMenu, setCustomerMenu] = useState(false)
@@ -43,7 +43,7 @@ export function Customers() {
     const [languages, setLanguages] = useState([]);
 
     useEffect(() => {
-        getAllLanguages().then(setLanguages)
+        getAllLanguages().then(setLanguages).catch((error) => console.log(error))
     }, [])
 
     function openAddCustomer() {
@@ -82,7 +82,7 @@ export function Customers() {
             if (data.status === "error") {
                 return;
             }
-            getAllCustomers().then(setCustomers).finally(() => setLoaded(true))
+            getAllCustomers().then(setCustomers).catch((error) => console.log(error)).finally(() => setLoaded(true))
             setCustomerMenu(false)
         }))
     }
@@ -94,7 +94,7 @@ export function Customers() {
                 return
             }
             setResult(data.data)
-        })).finally(() => setLoaded(true))
+        })).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     return (

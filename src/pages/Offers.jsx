@@ -27,14 +27,14 @@ export function Offers() {
 
     useEffect(() => {
         setLoaded(false)
-        getReceivedOffers(page).then(setReceivedOffers).finally(() => setLoaded(true))
+        getReceivedOffers(page).then(setReceivedOffers).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [page])
 
     const [sendedOffers, setSendedOffers] = useState([]);
 
     useEffect(() => {
         setLoaded(false)
-        getSendedOffers(page).then(setSendedOffers).finally(() => setLoaded(true))
+        getSendedOffers(page).then(setSendedOffers).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [page])
 
     const [offerMenuShown, setOfferMenuShown] = useState(false)
@@ -70,13 +70,13 @@ export function Offers() {
                 setSuccessMessage(data.message);
                 setSuccessMessageShown(true)
             }
-        }).finally(() => { setLoaded(true); setReplied(true) })
+        }).catch((error) => console.log(error)).finally(() => { setLoaded(true); setReplied(true) })
     }
 
     const [info, setInfo] = useState([]);
 
     useEffect(() => {
-        getCompanyInfo().then(setInfo).finally(() => setLoaded(true))
+        getCompanyInfo().then(setInfo).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     const [user, setUser] = useState([]);

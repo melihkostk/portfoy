@@ -50,7 +50,7 @@ export function Edit() {
             setTradeName(data?.data?.profile?.billing?.trade_name)
             setTaxOffice(data?.data?.profile?.billing?.tax_office)
             setAddress(data?.data?.profile?.billing?.address)
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
     function handleUpdate() {
@@ -67,7 +67,7 @@ export function Edit() {
                 setError(data.message);
                 setErrorShown(true);
             }
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     return (

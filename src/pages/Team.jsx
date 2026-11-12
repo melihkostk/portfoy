@@ -29,19 +29,19 @@ export function Team() {
     const [addShown, setAddShown] = useState(false);
 
     useEffect(() => {
-        getTeam().then(setTeam).finally(() => setLoaded(true))
+        getTeam().then(setTeam).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, []);
 
     const [invitations, setInvitations] = useState([]);
 
     useEffect(() => {
-        getAllInvitations().then(setInvitations)
+        getAllInvitations().then(setInvitations).catch((error) => console.log(error))
     }, [])
 
     const [roles, setRoles] = useState([]);
 
     useEffect(() => {
-        getAllRoles(locale).then(setRoles)
+        getAllRoles(locale).then(setRoles).catch((error) => console.log(error))
     }, [locale])
 
     const [name, setName] = useState("")
@@ -61,7 +61,7 @@ export function Team() {
             getAllInvitations().then(setInvitations)
             setSuccessPopUp(true)
             setError(data.message)
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     function handleAdd(e) {
@@ -76,13 +76,13 @@ export function Team() {
             setSuccessPopUp(true)
             setAddShown(false)
             setError(data.message)
-        })
+        }).catch((error) => console.log(error))
     }
 
     function handleToggleStatus(id) {
         setLoaded(false)
         toogleStatus(id)
-        getTeam().then(setTeam).finally(() => setLoaded(true))
+        getTeam().then(setTeam).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     const [inviteEditShown, setInviteEditShown] = useState(false)
@@ -117,7 +117,7 @@ export function Team() {
             setSuccessPopUp(true)
             setInviteEditShown(false)
             setError(data.message)
-        })
+        }).catch((error) => console.log(error))
     }
 
     const [editShown, setEditShown] = useState(false)
@@ -153,13 +153,13 @@ export function Team() {
             setSuccessPopUp(true)
             setEditShown(false)
             setError(data.message)
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     const [info, setInfo] = useState([])
 
     useEffect(() => {
-        getCompanyProfile().then(setInfo)
+        getCompanyProfile().then(setInfo).catch((error) => console.log(error))
     }, [])
 
     const [editPermissionShown, setEditPermissionShown] = useState(false)
@@ -178,7 +178,7 @@ export function Team() {
                     checked: p.checked === true || p.checked === 1 || p.checked === "1"
                 }))
             })))
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     function handlePermissionToggle(groupIndex, permKey) {
@@ -206,7 +206,7 @@ export function Team() {
             setSuccessPopUp(true)
             setEditPermissionShown(false)
             setError(data.message)
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     const [permissionName, setPermissionName] = useState("");

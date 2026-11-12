@@ -19,7 +19,7 @@ export function CompaniesDetail() {
     const [loaded , setLoaded] = useState(false)
 
     useEffect(() => {
-        getCompaniesProperties(id).then(setCompanyDetailProperties).finally(() => setLoaded(true))
+        getCompaniesProperties(id).then(setCompanyDetailProperties).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [id])
 
     return (

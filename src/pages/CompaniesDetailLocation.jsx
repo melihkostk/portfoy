@@ -19,7 +19,7 @@ export function CompaniesDetailLocation() {
     const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
-        getCompaniesLocation(id).then(setLocation).finally(() => setLoaded(true))
+        getCompaniesLocation(id).then(setLocation).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [id])
 
     return (

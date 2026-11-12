@@ -28,13 +28,13 @@ export function Company({ message, messageShown, setMessageShown }) {
     const [page, setPage] = useState(1)
 
     useEffect(() => {
-        getCompanyProperties().then(setCompanyProperties).finally(() => setLoaded(true))
+        getCompanyProperties().then(setCompanyProperties).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [page])
 
     const [type, setType] = useState([]);
 
     useEffect(() => {
-        getAllPropertiesType().then(setType)
+        getAllPropertiesType().then(setType).catch((error) => console.log(error))
     }, [])
 
     const [team, setTeam] = useState([]);
@@ -48,14 +48,14 @@ export function Company({ message, messageShown, setMessageShown }) {
     const [selectedCurrencie, setSelectedCurrencie] = useState("")
 
     useEffect(() => {
-        getAllCurrencies().then(setCurrencie)
+        getAllCurrencies().then(setCurrencie).catch((error) => console.log(error))
     }, [])
 
     const [countries, setCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState("")
 
     useEffect(() => {
-        getAllCountries().then(setCountries)
+        getAllCountries().then(setCountries).catch((error) => console.log(error))
     }, [])
 
     const [cities, setCities] = useState([]);
@@ -63,7 +63,7 @@ export function Company({ message, messageShown, setMessageShown }) {
 
     useEffect(() => {
         if (!selectedCountry) return;
-        getAllCities(selectedCountry).then(setCities)
+        getAllCities(selectedCountry).then(setCities).catch((error) => console.log(error))
     }, [selectedCountry])
 
     const [districts, setDistricts] = useState([]);
@@ -71,7 +71,7 @@ export function Company({ message, messageShown, setMessageShown }) {
 
     useEffect(() => {
         if (!selectedCity) return;
-        getAllDistricts(selectedCity).then(setDistricts)
+        getAllDistricts(selectedCity).then(setDistricts).catch((error) => console.log(error))
     }, [selectedCity])
 
     function handleFilter(selectedCountry, selectedCity, selectedDistrict, selectedTeam, minSell, maxSell, selectedCurrencie, status, selectedType) {
@@ -88,7 +88,7 @@ export function Company({ message, messageShown, setMessageShown }) {
     const [info, setInfo] = useState([])
 
     useEffect(() => {
-        getCompanyProfile().then(setInfo)
+        getCompanyProfile().then(setInfo).catch((error) => console.log(error))
     }, [])
 
     const [offerModelShown, setOfferModalShown] = useState(false)
@@ -108,7 +108,7 @@ export function Company({ message, messageShown, setMessageShown }) {
             setOfferPropertyId(id)
             setStep(1)
             setOfferModalShown(true)
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     function handleCreateProposal() {
@@ -117,7 +117,7 @@ export function Company({ message, messageShown, setMessageShown }) {
         const properties = { [offerPropertyId]: { price: Number(offerDetails?.prices?.primary?.number), title: offerDetails?.title } }
         createProposal(customerNote, notify, offerCurrencie, selectedCustomer, properties).then(() => {
             navigate("/company/proposals", { replace: true })
-        }).finally(() => setLoaded(true))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }
 
     return (

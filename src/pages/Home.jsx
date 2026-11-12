@@ -25,19 +25,19 @@ export function Home() {
   const [packages, setPackages] = useState([]);
 
   useEffect(() => {
-    getPackages().then(setPackages);
+    getPackages().then(setPackages).catch((error) => console.log(error));
   }, [])
 
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
-    getCompanyTypes(locale).then(setTypes);
+    getCompanyTypes(locale).then(setTypes).catch((error) => console.log(error));
   }, [locale])
 
   const [news, setNews] = useState([])
 
   useEffect(() => {
-    getArticles(locale).then(setNews)
+    getArticles(locale).then(setNews).catch((error) => console.log(error))
   }, [locale])
 
   return (
