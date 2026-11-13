@@ -83,7 +83,7 @@ export function PropertiesCard(props) {
                     <p className="whitespace-nowrap overflow-hidden truncate">{translation?.data?.business?.add_property_to_proposal_properties}</p>
                 </button>}
                 {props.page === "wishlist" && <button onClick={() => props.handleToggleWishlist(props.id)} className="bg-white text-[#5f5f5f] border gap-1.25 max-w-full whitespace-nowrap overflow-hidden truncate border-[#eee] py-1.25 px-2.5 text-sm mt-2.5 flex items-center font-semibold cursor-pointer rounded-sm hover:bg-[#d1d1d1] hover:text-black transition-colors duration-300 ease-in-out">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trash preview-icon"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trash preview-icon"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                     {translation?.data?.business?.property_remove_from_wishlist}
                 </button>}
             </div>
