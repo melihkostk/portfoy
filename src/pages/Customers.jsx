@@ -1,6 +1,5 @@
 ﻿import { Header } from "../components/Header"
 import { CompanyHeader } from "../components/CompanyHeader"
-import graySearch from "../assets/gray-search.png"
 import { CustomerCard } from "../components/CustomerCard"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"

@@ -1,5 +1,4 @@
 import noti from "../assets/notification.png"
-import clock from "../assets/clock.png"
 import { Link } from "react-router-dom"
 
 export function Notification({ content, time, is_read, handleMarkAsRead, id, type, details }) {

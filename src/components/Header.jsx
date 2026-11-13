@@ -8,7 +8,6 @@ import { CreateOfferModel } from "./CreateOfferModal"
 import { getAllNotifications, markAsRead } from "../services/notificationsApi"
 import { logOut } from "../services/authApi"
 import { useAppContext } from "../context/AppContext"
-import bell from "../assets/bell.png"
 import { getAllCustomers } from "../services/myCompanyApi"
 import check from "../assets/white-check.png"
 

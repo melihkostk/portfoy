@@ -1,5 +1,4 @@
 ﻿import { Header } from "../components/Header"
-import search from "../assets/search.png"
 import { VideoCard } from "../components/VideoCard"
 import { Questions } from "../components/Questions"
 import { AppLinks } from "../components/AppLinks"
