@@ -8,8 +8,6 @@ import { ClipLoader } from "react-spinners";
 import { cloneProperty, deleteGalery, deletePrice, deleteProperty, deleteVideo, getAllOffers, getAllProposals, getAllTransactions, getExternalProposals, getPrices, updateCover, updateDraftStatus, updateProperty, updateSoldStatus, uploadGallery, uploadVideo } from "../services/propertiesApi";
 import { replyOffer } from "../services/profileApi";
 import close from "../assets/blue-close.png"
-import trash from "../assets/trash.png"
-import file from "../assets/ff.png"
 import { DeleteVideoPopUp } from "../components/DeleteVideoPopUp";
 import whiteClose from "../assets/close.png"
 import { EditPropertyGallery } from "../components/EditPropertyGallery";
@@ -18,7 +16,6 @@ import { EditPropertyMove } from "../components/EditPropertyMove";
 import { EditPropertySettings } from "../components/EditPropertySettings";
 import { EditPropertyInfo } from "../components/EditPropertyInfo";
 import { useAppContext } from "../context/AppContext";
-import deleteIcon from "../assets/gray-trash.png"
 import check from "../assets/white-check.png"
 
 export function EditProperty({ setMessage, setMessageShown }) {
@@ -411,10 +408,10 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 </div>
                 <div className="text-center flex flex-col items-center justify-start h-full w-full">
                     <div className="flex flex-col items-center">
-                        <img className="w-25 h-25" src={trash} alt="" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="lucide w-25 h-25 lucide-trash preview-icon"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                         <div className="mt-4 flex flex-col items-center">
                             <p className="text-[#545454] text-2xl mb-2">{translation?.data?.business?.are_you_sure}</p>
-                            <p className="text-lg text-[#6c757d] max-w-[60%] leading-none">{translation?.data?.business?.delete_property_confirm_description}</p>
+                            <p className="text-lg leading-6 font-medium text-[#6c757d] max-w-[60%]">{translation?.data?.business?.delete_property_confirm_description}</p>
                         </div>
                     </div>
                     <div className="mt-5 flex gap-2.5 justify-center">
@@ -466,7 +463,7 @@ export function EditProperty({ setMessage, setMessageShown }) {
                 </div>
                 <div className="p-4 w-full">
                     <div className="flex flex-col items-center justify-center">
-                        <img className="w-25 h-25" src={file} alt="" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-file-text preview-icon"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
                         <div className="mt-6 max-w-[87%]">
                             <p className="text-center mb-2 text-2xl text-[#545454]">{translation?.data?.business?.convert_draft_property_title}</p>
                             <p className="text-center text-lg text-[#6c757d]">{translation?.data?.business?.convert_draft_property_description}</p>
@@ -548,10 +545,10 @@ export function EditProperty({ setMessage, setMessageShown }) {
                                 <div className="flex-1 px-3 py-1.5">
                                     <input className="w-full focus:outline-none" value={item.price?.number} type="number" name="" id="" />
                                 </div>
-                                <div className="bg-[#e2e2e2] text-[#727272] text-sm font-semibold flex items-center justify-center rounded-r-lg w-9.5 hover:bg-[#ff2020] transition-colors duration-300 ease-in-out">
+                                <div className="bg-[#e2e2e2] text-[#626262] hover:text-white text-sm font-semibold flex items-center justify-center rounded-r-lg w-9.5 hover:bg-[#ff2020] transition-colors duration-300 ease-in-out">
                                     <button onClick={() => handleDeletePrice(item.id)}
                                         className="w-full h-full flex items-center justify-center cursor-pointer">
-                                        <img className="w-6 h-6" src={deleteIcon} alt="" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash preview-icon"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                                     </button>
                                 </div>
                             </div>
