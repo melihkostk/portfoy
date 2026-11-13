@@ -127,7 +127,7 @@ export function Filter({searchParams , typeId}) {
                                     </li>
                                     {propertiesType?.filter(item => item.title.toLowerCase().includes(searchInput.toLowerCase())).map(item => (
                                         <li className="w-full py-1" key={item.id}>
-                                            <input checked={selectedCategoryId === item.id} onChange={() => { console.log("checkbox onChange fired", item.id); setSelectedCategoryId(item.id) }} name={`category-${item.id}`} id={`category-${item.id}`} className="peer cursor-pointer hidden select-none w-5 h-5" type="checkbox" />
+                                            <input checked={selectedCategoryId === item.id} onChange={() => { setSelectedCategoryId(item.id) }} name={`category-${item.id}`} id={`category-${item.id}`} className="peer cursor-pointer hidden select-none w-5 h-5" type="checkbox" />
                                             <label htmlFor={`category-${item.id}`} className="text-[#747474] flex items-center gap-2.5 text-sm ml-2 cursor-pointer font-medium select-none hover:text-black transition-colors duration-300 ease-in-out">
                                                 <div className={`w-5 h-5 flex items-center justify-center rounded-sm border border-[#d9d9d9] ${selectedCategoryId === item.id ? "bg-[#27c5d2] text-[#27c5d2]" : ""}`}>
                                                     <img className="w-3 h-3" src={check} alt="" />
