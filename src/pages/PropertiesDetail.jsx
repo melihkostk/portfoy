@@ -306,7 +306,7 @@ export function PropertiesDetail() {
                                 <h2 className="p-5 mb-4 text-xl text-[#212529] font-semibold">{item.title}</h2>
                                 {item?.features?.map((item, index) => (
                                     <FeatureCard index={index} key={item.id} title={item.title} value={
-                                        item.value[0]?.mimetype === "application/pdf"
+                                        item?.value?.[0]?.mimetype === "application/pdf"
                                             ? "Var"
                                             : item.title !== "Metrekare (m²)"
                                                 ? item.value
