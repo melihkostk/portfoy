@@ -64,7 +64,7 @@ export function Subscription() {
                         <tbody>
                             {subsUsage.map((item) => (
                                 <tr key={item?.key}>
-                                    <td className="border border-[#eee] p-2.5">{item?.title}</td>
+                                    <td className="border font-medium border-[#eee] p-2.5">{item?.title}</td>
                                     <td className={`border border-[#eee] font-semibold p-2.5 ${item?.can_usage ? "text-[#212529]" : "text-[#ff4f4f]"}`}>{item?.used}</td>
                                     <td className="border border-[#eee] font-semibold p-2.5">{item?.limit}</td>
                                 </tr>

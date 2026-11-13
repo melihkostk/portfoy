@@ -15,8 +15,8 @@ export function TeamCard({ name, whatsapp ,roleKey , setPermissionName , setPerm
 
     return (
         <div className="flex flex-col relative items-center justify-start m-3.75 border border-[#dedede] max-[992px]:my-3.75 max-[992px]:mx-0 max-[992px]:w-full rounded-lg pt-8.75 p-3.75 w-[calc(25%-30px)]">
-            {page !== "companiesDetail" && <div onClick={() => setOptionsShown(prev => !prev)} className="absolute w-4 h-4 top-6 right-4 cursor-pointer">
-                <img src={verticalMenu} alt="" />
+            {page !== "companiesDetail" && <div onClick={() => setOptionsShown(prev => !prev)} className="absolute w-4 h-4 top-6 right-4 cursor-pointer text-[#818181] hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-ellipsis-vertical preview-icon"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
             </div>}
             {!is_active && page === "companyTeam" && <div className="absolute bg-[#ffca64] top-6 left-5 text-[#212529] uppercase text-xs rounded-lg py-1.25 px-2 font-semibold">
                 {translation?.data?.business?.statusess?.passive}

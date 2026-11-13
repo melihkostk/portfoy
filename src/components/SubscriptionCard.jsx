@@ -44,7 +44,7 @@ export function SubscriptionCard({ packageName, finish_at, readable, is_active, 
             </div>
             <div className="w-1/2 max-[992px]:w-full pl-7.5 max-[992px]:mt-2">
                 <p className="mb-4 text-[#212529] font-semibold">{translation?.data?.business?.payments}</p>
-                <div className="p-4 rounded-lg bg-[#fff3cd] text-[#664d03]">{translation?.data?.business?.not_yet_pay}</div>
+                <div className="p-4 rounded-lg bg-[#fff3cd] border border-[#ffecb5] text-[#664d03]">{translation?.data?.business?.not_yet_pay}</div>
             </div>
         </div>
     )
