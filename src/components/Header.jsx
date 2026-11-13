@@ -1,21 +1,12 @@
 import logo from "../assets/logo.svg"
-import whiteDownArrow from "../assets/white-down-arrow.png"
 import { Link } from "react-router-dom"
-import person from "../assets/person.png"
-import arrowRight from "../assets/arrow-right.png"
-import plus from "../assets/plus.png"
 import{ useState , useEffect } from "react"
-import notification from "../assets/notification.png"
-import folder from "../assets/folder.png"
-import shop from "../assets/shop.png"
 import { LanguageSelect } from "./LanguageSelect"
 import { Notification } from "./Notification"
-import whiteMenu from "../assets/white-menu.png"
 import { MainSidebar } from "./MainSidebar"
 import { CreateOfferModel } from "./CreateOfferModal"
 import { getAllNotifications, markAsRead } from "../services/notificationsApi"
 import { logOut } from "../services/authApi"
-import sea from "../assets/sea.png"
 import { useAppContext } from "../context/AppContext"
 import bell from "../assets/bell.png"
 import { getAllCustomers } from "../services/myCompanyApi"
@@ -140,7 +131,7 @@ export function Header({ details }) {
                     </ul>
                 </div>}
                 {loged && <form action="/properties" method="GET" className="px-7.5 flex items-center relative max-[1100px]:hidden grow">
-                    <img className="absolute left-10 w-5 h-5" src={sea} alt="" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B7B9BF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search preview-icon absolute left-10 w-5 h-5"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
                     <input name="q" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="bg-[#c4c4c426] focus:outline-none w-[calc(100%-50px)] text-base font-medium pl-10 h-12.5 px-2 rounded-[5px]" type="text" placeholder={translation?.data?.business?.search_in_properties} />
                 </form>}
                 <div className="flex items-center justify-between gap-2.5">
@@ -148,45 +139,45 @@ export function Header({ details }) {
                     {!loged && <div className="relative">
                         <div className="bg-[#27C5D2] cursor-pointer h-12.5 rounded-[5px] text-white font-semibold flex items-center">
                             <div className="flex rounded-l-[5px] border-r px-5 max-[992px]:px-2.5 border-r-[#ffffff38] items-center h-full hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
-                                <Link to={"/login"} className="flex items-center">
-                                    <img className="w-7 h-7" src={person} alt="" />
+                                <Link to={"/login"} className="flex items-center gap-2.5 text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user-round preview-icon"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
                                     <p className="whitespace-nowrap max-[1400px]:hidden">{translation?.data?.business?.login}</p>
                                 </Link>
                             </div>
                             <div onClick={() => setRegisterShown(prev => !prev)} className="h-full max-[992px]:hidden rounded-r-[5px] flex px-1.5 items-center justify-center hover:bg-[#048B99] hover:shadow-[0_0_30px_#048B99] transition-[background-color,box-shadow] duration-300 ease-in-out">
-                                <img className="w-4.5 h-4.5" src={whiteDownArrow} alt="" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down preview-icon"><path d="m6 9 6 6 6-6"/></svg>
                             </div>
                         </div>
                         {registerShown && <div className="absolute w-full bg-[#27C5D2] text-sm font-semibold cursor-pointer max-w-full text-white py-2 px-2.5 mt-0.5 rounded-[5px] flex items-center gap-1 hover:pl-4 transition-all duration-300 ease-in-out">
-                            <img className="w-2.5 h-2.5" src={arrowRight} alt="" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                             <Link to={"/register"} className="w-full" href="">{translation?.data?.business?.register}</Link>
                         </div>}
                     </div>}
                     {!loged &&
                         <div onClick={() => setSidebarShown(true)} className="bg-[#27C5D2] cursor-pointer h-12.5 rounded-[5px] hidden text-white font-semibold max-[992px]:w-12.5 max-[992px]:px-2.5 max-[992px]:flex items-center justify-center">
-                            <img className="w-4 h-4" src={whiteMenu} alt="" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu preview-icon"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
                         </div>
                     }
                     {!loged && <div className="relative">
                         <div className="bg-[#048B99] cursor-pointer flex items-center h-12.5 max-[992px]:hidden rounded-[5px] text-white font-semibold">
                             <div className="flex items-center px-5 h-full rounded-l-[5px] border-r border-r-[#ffffff38] gap-1 hover:bg-[#026872] transition-colors duration-300 ease-in-out">
                                 <Link to={"/application"} className="flex items-center">
-                                    <img className="w-5 h-5" src={plus} alt="" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus preview-icon"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                                     <p className="whitespace-nowrap max-[1400px]:hidden">{translation?.data?.business?.company_application}</p>
                                 </Link>
                             </div>
                             <div onClick={() => setApplicationShown(prev => !prev)} className="flex h-full rounded-r-[5px] px-1.5 items-center justify-center hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
-                                <img className="w-4.5 h-4.5" src={whiteDownArrow} alt="" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down preview-icon"><path d="m6 9 6 6 6-6"/></svg>
                             </div>
                         </div>
                         {applicationShown && <div className="absolute w-full bg-[#048B99] text-sm font-semibold cursor-pointer max-w-full text-white py-2 px-2.5 mt-0.5 rounded-[5px] flex items-center gap-1 hover:pl-4 transition-all duration-300 ease-in-out">
-                            <img className="w-2.5 h-2.5" src={arrowRight} alt="" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                             <Link to={"/check"}>{translation?.data?.business?.application_check}</Link>
                         </div>}
                     </div>}
                     {loged && <div className="relative">
-                        <button aria-label="notification" onClick={() => setNotShown(prev => !prev)} className="w-12.5 h-12.5 bg-[#f8f8f8] rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out">
-                            <img className="w-6 h-6" src={notification} alt="" />
+                        <button aria-label="notification" onClick={() => setNotShown(prev => !prev)} className="w-12.5 h-12.5 bg-[#f8f8f8] text-[#858585] hover:text-white transition-colors duration-300 ease-in-out rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#27C5D2]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-bell preview-icon"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
                         </button>
                         <div className="absolute -top-1 -right-1 text-[10px] text-[#858585] bg-[#FFCA64] rounded-full w-5 h-5 flex items-center justify-center font-extrabold">
                             {notifications?.data?.unread_notifications_count}
@@ -210,7 +201,7 @@ export function Header({ details }) {
                                         Sadece okunmamışları göster
                                     </label>
                                 </div> : <div className="flex items-center justify-center py-7.5">
-                                    <img className="opacity-30 w-15 h-15" src={bell} alt="" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide opacity-50 lucide-bell-off preview-icon"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M17 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 .258-1.742"/><path d="m2 2 20 20"/><path d="M8.668 3.01A6 6 0 0 1 18 8c0 2.687.77 4.653 1.707 6.05"/></svg>
                                 </div>}
                                 <div>
                                     {visibleNotifications?.map(item => (
@@ -234,24 +225,24 @@ export function Header({ details }) {
                             </div>
                         </div>}
                     </div>}
-                    {loged && <button aria-label="offer" onClick={() => setOfferModalShown(prev => !prev)} className={`w-12.5 max-[1100px]:hidden ${selectedCustomer ? "w-30 gap-2" : ""} h-12.5 flex items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out`}>
-                        <img className="w-4 h-4" src={folder} alt="" />
+                    {loged && <button aria-label="offer" onClick={() => setOfferModalShown(prev => !prev)} className={`w-12.5 max-[1100px]:hidden ${selectedCustomer ? "w-30 gap-2" : ""} h-12.5 flex text-white items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out`}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-folder-plus preview-icon"><path d="M12 10v6"/><path d="M9 13h6"/><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
                         {selectedCustomer && <p className="text-white font-semibold whitespace-nowrap overflow-hidden text-ellipsis">{customers?.data?.customers?.find(item => item.id == selectedCustomer)?.name}</p>}
                     </button>}
                     {loged && <Link to={"/company"} className="h-12.5 px-5 max-[1100px]:hidden whitespace-nowrap  text-white flex gap-2.5 items-center justify-center rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
-                        <img className="object-cover w-5 h-5" src={shop} alt="" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-store preview-icon"><path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"/><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"/><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"/></svg>
                         <span className="max-[1400px]:hidden font-medium">{translation?.data?.business?.my_portfolio}</span>
                     </Link>}
                     {loged && <div className="relative">
                         <div className="flex">
                             <div className="h-12.5 border-r border-r-[#ffffff38]">
-                                <Link to={"/profile"} className="flex items-center justify-center whitespace-nowrap h-full px-5 max-[1100px]:px-2.5 rounded-l-[5px] max-[1100px]:rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
-                                    <img className="object-cover w-7 h-7" src={person} alt="" />
+                                <Link to={"/profile"} className="flex items-center justify-center text-white gap-2.5 whitespace-nowrap h-full px-5 max-[1100px]:px-2.5 rounded-l-[5px] max-[1100px]:rounded-[5px] bg-[#27C5D2] cursor-pointer hover:bg-[#048B99] transition-colors duration-300 ease-in-out">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user-round preview-icon"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
                                     <p className="text-white font-medium max-[1400px]:hidden">{translation?.data?.business?.my_account}</p>
                                 </Link>
                             </div>
-                            <div onClick={() => setAccountShown(prev => !prev)} className="flex max-[1100px]:hidden items-center justify-center bg-[#27C5D2] rounded-r-[5px] w-7.5 cursor-pointer hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
-                                <img className=" w-4 h-4" src={whiteDownArrow} alt="" />
+                            <div onClick={() => setAccountShown(prev => !prev)} className="flex text-white max-[1100px]:hidden items-center justify-center bg-[#27C5D2] rounded-r-[5px] w-7.5 cursor-pointer hover:bg-[#026872] hover:shadow-[0_0_30px_#026872] transition-[background-color,box-shadow] duration-300 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down preview-icon"><path d="m6 9 6 6 6-6"/></svg>
                             </div>
                         </div>
                         {accountShown && <div className="bg-[#27C5D2] absolute w-full top-full mt-0.5 rounded-[5px] px-2.5 z-50">
@@ -261,28 +252,28 @@ export function Header({ details }) {
                             </div>
                             <div>
                                 <ul className="select-none">
-                                    <li className="flex items-center font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
-                                        <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
+                                    <li className="flex items-center font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis text-white hover:pl-2 transition-normal duration-300 ease-in-out">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-1.25 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                                         <Link to={"/wishlist"} className="text-white text-sm">{translation?.data?.business?.my_wishlist}</Link>
                                     </li>
-                                    <li className="flex items-center font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
-                                        <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
+                                    <li className="flex items-center font-medium py-2 text-white whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-1.25 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                                         <Link to={"/offers/send"} className="text-white text-sm truncate">
                                             {translation?.data?.business?.my_proposals}
                                         </Link>
                                     </li>
-                                    <li className="flex items-center font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
-                                        <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
+                                    <li className="flex items-center font-medium py-2 text-white whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-1.25 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                                         <Link to={"/support"} className="text-white text-sm">
                                             {translation?.data?.business?.support}
                                         </Link>
                                     </li>
-                                    <li className="flex items-center font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
-                                        <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
+                                    <li className="flex items-center font-medium py-2 text-white whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-1.25 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                                         <Link className="text-white text-sm">{translation?.data?.business?.dashboard}</Link>
                                     </li>
-                                    <li onClick={handleLogOut} className="flex items-center font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
-                                        <img className="w-3 h-3 mr-1.25" src={arrowRight} alt="" />
+                                    <li onClick={handleLogOut} className="flex items-center text-white font-medium py-2 whitespace-nowrap cursor-pointer overflow-hidden text-ellipsis hover:pl-2 transition-normal duration-300 ease-in-out">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-1.25 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                                         <span className="text-white text-sm">
                                             {translation?.data?.business?.logout}
                                         </span>
@@ -293,7 +284,7 @@ export function Header({ details }) {
                     </div>}
                     {loged &&
                         <div onClick={() => setSidebarShown(true)} className="bg-[#27C5D2] cursor-pointer h-12.5 rounded-[5px] hidden text-white font-semibold max-[992px]:w-12.5 max-[992px]:px-2.5 max-[992px]:flex items-center justify-center">
-                            <img className="w-4 h-4" src={whiteMenu} alt="" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu preview-icon"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
                         </div>
                     }
                 </div>
