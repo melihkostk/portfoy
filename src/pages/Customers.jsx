@@ -184,16 +184,16 @@ export function Customers() {
                         <h2 className="text-[#212529] text-[32px] font-semibold">{translation?.data?.business?.customers}</h2>
                         <div className="flex items-center gap-2.5">
                             <form onSubmit={(e) => { e.preventDefault(); handleFilterCustomer(filterName); }} className="flex max-[992px]:hidden items-center relative max-[992px]:w-full">
-                                <img className="w-4 h-4 absolute left-1" src={graySearch} alt="" />
-                                <input value={filterName} onChange={(e) => setFilterName(e.target.value)} className="text-sm pl-7 rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder={translation?.data?.business?.search_in_customers} />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#808080" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="absolute left-1 lucide lucide-search preview-icon"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+                                <input value={filterName} onChange={(e) => setFilterName(e.target.value)} className="text-sm pl-7 font-medium rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder={translation?.data?.business?.search_in_customers} />
                             </form>
                             <div onClick={openAddCustomer} className="text-[#4b4b4b] bg-[#f1f1f1] whitespace-nowrap text-sm py-2 px-5 font-semibold rounded-lg hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out cursor-pointer">{translation?.data?.business?.create_customer}</div>
                         </div>
                     </div>
                     <div className="hidden max-[991px]:flex border border-[#eee] rounded-lg">
                         <form onSubmit={(e) => { e.preventDefault(); handleFilterCustomer(filterName); }} className="flex items-center relative w-full">
-                            <img className="w-4 h-4 absolute left-1" src={graySearch} alt="" />
-                            <input value={filterName} onChange={(e) => setFilterName(e.target.value)} className="text-sm pl-7 rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder={translation?.data?.business?.search_in_customers} />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#808080" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="absolute left-1 lucide lucide-search preview-icon"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+                            <input value={filterName} onChange={(e) => setFilterName(e.target.value)} className="text-sm pl-7 font-medium rounded-lg h-9.25 placeholder:text-sm focus:outline-none focus:ring-0 focus:bg-[#f8f8f8]" type="text" placeholder={translation?.data?.business?.search_in_customers} />
                         </form>
                     </div>
                 </div>
