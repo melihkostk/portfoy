@@ -8,10 +8,7 @@ import { Footer } from "../components/Footer"
 import { useEffect, useState } from "react"
 import { createProposal, getDetails } from "../services/propertyDetails"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import location from "../assets/gray-location.png"
-import building from "../assets/building.png"
 import mark from "../assets/mark.png"
-import calendar from "../assets/calendar.png"
 import { FeatureCard } from "../components/featureCard"
 import { ClipLoader } from "react-spinners"
 import close from "../assets/blue-close.png"
@@ -238,16 +235,16 @@ export function PropertiesDetail() {
                         <p className="text-sm text-[#888888] mb-2.5 font-medium">{details.no}</p>
                         <h1 className="text-[25px] text-[#212529] mb-3.75 font-semibold">{details.title}</h1>
                         <ul className="flex flex-wrap gap-5">
-                            <li className="flex items-center">
-                                <img className="w-5 h-5 mr-1.25" src={location} alt="" />
+                            <li className="flex items-center gap-1.25">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c2c2c2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin preview-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
                                 <p className="text-[#c2c2c2] text-sm font-medium">{details?.city?.title} / {details?.district?.title} / {details?.street?.title}</p>
                             </li>
-                            <li className="flex items-center">
-                                <img className="w-5 h-5 mr-1.25" src={building} alt="" />
+                            <li className="flex items-center gap-1.25">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c2c2c2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-building preview-icon"><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M12 6h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/><path d="M8 6h.01"/><path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/><rect x="4" y="2" width="16" height="20" rx="2"/></svg>
                                 {details?.property_type === "ready" ? <p className="text-[#c2c2c2] text-sm font-medium">{translation?.data?.business?.building_statusess.ready}</p> : <p className="text-[#c2c2c2] text-sm font-medium">{translation?.data?.business?.building_statusess.under_construction}</p>}
                             </li>
-                            <li className="flex items-center">
-                                <img className="w-5 h-5 mr-1.25" src={calendar} alt="" />
+                            <li className="flex items-center gap-1.25">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c2c2c2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar-days preview-icon"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M8 13h.01"/><path d="M12 13h.01"/><path d="M16 13h.01"/><path d="M8 17h.01"/><path d="M12 17h.01"/><path d="M16 17h.01"/></svg>
                                 <p className="text-[#c2c2c2] font-medium text-sm">{details.updated_at}</p>
                             </li>
                         </ul>
@@ -257,7 +254,10 @@ export function PropertiesDetail() {
                             </div>
                             <div>
                                 <p className="mb-1.25 font-bold">{details?.company?.title}</p>
-                                <p className="text-xs font-semibold">{translation?.data?.business?.created_at_for_company.replace(":time", "1 yıl önce")}</p>
+                                <div className="flex items-center gap-1.25">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#ffdd2d" stroke="#ffdd2d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star preview-icon"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                                    <p className="text-xs font-semibold">{translation?.data?.business?.created_at_for_company.replace(":time", "1 yıl önce")}</p>
+                                </div>
                             </div>
                         </Link>
                         <div className="mb-4">
@@ -275,7 +275,7 @@ export function PropertiesDetail() {
                                 {translation?.data?.business?.create_price_offer}
                             </button>
                             <button aria-label="proposal" onClick={() => setOfferModalShown(true)} className="bg-[#f1f1f1] w-11 h-11 rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
-                                <img className="w-5 h-5" src={folder} alt="" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#4b4b4b" stroke="#4b4b4b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-folder-plus preview-icon"><path d="M12 10v6"/><path d="M9 13h6"/><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
                             </button>
                         </div>) : (
                             <div className="flex gap-2.5 flex-wrap">

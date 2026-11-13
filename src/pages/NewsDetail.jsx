@@ -7,7 +7,6 @@ import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
 import { ClipLoader } from "react-spinners";
 import news1 from "../assets/news1.jpeg"
-import grayCalendar from "../assets/gray-calendar.png"
 import { useAppContext } from "../context/AppContext";
 
 export function NewsDetail() {

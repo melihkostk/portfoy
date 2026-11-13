@@ -1,6 +1,5 @@
 import news1 from "../assets/news1.jpeg"
 import { Link } from "react-router-dom"
-import grayCalendar from "../assets/gray-calendar.png"
 import { useAppContext } from "../context/AppContext"
 
 export function NewsCard({ title, created, id, page }) {
