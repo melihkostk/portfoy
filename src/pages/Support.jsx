@@ -50,8 +50,8 @@ export function Support() {
                     <h2 className="text-white text-[32px] font-semibold">{translation?.data?.business?.how_we_can_help_you}</h2>
                     <form action={"/support"} method="GET" className="w-[60%] max-[992px]:w-full relative mb-2.5 bg-[#FFFFFF33] shadow-[0_0_120px_#FFFFFF80]">
                         <input className="w-full border border-white bg-transparent text-white rounded-lg p-2.5 placeholder:text-white focus:outline-none" type="text" placeholder={translation?.data?.business?.search_on_faqs_and_videos} name="q"></input>
-                        <button aria-label="search" className="w-9 h-9 bg-[#FFFFFF4D] rounded-lg absolute cursor-pointer right-1.5 top-1.5 flex items-center justify-center">
-                            <img className="w-6 h-6" src={search} alt="" />
+                        <button aria-label="search" className="w-9 h-9 bg-[#FFFFFF4D] text-white rounded-lg absolute cursor-pointer right-1.5 top-1.5 flex items-center justify-center hover:bg-white hover:text-[#27c5d2] transition-colors duration-300 ease-in-out">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search preview-icon"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
                         </button>
                     </form>
                     <div className="flex items-center gap-5">
