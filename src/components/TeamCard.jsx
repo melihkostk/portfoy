@@ -1,4 +1,3 @@
-import verticalMenu from "../assets/menu-vertical.png"
 import grayPhone from "../assets/gray-phone.png"
 import wp from "../assets/wp.png"
 import grayMail from "../assets/gray-mail.png"

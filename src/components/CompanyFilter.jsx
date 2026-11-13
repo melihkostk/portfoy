@@ -5,8 +5,8 @@ export function CompanyFilter({ type, setSelectedType, setSelectedPropertyType, 
     return (
         <div className={`flex justify-between ${page === "wishlist" ? "mt-0 p-3.75" : "mt-7.5 p-7.5"} max-[992px]:flex-col max-[992px]:items-start items-end bg-[#f8f8f8] rounded-lg gap-5`}>
             <div className="flex flex-col grow max-[992px]:w-full">
-                <label className={`${page === "wishlist" ? "text-sm text-[#212529] opacity-70" : ""}`} htmlFor="type">{page === "companies" ? translation?.data?.business?.company_type : translation?.data?.business?.property_type}</label>
-                {page === "companies" && <select onChange={(e) => setSelectedType(e.target.value)} className="bg-white py-2 px-3 border w-full border-[#D9D9D9] rounded-lg" name="type" id="type">
+                <label className={`font-medium ${page === "wishlist" ? "text-sm text-[#212529] opacity-70" : ""}`} htmlFor="type">{page === "companies" ? translation?.data?.business?.company_type : translation?.data?.business?.property_type}</label>
+                {page === "companies" && <select onChange={(e) => setSelectedType(e.target.value)} className="bg-white font-medium py-2 px-3 border w-full border-[#D9D9D9] rounded-lg" name="type" id="type">
                     <option value="">
                         {translation?.data?.business?.all}
                     </option>
@@ -16,7 +16,7 @@ export function CompanyFilter({ type, setSelectedType, setSelectedPropertyType, 
                         </option>
                     ))}
                 </select>}
-                {page === "wishlist" && <select onChange={(e) => setSelectedPropertyType(e.target.value)} className="bg-white py-2 px-3 border w-full border-[#D9D9D9] rounded-lg" name="type" id="type">
+                {page === "wishlist" && <select onChange={(e) => setSelectedPropertyType(e.target.value)} className="font-medium bg-white py-2 px-3 border w-full border-[#D9D9D9] rounded-lg" name="type" id="type">
                     <option value="">
                         {translation?.data?.business?.all}
                     </option>
@@ -30,8 +30,8 @@ export function CompanyFilter({ type, setSelectedType, setSelectedPropertyType, 
             <div className="grow max-[992px]:w-full">
                 <div className="flex max-[992px]:flex-col">
                     <div className="flex flex-col flex-1 max-[992px]:w-full">
-                        <label className={`${page === "wishlist" ? "text-sm text-[#212529] opacity-70" : ""}`} htmlFor="country">{translation?.data?.business?.choose?.country}</label>
-                        <select onChange={(e) => setSelectedCountry(e.target.value)} className="bg-white py-2 w-full px-3 border border-[#D9D9D9] max-[992px]:rounded-lg rounded-l-lg" name="country" id="country">
+                        <label className={`font-medium ${page === "wishlist" ? "text-sm text-[#212529] opacity-70" : ""}`} htmlFor="country">{translation?.data?.business?.choose?.country}</label>
+                        <select onChange={(e) => setSelectedCountry(e.target.value)} className="bg-white font-medium py-2 w-full px-3 border border-[#D9D9D9] max-[992px]:rounded-lg rounded-l-lg" name="country" id="country">
                             <option value="">
                                 {translation?.data?.business?.choose?.country}
                             </option>
@@ -41,8 +41,8 @@ export function CompanyFilter({ type, setSelectedType, setSelectedPropertyType, 
                         </select>
                     </div>
                     <div className="flex flex-col flex-1">
-                        <label className={`${page === "wishlist" ? "text-sm text-[#212529] opacity-70" : ""}`} htmlFor="city">{translation?.data?.business?.choose?.city}</label>
-                        <select onChange={(e) => setSelectedCity(e.target.value)} className="bg-white py-2 px-3 border w-full max-[992px]:rounded-lg border-[#D9D9D9]" name="city" id="city">
+                        <label className={`font-medium ${page === "wishlist" ? "text-sm text-[#212529] opacity-70" : ""}`} htmlFor="city">{translation?.data?.business?.choose?.city}</label>
+                        <select onChange={(e) => setSelectedCity(e.target.value)} className="bg-white font-medium py-2 px-3 border w-full max-[992px]:rounded-lg border-[#D9D9D9]" name="city" id="city">
                             <option value="">
                                 {translation?.data?.business?.choose?.city}
                             </option>
@@ -52,8 +52,8 @@ export function CompanyFilter({ type, setSelectedType, setSelectedPropertyType, 
                         </select>
                     </div>
                     <div className="flex flex-col flex-1">
-                        <label className={`${page === "wishlist" ? "text-sm text-[#212529] opacity-70" : ""}`} htmlFor="district">{translation?.data?.business?.choose?.district}</label>
-                        <select onChange={(e) => setSelectedDistrict(e.target.value)} className="bg-white py-2 px-3 border w-full max-[992px]:rounded-lg border-[#D9D9D9]" name="district" id="district">
+                        <label className={`font-medium ${page === "wishlist" ? "text-sm text-[#212529] opacity-70" : ""}`} htmlFor="district">{translation?.data?.business?.choose?.district}</label>
+                        <select onChange={(e) => setSelectedDistrict(e.target.value)} className="bg-white font-medium py-2 px-3 border w-full max-[992px]:rounded-lg border-[#D9D9D9]" name="district" id="district">
                             <option value="">
                                 {translation?.data?.business?.choose?.district}
                             </option>
@@ -64,8 +64,8 @@ export function CompanyFilter({ type, setSelectedType, setSelectedPropertyType, 
                         </select>
                     </div>
                     {page !== "wishlist" && <div className="flex flex-col flex-1">
-                        <label className={`${page === "wishlist" ? "text-sm text-[#212529] opacity-70" : ""}`} htmlFor="street">{translation?.data?.business?.choose?.street}</label>
-                        <select onChange={(e) => setSelectedStreet(e.target.value)} className="bg-white py-2 px-3 border w-full max-[992px]:rounded-lg border-[#D9D9D9] rounded-r-lg" name="street" id="street">
+                        <label className={`font-medium ${page === "wishlist" ? "text-sm text-[#212529] opacity-70" : ""}`} htmlFor="street">{translation?.data?.business?.choose?.street}</label>
+                        <select onChange={(e) => setSelectedStreet(e.target.value)} className="bg-white font-medium py-2 px-3 border w-full max-[992px]:rounded-lg border-[#D9D9D9] rounded-r-lg" name="street" id="street">
                             <option value="">
                                 {translation?.data?.business?.choose?.street}
                             </option>
@@ -77,11 +77,11 @@ export function CompanyFilter({ type, setSelectedType, setSelectedPropertyType, 
                 </div>
             </div>
             {page !== "wishlist" && <div className="grow max-[992px]:w-full">
-                <label htmlFor="q">{translation?.data?.business?.search_in_companies}</label>
-                <input value={q} onChange={(e) => setQ(e.target.value)} className="bg-white focus:outline-none py-2 px-3 border w-full border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.search_in_companies} name="q" id="q" />
+                <label className="font-medium" htmlFor="q">{translation?.data?.business?.search_in_companies}</label>
+                <input value={q} onChange={(e) => setQ(e.target.value)} className="bg-white font-medium focus:outline-none py-2 px-3 border w-full border-[#D9D9D9] rounded-lg" type="text" placeholder={translation?.data?.business?.search_in_companies} name="q" id="q" />
             </div>}
             <div className="grow max-[992px]:w-full">
-                <button onClick={() => filterCompany(page === "wishlist" ? selectedPropertyType : selectedType, selectedCountry, selectedCity, selectedDistrict, q)} className="w-full bg-[#27C5D2] max-[992px]:w-full text-white text-sm py-2 px-5 cursor-pointer whitespace-nowrap rounded-lg hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
+                <button onClick={() => filterCompany(page === "wishlist" ? selectedPropertyType : selectedType, selectedCountry, selectedCity, selectedDistrict, q)} className="w-full bg-[#27C5D2] max-[992px]:w-full text-white text-sm py-2 px-5 font-semibold cursor-pointer whitespace-nowrap rounded-lg hover:bg-[#026872] transition-colors duration-300 ease-in-out">{translation?.data?.business?.filter_apply}</button>
             </div>
         </div>
     )
