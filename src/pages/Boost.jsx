@@ -6,9 +6,6 @@ import { getDetails } from "../services/propertyDetails"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
-import location from "../assets/gray-location.png"
-import building from "../assets/building.png"
-import calendar from "../assets/calendar.png"
 import { useAppContext } from "../context/AppContext"
 
 export function Boost() {
@@ -74,16 +71,16 @@ export function Boost() {
                                     <p className="text-lg font-semibold whitespace-pre-line text-ellipsis overflow-hidden">{details?.title}</p>
                                     <p className="text-sm opacity-70 mb-4 whitespace-break-spaces text-ellipsis overflow-hidden">{details.no}</p>
                                     <ul className="flex text-sm text-[#747474] gap-2.5 flex-wrap">
-                                        <li className="flex">
-                                            <img className="w-5 h-5 mr-1.25" src={location} alt="" />
+                                        <li className="flex items-center font-medium">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-1.25 lucide-map-pin preview-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
                                             {details?.city?.title} / {details?.district?.title}
                                         </li>
-                                        <li className="flex">
-                                            <img className="w-5 h-5 mr-1.25" src={building} alt="" />
+                                        <li className="flex items-center font-medium">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-1.25 lucide-building preview-icon"><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M12 6h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/><path d="M8 6h.01"/><path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/><rect x="4" y="2" width="16" height="20" rx="2"/></svg>
                                             {details?.property_type === "ready" ? translation?.data?.business?.building_statusess?.ready : translation?.data?.business?.building_statusess?.under_construction}
                                         </li>
-                                        <li className="flex">
-                                            <img className="w-5 h-5 mr-1.25" src={calendar} alt="" />
+                                        <li className="flex items-center font-medium">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-1.25 lucide-calendar-days preview-icon"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M8 13h.01"/><path d="M12 13h.01"/><path d="M16 13h.01"/><path d="M8 17h.01"/><path d="M12 17h.01"/><path d="M16 17h.01"/></svg>
                                             {details?.updated_at}
                                         </li>
                                     </ul>
