@@ -1,5 +1,4 @@
 import pp from "../assets/pp.svg"
-import arrow from "../assets/black-arrow-right.png"
 import { Link } from "react-router-dom"
 import React from "react"
 import { useAppContext } from "../context/AppContext"
@@ -30,19 +29,19 @@ export function Sidebar({page , type , info , user}) {
                 <ul className="font-medium">
                     <li className={`${page==="account" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/account"} className="flex items-center">
-                            <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-2.5 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                             {translation?.data?.business?.my_account_info}
                         </Link>
                     </li>
                     <li className={`${page==="properties" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/auth/properties"} className="flex items-center">
-                            <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-2.5 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                             {translation?.data?.business?.my_properties}
                         </Link>
                     </li>
                     <li className={`${page==="proposals" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/proposals"} className="flex items-center">
-                            <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-2.5 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                             {translation?.data?.business?.proposals_to_customers}
                         </Link>
                     </li>
@@ -52,7 +51,7 @@ export function Sidebar({page , type , info , user}) {
                                 onClick={() => setSubMenu(prev => !prev)}
                                 className="flex items-center py-2 px-2.5 w-full rounded-lg hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out"
                             >
-                                <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-2.5 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                                 {translation?.data?.business?.my_offers}
                             </div>
 
@@ -61,14 +60,14 @@ export function Sidebar({page , type , info , user}) {
                                     <ul>
                                         <li className={`${type === "received" ? "bg-[#27c5d2] text-white" : "bg-white text-[#5f5f5f]"} rounded-lg hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out`}>
                                             <Link to="/offers/received" className="flex items-center py-2 px-2.5 text-sm hover:text-white transition-colors duration-300 ease-in-out">
-                                                <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-2.5 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                                                 {translation?.data?.business?.offers_as_received}
                                             </Link>
                                         </li>
 
                                         <li className={`${type === "send" ? "bg-[#27c5d2] text-white" : "bg-white text-[#5f5f5f]"} rounded-lg hover:bg-[#27C5D2] transition-colors duration-300 ease-in-out`}>
                                             <Link to="/offers/send" className="flex items-center py-2 px-2.5 text-sm hover:text-white transition-colors duration-300 ease-in-out">
-                                                <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-2.5 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                                                 {translation?.data?.business?.offers_as_sent}
                                             </Link>
                                         </li>
@@ -79,19 +78,19 @@ export function Sidebar({page , type , info , user}) {
                     </li>
                     <li className={`${page==="wishlist" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/wishlist"} className="flex items-center" href="">
-                            <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-2.5 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                            {translation?.data?.business?.my_wishlist}
                         </Link>
                     </li>
                     <li className={`${page==="quickFilters" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/quick-filters"} className="flex items-center" href="">
-                            <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-2.5 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                             {translation?.data?.business?.quick_filters}
                         </Link>
                     </li>
                     <li className={`${page==="notifications" ? "bg-[#27c5d2] text-white" : "bg-white" } py-2 px-2.5 my-0.5 rounded-lg cursor-pointer hover:bg-[#27C5D2] hover:text-white transition-colors duration-300 ease-in-out`}>
                         <Link to={"/notifications"} className="flex items-center" href="">
-                            <img className="mr-2.5 w-3 h-3" src={arrow} alt="" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide mr-2.5 lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg>
                             {translation?.data?.business?.my_notifications}
                         </Link>
                     </li>

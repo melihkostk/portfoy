@@ -18,8 +18,8 @@ export function Notification({ content, time, is_read, handleMarkAsRead, id, typ
                 <p className={` ${is_read === 1 ? "text-[#a6a6a6]" : "text-black"} text-sm mb-1.25 font-medium hover:text-[#27C5D2] transition-colors duration-300 ease-in-out`}>
                     {content}
                 </p>
-                <div className="flex items-end opacity-50 gap-1">
-                    <img className="w-4 h-4" src={clock} alt="" />
+                <div className="flex items-center opacity-50 gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock-2 preview-icon"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4-2"/></svg>
                     <p className="text-xs text-black font-medium">
                         {time}
                     </p>
