@@ -73,6 +73,15 @@ export function Account() {
             else {
                 setSuccessUpdate(true);
                 setSucessUpdateMessage(data.message)
+                const stored = JSON.parse(localStorage.getItem("user") || "null");
+                if (stored?.data) {
+                    stored.data.name = name;
+                    stored.data.phone = { ...stored.data.phone, code: code, number: phone };
+                    localStorage.setItem("user", JSON.stringify(stored));
+                    setName(stored?.data?.name || "")
+                    setCode(stored?.data?.phone?.code || "")
+                    setPhone(stored?.data?.phone?.number || "")
+                }
 
             }
         }).catch((error) => console.log(error)).finally(() => setLoaded(true));
