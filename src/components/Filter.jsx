@@ -125,7 +125,7 @@ export function Filter({searchParams , typeId}) {
                                             <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className="text-sm rounded-lg w-full py-1.25 px-2.5 placeholder:text-[#838383] bg-[#f8f8f8] focus:outline-none" type="text" placeholder={translation?.data?.business?.search_in_categories} />
                                         </div>
                                     </li>
-                                    {propertiesType?.filter(item => item.title.includes(searchInput)).map(item => (
+                                    {propertiesType?.filter(item => item.title.toLowerCase().includes(searchInput.toLowerCase())).map(item => (
                                         <li className="w-full py-1" key={item.id}>
                                             <input checked={selectedCategoryId === item.id} onChange={() => { console.log("checkbox onChange fired", item.id); setSelectedCategoryId(item.id) }} name={`category-${item.id}`} id={`category-${item.id}`} className="peer cursor-pointer hidden select-none w-5 h-5" type="checkbox" />
                                             <label htmlFor={`category-${item.id}`} className="text-[#747474] flex items-center gap-2.5 text-sm ml-2 cursor-pointer font-medium select-none hover:text-black transition-colors duration-300 ease-in-out">
