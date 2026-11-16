@@ -368,7 +368,7 @@ export function Properties() {
                     <Link className="text-[#9a9898] text-sm font-semibold">{translation?.data?.business?.properties}</Link>
                 </div>
             </div>
-            <div className={`w-full max-w-[90%] ${filterShown ? "py-7.5" : "py-5"}`}>
+            <div className={`w-full max-w-[90%] ${filterShown ? "py-20 mb-12.5" : "py-5"}`}>
                 {filterShown && <div>
                     <h1 className="text-[35px] font-semibold">{translation?.data?.business?.filter_properties}</h1>
                     <Filter setFilterShown={setFilterShown} searchParams={searchParams} typeId={typeId} />

@@ -91,7 +91,7 @@ export function Filter({searchParams , typeId}) {
     const [selectedCategoryId, setSelectedCategoryId] = useState("");
 
     return (
-        <div>
+        <>
             <div className="flex flex-col gap-2">
                 <ul className='flex mt-10 max-w-full overflow-x-auto scrollbar-thin scrollbar-thumb-[#27C5D2] gap-2.5'>
                     <li>
@@ -146,7 +146,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-base font-semibold">-</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                {priceFilter && <ul className="absolute w-full p-2.5 bg-white z-30">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
                                             <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
@@ -177,7 +177,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-base font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {locationFilter && <ul className="absolute w-full bg-white">
+                                {locationFilter && <ul className="absolute w-full z-30 bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
@@ -243,7 +243,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-base font-semibold">-</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                {priceFilter && <ul className="absolute w-full p-2.5 z-30 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
                                             <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
@@ -274,7 +274,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-base font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {locationFilter && <ul className="absolute w-full bg-white">
+                                {locationFilter && <ul className="absolute w-full z-30 bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
@@ -378,7 +378,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-[13px] font-semibold">-</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                {priceFilter && <ul className="absolute z-30 w-full p-2.5 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
                                             <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
@@ -409,7 +409,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {locationFilter && <ul className="absolute w-full bg-white">
+                                {locationFilter && <ul className="absolute z-30 w-full bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
@@ -494,7 +494,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-[13px] font-semibold">-</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                {priceFilter && <ul className="absolute z-30 w-full p-2.5 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
                                             <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
@@ -525,7 +525,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {locationFilter && <ul className="absolute w-full bg-white">
+                                {locationFilter && <ul className="absolute z-30 w-full bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
@@ -617,7 +617,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-[13px] font-semibold">-</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                {priceFilter && <ul className="absolute z-30 w-full p-2.5 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
                                             <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
@@ -648,7 +648,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {locationFilter && <ul className="absolute w-full bg-white">
+                                {locationFilter && <ul className="absolute rounded-lg z-30 w-full bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
@@ -715,7 +715,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-[13px] font-semibold">-</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                {priceFilter && <ul className="absolute w-full z-30 p-2.5 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
                                             <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
@@ -746,7 +746,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {locationFilter && <ul className="absolute w-full bg-white">
+                                {locationFilter && <ul className="absolute z-30 w-full bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
@@ -831,7 +831,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-[13px] font-semibold">-</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {priceFilter && <ul className="absolute w-full p-2.5 bg-white">
+                                {priceFilter && <ul className="absolute z-30 w-full p-2.5 bg-white">
                                     <li>
                                         <div className="border border-[#D9D9D9] rounded-lg p-1 mb-2.5">
                                             <div className="bg-[#d9d9d9] text-[#474747] text-center py-1.5 px-2.5 rounded-lg">{translation?.data?.business?.sell_price}</div>
@@ -862,7 +862,7 @@ export function Filter({searchParams , typeId}) {
                                     <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
-                                {locationFilter && <ul className="absolute w-full bg-white">
+                                {locationFilter && <ul className="absolute z-30 w-full bg-white">
                                     <li className="py-1 px-4">
                                         <div>
                                             <div className="flex flex-col">
@@ -936,6 +936,6 @@ export function Filter({searchParams , typeId}) {
                     </form>
                 )}
             </div>
-        </div>
+        </>
     )
 }

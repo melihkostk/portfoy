@@ -57,7 +57,7 @@ export function HomeLogin({ logOut }) {
                 </div>
             )}
             <Header logOut={logOut} />
-            <div className='w-full max-w-[90%] py-20'>
+            <div className='w-full max-w-[90%] py-20 mb-12.5'>
                 <h1 className='text-[35px] text-[#45443f] mb-2 font-semibold'>{translation?.data?.business?.filter_properties}</h1>
                 <Filter />
             </div>
