@@ -36,6 +36,8 @@ export function Settings() {
     const [selected, setSelected] = useState([]);
     const [personalVisibilities, setPersonalVisibilities] = useState([]);
 
+    const [loaded, setLoaded] = useState(false);
+
 
     useEffect(() => {
         getPreference().then((data) => {
@@ -44,10 +46,9 @@ export function Settings() {
             setPassStatus(data?.data?.pass_price_visibility)
             setSelected(data?.data?.price_offer_users)
             setPersonalVisibilities(data?.data?.personal_contacts_visibilities?.personals || [])
-        }).catch((error) => console.log(error))
+        }).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
 
-    const [loaded, setLoaded] = useState(true);
 
     const [successMessage, setSuccessMessage] = useState("");
     const [successMessageShown, setSuccessMessageShown] = useState(false);
