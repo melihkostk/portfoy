@@ -105,7 +105,7 @@ export function Footer() {
                     <p className="text-white text-base font-medium text-center">
                         {translation?.data?.business?.footer_copyright}
                     </p>
-                    <p className="text-white text-base font-normal text-center">
+                    <p className="text-white text-base font-medium text-center">
                         {translation?.data?.business?.footer_developed_by?.replace(/<[^>]*>/g, '')}
                     </p>
                 </div>
