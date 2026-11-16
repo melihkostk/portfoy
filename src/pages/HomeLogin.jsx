@@ -119,6 +119,7 @@ export function HomeLogin({ logOut }) {
                                     city={item.city.title}
                                     district={item.district.title}
                                     page="homeLogin"
+                                    propertyType={item?.property_type}
                                 />
                             ))}
                         </div>
