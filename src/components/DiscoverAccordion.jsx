@@ -6,7 +6,7 @@ export function DiscoverAccordion({ question , answer }) {
 
     return (
         <div className="flex flex-col mb-5 rounded-lg cursor-pointer shadow-[0_0_120px_rgba(0,0,0,0.1)]">
-            <div onClick={() => setAccordionOpen(prev => !prev)} className="p-2.5 bg-[#f7f6fb]">
+            <div onClick={() => setAccordionOpen(prev => !prev)} className="p-2.5 bg-[#f7f6fb] rounded-lg">
                 <div className="flex items-center justify-between px-5 py-4">
                     <div>
                         <p className="font-semibold select-none">
