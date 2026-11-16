@@ -8,7 +8,7 @@ export function PropertiesCard(props) {
     const { translation } = useAppContext();
     return (
         <div className={`flex select-none ${props.page === "wishlist" || props.page === "myProperties" || props.page === "homeLogin" || props.page === "proposalDetail" || props.page === "companiesDetail" ? "bg-white shadow-[0_0_30px_rgb(246,246,246)]" : "bg-[#FAFAFA]"} items-start ${props.page === "proposalDetail" ? "w-full m-0 p-7.5" : ""} shrink-0 max-[992px]:w-full max-[992px]:m-0 ${props.flexDirection === "flex-col" ? "w-full" : ""}  max-[992px]:flex-col p-3.75 m-3.75 rounded-[10px] ${props.page === "wishlist" ? "w-[calc(50%-30px)]" : "w-[calc(33%-30px)]"} ${props.page === "myProperties" ? "w-full" : ""}`}>
-            <div className={`${props.flexDirection === "flex-col" ? "w-[15%]" : "w-[50%]"} ${props.page === "company" ? "aspect-square" : ""} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} max-[992px]:w-full max-[992px]:mb-3.75 ${props.page === "myProperties" ? "aspect-video" : "aspect-square"}`}>
+            <div className={`${props.flexDirection === "flex-col" ? "w-55" : "w-[50%]"} ${props.page === "company" ? "aspect-square" : ""} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} max-[992px]:w-full max-[992px]:mb-3.75 ${props.page === "myProperties" ? "aspect-video" : "aspect-square"}`}>
                 <div className="relative h-full">
                     <img className={`rounded-[10px] ${props.page === "company" ? "aspect-square h-1/2" : "h-full"} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} h-full  object-cover max-[992px]:aspect-video`} src={defaultProperty} alt="" />
                     {props.status == "draft" && <div className="bg-[#FFCA64] z-50 uppercase text-black text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
@@ -22,7 +22,7 @@ export function PropertiesCard(props) {
                     </div>}
                 </div>
             </div>
-            <div className={`pl-5 ${props.flexDirection === "flex-col" ? "w-full" : "w-[50%]"} max-[992px]:w-full max-[992px]:pl-0`}>
+            <div className={`pl-5 ${props.flexDirection === "flex-col" ? "w-[calc(100%-220px)]" : "w-[50%]"} max-[992px]:w-full max-[992px]:pl-0`}>
                 <Link to={`/properties/${props.id}`} className={`min-h-12.5 font-medium ${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" || props.page === "wishlist" || props.page === "proposalDetail" || props.flexDirection === "flex-col" ? "text-2xl" : "text-base"} text-black hover:text-[#FFCA64] transition-colors duration-300 ease-in-out`}>{props.title}</Link>
                 <ul className={`text-[#B7BFB9] font-medium flex flex-wrap gap-2.5 my-2.5 ${props.flexDirection === "flex-col" ? "text-base" : "text-[11px]"}`}>
                     <li className="w-full flex items-center gap-1">
