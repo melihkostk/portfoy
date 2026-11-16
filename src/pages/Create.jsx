@@ -3,7 +3,7 @@ import { Header } from "../components/Header"
 import { AppLinks } from "../components/AppLinks"
 import { Footer } from "../components/Footer"
 import { createProperty, getAllPropertiesType } from "../services/propertiesApi"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getAllCities, getAllCountries, getAllCurrencies, getAllDistricts, getAllStreets } from "../services/filterApi"
 import { Link, useNavigate } from "react-router-dom"
@@ -24,6 +24,25 @@ export function Create() {
     useEffect(() => {
         getAllPropertiesType().then(setPropertyType).catch((error) => console.log(error)).finally(() => setLoaded(true))
     }, [])
+
+    const propertyTypeScrollRef = useRef(null);
+    const [canScrollTypeLeft, setCanScrollTypeLeft] = useState(false);
+    const [canScrollTypeRight, setCanScrollTypeRight] = useState(false);
+
+    function updatePropertyTypeScrollButtons() {
+        const el = propertyTypeScrollRef.current
+        if (!el) return
+        setCanScrollTypeLeft(el.scrollLeft > 0)
+        setCanScrollTypeRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1)
+    }
+
+    useEffect(() => {
+        updatePropertyTypeScrollButtons()
+    }, [propertyType])
+
+    function scrollPropertyType(direction) {
+        propertyTypeScrollRef.current?.scrollBy({ left: direction * 150, behavior: "smooth" })
+    }
 
     const [selectedType, setSelectedType] = useState("");
 
@@ -126,21 +145,29 @@ export function Create() {
                 </div>
             </div>
             <div className="w-full max-w-[90%] flex items-center justify-center">
-                <form onSubmit={handleAdd} className="w-[50%] max-[992px]:w-full">
+                <form onSubmit={handleAdd} className="w-full max-w-160 max-[992px]:w-full">
                     <div className="mb-12.5">
                         <p className="uppercase text-sm text-[#212529] opacity-60 text-center mb-5 font-bold">{translation?.data?.business?.basic_info}</p>
                         <input required value={title} onChange={(e) => setTitle(e.target.value)} className="p-3.75 focus:outline-none font-medium rounded-lg border border-[#ededed] w-full" type="text" placeholder={translation?.data?.business?.property_title} />
-                        <div className="flex overflow-x-auto justify-between scrollbar-none mt-7.5">
-                            {propertyType.map(item => (
-                                <CreateButton
-                                    key={item.id}
-                                    title={item.title}
-                                    id={item.id}
-                                    selectedType={selectedType}
-                                    setSelectedType={setSelectedType}
-                                    setUnderConstruction={setUnderConstruction}
-                                />
-                            ))}
+                        <div className="relative">
+                            {canScrollTypeLeft && (
+                                <svg onClick={() => scrollPropertyType(-1)} xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-60 max-[992px]:hidden -left-11 top-1/2 absolute -translate-y-1/2 cursor-pointer ease-in-out z-10 bg-white rounded-full"><path d="m15 18-6-6 6-6" /></svg>
+                            )}
+                            <div ref={propertyTypeScrollRef} onScroll={updatePropertyTypeScrollButtons} className="flex overflow-x-auto justify-between scrollbar-none mt-7.5">
+                                {propertyType.map(item => (
+                                    <CreateButton
+                                        key={item.id}
+                                        title={item.title}
+                                        id={item.id}
+                                        selectedType={selectedType}
+                                        setSelectedType={setSelectedType}
+                                        setUnderConstruction={setUnderConstruction}
+                                    />
+                                ))}
+                            </div>
+                            {canScrollTypeRight && (
+                                <svg onClick={() => scrollPropertyType(1)} xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-60 max-[992px]:hidden -right-11 top-1/2 absolute -translate-y-1/2 cursor-pointer z-10 bg-white rounded-full"><path d="m9 18 6-6-6-6" /></svg>
+                            )}
                         </div>
                         {selectedType === 29 && <div className="mt-5">
                             <select value={selectedProject} onChange={(e) => setSelectedProject(e.target.value)} className="w-full bg-[#f8f8f8] p-2.5 rounded-lg focus-visible:outline-none text-[#818181] font-medium" name="" id="">
