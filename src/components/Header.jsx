@@ -188,9 +188,9 @@ export function Header({ details }) {
                                 <p className="text-white text-sm mb-5 font-medium">
                                     Okunmamış {notifications?.data?.unread_notifications_count} Bildirim
                                 </p>
-                                <button className="bg-white text-xs rounded-lg py-2.5 px-5 font-medium cursor-pointer whitespace-nowrap hover:bg-[#ffca64] transition-colors duration-300 ease-in-out">
+                                {notifications?.data?.notifications?.filter(item => item.is_read === 0)?.length > 0 && <button className="bg-white text-xs rounded-lg py-2.5 px-5 font-medium cursor-pointer whitespace-nowrap hover:bg-[#ffca64] transition-colors duration-300 ease-in-out">
                                     Tümünü Okundu Olarak İşaretle
-                                </button>
+                                </button>}
                             </div>
                             <div className="p-3.75 max-h-[50vh] overflow-auto bg-white mb-5">
                                 {notifications?.data?.notifications?.filter(item => item.is_read === 0)?.length > 0 ? <div className={`${showUnreadOnly ? "bg-[#dddddd]" : "bg-[#eeeeee]"} p-2.5 rounded-lg flex items-center gap-2 mb-5`}>
