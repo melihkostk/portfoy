@@ -174,11 +174,11 @@ export function Header({ details }) {
                             <Link to={"/check"}>{translation?.data?.business?.application_check}</Link>
                         </div>}
                     </div>}
-                    {loged && <div className="relative">
-                        <button aria-label="notification" onClick={() => setNotShown(prev => !prev)} className="w-12.5 h-12.5 bg-[#f8f8f8] text-[#858585] hover:text-white transition-colors duration-300 ease-in-out rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#27C5D2]">
+                    {loged && <div className="relative text-[#858585] hover:text-white transition-colors duration-300 ease-in-out">
+                        <button aria-label="notification" onClick={() => setNotShown(prev => !prev)} className="w-12.5 h-12.5 bg-[#f8f8f8] transition-colors duration-300 ease-in-out rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#27C5D2]">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-bell preview-icon"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
                         </button>
-                        <div className="absolute -top-1 -right-1 text-[10px] text-[#858585] bg-[#FFCA64] rounded-full w-5 h-5 flex items-center justify-center font-extrabold">
+                        <div className="absolute -top-1 -right-1 text-[10px] bg-[#FFCA64] rounded-full w-5 h-5 flex items-center justify-center font-extrabold">
                             {notifications?.data?.unread_notifications_count}
                         </div>
                         {notShown && <div className="absolute z-50 w-87.5 rounded-lg bg-white right-0 shadow-[0_0_30px_rgba(0,0,0,0.1)] pb-3.75">
