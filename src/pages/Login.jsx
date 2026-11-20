@@ -82,7 +82,7 @@ export function Login() {
                             <label className="text-[#868686] mb-1.25 font-medium" htmlFor="email">{translation?.data?.business?.email}</label>
                              <div className="relative">
                                 <img className="absolute w-5 h-5 top-4.5 left-4" src={mail} alt="" />
-                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full focus:outline-none px-5 pl-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="email" type="email" placeholder={translation?.data?.business?.email} required />
+                                <input autoComplete="off" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full focus:outline-none px-5 pl-12 py-3.75 shadow-[0_0_30px_rgb(242_242_242)] font-medium" name="email" id="email" type="email" placeholder={translation?.data?.business?.email} required />
                             </div>
                         </div>
                         <div className="my-2.5">

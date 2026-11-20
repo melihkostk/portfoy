@@ -36,7 +36,7 @@ export function OfferCard({ title,  name , page , price, offered_price, status, 
                 {created_at}
             </td>
             <td className={`py-3 px-2 ${page==="edit" ? "flex justify-end items-center" : ""}`}>
-                {type === "send" && <Link to={`/offers/${id}/detail`} className="bg-[#27C5D2] flex items-center gap-1.25 text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
+                {type === "send" && <Link to={`/offers/${id}/detail`} className="bg-[#27C5D2] max-w-fit flex items-center justify-center gap-1.25 text-xs text-white font-semibold py-2 px-5 rounded-sm cursor-pointer hover:bg-[#026872] transition-colors duration-300 ease-in-out">
                     <img className="w-4 h-4" src={eye} alt="" />
                     {translation?.data?.business?.view}
                 </Link>}

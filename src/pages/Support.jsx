@@ -108,8 +108,8 @@ export function Support() {
                     </div>
                     <div>
                         <h2 className="text-[#212529] text-[28px] mb-2 font-medium">{translation?.data?.business?.articles}</h2>
-                        {news.filter(item => item.title.toLowerCase().includes(q)).length > 0 ?
-                            news.filter(item => item.title.toLowerCase().includes(q)).map(item => (
+                        {news.filter(item => item.title.toLowerCase().includes(q.toLowerCase())).length > 0 ?
+                            news.filter(item => item.title.toLowerCase().includes(q.toLowerCase())).map(item => (
                                 <div className="pb-2.5 mb-2.5 border-b border-b-[#eee]" key={item.id}>
                                     <p className="text-lg text-[#212529] font-semibold">
                                         {item.title}

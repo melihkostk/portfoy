@@ -230,14 +230,14 @@ export function Create() {
                             <p className="uppercase">Proje bilgileri</p>
                         </div>
                         <div className="flex gap-2.5">
-                            <div className="flex-1">
+                            <div className="w-1/2">
                                 <label className="text-sm text-[#212529] opacity-50 font-medium" htmlFor="">Metrekare (m²)</label>
                                 <div className="flex gap-2.5">
-                                    <input className="py-1.5 px-3 rounded-lg flex-1 font-medium border border-[#d9d9d9]" type="text" placeholder="min" />
-                                    <input className="py-1.5 px-3 rounded-lg flex-1 font-medium border border-[#d9d9d9]" type="text" placeholder="max" />
+                                    <input className="py-1.5 px-3 w-full rounded-lg flex-1 font-medium border border-[#d9d9d9]" type="text" placeholder="min" />
+                                    <input className="py-1.5 px-3 w-full rounded-lg flex-1 font-medium border border-[#d9d9d9]" type="text" placeholder="max" />
                                 </div>
                             </div>
-                            <div className="flex flex-col flex-1">
+                            <div className="flex flex-col w-1/2">
                                 <label className="text-sm text-[#212529] opacity-50 font-medium" htmlFor="">Oda Sayısı</label>
                                 <select className="py-1.5 px-3 rounded-lg flex-1 border border-[#d9d9d9]" name="" id="">
                                     <option value="">Oda Sayısı</option>
