@@ -60,6 +60,9 @@ export function Filter({searchParams , typeId}) {
         setMaxBuildingAge("");
         setLandTitleTypeId("");
         setFieldTitleTypeId("");
+        setPriceFilter(false);
+        setCateFilter(false);
+        setLocationFilter(false);
     }
 
     useEffect(() => {
