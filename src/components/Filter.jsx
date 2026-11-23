@@ -116,7 +116,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase tracking-[0.3px] text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.categories}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setCateFilter(prev => !prev)} className="flex justify-between px-1.5 cursor-pointer w-full">
-                                    <p className="font-semibold text-base">{translation?.data?.business?.all}</p>
+                                    <p className="font-semibold text-base">{selectedCategoryId ? propertiesType.find(item => item.id === Number(selectedCategoryId))?.title :translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {cateFilter && <ul className="absolute w-full max-h-75 overflow-y-auto bg-white border z-50 border-[#eee] rounded-lg p-2">
@@ -143,7 +143,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-base font-semibold">-</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute w-full p-2.5 bg-white z-30">
@@ -174,7 +174,12 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between px-1.5 cursor-pointer w-full">
-                                    <p className="text-base font-semibold">{translation?.data?.business?.all}</p>
+                                    <p className="text-base text-start line-clamp-1 font-semibold">{(countryId || cityId || districtId || streetId) ? [
+                                        countries?.data?.find(item => item.id === Number(countryId))?.title,
+                                        cities?.find(item => item.id === Number(cityId))?.title,
+                                        district?.find(item => item.id === Number(districtId))?.title,
+                                        street?.find(item => item.id === Number(streetId))?.title,
+                                    ].filter(Boolean).join(", ") : translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute w-full z-30 bg-white">
@@ -240,7 +245,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-base font-semibold">-</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute w-full p-2.5 z-30 bg-white">
@@ -271,7 +276,12 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-base font-semibold">{translation?.data?.business?.all}</p>
+                                    <p className="text-base text-start line-clamp-1 font-semibold">{(countryId || cityId || districtId || streetId) ? [
+                                        countries?.data?.find(item => item.id === Number(countryId))?.title,
+                                        cities?.find(item => item.id === Number(cityId))?.title,
+                                        district?.find(item => item.id === Number(districtId))?.title,
+                                        street?.find(item => item.id === Number(streetId))?.title,
+                                    ].filter(Boolean).join(", ") : translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute w-full z-30 bg-white">
@@ -375,7 +385,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">-</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute z-30 w-full p-2.5 bg-white">
@@ -385,10 +395,10 @@ export function Filter({searchParams , typeId}) {
                                         </div>
                                         <div>
                                             <div>
-                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.min} />
+                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
+                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
@@ -406,7 +416,12 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
+                                    <p className="text-base text-start line-clamp-1 font-semibold">{(countryId || cityId || districtId || streetId) ? [
+                                        countries?.data?.find(item => item.id === Number(countryId))?.title,
+                                        cities?.find(item => item.id === Number(cityId))?.title,
+                                        district?.find(item => item.id === Number(districtId))?.title,
+                                        street?.find(item => item.id === Number(streetId))?.title,
+                                    ].filter(Boolean).join(", ") : translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute z-30 w-full bg-white">
@@ -462,7 +477,7 @@ export function Filter({searchParams , typeId}) {
                             </div>
                         </div>
                         <div className="flex-1 max-w-[20%] pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
-                            <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
+                            <label className="uppercase text-base text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                             <div className="flex justify-between cursor-pointer w-full">
                                 <select name={findFilterParam("Oda Sayısı")?.id ? `details[${findFilterParam("Oda Sayısı").id}]` : undefined} value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-base w-full cursor-pointer">
                                     <option value="">{translation?.data?.business?.all}</option>
@@ -491,7 +506,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">-</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute z-30 w-full p-2.5 bg-white">
@@ -522,7 +537,12 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
+                                    <p className="text-base text-start line-clamp-1 font-semibold">{(countryId || cityId || districtId || streetId) ? [
+                                        countries?.data?.find(item => item.id === Number(countryId))?.title,
+                                        cities?.find(item => item.id === Number(cityId))?.title,
+                                        district?.find(item => item.id === Number(districtId))?.title,
+                                        street?.find(item => item.id === Number(streetId))?.title,
+                                    ].filter(Boolean).join(", ") : translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute z-30 w-full bg-white">
@@ -580,7 +600,7 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-full pr-2.5 border-r border-r-[#eeeeee] max-[992px]:border-r-0">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Oda Sayısı</label>
                             <div className="flex justify-between cursor-pointer w-full">
-                                <select name={findFilterParam("Oda Sayısı")?.id ? `details[${findFilterParam("Oda Sayısı").id}]` : undefined} value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-[13px] w-full cursor-pointer">
+                                <select name={findFilterParam("Oda Sayısı")?.id ? `details[${findFilterParam("Oda Sayısı").id}]` : undefined} value={roomCount} onChange={(e) => setRoomCount(e.target.value)} className="font-semibold text-base w-full cursor-pointer">
                                     <option value="">Oda Sayısı</option>
                                     {findFilterParam("Oda Sayısı")?.options?.map(item => (
                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -614,7 +634,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">-</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute z-30 w-full p-2.5 bg-white">
@@ -624,10 +644,10 @@ export function Filter({searchParams , typeId}) {
                                         </div>
                                         <div>
                                             <div>
-                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.min} />
+                                                <input name="min_price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.min} />
                                             </div>
                                             <div>
-                                                <input className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
+                                                <input name="max_price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="border border-[#d9d9d9] py-1.5 px-3 w-full rounded-lg focus:outline-none" type="text" placeholder={translation?.data?.business?.max} />
                                             </div>
                                             <div>
                                                 <select name="currency_id" value={currencieId} onChange={(e) => setCurrenciId(e.target.value)} className="py-2 pl-3 pr-9 w-full border border-[#d9d9d9] rounded-lg" id="">
@@ -645,7 +665,12 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
+                                    <p className="text-base text-start line-clamp-1 font-semibold">{(countryId || cityId || districtId || streetId) ? [
+                                        countries?.data?.find(item => item.id === Number(countryId))?.title,
+                                        cities?.find(item => item.id === Number(cityId))?.title,
+                                        district?.find(item => item.id === Number(districtId))?.title,
+                                        street?.find(item => item.id === Number(streetId))?.title,
+                                    ].filter(Boolean).join(", ") : translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute rounded-lg z-30 w-full bg-white">
@@ -712,7 +737,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">-</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute w-full z-30 p-2.5 bg-white">
@@ -743,7 +768,12 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
+                                    <p className="text-base text-start line-clamp-1 font-semibold">{(countryId || cityId || districtId || streetId) ? [
+                                        countries?.data?.find(item => item.id === Number(countryId))?.title,
+                                        cities?.find(item => item.id === Number(cityId))?.title,
+                                        district?.find(item => item.id === Number(districtId))?.title,
+                                        street?.find(item => item.id === Number(streetId))?.title,
+                                    ].filter(Boolean).join(", ") : translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute z-30 w-full bg-white">
@@ -801,7 +831,7 @@ export function Filter({searchParams , typeId}) {
                         <div className="flex-1 max-w-full pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Arsa Tapu Türü</label>
                             <div className="flex justify-between cursor-pointer w-full">
-                                <select name={findFilterParam("Arsa Tapu Türü")?.id ? `details[${findFilterParam("Arsa Tapu Türü").id}]` : undefined} value={landTitleTypeId} onChange={(e) => setLandTitleTypeId(e.target.value)} className="text-[13px] font-semibold w-full" id="">
+                                <select name={findFilterParam("Arsa Tapu Türü")?.id ? `details[${findFilterParam("Arsa Tapu Türü").id}]` : undefined} value={landTitleTypeId} onChange={(e) => setLandTitleTypeId(e.target.value)} className="text-base font-semibold w-full" id="">
                                     <option value="">Arsa Tapu Türü</option>
                                     {findFilterParam("Arsa Tapu Türü")?.options?.map(item => (
                                         <option key={item.id} value={item.id}>{item.title}</option>
@@ -828,7 +858,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">-</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute z-30 w-full p-2.5 bg-white">
@@ -859,7 +889,12 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.location}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setLocationFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-[13px] font-semibold">{translation?.data?.business?.all}</p>
+                                    <p className="text-base text-start line-clamp-1 font-semibold">{(countryId || cityId || districtId || streetId) ? [
+                                        countries?.data?.find(item => item.id === Number(countryId))?.title,
+                                        cities?.find(item => item.id === Number(cityId))?.title,
+                                        district?.find(item => item.id === Number(districtId))?.title,
+                                        street?.find(item => item.id === Number(streetId))?.title,
+                                    ].filter(Boolean).join(", ") : translation?.data?.business?.all}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {locationFilter && <ul className="absolute z-30 w-full bg-white">
@@ -923,7 +958,7 @@ export function Filter({searchParams , typeId}) {
                         </div>
                         <div className="flex-1 max-w-full pr-2.5">
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">Tarla Tapu Türü</label>
-                            <select name={findFilterParam("Tarla Tapu Türü")?.id ? `details[${findFilterParam("Tarla Tapu Türü").id}]` : undefined} value={fieldTitleTypeId} onChange={(e) => setFieldTitleTypeId(e.target.value)} className="text-[13px] font-semibold w-full" id="">
+                            <select name={findFilterParam("Tarla Tapu Türü")?.id ? `details[${findFilterParam("Tarla Tapu Türü").id}]` : undefined} value={fieldTitleTypeId} onChange={(e) => setFieldTitleTypeId(e.target.value)} className="text-base font-semibold w-full" id="">
                                 <option value="">Tarla Tapu Türü</option>
                                 {findFilterParam("Tarla Tapu Türü")?.options?.map(item => (
                                     <option key={item.id} value={item.id}>{item.title}</option>
