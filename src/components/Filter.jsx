@@ -143,7 +143,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencieId ? currencies?.find(item => item.id === Number(currencieId))?.code : ""}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute w-full p-2.5 bg-white z-30">
@@ -245,7 +245,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencieId ? currencies?.find(item => item.id === Number(currencieId))?.code : ""}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute w-full p-2.5 z-30 bg-white">
@@ -385,7 +385,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencieId ? currencies?.find(item => item.id === Number(currencieId))?.code : ""}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute z-30 w-full p-2.5 bg-white">
@@ -506,7 +506,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencieId ? currencies?.find(item => item.id === Number(currencieId))?.code : ""}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute z-30 w-full p-2.5 bg-white">
@@ -634,7 +634,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencieId ? currencies?.find(item => item.id === Number(currencieId))?.code : ""}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute z-30 w-full p-2.5 bg-white">
@@ -737,7 +737,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencieId ? currencies?.find(item => item.id === Number(currencieId))?.code : ""}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute w-full z-30 p-2.5 bg-white">
@@ -858,7 +858,7 @@ export function Filter({searchParams , typeId}) {
                             <label className="uppercase text-[13px] text-[#767676] font-semibold" htmlFor="">{translation?.data?.business?.sell_price}</label>
                             <div className="relative">
                                 <button type="button" onClick={() => setPriceFilter(prev => !prev)} className="flex justify-between cursor-pointer w-full">
-                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencies?.find(item => item.id === Number(currencieId))?.code}` : "-"}</p>
+                                    <p className="text-base font-semibold">{(maxPrice || minPrice || currencieId) ? `${minPrice} - ${maxPrice} ${currencieId ? currencies?.find(item => item.id === Number(currencieId))?.code : ""}` : "-"}</p>
                                     <img className="w-4 h-4" src={downArrow} alt="" />
                                 </button>
                                 {priceFilter && <ul className="absolute z-30 w-full p-2.5 bg-white">
