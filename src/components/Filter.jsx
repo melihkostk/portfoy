@@ -43,6 +43,25 @@ export function Filter({searchParams , typeId}) {
     const [landTitleTypeId, setLandTitleTypeId] = useState("");
     const [fieldTitleTypeId, setFieldTitleTypeId] = useState("");
 
+    function resetFilter(){
+        setCountryId("");
+        setCityId("");
+        setDistrictId("");
+        setStreetId("");
+        setCurrenciId("");
+        setMinPrice("");
+        setMaxPrice("");
+        setRoomCount("");
+        setFacadeId("");
+        setHeatingId("");
+        setMinArea("");
+        setMaxArea("");
+        setMaxBuildingAge("");
+        setMaxBuildingAge("");
+        setLandTitleTypeId("");
+        setFieldTitleTypeId("");
+    }
+
     useEffect(() => {
         getAllCountries().then(setCountries)
     }, [])
@@ -100,11 +119,11 @@ export function Filter({searchParams , typeId}) {
                     {propertiesType?.map(item => (
                         (item.title !== "Projects" && item.title !== "Projeler" && item.title !== "Новостройки") ? (
                             <li key={item.id}>
-                                <button onClick={() => setType(item.id)} className={`px-7.5 py-2.5 font-medium text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === item.id ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"}`}>{item.title}</button>
+                                <button onClick={() => {setType(item.id); resetFilter()}} className={`px-7.5 py-2.5 font-medium text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === item.id ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"}`}>{item.title}</button>
                             </li>
                         ) : item.childrens?.map(child => (
                             <li key={child.id}>
-                                <button onClick={() => setType(child.id)} className={`px-7.5 py-2.5 font-medium text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === child.id ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"}`}>{child.title}</button>
+                                <button onClick={() => {setType(child.id); resetFilter()}} className={`px-7.5 py-2.5 font-medium text-sm cursor-pointer whitespace-nowrap hover:opacity-100 transition-opacity duration-300 ease-in-out focus:opacity-100 ${searchParams && type === child.id ? "bg-[#27c5d2] opacity-100 text-white rounded-lg" : searchParams?.toString() ? "bg-[#f8f8f8] rounded-lg opacity-100" : "opacity-70"}`}>{child.title}</button>
                             </li>
                         ))
                     ))}
