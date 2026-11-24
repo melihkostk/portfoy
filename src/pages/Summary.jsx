@@ -3,7 +3,7 @@ import { CompanyHeader } from "../components/CompanyHeader"
 import { CountCard } from "../components/CountCard"
 import { Header } from "../components/Header"
 import { ScoreCard } from "../components/ScoreCard"
-import { getCount, getSummaryProperties } from "../services/summaryApi";
+import { getCount } from "../services/summaryApi";
 import { getCompanyProfile } from "../services/myCompanyApi";
 import { AppLinks } from "../components/AppLinks";
 import { Footer } from "../components/Footer";
@@ -31,12 +31,6 @@ export function Summary() {
 
     useEffect(() => {
         getCompanyProfile().then(setInfo).catch((error) => console.log(error))
-    }, [])
-
-    const [summaryProperties, setSummaryProperties] = useState([]);
-
-    useEffect(() => {
-        getSummaryProperties().then(setSummaryProperties).catch((error) => console.log(error))
     }, [])
 
     const [viewOptions, setViewOptions] = useState(false)
@@ -269,7 +263,7 @@ export function Summary() {
                             </tr>
                         </thead>
                         <tbody>
-                            {summaryProperties.map((item , index) => (
+                            {counts?.data?.summary?.properties?.map((item , index) => (
                                 <SummaryCard
                                     key={item.id}
                                     id={item.id}
