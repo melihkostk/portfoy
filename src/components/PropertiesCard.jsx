@@ -7,10 +7,10 @@ import { useAppContext } from "../context/AppContext"
 export function PropertiesCard(props) {
     const { translation } = useAppContext();
     return (
-        <div className={`flex select-none ${props.page === "wishlist" || props.page === "myProperties" || props.page === "homeLogin" || props.page === "proposalDetail" || props.page === "companiesDetail" ? "bg-white shadow-[0_0_30px_rgb(246,246,246)]" : "bg-[#FAFAFA]"} items-start ${props.page === "proposalDetail" ? "w-full m-0 p-7.5" : ""} shrink-0 max-[992px]:w-full max-[992px]:m-0 ${props.flexDirection === "flex-col" ? "w-full" : ""}  max-[992px]:flex-col p-3.75 m-3.75 rounded-[10px] ${props.page === "wishlist" ? "w-[calc(50%-30px)]" : "w-[calc(33%-30px)]"} ${props.page === "myProperties" ? "w-full" : ""}`}>
-            <div className={`${props.flexDirection === "flex-col" ? "w-55" : "w-[50%]"} ${props.page === "company" ? "aspect-square" : ""} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} max-[992px]:w-full max-[992px]:mb-3.75 ${props.page === "myProperties" ? "aspect-video" : "aspect-square"}`}>
+        <div className={`flex select-none ${props.page === "summary" ? "p-7.5" : "" } ${props.page === "wishlist" || props.page === "myProperties" || props.page === "homeLogin" || props.page === "proposalDetail" || props.page === "companiesDetail" ? "bg-white shadow-[0_0_30px_rgb(246,246,246)]" : "bg-[#FAFAFA]"} items-start ${props.page === "proposalDetail" ? "w-full m-0 p-7.5" : ""} shrink-0 max-[992px]:w-full max-[992px]:m-0 ${props.flexDirection === "flex-col" ? "w-full" : ""}  max-[992px]:flex-col p-3.75 m-3.75 rounded-[10px] ${props.page === "wishlist" || props.page === "summary" ? "w-[calc(50%-30px)]" : "w-[calc(33%-30px)]"} ${props.page === "myProperties" ? "w-full" : ""}`}>
+            <div className={`${props.flexDirection === "flex-col" ? "w-55" : "w-[50%]"} ${props.page === "company" ? "aspect-square" : ""} ${props.page === "proposalDetail" || props.page === "summary" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} max-[992px]:w-full max-[992px]:mb-3.75 ${props.page === "myProperties" ? "aspect-video" : "aspect-square"}`}>
                 <div className="relative h-full">
-                    <img className={`rounded-[10px] ${props.page === "company" ? "aspect-square h-1/2" : "h-full"} ${props.page === "proposalDetail" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} h-full  object-cover max-[992px]:aspect-video`} src={defaultProperty} alt="" />
+                    <img className={`rounded-[10px] ${props.page === "company" ? "aspect-square h-1/2" : "h-full"} ${props.page === "proposalDetail" || props.page === "summary" ? "aspect-video" : ""} ${props.flexDirection === "flex-col" ? "aspect-video" : ""} h-full  object-cover max-[992px]:aspect-video`} src={defaultProperty} alt="" />
                     {props.status == "draft" && <div className="bg-[#FFCA64] z-50 uppercase text-black text-xs absolute bottom-3.75 left-3.75 px-2 py-1.25 rounded-lg font-medium">
                         {translation?.data?.business?.statusess?.draft}
                     </div>}
@@ -23,15 +23,17 @@ export function PropertiesCard(props) {
                 </div>
             </div>
             <div className={`pl-5 ${props.flexDirection === "flex-col" ? "w-[calc(100%-220px)]" : "w-[50%]"} max-[992px]:w-full max-[992px]:pl-0`}>
-                <Link to={`/properties/${props.id}`} className={`block ${props.page === "company" ? "min-h-12.5" : ""} font-medium ${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" || props.page === "wishlist" || props.page === "proposalDetail" || props.flexDirection === "flex-col" ? "text-2xl" : "text-base"} text-black hover:text-[#FFCA64] transition-colors duration-300 ease-in-out`}>{props.title}</Link>
+                <Link to={`/properties/${props.id}`} className={`block ${props.page === "company" ? "min-h-12.5" : ""} font-medium ${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" || props.page === "wishlist" || props.page === "proposalDetail" || props.flexDirection === "flex-col" ? "text-2xl" : "text-base"} ${props.page === "summary" ? "text-xl" : "" } text-black hover:text-[#FFCA64] transition-colors duration-300 ease-in-out`}>{props.title}</Link>
                 <ul className={`text-[#B7BFB9] font-medium flex flex-wrap gap-2.5 my-2.5 ${props.flexDirection === "flex-col" ? "text-base" : "text-[11px]"}`}>
                     <li className="w-full flex items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin preview-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-                        <div>
+                        {props.page !== "summary" ? <div>
                             <span>{props.city} </span>
                             <span>/</span>
                             <span> {props.district}</span>
-                        </div>
+                        </div> : <div>
+                            {props.location}
+                        </div>}
                     </li>
                     <li className="flex items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-building preview-icon"><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M12 6h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/><path d="M8 6h.01"/><path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/><rect x="4" y="2" width="16" height="20" rx="2"/></svg>
@@ -50,7 +52,7 @@ export function PropertiesCard(props) {
                     <span className={`${props.page==="proposalDetail" ? "text-sm" : "text-[11px]"} text-[#B7BFB9] font-medium block py-1.25`}>
                         {translation?.data?.business?.sell_price}
                     </span>
-                    <span className={`${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" || props.page === "wishlist" || props.page === "proposalDetail" ? "text-2xl" : "text-lg"} text-[#FFCA64] font-semibold wrap-break-word`}>
+                    <span className={`${props.page === "companiesDetail" || props.page === "homeLogin" || props.page === "myProperties" || props.page === "wishlist" || props.page === "proposalDetail" || props.page === "summary" ? "text-2xl" : "text-lg"} text-[#FFCA64] font-semibold wrap-break-word`}>
                         {props.price}
                     </span>
                 </p>

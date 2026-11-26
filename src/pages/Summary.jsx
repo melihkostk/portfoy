@@ -15,6 +15,7 @@ import { ClipLoader } from "react-spinners";
 import { useAppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
 import check from "../assets/white-check.png"
+import { PropertiesCard } from "../components/PropertiesCard";
 
 export function Summary() {
 
@@ -35,20 +36,20 @@ export function Summary() {
 
     const [viewOptions, setViewOptions] = useState(false)
 
-    const [id , setID] = useState(true);
-    const [number , setNumber] = useState(true);
-    const [user , setUser] = useState(true)
-    const [status , setStatus] = useState(true)
-    const [title , setTitle] = useState(true)
-    const [cate , setCate] = useState(true)
-    const [location , setLocation] = useState(true)
-    const [price , setPrice] = useState(true)
-    const [view , setView] = useState(true)
-    const [fav , setFav] = useState(true)
-    const [offer , setOffer] = useState(true)
-    const [score , setScore] = useState(true)
-    const [created , setCreated] = useState(true)
-    const [updated , setUpdated] = useState(true)
+    const [id, setID] = useState(true);
+    const [number, setNumber] = useState(true);
+    const [user, setUser] = useState(true)
+    const [status, setStatus] = useState(true)
+    const [title, setTitle] = useState(true)
+    const [cate, setCate] = useState(true)
+    const [location, setLocation] = useState(true)
+    const [price, setPrice] = useState(true)
+    const [view, setView] = useState(true)
+    const [fav, setFav] = useState(true)
+    const [offer, setOffer] = useState(true)
+    const [score, setScore] = useState(true)
+    const [created, setCreated] = useState(true)
+    const [updated, setUpdated] = useState(true)
 
     return (
         <div className='flex flex-col items-center font-sf'>
@@ -105,6 +106,27 @@ export function Summary() {
                     </div>
                 </div>
             </div>
+            <div className="w-full max-w-[90%] my-20">
+                <h2 className="text-[25px] text-[#212529] font-semibold">{translation?.data?.business?.most_visited_properties}</h2>
+                <div className="flex">
+                    {counts?.data?.summary?.properties?.sort((a, b) => b.views - a.views).slice(0,2).map(item => (
+                        <PropertiesCard
+                            id={item?.id}
+                            key={item?.id}
+                            title={item?.title}
+                            cover={item?.cover}
+                            price={item?.price}
+                            company={item?.creator}
+                            type={item?.type}
+                            status={item.status.key}
+                            propertyType={item?.property_type}
+                            location={item.location}
+                            views={item.views}
+                            page="summary"
+                        />
+                    ))}
+                </div>
+            </div>
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="mb-7.5 flex items-center justify-between flex-wrap">
                     <h2 className="text-[25px] text-[#212529] font-semibold">{translation?.data?.business?.properties}</h2>
@@ -128,7 +150,7 @@ export function Summary() {
                                     <div className={`w-3.75 h-3.75 flex items-center justify-center border border-[#d9d9d9] rounded-sm ${number ? "bg-[#27c5d2]" : ""}`}>
                                         <img className="w-2.5 h-2.5" src={check} alt="" />
                                     </div>
-                                    {translation?.data?.business?.property_no.replace(":" , "")}
+                                    {translation?.data?.business?.property_no.replace(":", "")}
                                 </label>
                             </div>
                             <div className="border-b border-b-[#f8f8f8] px-2.5 py-1.25 mt-1 flex items-center gap-2.5">
@@ -247,7 +269,7 @@ export function Summary() {
                         <thead>
                             <tr>
                                 {id && <th className="text-start bg-[#ececec] py-4 px-2.5 rounded-l-lg whitespace-nowrap">#</th>}
-                                {number && <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.property_no.replace(":" , "")}</th>}
+                                {number && <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.property_no.replace(":", "")}</th>}
                                 {user && <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.created_by}</th>}
                                 {status && <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.status}</th>}
                                 {title && <th className="text-start bg-[#ececec] py-4 px-2.5 whitespace-nowrap">{translation?.data?.business?.title}</th>}
@@ -263,7 +285,7 @@ export function Summary() {
                             </tr>
                         </thead>
                         <tbody>
-                            {counts?.data?.summary?.properties?.map((item , index) => (
+                            {counts?.data?.summary?.properties?.map((item, index) => (
                                 <SummaryCard
                                     key={item.id}
                                     id={item.id}
