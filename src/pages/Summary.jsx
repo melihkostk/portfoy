@@ -88,7 +88,7 @@ export function Summary() {
             <div className="w-full max-w-[90%] mt-12.5">
                 <div className="flex items-center max-[992px]:flex-col">
                     <div className="max-[992px]:w-full">
-                        <ScoreCard />
+                        <ScoreCard counts={counts} />
                     </div>
                     <div className="flex pl-2.5 max-[992px]:pl-0 w-full max-[992px]:justify-between flex-wrap">
                         {counts?.data?.summary?.counts?.map(item => (
