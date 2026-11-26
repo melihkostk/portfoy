@@ -103,7 +103,9 @@ export function Filter({searchParams , typeId}) {
     const [filterOptions, setFilterOptions] = useState([]);
 
     useEffect(() => {
-        getAllFilterOptions(type).then(setFilterOptions)
+        if(type !== "All"){
+            getAllFilterOptions(type).then(setFilterOptions)
+        }
     }, [type])
 
     const findFilterParam = (title) =>

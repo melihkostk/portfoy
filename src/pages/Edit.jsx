@@ -155,7 +155,7 @@ export function Edit() {
                             <div className="flex flex-col w-[48%] max-[992px]:w-full m-2.5 max-[992px]:m-0">
                                 <label className="text-[#212529]" htmlFor="phone">{translation?.data?.business?.phone}</label>
                                 <div className="flex gap-3.75">
-                                    <select id="phone" name="phone" value={code} onChange={(e) => setCode(e.target.value)} className="py-1.5 bg-white pl-3 pr-9 border border-[#d9d9d9] rounded-lg" name="" id="">
+                                    <select id="phone" name="phone" value={code} onChange={(e) => setCode(e.target.value)} className="py-1.5 bg-white pl-3 pr-9 border border-[#d9d9d9] rounded-lg">
                                         <option value="357">(357)</option>
                                         <option value="90">(90)</option>
                                         <option value="971">(971)</option>
