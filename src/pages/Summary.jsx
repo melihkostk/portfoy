@@ -108,7 +108,7 @@ export function Summary() {
             </div>
             <div className="w-full max-w-[90%] my-20">
                 <h2 className="text-[25px] text-[#212529] font-semibold">{translation?.data?.business?.most_visited_properties}</h2>
-                <div className="flex">
+                <div className="flex max-[992px]:flex-col">
                     {counts?.data?.summary?.properties?.sort((a, b) => b.views - a.views).slice(0,2).map(item => (
                         <PropertiesCard
                             id={item?.id}
