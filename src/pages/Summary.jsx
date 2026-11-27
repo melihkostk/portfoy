@@ -127,7 +127,7 @@ export function Summary() {
                     ))}
                 </div>
             </div>
-            <div className="w-full max-w-[90%] mt-12.5">
+            <div className="w-full max-w-[90%]">
                 <div className="mb-7.5 flex items-center justify-between flex-wrap">
                     <h2 className="text-[25px] text-[#212529] font-semibold">{translation?.data?.business?.properties}</h2>
                     <div className="relative">

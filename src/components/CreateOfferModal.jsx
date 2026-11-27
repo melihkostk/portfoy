@@ -30,27 +30,29 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                 </button>
             </div>
             <div className="p-4">
-                <ul className="flex justify-between items-center mb-6">
+                <ul className="flex justify-between items-center mb-6 relative">
                     <li>
-                        <button className={`py-2 px-4 rounded-full cursor-pointer shadow-[0_0_30px_rgba(0,0,0,0.1)] ${step === 1 ? "bg-[#27c5d2] text-white" : "bg-white text-[#212529]"}`}>1</button>
+                        <button className={`py-2 px-4 rounded-full font-semibold cursor-pointer shadow-[0_0_30px_rgba(0,0,0,0.1)] ${step >= 1 ? "bg-[#27c5d2] text-white" : "bg-white text-[#212529]"}`}>1</button>
                     </li>
                     <li>
-                        <button className={`py-2 px-4 rounded-full cursor-pointer shadow-[0_0_30px_rgba(0,0,0,0.1)] ${step === 2 ? "bg-[#27c5d2] text-white" : "bg-white text-[#212529]"} `}>2</button>
+                        <button className={`py-2 px-4 rounded-full font-semibold cursor-pointer shadow-[0_0_30px_rgba(0,0,0,0.1)] ${step >= 2 ? "bg-[#27c5d2] text-white" : "bg-white text-[#212529]"} `}>2</button>
                     </li>
                     <li>
-                        <button className={`py-2 px-4 rounded-full cursor-pointer shadow-[0_0_30px_rgba(0,0,0,0.1)] ${step === 3 ? "bg-[#27c5d2] text-white" : "bg-white text-[#212529]"}`}>3</button>
+                        <button className={`py-2 px-4 rounded-full font-semibold cursor-pointer shadow-[0_0_30px_rgba(0,0,0,0.1)] ${step >= 3 ? "bg-[#27c5d2] text-white" : "bg-white text-[#212529]"}`}>3</button>
                     </li>
                     <li>
-                        <button className={`py-2 px-4 rounded-full cursor-pointer shadow-[0_0_30px_rgba(0,0,0,0.1)] ${step === 4 ? "bg-[#27c5d2] text-white" : "bg-white text-[#212529]"}`}>4</button>
+                        <button className={`py-2 px-4 rounded-full font-semibold cursor-pointer shadow-[0_0_30px_rgba(0,0,0,0.1)] ${step >= 4 ? "bg-[#27c5d2] text-white" : "bg-white text-[#212529]"}`}>4</button>
+                    </li>
+                    <li className="absolute bg-[#e9ecef] h-px left-0 w-full -z-10">
                     </li>
                 </ul>
                 {step === 1 && (
                     <div>
-                        <h2 className="mb-4 text-[#212529]">{translation?.data?.business?.choose_customer_before_select_proposal_properties}</h2>
+                        <h2 className="mb-4 text-[#212529] font-medium">{translation?.data?.business?.choose_customer_before_select_proposal_properties}</h2>
                         <form onSubmit={() => setStep(2)}>
                             <div className="flex flex-col mb-2">
-                                <label htmlFor="" className="mb-2 text-[#212529]">{translation?.data?.business?.choose?.customer}</label>
-                                <select value={selectedCustomer} onChange={(e) => setSelectedCustomer(e.target.value)} required name="" id="" className="border border-[#d9d9d9] rounded-lg py-1.5 px-3">
+                                <label htmlFor="" className="mb-2 text-[#212529] font-medium">{translation?.data?.business?.choose?.customer}</label>
+                                <select value={selectedCustomer} onChange={(e) => setSelectedCustomer(e.target.value)} required name="" id="" className="border border-[#d9d9d9] text-[#212529] font-medium rounded-lg py-1.5 px-3">
                                     <option disabled value="">{translation?.data?.business?.choose?.customer}</option>
                                     {customers?.data?.customers?.map(item => (
                                         <option value={item.id} key={item.id}>{item.name}</option>
@@ -58,8 +60,8 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                                 </select>
                             </div>
                             <div className="flex flex-col">
-                                <label htmlFor="" className="mb-2 text-[#212529]">{translation?.data?.business?.choose?.currency}</label>
-                                <select value={selectedCurrencie} onChange={(e) => setSelectedCurrencie(e.target.value)} required name="" id="" className="border border-[#d9d9d9] rounded-lg py-1.5 px-3">
+                                <label htmlFor="" className="mb-2 text-[#212529] font-medium">{translation?.data?.business?.choose?.currency}</label>
+                                <select value={selectedCurrencie} onChange={(e) => setSelectedCurrencie(e.target.value)} required name="" id="" className="border border-[#d9d9d9] text-[#212529] font-medium rounded-lg py-1.5 px-3">
                                     <option disabled value="">{translation?.data?.business?.choose?.currency}</option>
                                     {currencies?.map(item => (
                                         <option value={item.code} key={item.id}>{item.code}</option>
@@ -67,7 +69,7 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                                 </select>
                             </div>
                             <div className="mt-6 justify-self-end">
-                                <button className="uppercase text-sm text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                                <button className="uppercase text-sm font-bold text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                     {translation?.data?.business?.save_customer_for_proposal}
                                 </button>
                             </div>
@@ -86,7 +88,7 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                                 <p className="text-lg">{customers?.data?.customers?.find(item => item.id == selectedCustomer)?.name}</p>
                             </div>
                             <div>
-                                <button onClick={() => {setOfferModalShown(false); setStep(1), setSelectedCustomer("")}} className="text-sm text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.cancel}</button>
+                                <button onClick={() => {setOfferModalShown(false); setStep(1), setSelectedCustomer("")}} className="text-sm text-[#4b4b4b] font-semibold bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">{translation?.data?.business?.cancel}</button>
                             </div>
                         </div>
                         {details ? <div className="flex">
@@ -114,7 +116,7 @@ export function CreateOfferModel({ setOfferModalShown, notify ,  setNotify ,hand
                             {translation?.data?.business?.not_added_yet_properties_to_proposal}
                         </div>}
                         <div className="mt-6 justify-self-end">
-                            <button disabled={!details} onClick={() => setStep(prev => prev + 1)} className="uppercase text-sm text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
+                            <button disabled={!details} onClick={() => setStep(prev => prev + 1)} className="uppercase text-sm font-semibold text-[#4b4b4b] bg-[#f1f1f1] py-2 px-5 rounded-lg cursor-pointer hover:bg-[#c3c3c3] transition-colors duration-300 ease-in-out">
                                 {translation?.data?.business?.next}
                             </button>
                         </div>
